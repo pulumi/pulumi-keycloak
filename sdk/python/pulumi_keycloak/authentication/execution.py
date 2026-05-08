@@ -22,8 +22,8 @@ class ExecutionArgs:
                  authenticator: pulumi.Input[_builtins.str],
                  parent_flow_alias: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Execution resource.
 
@@ -79,37 +79,37 @@ class ExecutionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter
-    def requirement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         return pulumi.get(self, "requirement")
 
     @requirement.setter
-    def requirement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def requirement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "requirement", value)
 
 
 @pulumi.input_type
 class _ExecutionState:
     def __init__(__self__, *,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None):
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Execution resources.
 
@@ -132,62 +132,62 @@ class _ExecutionState:
 
     @_builtins.property
     @pulumi.getter
-    def authenticator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authenticator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         """
         return pulumi.get(self, "authenticator")
 
     @authenticator.setter
-    def authenticator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authenticator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authenticator", value)
 
     @_builtins.property
     @pulumi.getter(name="parentFlowAlias")
-    def parent_flow_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def parent_flow_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow this execution is attached to.
         """
         return pulumi.get(self, "parent_flow_alias")
 
     @parent_flow_alias.setter
-    def parent_flow_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def parent_flow_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "parent_flow_alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm the authentication execution exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def requirement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         return pulumi.get(self, "requirement")
 
     @requirement.setter
-    def requirement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def requirement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "requirement", value)
 
 
@@ -197,11 +197,11 @@ class Execution(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None,
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing an authentication execution within Keycloak.
@@ -326,11 +326,11 @@ class Execution(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None,
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -361,11 +361,11 @@ class Execution(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-            parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            priority: Optional[pulumi.Input[_builtins.int]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            requirement: Optional[pulumi.Input[_builtins.str]] = None) -> 'Execution':
+            authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            requirement: pulumi.Input[Optional[_builtins.str]] = None) -> 'Execution':
         """
         Get an existing Execution resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

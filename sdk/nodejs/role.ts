@@ -247,31 +247,31 @@ export interface RoleState {
     /**
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      */
-    compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    compositeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the role
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
      */
-    import?: pulumi.Input<boolean>;
+    import?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the role
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this role exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -281,27 +281,27 @@ export interface RoleArgs {
     /**
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      */
-    compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    compositeRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the role
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
      */
-    import?: pulumi.Input<boolean>;
+    import?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the role
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this role exists within.
      */

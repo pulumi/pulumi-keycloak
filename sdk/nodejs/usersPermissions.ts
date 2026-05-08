@@ -209,26 +209,26 @@ export interface UsersPermissionsState {
     /**
      * Resource server id representing the realm management client on which this permission is managed
      */
-    authorizationResourceServerId?: pulumi.Input<string>;
-    enabled?: pulumi.Input<boolean>;
-    impersonateScope?: pulumi.Input<inputs.UsersPermissionsImpersonateScope>;
-    manageGroupMembershipScope?: pulumi.Input<inputs.UsersPermissionsManageGroupMembershipScope>;
-    manageScope?: pulumi.Input<inputs.UsersPermissionsManageScope>;
-    mapRolesScope?: pulumi.Input<inputs.UsersPermissionsMapRolesScope>;
-    realmId?: pulumi.Input<string>;
-    userImpersonatedScope?: pulumi.Input<inputs.UsersPermissionsUserImpersonatedScope>;
-    viewScope?: pulumi.Input<inputs.UsersPermissionsViewScope>;
+    authorizationResourceServerId?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    impersonateScope?: pulumi.Input<inputs.UsersPermissionsImpersonateScope | undefined>;
+    manageGroupMembershipScope?: pulumi.Input<inputs.UsersPermissionsManageGroupMembershipScope | undefined>;
+    manageScope?: pulumi.Input<inputs.UsersPermissionsManageScope | undefined>;
+    mapRolesScope?: pulumi.Input<inputs.UsersPermissionsMapRolesScope | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    userImpersonatedScope?: pulumi.Input<inputs.UsersPermissionsUserImpersonatedScope | undefined>;
+    viewScope?: pulumi.Input<inputs.UsersPermissionsViewScope | undefined>;
 }
 
 /**
  * The set of arguments for constructing a UsersPermissions resource.
  */
 export interface UsersPermissionsArgs {
-    impersonateScope?: pulumi.Input<inputs.UsersPermissionsImpersonateScope>;
-    manageGroupMembershipScope?: pulumi.Input<inputs.UsersPermissionsManageGroupMembershipScope>;
-    manageScope?: pulumi.Input<inputs.UsersPermissionsManageScope>;
-    mapRolesScope?: pulumi.Input<inputs.UsersPermissionsMapRolesScope>;
+    impersonateScope?: pulumi.Input<inputs.UsersPermissionsImpersonateScope | undefined>;
+    manageGroupMembershipScope?: pulumi.Input<inputs.UsersPermissionsManageGroupMembershipScope | undefined>;
+    manageScope?: pulumi.Input<inputs.UsersPermissionsManageScope | undefined>;
+    mapRolesScope?: pulumi.Input<inputs.UsersPermissionsMapRolesScope | undefined>;
     realmId: pulumi.Input<string>;
-    userImpersonatedScope?: pulumi.Input<inputs.UsersPermissionsUserImpersonatedScope>;
-    viewScope?: pulumi.Input<inputs.UsersPermissionsViewScope>;
+    userImpersonatedScope?: pulumi.Input<inputs.UsersPermissionsUserImpersonatedScope | undefined>;
+    viewScope?: pulumi.Input<inputs.UsersPermissionsViewScope | undefined>;
 }

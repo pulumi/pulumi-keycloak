@@ -20,13 +20,13 @@ __all__ = ['BindingsArgs', 'Bindings']
 class BindingsArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None):
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Bindings resource.
 
@@ -69,100 +69,100 @@ class BindingsArgs:
 
     @_builtins.property
     @pulumi.getter(name="browserFlow")
-    def browser_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def browser_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm BrowserFlow.
         """
         return pulumi.get(self, "browser_flow")
 
     @browser_flow.setter
-    def browser_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def browser_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "browser_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuthenticationFlow")
-    def client_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm ClientAuthenticationFlow.
         """
         return pulumi.get(self, "client_authentication_flow")
 
     @client_authentication_flow.setter
-    def client_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="directGrantFlow")
-    def direct_grant_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def direct_grant_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm DirectGrantFlow.
         """
         return pulumi.get(self, "direct_grant_flow")
 
     @direct_grant_flow.setter
-    def direct_grant_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def direct_grant_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "direct_grant_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerAuthenticationFlow")
-    def docker_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm DockerAuthenticationFlow.
         """
         return pulumi.get(self, "docker_authentication_flow")
 
     @docker_authentication_flow.setter
-    def docker_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="firstBrokerLoginFlow")
-    def first_broker_login_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_broker_login_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
         """
         return pulumi.get(self, "first_broker_login_flow")
 
     @first_broker_login_flow.setter
-    def first_broker_login_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_broker_login_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_broker_login_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationFlow")
-    def registration_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registration_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm RegistrationFlow.
         """
         return pulumi.get(self, "registration_flow")
 
     @registration_flow.setter
-    def registration_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registration_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registration_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="resetCredentialsFlow")
-    def reset_credentials_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reset_credentials_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm ResetCredentialsFlow.
         """
         return pulumi.get(self, "reset_credentials_flow")
 
     @reset_credentials_flow.setter
-    def reset_credentials_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reset_credentials_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reset_credentials_flow", value)
 
 
 @pulumi.input_type
 class _BindingsState:
     def __init__(__self__, *,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None):
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Bindings resources.
 
@@ -194,98 +194,98 @@ class _BindingsState:
 
     @_builtins.property
     @pulumi.getter(name="browserFlow")
-    def browser_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def browser_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm BrowserFlow.
         """
         return pulumi.get(self, "browser_flow")
 
     @browser_flow.setter
-    def browser_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def browser_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "browser_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuthenticationFlow")
-    def client_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm ClientAuthenticationFlow.
         """
         return pulumi.get(self, "client_authentication_flow")
 
     @client_authentication_flow.setter
-    def client_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="directGrantFlow")
-    def direct_grant_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def direct_grant_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm DirectGrantFlow.
         """
         return pulumi.get(self, "direct_grant_flow")
 
     @direct_grant_flow.setter
-    def direct_grant_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def direct_grant_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "direct_grant_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerAuthenticationFlow")
-    def docker_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm DockerAuthenticationFlow.
         """
         return pulumi.get(self, "docker_authentication_flow")
 
     @docker_authentication_flow.setter
-    def docker_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="firstBrokerLoginFlow")
-    def first_broker_login_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_broker_login_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
         """
         return pulumi.get(self, "first_broker_login_flow")
 
     @first_broker_login_flow.setter
-    def first_broker_login_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_broker_login_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_broker_login_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm the authentication flow binding exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationFlow")
-    def registration_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registration_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm RegistrationFlow.
         """
         return pulumi.get(self, "registration_flow")
 
     @registration_flow.setter
-    def registration_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registration_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registration_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="resetCredentialsFlow")
-    def reset_credentials_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reset_credentials_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias of the flow to assign to the realm ResetCredentialsFlow.
         """
         return pulumi.get(self, "reset_credentials_flow")
 
     @reset_credentials_flow.setter
-    def reset_credentials_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reset_credentials_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reset_credentials_flow", value)
 
 
@@ -295,14 +295,14 @@ class Bindings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing realm authentication flow bindings within Keycloak.
@@ -428,14 +428,14 @@ class Bindings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -465,14 +465,14 @@ class Bindings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None) -> 'Bindings':
+            browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None) -> 'Bindings':
         """
         Get an existing Bindings resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

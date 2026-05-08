@@ -26,14 +26,14 @@ class RoleMapperArgs:
                  realm_id: pulumi.Input[_builtins.str],
                  role_name_ldap_attribute: pulumi.Input[_builtins.str],
                  role_object_classes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_realm_roles_mapping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RoleMapper resource.
 
@@ -163,119 +163,119 @@ class RoleMapperArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="memberofLdapAttribute")
-    def memberof_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def memberof_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
         """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @memberof_ldap_attribute.setter
-    def memberof_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def memberof_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "memberof_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipAttributeType")
-    def membership_attribute_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_attribute_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DN` or `UID`. Defaults to `DN`.
         """
         return pulumi.get(self, "membership_attribute_type")
 
     @membership_attribute_type.setter
-    def membership_attribute_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_attribute_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_attribute_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         """
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="rolesLdapFilter")
-    def roles_ldap_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def roles_ldap_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "roles_ldap_filter")
 
     @roles_ldap_filter.setter
-    def roles_ldap_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def roles_ldap_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "roles_ldap_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="useRealmRolesMapping")
-    def use_realm_roles_mapping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_realm_roles_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         """
         return pulumi.get(self, "use_realm_roles_mapping")
 
     @use_realm_roles_mapping.setter
-    def use_realm_roles_mapping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_realm_roles_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_realm_roles_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")
-    def user_roles_retrieve_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_roles_retrieve_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     @user_roles_retrieve_strategy.setter
-    def user_roles_retrieve_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_roles_retrieve_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_roles_retrieve_strategy", value)
 
 
 @pulumi.input_type
 class _RoleMapperState:
     def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_roles_dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_realm_roles_mapping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_roles_dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RoleMapper resources.
 
@@ -328,182 +328,182 @@ class _RoleMapperState:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapRolesDn")
-    def ldap_roles_dn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_roles_dn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The LDAP DN where roles can be found.
         """
         return pulumi.get(self, "ldap_roles_dn")
 
     @ldap_roles_dn.setter
-    def ldap_roles_dn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_roles_dn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_roles_dn", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_user_federation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
     @ldap_user_federation_id.setter
-    def ldap_user_federation_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_user_federation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_user_federation_id", value)
 
     @_builtins.property
     @pulumi.getter(name="memberofLdapAttribute")
-    def memberof_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def memberof_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
         """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @memberof_ldap_attribute.setter
-    def memberof_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def memberof_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "memberof_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipAttributeType")
-    def membership_attribute_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_attribute_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DN` or `UID`. Defaults to `DN`.
         """
         return pulumi.get(self, "membership_attribute_type")
 
     @membership_attribute_type.setter
-    def membership_attribute_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_attribute_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_attribute_type", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipLdapAttribute")
-    def membership_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute that is used for membership mappings.
         """
         return pulumi.get(self, "membership_ldap_attribute")
 
     @membership_ldap_attribute.setter
-    def membership_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipUserLdapAttribute")
-    def membership_user_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_user_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute on a user that is used for membership mappings.
         """
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @membership_user_ldap_attribute.setter
-    def membership_user_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_user_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_user_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         """
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleNameLdapAttribute")
-    def role_name_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         """
         return pulumi.get(self, "role_name_ldap_attribute")
 
     @role_name_ldap_attribute.setter
-    def role_name_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="roleObjectClasses")
-    def role_object_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_object_classes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of strings representing the object classes for the role. Must contain at least one.
         """
         return pulumi.get(self, "role_object_classes")
 
     @role_object_classes.setter
-    def role_object_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_object_classes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_object_classes", value)
 
     @_builtins.property
     @pulumi.getter(name="rolesLdapFilter")
-    def roles_ldap_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def roles_ldap_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "roles_ldap_filter")
 
     @roles_ldap_filter.setter
-    def roles_ldap_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def roles_ldap_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "roles_ldap_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="useRealmRolesMapping")
-    def use_realm_roles_mapping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_realm_roles_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         """
         return pulumi.get(self, "use_realm_roles_mapping")
 
     @use_realm_roles_mapping.setter
-    def use_realm_roles_mapping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_realm_roles_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_realm_roles_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")
-    def user_roles_retrieve_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_roles_retrieve_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     @user_roles_retrieve_strategy.setter
-    def user_roles_retrieve_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_roles_retrieve_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_roles_retrieve_strategy", value)
 
 
@@ -513,21 +513,21 @@ class RoleMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_roles_dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_realm_roles_mapping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_roles_dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing role mappers for Keycloak users federated via LDAP.
@@ -676,21 +676,21 @@ class RoleMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_roles_dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_realm_roles_mapping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_roles_dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -739,21 +739,21 @@ class RoleMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            ldap_roles_dn: Optional[pulumi.Input[_builtins.str]] = None,
-            ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-            memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-            membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            mode: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            role_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            role_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            roles_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-            use_realm_roles_mapping: Optional[pulumi.Input[_builtins.bool]] = None,
-            user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None) -> 'RoleMapper':
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_roles_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            mode: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+            use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> 'RoleMapper':
         """
         Get an existing RoleMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

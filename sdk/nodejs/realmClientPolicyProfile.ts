@@ -117,18 +117,18 @@ export class RealmClientPolicyProfile extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RealmClientPolicyProfile resources.
  */
 export interface RealmClientPolicyProfileState {
-    description?: pulumi.Input<string>;
-    executors?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfileExecutor>[]>;
-    name?: pulumi.Input<string>;
-    realmId?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
+    executors?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfileExecutor>[] | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a RealmClientPolicyProfile resource.
  */
 export interface RealmClientPolicyProfileArgs {
-    description?: pulumi.Input<string>;
-    executors?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfileExecutor>[]>;
-    name?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
+    executors?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfileExecutor>[] | undefined>;
+    name?: pulumi.Input<string | undefined>;
     realmId: pulumi.Input<string>;
 }

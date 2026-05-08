@@ -22,12 +22,12 @@ __all__ = ['UsersPermissionsArgs', 'UsersPermissions']
 class UsersPermissionsArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
-                 impersonate_scope: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']] = None,
-                 manage_group_membership_scope: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
-                 manage_scope: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']] = None,
-                 map_roles_scope: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']] = None,
-                 user_impersonated_scope: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']] = None,
-                 view_scope: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']] = None):
+                 impersonate_scope: pulumi.Input[Optional['UsersPermissionsImpersonateScopeArgs']] = None,
+                 manage_group_membership_scope: pulumi.Input[Optional['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
+                 manage_scope: pulumi.Input[Optional['UsersPermissionsManageScopeArgs']] = None,
+                 map_roles_scope: pulumi.Input[Optional['UsersPermissionsMapRolesScopeArgs']] = None,
+                 user_impersonated_scope: pulumi.Input[Optional['UsersPermissionsUserImpersonatedScopeArgs']] = None,
+                 view_scope: pulumi.Input[Optional['UsersPermissionsViewScopeArgs']] = None):
         """
         The set of arguments for constructing a UsersPermissions resource.
         """
@@ -56,71 +56,71 @@ class UsersPermissionsArgs:
 
     @_builtins.property
     @pulumi.getter(name="impersonateScope")
-    def impersonate_scope(self) -> Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']]:
+    def impersonate_scope(self) -> pulumi.Input[Optional['UsersPermissionsImpersonateScopeArgs']]:
         return pulumi.get(self, "impersonate_scope")
 
     @impersonate_scope.setter
-    def impersonate_scope(self, value: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']]):
+    def impersonate_scope(self, value: pulumi.Input[Optional['UsersPermissionsImpersonateScopeArgs']]):
         pulumi.set(self, "impersonate_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="manageGroupMembershipScope")
-    def manage_group_membership_scope(self) -> Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']]:
+    def manage_group_membership_scope(self) -> pulumi.Input[Optional['UsersPermissionsManageGroupMembershipScopeArgs']]:
         return pulumi.get(self, "manage_group_membership_scope")
 
     @manage_group_membership_scope.setter
-    def manage_group_membership_scope(self, value: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']]):
+    def manage_group_membership_scope(self, value: pulumi.Input[Optional['UsersPermissionsManageGroupMembershipScopeArgs']]):
         pulumi.set(self, "manage_group_membership_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="manageScope")
-    def manage_scope(self) -> Optional[pulumi.Input['UsersPermissionsManageScopeArgs']]:
+    def manage_scope(self) -> pulumi.Input[Optional['UsersPermissionsManageScopeArgs']]:
         return pulumi.get(self, "manage_scope")
 
     @manage_scope.setter
-    def manage_scope(self, value: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']]):
+    def manage_scope(self, value: pulumi.Input[Optional['UsersPermissionsManageScopeArgs']]):
         pulumi.set(self, "manage_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="mapRolesScope")
-    def map_roles_scope(self) -> Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']]:
+    def map_roles_scope(self) -> pulumi.Input[Optional['UsersPermissionsMapRolesScopeArgs']]:
         return pulumi.get(self, "map_roles_scope")
 
     @map_roles_scope.setter
-    def map_roles_scope(self, value: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']]):
+    def map_roles_scope(self, value: pulumi.Input[Optional['UsersPermissionsMapRolesScopeArgs']]):
         pulumi.set(self, "map_roles_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="userImpersonatedScope")
-    def user_impersonated_scope(self) -> Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']]:
+    def user_impersonated_scope(self) -> pulumi.Input[Optional['UsersPermissionsUserImpersonatedScopeArgs']]:
         return pulumi.get(self, "user_impersonated_scope")
 
     @user_impersonated_scope.setter
-    def user_impersonated_scope(self, value: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']]):
+    def user_impersonated_scope(self, value: pulumi.Input[Optional['UsersPermissionsUserImpersonatedScopeArgs']]):
         pulumi.set(self, "user_impersonated_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="viewScope")
-    def view_scope(self) -> Optional[pulumi.Input['UsersPermissionsViewScopeArgs']]:
+    def view_scope(self) -> pulumi.Input[Optional['UsersPermissionsViewScopeArgs']]:
         return pulumi.get(self, "view_scope")
 
     @view_scope.setter
-    def view_scope(self, value: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']]):
+    def view_scope(self, value: pulumi.Input[Optional['UsersPermissionsViewScopeArgs']]):
         pulumi.set(self, "view_scope", value)
 
 
 @pulumi.input_type
 class _UsersPermissionsState:
     def __init__(__self__, *,
-                 authorization_resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 impersonate_scope: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']] = None,
-                 manage_group_membership_scope: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
-                 manage_scope: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']] = None,
-                 map_roles_scope: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_impersonated_scope: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']] = None,
-                 view_scope: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']] = None):
+                 authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 impersonate_scope: pulumi.Input[Optional['UsersPermissionsImpersonateScopeArgs']] = None,
+                 manage_group_membership_scope: pulumi.Input[Optional['UsersPermissionsManageGroupMembershipScopeArgs']] = None,
+                 manage_scope: pulumi.Input[Optional['UsersPermissionsManageScopeArgs']] = None,
+                 map_roles_scope: pulumi.Input[Optional['UsersPermissionsMapRolesScopeArgs']] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_impersonated_scope: pulumi.Input[Optional['UsersPermissionsUserImpersonatedScopeArgs']] = None,
+                 view_scope: pulumi.Input[Optional['UsersPermissionsViewScopeArgs']] = None):
         """
         Input properties used for looking up and filtering UsersPermissions resources.
 
@@ -147,86 +147,86 @@ class _UsersPermissionsState:
 
     @_builtins.property
     @pulumi.getter(name="authorizationResourceServerId")
-    def authorization_resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Resource server id representing the realm management client on which this permission is managed
         """
         return pulumi.get(self, "authorization_resource_server_id")
 
     @authorization_resource_server_id.setter
-    def authorization_resource_server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_resource_server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_resource_server_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="impersonateScope")
-    def impersonate_scope(self) -> Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']]:
+    def impersonate_scope(self) -> pulumi.Input[Optional['UsersPermissionsImpersonateScopeArgs']]:
         return pulumi.get(self, "impersonate_scope")
 
     @impersonate_scope.setter
-    def impersonate_scope(self, value: Optional[pulumi.Input['UsersPermissionsImpersonateScopeArgs']]):
+    def impersonate_scope(self, value: pulumi.Input[Optional['UsersPermissionsImpersonateScopeArgs']]):
         pulumi.set(self, "impersonate_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="manageGroupMembershipScope")
-    def manage_group_membership_scope(self) -> Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']]:
+    def manage_group_membership_scope(self) -> pulumi.Input[Optional['UsersPermissionsManageGroupMembershipScopeArgs']]:
         return pulumi.get(self, "manage_group_membership_scope")
 
     @manage_group_membership_scope.setter
-    def manage_group_membership_scope(self, value: Optional[pulumi.Input['UsersPermissionsManageGroupMembershipScopeArgs']]):
+    def manage_group_membership_scope(self, value: pulumi.Input[Optional['UsersPermissionsManageGroupMembershipScopeArgs']]):
         pulumi.set(self, "manage_group_membership_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="manageScope")
-    def manage_scope(self) -> Optional[pulumi.Input['UsersPermissionsManageScopeArgs']]:
+    def manage_scope(self) -> pulumi.Input[Optional['UsersPermissionsManageScopeArgs']]:
         return pulumi.get(self, "manage_scope")
 
     @manage_scope.setter
-    def manage_scope(self, value: Optional[pulumi.Input['UsersPermissionsManageScopeArgs']]):
+    def manage_scope(self, value: pulumi.Input[Optional['UsersPermissionsManageScopeArgs']]):
         pulumi.set(self, "manage_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="mapRolesScope")
-    def map_roles_scope(self) -> Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']]:
+    def map_roles_scope(self) -> pulumi.Input[Optional['UsersPermissionsMapRolesScopeArgs']]:
         return pulumi.get(self, "map_roles_scope")
 
     @map_roles_scope.setter
-    def map_roles_scope(self, value: Optional[pulumi.Input['UsersPermissionsMapRolesScopeArgs']]):
+    def map_roles_scope(self, value: pulumi.Input[Optional['UsersPermissionsMapRolesScopeArgs']]):
         pulumi.set(self, "map_roles_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userImpersonatedScope")
-    def user_impersonated_scope(self) -> Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']]:
+    def user_impersonated_scope(self) -> pulumi.Input[Optional['UsersPermissionsUserImpersonatedScopeArgs']]:
         return pulumi.get(self, "user_impersonated_scope")
 
     @user_impersonated_scope.setter
-    def user_impersonated_scope(self, value: Optional[pulumi.Input['UsersPermissionsUserImpersonatedScopeArgs']]):
+    def user_impersonated_scope(self, value: pulumi.Input[Optional['UsersPermissionsUserImpersonatedScopeArgs']]):
         pulumi.set(self, "user_impersonated_scope", value)
 
     @_builtins.property
     @pulumi.getter(name="viewScope")
-    def view_scope(self) -> Optional[pulumi.Input['UsersPermissionsViewScopeArgs']]:
+    def view_scope(self) -> pulumi.Input[Optional['UsersPermissionsViewScopeArgs']]:
         return pulumi.get(self, "view_scope")
 
     @view_scope.setter
-    def view_scope(self, value: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']]):
+    def view_scope(self, value: pulumi.Input[Optional['UsersPermissionsViewScopeArgs']]):
         pulumi.set(self, "view_scope", value)
 
 
@@ -236,13 +236,13 @@ class UsersPermissions(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 impersonate_scope: Optional[pulumi.Input[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict']]] = None,
-                 manage_group_membership_scope: Optional[pulumi.Input[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict']]] = None,
-                 manage_scope: Optional[pulumi.Input[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict']]] = None,
-                 map_roles_scope: Optional[pulumi.Input[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict']]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_impersonated_scope: Optional[pulumi.Input[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict']]] = None,
-                 view_scope: Optional[pulumi.Input[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict']]] = None,
+                 impersonate_scope: pulumi.Input[Optional[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict']]] = None,
+                 manage_group_membership_scope: pulumi.Input[Optional[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict']]] = None,
+                 manage_scope: pulumi.Input[Optional[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict']]] = None,
+                 map_roles_scope: pulumi.Input[Optional[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict']]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_impersonated_scope: pulumi.Input[Optional[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict']]] = None,
+                 view_scope: pulumi.Input[Optional[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         """
         Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
@@ -482,13 +482,13 @@ class UsersPermissions(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 impersonate_scope: Optional[pulumi.Input[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict']]] = None,
-                 manage_group_membership_scope: Optional[pulumi.Input[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict']]] = None,
-                 manage_scope: Optional[pulumi.Input[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict']]] = None,
-                 map_roles_scope: Optional[pulumi.Input[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict']]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_impersonated_scope: Optional[pulumi.Input[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict']]] = None,
-                 view_scope: Optional[pulumi.Input[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict']]] = None,
+                 impersonate_scope: pulumi.Input[Optional[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict']]] = None,
+                 manage_group_membership_scope: pulumi.Input[Optional[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict']]] = None,
+                 manage_scope: pulumi.Input[Optional[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict']]] = None,
+                 map_roles_scope: pulumi.Input[Optional[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict']]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_impersonated_scope: pulumi.Input[Optional[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict']]] = None,
+                 view_scope: pulumi.Input[Optional[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -519,15 +519,15 @@ class UsersPermissions(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authorization_resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            impersonate_scope: Optional[pulumi.Input[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict']]] = None,
-            manage_group_membership_scope: Optional[pulumi.Input[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict']]] = None,
-            manage_scope: Optional[pulumi.Input[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict']]] = None,
-            map_roles_scope: Optional[pulumi.Input[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict']]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            user_impersonated_scope: Optional[pulumi.Input[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict']]] = None,
-            view_scope: Optional[pulumi.Input[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict']]] = None) -> 'UsersPermissions':
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            impersonate_scope: pulumi.Input[Optional[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict']]] = None,
+            manage_group_membership_scope: pulumi.Input[Optional[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict']]] = None,
+            manage_scope: pulumi.Input[Optional[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict']]] = None,
+            map_roles_scope: pulumi.Input[Optional[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict']]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_impersonated_scope: pulumi.Input[Optional[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict']]] = None,
+            view_scope: pulumi.Input[Optional[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict']]] = None) -> 'UsersPermissions':
         """
         Get an existing UsersPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

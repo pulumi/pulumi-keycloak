@@ -191,47 +191,47 @@ export interface UserAttributeMapperState {
     /**
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
-    alwaysReadValueFromLdap?: pulumi.Input<boolean>;
+    alwaysReadValueFromLdap?: pulumi.Input<boolean | undefined>;
     /**
      * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      */
-    attributeDefaultValue?: pulumi.Input<string>;
+    attributeDefaultValue?: pulumi.Input<string | undefined>;
     /**
      * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
      */
-    attributeForceDefault?: pulumi.Input<boolean>;
+    attributeForceDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Should be true for binary LDAP attributes.
      */
-    isBinaryAttribute?: pulumi.Input<boolean>;
+    isBinaryAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
-    isMandatoryInLdap?: pulumi.Input<boolean>;
+    isMandatoryInLdap?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the mapped attribute on the LDAP object.
      */
-    ldapAttribute?: pulumi.Input<string>;
+    ldapAttribute?: pulumi.Input<string | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      */
-    readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */
-    userModelAttribute?: pulumi.Input<string>;
+    userModelAttribute?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -241,23 +241,23 @@ export interface UserAttributeMapperArgs {
     /**
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
-    alwaysReadValueFromLdap?: pulumi.Input<boolean>;
+    alwaysReadValueFromLdap?: pulumi.Input<boolean | undefined>;
     /**
      * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      */
-    attributeDefaultValue?: pulumi.Input<string>;
+    attributeDefaultValue?: pulumi.Input<string | undefined>;
     /**
      * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
      */
-    attributeForceDefault?: pulumi.Input<boolean>;
+    attributeForceDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Should be true for binary LDAP attributes.
      */
-    isBinaryAttribute?: pulumi.Input<boolean>;
+    isBinaryAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
-    isMandatoryInLdap?: pulumi.Input<boolean>;
+    isMandatoryInLdap?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the mapped attribute on the LDAP object.
      */
@@ -269,11 +269,11 @@ export interface UserAttributeMapperArgs {
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      */
-    readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */

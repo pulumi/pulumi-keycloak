@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
+//			oidc2, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
 //				Realm:            realm.ID(),
 //				Alias:            pulumi.String("oidc"),
 //				AuthorizationUrl: pulumi.String("https://example.com/auth"),
@@ -59,7 +59,7 @@ import (
 //				Realm:                 realm.ID(),
 //				Name:                  pulumi.String("email-attribute-importer"),
 //				ClaimName:             pulumi.String("my-email-claim"),
-//				IdentityProviderAlias: oidc.Alias,
+//				IdentityProviderAlias: oidc2.Alias,
 //				UserAttribute:         pulumi.String("email"),
 //				ExtraConfig: pulumi.StringMap{
 //					"syncMode": pulumi.String("INHERIT"),

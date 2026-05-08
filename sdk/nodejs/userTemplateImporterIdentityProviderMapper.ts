@@ -147,23 +147,23 @@ export interface UserTemplateImporterIdentityProviderMapperState {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string | undefined>;
     /**
      * The name of the mapper.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,7 +173,7 @@ export interface UserTemplateImporterIdentityProviderMapperArgs {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
@@ -181,7 +181,7 @@ export interface UserTemplateImporterIdentityProviderMapperArgs {
     /**
      * The name of the mapper.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm.
      */
@@ -189,5 +189,5 @@ export interface UserTemplateImporterIdentityProviderMapperArgs {
     /**
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
 }

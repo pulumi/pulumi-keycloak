@@ -26,17 +26,17 @@ class GroupMapperArgs:
                  membership_ldap_attribute: pulumi.Input[_builtins.str],
                  membership_user_ldap_attribute: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 drop_non_existing_groups_during_sync: Optional[pulumi.Input[_builtins.bool]] = None,
-                 groups_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_missing_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 preserve_group_inheritance: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
+                 drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+                 groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_missing_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mapped_group_attributes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMapper resource.
 
@@ -175,158 +175,158 @@ class GroupMapperArgs:
 
     @_builtins.property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
-    def drop_non_existing_groups_during_sync(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def drop_non_existing_groups_during_sync(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         """
         return pulumi.get(self, "drop_non_existing_groups_during_sync")
 
     @drop_non_existing_groups_during_sync.setter
-    def drop_non_existing_groups_during_sync(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def drop_non_existing_groups_during_sync(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "drop_non_existing_groups_during_sync", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsLdapFilter")
-    def groups_ldap_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_ldap_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "groups_ldap_filter")
 
     @groups_ldap_filter.setter
-    def groups_ldap_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_ldap_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_ldap_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsPath")
-    def groups_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         """
         return pulumi.get(self, "groups_path")
 
     @groups_path.setter
-    def groups_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_path", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreMissingGroups")
-    def ignore_missing_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_missing_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, missing groups in the hierarchy will be ignored.
         """
         return pulumi.get(self, "ignore_missing_groups")
 
     @ignore_missing_groups.setter
-    def ignore_missing_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_missing_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_missing_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="mappedGroupAttributes")
-    def mapped_group_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def mapped_group_attributes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
         """
         return pulumi.get(self, "mapped_group_attributes")
 
     @mapped_group_attributes.setter
-    def mapped_group_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def mapped_group_attributes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "mapped_group_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="memberofLdapAttribute")
-    def memberof_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def memberof_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
         """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @memberof_ldap_attribute.setter
-    def memberof_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def memberof_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "memberof_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipAttributeType")
-    def membership_attribute_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_attribute_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DN` or `UID`. Defaults to `DN`.
         """
         return pulumi.get(self, "membership_attribute_type")
 
     @membership_attribute_type.setter
-    def membership_attribute_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_attribute_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_attribute_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         """
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="preserveGroupInheritance")
-    def preserve_group_inheritance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def preserve_group_inheritance(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         """
         return pulumi.get(self, "preserve_group_inheritance")
 
     @preserve_group_inheritance.setter
-    def preserve_group_inheritance(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def preserve_group_inheritance(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "preserve_group_inheritance", value)
 
     @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")
-    def user_roles_retrieve_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_roles_retrieve_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     @user_roles_retrieve_strategy.setter
-    def user_roles_retrieve_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_roles_retrieve_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_roles_retrieve_strategy", value)
 
 
 @pulumi.input_type
 class _GroupMapperState:
     def __init__(__self__, *,
-                 drop_non_existing_groups_during_sync: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 groups_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_missing_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ldap_groups_dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 preserve_group_inheritance: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
+                 drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_missing_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ldap_groups_dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mapped_group_attributes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMapper resources.
 
@@ -388,218 +388,218 @@ class _GroupMapperState:
 
     @_builtins.property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
-    def drop_non_existing_groups_during_sync(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def drop_non_existing_groups_during_sync(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         """
         return pulumi.get(self, "drop_non_existing_groups_during_sync")
 
     @drop_non_existing_groups_during_sync.setter
-    def drop_non_existing_groups_during_sync(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def drop_non_existing_groups_during_sync(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "drop_non_existing_groups_during_sync", value)
 
     @_builtins.property
     @pulumi.getter(name="groupNameLdapAttribute")
-    def group_name_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_name_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         """
         return pulumi.get(self, "group_name_ldap_attribute")
 
     @group_name_ldap_attribute.setter
-    def group_name_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_name_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_name_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="groupObjectClasses")
-    def group_object_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def group_object_classes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of strings representing the object classes for the group. Must contain at least one.
         """
         return pulumi.get(self, "group_object_classes")
 
     @group_object_classes.setter
-    def group_object_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def group_object_classes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "group_object_classes", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsLdapFilter")
-    def groups_ldap_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_ldap_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "groups_ldap_filter")
 
     @groups_ldap_filter.setter
-    def groups_ldap_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_ldap_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_ldap_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsPath")
-    def groups_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         """
         return pulumi.get(self, "groups_path")
 
     @groups_path.setter
-    def groups_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_path", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreMissingGroups")
-    def ignore_missing_groups(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_missing_groups(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, missing groups in the hierarchy will be ignored.
         """
         return pulumi.get(self, "ignore_missing_groups")
 
     @ignore_missing_groups.setter
-    def ignore_missing_groups(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_missing_groups(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_missing_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapGroupsDn")
-    def ldap_groups_dn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_groups_dn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The LDAP DN where groups can be found.
         """
         return pulumi.get(self, "ldap_groups_dn")
 
     @ldap_groups_dn.setter
-    def ldap_groups_dn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_groups_dn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_groups_dn", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_user_federation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
     @ldap_user_federation_id.setter
-    def ldap_user_federation_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_user_federation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_user_federation_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mappedGroupAttributes")
-    def mapped_group_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def mapped_group_attributes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
         """
         return pulumi.get(self, "mapped_group_attributes")
 
     @mapped_group_attributes.setter
-    def mapped_group_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def mapped_group_attributes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "mapped_group_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="memberofLdapAttribute")
-    def memberof_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def memberof_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
         """
         return pulumi.get(self, "memberof_ldap_attribute")
 
     @memberof_ldap_attribute.setter
-    def memberof_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def memberof_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "memberof_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipAttributeType")
-    def membership_attribute_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_attribute_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DN` or `UID`. Defaults to `DN`.
         """
         return pulumi.get(self, "membership_attribute_type")
 
     @membership_attribute_type.setter
-    def membership_attribute_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_attribute_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_attribute_type", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipLdapAttribute")
-    def membership_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute that is used for membership mappings.
         """
         return pulumi.get(self, "membership_ldap_attribute")
 
     @membership_ldap_attribute.setter
-    def membership_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="membershipUserLdapAttribute")
-    def membership_user_ldap_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def membership_user_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute on a user that is used for membership mappings.
         """
         return pulumi.get(self, "membership_user_ldap_attribute")
 
     @membership_user_ldap_attribute.setter
-    def membership_user_ldap_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def membership_user_ldap_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "membership_user_ldap_attribute", value)
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         """
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="preserveGroupInheritance")
-    def preserve_group_inheritance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def preserve_group_inheritance(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         """
         return pulumi.get(self, "preserve_group_inheritance")
 
     @preserve_group_inheritance.setter
-    def preserve_group_inheritance(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def preserve_group_inheritance(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "preserve_group_inheritance", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")
-    def user_roles_retrieve_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_roles_retrieve_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         return pulumi.get(self, "user_roles_retrieve_strategy")
 
     @user_roles_retrieve_strategy.setter
-    def user_roles_retrieve_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_roles_retrieve_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_roles_retrieve_strategy", value)
 
 
@@ -609,24 +609,24 @@ class GroupMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 drop_non_existing_groups_during_sync: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 groups_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_missing_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ldap_groups_dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 preserve_group_inheritance: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_missing_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ldap_groups_dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mapped_group_attributes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing group mappers for Keycloak users federated via LDAP.
@@ -778,24 +778,24 @@ class GroupMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 drop_non_existing_groups_during_sync: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 groups_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_missing_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ldap_groups_dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 preserve_group_inheritance: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None,
+                 drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_missing_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ldap_groups_dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mapped_group_attributes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -847,24 +847,24 @@ class GroupMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            drop_non_existing_groups_during_sync: Optional[pulumi.Input[_builtins.bool]] = None,
-            group_name_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            group_object_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            groups_ldap_filter: Optional[pulumi.Input[_builtins.str]] = None,
-            groups_path: Optional[pulumi.Input[_builtins.str]] = None,
-            ignore_missing_groups: Optional[pulumi.Input[_builtins.bool]] = None,
-            ldap_groups_dn: Optional[pulumi.Input[_builtins.str]] = None,
-            ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-            mapped_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            memberof_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            membership_attribute_type: Optional[pulumi.Input[_builtins.str]] = None,
-            membership_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            membership_user_ldap_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            mode: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            preserve_group_inheritance: Optional[pulumi.Input[_builtins.bool]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None) -> 'GroupMapper':
+            drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            group_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+            groups_path: pulumi.Input[Optional[_builtins.str]] = None,
+            ignore_missing_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            ldap_groups_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mapped_group_attributes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            mode: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> 'GroupMapper':
         """
         Get an existing GroupMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

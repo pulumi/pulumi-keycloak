@@ -58,8 +58,8 @@ class RealmOptionalClientScopesArgs:
 @pulumi.input_type
 class _RealmOptionalClientScopesState:
     def __init__(__self__, *,
-                 optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 optional_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmOptionalClientScopes resources.
 
@@ -73,26 +73,26 @@ class _RealmOptionalClientScopesState:
 
     @_builtins.property
     @pulumi.getter(name="optionalScopes")
-    def optional_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def optional_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         An array of optional client scope names that should be used when creating new Keycloak clients.
         """
         return pulumi.get(self, "optional_scopes")
 
     @optional_scopes.setter
-    def optional_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def optional_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "optional_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this client and scopes exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -102,8 +102,8 @@ class RealmOptionalClientScopes(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 optional_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows you to manage the set of optional client scopes for a Keycloak realm, which are used when new clients are created.
@@ -201,8 +201,8 @@ class RealmOptionalClientScopes(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 optional_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -228,8 +228,8 @@ class RealmOptionalClientScopes(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            optional_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'RealmOptionalClientScopes':
+            optional_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmOptionalClientScopes':
         """
         Get an existing RealmOptionalClientScopes resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

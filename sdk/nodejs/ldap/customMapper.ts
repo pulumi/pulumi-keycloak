@@ -167,27 +167,27 @@ export interface CustomMapperState {
     /**
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The id of the LDAP mapper implemented in MapperFactory.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The fully-qualified Java class name of the custom LDAP mapper.
      */
-    providerType?: pulumi.Input<string>;
+    providerType?: pulumi.Input<string | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -197,7 +197,7 @@ export interface CustomMapperArgs {
     /**
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
@@ -205,7 +205,7 @@ export interface CustomMapperArgs {
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The id of the LDAP mapper implemented in MapperFactory.
      */

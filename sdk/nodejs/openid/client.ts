@@ -482,7 +482,7 @@ export interface ClientState {
     /**
      * The amount of time in seconds before an access token expires. This will override the default for the realm.
      */
-    accessTokenLifespan?: pulumi.Input<string>;
+    accessTokenLifespan?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of client, which can be one of the following:
      * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
@@ -491,43 +491,43 @@ export interface ClientState {
      * URIs for security. This client should be used for applications using the Implicit grant flow.
      * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
      */
-    accessType?: pulumi.Input<string>;
+    accessType?: pulumi.Input<string | undefined>;
     /**
      * URL to the admin interface of the client.
      */
-    adminUrl?: pulumi.Input<string>;
+    adminUrl?: pulumi.Input<string | undefined>;
     /**
      * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
      */
-    allowRefreshTokenInStandardTokenExchange?: pulumi.Input<string>;
+    allowRefreshTokenInStandardTokenExchange?: pulumi.Input<string | undefined>;
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
      */
-    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    alwaysDisplayInConsole?: pulumi.Input<boolean | undefined>;
     /**
      * Override realm authentication flow bindings
      */
-    authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
+    authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
     /**
      * When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
      */
-    authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
+    authorization?: pulumi.Input<inputs.openid.ClientAuthorization | undefined>;
     /**
      * Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
      */
-    backchannelLogoutRevokeOfflineSessions?: pulumi.Input<boolean>;
+    backchannelLogoutRevokeOfflineSessions?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
      */
-    backchannelLogoutSessionRequired?: pulumi.Input<boolean>;
+    backchannelLogoutSessionRequired?: pulumi.Input<boolean | undefined>;
     /**
      * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
      */
-    backchannelLogoutUrl?: pulumi.Input<string>;
+    backchannelLogoutUrl?: pulumi.Input<string | undefined>;
     /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
@@ -535,178 +535,178 @@ export interface ClientState {
      * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
      * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
      */
-    clientAuthenticatorType?: pulumi.Input<string>;
+    clientAuthenticatorType?: pulumi.Input<string | undefined>;
     /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
      */
-    clientOfflineSessionIdleTimeout?: pulumi.Input<string>;
+    clientOfflineSessionIdleTimeout?: pulumi.Input<string | undefined>;
     /**
      * Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
      */
-    clientOfflineSessionMaxLifespan?: pulumi.Input<string>;
+    clientOfflineSessionMaxLifespan?: pulumi.Input<string | undefined>;
     /**
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
      */
-    clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
-    clientSessionIdleTimeout?: pulumi.Input<string>;
+    clientSessionIdleTimeout?: pulumi.Input<string | undefined>;
     /**
      * Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
      */
-    clientSessionMaxLifespan?: pulumi.Input<string>;
+    clientSessionMaxLifespan?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users have to consent to client access. Defaults to `false`.
      */
-    consentRequired?: pulumi.Input<boolean>;
+    consentRequired?: pulumi.Input<boolean | undefined>;
     /**
      * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      */
-    consentScreenText?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string | undefined>;
     /**
      * The description of this client in the GUI.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
      */
-    directAccessGrantsEnabled?: pulumi.Input<boolean>;
+    directAccessGrantsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
      */
-    displayOnConsentScreen?: pulumi.Input<boolean>;
+    displayOnConsentScreen?: pulumi.Input<boolean | undefined>;
     /**
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
      */
-    excludeIssuerFromAuthResponse?: pulumi.Input<boolean>;
+    excludeIssuerFromAuthResponse?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
-    excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    excludeSessionStateFromAuthResponse?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
      */
-    frontchannelLogoutEnabled?: pulumi.Input<boolean>;
+    frontchannelLogoutEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
      */
-    frontchannelLogoutUrl?: pulumi.Input<string>;
+    frontchannelLogoutUrl?: pulumi.Input<string | undefined>;
     /**
      * Allow to include all roles mappings in the access token.
      */
-    fullScopeAllowed?: pulumi.Input<boolean>;
+    fullScopeAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
      */
-    implicitFlowEnabled?: pulumi.Input<boolean>;
+    implicitFlowEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the client with the specified `clientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
      */
-    import?: pulumi.Input<boolean>;
+    import?: pulumi.Input<boolean | undefined>;
     /**
      * The client login theme. This will override the default theme for the realm.
      */
-    loginTheme?: pulumi.Input<string>;
+    loginTheme?: pulumi.Input<string | undefined>;
     /**
      * The display name of this client in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
      */
-    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
+    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
      */
-    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    oauth2DeviceCodeLifespan?: pulumi.Input<string | undefined>;
     /**
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      */
-    oauth2DevicePollingInterval?: pulumi.Input<string>;
+    oauth2DevicePollingInterval?: pulumi.Input<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
-    pkceCodeChallengeMethod?: pulumi.Input<string>;
+    pkceCodeChallengeMethod?: pulumi.Input<string | undefined>;
     /**
      * The realm this client is attached to.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
      */
-    requireDpopBoundTokens?: pulumi.Input<boolean>;
+    requireDpopBoundTokens?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
      */
-    resourceServerId?: pulumi.Input<string>;
+    resourceServerId?: pulumi.Input<string | undefined>;
     /**
      * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      */
-    rootUrl?: pulumi.Input<string>;
+    rootUrl?: pulumi.Input<string | undefined>;
     /**
      * (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
      */
-    serviceAccountUserId?: pulumi.Input<string>;
+    serviceAccountUserId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
      */
-    serviceAccountsEnabled?: pulumi.Input<boolean>;
+    serviceAccountsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
-    standardFlowEnabled?: pulumi.Input<boolean>;
+    standardFlowEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Enables support for Standard Token Exchange
      */
-    standardTokenExchangeEnabled?: pulumi.Input<boolean>;
+    standardTokenExchangeEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
      */
-    useRefreshTokens?: pulumi.Input<boolean>;
+    useRefreshTokens?: pulumi.Input<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
      */
-    useRefreshTokensClientCredentials?: pulumi.Input<boolean>;
+    useRefreshTokensClientCredentials?: pulumi.Input<boolean | undefined>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful logout.
      */
-    validPostLogoutRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    validPostLogoutRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      */
-    validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    validRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      */
-    webOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+    webOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -716,7 +716,7 @@ export interface ClientArgs {
     /**
      * The amount of time in seconds before an access token expires. This will override the default for the realm.
      */
-    accessTokenLifespan?: pulumi.Input<string>;
+    accessTokenLifespan?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of client, which can be one of the following:
      * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
@@ -729,39 +729,39 @@ export interface ClientArgs {
     /**
      * URL to the admin interface of the client.
      */
-    adminUrl?: pulumi.Input<string>;
+    adminUrl?: pulumi.Input<string | undefined>;
     /**
      * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
      */
-    allowRefreshTokenInStandardTokenExchange?: pulumi.Input<string>;
+    allowRefreshTokenInStandardTokenExchange?: pulumi.Input<string | undefined>;
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
      */
-    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    alwaysDisplayInConsole?: pulumi.Input<boolean | undefined>;
     /**
      * Override realm authentication flow bindings
      */
-    authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
+    authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
     /**
      * When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
      */
-    authorization?: pulumi.Input<inputs.openid.ClientAuthorization>;
+    authorization?: pulumi.Input<inputs.openid.ClientAuthorization | undefined>;
     /**
      * Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
      */
-    backchannelLogoutRevokeOfflineSessions?: pulumi.Input<boolean>;
+    backchannelLogoutRevokeOfflineSessions?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
      */
-    backchannelLogoutSessionRequired?: pulumi.Input<boolean>;
+    backchannelLogoutSessionRequired?: pulumi.Input<boolean | undefined>;
     /**
      * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
      */
-    backchannelLogoutUrl?: pulumi.Input<string>;
+    backchannelLogoutUrl?: pulumi.Input<string | undefined>;
     /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
@@ -769,124 +769,124 @@ export interface ClientArgs {
      * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
      * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
      */
-    clientAuthenticatorType?: pulumi.Input<string>;
+    clientAuthenticatorType?: pulumi.Input<string | undefined>;
     /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
      */
-    clientOfflineSessionIdleTimeout?: pulumi.Input<string>;
+    clientOfflineSessionIdleTimeout?: pulumi.Input<string | undefined>;
     /**
      * Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
      */
-    clientOfflineSessionMaxLifespan?: pulumi.Input<string>;
+    clientOfflineSessionMaxLifespan?: pulumi.Input<string | undefined>;
     /**
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
      */
-    clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
-    clientSessionIdleTimeout?: pulumi.Input<string>;
+    clientSessionIdleTimeout?: pulumi.Input<string | undefined>;
     /**
      * Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
      */
-    clientSessionMaxLifespan?: pulumi.Input<string>;
+    clientSessionMaxLifespan?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users have to consent to client access. Defaults to `false`.
      */
-    consentRequired?: pulumi.Input<boolean>;
+    consentRequired?: pulumi.Input<boolean | undefined>;
     /**
      * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      */
-    consentScreenText?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string | undefined>;
     /**
      * The description of this client in the GUI.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
      */
-    directAccessGrantsEnabled?: pulumi.Input<boolean>;
+    directAccessGrantsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
      */
-    displayOnConsentScreen?: pulumi.Input<boolean>;
+    displayOnConsentScreen?: pulumi.Input<boolean | undefined>;
     /**
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
      */
-    excludeIssuerFromAuthResponse?: pulumi.Input<boolean>;
+    excludeIssuerFromAuthResponse?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
-    excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    excludeSessionStateFromAuthResponse?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
      */
-    frontchannelLogoutEnabled?: pulumi.Input<boolean>;
+    frontchannelLogoutEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
      */
-    frontchannelLogoutUrl?: pulumi.Input<string>;
+    frontchannelLogoutUrl?: pulumi.Input<string | undefined>;
     /**
      * Allow to include all roles mappings in the access token.
      */
-    fullScopeAllowed?: pulumi.Input<boolean>;
+    fullScopeAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
      */
-    implicitFlowEnabled?: pulumi.Input<boolean>;
+    implicitFlowEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the client with the specified `clientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
      */
-    import?: pulumi.Input<boolean>;
+    import?: pulumi.Input<boolean | undefined>;
     /**
      * The client login theme. This will override the default theme for the realm.
      */
-    loginTheme?: pulumi.Input<string>;
+    loginTheme?: pulumi.Input<string | undefined>;
     /**
      * The display name of this client in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
      */
-    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
+    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
      */
-    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
+    oauth2DeviceCodeLifespan?: pulumi.Input<string | undefined>;
     /**
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      */
-    oauth2DevicePollingInterval?: pulumi.Input<string>;
+    oauth2DevicePollingInterval?: pulumi.Input<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
-    pkceCodeChallengeMethod?: pulumi.Input<string>;
+    pkceCodeChallengeMethod?: pulumi.Input<string | undefined>;
     /**
      * The realm this client is attached to.
      */
@@ -894,43 +894,43 @@ export interface ClientArgs {
     /**
      * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
      */
-    requireDpopBoundTokens?: pulumi.Input<boolean>;
+    requireDpopBoundTokens?: pulumi.Input<boolean | undefined>;
     /**
      * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      */
-    rootUrl?: pulumi.Input<string>;
+    rootUrl?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
      */
-    serviceAccountsEnabled?: pulumi.Input<boolean>;
+    serviceAccountsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
-    standardFlowEnabled?: pulumi.Input<boolean>;
+    standardFlowEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Enables support for Standard Token Exchange
      */
-    standardTokenExchangeEnabled?: pulumi.Input<boolean>;
+    standardTokenExchangeEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
      */
-    useRefreshTokens?: pulumi.Input<boolean>;
+    useRefreshTokens?: pulumi.Input<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
      */
-    useRefreshTokensClientCredentials?: pulumi.Input<boolean>;
+    useRefreshTokensClientCredentials?: pulumi.Input<boolean | undefined>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful logout.
      */
-    validPostLogoutRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    validPostLogoutRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      */
-    validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    validRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      */
-    webOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+    webOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

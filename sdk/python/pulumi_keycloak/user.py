@@ -23,16 +23,16 @@ class UserArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 email_verified: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
-                 first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
-                 last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
+                 first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 initial_password: pulumi.Input[Optional['UserInitialPasswordArgs']] = None,
+                 last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a User resource.
 
@@ -98,140 +98,140 @@ class UserArgs:
 
     @_builtins.property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "attributes", value)
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user's email.
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="emailVerified")
-    def email_verified(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def email_verified(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the email address was validated or not. Default to `false`.
         """
         return pulumi.get(self, "email_verified")
 
     @email_verified.setter
-    def email_verified(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def email_verified(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "email_verified", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When false, this user cannot log in. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="federatedIdentities")
-    def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
+    def federated_identities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
         """
         When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         """
         return pulumi.get(self, "federated_identities")
 
     @federated_identities.setter
-    def federated_identities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]):
+    def federated_identities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]):
         pulumi.set(self, "federated_identities", value)
 
     @_builtins.property
     @pulumi.getter(name="firstName")
-    def first_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user's first name.
         """
         return pulumi.get(self, "first_name")
 
     @first_name.setter
-    def first_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_name", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def import_(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def import_(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter(name="initialPassword")
-    def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
+    def initial_password(self) -> pulumi.Input[Optional['UserInitialPasswordArgs']]:
         """
         When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         """
         return pulumi.get(self, "initial_password")
 
     @initial_password.setter
-    def initial_password(self, value: Optional[pulumi.Input['UserInitialPasswordArgs']]):
+    def initial_password(self, value: pulumi.Input[Optional['UserInitialPasswordArgs']]):
         pulumi.set(self, "initial_password", value)
 
     @_builtins.property
     @pulumi.getter(name="lastName")
-    def last_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user's last name.
         """
         return pulumi.get(self, "last_name")
 
     @last_name.setter
-    def last_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_name", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredActions")
-    def required_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of required user actions.
         """
         return pulumi.get(self, "required_actions")
 
     @required_actions.setter
-    def required_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_actions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_actions", value)
 
 
 @pulumi.input_type
 class _UserState:
     def __init__(__self__, *,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 email_verified: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
-                 first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
-                 last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
+                 first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 initial_password: pulumi.Input[Optional['UserInitialPasswordArgs']] = None,
+                 last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
 
@@ -275,146 +275,146 @@ class _UserState:
 
     @_builtins.property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "attributes", value)
 
     @_builtins.property
     @pulumi.getter
-    def email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user's email.
         """
         return pulumi.get(self, "email")
 
     @email.setter
-    def email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
 
     @_builtins.property
     @pulumi.getter(name="emailVerified")
-    def email_verified(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def email_verified(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the email address was validated or not. Default to `false`.
         """
         return pulumi.get(self, "email_verified")
 
     @email_verified.setter
-    def email_verified(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def email_verified(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "email_verified", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When false, this user cannot log in. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="federatedIdentities")
-    def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
+    def federated_identities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
         """
         When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         """
         return pulumi.get(self, "federated_identities")
 
     @federated_identities.setter
-    def federated_identities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]):
+    def federated_identities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]):
         pulumi.set(self, "federated_identities", value)
 
     @_builtins.property
     @pulumi.getter(name="firstName")
-    def first_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user's first name.
         """
         return pulumi.get(self, "first_name")
 
     @first_name.setter
-    def first_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_name", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def import_(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def import_(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter(name="initialPassword")
-    def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
+    def initial_password(self) -> pulumi.Input[Optional['UserInitialPasswordArgs']]:
         """
         When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         """
         return pulumi.get(self, "initial_password")
 
     @initial_password.setter
-    def initial_password(self, value: Optional[pulumi.Input['UserInitialPasswordArgs']]):
+    def initial_password(self, value: pulumi.Input[Optional['UserInitialPasswordArgs']]):
         pulumi.set(self, "initial_password", value)
 
     @_builtins.property
     @pulumi.getter(name="lastName")
-    def last_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user's last name.
         """
         return pulumi.get(self, "last_name")
 
     @last_name.setter
-    def last_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this user belongs to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredActions")
-    def required_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of required user actions.
         """
         return pulumi.get(self, "required_actions")
 
     @required_actions.setter
-    def required_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_actions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_actions", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique username of this user.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -424,18 +424,18 @@ class User(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 email_verified: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
-                 first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
-                 last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
+                 first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
+                 last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing Users within Keycloak.
@@ -577,18 +577,18 @@ class User(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 email: Optional[pulumi.Input[_builtins.str]] = None,
-                 email_verified: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
-                 first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
-                 last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 email: pulumi.Input[Optional[_builtins.str]] = None,
+                 email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
+                 first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
+                 last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -624,18 +624,18 @@ class User(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            email: Optional[pulumi.Input[_builtins.str]] = None,
-            email_verified: Optional[pulumi.Input[_builtins.bool]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
-            first_name: Optional[pulumi.Input[_builtins.str]] = None,
-            import_: Optional[pulumi.Input[_builtins.bool]] = None,
-            initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
-            last_name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'User':
+            attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            import_: pulumi.Input[Optional[_builtins.bool]] = None,
+            initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

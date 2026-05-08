@@ -58,8 +58,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationExecutionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -107,8 +107,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationExecutionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -156,8 +156,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationExecutionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -205,8 +205,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationExecutionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -254,8 +254,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationExecutionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -303,8 +303,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationFlowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -351,8 +351,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationFlowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -399,8 +399,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationFlowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -447,8 +447,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationFlowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -495,8 +495,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetAuthenticationFlowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -546,8 +546,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
      * import com.pulumi.keycloak.saml.Client;
      * import com.pulumi.keycloak.saml.ClientArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -630,8 +630,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
      * import com.pulumi.keycloak.saml.Client;
      * import com.pulumi.keycloak.saml.ClientArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -714,8 +714,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
      * import com.pulumi.keycloak.saml.Client;
      * import com.pulumi.keycloak.saml.ClientArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -798,8 +798,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
      * import com.pulumi.keycloak.saml.Client;
      * import com.pulumi.keycloak.saml.ClientArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -882,8 +882,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
      * import com.pulumi.keycloak.saml.Client;
      * import com.pulumi.keycloak.saml.ClientArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -967,8 +967,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetGroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1030,8 +1030,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetGroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1093,8 +1093,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetGroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1156,8 +1156,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetGroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1219,8 +1219,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetGroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1280,8 +1280,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
      * import com.pulumi.keycloak.oidc.IdentityProvider;
      * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1340,8 +1340,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
      * import com.pulumi.keycloak.oidc.IdentityProvider;
      * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1400,8 +1400,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
      * import com.pulumi.keycloak.oidc.IdentityProvider;
      * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1460,8 +1460,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
      * import com.pulumi.keycloak.oidc.IdentityProvider;
      * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1520,8 +1520,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
      * import com.pulumi.keycloak.oidc.IdentityProvider;
      * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1579,8 +1579,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.Role;
      * import com.pulumi.keycloak.RoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1628,8 +1628,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.Role;
      * import com.pulumi.keycloak.RoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1677,8 +1677,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.Role;
      * import com.pulumi.keycloak.RoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1726,8 +1726,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.Role;
      * import com.pulumi.keycloak.RoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1775,8 +1775,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.Role;
      * import com.pulumi.keycloak.RoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1829,8 +1829,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1889,8 +1889,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1949,8 +1949,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2009,8 +2009,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2069,8 +2069,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.RealmArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2128,8 +2128,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.GroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2193,8 +2193,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.GroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2258,8 +2258,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.GroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2323,8 +2323,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.GroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2388,8 +2388,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.GroupArgs;
      * import com.pulumi.keycloak.GroupRoles;
      * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2447,8 +2447,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2495,8 +2495,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2543,8 +2543,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2591,8 +2591,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2639,8 +2639,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2688,8 +2688,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
      * import com.pulumi.keycloak.inputs.GetUserRealmRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2743,8 +2743,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
      * import com.pulumi.keycloak.inputs.GetUserRealmRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2798,8 +2798,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
      * import com.pulumi.keycloak.inputs.GetUserRealmRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2853,8 +2853,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
      * import com.pulumi.keycloak.inputs.GetUserRealmRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2908,8 +2908,8 @@ public final class KeycloakFunctions {
      * import com.pulumi.keycloak.inputs.GetRealmArgs;
      * import com.pulumi.keycloak.inputs.GetUserArgs;
      * import com.pulumi.keycloak.inputs.GetUserRealmRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

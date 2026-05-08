@@ -180,30 +180,30 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAuthorizationResource resources.
  */
 export interface ClientAuthorizationResourceState {
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    displayName?: pulumi.Input<string>;
-    iconUri?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    ownerManagedAccess?: pulumi.Input<boolean>;
-    realmId?: pulumi.Input<string>;
-    resourceServerId?: pulumi.Input<string>;
-    scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    type?: pulumi.Input<string>;
-    uris?: pulumi.Input<pulumi.Input<string>[]>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    displayName?: pulumi.Input<string | undefined>;
+    iconUri?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    ownerManagedAccess?: pulumi.Input<boolean | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    resourceServerId?: pulumi.Input<string | undefined>;
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    type?: pulumi.Input<string | undefined>;
+    uris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ClientAuthorizationResource resource.
  */
 export interface ClientAuthorizationResourceArgs {
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    displayName?: pulumi.Input<string>;
-    iconUri?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    ownerManagedAccess?: pulumi.Input<boolean>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    displayName?: pulumi.Input<string | undefined>;
+    iconUri?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    ownerManagedAccess?: pulumi.Input<boolean | undefined>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;
-    scopes?: pulumi.Input<pulumi.Input<string>[]>;
-    type?: pulumi.Input<string>;
-    uris?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    type?: pulumi.Input<string | undefined>;
+    uris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

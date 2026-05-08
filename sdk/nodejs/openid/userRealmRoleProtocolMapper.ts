@@ -210,51 +210,51 @@ export interface UserRealmRoleProtocolMapperState {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
      */
-    addToTokenIntrospection?: pulumi.Input<boolean>;
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    addToUserinfo?: pulumi.Input<boolean>;
+    addToUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
-    claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string | undefined>;
     /**
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
-    claimValueType?: pulumi.Input<string>;
+    claimValueType?: pulumi.Input<string | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
      */
-    multivalued?: pulumi.Input<boolean>;
+    multivalued?: pulumi.Input<boolean | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * A prefix for each Realm Role.
      */
-    realmRolePrefix?: pulumi.Input<string>;
+    realmRolePrefix?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -264,19 +264,19 @@ export interface UserRealmRoleProtocolMapperArgs {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
      */
-    addToTokenIntrospection?: pulumi.Input<boolean>;
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    addToUserinfo?: pulumi.Input<boolean>;
+    addToUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
@@ -284,23 +284,23 @@ export interface UserRealmRoleProtocolMapperArgs {
     /**
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
-    claimValueType?: pulumi.Input<string>;
+    claimValueType?: pulumi.Input<string | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
      */
-    multivalued?: pulumi.Input<boolean>;
+    multivalued?: pulumi.Input<boolean | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */
@@ -308,5 +308,5 @@ export interface UserRealmRoleProtocolMapperArgs {
     /**
      * A prefix for each Realm Role.
      */
-    realmRolePrefix?: pulumi.Input<string>;
+    realmRolePrefix?: pulumi.Input<string | undefined>;
 }

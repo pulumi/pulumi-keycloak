@@ -23,56 +23,56 @@ class ClientArgs:
     def __init__(__self__, *,
                  access_type: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_refresh_token_in_standard_token_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
-                 authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
-                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_session_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authenticator_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_regenerate_when_changed: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_access_grants_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_on_consent_screen: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_issuer_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_session_state_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 frontchannel_logout_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 frontchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 implicit_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_token_exchange_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+                 authorization: pulumi.Input[Optional['ClientAuthorizationArgs']] = None,
+                 backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authenticator_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_regenerate_when_changed: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_access_grants_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_session_state_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 frontchannel_logout_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 frontchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 implicit_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_accounts_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_token_exchange_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens_client_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 valid_post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 web_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Client resource.
 
@@ -275,127 +275,127 @@ class ClientArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time in seconds before an access token expires. This will override the default for the realm.
         """
         return pulumi.get(self, "access_token_lifespan")
 
     @access_token_lifespan.setter
-    def access_token_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL to the admin interface of the client.
         """
         return pulumi.get(self, "admin_url")
 
     @admin_url.setter
-    def admin_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_url", value)
 
     @_builtins.property
     @pulumi.getter(name="allowRefreshTokenInStandardTokenExchange")
-    def allow_refresh_token_in_standard_token_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allow_refresh_token_in_standard_token_exchange(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         """
         return pulumi.get(self, "allow_refresh_token_in_standard_token_exchange")
 
     @allow_refresh_token_in_standard_token_exchange.setter
-    def allow_refresh_token_in_standard_token_exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allow_refresh_token_in_standard_token_exchange(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allow_refresh_token_in_standard_token_exchange", value)
 
     @_builtins.property
     @pulumi.getter(name="alwaysDisplayInConsole")
-    def always_display_in_console(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def always_display_in_console(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Always list this client in the Account UI, even if the user does not have an active session.
         """
         return pulumi.get(self, "always_display_in_console")
 
     @always_display_in_console.setter
-    def always_display_in_console(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def always_display_in_console(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "always_display_in_console", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
-    def authentication_flow_binding_overrides(self) -> Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]:
+    def authentication_flow_binding_overrides(self) -> pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]:
         """
         Override realm authentication flow bindings
         """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @authentication_flow_binding_overrides.setter
-    def authentication_flow_binding_overrides(self, value: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]):
+    def authentication_flow_binding_overrides(self, value: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]):
         pulumi.set(self, "authentication_flow_binding_overrides", value)
 
     @_builtins.property
     @pulumi.getter
-    def authorization(self) -> Optional[pulumi.Input['ClientAuthorizationArgs']]:
+    def authorization(self) -> pulumi.Input[Optional['ClientAuthorizationArgs']]:
         """
         When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         """
         return pulumi.get(self, "authorization")
 
     @authorization.setter
-    def authorization(self, value: Optional[pulumi.Input['ClientAuthorizationArgs']]):
+    def authorization(self, value: pulumi.Input[Optional['ClientAuthorizationArgs']]):
         pulumi.set(self, "authorization", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelLogoutRevokeOfflineSessions")
-    def backchannel_logout_revoke_offline_sessions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backchannel_logout_revoke_offline_sessions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         """
         return pulumi.get(self, "backchannel_logout_revoke_offline_sessions")
 
     @backchannel_logout_revoke_offline_sessions.setter
-    def backchannel_logout_revoke_offline_sessions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backchannel_logout_revoke_offline_sessions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backchannel_logout_revoke_offline_sessions", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelLogoutSessionRequired")
-    def backchannel_logout_session_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backchannel_logout_session_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         """
         return pulumi.get(self, "backchannel_logout_session_required")
 
     @backchannel_logout_session_required.setter
-    def backchannel_logout_session_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backchannel_logout_session_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backchannel_logout_session_required", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelLogoutUrl")
-    def backchannel_logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backchannel_logout_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         """
         return pulumi.get(self, "backchannel_logout_url")
 
     @backchannel_logout_url.setter
-    def backchannel_logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backchannel_logout_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backchannel_logout_url", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default URL to use when the auth server needs to redirect or link back to the client.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuthenticatorType")
-    def client_authenticator_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_authenticator_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         - `client-secret` (Default) Use client id and client secret to authenticate client.
@@ -406,72 +406,72 @@ class ClientArgs:
         return pulumi.get(self, "client_authenticator_type")
 
     @client_authenticator_type.setter
-    def client_authenticator_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_authenticator_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_authenticator_type", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientOfflineSessionIdleTimeout")
-    def client_offline_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_offline_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
         """
         return pulumi.get(self, "client_offline_session_idle_timeout")
 
     @client_offline_session_idle_timeout.setter
-    def client_offline_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_offline_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_offline_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="clientOfflineSessionMaxLifespan")
-    def client_offline_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_offline_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
         """
         return pulumi.get(self, "client_offline_session_max_lifespan")
 
     @client_offline_session_max_lifespan.setter
-    def client_offline_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_offline_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_offline_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretRegenerateWhenChanged")
-    def client_secret_regenerate_when_changed(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def client_secret_regenerate_when_changed(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
         """
         return pulumi.get(self, "client_secret_regenerate_when_changed")
 
     @client_secret_regenerate_when_changed.setter
-    def client_secret_regenerate_when_changed(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def client_secret_regenerate_when_changed(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "client_secret_regenerate_when_changed", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
@@ -479,384 +479,384 @@ class ClientArgs:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionIdleTimeout")
-    def client_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
         """
         return pulumi.get(self, "client_session_idle_timeout")
 
     @client_session_idle_timeout.setter
-    def client_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionMaxLifespan")
-    def client_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
         """
         return pulumi.get(self, "client_session_max_lifespan")
 
     @client_session_max_lifespan.setter
-    def client_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="consentRequired")
-    def consent_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def consent_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users have to consent to client access. Defaults to `false`.
         """
         return pulumi.get(self, "consent_required")
 
     @consent_required.setter
-    def consent_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def consent_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "consent_required", value)
 
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
-    def consent_screen_text(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def consent_screen_text(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
         """
         return pulumi.get(self, "consent_screen_text")
 
     @consent_screen_text.setter
-    def consent_screen_text(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def consent_screen_text(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "consent_screen_text", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of this client in the GUI.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="directAccessGrantsEnabled")
-    def direct_access_grants_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def direct_access_grants_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "direct_access_grants_enabled")
 
     @direct_access_grants_enabled.setter
-    def direct_access_grants_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def direct_access_grants_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "direct_access_grants_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="displayOnConsentScreen")
-    def display_on_consent_screen(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def display_on_consent_screen(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         """
         return pulumi.get(self, "display_on_consent_screen")
 
     @display_on_consent_screen.setter
-    def display_on_consent_screen(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def display_on_consent_screen(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "display_on_consent_screen", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeIssuerFromAuthResponse")
-    def exclude_issuer_from_auth_response(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclude_issuer_from_auth_response(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
         """
         return pulumi.get(self, "exclude_issuer_from_auth_response")
 
     @exclude_issuer_from_auth_response.setter
-    def exclude_issuer_from_auth_response(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclude_issuer_from_auth_response(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclude_issuer_from_auth_response", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
-    def exclude_session_state_from_auth_response(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclude_session_state_from_auth_response(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         """
         return pulumi.get(self, "exclude_session_state_from_auth_response")
 
     @exclude_session_state_from_auth_response.setter
-    def exclude_session_state_from_auth_response(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclude_session_state_from_auth_response(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclude_session_state_from_auth_response", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extra_config` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="frontchannelLogoutEnabled")
-    def frontchannel_logout_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def frontchannel_logout_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         """
         return pulumi.get(self, "frontchannel_logout_enabled")
 
     @frontchannel_logout_enabled.setter
-    def frontchannel_logout_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def frontchannel_logout_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "frontchannel_logout_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="frontchannelLogoutUrl")
-    def frontchannel_logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontchannel_logout_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
         """
         return pulumi.get(self, "frontchannel_logout_url")
 
     @frontchannel_logout_url.setter
-    def frontchannel_logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontchannel_logout_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontchannel_logout_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullScopeAllowed")
-    def full_scope_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def full_scope_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow to include all roles mappings in the access token.
         """
         return pulumi.get(self, "full_scope_allowed")
 
     @full_scope_allowed.setter
-    def full_scope_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def full_scope_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "full_scope_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="implicitFlowEnabled")
-    def implicit_flow_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def implicit_flow_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "implicit_flow_enabled")
 
     @implicit_flow_enabled.setter
-    def implicit_flow_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def implicit_flow_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "implicit_flow_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def import_(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def import_(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client login theme. This will override the default theme for the realm.
         """
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
-    def login_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_theme", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this client in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DeviceAuthorizationGrantEnabled")
-    def oauth2_device_authorization_grant_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def oauth2_device_authorization_grant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
         """
         return pulumi.get(self, "oauth2_device_authorization_grant_enabled")
 
     @oauth2_device_authorization_grant_enabled.setter
-    def oauth2_device_authorization_grant_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def oauth2_device_authorization_grant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "oauth2_device_authorization_grant_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DeviceCodeLifespan")
-    def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth2_device_code_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum amount of time a client has to finish the device code flow before it expires.
         """
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
     @oauth2_device_code_lifespan.setter
-    def oauth2_device_code_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth2_device_code_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth2_device_code_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DevicePollingInterval")
-    def oauth2_device_polling_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth2_device_polling_interval(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         """
         return pulumi.get(self, "oauth2_device_polling_interval")
 
     @oauth2_device_polling_interval.setter
-    def oauth2_device_polling_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth2_device_polling_interval(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth2_device_polling_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="pkceCodeChallengeMethod")
-    def pkce_code_challenge_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pkce_code_challenge_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         """
         return pulumi.get(self, "pkce_code_challenge_method")
 
     @pkce_code_challenge_method.setter
-    def pkce_code_challenge_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pkce_code_challenge_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pkce_code_challenge_method", value)
 
     @_builtins.property
     @pulumi.getter(name="requireDpopBoundTokens")
-    def require_dpop_bound_tokens(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_dpop_bound_tokens(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
         """
         return pulumi.get(self, "require_dpop_bound_tokens")
 
     @require_dpop_bound_tokens.setter
-    def require_dpop_bound_tokens(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_dpop_bound_tokens(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_dpop_bound_tokens", value)
 
     @_builtins.property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         """
         return pulumi.get(self, "root_url")
 
     @root_url.setter
-    def root_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_url", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountsEnabled")
-    def service_accounts_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def service_accounts_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "service_accounts_enabled")
 
     @service_accounts_enabled.setter
-    def service_accounts_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def service_accounts_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "service_accounts_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="standardFlowEnabled")
-    def standard_flow_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def standard_flow_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "standard_flow_enabled")
 
     @standard_flow_enabled.setter
-    def standard_flow_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def standard_flow_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "standard_flow_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="standardTokenExchangeEnabled")
-    def standard_token_exchange_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def standard_token_exchange_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables support for Standard Token Exchange
         """
         return pulumi.get(self, "standard_token_exchange_enabled")
 
     @standard_token_exchange_enabled.setter
-    def standard_token_exchange_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def standard_token_exchange_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "standard_token_exchange_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="useRefreshTokens")
-    def use_refresh_tokens(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_refresh_tokens(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         """
         return pulumi.get(self, "use_refresh_tokens")
 
     @use_refresh_tokens.setter
-    def use_refresh_tokens(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_refresh_tokens(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_refresh_tokens", value)
 
     @_builtins.property
     @pulumi.getter(name="useRefreshTokensClientCredentials")
-    def use_refresh_tokens_client_credentials(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_refresh_tokens_client_credentials(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         """
         return pulumi.get(self, "use_refresh_tokens_client_credentials")
 
     @use_refresh_tokens_client_credentials.setter
-    def use_refresh_tokens_client_credentials(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_refresh_tokens_client_credentials(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_refresh_tokens_client_credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="validPostLogoutRedirectUris")
-    def valid_post_logout_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def valid_post_logout_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of valid URIs a browser is permitted to redirect to after a successful logout.
         """
         return pulumi.get(self, "valid_post_logout_redirect_uris")
 
     @valid_post_logout_redirect_uris.setter
-    def valid_post_logout_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def valid_post_logout_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "valid_post_logout_redirect_uris", value)
 
     @_builtins.property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def valid_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
         wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
@@ -865,79 +865,79 @@ class ClientArgs:
         return pulumi.get(self, "valid_redirect_uris")
 
     @valid_redirect_uris.setter
-    def valid_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def valid_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "valid_redirect_uris", value)
 
     @_builtins.property
     @pulumi.getter(name="webOrigins")
-    def web_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def web_origins(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         return pulumi.get(self, "web_origins")
 
     @web_origins.setter
-    def web_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def web_origins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "web_origins", value)
 
 
 @pulumi.input_type
 class _ClientState:
     def __init__(__self__, *,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_refresh_token_in_standard_token_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
-                 authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
-                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_session_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authenticator_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_regenerate_when_changed: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_access_grants_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_on_consent_screen: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_issuer_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_session_state_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 frontchannel_logout_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 frontchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 implicit_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_token_exchange_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+                 authorization: pulumi.Input[Optional['ClientAuthorizationArgs']] = None,
+                 backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authenticator_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_regenerate_when_changed: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_access_grants_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_session_state_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 frontchannel_logout_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 frontchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 implicit_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_accounts_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_token_exchange_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens_client_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 valid_post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 web_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Client resources.
 
@@ -1119,19 +1119,19 @@ class _ClientState:
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time in seconds before an access token expires. This will override the default for the realm.
         """
         return pulumi.get(self, "access_token_lifespan")
 
     @access_token_lifespan.setter
-    def access_token_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="accessType")
-    def access_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of client, which can be one of the following:
         - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
@@ -1143,120 +1143,120 @@ class _ClientState:
         return pulumi.get(self, "access_type")
 
     @access_type.setter
-    def access_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_type", value)
 
     @_builtins.property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL to the admin interface of the client.
         """
         return pulumi.get(self, "admin_url")
 
     @admin_url.setter
-    def admin_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_url", value)
 
     @_builtins.property
     @pulumi.getter(name="allowRefreshTokenInStandardTokenExchange")
-    def allow_refresh_token_in_standard_token_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allow_refresh_token_in_standard_token_exchange(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         """
         return pulumi.get(self, "allow_refresh_token_in_standard_token_exchange")
 
     @allow_refresh_token_in_standard_token_exchange.setter
-    def allow_refresh_token_in_standard_token_exchange(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allow_refresh_token_in_standard_token_exchange(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allow_refresh_token_in_standard_token_exchange", value)
 
     @_builtins.property
     @pulumi.getter(name="alwaysDisplayInConsole")
-    def always_display_in_console(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def always_display_in_console(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Always list this client in the Account UI, even if the user does not have an active session.
         """
         return pulumi.get(self, "always_display_in_console")
 
     @always_display_in_console.setter
-    def always_display_in_console(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def always_display_in_console(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "always_display_in_console", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
-    def authentication_flow_binding_overrides(self) -> Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]:
+    def authentication_flow_binding_overrides(self) -> pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]:
         """
         Override realm authentication flow bindings
         """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @authentication_flow_binding_overrides.setter
-    def authentication_flow_binding_overrides(self, value: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]):
+    def authentication_flow_binding_overrides(self, value: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]):
         pulumi.set(self, "authentication_flow_binding_overrides", value)
 
     @_builtins.property
     @pulumi.getter
-    def authorization(self) -> Optional[pulumi.Input['ClientAuthorizationArgs']]:
+    def authorization(self) -> pulumi.Input[Optional['ClientAuthorizationArgs']]:
         """
         When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         """
         return pulumi.get(self, "authorization")
 
     @authorization.setter
-    def authorization(self, value: Optional[pulumi.Input['ClientAuthorizationArgs']]):
+    def authorization(self, value: pulumi.Input[Optional['ClientAuthorizationArgs']]):
         pulumi.set(self, "authorization", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelLogoutRevokeOfflineSessions")
-    def backchannel_logout_revoke_offline_sessions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backchannel_logout_revoke_offline_sessions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         """
         return pulumi.get(self, "backchannel_logout_revoke_offline_sessions")
 
     @backchannel_logout_revoke_offline_sessions.setter
-    def backchannel_logout_revoke_offline_sessions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backchannel_logout_revoke_offline_sessions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backchannel_logout_revoke_offline_sessions", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelLogoutSessionRequired")
-    def backchannel_logout_session_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backchannel_logout_session_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         """
         return pulumi.get(self, "backchannel_logout_session_required")
 
     @backchannel_logout_session_required.setter
-    def backchannel_logout_session_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backchannel_logout_session_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backchannel_logout_session_required", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelLogoutUrl")
-    def backchannel_logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backchannel_logout_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         """
         return pulumi.get(self, "backchannel_logout_url")
 
     @backchannel_logout_url.setter
-    def backchannel_logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backchannel_logout_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backchannel_logout_url", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default URL to use when the auth server needs to redirect or link back to the client.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuthenticatorType")
-    def client_authenticator_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_authenticator_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         - `client-secret` (Default) Use client id and client secret to authenticate client.
@@ -1267,72 +1267,72 @@ class _ClientState:
         return pulumi.get(self, "client_authenticator_type")
 
     @client_authenticator_type.setter
-    def client_authenticator_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_authenticator_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_authenticator_type", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientOfflineSessionIdleTimeout")
-    def client_offline_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_offline_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
         """
         return pulumi.get(self, "client_offline_session_idle_timeout")
 
     @client_offline_session_idle_timeout.setter
-    def client_offline_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_offline_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_offline_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="clientOfflineSessionMaxLifespan")
-    def client_offline_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_offline_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
         """
         return pulumi.get(self, "client_offline_session_max_lifespan")
 
     @client_offline_session_max_lifespan.setter
-    def client_offline_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_offline_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_offline_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretRegenerateWhenChanged")
-    def client_secret_regenerate_when_changed(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def client_secret_regenerate_when_changed(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
         """
         return pulumi.get(self, "client_secret_regenerate_when_changed")
 
     @client_secret_regenerate_when_changed.setter
-    def client_secret_regenerate_when_changed(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def client_secret_regenerate_when_changed(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "client_secret_regenerate_when_changed", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
@@ -1340,420 +1340,420 @@ class _ClientState:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionIdleTimeout")
-    def client_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
         """
         return pulumi.get(self, "client_session_idle_timeout")
 
     @client_session_idle_timeout.setter
-    def client_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionMaxLifespan")
-    def client_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
         """
         return pulumi.get(self, "client_session_max_lifespan")
 
     @client_session_max_lifespan.setter
-    def client_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="consentRequired")
-    def consent_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def consent_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users have to consent to client access. Defaults to `false`.
         """
         return pulumi.get(self, "consent_required")
 
     @consent_required.setter
-    def consent_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def consent_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "consent_required", value)
 
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
-    def consent_screen_text(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def consent_screen_text(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
         """
         return pulumi.get(self, "consent_screen_text")
 
     @consent_screen_text.setter
-    def consent_screen_text(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def consent_screen_text(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "consent_screen_text", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of this client in the GUI.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="directAccessGrantsEnabled")
-    def direct_access_grants_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def direct_access_grants_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "direct_access_grants_enabled")
 
     @direct_access_grants_enabled.setter
-    def direct_access_grants_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def direct_access_grants_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "direct_access_grants_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="displayOnConsentScreen")
-    def display_on_consent_screen(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def display_on_consent_screen(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         """
         return pulumi.get(self, "display_on_consent_screen")
 
     @display_on_consent_screen.setter
-    def display_on_consent_screen(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def display_on_consent_screen(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "display_on_consent_screen", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeIssuerFromAuthResponse")
-    def exclude_issuer_from_auth_response(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclude_issuer_from_auth_response(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
         """
         return pulumi.get(self, "exclude_issuer_from_auth_response")
 
     @exclude_issuer_from_auth_response.setter
-    def exclude_issuer_from_auth_response(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclude_issuer_from_auth_response(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclude_issuer_from_auth_response", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
-    def exclude_session_state_from_auth_response(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclude_session_state_from_auth_response(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         """
         return pulumi.get(self, "exclude_session_state_from_auth_response")
 
     @exclude_session_state_from_auth_response.setter
-    def exclude_session_state_from_auth_response(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclude_session_state_from_auth_response(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclude_session_state_from_auth_response", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extra_config` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="frontchannelLogoutEnabled")
-    def frontchannel_logout_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def frontchannel_logout_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         """
         return pulumi.get(self, "frontchannel_logout_enabled")
 
     @frontchannel_logout_enabled.setter
-    def frontchannel_logout_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def frontchannel_logout_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "frontchannel_logout_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="frontchannelLogoutUrl")
-    def frontchannel_logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frontchannel_logout_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
         """
         return pulumi.get(self, "frontchannel_logout_url")
 
     @frontchannel_logout_url.setter
-    def frontchannel_logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frontchannel_logout_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frontchannel_logout_url", value)
 
     @_builtins.property
     @pulumi.getter(name="fullScopeAllowed")
-    def full_scope_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def full_scope_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow to include all roles mappings in the access token.
         """
         return pulumi.get(self, "full_scope_allowed")
 
     @full_scope_allowed.setter
-    def full_scope_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def full_scope_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "full_scope_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="implicitFlowEnabled")
-    def implicit_flow_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def implicit_flow_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "implicit_flow_enabled")
 
     @implicit_flow_enabled.setter
-    def implicit_flow_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def implicit_flow_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "implicit_flow_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="import")
-    def import_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def import_(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
         """
         return pulumi.get(self, "import_")
 
     @import_.setter
-    def import_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def import_(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "import_", value)
 
     @_builtins.property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client login theme. This will override the default theme for the realm.
         """
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
-    def login_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_theme", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this client in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DeviceAuthorizationGrantEnabled")
-    def oauth2_device_authorization_grant_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def oauth2_device_authorization_grant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
         """
         return pulumi.get(self, "oauth2_device_authorization_grant_enabled")
 
     @oauth2_device_authorization_grant_enabled.setter
-    def oauth2_device_authorization_grant_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def oauth2_device_authorization_grant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "oauth2_device_authorization_grant_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DeviceCodeLifespan")
-    def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth2_device_code_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum amount of time a client has to finish the device code flow before it expires.
         """
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
     @oauth2_device_code_lifespan.setter
-    def oauth2_device_code_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth2_device_code_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth2_device_code_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DevicePollingInterval")
-    def oauth2_device_polling_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth2_device_polling_interval(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         """
         return pulumi.get(self, "oauth2_device_polling_interval")
 
     @oauth2_device_polling_interval.setter
-    def oauth2_device_polling_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth2_device_polling_interval(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth2_device_polling_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="pkceCodeChallengeMethod")
-    def pkce_code_challenge_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pkce_code_challenge_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         """
         return pulumi.get(self, "pkce_code_challenge_method")
 
     @pkce_code_challenge_method.setter
-    def pkce_code_challenge_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pkce_code_challenge_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pkce_code_challenge_method", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this client is attached to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="requireDpopBoundTokens")
-    def require_dpop_bound_tokens(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_dpop_bound_tokens(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
         """
         return pulumi.get(self, "require_dpop_bound_tokens")
 
     @require_dpop_bound_tokens.setter
-    def require_dpop_bound_tokens(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_dpop_bound_tokens(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_dpop_bound_tokens", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
         """
         return pulumi.get(self, "resource_server_id")
 
     @resource_server_id.setter
-    def resource_server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_server_id", value)
 
     @_builtins.property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         """
         return pulumi.get(self, "root_url")
 
     @root_url.setter
-    def root_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_url", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountUserId")
-    def service_account_user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
         """
         return pulumi.get(self, "service_account_user_id")
 
     @service_account_user_id.setter
-    def service_account_user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_user_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountsEnabled")
-    def service_accounts_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def service_accounts_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "service_accounts_enabled")
 
     @service_accounts_enabled.setter
-    def service_accounts_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def service_accounts_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "service_accounts_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="standardFlowEnabled")
-    def standard_flow_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def standard_flow_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
         """
         return pulumi.get(self, "standard_flow_enabled")
 
     @standard_flow_enabled.setter
-    def standard_flow_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def standard_flow_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "standard_flow_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="standardTokenExchangeEnabled")
-    def standard_token_exchange_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def standard_token_exchange_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables support for Standard Token Exchange
         """
         return pulumi.get(self, "standard_token_exchange_enabled")
 
     @standard_token_exchange_enabled.setter
-    def standard_token_exchange_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def standard_token_exchange_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "standard_token_exchange_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="useRefreshTokens")
-    def use_refresh_tokens(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_refresh_tokens(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         """
         return pulumi.get(self, "use_refresh_tokens")
 
     @use_refresh_tokens.setter
-    def use_refresh_tokens(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_refresh_tokens(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_refresh_tokens", value)
 
     @_builtins.property
     @pulumi.getter(name="useRefreshTokensClientCredentials")
-    def use_refresh_tokens_client_credentials(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_refresh_tokens_client_credentials(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         """
         return pulumi.get(self, "use_refresh_tokens_client_credentials")
 
     @use_refresh_tokens_client_credentials.setter
-    def use_refresh_tokens_client_credentials(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_refresh_tokens_client_credentials(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_refresh_tokens_client_credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="validPostLogoutRedirectUris")
-    def valid_post_logout_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def valid_post_logout_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of valid URIs a browser is permitted to redirect to after a successful logout.
         """
         return pulumi.get(self, "valid_post_logout_redirect_uris")
 
     @valid_post_logout_redirect_uris.setter
-    def valid_post_logout_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def valid_post_logout_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "valid_post_logout_redirect_uris", value)
 
     @_builtins.property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def valid_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
         wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
@@ -1762,19 +1762,19 @@ class _ClientState:
         return pulumi.get(self, "valid_redirect_uris")
 
     @valid_redirect_uris.setter
-    def valid_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def valid_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "valid_redirect_uris", value)
 
     @_builtins.property
     @pulumi.getter(name="webOrigins")
-    def web_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def web_origins(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         return pulumi.get(self, "web_origins")
 
     @web_origins.setter
-    def web_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def web_origins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "web_origins", value)
 
 
@@ -1784,58 +1784,58 @@ class Client(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_refresh_token_in_standard_token_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-                 authorization: Optional[pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
-                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_session_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authenticator_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_regenerate_when_changed: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_access_grants_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_on_consent_screen: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_issuer_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_session_state_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 frontchannel_logout_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 frontchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 implicit_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_token_exchange_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+                 authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
+                 backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authenticator_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_regenerate_when_changed: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_access_grants_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_session_state_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 frontchannel_logout_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 frontchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 implicit_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_accounts_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_token_exchange_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens_client_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 valid_post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 web_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
@@ -2069,58 +2069,58 @@ class Client(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_refresh_token_in_standard_token_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-                 authorization: Optional[pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
-                 backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_session_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authenticator_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_regenerate_when_changed: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_access_grants_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_on_consent_screen: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_issuer_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_session_state_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 frontchannel_logout_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 frontchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 implicit_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 import_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 standard_token_exchange_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-                 use_refresh_tokens_client_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-                 valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+                 authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
+                 backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authenticator_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_regenerate_when_changed: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_access_grants_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_session_state_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 frontchannel_logout_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 frontchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 implicit_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_accounts_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 standard_token_exchange_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+                 use_refresh_tokens_client_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+                 valid_post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 web_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -2200,60 +2200,60 @@ class Client(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            access_type: Optional[pulumi.Input[_builtins.str]] = None,
-            admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-            allow_refresh_token_in_standard_token_exchange: Optional[pulumi.Input[_builtins.str]] = None,
-            always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-            authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-            authorization: Optional[pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
-            backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-            backchannel_logout_session_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            backchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-            base_url: Optional[pulumi.Input[_builtins.str]] = None,
-            client_authenticator_type: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-            client_offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_regenerate_when_changed: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-            client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            direct_access_grants_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            display_on_consent_screen: Optional[pulumi.Input[_builtins.bool]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            exclude_issuer_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-            exclude_session_state_from_auth_response: Optional[pulumi.Input[_builtins.bool]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            frontchannel_logout_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            frontchannel_logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-            full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            implicit_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            import_: Optional[pulumi.Input[_builtins.bool]] = None,
-            login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
-            pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-            resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            root_url: Optional[pulumi.Input[_builtins.str]] = None,
-            service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None,
-            service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            standard_token_exchange_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            use_refresh_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
-            use_refresh_tokens_client_credentials: Optional[pulumi.Input[_builtins.bool]] = None,
-            valid_post_logout_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Client':
+            access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            access_type: pulumi.Input[Optional[_builtins.str]] = None,
+            admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+            always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+            authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+            authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
+            backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+            backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            client_authenticator_type: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            client_offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_regenerate_when_changed: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            direct_access_grants_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            exclude_issuer_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+            exclude_session_state_from_auth_response: pulumi.Input[Optional[_builtins.bool]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            frontchannel_logout_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            frontchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+            full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            implicit_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            import_: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+            pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            root_url: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            service_accounts_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            standard_flow_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            standard_token_exchange_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_refresh_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_refresh_tokens_client_credentials: pulumi.Input[Optional[_builtins.bool]] = None,
+            valid_post_logout_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            web_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Client':
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

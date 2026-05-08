@@ -167,31 +167,31 @@ export interface GenericProtocolMapperState {
     /**
      * The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      */
-    protocolMapper?: pulumi.Input<string>;
+    protocolMapper?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -201,11 +201,11 @@ export interface GenericProtocolMapperArgs {
     /**
      * The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
@@ -213,7 +213,7 @@ export interface GenericProtocolMapperArgs {
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      */

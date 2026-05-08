@@ -23,10 +23,10 @@ class UserPropertyProtocolMapperArgs:
                  saml_attribute_name: pulumi.Input[_builtins.str],
                  saml_attribute_name_format: pulumi.Input[_builtins.str],
                  user_property: pulumi.Input[_builtins.str],
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 friendly_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserPropertyProtocolMapper resource.
 
@@ -102,64 +102,64 @@ class UserPropertyProtocolMapperArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
     @client_scope_id.setter
-    def client_scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
     @_builtins.property
     @pulumi.getter(name="friendlyName")
-    def friendly_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def friendly_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional human-friendly name for this attribute.
         """
         return pulumi.get(self, "friendly_name")
 
     @friendly_name.setter
-    def friendly_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def friendly_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "friendly_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _UserPropertyProtocolMapperState:
     def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 friendly_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 saml_attribute_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 saml_attribute_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_property: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_property: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserPropertyProtocolMapper resources.
 
@@ -191,98 +191,98 @@ class _UserPropertyProtocolMapperState:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
     @client_scope_id.setter
-    def client_scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
     @_builtins.property
     @pulumi.getter(name="friendlyName")
-    def friendly_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def friendly_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional human-friendly name for this attribute.
         """
         return pulumi.get(self, "friendly_name")
 
     @friendly_name.setter
-    def friendly_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def friendly_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "friendly_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="samlAttributeName")
-    def saml_attribute_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def saml_attribute_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the SAML attribute.
         """
         return pulumi.get(self, "saml_attribute_name")
 
     @saml_attribute_name.setter
-    def saml_attribute_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def saml_attribute_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "saml_attribute_name", value)
 
     @_builtins.property
     @pulumi.getter(name="samlAttributeNameFormat")
-    def saml_attribute_name_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def saml_attribute_name_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         """
         return pulumi.get(self, "saml_attribute_name_format")
 
     @saml_attribute_name_format.setter
-    def saml_attribute_name_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def saml_attribute_name_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "saml_attribute_name_format", value)
 
     @_builtins.property
     @pulumi.getter(name="userProperty")
-    def user_property(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_property(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The property of the Keycloak user model to map.
         """
         return pulumi.get(self, "user_property")
 
     @user_property.setter
-    def user_property(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_property(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_property", value)
 
 
@@ -292,14 +292,14 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 friendly_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 saml_attribute_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 saml_attribute_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_property: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_property: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.
@@ -423,14 +423,14 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 friendly_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 saml_attribute_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 saml_attribute_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_property: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_property: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -466,14 +466,14 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-            friendly_name: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            saml_attribute_name: Optional[pulumi.Input[_builtins.str]] = None,
-            saml_attribute_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-            user_property: Optional[pulumi.Input[_builtins.str]] = None) -> 'UserPropertyProtocolMapper':
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+            friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+            saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+            user_property: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserPropertyProtocolMapper':
         """
         Get an existing UserPropertyProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

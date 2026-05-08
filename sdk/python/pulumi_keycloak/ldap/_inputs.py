@@ -22,23 +22,23 @@ __all__ = [
 ]
 
 class UserFederationCacheArgsDict(TypedDict):
-    eviction_day: NotRequired[pulumi.Input[_builtins.int]]
+    eviction_day: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Day of the week the entry will become invalid on
     """
-    eviction_hour: NotRequired[pulumi.Input[_builtins.int]]
+    eviction_hour: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Hour of day the entry will become invalid on.
     """
-    eviction_minute: NotRequired[pulumi.Input[_builtins.int]]
+    eviction_minute: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Minute of day the entry will become invalid on.
     """
-    max_lifespan: NotRequired[pulumi.Input[_builtins.str]]
+    max_lifespan: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Max lifespan of cache entry (duration string).
     """
-    policy: NotRequired[pulumi.Input[_builtins.str]]
+    policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
     """
@@ -46,11 +46,11 @@ class UserFederationCacheArgsDict(TypedDict):
 @pulumi.input_type
 class UserFederationCacheArgs:
     def __init__(__self__, *,
-                 eviction_day: Optional[pulumi.Input[_builtins.int]] = None,
-                 eviction_hour: Optional[pulumi.Input[_builtins.int]] = None,
-                 eviction_minute: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy: Optional[pulumi.Input[_builtins.str]] = None):
+                 eviction_day: pulumi.Input[Optional[_builtins.int]] = None,
+                 eviction_hour: pulumi.Input[Optional[_builtins.int]] = None,
+                 eviction_minute: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] eviction_day: Day of the week the entry will become invalid on
         :param pulumi.Input[_builtins.int] eviction_hour: Hour of day the entry will become invalid on.
@@ -71,62 +71,62 @@ class UserFederationCacheArgs:
 
     @_builtins.property
     @pulumi.getter(name="evictionDay")
-    def eviction_day(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def eviction_day(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Day of the week the entry will become invalid on
         """
         return pulumi.get(self, "eviction_day")
 
     @eviction_day.setter
-    def eviction_day(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def eviction_day(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "eviction_day", value)
 
     @_builtins.property
     @pulumi.getter(name="evictionHour")
-    def eviction_hour(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def eviction_hour(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Hour of day the entry will become invalid on.
         """
         return pulumi.get(self, "eviction_hour")
 
     @eviction_hour.setter
-    def eviction_hour(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def eviction_hour(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "eviction_hour", value)
 
     @_builtins.property
     @pulumi.getter(name="evictionMinute")
-    def eviction_minute(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def eviction_minute(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minute of day the entry will become invalid on.
         """
         return pulumi.get(self, "eviction_minute")
 
     @eviction_minute.setter
-    def eviction_minute(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def eviction_minute(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "eviction_minute", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLifespan")
-    def max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Max lifespan of cache entry (duration string).
         """
         return pulumi.get(self, "max_lifespan")
 
     @max_lifespan.setter
-    def max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter
-    def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
         return pulumi.get(self, "policy")
 
     @policy.setter
-    def policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy", value)
 
 
@@ -143,7 +143,7 @@ class UserFederationKerberosArgsDict(TypedDict):
     """
     The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
     """
-    use_kerberos_for_password_authentication: NotRequired[pulumi.Input[_builtins.bool]]
+    use_kerberos_for_password_authentication: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Use kerberos login module instead of ldap service api. Defaults to `false`.
     """
@@ -154,7 +154,7 @@ class UserFederationKerberosArgs:
                  kerberos_realm: pulumi.Input[_builtins.str],
                  key_tab: pulumi.Input[_builtins.str],
                  server_principal: pulumi.Input[_builtins.str],
-                 use_kerberos_for_password_authentication: Optional[pulumi.Input[_builtins.bool]] = None):
+                 use_kerberos_for_password_authentication: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] kerberos_realm: The name of the kerberos realm, e.g. FOO.LOCAL.
         :param pulumi.Input[_builtins.str] key_tab: Path to the kerberos keytab file on the server with credentials of the service principal.
@@ -205,14 +205,14 @@ class UserFederationKerberosArgs:
 
     @_builtins.property
     @pulumi.getter(name="useKerberosForPasswordAuthentication")
-    def use_kerberos_for_password_authentication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_kerberos_for_password_authentication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use kerberos login module instead of ldap service api. Defaults to `false`.
         """
         return pulumi.get(self, "use_kerberos_for_password_authentication")
 
     @use_kerberos_for_password_authentication.setter
-    def use_kerberos_for_password_authentication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_kerberos_for_password_authentication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_kerberos_for_password_authentication", value)
 
 

@@ -22,10 +22,10 @@ class ClientPolicyArgs:
                  clients: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientPolicy resource.
         """
@@ -70,51 +70,51 @@ class ClientPolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logic(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "logic")
 
     @logic.setter
-    def logic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ClientPolicyState:
     def __init__(__self__, *,
-                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientPolicy resources.
         """
@@ -135,65 +135,65 @@ class _ClientPolicyState:
 
     @_builtins.property
     @pulumi.getter
-    def clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def clients(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "clients")
 
     @clients.setter
-    def clients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def clients(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "clients", value)
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logic(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "logic")
 
     @logic.setter
-    def logic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_server_id")
 
     @resource_server_id.setter
-    def resource_server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_server_id", value)
 
 
@@ -203,13 +203,13 @@ class ClientPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows you to manage client policies.
@@ -381,13 +381,13 @@ class ClientPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -420,13 +420,13 @@ class ClientPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            logic: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            resource_server_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ClientPolicy':
+            clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            logic: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientPolicy':
         """
         Get an existing ClientPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

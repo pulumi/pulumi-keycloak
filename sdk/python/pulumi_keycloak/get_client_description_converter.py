@@ -492,8 +492,8 @@ def get_client_description_converter(body: Optional[_builtins.str] = None,
         standard_flow_enabled=pulumi.get(__ret__, 'standard_flow_enabled'),
         surrogate_auth_required=pulumi.get(__ret__, 'surrogate_auth_required'),
         web_origins=pulumi.get(__ret__, 'web_origins'))
-def get_client_description_converter_output(body: Optional[pulumi.Input[_builtins.str]] = None,
-                                            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_description_converter_output(body: pulumi.Input[Optional[_builtins.str]] = None,
+                                            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientDescriptionConverterResult]:
     """
     This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak

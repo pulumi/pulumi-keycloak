@@ -165,43 +165,43 @@ export interface CustomUserFederationState {
     /**
      * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      */
-    cachePolicy?: pulumi.Input<string>;
+    cachePolicy?: pulumi.Input<string | undefined>;
     /**
      * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
      */
-    changedSyncPeriod?: pulumi.Input<number>;
+    changedSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
      */
-    fullSyncPeriod?: pulumi.Input<number>;
+    fullSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
-    parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string | undefined>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The realm that this provider will provide user federation for.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -211,35 +211,35 @@ export interface CustomUserFederationArgs {
     /**
      * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      */
-    cachePolicy?: pulumi.Input<string>;
+    cachePolicy?: pulumi.Input<string | undefined>;
     /**
      * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
      */
-    changedSyncPeriod?: pulumi.Input<number>;
+    changedSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
      */
-    fullSyncPeriod?: pulumi.Input<number>;
+    fullSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
-    parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string | undefined>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */

@@ -149,24 +149,24 @@ export interface GroupState {
     /**
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    description?: pulumi.Input<string>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
-    parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The realm this group exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -176,16 +176,16 @@ export interface GroupArgs {
     /**
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    description?: pulumi.Input<string>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the group.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
-    parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string | undefined>;
     /**
      * The realm this group exists in.
      */

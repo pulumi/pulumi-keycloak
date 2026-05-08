@@ -144,9 +144,9 @@ def get_realm_keys(algorithms: Optional[Sequence[_builtins.str]] = None,
         keys=pulumi.get(__ret__, 'keys'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
         statuses=pulumi.get(__ret__, 'statuses'))
-def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                          realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                          statuses: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_realm_keys_output(algorithms: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                          realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                          statuses: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRealmKeysResult]:
     """
     Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.

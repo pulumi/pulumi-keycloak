@@ -39,8 +39,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.keycloak.authentication.SubflowArgs;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -92,8 +92,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -145,8 +145,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.keycloak.authentication.SubflowArgs;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -198,8 +198,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -251,8 +251,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.keycloak.authentication.SubflowArgs;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -304,8 +304,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -357,8 +357,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.keycloak.authentication.SubflowArgs;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -410,8 +410,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -463,8 +463,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.keycloak.authentication.SubflowArgs;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -516,8 +516,8 @@ public final class AuthenticationFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.keycloak.authentication.AuthenticationFunctions;
      * import com.pulumi.keycloak.authentication.inputs.GetSubflowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

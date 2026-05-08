@@ -20,11 +20,11 @@ __all__ = ['SubProtocolMapperArgs', 'SubProtocolMapper']
 class SubProtocolMapperArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_token_introspection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SubProtocolMapper resource.
 
@@ -61,74 +61,74 @@ class SubProtocolMapperArgs:
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the sub claim should be added to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
     @add_to_access_token.setter
-    def add_to_access_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_access_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="addToTokenIntrospection")
-    def add_to_token_introspection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_token_introspection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the sub claim should be added to the token introspection response. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_token_introspection")
 
     @add_to_token_introspection.setter
-    def add_to_token_introspection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_token_introspection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_token_introspection", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
     @client_scope_id.setter
-    def client_scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _SubProtocolMapperState:
     def __init__(__self__, *,
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_token_introspection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SubProtocolMapper resources.
 
@@ -154,74 +154,74 @@ class _SubProtocolMapperState:
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the sub claim should be added to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
     @add_to_access_token.setter
-    def add_to_access_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_access_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="addToTokenIntrospection")
-    def add_to_token_introspection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_token_introspection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the sub claim should be added to the token introspection response. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_token_introspection")
 
     @add_to_token_introspection.setter
-    def add_to_token_introspection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_token_introspection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_token_introspection", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
     @client_scope_id.setter
-    def client_scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -231,12 +231,12 @@ class SubProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_token_introspection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing sub protocol mappers within Keycloak.
@@ -396,12 +396,12 @@ class SubProtocolMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_token_introspection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -429,12 +429,12 @@ class SubProtocolMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-            add_to_token_introspection: Optional[pulumi.Input[_builtins.bool]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'SubProtocolMapper':
+            add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'SubProtocolMapper':
         """
         Get an existing SubProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

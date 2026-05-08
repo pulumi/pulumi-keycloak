@@ -134,7 +134,7 @@ export interface GetRealmKeysOutputArgs {
     /**
      * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
      */
-    algorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    algorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The realm from which the keys will be retrieved.
      */
@@ -142,5 +142,5 @@ export interface GetRealmKeysOutputArgs {
     /**
      * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
      */
-    statuses?: pulumi.Input<pulumi.Input<string>[]>;
+    statuses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

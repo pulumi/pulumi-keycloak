@@ -22,15 +22,15 @@ class UserAttributeProtocolMapperArgs:
                  claim_name: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
                  user_attribute: pulumi.Input[_builtins.str],
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_id_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_userinfo: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aggregate_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 claim_value_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 multivalued: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserAttributeProtocolMapper resource.
 
@@ -107,128 +107,128 @@ class UserAttributeProtocolMapperArgs:
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
     @add_to_access_token.setter
-    def add_to_access_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_access_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="addToIdToken")
-    def add_to_id_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_id_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
     @add_to_id_token.setter
-    def add_to_id_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
 
     @_builtins.property
     @pulumi.getter(name="addToUserinfo")
-    def add_to_userinfo(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_userinfo(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_userinfo")
 
     @add_to_userinfo.setter
-    def add_to_userinfo(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_userinfo(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_userinfo", value)
 
     @_builtins.property
     @pulumi.getter(name="aggregateAttributes")
-    def aggregate_attributes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aggregate_attributes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         """
         return pulumi.get(self, "aggregate_attributes")
 
     @aggregate_attributes.setter
-    def aggregate_attributes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aggregate_attributes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aggregate_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="claimValueType")
-    def claim_value_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def claim_value_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         """
         return pulumi.get(self, "claim_value_type")
 
     @claim_value_type.setter
-    def claim_value_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def claim_value_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "claim_value_type", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
     @client_scope_id.setter
-    def client_scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def multivalued(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def multivalued(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         """
         return pulumi.get(self, "multivalued")
 
     @multivalued.setter
-    def multivalued(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def multivalued(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "multivalued", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _UserAttributeProtocolMapperState:
     def __init__(__self__, *,
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_id_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_userinfo: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aggregate_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 claim_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_value_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 multivalued: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_attribute: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 claim_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_attribute: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
 
@@ -272,146 +272,146 @@ class _UserAttributeProtocolMapperState:
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
     @add_to_access_token.setter
-    def add_to_access_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_access_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="addToIdToken")
-    def add_to_id_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_id_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
     @add_to_id_token.setter
-    def add_to_id_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
 
     @_builtins.property
     @pulumi.getter(name="addToUserinfo")
-    def add_to_userinfo(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_to_userinfo(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_userinfo")
 
     @add_to_userinfo.setter
-    def add_to_userinfo(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_to_userinfo(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_userinfo", value)
 
     @_builtins.property
     @pulumi.getter(name="aggregateAttributes")
-    def aggregate_attributes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aggregate_attributes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         """
         return pulumi.get(self, "aggregate_attributes")
 
     @aggregate_attributes.setter
-    def aggregate_attributes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aggregate_attributes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aggregate_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="claimName")
-    def claim_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def claim_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the claim to insert into a token.
         """
         return pulumi.get(self, "claim_name")
 
     @claim_name.setter
-    def claim_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def claim_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "claim_name", value)
 
     @_builtins.property
     @pulumi.getter(name="claimValueType")
-    def claim_value_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def claim_value_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         """
         return pulumi.get(self, "claim_value_type")
 
     @claim_value_type.setter
-    def claim_value_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def claim_value_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "claim_value_type", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
     @client_scope_id.setter
-    def client_scope_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def multivalued(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def multivalued(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         """
         return pulumi.get(self, "multivalued")
 
     @multivalued.setter
-    def multivalued(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def multivalued(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "multivalued", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userAttribute")
-    def user_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The custom user attribute to map a claim for.
         """
         return pulumi.get(self, "user_attribute")
 
     @user_attribute.setter
-    def user_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_attribute", value)
 
 
@@ -421,18 +421,18 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_id_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_userinfo: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aggregate_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 claim_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_value_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 multivalued: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_attribute: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 claim_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing user attribute protocol mappers within Keycloak.
@@ -606,18 +606,18 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_id_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_to_userinfo: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aggregate_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 claim_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_value_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 multivalued: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_attribute: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 claim_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -655,18 +655,18 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            add_to_access_token: Optional[pulumi.Input[_builtins.bool]] = None,
-            add_to_id_token: Optional[pulumi.Input[_builtins.bool]] = None,
-            add_to_userinfo: Optional[pulumi.Input[_builtins.bool]] = None,
-            aggregate_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-            claim_name: Optional[pulumi.Input[_builtins.str]] = None,
-            claim_value_type: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_scope_id: Optional[pulumi.Input[_builtins.str]] = None,
-            multivalued: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            user_attribute: Optional[pulumi.Input[_builtins.str]] = None) -> 'UserAttributeProtocolMapper':
+            add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+            aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+            claim_name: pulumi.Input[Optional[_builtins.str]] = None,
+            claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+            multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserAttributeProtocolMapper':
         """
         Get an existing UserAttributeProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

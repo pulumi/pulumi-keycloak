@@ -353,157 +353,157 @@ export interface IdentityProviderState {
     /**
      * When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
      */
-    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean | undefined>;
     /**
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
-    authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * The Authorization Url.
      */
-    authorizationUrl?: pulumi.Input<string>;
+    authorizationUrl?: pulumi.Input<string | undefined>;
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
-    backchannelSupported?: pulumi.Input<boolean>;
+    backchannelSupported?: pulumi.Input<boolean | undefined>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
-    defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string | undefined>;
     /**
      * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
      */
-    disableTypeClaimCheck?: pulumi.Input<boolean>;
+    disableTypeClaimCheck?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    disableUserInfo?: pulumi.Input<boolean>;
+    disableUserInfo?: pulumi.Input<boolean | undefined>;
     /**
      * Display name for the identity provider in the GUI.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
      * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
-    hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      */
-    internalId?: pulumi.Input<string>;
+    internalId?: pulumi.Input<string | undefined>;
     /**
      * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * JSON Web Key Set URL.
      */
-    jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    linkOnly?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean | undefined>;
     /**
      * Pass login hint to identity provider.
      */
-    loginHint?: pulumi.Input<string>;
+    loginHint?: pulumi.Input<string | undefined>;
     /**
      * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
-    logoutUrl?: pulumi.Input<string>;
+    logoutUrl?: pulumi.Input<string | undefined>;
     /**
      * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
      */
-    orgDomain?: pulumi.Input<string>;
+    orgDomain?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
      */
-    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the organization to link this identity provider to.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean | undefined>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string | undefined>;
     /**
      * The Token URL.
      */
-    tokenUrl?: pulumi.Input<string>;
+    tokenUrl?: pulumi.Input<string | undefined>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
     /**
      * Pass current locale to identity provider. Defaults to `false`.
      */
-    uiLocales?: pulumi.Input<boolean>;
+    uiLocales?: pulumi.Input<boolean | undefined>;
     /**
      * User Info URL.
      */
-    userInfoUrl?: pulumi.Input<string>;
+    userInfoUrl?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable signature validation of external IDP signatures. Defaults to `false`.
      */
-    validateSignature?: pulumi.Input<boolean>;
+    validateSignature?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -513,11 +513,11 @@ export interface IdentityProviderArgs {
     /**
      * When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
      */
-    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean>;
+    acceptsPromptNoneForwardFromClient?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean | undefined>;
     /**
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
@@ -525,7 +525,7 @@ export interface IdentityProviderArgs {
     /**
      * Enable/disable authenticate users by default.
      */
-    authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * The Authorization Url.
      */
@@ -533,7 +533,7 @@ export interface IdentityProviderArgs {
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
-    backchannelSupported?: pulumi.Input<boolean>;
+    backchannelSupported?: pulumi.Input<boolean | undefined>;
     /**
      * The client or client identifier registered within the identity provider.
      */
@@ -541,93 +541,93 @@ export interface IdentityProviderArgs {
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
-    defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string | undefined>;
     /**
      * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
      */
-    disableTypeClaimCheck?: pulumi.Input<boolean>;
+    disableTypeClaimCheck?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    disableUserInfo?: pulumi.Input<boolean>;
+    disableUserInfo?: pulumi.Input<boolean | undefined>;
     /**
      * Display name for the identity provider in the GUI.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
      * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
-    hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean | undefined>;
     /**
      * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * JSON Web Key Set URL.
      */
-    jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    linkOnly?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean | undefined>;
     /**
      * Pass login hint to identity provider.
      */
-    loginHint?: pulumi.Input<string>;
+    loginHint?: pulumi.Input<string | undefined>;
     /**
      * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
-    logoutUrl?: pulumi.Input<string>;
+    logoutUrl?: pulumi.Input<string | undefined>;
     /**
      * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
      */
-    orgDomain?: pulumi.Input<string>;
+    orgDomain?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
      */
-    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the organization to link this identity provider to.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
@@ -635,11 +635,11 @@ export interface IdentityProviderArgs {
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean | undefined>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string | undefined>;
     /**
      * The Token URL.
      */
@@ -647,17 +647,17 @@ export interface IdentityProviderArgs {
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
     /**
      * Pass current locale to identity provider. Defaults to `false`.
      */
-    uiLocales?: pulumi.Input<boolean>;
+    uiLocales?: pulumi.Input<boolean | undefined>;
     /**
      * User Info URL.
      */
-    userInfoUrl?: pulumi.Input<string>;
+    userInfoUrl?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable signature validation of external IDP signatures. Defaults to `false`.
      */
-    validateSignature?: pulumi.Input<boolean>;
+    validateSignature?: pulumi.Input<boolean | undefined>;
 }

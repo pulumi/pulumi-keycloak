@@ -126,19 +126,19 @@ export interface UserGroupsState {
     /**
      * Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
      */
-    exhaustive?: pulumi.Input<boolean>;
+    exhaustive?: pulumi.Input<boolean | undefined>;
     /**
      * A list of group IDs that the user is member of.
      */
-    groupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The realm this group exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the user this resource should manage groups for.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -148,7 +148,7 @@ export interface UserGroupsArgs {
     /**
      * Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
      */
-    exhaustive?: pulumi.Input<boolean>;
+    exhaustive?: pulumi.Input<boolean | undefined>;
     /**
      * A list of group IDs that the user is member of.
      */

@@ -19,27 +19,27 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
-                 jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_token_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 additional_headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 initial_login: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jwt_signing_alg: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 red_hat_sso: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_insecure_skip_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -104,230 +104,230 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessToken")
-    def access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_token")
 
     @access_token.setter
-    def access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="additionalHeaders")
-    def additional_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def additional_headers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "additional_headers")
 
     @additional_headers.setter
-    def additional_headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def additional_headers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The admin URL of the Keycloak instance if different from the main URL, before `/auth`
         """
         return pulumi.get(self, "admin_url")
 
     @admin_url.setter
-    def admin_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_url", value)
 
     @_builtins.property
     @pulumi.getter(name="basePath")
-    def base_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "base_path")
 
     @base_path.setter
-    def base_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_path", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientTimeout")
-    def client_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout (in seconds) of the Keycloak client
         """
         return pulumi.get(self, "client_timeout")
 
     @client_timeout.setter
-    def client_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="initialLogin")
-    def initial_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def initial_login(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not to login to Keycloak instance on provider initialization
         """
         return pulumi.get(self, "initial_login")
 
     @initial_login.setter
-    def initial_login(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def initial_login(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "initial_login", value)
 
     @_builtins.property
     @pulumi.getter(name="jwtSigningAlg")
-    def jwt_signing_alg(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt_signing_alg(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         """
         return pulumi.get(self, "jwt_signing_alg")
 
     @jwt_signing_alg.setter
-    def jwt_signing_alg(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt_signing_alg(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt_signing_alg", value)
 
     @_builtins.property
     @pulumi.getter(name="jwtSigningKey")
-    def jwt_signing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt_signing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PEM-formatted private key used to sign the JWT when client-jwt is used.
         """
         return pulumi.get(self, "jwt_signing_key")
 
     @jwt_signing_key.setter
-    def jwt_signing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt_signing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt_signing_key", value)
 
     @_builtins.property
     @pulumi.getter(name="jwtToken")
-    def jwt_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A signed JWT token used for client authentication.
         """
         return pulumi.get(self, "jwt_token")
 
     @jwt_token.setter
-    def jwt_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt_token", value)
 
     @_builtins.property
     @pulumi.getter(name="jwtTokenFile")
-    def jwt_token_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt_token_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A path to a file containing a signed JWT token used for client authentication.
         """
         return pulumi.get(self, "jwt_token_file")
 
     @jwt_token_file.setter
-    def jwt_token_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt_token_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt_token_file", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def realm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "realm")
 
     @realm.setter
-    def realm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="redHatSso")
-    def red_hat_sso(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def red_hat_sso(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         """
         return pulumi.get(self, "red_hat_sso")
 
     @red_hat_sso.setter
-    def red_hat_sso(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def red_hat_sso(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "red_hat_sso", value)
 
     @_builtins.property
     @pulumi.getter(name="rootCaCertificate")
-    def root_ca_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_ca_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows x509 calls using an unknown CA certificate (for development purposes)
         """
         return pulumi.get(self, "root_ca_certificate")
 
     @root_ca_certificate.setter
-    def root_ca_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_ca_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_ca_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCertificate")
-    def tls_client_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         TLS client certificate as PEM string for mutual authentication
         """
         return pulumi.get(self, "tls_client_certificate")
 
     @tls_client_certificate.setter
-    def tls_client_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientPrivateKey")
-    def tls_client_private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         TLS client private key as PEM string for mutual authentication
         """
         return pulumi.get(self, "tls_client_private_key")
 
     @tls_client_private_key.setter
-    def tls_client_private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsInsecureSkipVerify")
-    def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls_insecure_skip_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
     @tls_insecure_skip_verify.setter
-    def tls_insecure_skip_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls_insecure_skip_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls_insecure_skip_verify", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base URL of the Keycloak instance, before `/auth`
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -337,27 +337,27 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
-                 jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_token_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 additional_headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 initial_login: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jwt_signing_alg: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 red_hat_sso: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_insecure_skip_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the keycloak package. By default, resources use package-wide configuration
@@ -410,27 +410,27 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
-                 jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt_token_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
-                 root_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 additional_headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 initial_login: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jwt_signing_alg: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 red_hat_sso: pulumi.Input[Optional[_builtins.bool]] = None,
+                 root_ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_insecure_skip_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

@@ -187,11 +187,11 @@ export interface GetSubflowOutputArgs {
      *
      * > **Note:** You must specify either `id` or `alias`, but not both. Use `id` for direct lookup by GUID, or `alias` for human-readable lookup by name.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The unique ID of the authentication subflow. Either `id` or `alias` must be specified.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The alias of the parent authentication flow.
      */

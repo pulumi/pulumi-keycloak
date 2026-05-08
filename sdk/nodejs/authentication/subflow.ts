@@ -164,38 +164,38 @@ export interface SubflowState {
     /**
      * The alias for this authentication subflow.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The name of the authenticator. Might be needed to be set with certain custom subflows with specific
      * authenticators. In general this will remain empty.
      */
-    authenticator?: pulumi.Input<string>;
+    authenticator?: pulumi.Input<string | undefined>;
     /**
      * A description for the authentication subflow.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The alias for the parent authentication flow.
      */
-    parentFlowAlias?: pulumi.Input<string>;
+    parentFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The realm that the authentication subflow exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.
      */
-    requirement?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -205,16 +205,16 @@ export interface SubflowArgs {
     /**
      * The alias for this authentication subflow.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The name of the authenticator. Might be needed to be set with certain custom subflows with specific
      * authenticators. In general this will remain empty.
      */
-    authenticator?: pulumi.Input<string>;
+    authenticator?: pulumi.Input<string | undefined>;
     /**
      * A description for the authentication subflow.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The alias for the parent authentication flow.
      */
@@ -222,12 +222,12 @@ export interface SubflowArgs {
     /**
      * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The realm that the authentication subflow exists in.
      */
@@ -236,5 +236,5 @@ export interface SubflowArgs {
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.
      */
-    requirement?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string | undefined>;
 }

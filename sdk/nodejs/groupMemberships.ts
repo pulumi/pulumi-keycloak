@@ -134,15 +134,15 @@ export interface GroupMembershipsState {
     /**
      * The ID of the group this resource should manage memberships for.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * A list of usernames that belong to this group.
      */
-    members?: pulumi.Input<pulumi.Input<string>[]>;
+    members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The realm this group exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -152,7 +152,7 @@ export interface GroupMembershipsArgs {
     /**
      * The ID of the group this resource should manage memberships for.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * A list of usernames that belong to this group.
      */

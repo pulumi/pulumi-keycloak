@@ -161,31 +161,31 @@ export interface RequiredActionState {
     /**
      * The alias of the action to attach as a required action. Case sensitive.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The configuration. Keys are specific to each configurable required action and not checked when applying.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      */
-    defaultAction?: pulumi.Input<boolean>;
+    defaultAction?: pulumi.Input<boolean | undefined>;
     /**
      * When `false`, the required action is not enabled for new users. Defaults to `false`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the required action to use in the UI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm the required action exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -199,23 +199,23 @@ export interface RequiredActionArgs {
     /**
      * The configuration. Keys are specific to each configurable required action and not checked when applying.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      */
-    defaultAction?: pulumi.Input<boolean>;
+    defaultAction?: pulumi.Input<boolean | undefined>;
     /**
      * When `false`, the required action is not enabled for new users. Defaults to `false`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the required action to use in the UI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm the required action exists in.
      */

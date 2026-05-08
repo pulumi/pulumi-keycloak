@@ -21,12 +21,12 @@ class SubflowArgs:
     def __init__(__self__, *,
                  parent_flow_alias: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Subflow resource.
 
@@ -83,19 +83,19 @@ class SubflowArgs:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias for this authentication subflow.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def authenticator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authenticator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the authenticator. Might be needed to be set with certain custom subflows with specific
         authenticators. In general this will remain empty.
@@ -103,36 +103,36 @@ class SubflowArgs:
         return pulumi.get(self, "authenticator")
 
     @authenticator.setter
-    def authenticator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authenticator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authenticator", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description for the authentication subflow.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
         and `client-flow`. Defaults to `basic-flow`.
@@ -140,12 +140,12 @@ class SubflowArgs:
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
-    def provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def requirement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
         or `DISABLED`. Defaults to `DISABLED`.
@@ -153,21 +153,21 @@ class SubflowArgs:
         return pulumi.get(self, "requirement")
 
     @requirement.setter
-    def requirement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def requirement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "requirement", value)
 
 
 @pulumi.input_type
 class _SubflowState:
     def __init__(__self__, *,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Subflow resources.
 
@@ -202,19 +202,19 @@ class _SubflowState:
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias for this authentication subflow.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def authenticator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authenticator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the authenticator. Might be needed to be set with certain custom subflows with specific
         authenticators. In general this will remain empty.
@@ -222,48 +222,48 @@ class _SubflowState:
         return pulumi.get(self, "authenticator")
 
     @authenticator.setter
-    def authenticator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authenticator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authenticator", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description for the authentication subflow.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="parentFlowAlias")
-    def parent_flow_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def parent_flow_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias for the parent authentication flow.
         """
         return pulumi.get(self, "parent_flow_alias")
 
     @parent_flow_alias.setter
-    def parent_flow_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def parent_flow_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "parent_flow_alias", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
         and `client-flow`. Defaults to `basic-flow`.
@@ -271,24 +271,24 @@ class _SubflowState:
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
-    def provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that the authentication subflow exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def requirement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
         or `DISABLED`. Defaults to `DISABLED`.
@@ -296,7 +296,7 @@ class _SubflowState:
         return pulumi.get(self, "requirement")
 
     @requirement.setter
-    def requirement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def requirement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "requirement", value)
 
 
@@ -306,14 +306,14 @@ class Subflow(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing an authentication subflow within Keycloak.
@@ -438,14 +438,14 @@ class Subflow(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 requirement: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -477,14 +477,14 @@ class Subflow(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias: Optional[pulumi.Input[_builtins.str]] = None,
-            authenticator: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            priority: Optional[pulumi.Input[_builtins.int]] = None,
-            provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            requirement: Optional[pulumi.Input[_builtins.str]] = None) -> 'Subflow':
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            requirement: pulumi.Input[Optional[_builtins.str]] = None) -> 'Subflow':
         """
         Get an existing Subflow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

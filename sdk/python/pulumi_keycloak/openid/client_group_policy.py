@@ -25,10 +25,10 @@ class ClientGroupPolicyArgs:
                  groups: pulumi.Input[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]],
                  realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientGroupPolicy resource.
         """
@@ -83,52 +83,52 @@ class ClientGroupPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "groups_claim")
 
     @groups_claim.setter
-    def groups_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_claim", value)
 
     @_builtins.property
     @pulumi.getter
-    def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logic(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "logic")
 
     @logic.setter
-    def logic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ClientGroupPolicyState:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientGroupPolicy resources.
         """
@@ -151,74 +151,74 @@ class _ClientGroupPolicyState:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]]]:
+    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]]]:
         return pulumi.get(self, "groups")
 
     @groups.setter
-    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]]]):
+    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClientGroupPolicyGroupArgs']]]]):
         pulumi.set(self, "groups", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "groups_claim")
 
     @groups_claim.setter
-    def groups_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_claim", value)
 
     @_builtins.property
     @pulumi.getter
-    def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logic(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "logic")
 
     @logic.setter
-    def logic(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logic(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logic", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
-    def resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_server_id")
 
     @resource_server_id.setter
-    def resource_server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_server_id", value)
 
 
@@ -228,14 +228,14 @@ class ClientGroupPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClientGroupPolicyGroupArgs', 'ClientGroupPolicyGroupArgsDict']]]]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientGroupPolicyGroupArgs', 'ClientGroupPolicyGroupArgsDict']]]]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows you to manage group policies.
@@ -429,14 +429,14 @@ class ClientGroupPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClientGroupPolicyGroupArgs', 'ClientGroupPolicyGroupArgsDict']]]]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 logic: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientGroupPolicyGroupArgs', 'ClientGroupPolicyGroupArgsDict']]]]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 logic: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -472,14 +472,14 @@ class ClientGroupPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClientGroupPolicyGroupArgs', 'ClientGroupPolicyGroupArgsDict']]]]] = None,
-            groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-            logic: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            resource_server_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ClientGroupPolicy':
+            decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientGroupPolicyGroupArgs', 'ClientGroupPolicyGroupArgsDict']]]]] = None,
+            groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            logic: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientGroupPolicy':
         """
         Get an existing ClientGroupPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

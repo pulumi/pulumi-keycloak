@@ -98,16 +98,16 @@ __all__ = [
 ]
 
 class GroupPermissionsManageMembersScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class GroupPermissionsManageMembersScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -117,43 +117,43 @@ class GroupPermissionsManageMembersScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class GroupPermissionsManageMembershipScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class GroupPermissionsManageMembershipScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -163,43 +163,43 @@ class GroupPermissionsManageMembershipScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class GroupPermissionsManageScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class GroupPermissionsManageScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -209,43 +209,43 @@ class GroupPermissionsManageScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class GroupPermissionsViewMembersScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class GroupPermissionsViewMembersScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -255,43 +255,43 @@ class GroupPermissionsViewMembersScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class GroupPermissionsViewScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class GroupPermissionsViewScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -301,29 +301,29 @@ class GroupPermissionsViewScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
@@ -332,7 +332,7 @@ class OrganizationDomainArgsDict(TypedDict):
     """
     The name of the organization.
     """
-    verified: NotRequired[pulumi.Input[_builtins.bool]]
+    verified: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether domain is verified or not. Default is false.
     """
@@ -341,7 +341,7 @@ class OrganizationDomainArgsDict(TypedDict):
 class OrganizationDomainArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 verified: Optional[pulumi.Input[_builtins.bool]] = None):
+                 verified: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.bool] verified: Whether domain is verified or not. Default is false.
@@ -364,26 +364,26 @@ class OrganizationDomainArgs:
 
     @_builtins.property
     @pulumi.getter
-    def verified(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verified(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether domain is verified or not. Default is false.
         """
         return pulumi.get(self, "verified")
 
     @verified.setter
-    def verified(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verified(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verified", value)
 
 
 class RealmClientPolicyProfileExecutorArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
-    configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    configuration: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class RealmClientPolicyProfileExecutorArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 configuration: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         pulumi.set(__self__, "name", name)
         if configuration is not None:
             pulumi.set(__self__, "configuration", configuration)
@@ -399,23 +399,23 @@ class RealmClientPolicyProfileExecutorArgs:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def configuration(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def configuration(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "configuration", value)
 
 
 class RealmClientPolicyProfilePolicyConditionArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
-    configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    configuration: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class RealmClientPolicyProfilePolicyConditionArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 configuration: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         pulumi.set(__self__, "name", name)
         if configuration is not None:
             pulumi.set(__self__, "configuration", configuration)
@@ -431,11 +431,11 @@ class RealmClientPolicyProfilePolicyConditionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def configuration(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def configuration(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "configuration")
 
     @configuration.setter
-    def configuration(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def configuration(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "configuration", value)
 
 
@@ -487,27 +487,27 @@ class RealmInternationalizationArgs:
 
 
 class RealmOtpPolicyArgsDict(TypedDict):
-    algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
     """
-    digits: NotRequired[pulumi.Input[_builtins.int]]
+    digits: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many digits the OTP have. Defaults to `6`.
     """
-    initial_counter: NotRequired[pulumi.Input[_builtins.int]]
+    initial_counter: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     What should the initial counter value be. Defaults to `2`.
     """
-    look_ahead_window: NotRequired[pulumi.Input[_builtins.int]]
+    look_ahead_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many seconds should an OTP token be valid. Defaults to `30`.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
     """
@@ -515,12 +515,12 @@ class RealmOtpPolicyArgsDict(TypedDict):
 @pulumi.input_type
 class RealmOtpPolicyArgs:
     def __init__(__self__, *,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 digits: Optional[pulumi.Input[_builtins.int]] = None,
-                 initial_counter: Optional[pulumi.Input[_builtins.int]] = None,
-                 look_ahead_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 digits: pulumi.Input[Optional[_builtins.int]] = None,
+                 initial_counter: pulumi.Input[Optional[_builtins.int]] = None,
+                 look_ahead_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] algorithm: What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
         :param pulumi.Input[_builtins.int] digits: How many digits the OTP have. Defaults to `6`.
@@ -544,86 +544,86 @@ class RealmOtpPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
         """
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def digits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def digits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many digits the OTP have. Defaults to `6`.
         """
         return pulumi.get(self, "digits")
 
     @digits.setter
-    def digits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def digits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "digits", value)
 
     @_builtins.property
     @pulumi.getter(name="initialCounter")
-    def initial_counter(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def initial_counter(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         What should the initial counter value be. Defaults to `2`.
         """
         return pulumi.get(self, "initial_counter")
 
     @initial_counter.setter
-    def initial_counter(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def initial_counter(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "initial_counter", value)
 
     @_builtins.property
     @pulumi.getter(name="lookAheadWindow")
-    def look_ahead_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def look_ahead_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
         """
         return pulumi.get(self, "look_ahead_window")
 
     @look_ahead_window.setter
-    def look_ahead_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def look_ahead_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "look_ahead_window", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many seconds should an OTP token be valid. Defaults to `30`.
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 class RealmSecurityDefensesArgsDict(TypedDict):
-    brute_force_detection: NotRequired[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgsDict']]
-    headers: NotRequired[pulumi.Input['RealmSecurityDefensesHeadersArgsDict']]
+    brute_force_detection: NotRequired[pulumi.Input[Optional['RealmSecurityDefensesBruteForceDetectionArgs']]]
+    headers: NotRequired[pulumi.Input[Optional['RealmSecurityDefensesHeadersArgs']]]
 
 @pulumi.input_type
 class RealmSecurityDefensesArgs:
     def __init__(__self__, *,
-                 brute_force_detection: Optional[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgs']] = None,
-                 headers: Optional[pulumi.Input['RealmSecurityDefensesHeadersArgs']] = None):
+                 brute_force_detection: pulumi.Input[Optional['RealmSecurityDefensesBruteForceDetectionArgs']] = None,
+                 headers: pulumi.Input[Optional['RealmSecurityDefensesHeadersArgs']] = None):
         if brute_force_detection is not None:
             pulumi.set(__self__, "brute_force_detection", brute_force_detection)
         if headers is not None:
@@ -631,51 +631,51 @@ class RealmSecurityDefensesArgs:
 
     @_builtins.property
     @pulumi.getter(name="bruteForceDetection")
-    def brute_force_detection(self) -> Optional[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgs']]:
+    def brute_force_detection(self) -> pulumi.Input[Optional['RealmSecurityDefensesBruteForceDetectionArgs']]:
         return pulumi.get(self, "brute_force_detection")
 
     @brute_force_detection.setter
-    def brute_force_detection(self, value: Optional[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgs']]):
+    def brute_force_detection(self, value: pulumi.Input[Optional['RealmSecurityDefensesBruteForceDetectionArgs']]):
         pulumi.set(self, "brute_force_detection", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input['RealmSecurityDefensesHeadersArgs']]:
+    def headers(self) -> pulumi.Input[Optional['RealmSecurityDefensesHeadersArgs']]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input['RealmSecurityDefensesHeadersArgs']]):
+    def headers(self, value: pulumi.Input[Optional['RealmSecurityDefensesHeadersArgs']]):
         pulumi.set(self, "headers", value)
 
 
 class RealmSecurityDefensesBruteForceDetectionArgsDict(TypedDict):
-    failure_reset_time_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    failure_reset_time_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     When will failure count be reset?
     """
-    max_failure_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
-    max_login_failures: NotRequired[pulumi.Input[_builtins.int]]
+    max_failure_wait_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    max_login_failures: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many failures before wait is triggered.
     """
-    max_temporary_lockouts: NotRequired[pulumi.Input[_builtins.int]]
+    max_temporary_lockouts: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
     """
-    minimum_quick_login_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    minimum_quick_login_wait_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait after a quick login failure.
     - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
     """
-    permanent_lockout: NotRequired[pulumi.Input[_builtins.bool]]
+    permanent_lockout: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
     """
-    quick_login_check_milli_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    quick_login_check_milli_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
     """
-    wait_increment_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    wait_increment_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     This represents the amount of time a user should be locked out when the login failure threshold has been met.
     """
@@ -683,14 +683,14 @@ class RealmSecurityDefensesBruteForceDetectionArgsDict(TypedDict):
 @pulumi.input_type
 class RealmSecurityDefensesBruteForceDetectionArgs:
     def __init__(__self__, *,
-                 failure_reset_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_failure_wait_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_login_failures: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_temporary_lockouts: Optional[pulumi.Input[_builtins.int]] = None,
-                 minimum_quick_login_wait_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 permanent_lockout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 quick_login_check_milli_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 wait_increment_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 failure_reset_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_failure_wait_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_login_failures: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_temporary_lockouts: pulumi.Input[Optional[_builtins.int]] = None,
+                 minimum_quick_login_wait_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 permanent_lockout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 quick_login_check_milli_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 wait_increment_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] failure_reset_time_seconds: When will failure count be reset?
         :param pulumi.Input[_builtins.int] max_login_failures: How many failures before wait is triggered.
@@ -720,52 +720,52 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="failureResetTimeSeconds")
-    def failure_reset_time_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def failure_reset_time_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         When will failure count be reset?
         """
         return pulumi.get(self, "failure_reset_time_seconds")
 
     @failure_reset_time_seconds.setter
-    def failure_reset_time_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def failure_reset_time_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "failure_reset_time_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="maxFailureWaitSeconds")
-    def max_failure_wait_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_failure_wait_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "max_failure_wait_seconds")
 
     @max_failure_wait_seconds.setter
-    def max_failure_wait_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_failure_wait_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_failure_wait_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLoginFailures")
-    def max_login_failures(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_login_failures(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many failures before wait is triggered.
         """
         return pulumi.get(self, "max_login_failures")
 
     @max_login_failures.setter
-    def max_login_failures(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_login_failures(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_login_failures", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTemporaryLockouts")
-    def max_temporary_lockouts(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_temporary_lockouts(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
         """
         return pulumi.get(self, "max_temporary_lockouts")
 
     @max_temporary_lockouts.setter
-    def max_temporary_lockouts(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_temporary_lockouts(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_temporary_lockouts", value)
 
     @_builtins.property
     @pulumi.getter(name="minimumQuickLoginWaitSeconds")
-    def minimum_quick_login_wait_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def minimum_quick_login_wait_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait after a quick login failure.
         - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
@@ -773,76 +773,76 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
         return pulumi.get(self, "minimum_quick_login_wait_seconds")
 
     @minimum_quick_login_wait_seconds.setter
-    def minimum_quick_login_wait_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def minimum_quick_login_wait_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "minimum_quick_login_wait_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="permanentLockout")
-    def permanent_lockout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def permanent_lockout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
         """
         return pulumi.get(self, "permanent_lockout")
 
     @permanent_lockout.setter
-    def permanent_lockout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def permanent_lockout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "permanent_lockout", value)
 
     @_builtins.property
     @pulumi.getter(name="quickLoginCheckMilliSeconds")
-    def quick_login_check_milli_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def quick_login_check_milli_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
         """
         return pulumi.get(self, "quick_login_check_milli_seconds")
 
     @quick_login_check_milli_seconds.setter
-    def quick_login_check_milli_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def quick_login_check_milli_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "quick_login_check_milli_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="waitIncrementSeconds")
-    def wait_increment_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def wait_increment_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         This represents the amount of time a user should be locked out when the login failure threshold has been met.
         """
         return pulumi.get(self, "wait_increment_seconds")
 
     @wait_increment_seconds.setter
-    def wait_increment_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def wait_increment_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "wait_increment_seconds", value)
 
 
 class RealmSecurityDefensesHeadersArgsDict(TypedDict):
-    content_security_policy: NotRequired[pulumi.Input[_builtins.str]]
+    content_security_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
     """
-    content_security_policy_report_only: NotRequired[pulumi.Input[_builtins.str]]
+    content_security_policy_report_only: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used for testing Content Security Policies.
     """
-    referrer_policy: NotRequired[pulumi.Input[_builtins.str]]
+    referrer_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
     """
-    strict_transport_security: NotRequired[pulumi.Input[_builtins.str]]
+    strict_transport_security: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
     """
-    x_content_type_options: NotRequired[pulumi.Input[_builtins.str]]
+    x_content_type_options: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
     """
-    x_frame_options: NotRequired[pulumi.Input[_builtins.str]]
+    x_frame_options: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
     """
-    x_robots_tag: NotRequired[pulumi.Input[_builtins.str]]
+    x_robots_tag: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Prevent pages from appearing in search engines.
     """
-    x_xss_protection: NotRequired[pulumi.Input[_builtins.str]]
+    x_xss_protection: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     This header configures the Cross-site scripting (XSS) filter in your browser.
     """
@@ -850,14 +850,14 @@ class RealmSecurityDefensesHeadersArgsDict(TypedDict):
 @pulumi.input_type
 class RealmSecurityDefensesHeadersArgs:
     def __init__(__self__, *,
-                 content_security_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_security_policy_report_only: Optional[pulumi.Input[_builtins.str]] = None,
-                 referrer_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 strict_transport_security: Optional[pulumi.Input[_builtins.str]] = None,
-                 x_content_type_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 x_frame_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 x_robots_tag: Optional[pulumi.Input[_builtins.str]] = None,
-                 x_xss_protection: Optional[pulumi.Input[_builtins.str]] = None):
+                 content_security_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_security_policy_report_only: pulumi.Input[Optional[_builtins.str]] = None,
+                 referrer_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 strict_transport_security: pulumi.Input[Optional[_builtins.str]] = None,
+                 x_content_type_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 x_frame_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 x_robots_tag: pulumi.Input[Optional[_builtins.str]] = None,
+                 x_xss_protection: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] content_security_policy: Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
         :param pulumi.Input[_builtins.str] content_security_policy_report_only: Used for testing Content Security Policies.
@@ -887,98 +887,98 @@ class RealmSecurityDefensesHeadersArgs:
 
     @_builtins.property
     @pulumi.getter(name="contentSecurityPolicy")
-    def content_security_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content_security_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
         """
         return pulumi.get(self, "content_security_policy")
 
     @content_security_policy.setter
-    def content_security_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content_security_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content_security_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="contentSecurityPolicyReportOnly")
-    def content_security_policy_report_only(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content_security_policy_report_only(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used for testing Content Security Policies.
         """
         return pulumi.get(self, "content_security_policy_report_only")
 
     @content_security_policy_report_only.setter
-    def content_security_policy_report_only(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content_security_policy_report_only(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content_security_policy_report_only", value)
 
     @_builtins.property
     @pulumi.getter(name="referrerPolicy")
-    def referrer_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def referrer_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
         """
         return pulumi.get(self, "referrer_policy")
 
     @referrer_policy.setter
-    def referrer_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def referrer_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "referrer_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="strictTransportSecurity")
-    def strict_transport_security(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def strict_transport_security(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
         """
         return pulumi.get(self, "strict_transport_security")
 
     @strict_transport_security.setter
-    def strict_transport_security(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def strict_transport_security(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "strict_transport_security", value)
 
     @_builtins.property
     @pulumi.getter(name="xContentTypeOptions")
-    def x_content_type_options(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def x_content_type_options(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
         """
         return pulumi.get(self, "x_content_type_options")
 
     @x_content_type_options.setter
-    def x_content_type_options(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def x_content_type_options(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "x_content_type_options", value)
 
     @_builtins.property
     @pulumi.getter(name="xFrameOptions")
-    def x_frame_options(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def x_frame_options(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
         """
         return pulumi.get(self, "x_frame_options")
 
     @x_frame_options.setter
-    def x_frame_options(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def x_frame_options(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "x_frame_options", value)
 
     @_builtins.property
     @pulumi.getter(name="xRobotsTag")
-    def x_robots_tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def x_robots_tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Prevent pages from appearing in search engines.
         """
         return pulumi.get(self, "x_robots_tag")
 
     @x_robots_tag.setter
-    def x_robots_tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def x_robots_tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "x_robots_tag", value)
 
     @_builtins.property
     @pulumi.getter(name="xXssProtection")
-    def x_xss_protection(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def x_xss_protection(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         This header configures the Cross-site scripting (XSS) filter in your browser.
         """
         return pulumi.get(self, "x_xss_protection")
 
     @x_xss_protection.setter
-    def x_xss_protection(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def x_xss_protection(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "x_xss_protection", value)
 
 
@@ -991,40 +991,40 @@ class RealmSmtpServerArgsDict(TypedDict):
     """
     The host of the SMTP server.
     """
-    allow_utf8: NotRequired[pulumi.Input[_builtins.bool]]
-    auth: NotRequired[pulumi.Input['RealmSmtpServerAuthArgsDict']]
+    allow_utf8: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    auth: NotRequired[pulumi.Input[Optional['RealmSmtpServerAuthArgs']]]
     """
     Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
     """
-    envelope_from: NotRequired[pulumi.Input[_builtins.str]]
+    envelope_from: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The email address uses for bounces.
     """
-    from_display_name: NotRequired[pulumi.Input[_builtins.str]]
+    from_display_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The display name of the sender email address.
     """
-    port: NotRequired[pulumi.Input[_builtins.str]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The port of the SMTP server (defaults to 25).
     """
-    reply_to: NotRequired[pulumi.Input[_builtins.str]]
+    reply_to: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The "reply to" email address.
     """
-    reply_to_display_name: NotRequired[pulumi.Input[_builtins.str]]
+    reply_to_display_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The display name of the "reply to" email address.
     """
-    ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    ssl: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, enables SSL. Defaults to `false`.
     """
-    starttls: NotRequired[pulumi.Input[_builtins.bool]]
+    starttls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, enables StartTLS. Defaults to `false`.
     """
-    token_auth: NotRequired[pulumi.Input['RealmSmtpServerTokenAuthArgsDict']]
+    token_auth: NotRequired[pulumi.Input[Optional['RealmSmtpServerTokenAuthArgs']]]
     """
     Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
     """
@@ -1034,16 +1034,16 @@ class RealmSmtpServerArgs:
     def __init__(__self__, *,
                  from_: pulumi.Input[_builtins.str],
                  host: pulumi.Input[_builtins.str],
-                 allow_utf8: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auth: Optional[pulumi.Input['RealmSmtpServerAuthArgs']] = None,
-                 envelope_from: Optional[pulumi.Input[_builtins.str]] = None,
-                 from_display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.str]] = None,
-                 reply_to: Optional[pulumi.Input[_builtins.str]] = None,
-                 reply_to_display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 starttls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_auth: Optional[pulumi.Input['RealmSmtpServerTokenAuthArgs']] = None):
+                 allow_utf8: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auth: pulumi.Input[Optional['RealmSmtpServerAuthArgs']] = None,
+                 envelope_from: pulumi.Input[Optional[_builtins.str]] = None,
+                 from_display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.str]] = None,
+                 reply_to: pulumi.Input[Optional[_builtins.str]] = None,
+                 reply_to_display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 starttls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_auth: pulumi.Input[Optional['RealmSmtpServerTokenAuthArgs']] = None):
         """
         :param pulumi.Input[_builtins.str] from_: The email address for the sender.
         :param pulumi.Input[_builtins.str] host: The host of the SMTP server.
@@ -1106,119 +1106,119 @@ class RealmSmtpServerArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowUtf8")
-    def allow_utf8(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_utf8(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "allow_utf8")
 
     @allow_utf8.setter
-    def allow_utf8(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_utf8(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_utf8", value)
 
     @_builtins.property
     @pulumi.getter
-    def auth(self) -> Optional[pulumi.Input['RealmSmtpServerAuthArgs']]:
+    def auth(self) -> pulumi.Input[Optional['RealmSmtpServerAuthArgs']]:
         """
         Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
         """
         return pulumi.get(self, "auth")
 
     @auth.setter
-    def auth(self, value: Optional[pulumi.Input['RealmSmtpServerAuthArgs']]):
+    def auth(self, value: pulumi.Input[Optional['RealmSmtpServerAuthArgs']]):
         pulumi.set(self, "auth", value)
 
     @_builtins.property
     @pulumi.getter(name="envelopeFrom")
-    def envelope_from(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def envelope_from(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The email address uses for bounces.
         """
         return pulumi.get(self, "envelope_from")
 
     @envelope_from.setter
-    def envelope_from(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def envelope_from(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "envelope_from", value)
 
     @_builtins.property
     @pulumi.getter(name="fromDisplayName")
-    def from_display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def from_display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of the sender email address.
         """
         return pulumi.get(self, "from_display_name")
 
     @from_display_name.setter
-    def from_display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def from_display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "from_display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The port of the SMTP server (defaults to 25).
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="replyTo")
-    def reply_to(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reply_to(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The "reply to" email address.
         """
         return pulumi.get(self, "reply_to")
 
     @reply_to.setter
-    def reply_to(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reply_to(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reply_to", value)
 
     @_builtins.property
     @pulumi.getter(name="replyToDisplayName")
-    def reply_to_display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reply_to_display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of the "reply to" email address.
         """
         return pulumi.get(self, "reply_to_display_name")
 
     @reply_to_display_name.setter
-    def reply_to_display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reply_to_display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reply_to_display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def ssl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ssl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, enables SSL. Defaults to `false`.
         """
         return pulumi.get(self, "ssl")
 
     @ssl.setter
-    def ssl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ssl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ssl", value)
 
     @_builtins.property
     @pulumi.getter
-    def starttls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def starttls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, enables StartTLS. Defaults to `false`.
         """
         return pulumi.get(self, "starttls")
 
     @starttls.setter
-    def starttls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def starttls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "starttls", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenAuth")
-    def token_auth(self) -> Optional[pulumi.Input['RealmSmtpServerTokenAuthArgs']]:
+    def token_auth(self) -> pulumi.Input[Optional['RealmSmtpServerTokenAuthArgs']]:
         """
         Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
         """
         return pulumi.get(self, "token_auth")
 
     @token_auth.setter
-    def token_auth(self, value: Optional[pulumi.Input['RealmSmtpServerTokenAuthArgs']]):
+    def token_auth(self, value: pulumi.Input[Optional['RealmSmtpServerTokenAuthArgs']]):
         pulumi.set(self, "token_auth", value)
 
 
@@ -1361,36 +1361,36 @@ class RealmSmtpServerTokenAuthArgs:
 
 class RealmUserProfileAttributeArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
-    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    annotations: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    display_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The display name of the attribute.
     """
-    enabled_when_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    enabled_when_scopes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
     """
-    group: NotRequired[pulumi.Input[_builtins.str]]
+    group: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A list of groups.
     """
-    multi_valued: NotRequired[pulumi.Input[_builtins.bool]]
+    multi_valued: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If the attribute supports multiple values. Defaults to `false`.
     """
-    permissions: NotRequired[pulumi.Input['RealmUserProfileAttributePermissionsArgsDict']]
+    permissions: NotRequired[pulumi.Input[Optional['RealmUserProfileAttributePermissionsArgs']]]
     """
     The permissions configuration information.
     """
-    required_for_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    required_for_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles for which the attribute will be required.
     """
-    required_for_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    required_for_scopes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of scopes for which the attribute will be required.
     """
-    validators: NotRequired[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgsDict']]]]
+    validators: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]]
     """
     A list of validators for the attribute.
     """
@@ -1399,15 +1399,15 @@ class RealmUserProfileAttributeArgsDict(TypedDict):
 class RealmUserProfileAttributeArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled_when_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 group: Optional[pulumi.Input[_builtins.str]] = None,
-                 multi_valued: Optional[pulumi.Input[_builtins.bool]] = None,
-                 permissions: Optional[pulumi.Input['RealmUserProfileAttributePermissionsArgs']] = None,
-                 required_for_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 required_for_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 validators: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]] = None):
+                 annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled_when_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 group: pulumi.Input[Optional[_builtins.str]] = None,
+                 multi_valued: pulumi.Input[Optional[_builtins.bool]] = None,
+                 permissions: pulumi.Input[Optional['RealmUserProfileAttributePermissionsArgs']] = None,
+                 required_for_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 required_for_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 validators: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] display_name: The display name of the attribute.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
@@ -1449,107 +1449,107 @@ class RealmUserProfileAttributeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def annotations(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "annotations")
 
     @annotations.setter
-    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def annotations(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of the attribute.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="enabledWhenScopes")
-    def enabled_when_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def enabled_when_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
         """
         return pulumi.get(self, "enabled_when_scopes")
 
     @enabled_when_scopes.setter
-    def enabled_when_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def enabled_when_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "enabled_when_scopes", value)
 
     @_builtins.property
     @pulumi.getter
-    def group(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A list of groups.
         """
         return pulumi.get(self, "group")
 
     @group.setter
-    def group(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group", value)
 
     @_builtins.property
     @pulumi.getter(name="multiValued")
-    def multi_valued(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def multi_valued(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If the attribute supports multiple values. Defaults to `false`.
         """
         return pulumi.get(self, "multi_valued")
 
     @multi_valued.setter
-    def multi_valued(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def multi_valued(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "multi_valued", value)
 
     @_builtins.property
     @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input['RealmUserProfileAttributePermissionsArgs']]:
+    def permissions(self) -> pulumi.Input[Optional['RealmUserProfileAttributePermissionsArgs']]:
         """
         The permissions configuration information.
         """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input['RealmUserProfileAttributePermissionsArgs']]):
+    def permissions(self, value: pulumi.Input[Optional['RealmUserProfileAttributePermissionsArgs']]):
         pulumi.set(self, "permissions", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredForRoles")
-    def required_for_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_for_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles for which the attribute will be required.
         """
         return pulumi.get(self, "required_for_roles")
 
     @required_for_roles.setter
-    def required_for_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_for_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_for_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredForScopes")
-    def required_for_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_for_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of scopes for which the attribute will be required.
         """
         return pulumi.get(self, "required_for_scopes")
 
     @required_for_scopes.setter
-    def required_for_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_for_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_for_scopes", value)
 
     @_builtins.property
     @pulumi.getter
-    def validators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]:
+    def validators(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]:
         """
         A list of validators for the attribute.
         """
         return pulumi.get(self, "validators")
 
     @validators.setter
-    def validators(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]):
+    def validators(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]):
         pulumi.set(self, "validators", value)
 
 
@@ -1602,7 +1602,7 @@ class RealmUserProfileAttributePermissionsArgs:
 
 class RealmUserProfileAttributeValidatorArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
-    config: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    config: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map defining the configuration of the validator. Values can be a String or a json object.
     """
@@ -1611,7 +1611,7 @@ class RealmUserProfileAttributeValidatorArgsDict(TypedDict):
 class RealmUserProfileAttributeValidatorArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map defining the configuration of the validator. Values can be a String or a json object.
         """
@@ -1630,25 +1630,25 @@ class RealmUserProfileAttributeValidatorArgs:
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map defining the configuration of the validator. Values can be a String or a json object.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config", value)
 
 
 class RealmUserProfileGroupArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
-    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-    display_description: NotRequired[pulumi.Input[_builtins.str]]
+    annotations: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    display_description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The display description of the group.
     """
-    display_header: NotRequired[pulumi.Input[_builtins.str]]
+    display_header: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The display header of the group.
     """
@@ -1657,9 +1657,9 @@ class RealmUserProfileGroupArgsDict(TypedDict):
 class RealmUserProfileGroupArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 display_description: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_header: Optional[pulumi.Input[_builtins.str]] = None):
+                 annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 display_description: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_header: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] display_description: The display description of the group.
         :param pulumi.Input[_builtins.str] display_header: The display header of the group.
@@ -1683,80 +1683,80 @@ class RealmUserProfileGroupArgs:
 
     @_builtins.property
     @pulumi.getter
-    def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def annotations(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "annotations")
 
     @annotations.setter
-    def annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def annotations(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="displayDescription")
-    def display_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display description of the group.
         """
         return pulumi.get(self, "display_description")
 
     @display_description.setter
-    def display_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_description", value)
 
     @_builtins.property
     @pulumi.getter(name="displayHeader")
-    def display_header(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_header(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display header of the group.
         """
         return pulumi.get(self, "display_header")
 
     @display_header.setter
-    def display_header(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_header(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_header", value)
 
 
 class RealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
-    acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    acceptable_aaguids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A set of AAGUIDs for which an authenticator can be registered.
     """
-    attestation_conveyance_preference: NotRequired[pulumi.Input[_builtins.str]]
+    attestation_conveyance_preference: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either none, indirect or direct
     """
-    authenticator_attachment: NotRequired[pulumi.Input[_builtins.str]]
+    authenticator_attachment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either platform or cross-platform
     """
-    avoid_same_authenticator_register: NotRequired[pulumi.Input[_builtins.bool]]
+    avoid_same_authenticator_register: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
     """
-    create_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    create_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
     """
-    extra_origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    extra_origins: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A set of extra origins for non-web applications.
     """
-    relying_party_entity_name: NotRequired[pulumi.Input[_builtins.str]]
+    relying_party_entity_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
     """
-    relying_party_id: NotRequired[pulumi.Input[_builtins.str]]
+    relying_party_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The WebAuthn relying party ID.
     """
-    require_resident_key: NotRequired[pulumi.Input[_builtins.str]]
+    require_resident_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either Yes or No
     """
-    signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    signature_algorithms: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
     """
-    user_verification_requirement: NotRequired[pulumi.Input[_builtins.str]]
+    user_verification_requirement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either required, preferred or discouraged
     """
@@ -1764,17 +1764,17 @@ class RealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
 @pulumi.input_type
 class RealmWebAuthnPasswordlessPolicyArgs:
     def __init__(__self__, *,
-                 acceptable_aaguids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 attestation_conveyance_preference: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator_attachment: Optional[pulumi.Input[_builtins.str]] = None,
-                 avoid_same_authenticator_register: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 extra_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 relying_party_entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 relying_party_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_resident_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_algorithms: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_verification_requirement: Optional[pulumi.Input[_builtins.str]] = None):
+                 acceptable_aaguids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 attestation_conveyance_preference: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator_attachment: pulumi.Input[Optional[_builtins.str]] = None,
+                 avoid_same_authenticator_register: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 extra_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 relying_party_entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 relying_party_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_resident_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_verification_requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acceptable_aaguids: A set of AAGUIDs for which an authenticator can be registered.
         :param pulumi.Input[_builtins.str] attestation_conveyance_preference: Either none, indirect or direct
@@ -1813,179 +1813,179 @@ class RealmWebAuthnPasswordlessPolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="acceptableAaguids")
-    def acceptable_aaguids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def acceptable_aaguids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A set of AAGUIDs for which an authenticator can be registered.
         """
         return pulumi.get(self, "acceptable_aaguids")
 
     @acceptable_aaguids.setter
-    def acceptable_aaguids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def acceptable_aaguids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "acceptable_aaguids", value)
 
     @_builtins.property
     @pulumi.getter(name="attestationConveyancePreference")
-    def attestation_conveyance_preference(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def attestation_conveyance_preference(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either none, indirect or direct
         """
         return pulumi.get(self, "attestation_conveyance_preference")
 
     @attestation_conveyance_preference.setter
-    def attestation_conveyance_preference(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def attestation_conveyance_preference(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "attestation_conveyance_preference", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticatorAttachment")
-    def authenticator_attachment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authenticator_attachment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either platform or cross-platform
         """
         return pulumi.get(self, "authenticator_attachment")
 
     @authenticator_attachment.setter
-    def authenticator_attachment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authenticator_attachment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authenticator_attachment", value)
 
     @_builtins.property
     @pulumi.getter(name="avoidSameAuthenticatorRegister")
-    def avoid_same_authenticator_register(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def avoid_same_authenticator_register(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         """
         return pulumi.get(self, "avoid_same_authenticator_register")
 
     @avoid_same_authenticator_register.setter
-    def avoid_same_authenticator_register(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def avoid_same_authenticator_register(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "avoid_same_authenticator_register", value)
 
     @_builtins.property
     @pulumi.getter(name="createTimeout")
-    def create_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def create_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
         """
         return pulumi.get(self, "create_timeout")
 
     @create_timeout.setter
-    def create_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def create_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="extraOrigins")
-    def extra_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def extra_origins(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A set of extra origins for non-web applications.
         """
         return pulumi.get(self, "extra_origins")
 
     @extra_origins.setter
-    def extra_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def extra_origins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_origins", value)
 
     @_builtins.property
     @pulumi.getter(name="relyingPartyEntityName")
-    def relying_party_entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def relying_party_entity_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         return pulumi.get(self, "relying_party_entity_name")
 
     @relying_party_entity_name.setter
-    def relying_party_entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def relying_party_entity_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "relying_party_entity_name", value)
 
     @_builtins.property
     @pulumi.getter(name="relyingPartyId")
-    def relying_party_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def relying_party_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The WebAuthn relying party ID.
         """
         return pulumi.get(self, "relying_party_id")
 
     @relying_party_id.setter
-    def relying_party_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def relying_party_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "relying_party_id", value)
 
     @_builtins.property
     @pulumi.getter(name="requireResidentKey")
-    def require_resident_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def require_resident_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either Yes or No
         """
         return pulumi.get(self, "require_resident_key")
 
     @require_resident_key.setter
-    def require_resident_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def require_resident_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "require_resident_key", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureAlgorithms")
-    def signature_algorithms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def signature_algorithms(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
         """
         return pulumi.get(self, "signature_algorithms")
 
     @signature_algorithms.setter
-    def signature_algorithms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def signature_algorithms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "signature_algorithms", value)
 
     @_builtins.property
     @pulumi.getter(name="userVerificationRequirement")
-    def user_verification_requirement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_verification_requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either required, preferred or discouraged
         """
         return pulumi.get(self, "user_verification_requirement")
 
     @user_verification_requirement.setter
-    def user_verification_requirement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_verification_requirement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_verification_requirement", value)
 
 
 class RealmWebAuthnPolicyArgsDict(TypedDict):
-    acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    acceptable_aaguids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A set of AAGUIDs for which an authenticator can be registered.
     """
-    attestation_conveyance_preference: NotRequired[pulumi.Input[_builtins.str]]
+    attestation_conveyance_preference: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either none, indirect or direct
     """
-    authenticator_attachment: NotRequired[pulumi.Input[_builtins.str]]
+    authenticator_attachment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either platform or cross-platform
     """
-    avoid_same_authenticator_register: NotRequired[pulumi.Input[_builtins.bool]]
+    avoid_same_authenticator_register: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
     """
-    create_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    create_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
     """
-    extra_origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    extra_origins: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A set of extra origins for non-web applications.
     """
-    relying_party_entity_name: NotRequired[pulumi.Input[_builtins.str]]
+    relying_party_entity_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
     """
-    relying_party_id: NotRequired[pulumi.Input[_builtins.str]]
+    relying_party_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The WebAuthn relying party ID.
     """
-    require_resident_key: NotRequired[pulumi.Input[_builtins.str]]
+    require_resident_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either Yes or No
     """
-    signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    signature_algorithms: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
     """
-    user_verification_requirement: NotRequired[pulumi.Input[_builtins.str]]
+    user_verification_requirement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either required, preferred or discouraged
     """
@@ -1993,17 +1993,17 @@ class RealmWebAuthnPolicyArgsDict(TypedDict):
 @pulumi.input_type
 class RealmWebAuthnPolicyArgs:
     def __init__(__self__, *,
-                 acceptable_aaguids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 attestation_conveyance_preference: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator_attachment: Optional[pulumi.Input[_builtins.str]] = None,
-                 avoid_same_authenticator_register: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 extra_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 relying_party_entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 relying_party_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_resident_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_algorithms: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_verification_requirement: Optional[pulumi.Input[_builtins.str]] = None):
+                 acceptable_aaguids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 attestation_conveyance_preference: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator_attachment: pulumi.Input[Optional[_builtins.str]] = None,
+                 avoid_same_authenticator_register: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 extra_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 relying_party_entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 relying_party_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_resident_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_verification_requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acceptable_aaguids: A set of AAGUIDs for which an authenticator can be registered.
         :param pulumi.Input[_builtins.str] attestation_conveyance_preference: Either none, indirect or direct
@@ -2042,134 +2042,134 @@ class RealmWebAuthnPolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="acceptableAaguids")
-    def acceptable_aaguids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def acceptable_aaguids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A set of AAGUIDs for which an authenticator can be registered.
         """
         return pulumi.get(self, "acceptable_aaguids")
 
     @acceptable_aaguids.setter
-    def acceptable_aaguids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def acceptable_aaguids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "acceptable_aaguids", value)
 
     @_builtins.property
     @pulumi.getter(name="attestationConveyancePreference")
-    def attestation_conveyance_preference(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def attestation_conveyance_preference(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either none, indirect or direct
         """
         return pulumi.get(self, "attestation_conveyance_preference")
 
     @attestation_conveyance_preference.setter
-    def attestation_conveyance_preference(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def attestation_conveyance_preference(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "attestation_conveyance_preference", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticatorAttachment")
-    def authenticator_attachment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authenticator_attachment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either platform or cross-platform
         """
         return pulumi.get(self, "authenticator_attachment")
 
     @authenticator_attachment.setter
-    def authenticator_attachment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authenticator_attachment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authenticator_attachment", value)
 
     @_builtins.property
     @pulumi.getter(name="avoidSameAuthenticatorRegister")
-    def avoid_same_authenticator_register(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def avoid_same_authenticator_register(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         """
         return pulumi.get(self, "avoid_same_authenticator_register")
 
     @avoid_same_authenticator_register.setter
-    def avoid_same_authenticator_register(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def avoid_same_authenticator_register(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "avoid_same_authenticator_register", value)
 
     @_builtins.property
     @pulumi.getter(name="createTimeout")
-    def create_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def create_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
         """
         return pulumi.get(self, "create_timeout")
 
     @create_timeout.setter
-    def create_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def create_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="extraOrigins")
-    def extra_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def extra_origins(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A set of extra origins for non-web applications.
         """
         return pulumi.get(self, "extra_origins")
 
     @extra_origins.setter
-    def extra_origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def extra_origins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_origins", value)
 
     @_builtins.property
     @pulumi.getter(name="relyingPartyEntityName")
-    def relying_party_entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def relying_party_entity_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         return pulumi.get(self, "relying_party_entity_name")
 
     @relying_party_entity_name.setter
-    def relying_party_entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def relying_party_entity_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "relying_party_entity_name", value)
 
     @_builtins.property
     @pulumi.getter(name="relyingPartyId")
-    def relying_party_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def relying_party_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The WebAuthn relying party ID.
         """
         return pulumi.get(self, "relying_party_id")
 
     @relying_party_id.setter
-    def relying_party_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def relying_party_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "relying_party_id", value)
 
     @_builtins.property
     @pulumi.getter(name="requireResidentKey")
-    def require_resident_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def require_resident_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either Yes or No
         """
         return pulumi.get(self, "require_resident_key")
 
     @require_resident_key.setter
-    def require_resident_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def require_resident_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "require_resident_key", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureAlgorithms")
-    def signature_algorithms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def signature_algorithms(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
         """
         return pulumi.get(self, "signature_algorithms")
 
     @signature_algorithms.setter
-    def signature_algorithms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def signature_algorithms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "signature_algorithms", value)
 
     @_builtins.property
     @pulumi.getter(name="userVerificationRequirement")
-    def user_verification_requirement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_verification_requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either required, preferred or discouraged
         """
         return pulumi.get(self, "user_verification_requirement")
 
     @user_verification_requirement.setter
-    def user_verification_requirement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_verification_requirement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_verification_requirement", value)
 
 
@@ -2244,7 +2244,7 @@ class UserInitialPasswordArgsDict(TypedDict):
     """
     The initial password.
     """
-    temporary: NotRequired[pulumi.Input[_builtins.bool]]
+    temporary: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
     """
@@ -2253,7 +2253,7 @@ class UserInitialPasswordArgsDict(TypedDict):
 class UserInitialPasswordArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[_builtins.str],
-                 temporary: Optional[pulumi.Input[_builtins.bool]] = None):
+                 temporary: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] value: The initial password.
         :param pulumi.Input[_builtins.bool] temporary: If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
@@ -2276,28 +2276,28 @@ class UserInitialPasswordArgs:
 
     @_builtins.property
     @pulumi.getter
-    def temporary(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def temporary(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
         """
         return pulumi.get(self, "temporary")
 
     @temporary.setter
-    def temporary(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def temporary(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "temporary", value)
 
 
 class UsersPermissionsImpersonateScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class UsersPermissionsImpersonateScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -2307,43 +2307,43 @@ class UsersPermissionsImpersonateScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class UsersPermissionsManageGroupMembershipScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class UsersPermissionsManageGroupMembershipScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -2353,43 +2353,43 @@ class UsersPermissionsManageGroupMembershipScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class UsersPermissionsManageScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class UsersPermissionsManageScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -2399,43 +2399,43 @@ class UsersPermissionsManageScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class UsersPermissionsMapRolesScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class UsersPermissionsMapRolesScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -2445,43 +2445,43 @@ class UsersPermissionsMapRolesScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class UsersPermissionsUserImpersonatedScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class UsersPermissionsUserImpersonatedScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -2491,43 +2491,43 @@ class UsersPermissionsUserImpersonatedScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class UsersPermissionsViewScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class UsersPermissionsViewScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -2537,29 +2537,29 @@ class UsersPermissionsViewScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 

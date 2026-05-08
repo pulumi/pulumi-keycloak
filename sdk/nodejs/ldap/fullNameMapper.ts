@@ -156,27 +156,27 @@ export interface FullNameMapperState {
     /**
      * The name of the LDAP attribute containing the user's full name.
      */
-    ldapFullNameAttribute?: pulumi.Input<string>;
+    ldapFullNameAttribute?: pulumi.Input<string | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
      */
-    readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
-    writeOnly?: pulumi.Input<boolean>;
+    writeOnly?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -194,11 +194,11 @@ export interface FullNameMapperArgs {
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
      */
-    readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
@@ -206,5 +206,5 @@ export interface FullNameMapperArgs {
     /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
-    writeOnly?: pulumi.Input<boolean>;
+    writeOnly?: pulumi.Input<boolean | undefined>;
 }

@@ -143,9 +143,9 @@ def get_client_installation_provider(client_id: Optional[_builtins.str] = None,
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
         value=pulumi.get(__ret__, 'value'))
-def get_client_installation_provider_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                            provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_installation_provider_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientInstallationProviderResult]:
     """
     This data source can be used to retrieve Installation Provider of a SAML Client.

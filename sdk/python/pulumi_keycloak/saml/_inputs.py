@@ -20,11 +20,11 @@ __all__ = [
 ]
 
 class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
-    browser_id: NotRequired[pulumi.Input[_builtins.str]]
+    browser_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Browser flow id, (flow needs to exist)
     """
-    direct_grant_id: NotRequired[pulumi.Input[_builtins.str]]
+    direct_grant_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Direct grant flow id (flow needs to exist)
     """
@@ -32,8 +32,8 @@ class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
 @pulumi.input_type
 class ClientAuthenticationFlowBindingOverridesArgs:
     def __init__(__self__, *,
-                 browser_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 browser_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] browser_id: Browser flow id, (flow needs to exist)
         :param pulumi.Input[_builtins.str] direct_grant_id: Direct grant flow id (flow needs to exist)
@@ -45,26 +45,26 @@ class ClientAuthenticationFlowBindingOverridesArgs:
 
     @_builtins.property
     @pulumi.getter(name="browserId")
-    def browser_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def browser_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Browser flow id, (flow needs to exist)
         """
         return pulumi.get(self, "browser_id")
 
     @browser_id.setter
-    def browser_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def browser_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "browser_id", value)
 
     @_builtins.property
     @pulumi.getter(name="directGrantId")
-    def direct_grant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def direct_grant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Direct grant flow id (flow needs to exist)
         """
         return pulumi.get(self, "direct_grant_id")
 
     @direct_grant_id.setter
-    def direct_grant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def direct_grant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "direct_grant_id", value)
 
 

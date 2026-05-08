@@ -209,10 +209,10 @@ def get_subflow(alias: Optional[_builtins.str] = None,
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
         requirement=pulumi.get(__ret__, 'requirement'))
-def get_subflow_output(alias: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       parent_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                       realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_subflow_output(alias: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                       realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSubflowResult]:
     """
     This data source can be used to fetch the details of an authentication subflow within Keycloak.

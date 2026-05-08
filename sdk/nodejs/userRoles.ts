@@ -163,19 +163,19 @@ export interface UserRolesState {
     /**
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
      */
-    exhaustive?: pulumi.Input<boolean>;
+    exhaustive?: pulumi.Input<boolean | undefined>;
     /**
      * The realm this user exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * A list of role IDs to map to the user
      */
-    roleIds?: pulumi.Input<pulumi.Input<string>[]>;
+    roleIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the user this resource should manage roles for.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -185,7 +185,7 @@ export interface UserRolesArgs {
     /**
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
      */
-    exhaustive?: pulumi.Input<boolean>;
+    exhaustive?: pulumi.Input<boolean | undefined>;
     /**
      * The realm this user exists in.
      */

@@ -21,8 +21,8 @@ class MsadUserAccountControlMapperArgs:
     def __init__(__self__, *,
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 ldap_password_policy_hints_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MsadUserAccountControlMapper resource.
 
@@ -64,36 +64,36 @@ class MsadUserAccountControlMapperArgs:
 
     @_builtins.property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
-    def ldap_password_policy_hints_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ldap_password_policy_hints_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         """
         return pulumi.get(self, "ldap_password_policy_hints_enabled")
 
     @ldap_password_policy_hints_enabled.setter
-    def ldap_password_policy_hints_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ldap_password_policy_hints_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ldap_password_policy_hints_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _MsadUserAccountControlMapperState:
     def __init__(__self__, *,
-                 ldap_password_policy_hints_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
 
@@ -113,50 +113,50 @@ class _MsadUserAccountControlMapperState:
 
     @_builtins.property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
-    def ldap_password_policy_hints_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ldap_password_policy_hints_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         """
         return pulumi.get(self, "ldap_password_policy_hints_enabled")
 
     @ldap_password_policy_hints_enabled.setter
-    def ldap_password_policy_hints_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ldap_password_policy_hints_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ldap_password_policy_hints_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_user_federation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
     @ldap_user_federation_id.setter
-    def ldap_user_federation_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_user_federation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_user_federation_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -166,10 +166,10 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ldap_password_policy_hints_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing MSAD user account control mappers for Keycloak
@@ -301,10 +301,10 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ldap_password_policy_hints_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -332,10 +332,10 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ldap_password_policy_hints_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'MsadUserAccountControlMapper':
+            ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MsadUserAccountControlMapper':
         """
         Get an existing MsadUserAccountControlMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

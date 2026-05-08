@@ -116,11 +116,11 @@ export interface RealmOptionalClientScopesState {
     /**
      * An array of optional client scope names that should be used when creating new Keycloak clients.
      */
-    optionalScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    optionalScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The realm this client and scopes exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**

@@ -24,38 +24,38 @@ class IdentityProviderArgs:
                  client_id: pulumi.Input[_builtins.str],
                  realm: pulumi.Input[_builtins.str],
                  token_url: pulumi.Input[_builtins.str],
-                 accepts_prompt_none_forward_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_read_token_role_on_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authenticate_by_default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_user_info: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 first_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gui_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 hide_on_login_page: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 link_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_hint: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_redirect_mode_email_matches: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 store_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sync_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 trust_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ui_locales: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_info_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 validate_signature: Optional[pulumi.Input[_builtins.bool]] = None):
+                 accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwks_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ui_locales: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_info_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate_signature: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a IdentityProvider resource.
 
@@ -231,67 +231,67 @@ class IdentityProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
-    def accepts_prompt_none_forward_from_client(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def accepts_prompt_none_forward_from_client(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         """
         return pulumi.get(self, "accepts_prompt_none_forward_from_client")
 
     @accepts_prompt_none_forward_from_client.setter
-    def accepts_prompt_none_forward_from_client(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def accepts_prompt_none_forward_from_client(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "accepts_prompt_none_forward_from_client", value)
 
     @_builtins.property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
-    def add_read_token_role_on_create(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_read_token_role_on_create(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         """
         return pulumi.get(self, "add_read_token_role_on_create")
 
     @add_read_token_role_on_create.setter
-    def add_read_token_role_on_create(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_read_token_role_on_create(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_read_token_role_on_create", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
-    def authenticate_by_default(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def authenticate_by_default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable/disable authenticate users by default.
         """
         return pulumi.get(self, "authenticate_by_default")
 
     @authenticate_by_default.setter
-    def authenticate_by_default(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def authenticate_by_default(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authenticate_by_default", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelSupported")
-    def backchannel_supported(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backchannel_supported(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Does the external IDP support backchannel logout? Defaults to `true`.
         """
         return pulumi.get(self, "backchannel_supported")
 
     @backchannel_supported.setter
-    def backchannel_supported(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backchannel_supported(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backchannel_supported", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
@@ -299,84 +299,84 @@ class IdentityProviderArgs:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultScopes")
-    def default_scopes(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_scopes(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         """
         return pulumi.get(self, "default_scopes")
 
     @default_scopes.setter
-    def default_scopes(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_scopes(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="disableTypeClaimCheck")
-    def disable_type_claim_check(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_type_claim_check(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         """
         return pulumi.get(self, "disable_type_claim_check")
 
     @disable_type_claim_check.setter
-    def disable_type_claim_check(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_type_claim_check(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_type_claim_check", value)
 
     @_builtins.property
     @pulumi.getter(name="disableUserInfo")
-    def disable_user_info(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_user_info(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         """
         return pulumi.get(self, "disable_user_info")
 
     @disable_user_info.setter
-    def disable_user_info(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_user_info(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_user_info", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name for the identity provider in the GUI.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
@@ -384,279 +384,279 @@ class IdentityProviderArgs:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
-    def first_broker_login_flow_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_broker_login_flow_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         """
         return pulumi.get(self, "first_broker_login_flow_alias")
 
     @first_broker_login_flow_alias.setter
-    def first_broker_login_flow_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_broker_login_flow_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_broker_login_flow_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="guiOrder")
-    def gui_order(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gui_order(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A number defining the order of this identity provider in the GUI.
         """
         return pulumi.get(self, "gui_order")
 
     @gui_order.setter
-    def gui_order(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gui_order(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gui_order", value)
 
     @_builtins.property
     @pulumi.getter(name="hideOnLoginPage")
-    def hide_on_login_page(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def hide_on_login_page(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         """
         return pulumi.get(self, "hide_on_login_page")
 
     @hide_on_login_page.setter
-    def hide_on_login_page(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def hide_on_login_page(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "hide_on_login_page", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="jwksUrl")
-    def jwks_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwks_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON Web Key Set URL.
         """
         return pulumi.get(self, "jwks_url")
 
     @jwks_url.setter
-    def jwks_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwks_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwks_url", value)
 
     @_builtins.property
     @pulumi.getter(name="linkOnly")
-    def link_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def link_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
     @link_only.setter
-    def link_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def link_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "link_only", value)
 
     @_builtins.property
     @pulumi.getter(name="loginHint")
-    def login_hint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_hint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Pass login hint to identity provider.
         """
         return pulumi.get(self, "login_hint")
 
     @login_hint.setter
-    def login_hint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_hint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_hint", value)
 
     @_builtins.property
     @pulumi.getter(name="logoutUrl")
-    def logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logout_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         """
         return pulumi.get(self, "logout_url")
 
     @logout_url.setter
-    def logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logout_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logout_url", value)
 
     @_builtins.property
     @pulumi.getter(name="orgDomain")
-    def org_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
         """
         return pulumi.get(self, "org_domain")
 
     @org_domain.setter
-    def org_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_domain", value)
 
     @_builtins.property
     @pulumi.getter(name="orgRedirectModeEmailMatches")
-    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def org_redirect_mode_email_matches(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
         """
         return pulumi.get(self, "org_redirect_mode_email_matches")
 
     @org_redirect_mode_email_matches.setter
-    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def org_redirect_mode_email_matches(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "org_redirect_mode_email_matches", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the organization to link this identity provider to.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
-    def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def post_broker_login_flow_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         """
         return pulumi.get(self, "post_broker_login_flow_alias")
 
     @post_broker_login_flow_alias.setter
-    def post_broker_login_flow_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def post_broker_login_flow_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "post_broker_login_flow_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         """
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
-    def provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
     @pulumi.getter(name="storeToken")
-    def store_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def store_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
 
     @store_token.setter
-    def store_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def store_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "store_token", value)
 
     @_builtins.property
     @pulumi.getter(name="syncMode")
-    def sync_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sync_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         """
         return pulumi.get(self, "sync_mode")
 
     @sync_mode.setter
-    def sync_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sync_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sync_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="trustEmail")
-    def trust_email(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def trust_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         """
         return pulumi.get(self, "trust_email")
 
     @trust_email.setter
-    def trust_email(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def trust_email(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "trust_email", value)
 
     @_builtins.property
     @pulumi.getter(name="uiLocales")
-    def ui_locales(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ui_locales(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Pass current locale to identity provider. Defaults to `false`.
         """
         return pulumi.get(self, "ui_locales")
 
     @ui_locales.setter
-    def ui_locales(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ui_locales(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ui_locales", value)
 
     @_builtins.property
     @pulumi.getter(name="userInfoUrl")
-    def user_info_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_info_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User Info URL.
         """
         return pulumi.get(self, "user_info_url")
 
     @user_info_url.setter
-    def user_info_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_info_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_info_url", value)
 
     @_builtins.property
     @pulumi.getter(name="validateSignature")
-    def validate_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         """
         return pulumi.get(self, "validate_signature")
 
     @validate_signature.setter
-    def validate_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_signature", value)
 
 
 @pulumi.input_type
 class _IdentityProviderState:
     def __init__(__self__, *,
-                 accepts_prompt_none_forward_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_read_token_role_on_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticate_by_default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_user_info: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 first_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gui_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 hide_on_login_page: Optional[pulumi.Input[_builtins.bool]] = None,
-                 internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 link_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_hint: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_redirect_mode_email_matches: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 store_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sync_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 trust_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ui_locales: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_info_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 validate_signature: Optional[pulumi.Input[_builtins.bool]] = None):
+                 accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+                 internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwks_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ui_locales: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_info_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate_signature: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering IdentityProvider resources.
 
@@ -780,103 +780,103 @@ class _IdentityProviderState:
 
     @_builtins.property
     @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
-    def accepts_prompt_none_forward_from_client(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def accepts_prompt_none_forward_from_client(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         """
         return pulumi.get(self, "accepts_prompt_none_forward_from_client")
 
     @accepts_prompt_none_forward_from_client.setter
-    def accepts_prompt_none_forward_from_client(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def accepts_prompt_none_forward_from_client(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "accepts_prompt_none_forward_from_client", value)
 
     @_builtins.property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
-    def add_read_token_role_on_create(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_read_token_role_on_create(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         """
         return pulumi.get(self, "add_read_token_role_on_create")
 
     @add_read_token_role_on_create.setter
-    def add_read_token_role_on_create(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_read_token_role_on_create(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_read_token_role_on_create", value)
 
     @_builtins.property
     @pulumi.getter
-    def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         """
         return pulumi.get(self, "alias")
 
     @alias.setter
-    def alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
-    def authenticate_by_default(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def authenticate_by_default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable/disable authenticate users by default.
         """
         return pulumi.get(self, "authenticate_by_default")
 
     @authenticate_by_default.setter
-    def authenticate_by_default(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def authenticate_by_default(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authenticate_by_default", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationUrl")
-    def authorization_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Authorization Url.
         """
         return pulumi.get(self, "authorization_url")
 
     @authorization_url.setter
-    def authorization_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_url", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelSupported")
-    def backchannel_supported(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backchannel_supported(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Does the external IDP support backchannel logout? Defaults to `true`.
         """
         return pulumi.get(self, "backchannel_supported")
 
     @backchannel_supported.setter
-    def backchannel_supported(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backchannel_supported(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backchannel_supported", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client or client identifier registered within the identity provider.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
@@ -884,84 +884,84 @@ class _IdentityProviderState:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultScopes")
-    def default_scopes(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_scopes(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         """
         return pulumi.get(self, "default_scopes")
 
     @default_scopes.setter
-    def default_scopes(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_scopes(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="disableTypeClaimCheck")
-    def disable_type_claim_check(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_type_claim_check(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         """
         return pulumi.get(self, "disable_type_claim_check")
 
     @disable_type_claim_check.setter
-    def disable_type_claim_check(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_type_claim_check(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_type_claim_check", value)
 
     @_builtins.property
     @pulumi.getter(name="disableUserInfo")
-    def disable_user_info(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_user_info(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         """
         return pulumi.get(self, "disable_user_info")
 
     @disable_user_info.setter
-    def disable_user_info(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_user_info(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_user_info", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name for the identity provider in the GUI.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
@@ -969,271 +969,271 @@ class _IdentityProviderState:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
-    def first_broker_login_flow_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_broker_login_flow_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         """
         return pulumi.get(self, "first_broker_login_flow_alias")
 
     @first_broker_login_flow_alias.setter
-    def first_broker_login_flow_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_broker_login_flow_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_broker_login_flow_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="guiOrder")
-    def gui_order(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gui_order(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A number defining the order of this identity provider in the GUI.
         """
         return pulumi.get(self, "gui_order")
 
     @gui_order.setter
-    def gui_order(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gui_order(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gui_order", value)
 
     @_builtins.property
     @pulumi.getter(name="hideOnLoginPage")
-    def hide_on_login_page(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def hide_on_login_page(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         """
         return pulumi.get(self, "hide_on_login_page")
 
     @hide_on_login_page.setter
-    def hide_on_login_page(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def hide_on_login_page(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "hide_on_login_page", value)
 
     @_builtins.property
     @pulumi.getter(name="internalId")
-    def internal_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         """
         return pulumi.get(self, "internal_id")
 
     @internal_id.setter
-    def internal_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "internal_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="jwksUrl")
-    def jwks_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwks_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON Web Key Set URL.
         """
         return pulumi.get(self, "jwks_url")
 
     @jwks_url.setter
-    def jwks_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwks_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwks_url", value)
 
     @_builtins.property
     @pulumi.getter(name="linkOnly")
-    def link_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def link_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
     @link_only.setter
-    def link_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def link_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "link_only", value)
 
     @_builtins.property
     @pulumi.getter(name="loginHint")
-    def login_hint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_hint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Pass login hint to identity provider.
         """
         return pulumi.get(self, "login_hint")
 
     @login_hint.setter
-    def login_hint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_hint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_hint", value)
 
     @_builtins.property
     @pulumi.getter(name="logoutUrl")
-    def logout_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logout_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         """
         return pulumi.get(self, "logout_url")
 
     @logout_url.setter
-    def logout_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logout_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logout_url", value)
 
     @_builtins.property
     @pulumi.getter(name="orgDomain")
-    def org_domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
         """
         return pulumi.get(self, "org_domain")
 
     @org_domain.setter
-    def org_domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_domain", value)
 
     @_builtins.property
     @pulumi.getter(name="orgRedirectModeEmailMatches")
-    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def org_redirect_mode_email_matches(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
         """
         return pulumi.get(self, "org_redirect_mode_email_matches")
 
     @org_redirect_mode_email_matches.setter
-    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def org_redirect_mode_email_matches(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "org_redirect_mode_email_matches", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    def organization_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the organization to link this identity provider to.
         """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
-    def organization_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
-    def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def post_broker_login_flow_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         """
         return pulumi.get(self, "post_broker_login_flow_alias")
 
     @post_broker_login_flow_alias.setter
-    def post_broker_login_flow_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def post_broker_login_flow_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "post_broker_login_flow_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         """
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
-    def provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def realm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
 
     @realm.setter
-    def realm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="storeToken")
-    def store_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def store_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
 
     @store_token.setter
-    def store_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def store_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "store_token", value)
 
     @_builtins.property
     @pulumi.getter(name="syncMode")
-    def sync_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sync_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
         """
         return pulumi.get(self, "sync_mode")
 
     @sync_mode.setter
-    def sync_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sync_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sync_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenUrl")
-    def token_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Token URL.
         """
         return pulumi.get(self, "token_url")
 
     @token_url.setter
-    def token_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_url", value)
 
     @_builtins.property
     @pulumi.getter(name="trustEmail")
-    def trust_email(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def trust_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         """
         return pulumi.get(self, "trust_email")
 
     @trust_email.setter
-    def trust_email(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def trust_email(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "trust_email", value)
 
     @_builtins.property
     @pulumi.getter(name="uiLocales")
-    def ui_locales(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ui_locales(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Pass current locale to identity provider. Defaults to `false`.
         """
         return pulumi.get(self, "ui_locales")
 
     @ui_locales.setter
-    def ui_locales(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ui_locales(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ui_locales", value)
 
     @_builtins.property
     @pulumi.getter(name="userInfoUrl")
-    def user_info_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_info_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User Info URL.
         """
         return pulumi.get(self, "user_info_url")
 
     @user_info_url.setter
-    def user_info_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_info_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_info_url", value)
 
     @_builtins.property
     @pulumi.getter(name="validateSignature")
-    def validate_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         """
         return pulumi.get(self, "validate_signature")
 
     @validate_signature.setter
-    def validate_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_signature", value)
 
 
@@ -1243,43 +1243,43 @@ class IdentityProvider(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accepts_prompt_none_forward_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_read_token_role_on_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticate_by_default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_user_info: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 first_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gui_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 hide_on_login_page: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 link_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_hint: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_redirect_mode_email_matches: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 store_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sync_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 trust_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ui_locales: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_info_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwks_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ui_locales: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_info_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate_signature: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Allows for creating and managing OIDC Identity Providers within Keycloak.
@@ -1432,43 +1432,43 @@ class IdentityProvider(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accepts_prompt_none_forward_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
-                 add_read_token_role_on_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticate_by_default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_user_info: Optional[pulumi.Input[_builtins.bool]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 first_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gui_order: Optional[pulumi.Input[_builtins.str]] = None,
-                 hide_on_login_page: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 link_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_hint: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_redirect_mode_email_matches: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 store_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sync_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 trust_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ui_locales: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_info_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+                 hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwks_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ui_locales: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_info_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 validate_signature: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1538,44 +1538,44 @@ class IdentityProvider(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accepts_prompt_none_forward_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
-            add_read_token_role_on_create: Optional[pulumi.Input[_builtins.bool]] = None,
-            alias: Optional[pulumi.Input[_builtins.str]] = None,
-            authenticate_by_default: Optional[pulumi.Input[_builtins.bool]] = None,
-            authorization_url: Optional[pulumi.Input[_builtins.str]] = None,
-            backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_user_info: Optional[pulumi.Input[_builtins.bool]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            first_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            gui_order: Optional[pulumi.Input[_builtins.str]] = None,
-            hide_on_login_page: Optional[pulumi.Input[_builtins.bool]] = None,
-            internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
-            link_only: Optional[pulumi.Input[_builtins.bool]] = None,
-            login_hint: Optional[pulumi.Input[_builtins.str]] = None,
-            logout_url: Optional[pulumi.Input[_builtins.str]] = None,
-            org_domain: Optional[pulumi.Input[_builtins.str]] = None,
-            org_redirect_mode_email_matches: Optional[pulumi.Input[_builtins.bool]] = None,
-            organization_id: Optional[pulumi.Input[_builtins.str]] = None,
-            post_broker_login_flow_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-            realm: Optional[pulumi.Input[_builtins.str]] = None,
-            store_token: Optional[pulumi.Input[_builtins.bool]] = None,
-            sync_mode: Optional[pulumi.Input[_builtins.str]] = None,
-            token_url: Optional[pulumi.Input[_builtins.str]] = None,
-            trust_email: Optional[pulumi.Input[_builtins.bool]] = None,
-            ui_locales: Optional[pulumi.Input[_builtins.bool]] = None,
-            user_info_url: Optional[pulumi.Input[_builtins.str]] = None,
-            validate_signature: Optional[pulumi.Input[_builtins.bool]] = None) -> 'IdentityProvider':
+            accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
+            backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+            hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+            internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            jwks_url: pulumi.Input[Optional[_builtins.str]] = None,
+            link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_hint: pulumi.Input[Optional[_builtins.str]] = None,
+            logout_url: pulumi.Input[Optional[_builtins.str]] = None,
+            org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            token_url: pulumi.Input[Optional[_builtins.str]] = None,
+            trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            ui_locales: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_info_url: pulumi.Input[Optional[_builtins.str]] = None,
+            validate_signature: pulumi.Input[Optional[_builtins.bool]] = None) -> 'IdentityProvider':
         """
         Get an existing IdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

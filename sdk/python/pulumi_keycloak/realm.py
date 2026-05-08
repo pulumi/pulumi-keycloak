@@ -21,66 +21,66 @@ __all__ = ['RealmArgs', 'Realm']
 @pulumi.input_type
 class RealmArgs:
     def __init__(__self__, *,
-                 access_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_login: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_user_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 account_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name_html: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 duplicate_emails_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 edit_username_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 email_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 login_with_email_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organizations_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_token_max_reuse: Optional[pulumi.Input[_builtins.int]] = None,
-                 registration_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_email_as_username: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 remember_me: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_password_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revoke_refresh_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 security_defenses: Optional[pulumi.Input['RealmSecurityDefensesArgs']] = None,
-                 smtp_server: Optional[pulumi.Input['RealmSmtpServerArgs']] = None,
-                 ssl_required: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 web_authn_passwordless_policy: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']] = None,
-                 web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
+                 access_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_login: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_user_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan_for_implicit_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 account_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_admin_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_user_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_permissions_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 admin_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_default_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_optional_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name_html: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 duplicate_emails_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 edit_username_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 email_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 internationalization: pulumi.Input[Optional['RealmInternationalizationArgs']] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 login_with_email_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organizations_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 otp_policy: pulumi.Input[Optional['RealmOtpPolicyArgs']] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_token_max_reuse: pulumi.Input[Optional[_builtins.int]] = None,
+                 registration_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_email_as_username: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 remember_me: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_password_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revoke_refresh_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 security_defenses: pulumi.Input[Optional['RealmSecurityDefensesArgs']] = None,
+                 smtp_server: pulumi.Input[Optional['RealmSmtpServerArgs']] = None,
+                 ssl_required: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 terraform_deletion_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verify_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 web_authn_passwordless_policy: pulumi.Input[Optional['RealmWebAuthnPasswordlessPolicyArgs']] = None,
+                 web_authn_policy: pulumi.Input[Optional['RealmWebAuthnPolicyArgs']] = None):
         """
         The set of arguments for constructing a Realm resource.
 
@@ -226,662 +226,662 @@ class RealmArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessCodeLifespan")
-    def access_code_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_code_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_code_lifespan")
 
     @access_code_lifespan.setter
-    def access_code_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_code_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_code_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="accessCodeLifespanLogin")
-    def access_code_lifespan_login(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_code_lifespan_login(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_code_lifespan_login")
 
     @access_code_lifespan_login.setter
-    def access_code_lifespan_login(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_code_lifespan_login(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_code_lifespan_login", value)
 
     @_builtins.property
     @pulumi.getter(name="accessCodeLifespanUserAction")
-    def access_code_lifespan_user_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_code_lifespan_user_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_code_lifespan_user_action")
 
     @access_code_lifespan_user_action.setter
-    def access_code_lifespan_user_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_code_lifespan_user_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_code_lifespan_user_action", value)
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_token_lifespan")
 
     @access_token_lifespan.setter
-    def access_token_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifespanForImplicitFlow")
-    def access_token_lifespan_for_implicit_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token_lifespan_for_implicit_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_token_lifespan_for_implicit_flow")
 
     @access_token_lifespan_for_implicit_flow.setter
-    def access_token_lifespan_for_implicit_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token_lifespan_for_implicit_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token_lifespan_for_implicit_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="accountTheme")
-    def account_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "account_theme")
 
     @account_theme.setter
-    def account_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_theme", value)
 
     @_builtins.property
     @pulumi.getter(name="actionTokenGeneratedByAdminLifespan")
-    def action_token_generated_by_admin_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action_token_generated_by_admin_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "action_token_generated_by_admin_lifespan")
 
     @action_token_generated_by_admin_lifespan.setter
-    def action_token_generated_by_admin_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action_token_generated_by_admin_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action_token_generated_by_admin_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="actionTokenGeneratedByUserLifespan")
-    def action_token_generated_by_user_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action_token_generated_by_user_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "action_token_generated_by_user_lifespan")
 
     @action_token_generated_by_user_lifespan.setter
-    def action_token_generated_by_user_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action_token_generated_by_user_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action_token_generated_by_user_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="adminPermissionsEnabled")
-    def admin_permissions_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def admin_permissions_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "admin_permissions_enabled")
 
     @admin_permissions_enabled.setter
-    def admin_permissions_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def admin_permissions_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "admin_permissions_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="adminTheme")
-    def admin_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "admin_theme")
 
     @admin_theme.setter
-    def admin_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_theme", value)
 
     @_builtins.property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of custom attributes to add to the realm.
         """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="browserFlow")
-    def browser_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def browser_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for BrowserFlow
         """
         return pulumi.get(self, "browser_flow")
 
     @browser_flow.setter
-    def browser_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def browser_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "browser_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuthenticationFlow")
-    def client_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for ClientAuthenticationFlow
         """
         return pulumi.get(self, "client_authentication_flow")
 
     @client_authentication_flow.setter
-    def client_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionIdleTimeout")
-    def client_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "client_session_idle_timeout")
 
     @client_session_idle_timeout.setter
-    def client_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionMaxLifespan")
-    def client_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "client_session_max_lifespan")
 
     @client_session_max_lifespan.setter
-    def client_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDefaultClientScopes")
-    def default_default_client_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def default_default_client_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "default_default_client_scopes")
 
     @default_default_client_scopes.setter
-    def default_default_client_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def default_default_client_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_default_client_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultOptionalClientScopes")
-    def default_optional_client_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def default_optional_client_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "default_optional_client_scopes")
 
     @default_optional_client_scopes.setter
-    def default_optional_client_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def default_optional_client_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_optional_client_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultSignatureAlgorithm")
-    def default_signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "default_signature_algorithm")
 
     @default_signature_algorithm.setter
-    def default_signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="directGrantFlow")
-    def direct_grant_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def direct_grant_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for DirectGrantFlow
         """
         return pulumi.get(self, "direct_grant_flow")
 
     @direct_grant_flow.setter
-    def direct_grant_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def direct_grant_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "direct_grant_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name for the realm that is shown when logging in to the admin console.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="displayNameHtml")
-    def display_name_html(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name_html(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         """
         return pulumi.get(self, "display_name_html")
 
     @display_name_html.setter
-    def display_name_html(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name_html(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name_html", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerAuthenticationFlow")
-    def docker_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for DockerAuthenticationFlow
         """
         return pulumi.get(self, "docker_authentication_flow")
 
     @docker_authentication_flow.setter
-    def docker_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="duplicateEmailsAllowed")
-    def duplicate_emails_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def duplicate_emails_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "duplicate_emails_allowed")
 
     @duplicate_emails_allowed.setter
-    def duplicate_emails_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def duplicate_emails_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "duplicate_emails_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="editUsernameAllowed")
-    def edit_username_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def edit_username_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "edit_username_allowed")
 
     @edit_username_allowed.setter
-    def edit_username_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def edit_username_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "edit_username_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="emailTheme")
-    def email_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "email_theme")
 
     @email_theme.setter
-    def email_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email_theme", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="firstBrokerLoginFlow")
-    def first_broker_login_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_broker_login_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for FirstBrokerLoginFlow
         """
         return pulumi.get(self, "first_broker_login_flow")
 
     @first_broker_login_flow.setter
-    def first_broker_login_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_broker_login_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_broker_login_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="internalId")
-    def internal_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         """
         return pulumi.get(self, "internal_id")
 
     @internal_id.setter
-    def internal_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "internal_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def internationalization(self) -> Optional[pulumi.Input['RealmInternationalizationArgs']]:
+    def internationalization(self) -> pulumi.Input[Optional['RealmInternationalizationArgs']]:
         return pulumi.get(self, "internationalization")
 
     @internationalization.setter
-    def internationalization(self, value: Optional[pulumi.Input['RealmInternationalizationArgs']]):
+    def internationalization(self, value: pulumi.Input[Optional['RealmInternationalizationArgs']]):
         pulumi.set(self, "internationalization", value)
 
     @_builtins.property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
-    def login_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_theme", value)
 
     @_builtins.property
     @pulumi.getter(name="loginWithEmailAllowed")
-    def login_with_email_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def login_with_email_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "login_with_email_allowed")
 
     @login_with_email_allowed.setter
-    def login_with_email_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def login_with_email_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "login_with_email_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DeviceCodeLifespan")
-    def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth2_device_code_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
     @oauth2_device_code_lifespan.setter
-    def oauth2_device_code_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth2_device_code_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth2_device_code_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DevicePollingInterval")
-    def oauth2_device_polling_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oauth2_device_polling_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "oauth2_device_polling_interval")
 
     @oauth2_device_polling_interval.setter
-    def oauth2_device_polling_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oauth2_device_polling_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oauth2_device_polling_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="offlineSessionIdleTimeout")
-    def offline_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offline_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "offline_session_idle_timeout")
 
     @offline_session_idle_timeout.setter
-    def offline_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offline_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offline_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="offlineSessionMaxLifespan")
-    def offline_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offline_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "offline_session_max_lifespan")
 
     @offline_session_max_lifespan.setter
-    def offline_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offline_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offline_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="offlineSessionMaxLifespanEnabled")
-    def offline_session_max_lifespan_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def offline_session_max_lifespan_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "offline_session_max_lifespan_enabled")
 
     @offline_session_max_lifespan_enabled.setter
-    def offline_session_max_lifespan_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def offline_session_max_lifespan_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "offline_session_max_lifespan_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationsEnabled")
-    def organizations_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def organizations_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, organization support is enabled. Defaults to `false`.
         """
         return pulumi.get(self, "organizations_enabled")
 
     @organizations_enabled.setter
-    def organizations_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def organizations_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "organizations_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="otpPolicy")
-    def otp_policy(self) -> Optional[pulumi.Input['RealmOtpPolicyArgs']]:
+    def otp_policy(self) -> pulumi.Input[Optional['RealmOtpPolicyArgs']]:
         return pulumi.get(self, "otp_policy")
 
     @otp_policy.setter
-    def otp_policy(self, value: Optional[pulumi.Input['RealmOtpPolicyArgs']]):
+    def otp_policy(self, value: pulumi.Input[Optional['RealmOtpPolicyArgs']]):
         pulumi.set(self, "otp_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def realm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         """
         return pulumi.get(self, "realm")
 
     @realm.setter
-    def realm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="refreshTokenMaxReuse")
-    def refresh_token_max_reuse(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def refresh_token_max_reuse(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "refresh_token_max_reuse")
 
     @refresh_token_max_reuse.setter
-    def refresh_token_max_reuse(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def refresh_token_max_reuse(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "refresh_token_max_reuse", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationAllowed")
-    def registration_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def registration_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "registration_allowed")
 
     @registration_allowed.setter
-    def registration_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def registration_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "registration_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationEmailAsUsername")
-    def registration_email_as_username(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def registration_email_as_username(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "registration_email_as_username")
 
     @registration_email_as_username.setter
-    def registration_email_as_username(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def registration_email_as_username(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "registration_email_as_username", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationFlow")
-    def registration_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registration_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for RegistrationFlow
         """
         return pulumi.get(self, "registration_flow")
 
     @registration_flow.setter
-    def registration_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registration_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registration_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="rememberMe")
-    def remember_me(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def remember_me(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "remember_me")
 
     @remember_me.setter
-    def remember_me(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def remember_me(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "remember_me", value)
 
     @_builtins.property
     @pulumi.getter(name="resetCredentialsFlow")
-    def reset_credentials_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reset_credentials_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for ResetCredentialsFlow
         """
         return pulumi.get(self, "reset_credentials_flow")
 
     @reset_credentials_flow.setter
-    def reset_credentials_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reset_credentials_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reset_credentials_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="resetPasswordAllowed")
-    def reset_password_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reset_password_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "reset_password_allowed")
 
     @reset_password_allowed.setter
-    def reset_password_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reset_password_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reset_password_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="revokeRefreshToken")
-    def revoke_refresh_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def revoke_refresh_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "revoke_refresh_token")
 
     @revoke_refresh_token.setter
-    def revoke_refresh_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def revoke_refresh_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "revoke_refresh_token", value)
 
     @_builtins.property
     @pulumi.getter(name="securityDefenses")
-    def security_defenses(self) -> Optional[pulumi.Input['RealmSecurityDefensesArgs']]:
+    def security_defenses(self) -> pulumi.Input[Optional['RealmSecurityDefensesArgs']]:
         return pulumi.get(self, "security_defenses")
 
     @security_defenses.setter
-    def security_defenses(self, value: Optional[pulumi.Input['RealmSecurityDefensesArgs']]):
+    def security_defenses(self, value: pulumi.Input[Optional['RealmSecurityDefensesArgs']]):
         pulumi.set(self, "security_defenses", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpServer")
-    def smtp_server(self) -> Optional[pulumi.Input['RealmSmtpServerArgs']]:
+    def smtp_server(self) -> pulumi.Input[Optional['RealmSmtpServerArgs']]:
         return pulumi.get(self, "smtp_server")
 
     @smtp_server.setter
-    def smtp_server(self, value: Optional[pulumi.Input['RealmSmtpServerArgs']]):
+    def smtp_server(self, value: pulumi.Input[Optional['RealmSmtpServerArgs']]):
         pulumi.set(self, "smtp_server", value)
 
     @_builtins.property
     @pulumi.getter(name="sslRequired")
-    def ssl_required(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_required(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SSL Required: Values can be 'none', 'external' or 'all'.
         """
         return pulumi.get(self, "ssl_required")
 
     @ssl_required.setter
-    def ssl_required(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_required(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_required", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionIdleTimeout")
-    def sso_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_idle_timeout")
 
     @sso_session_idle_timeout.setter
-    def sso_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionIdleTimeoutRememberMe")
-    def sso_session_idle_timeout_remember_me(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_idle_timeout_remember_me(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_idle_timeout_remember_me")
 
     @sso_session_idle_timeout_remember_me.setter
-    def sso_session_idle_timeout_remember_me(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_idle_timeout_remember_me(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_idle_timeout_remember_me", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionMaxLifespan")
-    def sso_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_max_lifespan")
 
     @sso_session_max_lifespan.setter
-    def sso_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
-    def sso_session_max_lifespan_remember_me(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_max_lifespan_remember_me(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_max_lifespan_remember_me")
 
     @sso_session_max_lifespan_remember_me.setter
-    def sso_session_max_lifespan_remember_me(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_max_lifespan_remember_me(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_max_lifespan_remember_me", value)
 
     @_builtins.property
     @pulumi.getter(name="terraformDeletionProtection")
-    def terraform_deletion_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def terraform_deletion_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to true, the realm cannot be deleted. Defaults to false.
         """
         return pulumi.get(self, "terraform_deletion_protection")
 
     @terraform_deletion_protection.setter
-    def terraform_deletion_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def terraform_deletion_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "terraform_deletion_protection", value)
 
     @_builtins.property
     @pulumi.getter(name="userManagedAccess")
-    def user_managed_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def user_managed_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         return pulumi.get(self, "user_managed_access")
 
     @user_managed_access.setter
-    def user_managed_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def user_managed_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "user_managed_access", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyEmail")
-    def verify_email(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "verify_email")
 
     @verify_email.setter
-    def verify_email(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_email(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_email", value)
 
     @_builtins.property
     @pulumi.getter(name="webAuthnPasswordlessPolicy")
-    def web_authn_passwordless_policy(self) -> Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']]:
+    def web_authn_passwordless_policy(self) -> pulumi.Input[Optional['RealmWebAuthnPasswordlessPolicyArgs']]:
         return pulumi.get(self, "web_authn_passwordless_policy")
 
     @web_authn_passwordless_policy.setter
-    def web_authn_passwordless_policy(self, value: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']]):
+    def web_authn_passwordless_policy(self, value: pulumi.Input[Optional['RealmWebAuthnPasswordlessPolicyArgs']]):
         pulumi.set(self, "web_authn_passwordless_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="webAuthnPolicy")
-    def web_authn_policy(self) -> Optional[pulumi.Input['RealmWebAuthnPolicyArgs']]:
+    def web_authn_policy(self) -> pulumi.Input[Optional['RealmWebAuthnPolicyArgs']]:
         return pulumi.get(self, "web_authn_policy")
 
     @web_authn_policy.setter
-    def web_authn_policy(self, value: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']]):
+    def web_authn_policy(self, value: pulumi.Input[Optional['RealmWebAuthnPolicyArgs']]):
         pulumi.set(self, "web_authn_policy", value)
 
 
 @pulumi.input_type
 class _RealmState:
     def __init__(__self__, *,
-                 access_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_login: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_user_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 account_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name_html: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 duplicate_emails_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 edit_username_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 email_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 login_with_email_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organizations_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_token_max_reuse: Optional[pulumi.Input[_builtins.int]] = None,
-                 registration_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_email_as_username: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 remember_me: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_password_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revoke_refresh_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 security_defenses: Optional[pulumi.Input['RealmSecurityDefensesArgs']] = None,
-                 smtp_server: Optional[pulumi.Input['RealmSmtpServerArgs']] = None,
-                 ssl_required: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 web_authn_passwordless_policy: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']] = None,
-                 web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
+                 access_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_login: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_user_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan_for_implicit_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 account_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_admin_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_user_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_permissions_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 admin_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_default_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_optional_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name_html: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 duplicate_emails_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 edit_username_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 email_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 internationalization: pulumi.Input[Optional['RealmInternationalizationArgs']] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 login_with_email_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organizations_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 otp_policy: pulumi.Input[Optional['RealmOtpPolicyArgs']] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_token_max_reuse: pulumi.Input[Optional[_builtins.int]] = None,
+                 registration_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_email_as_username: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 remember_me: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_password_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revoke_refresh_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 security_defenses: pulumi.Input[Optional['RealmSecurityDefensesArgs']] = None,
+                 smtp_server: pulumi.Input[Optional['RealmSmtpServerArgs']] = None,
+                 ssl_required: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 terraform_deletion_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verify_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 web_authn_passwordless_policy: pulumi.Input[Optional['RealmWebAuthnPasswordlessPolicyArgs']] = None,
+                 web_authn_policy: pulumi.Input[Optional['RealmWebAuthnPolicyArgs']] = None):
         """
         Input properties used for looking up and filtering Realm resources.
 
@@ -1027,596 +1027,596 @@ class _RealmState:
 
     @_builtins.property
     @pulumi.getter(name="accessCodeLifespan")
-    def access_code_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_code_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_code_lifespan")
 
     @access_code_lifespan.setter
-    def access_code_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_code_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_code_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="accessCodeLifespanLogin")
-    def access_code_lifespan_login(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_code_lifespan_login(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_code_lifespan_login")
 
     @access_code_lifespan_login.setter
-    def access_code_lifespan_login(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_code_lifespan_login(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_code_lifespan_login", value)
 
     @_builtins.property
     @pulumi.getter(name="accessCodeLifespanUserAction")
-    def access_code_lifespan_user_action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_code_lifespan_user_action(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_code_lifespan_user_action")
 
     @access_code_lifespan_user_action.setter
-    def access_code_lifespan_user_action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_code_lifespan_user_action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_code_lifespan_user_action", value)
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifespan")
-    def access_token_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_token_lifespan")
 
     @access_token_lifespan.setter
-    def access_token_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="accessTokenLifespanForImplicitFlow")
-    def access_token_lifespan_for_implicit_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token_lifespan_for_implicit_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "access_token_lifespan_for_implicit_flow")
 
     @access_token_lifespan_for_implicit_flow.setter
-    def access_token_lifespan_for_implicit_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token_lifespan_for_implicit_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token_lifespan_for_implicit_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="accountTheme")
-    def account_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "account_theme")
 
     @account_theme.setter
-    def account_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_theme", value)
 
     @_builtins.property
     @pulumi.getter(name="actionTokenGeneratedByAdminLifespan")
-    def action_token_generated_by_admin_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action_token_generated_by_admin_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "action_token_generated_by_admin_lifespan")
 
     @action_token_generated_by_admin_lifespan.setter
-    def action_token_generated_by_admin_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action_token_generated_by_admin_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action_token_generated_by_admin_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="actionTokenGeneratedByUserLifespan")
-    def action_token_generated_by_user_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action_token_generated_by_user_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "action_token_generated_by_user_lifespan")
 
     @action_token_generated_by_user_lifespan.setter
-    def action_token_generated_by_user_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action_token_generated_by_user_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action_token_generated_by_user_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="adminPermissionsEnabled")
-    def admin_permissions_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def admin_permissions_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "admin_permissions_enabled")
 
     @admin_permissions_enabled.setter
-    def admin_permissions_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def admin_permissions_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "admin_permissions_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="adminTheme")
-    def admin_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "admin_theme")
 
     @admin_theme.setter
-    def admin_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_theme", value)
 
     @_builtins.property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of custom attributes to add to the realm.
         """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="browserFlow")
-    def browser_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def browser_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for BrowserFlow
         """
         return pulumi.get(self, "browser_flow")
 
     @browser_flow.setter
-    def browser_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def browser_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "browser_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuthenticationFlow")
-    def client_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for ClientAuthenticationFlow
         """
         return pulumi.get(self, "client_authentication_flow")
 
     @client_authentication_flow.setter
-    def client_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionIdleTimeout")
-    def client_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "client_session_idle_timeout")
 
     @client_session_idle_timeout.setter
-    def client_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSessionMaxLifespan")
-    def client_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "client_session_max_lifespan")
 
     @client_session_max_lifespan.setter
-    def client_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDefaultClientScopes")
-    def default_default_client_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def default_default_client_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "default_default_client_scopes")
 
     @default_default_client_scopes.setter
-    def default_default_client_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def default_default_client_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_default_client_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultOptionalClientScopes")
-    def default_optional_client_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def default_optional_client_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "default_optional_client_scopes")
 
     @default_optional_client_scopes.setter
-    def default_optional_client_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def default_optional_client_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_optional_client_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultSignatureAlgorithm")
-    def default_signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "default_signature_algorithm")
 
     @default_signature_algorithm.setter
-    def default_signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="directGrantFlow")
-    def direct_grant_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def direct_grant_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for DirectGrantFlow
         """
         return pulumi.get(self, "direct_grant_flow")
 
     @direct_grant_flow.setter
-    def direct_grant_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def direct_grant_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "direct_grant_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name for the realm that is shown when logging in to the admin console.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="displayNameHtml")
-    def display_name_html(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name_html(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         """
         return pulumi.get(self, "display_name_html")
 
     @display_name_html.setter
-    def display_name_html(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name_html(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name_html", value)
 
     @_builtins.property
     @pulumi.getter(name="dockerAuthenticationFlow")
-    def docker_authentication_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def docker_authentication_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for DockerAuthenticationFlow
         """
         return pulumi.get(self, "docker_authentication_flow")
 
     @docker_authentication_flow.setter
-    def docker_authentication_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def docker_authentication_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "docker_authentication_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="duplicateEmailsAllowed")
-    def duplicate_emails_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def duplicate_emails_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "duplicate_emails_allowed")
 
     @duplicate_emails_allowed.setter
-    def duplicate_emails_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def duplicate_emails_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "duplicate_emails_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="editUsernameAllowed")
-    def edit_username_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def edit_username_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "edit_username_allowed")
 
     @edit_username_allowed.setter
-    def edit_username_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def edit_username_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "edit_username_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="emailTheme")
-    def email_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "email_theme")
 
     @email_theme.setter
-    def email_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email_theme", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="firstBrokerLoginFlow")
-    def first_broker_login_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_broker_login_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for FirstBrokerLoginFlow
         """
         return pulumi.get(self, "first_broker_login_flow")
 
     @first_broker_login_flow.setter
-    def first_broker_login_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_broker_login_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_broker_login_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="internalId")
-    def internal_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         """
         return pulumi.get(self, "internal_id")
 
     @internal_id.setter
-    def internal_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "internal_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def internationalization(self) -> Optional[pulumi.Input['RealmInternationalizationArgs']]:
+    def internationalization(self) -> pulumi.Input[Optional['RealmInternationalizationArgs']]:
         return pulumi.get(self, "internationalization")
 
     @internationalization.setter
-    def internationalization(self, value: Optional[pulumi.Input['RealmInternationalizationArgs']]):
+    def internationalization(self, value: pulumi.Input[Optional['RealmInternationalizationArgs']]):
         pulumi.set(self, "internationalization", value)
 
     @_builtins.property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
-    def login_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_theme", value)
 
     @_builtins.property
     @pulumi.getter(name="loginWithEmailAllowed")
-    def login_with_email_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def login_with_email_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "login_with_email_allowed")
 
     @login_with_email_allowed.setter
-    def login_with_email_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def login_with_email_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "login_with_email_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DeviceCodeLifespan")
-    def oauth2_device_code_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth2_device_code_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "oauth2_device_code_lifespan")
 
     @oauth2_device_code_lifespan.setter
-    def oauth2_device_code_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth2_device_code_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth2_device_code_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="oauth2DevicePollingInterval")
-    def oauth2_device_polling_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oauth2_device_polling_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "oauth2_device_polling_interval")
 
     @oauth2_device_polling_interval.setter
-    def oauth2_device_polling_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oauth2_device_polling_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oauth2_device_polling_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="offlineSessionIdleTimeout")
-    def offline_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offline_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "offline_session_idle_timeout")
 
     @offline_session_idle_timeout.setter
-    def offline_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offline_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offline_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="offlineSessionMaxLifespan")
-    def offline_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def offline_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "offline_session_max_lifespan")
 
     @offline_session_max_lifespan.setter
-    def offline_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def offline_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "offline_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="offlineSessionMaxLifespanEnabled")
-    def offline_session_max_lifespan_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def offline_session_max_lifespan_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "offline_session_max_lifespan_enabled")
 
     @offline_session_max_lifespan_enabled.setter
-    def offline_session_max_lifespan_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def offline_session_max_lifespan_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "offline_session_max_lifespan_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="organizationsEnabled")
-    def organizations_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def organizations_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, organization support is enabled. Defaults to `false`.
         """
         return pulumi.get(self, "organizations_enabled")
 
     @organizations_enabled.setter
-    def organizations_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def organizations_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "organizations_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="otpPolicy")
-    def otp_policy(self) -> Optional[pulumi.Input['RealmOtpPolicyArgs']]:
+    def otp_policy(self) -> pulumi.Input[Optional['RealmOtpPolicyArgs']]:
         return pulumi.get(self, "otp_policy")
 
     @otp_policy.setter
-    def otp_policy(self, value: Optional[pulumi.Input['RealmOtpPolicyArgs']]):
+    def otp_policy(self, value: pulumi.Input[Optional['RealmOtpPolicyArgs']]):
         pulumi.set(self, "otp_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def realm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         """
         return pulumi.get(self, "realm")
 
     @realm.setter
-    def realm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="refreshTokenMaxReuse")
-    def refresh_token_max_reuse(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def refresh_token_max_reuse(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "refresh_token_max_reuse")
 
     @refresh_token_max_reuse.setter
-    def refresh_token_max_reuse(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def refresh_token_max_reuse(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "refresh_token_max_reuse", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationAllowed")
-    def registration_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def registration_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "registration_allowed")
 
     @registration_allowed.setter
-    def registration_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def registration_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "registration_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationEmailAsUsername")
-    def registration_email_as_username(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def registration_email_as_username(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "registration_email_as_username")
 
     @registration_email_as_username.setter
-    def registration_email_as_username(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def registration_email_as_username(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "registration_email_as_username", value)
 
     @_builtins.property
     @pulumi.getter(name="registrationFlow")
-    def registration_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def registration_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for RegistrationFlow
         """
         return pulumi.get(self, "registration_flow")
 
     @registration_flow.setter
-    def registration_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def registration_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "registration_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="rememberMe")
-    def remember_me(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def remember_me(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "remember_me")
 
     @remember_me.setter
-    def remember_me(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def remember_me(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "remember_me", value)
 
     @_builtins.property
     @pulumi.getter(name="resetCredentialsFlow")
-    def reset_credentials_flow(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def reset_credentials_flow(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which flow should be used for ResetCredentialsFlow
         """
         return pulumi.get(self, "reset_credentials_flow")
 
     @reset_credentials_flow.setter
-    def reset_credentials_flow(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def reset_credentials_flow(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "reset_credentials_flow", value)
 
     @_builtins.property
     @pulumi.getter(name="resetPasswordAllowed")
-    def reset_password_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reset_password_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "reset_password_allowed")
 
     @reset_password_allowed.setter
-    def reset_password_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reset_password_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reset_password_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="revokeRefreshToken")
-    def revoke_refresh_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def revoke_refresh_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "revoke_refresh_token")
 
     @revoke_refresh_token.setter
-    def revoke_refresh_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def revoke_refresh_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "revoke_refresh_token", value)
 
     @_builtins.property
     @pulumi.getter(name="securityDefenses")
-    def security_defenses(self) -> Optional[pulumi.Input['RealmSecurityDefensesArgs']]:
+    def security_defenses(self) -> pulumi.Input[Optional['RealmSecurityDefensesArgs']]:
         return pulumi.get(self, "security_defenses")
 
     @security_defenses.setter
-    def security_defenses(self, value: Optional[pulumi.Input['RealmSecurityDefensesArgs']]):
+    def security_defenses(self, value: pulumi.Input[Optional['RealmSecurityDefensesArgs']]):
         pulumi.set(self, "security_defenses", value)
 
     @_builtins.property
     @pulumi.getter(name="smtpServer")
-    def smtp_server(self) -> Optional[pulumi.Input['RealmSmtpServerArgs']]:
+    def smtp_server(self) -> pulumi.Input[Optional['RealmSmtpServerArgs']]:
         return pulumi.get(self, "smtp_server")
 
     @smtp_server.setter
-    def smtp_server(self, value: Optional[pulumi.Input['RealmSmtpServerArgs']]):
+    def smtp_server(self, value: pulumi.Input[Optional['RealmSmtpServerArgs']]):
         pulumi.set(self, "smtp_server", value)
 
     @_builtins.property
     @pulumi.getter(name="sslRequired")
-    def ssl_required(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_required(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SSL Required: Values can be 'none', 'external' or 'all'.
         """
         return pulumi.get(self, "ssl_required")
 
     @ssl_required.setter
-    def ssl_required(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_required(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_required", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionIdleTimeout")
-    def sso_session_idle_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_idle_timeout(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_idle_timeout")
 
     @sso_session_idle_timeout.setter
-    def sso_session_idle_timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_idle_timeout(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_idle_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionIdleTimeoutRememberMe")
-    def sso_session_idle_timeout_remember_me(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_idle_timeout_remember_me(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_idle_timeout_remember_me")
 
     @sso_session_idle_timeout_remember_me.setter
-    def sso_session_idle_timeout_remember_me(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_idle_timeout_remember_me(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_idle_timeout_remember_me", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionMaxLifespan")
-    def sso_session_max_lifespan(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_max_lifespan(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_max_lifespan")
 
     @sso_session_max_lifespan.setter
-    def sso_session_max_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_max_lifespan(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_max_lifespan", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
-    def sso_session_max_lifespan_remember_me(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_session_max_lifespan_remember_me(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "sso_session_max_lifespan_remember_me")
 
     @sso_session_max_lifespan_remember_me.setter
-    def sso_session_max_lifespan_remember_me(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_session_max_lifespan_remember_me(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_session_max_lifespan_remember_me", value)
 
     @_builtins.property
     @pulumi.getter(name="terraformDeletionProtection")
-    def terraform_deletion_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def terraform_deletion_protection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When set to true, the realm cannot be deleted. Defaults to false.
         """
         return pulumi.get(self, "terraform_deletion_protection")
 
     @terraform_deletion_protection.setter
-    def terraform_deletion_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def terraform_deletion_protection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "terraform_deletion_protection", value)
 
     @_builtins.property
     @pulumi.getter(name="userManagedAccess")
-    def user_managed_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def user_managed_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         return pulumi.get(self, "user_managed_access")
 
     @user_managed_access.setter
-    def user_managed_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def user_managed_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "user_managed_access", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyEmail")
-    def verify_email(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "verify_email")
 
     @verify_email.setter
-    def verify_email(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_email(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_email", value)
 
     @_builtins.property
     @pulumi.getter(name="webAuthnPasswordlessPolicy")
-    def web_authn_passwordless_policy(self) -> Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']]:
+    def web_authn_passwordless_policy(self) -> pulumi.Input[Optional['RealmWebAuthnPasswordlessPolicyArgs']]:
         return pulumi.get(self, "web_authn_passwordless_policy")
 
     @web_authn_passwordless_policy.setter
-    def web_authn_passwordless_policy(self, value: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']]):
+    def web_authn_passwordless_policy(self, value: pulumi.Input[Optional['RealmWebAuthnPasswordlessPolicyArgs']]):
         pulumi.set(self, "web_authn_passwordless_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="webAuthnPolicy")
-    def web_authn_policy(self) -> Optional[pulumi.Input['RealmWebAuthnPolicyArgs']]:
+    def web_authn_policy(self) -> pulumi.Input[Optional['RealmWebAuthnPolicyArgs']]:
         return pulumi.get(self, "web_authn_policy")
 
     @web_authn_policy.setter
-    def web_authn_policy(self, value: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']]):
+    def web_authn_policy(self, value: pulumi.Input[Optional['RealmWebAuthnPolicyArgs']]):
         pulumi.set(self, "web_authn_policy", value)
 
 
@@ -1626,66 +1626,66 @@ class Realm(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_login: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_user_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 account_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name_html: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 duplicate_emails_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 edit_username_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 email_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 internationalization: Optional[pulumi.Input[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 login_with_email_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organizations_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 otp_policy: Optional[pulumi.Input[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_token_max_reuse: Optional[pulumi.Input[_builtins.int]] = None,
-                 registration_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_email_as_username: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 remember_me: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_password_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revoke_refresh_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 security_defenses: Optional[pulumi.Input[Union['RealmSecurityDefensesArgs', 'RealmSecurityDefensesArgsDict']]] = None,
-                 smtp_server: Optional[pulumi.Input[Union['RealmSmtpServerArgs', 'RealmSmtpServerArgsDict']]] = None,
-                 ssl_required: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 web_authn_passwordless_policy: Optional[pulumi.Input[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
-                 web_authn_policy: Optional[pulumi.Input[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None,
+                 access_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_login: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_user_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan_for_implicit_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 account_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_admin_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_user_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_permissions_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 admin_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_default_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_optional_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name_html: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 duplicate_emails_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 edit_username_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 email_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 internationalization: pulumi.Input[Optional[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 login_with_email_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organizations_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 otp_policy: pulumi.Input[Optional[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_token_max_reuse: pulumi.Input[Optional[_builtins.int]] = None,
+                 registration_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_email_as_username: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 remember_me: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_password_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revoke_refresh_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 security_defenses: pulumi.Input[Optional[Union['RealmSecurityDefensesArgs', 'RealmSecurityDefensesArgsDict']]] = None,
+                 smtp_server: pulumi.Input[Optional[Union['RealmSmtpServerArgs', 'RealmSmtpServerArgsDict']]] = None,
+                 ssl_required: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 terraform_deletion_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verify_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 web_authn_passwordless_policy: pulumi.Input[Optional[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
+                 web_authn_policy: pulumi.Input[Optional[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None,
                  __props__=None):
         """
         Allows for creating and managing Realms within Keycloak.
@@ -1901,66 +1901,66 @@ class Realm(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_login: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_code_lifespan_user_action: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 account_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name_html: Optional[pulumi.Input[_builtins.str]] = None,
-                 docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 duplicate_emails_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 edit_username_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 email_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 internationalization: Optional[pulumi.Input[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 login_with_email_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 offline_session_max_lifespan_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 organizations_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 otp_policy: Optional[pulumi.Input[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 refresh_token_max_reuse: Optional[pulumi.Input[_builtins.int]] = None,
-                 registration_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_email_as_username: Optional[pulumi.Input[_builtins.bool]] = None,
-                 registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 remember_me: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
-                 reset_password_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revoke_refresh_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 security_defenses: Optional[pulumi.Input[Union['RealmSecurityDefensesArgs', 'RealmSecurityDefensesArgsDict']]] = None,
-                 smtp_server: Optional[pulumi.Input[Union['RealmSmtpServerArgs', 'RealmSmtpServerArgsDict']]] = None,
-                 ssl_required: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 web_authn_passwordless_policy: Optional[pulumi.Input[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
-                 web_authn_policy: Optional[pulumi.Input[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None,
+                 access_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_login: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_code_lifespan_user_action: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 access_token_lifespan_for_implicit_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 account_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_admin_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 action_token_generated_by_user_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 admin_permissions_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 admin_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_default_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_optional_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name_html: pulumi.Input[Optional[_builtins.str]] = None,
+                 docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 duplicate_emails_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 edit_username_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 email_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 internationalization: pulumi.Input[Optional[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 login_with_email_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 offline_session_max_lifespan_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organizations_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 otp_policy: pulumi.Input[Optional[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 refresh_token_max_reuse: pulumi.Input[Optional[_builtins.int]] = None,
+                 registration_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_email_as_username: pulumi.Input[Optional[_builtins.bool]] = None,
+                 registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 remember_me: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
+                 reset_password_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revoke_refresh_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 security_defenses: pulumi.Input[Optional[Union['RealmSecurityDefensesArgs', 'RealmSecurityDefensesArgsDict']]] = None,
+                 smtp_server: pulumi.Input[Optional[Union['RealmSmtpServerArgs', 'RealmSmtpServerArgsDict']]] = None,
+                 ssl_required: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_idle_timeout_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_session_max_lifespan_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+                 terraform_deletion_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verify_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 web_authn_passwordless_policy: pulumi.Input[Optional[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
+                 web_authn_policy: pulumi.Input[Optional[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -2040,66 +2040,66 @@ class Realm(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            access_code_lifespan_login: Optional[pulumi.Input[_builtins.str]] = None,
-            access_code_lifespan_user_action: Optional[pulumi.Input[_builtins.str]] = None,
-            access_token_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            access_token_lifespan_for_implicit_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            account_theme: Optional[pulumi.Input[_builtins.str]] = None,
-            action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
-            attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            client_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            client_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-            client_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            default_default_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            default_optional_client_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            default_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            direct_grant_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            display_name_html: Optional[pulumi.Input[_builtins.str]] = None,
-            docker_authentication_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            duplicate_emails_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            edit_username_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            email_theme: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            first_broker_login_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            internal_id: Optional[pulumi.Input[_builtins.str]] = None,
-            internationalization: Optional[pulumi.Input[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
-            login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-            login_with_email_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.int]] = None,
-            offline_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-            offline_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            offline_session_max_lifespan_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            organizations_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            otp_policy: Optional[pulumi.Input[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
-            password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            realm: Optional[pulumi.Input[_builtins.str]] = None,
-            refresh_token_max_reuse: Optional[pulumi.Input[_builtins.int]] = None,
-            registration_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            registration_email_as_username: Optional[pulumi.Input[_builtins.bool]] = None,
-            registration_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            remember_me: Optional[pulumi.Input[_builtins.bool]] = None,
-            reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None,
-            reset_password_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            revoke_refresh_token: Optional[pulumi.Input[_builtins.bool]] = None,
-            security_defenses: Optional[pulumi.Input[Union['RealmSecurityDefensesArgs', 'RealmSecurityDefensesArgsDict']]] = None,
-            smtp_server: Optional[pulumi.Input[Union['RealmSmtpServerArgs', 'RealmSmtpServerArgsDict']]] = None,
-            ssl_required: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_session_idle_timeout: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
-            terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
-            user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
-            verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
-            web_authn_passwordless_policy: Optional[pulumi.Input[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
-            web_authn_policy: Optional[pulumi.Input[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None) -> 'Realm':
+            access_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            access_code_lifespan_login: pulumi.Input[Optional[_builtins.str]] = None,
+            access_code_lifespan_user_action: pulumi.Input[Optional[_builtins.str]] = None,
+            access_token_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            access_token_lifespan_for_implicit_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            account_theme: pulumi.Input[Optional[_builtins.str]] = None,
+            action_token_generated_by_admin_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            action_token_generated_by_user_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            admin_permissions_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            admin_theme: pulumi.Input[Optional[_builtins.str]] = None,
+            attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            client_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            client_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            default_default_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_optional_client_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name_html: pulumi.Input[Optional[_builtins.str]] = None,
+            docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            duplicate_emails_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            edit_username_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            email_theme: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+            internationalization: pulumi.Input[Optional[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
+            login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+            login_with_email_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            offline_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            offline_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            offline_session_max_lifespan_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            organizations_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            otp_policy: pulumi.Input[Optional[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_token_max_reuse: pulumi.Input[Optional[_builtins.int]] = None,
+            registration_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            registration_email_as_username: pulumi.Input[Optional[_builtins.bool]] = None,
+            registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            remember_me: pulumi.Input[Optional[_builtins.bool]] = None,
+            reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            reset_password_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            revoke_refresh_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            security_defenses: pulumi.Input[Optional[Union['RealmSecurityDefensesArgs', 'RealmSecurityDefensesArgsDict']]] = None,
+            smtp_server: pulumi.Input[Optional[Union['RealmSmtpServerArgs', 'RealmSmtpServerArgsDict']]] = None,
+            ssl_required: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_session_idle_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_session_idle_timeout_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_session_max_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_session_max_lifespan_remember_me: pulumi.Input[Optional[_builtins.str]] = None,
+            terraform_deletion_protection: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            verify_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            web_authn_passwordless_policy: pulumi.Input[Optional[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
+            web_authn_policy: pulumi.Input[Optional[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None) -> 'Realm':
         """
         Get an existing Realm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

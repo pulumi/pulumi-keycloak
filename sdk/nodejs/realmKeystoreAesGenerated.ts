@@ -132,27 +132,27 @@ export interface RealmKeystoreAesGeneratedState {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      */
-    secretSize?: pulumi.Input<number>;
+    secretSize?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -162,19 +162,19 @@ export interface RealmKeystoreAesGeneratedArgs {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm this keystore exists in.
      */
@@ -182,5 +182,5 @@ export interface RealmKeystoreAesGeneratedArgs {
     /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      */
-    secretSize?: pulumi.Input<number>;
+    secretSize?: pulumi.Input<number | undefined>;
 }

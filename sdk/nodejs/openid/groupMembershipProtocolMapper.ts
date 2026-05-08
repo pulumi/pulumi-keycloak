@@ -192,39 +192,39 @@ export interface GroupMembershipProtocolMapperState {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    addToUserinfo?: pulumi.Input<boolean>;
+    addToUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
-    claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
      */
-    fullPath?: pulumi.Input<boolean>;
+    fullPath?: pulumi.Input<boolean | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -234,15 +234,15 @@ export interface GroupMembershipProtocolMapperArgs {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    addToAccessToken?: pulumi.Input<boolean>;
+    addToAccessToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    addToIdToken?: pulumi.Input<boolean>;
+    addToIdToken?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    addToUserinfo?: pulumi.Input<boolean>;
+    addToUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
@@ -250,19 +250,19 @@ export interface GroupMembershipProtocolMapperArgs {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
      */
-    fullPath?: pulumi.Input<boolean>;
+    fullPath?: pulumi.Input<boolean | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */

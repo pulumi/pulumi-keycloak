@@ -42,11 +42,11 @@ __all__ = [
 ]
 
 class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
-    browser_id: NotRequired[pulumi.Input[_builtins.str]]
+    browser_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Browser flow id, (flow needs to exist)
     """
-    direct_grant_id: NotRequired[pulumi.Input[_builtins.str]]
+    direct_grant_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Direct grant flow id (flow needs to exist)
     """
@@ -54,8 +54,8 @@ class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
 @pulumi.input_type
 class ClientAuthenticationFlowBindingOverridesArgs:
     def __init__(__self__, *,
-                 browser_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 direct_grant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 browser_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 direct_grant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] browser_id: Browser flow id, (flow needs to exist)
         :param pulumi.Input[_builtins.str] direct_grant_id: Direct grant flow id (flow needs to exist)
@@ -67,26 +67,26 @@ class ClientAuthenticationFlowBindingOverridesArgs:
 
     @_builtins.property
     @pulumi.getter(name="browserId")
-    def browser_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def browser_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Browser flow id, (flow needs to exist)
         """
         return pulumi.get(self, "browser_id")
 
     @browser_id.setter
-    def browser_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def browser_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "browser_id", value)
 
     @_builtins.property
     @pulumi.getter(name="directGrantId")
-    def direct_grant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def direct_grant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Direct grant flow id (flow needs to exist)
         """
         return pulumi.get(self, "direct_grant_id")
 
     @direct_grant_id.setter
-    def direct_grant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def direct_grant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "direct_grant_id", value)
 
 
@@ -95,15 +95,15 @@ class ClientAuthorizationArgsDict(TypedDict):
     """
     Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
     """
-    allow_remote_resource_management: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_remote_resource_management: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
     """
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
     """
-    keep_defaults: NotRequired[pulumi.Input[_builtins.bool]]
+    keep_defaults: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
     """
@@ -112,9 +112,9 @@ class ClientAuthorizationArgsDict(TypedDict):
 class ClientAuthorizationArgs:
     def __init__(__self__, *,
                  policy_enforcement_mode: pulumi.Input[_builtins.str],
-                 allow_remote_resource_management: Optional[pulumi.Input[_builtins.bool]] = None,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 keep_defaults: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allow_remote_resource_management: pulumi.Input[Optional[_builtins.bool]] = None,
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 keep_defaults: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] policy_enforcement_mode: Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
         :param pulumi.Input[_builtins.bool] allow_remote_resource_management: When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
@@ -143,50 +143,50 @@ class ClientAuthorizationArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowRemoteResourceManagement")
-    def allow_remote_resource_management(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_remote_resource_management(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
         """
         return pulumi.get(self, "allow_remote_resource_management")
 
     @allow_remote_resource_management.setter
-    def allow_remote_resource_management(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_remote_resource_management(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_remote_resource_management", value)
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
         """
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter(name="keepDefaults")
-    def keep_defaults(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def keep_defaults(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         """
         return pulumi.get(self, "keep_defaults")
 
     @keep_defaults.setter
-    def keep_defaults(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def keep_defaults(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "keep_defaults", value)
 
 
 class ClientAuthorizationClientScopePolicyScopeArgsDict(TypedDict):
     id: pulumi.Input[_builtins.str]
-    required: NotRequired[pulumi.Input[_builtins.bool]]
+    required: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
 
 @pulumi.input_type
 class ClientAuthorizationClientScopePolicyScopeArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[_builtins.str],
-                 required: Optional[pulumi.Input[_builtins.bool]] = None):
+                 required: pulumi.Input[Optional[_builtins.bool]] = None):
         pulumi.set(__self__, "id", id)
         if required is not None:
             pulumi.set(__self__, "required", required)
@@ -202,11 +202,11 @@ class ClientAuthorizationClientScopePolicyScopeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "required")
 
     @required.setter
-    def required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "required", value)
 
 
@@ -254,16 +254,16 @@ class ClientGroupPolicyGroupArgs:
 
 
 class ClientPermissionsConfigureScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsConfigureScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -273,43 +273,43 @@ class ClientPermissionsConfigureScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class ClientPermissionsManageScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsManageScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -319,43 +319,43 @@ class ClientPermissionsManageScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class ClientPermissionsMapRolesClientScopeScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsMapRolesClientScopeScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -365,43 +365,43 @@ class ClientPermissionsMapRolesClientScopeScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class ClientPermissionsMapRolesCompositeScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsMapRolesCompositeScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -411,43 +411,43 @@ class ClientPermissionsMapRolesCompositeScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class ClientPermissionsMapRolesScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsMapRolesScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -457,43 +457,43 @@ class ClientPermissionsMapRolesScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class ClientPermissionsTokenExchangeScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsTokenExchangeScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -503,43 +503,43 @@ class ClientPermissionsTokenExchangeScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 class ClientPermissionsViewScopeArgsDict(TypedDict):
-    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-    description: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    decision_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ClientPermissionsViewScopeArgs:
     def __init__(__self__, *,
-                 decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -549,29 +549,29 @@ class ClientPermissionsViewScopeArgs:
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
-    def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def decision_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
-    def decision_strategy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def decision_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "decision_strategy", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
