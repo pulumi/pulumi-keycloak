@@ -182,19 +182,19 @@ export interface RealmUserProfileState {
     /**
      * An ordered list of attributes.
      */
-    attributes?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttribute>[]>;
+    attributes?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttribute>[] | undefined>;
     /**
      * A list of groups.
      */
-    groups?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileGroup>[]>;
+    groups?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileGroup>[] | undefined>;
     /**
      * The ID of the realm the user profile applies to.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      */
-    unmanagedAttributePolicy?: pulumi.Input<string>;
+    unmanagedAttributePolicy?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -204,11 +204,11 @@ export interface RealmUserProfileArgs {
     /**
      * An ordered list of attributes.
      */
-    attributes?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttribute>[]>;
+    attributes?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttribute>[] | undefined>;
     /**
      * A list of groups.
      */
-    groups?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileGroup>[]>;
+    groups?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileGroup>[] | undefined>;
     /**
      * The ID of the realm the user profile applies to.
      */
@@ -216,5 +216,5 @@ export interface RealmUserProfileArgs {
     /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      */
-    unmanagedAttributePolicy?: pulumi.Input<string>;
+    unmanagedAttributePolicy?: pulumi.Input<string | undefined>;
 }

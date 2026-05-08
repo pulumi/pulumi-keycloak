@@ -263,101 +263,101 @@ export interface GithubIdentityProviderState {
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean | undefined>;
     /**
      * The alias for the GitHub identity provider.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The GitHub API URL, defaults to `https://api.github.com`.
      */
-    apiUrl?: pulumi.Input<string>;
+    apiUrl?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
-    authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * The GitHub base URL, defaults to `https://github.com`
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `user:email`.
      */
-    defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string | undefined>;
     /**
      * Display name for the GitHub identity provider in the GUI.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * When `true`, GitHub API is told explicitly to accept JSON during token authentication requests. Defaults to `false`.
      */
-    githubJsonFormat?: pulumi.Input<boolean>;
+    githubJsonFormat?: pulumi.Input<boolean | undefined>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
-    hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean | undefined>;
     /**
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      */
-    internalId?: pulumi.Input<string>;
+    internalId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    linkOnly?: pulumi.Input<boolean>;
-    orgDomain?: pulumi.Input<string>;
-    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean | undefined>;
+    orgDomain?: pulumi.Input<string | undefined>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
      * ID of organization with which this identity is linked.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * The ID of the identity provider to use. Defaults to `github`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean | undefined>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string | undefined>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -367,23 +367,23 @@ export interface GithubIdentityProviderArgs {
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean | undefined>;
     /**
      * The alias for the GitHub identity provider.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The GitHub API URL, defaults to `https://api.github.com`.
      */
-    apiUrl?: pulumi.Input<string>;
+    apiUrl?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
-    authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * The GitHub base URL, defaults to `https://github.com`
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * The client or client identifier registered within the identity provider.
      */
@@ -395,53 +395,53 @@ export interface GithubIdentityProviderArgs {
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `user:email`.
      */
-    defaultScopes?: pulumi.Input<string>;
+    defaultScopes?: pulumi.Input<string | undefined>;
     /**
      * Display name for the GitHub identity provider in the GUI.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * When `true`, GitHub API is told explicitly to accept JSON during token authentication requests. Defaults to `false`.
      */
-    githubJsonFormat?: pulumi.Input<boolean>;
+    githubJsonFormat?: pulumi.Input<boolean | undefined>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
      */
-    hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    linkOnly?: pulumi.Input<boolean>;
-    orgDomain?: pulumi.Input<string>;
-    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean | undefined>;
+    orgDomain?: pulumi.Input<string | undefined>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
      * ID of organization with which this identity is linked.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * The ID of the identity provider to use. Defaults to `github`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
@@ -449,13 +449,13 @@ export interface GithubIdentityProviderArgs {
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean | undefined>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string | undefined>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
 }

@@ -114,7 +114,7 @@ export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOut
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupOutputArgs {
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
      */

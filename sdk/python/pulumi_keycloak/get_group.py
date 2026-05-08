@@ -149,9 +149,9 @@ def get_group(description: Optional[_builtins.str] = None,
         parent_id=pulumi.get(__ret__, 'parent_id'),
         path=pulumi.get(__ret__, 'path'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-def get_group_output(description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     name: Optional[pulumi.Input[_builtins.str]] = None,
-                     realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[_builtins.str]] = None,
+                     realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     This data source can be used to fetch properties of a Keycloak group for

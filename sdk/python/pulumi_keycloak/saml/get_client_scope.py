@@ -147,9 +147,9 @@ def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-def get_client_scope_output(extra_config: Optional[pulumi.Input[Optional[Mapping[str, _builtins.str]]]] = None,
-                            name: Optional[pulumi.Input[_builtins.str]] = None,
-                            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_scope_output(extra_config: pulumi.Input[Optional[Optional[Mapping[str, _builtins.str]]]] = None,
+                            name: pulumi.Input[Optional[_builtins.str]] = None,
+                            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientScopeResult]:
     """
     This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.

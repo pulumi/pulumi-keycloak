@@ -24,11 +24,11 @@ class RealmKeystoreJavaGeneratedArgs:
                  keystore: pulumi.Input[_builtins.str],
                  keystore_password: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None):
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a RealmKeystoreJavaGenerated resource.
 
@@ -121,78 +121,78 @@ class RealmKeystoreJavaGeneratedArgs:
 
     @_builtins.property
     @pulumi.getter
-    def active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, key in not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
     @active.setter
-    def active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "active", value)
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Intended algorithm for the key. Defaults to `RS256`
         """
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, key is not accessible in this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of provider when linked in admin console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Priority for the provider. Defaults to `0`
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
 
 @pulumi.input_type
 class _RealmKeystoreJavaGeneratedState:
     def __init__(__self__, *,
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmKeystoreJavaGenerated resources.
 
@@ -230,122 +230,122 @@ class _RealmKeystoreJavaGeneratedState:
 
     @_builtins.property
     @pulumi.getter
-    def active(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, key in not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
     @active.setter
-    def active(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "active", value)
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Intended algorithm for the key. Defaults to `RS256`
         """
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, key is not accessible in this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="keyAlias")
-    def key_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alias for the private key.
         """
         return pulumi.get(self, "key_alias")
 
     @key_alias.setter
-    def key_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="keyPassword")
-    def key_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the private key.
         """
         return pulumi.get(self, "key_password")
 
     @key_password.setter
-    def key_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_password", value)
 
     @_builtins.property
     @pulumi.getter
-    def keystore(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def keystore(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to keys file on keycloak instance.
         """
         return pulumi.get(self, "keystore")
 
     @keystore.setter
-    def keystore(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def keystore(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "keystore", value)
 
     @_builtins.property
     @pulumi.getter(name="keystorePassword")
-    def keystore_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def keystore_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the keys.
         """
         return pulumi.get(self, "keystore_password")
 
     @keystore_password.setter
-    def keystore_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def keystore_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "keystore_password", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of provider when linked in admin console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Priority for the provider. Defaults to `0`
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this keystore exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -355,16 +355,16 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing `java-keystore` Realm keystores within Keycloak.
@@ -472,16 +472,16 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 active: Optional[pulumi.Input[_builtins.bool]] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore: Optional[pulumi.Input[_builtins.str]] = None,
-                 keystore_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore: pulumi.Input[Optional[_builtins.str]] = None,
+                 keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -521,16 +521,16 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            active: Optional[pulumi.Input[_builtins.bool]] = None,
-            algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            key_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            key_password: Optional[pulumi.Input[_builtins.str]] = None,
-            keystore: Optional[pulumi.Input[_builtins.str]] = None,
-            keystore_password: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            priority: Optional[pulumi.Input[_builtins.int]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'RealmKeystoreJavaGenerated':
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            key_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            key_password: pulumi.Input[Optional[_builtins.str]] = None,
+            keystore: pulumi.Input[Optional[_builtins.str]] = None,
+            keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreJavaGenerated':
         """
         Get an existing RealmKeystoreJavaGenerated resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

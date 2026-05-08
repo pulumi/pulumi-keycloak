@@ -22,9 +22,9 @@ class FullNameMapperArgs:
                  ldap_full_name_attribute: pulumi.Input[_builtins.str],
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_only: Optional[pulumi.Input[_builtins.bool]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_only: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a FullNameMapper resource.
 
@@ -83,50 +83,50 @@ class FullNameMapperArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="readOnly")
-    def read_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def read_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "read_only")
 
     @read_only.setter
-    def read_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def read_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "read_only", value)
 
     @_builtins.property
     @pulumi.getter(name="writeOnly")
-    def write_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "write_only")
 
     @write_only.setter
-    def write_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_only", value)
 
 
 @pulumi.input_type
 class _FullNameMapperState:
     def __init__(__self__, *,
-                 ldap_full_name_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_only: Optional[pulumi.Input[_builtins.bool]] = None):
+                 ldap_full_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_only: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering FullNameMapper resources.
 
@@ -152,74 +152,74 @@ class _FullNameMapperState:
 
     @_builtins.property
     @pulumi.getter(name="ldapFullNameAttribute")
-    def ldap_full_name_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_full_name_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the LDAP attribute containing the user's full name.
         """
         return pulumi.get(self, "ldap_full_name_attribute")
 
     @ldap_full_name_attribute.setter
-    def ldap_full_name_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_full_name_attribute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_full_name_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapUserFederationId")
-    def ldap_user_federation_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_user_federation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
     @ldap_user_federation_id.setter
-    def ldap_user_federation_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_user_federation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_user_federation_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="readOnly")
-    def read_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def read_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "read_only")
 
     @read_only.setter
-    def read_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def read_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "read_only", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="writeOnly")
-    def write_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "write_only")
 
     @write_only.setter
-    def write_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_only", value)
 
 
@@ -229,12 +229,12 @@ class FullNameMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ldap_full_name_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_only: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ldap_full_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Allows for creating and managing full name mappers for Keycloak users federated via LDAP.
@@ -362,12 +362,12 @@ class FullNameMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ldap_full_name_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-                 ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_only: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_only: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ldap_full_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+                 ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -399,12 +399,12 @@ class FullNameMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ldap_full_name_attribute: Optional[pulumi.Input[_builtins.str]] = None,
-            ldap_user_federation_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            read_only: Optional[pulumi.Input[_builtins.bool]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            write_only: Optional[pulumi.Input[_builtins.bool]] = None) -> 'FullNameMapper':
+            ldap_full_name_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            write_only: pulumi.Input[Optional[_builtins.bool]] = None) -> 'FullNameMapper':
         """
         Get an existing FullNameMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

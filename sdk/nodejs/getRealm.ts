@@ -172,18 +172,18 @@ export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOut
  * A collection of arguments for invoking getRealm.
  */
 export interface GetRealmOutputArgs {
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    displayNameHtml?: pulumi.Input<string>;
-    internationalizations?: pulumi.Input<pulumi.Input<inputs.GetRealmInternationalizationArgs>[]>;
-    otpPolicy?: pulumi.Input<inputs.GetRealmOtpPolicyArgs>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    displayNameHtml?: pulumi.Input<string | undefined>;
+    internationalizations?: pulumi.Input<pulumi.Input<inputs.GetRealmInternationalizationArgs>[] | undefined>;
+    otpPolicy?: pulumi.Input<inputs.GetRealmOtpPolicyArgs | undefined>;
     /**
      * The realm name.
      */
     realm: pulumi.Input<string>;
-    securityDefenses?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseArgs>[]>;
-    smtpServers?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerArgs>[]>;
-    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.GetRealmWebAuthnPasswordlessPolicyArgs>;
-    webAuthnPolicy?: pulumi.Input<inputs.GetRealmWebAuthnPolicyArgs>;
+    securityDefenses?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseArgs>[] | undefined>;
+    smtpServers?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerArgs>[] | undefined>;
+    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.GetRealmWebAuthnPasswordlessPolicyArgs | undefined>;
+    webAuthnPolicy?: pulumi.Input<inputs.GetRealmWebAuthnPolicyArgs | undefined>;
 }

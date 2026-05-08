@@ -22,9 +22,9 @@ __all__ = ['RealmUserProfileArgs', 'RealmUserProfile']
 class RealmUserProfileArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
-                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
-                 unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None):
+                 attributes: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
+                 unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmUserProfile resource.
 
@@ -55,48 +55,48 @@ class RealmUserProfileArgs:
 
     @_builtins.property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]:
+    def attributes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]:
         """
         An ordered list of attributes.
         """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]):
+    def attributes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]):
         pulumi.set(self, "attributes", value)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
+    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
         """
         A list of groups.
         """
         return pulumi.get(self, "groups")
 
     @groups.setter
-    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]):
+    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]):
         pulumi.set(self, "groups", value)
 
     @_builtins.property
     @pulumi.getter(name="unmanagedAttributePolicy")
-    def unmanaged_attribute_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def unmanaged_attribute_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
         """
         return pulumi.get(self, "unmanaged_attribute_policy")
 
     @unmanaged_attribute_policy.setter
-    def unmanaged_attribute_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def unmanaged_attribute_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "unmanaged_attribute_policy", value)
 
 
 @pulumi.input_type
 class _RealmUserProfileState:
     def __init__(__self__, *,
-                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None):
+                 attributes: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmUserProfile resources.
 
@@ -116,50 +116,50 @@ class _RealmUserProfileState:
 
     @_builtins.property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]:
+    def attributes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]:
         """
         An ordered list of attributes.
         """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]):
+    def attributes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]):
         pulumi.set(self, "attributes", value)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
+    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
         """
         A list of groups.
         """
         return pulumi.get(self, "groups")
 
     @groups.setter
-    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]):
+    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]):
         pulumi.set(self, "groups", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the realm the user profile applies to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="unmanagedAttributePolicy")
-    def unmanaged_attribute_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def unmanaged_attribute_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
         """
         return pulumi.get(self, "unmanaged_attribute_policy")
 
     @unmanaged_attribute_policy.setter
-    def unmanaged_attribute_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def unmanaged_attribute_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "unmanaged_attribute_policy", value)
 
 
@@ -169,10 +169,10 @@ class RealmUserProfile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for managing Realm User Profiles within Keycloak.
@@ -388,10 +388,10 @@ class RealmUserProfile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -417,10 +417,10 @@ class RealmUserProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
-            groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None) -> 'RealmUserProfile':
+            attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
+            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmUserProfile':
         """
         Get an existing RealmUserProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

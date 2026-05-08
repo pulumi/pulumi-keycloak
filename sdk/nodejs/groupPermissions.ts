@@ -112,15 +112,15 @@ export interface GroupPermissionsState {
     /**
      * Resource server id representing the realm management client on which this permission is managed
      */
-    authorizationResourceServerId?: pulumi.Input<string>;
-    enabled?: pulumi.Input<boolean>;
-    groupId?: pulumi.Input<string>;
-    manageMembersScope?: pulumi.Input<inputs.GroupPermissionsManageMembersScope>;
-    manageMembershipScope?: pulumi.Input<inputs.GroupPermissionsManageMembershipScope>;
-    manageScope?: pulumi.Input<inputs.GroupPermissionsManageScope>;
-    realmId?: pulumi.Input<string>;
-    viewMembersScope?: pulumi.Input<inputs.GroupPermissionsViewMembersScope>;
-    viewScope?: pulumi.Input<inputs.GroupPermissionsViewScope>;
+    authorizationResourceServerId?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    groupId?: pulumi.Input<string | undefined>;
+    manageMembersScope?: pulumi.Input<inputs.GroupPermissionsManageMembersScope | undefined>;
+    manageMembershipScope?: pulumi.Input<inputs.GroupPermissionsManageMembershipScope | undefined>;
+    manageScope?: pulumi.Input<inputs.GroupPermissionsManageScope | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    viewMembersScope?: pulumi.Input<inputs.GroupPermissionsViewMembersScope | undefined>;
+    viewScope?: pulumi.Input<inputs.GroupPermissionsViewScope | undefined>;
 }
 
 /**
@@ -128,10 +128,10 @@ export interface GroupPermissionsState {
  */
 export interface GroupPermissionsArgs {
     groupId: pulumi.Input<string>;
-    manageMembersScope?: pulumi.Input<inputs.GroupPermissionsManageMembersScope>;
-    manageMembershipScope?: pulumi.Input<inputs.GroupPermissionsManageMembershipScope>;
-    manageScope?: pulumi.Input<inputs.GroupPermissionsManageScope>;
+    manageMembersScope?: pulumi.Input<inputs.GroupPermissionsManageMembersScope | undefined>;
+    manageMembershipScope?: pulumi.Input<inputs.GroupPermissionsManageMembershipScope | undefined>;
+    manageScope?: pulumi.Input<inputs.GroupPermissionsManageScope | undefined>;
     realmId: pulumi.Input<string>;
-    viewMembersScope?: pulumi.Input<inputs.GroupPermissionsViewMembersScope>;
-    viewScope?: pulumi.Input<inputs.GroupPermissionsViewScope>;
+    viewMembersScope?: pulumi.Input<inputs.GroupPermissionsViewMembersScope | undefined>;
+    viewScope?: pulumi.Input<inputs.GroupPermissionsViewScope | undefined>;
 }

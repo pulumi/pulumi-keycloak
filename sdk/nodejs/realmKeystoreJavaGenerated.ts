@@ -172,43 +172,43 @@ export interface RealmKeystoreJavaGeneratedState {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Alias for the private key.
      */
-    keyAlias?: pulumi.Input<string>;
+    keyAlias?: pulumi.Input<string | undefined>;
     /**
      * Password for the private key.
      */
-    keyPassword?: pulumi.Input<string>;
+    keyPassword?: pulumi.Input<string | undefined>;
     /**
      * Path to keys file on keycloak instance.
      */
-    keystore?: pulumi.Input<string>;
+    keystore?: pulumi.Input<string | undefined>;
     /**
      * Password for the keys.
      */
-    keystorePassword?: pulumi.Input<string>;
+    keystorePassword?: pulumi.Input<string | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -218,15 +218,15 @@ export interface RealmKeystoreJavaGeneratedArgs {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Alias for the private key.
      */
@@ -246,11 +246,11 @@ export interface RealmKeystoreJavaGeneratedArgs {
     /**
      * Display name of provider when linked in admin console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm this keystore exists in.
      */

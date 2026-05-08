@@ -116,11 +116,11 @@ export interface RealmDefaultClientScopesState {
     /**
      * An array of default client scope names that should be used when creating new Keycloak clients.
      */
-    defaultScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The realm this client and scopes exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**

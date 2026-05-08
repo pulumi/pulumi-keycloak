@@ -21,14 +21,14 @@ class CustomUserFederationArgs:
     def __init__(__self__, *,
                  provider_id: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 cache_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None):
+                 cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a CustomUserFederation resource.
 
@@ -88,114 +88,114 @@ class CustomUserFederationArgs:
 
     @_builtins.property
     @pulumi.getter(name="cachePolicy")
-    def cache_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
         return pulumi.get(self, "cache_policy")
 
     @cache_policy.setter
-    def cache_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="changedSyncPeriod")
-    def changed_sync_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def changed_sync_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         """
         return pulumi.get(self, "changed_sync_period")
 
     @changed_sync_period.setter
-    def changed_sync_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def changed_sync_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "changed_sync_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="fullSyncPeriod")
-    def full_sync_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def full_sync_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         """
         return pulumi.get(self, "full_sync_period")
 
     @full_sync_period.setter
-    def full_sync_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def full_sync_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "full_sync_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of the provider when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="parentId")
-    def parent_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def parent_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         """
         return pulumi.get(self, "parent_id")
 
     @parent_id.setter
-    def parent_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def parent_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "parent_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
 
 @pulumi.input_type
 class _CustomUserFederationState:
     def __init__(__self__, *,
-                 cache_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomUserFederation resources.
 
@@ -233,122 +233,122 @@ class _CustomUserFederationState:
 
     @_builtins.property
     @pulumi.getter(name="cachePolicy")
-    def cache_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
         return pulumi.get(self, "cache_policy")
 
     @cache_policy.setter
-    def cache_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="changedSyncPeriod")
-    def changed_sync_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def changed_sync_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         """
         return pulumi.get(self, "changed_sync_period")
 
     @changed_sync_period.setter
-    def changed_sync_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def changed_sync_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "changed_sync_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="fullSyncPeriod")
-    def full_sync_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def full_sync_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         """
         return pulumi.get(self, "full_sync_period")
 
     @full_sync_period.setter
-    def full_sync_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def full_sync_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "full_sync_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Display name of the provider when displayed in the console.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="parentId")
-    def parent_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def parent_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
         """
         return pulumi.get(self, "parent_id")
 
     @parent_id.setter
-    def parent_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def parent_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "parent_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         """
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
-    def provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -358,16 +358,16 @@ class CustomUserFederation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cache_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing custom user federation providers within Keycloak.
@@ -477,16 +477,16 @@ class CustomUserFederation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cache_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -520,16 +520,16 @@ class CustomUserFederation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cache_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            parent_id: Optional[pulumi.Input[_builtins.str]] = None,
-            priority: Optional[pulumi.Input[_builtins.int]] = None,
-            provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'CustomUserFederation':
+            cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomUserFederation':
         """
         Get an existing CustomUserFederation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

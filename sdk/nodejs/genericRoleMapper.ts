@@ -246,19 +246,19 @@ export interface GenericRoleMapperState {
     /**
      * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * The realm this role mapper exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the role to be added to this role mapper.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -268,11 +268,11 @@ export interface GenericRoleMapperArgs {
     /**
      * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * The realm this role mapper exists within.
      */

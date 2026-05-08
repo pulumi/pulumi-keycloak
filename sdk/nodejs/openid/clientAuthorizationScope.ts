@@ -150,20 +150,20 @@ export class ClientAuthorizationScope extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAuthorizationScope resources.
  */
 export interface ClientAuthorizationScopeState {
-    displayName?: pulumi.Input<string>;
-    iconUri?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    realmId?: pulumi.Input<string>;
-    resourceServerId?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
+    iconUri?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    resourceServerId?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ClientAuthorizationScope resource.
  */
 export interface ClientAuthorizationScopeArgs {
-    displayName?: pulumi.Input<string>;
-    iconUri?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
+    iconUri?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;
 }

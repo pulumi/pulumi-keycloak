@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Index.Realm("realm", new()
+    ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -40,11 +40,11 @@ namespace Pulumi.Keycloak.Saml
     ///         SignDocuments = false,
     ///         SignAssertions = true,
     ///         IncludeAuthnStatement = true,
-    ///         SigningCertificate = Std.Index.File.Invoke(new()
+    ///         SigningCertificate = Std.File.Invoke(new()
     ///         {
     ///             Input = "saml-cert.pem",
     ///         }).Result,
-    ///         SigningPrivateKey = Std.Index.File.Invoke(new()
+    ///         SigningPrivateKey = Std.File.Invoke(new()
     ///         {
     ///             Input = "saml-key.pem",
     ///         }).Result,

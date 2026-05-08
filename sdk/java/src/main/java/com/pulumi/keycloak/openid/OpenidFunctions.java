@@ -40,8 +40,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -90,8 +90,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -140,8 +140,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -190,8 +190,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -240,8 +240,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -301,8 +301,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -388,8 +388,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -475,8 +475,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -562,8 +562,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -649,8 +649,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
      * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -725,8 +725,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -776,8 +776,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -827,8 +827,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -878,8 +878,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -929,8 +929,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
      * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -991,8 +991,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import com.pulumi.keycloak.UserRoles;
      * import com.pulumi.keycloak.UserRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1069,8 +1069,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import com.pulumi.keycloak.UserRoles;
      * import com.pulumi.keycloak.UserRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1147,8 +1147,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import com.pulumi.keycloak.UserRoles;
      * import com.pulumi.keycloak.UserRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1225,8 +1225,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import com.pulumi.keycloak.UserRoles;
      * import com.pulumi.keycloak.UserRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1303,8 +1303,8 @@ public final class OpenidFunctions {
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
      * import com.pulumi.keycloak.UserRoles;
      * import com.pulumi.keycloak.UserRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

@@ -112,15 +112,15 @@ export interface RealmLocalizationState {
     /**
      * The locale (language code) the texts apply to.
      */
-    locale?: pulumi.Input<string>;
+    locale?: pulumi.Input<string | undefined>;
     /**
      * The ID of the realm the user profile applies to.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * A map of translation keys to values.
      */
-    texts?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    texts?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 /**
@@ -138,5 +138,5 @@ export interface RealmLocalizationArgs {
     /**
      * A map of translation keys to values.
      */
-    texts?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    texts?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

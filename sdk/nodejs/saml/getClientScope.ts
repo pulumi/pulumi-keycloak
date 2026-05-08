@@ -106,7 +106,7 @@ export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulu
  * A collection of arguments for invoking getClientScope.
  */
 export interface GetClientScopeOutputArgs {
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The name of the client scope.
      */

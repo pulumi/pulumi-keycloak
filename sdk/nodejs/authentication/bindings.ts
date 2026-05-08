@@ -163,35 +163,35 @@ export interface BindingsState {
     /**
      * The alias of the flow to assign to the realm BrowserFlow.
      */
-    browserFlow?: pulumi.Input<string>;
+    browserFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm ClientAuthenticationFlow.
      */
-    clientAuthenticationFlow?: pulumi.Input<string>;
+    clientAuthenticationFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm DirectGrantFlow.
      */
-    directGrantFlow?: pulumi.Input<string>;
+    directGrantFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm DockerAuthenticationFlow.
      */
-    dockerAuthenticationFlow?: pulumi.Input<string>;
+    dockerAuthenticationFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
      */
-    firstBrokerLoginFlow?: pulumi.Input<string>;
+    firstBrokerLoginFlow?: pulumi.Input<string | undefined>;
     /**
      * The realm the authentication flow binding exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm RegistrationFlow.
      */
-    registrationFlow?: pulumi.Input<string>;
+    registrationFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm ResetCredentialsFlow.
      */
-    resetCredentialsFlow?: pulumi.Input<string>;
+    resetCredentialsFlow?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -201,23 +201,23 @@ export interface BindingsArgs {
     /**
      * The alias of the flow to assign to the realm BrowserFlow.
      */
-    browserFlow?: pulumi.Input<string>;
+    browserFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm ClientAuthenticationFlow.
      */
-    clientAuthenticationFlow?: pulumi.Input<string>;
+    clientAuthenticationFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm DirectGrantFlow.
      */
-    directGrantFlow?: pulumi.Input<string>;
+    directGrantFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm DockerAuthenticationFlow.
      */
-    dockerAuthenticationFlow?: pulumi.Input<string>;
+    dockerAuthenticationFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
      */
-    firstBrokerLoginFlow?: pulumi.Input<string>;
+    firstBrokerLoginFlow?: pulumi.Input<string | undefined>;
     /**
      * The realm the authentication flow binding exists in.
      */
@@ -225,9 +225,9 @@ export interface BindingsArgs {
     /**
      * The alias of the flow to assign to the realm RegistrationFlow.
      */
-    registrationFlow?: pulumi.Input<string>;
+    registrationFlow?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm ResetCredentialsFlow.
      */
-    resetCredentialsFlow?: pulumi.Input<string>;
+    resetCredentialsFlow?: pulumi.Input<string | undefined>;
 }

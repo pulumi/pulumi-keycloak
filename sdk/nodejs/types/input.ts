@@ -11,8 +11,8 @@ export interface GetRealmInternationalization {
 }
 
 export interface GetRealmInternationalizationArgs {
-    defaultLocale?: pulumi.Input<string>;
-    supportedLocales?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultLocale?: pulumi.Input<string | undefined>;
+    supportedLocales?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GetRealmOtpPolicy {
@@ -25,12 +25,12 @@ export interface GetRealmOtpPolicy {
 }
 
 export interface GetRealmOtpPolicyArgs {
-    algorithm?: pulumi.Input<string>;
-    digits?: pulumi.Input<number>;
-    initialCounter?: pulumi.Input<number>;
-    lookAheadWindow?: pulumi.Input<number>;
-    period?: pulumi.Input<number>;
-    type?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
+    digits?: pulumi.Input<number | undefined>;
+    initialCounter?: pulumi.Input<number | undefined>;
+    lookAheadWindow?: pulumi.Input<number | undefined>;
+    period?: pulumi.Input<number | undefined>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface GetRealmSecurityDefense {
@@ -39,8 +39,8 @@ export interface GetRealmSecurityDefense {
 }
 
 export interface GetRealmSecurityDefenseArgs {
-    bruteForceDetections?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseBruteForceDetectionArgs>[]>;
-    headers?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseHeaderArgs>[]>;
+    bruteForceDetections?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseBruteForceDetectionArgs>[] | undefined>;
+    headers?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseHeaderArgs>[] | undefined>;
 }
 
 export interface GetRealmSecurityDefenseBruteForceDetection {
@@ -55,14 +55,14 @@ export interface GetRealmSecurityDefenseBruteForceDetection {
 }
 
 export interface GetRealmSecurityDefenseBruteForceDetectionArgs {
-    failureResetTimeSeconds?: pulumi.Input<number>;
-    maxFailureWaitSeconds?: pulumi.Input<number>;
-    maxLoginFailures?: pulumi.Input<number>;
-    maxTemporaryLockouts?: pulumi.Input<number>;
-    minimumQuickLoginWaitSeconds?: pulumi.Input<number>;
-    permanentLockout?: pulumi.Input<boolean>;
-    quickLoginCheckMilliSeconds?: pulumi.Input<number>;
-    waitIncrementSeconds?: pulumi.Input<number>;
+    failureResetTimeSeconds?: pulumi.Input<number | undefined>;
+    maxFailureWaitSeconds?: pulumi.Input<number | undefined>;
+    maxLoginFailures?: pulumi.Input<number | undefined>;
+    maxTemporaryLockouts?: pulumi.Input<number | undefined>;
+    minimumQuickLoginWaitSeconds?: pulumi.Input<number | undefined>;
+    permanentLockout?: pulumi.Input<boolean | undefined>;
+    quickLoginCheckMilliSeconds?: pulumi.Input<number | undefined>;
+    waitIncrementSeconds?: pulumi.Input<number | undefined>;
 }
 
 export interface GetRealmSecurityDefenseHeader {
@@ -77,14 +77,14 @@ export interface GetRealmSecurityDefenseHeader {
 }
 
 export interface GetRealmSecurityDefenseHeaderArgs {
-    contentSecurityPolicy?: pulumi.Input<string>;
-    contentSecurityPolicyReportOnly?: pulumi.Input<string>;
-    referrerPolicy?: pulumi.Input<string>;
-    strictTransportSecurity?: pulumi.Input<string>;
-    xContentTypeOptions?: pulumi.Input<string>;
-    xFrameOptions?: pulumi.Input<string>;
-    xRobotsTag?: pulumi.Input<string>;
-    xXssProtection?: pulumi.Input<string>;
+    contentSecurityPolicy?: pulumi.Input<string | undefined>;
+    contentSecurityPolicyReportOnly?: pulumi.Input<string | undefined>;
+    referrerPolicy?: pulumi.Input<string | undefined>;
+    strictTransportSecurity?: pulumi.Input<string | undefined>;
+    xContentTypeOptions?: pulumi.Input<string | undefined>;
+    xFrameOptions?: pulumi.Input<string | undefined>;
+    xRobotsTag?: pulumi.Input<string | undefined>;
+    xXssProtection?: pulumi.Input<string | undefined>;
 }
 
 export interface GetRealmSmtpServer {
@@ -102,17 +102,17 @@ export interface GetRealmSmtpServer {
 }
 
 export interface GetRealmSmtpServerArgs {
-    auths?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerAuthArgs>[]>;
-    envelopeFrom?: pulumi.Input<string>;
-    from?: pulumi.Input<string>;
-    fromDisplayName?: pulumi.Input<string>;
-    host?: pulumi.Input<string>;
-    port?: pulumi.Input<string>;
-    replyTo?: pulumi.Input<string>;
-    replyToDisplayName?: pulumi.Input<string>;
-    ssl?: pulumi.Input<boolean>;
-    starttls?: pulumi.Input<boolean>;
-    tokenAuths?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerTokenAuthArgs>[]>;
+    auths?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerAuthArgs>[] | undefined>;
+    envelopeFrom?: pulumi.Input<string | undefined>;
+    from?: pulumi.Input<string | undefined>;
+    fromDisplayName?: pulumi.Input<string | undefined>;
+    host?: pulumi.Input<string | undefined>;
+    port?: pulumi.Input<string | undefined>;
+    replyTo?: pulumi.Input<string | undefined>;
+    replyToDisplayName?: pulumi.Input<string | undefined>;
+    ssl?: pulumi.Input<boolean | undefined>;
+    starttls?: pulumi.Input<boolean | undefined>;
+    tokenAuths?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerTokenAuthArgs>[] | undefined>;
 }
 
 export interface GetRealmSmtpServerAuth {
@@ -121,8 +121,8 @@ export interface GetRealmSmtpServerAuth {
 }
 
 export interface GetRealmSmtpServerAuthArgs {
-    password?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface GetRealmSmtpServerTokenAuth {
@@ -134,11 +134,11 @@ export interface GetRealmSmtpServerTokenAuth {
 }
 
 export interface GetRealmSmtpServerTokenAuthArgs {
-    clientId?: pulumi.Input<string>;
-    clientSecret?: pulumi.Input<string>;
-    scope?: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
+    clientSecret?: pulumi.Input<string | undefined>;
+    scope?: pulumi.Input<string | undefined>;
+    url?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface GetRealmWebAuthnPasswordlessPolicy {
@@ -171,32 +171,32 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
 }
 
 export interface GetRealmWebAuthnPasswordlessPolicyArgs {
-    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either none, indirect or direct
      */
-    attestationConveyancePreference?: pulumi.Input<string>;
+    attestationConveyancePreference?: pulumi.Input<string | undefined>;
     /**
      * Either platform or cross-platform
      */
-    authenticatorAttachment?: pulumi.Input<string>;
-    avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
-    createTimeout?: pulumi.Input<number>;
-    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
-    relyingPartyEntityName?: pulumi.Input<string>;
-    relyingPartyId?: pulumi.Input<string>;
+    authenticatorAttachment?: pulumi.Input<string | undefined>;
+    avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
+    createTimeout?: pulumi.Input<number | undefined>;
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    relyingPartyEntityName?: pulumi.Input<string | undefined>;
+    relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
      */
-    requireResidentKey?: pulumi.Input<string>;
+    requireResidentKey?: pulumi.Input<string | undefined>;
     /**
      * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
      */
-    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */
-    userVerificationRequirement?: pulumi.Input<string>;
+    userVerificationRequirement?: pulumi.Input<string | undefined>;
 }
 
 export interface GetRealmWebAuthnPolicy {
@@ -229,62 +229,62 @@ export interface GetRealmWebAuthnPolicy {
 }
 
 export interface GetRealmWebAuthnPolicyArgs {
-    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either none, indirect or direct
      */
-    attestationConveyancePreference?: pulumi.Input<string>;
+    attestationConveyancePreference?: pulumi.Input<string | undefined>;
     /**
      * Either platform or cross-platform
      */
-    authenticatorAttachment?: pulumi.Input<string>;
-    avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
-    createTimeout?: pulumi.Input<number>;
-    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
-    relyingPartyEntityName?: pulumi.Input<string>;
-    relyingPartyId?: pulumi.Input<string>;
+    authenticatorAttachment?: pulumi.Input<string | undefined>;
+    avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
+    createTimeout?: pulumi.Input<number | undefined>;
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    relyingPartyEntityName?: pulumi.Input<string | undefined>;
+    relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
      */
-    requireResidentKey?: pulumi.Input<string>;
+    requireResidentKey?: pulumi.Input<string | undefined>;
     /**
      * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
      */
-    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */
-    userVerificationRequirement?: pulumi.Input<string>;
+    userVerificationRequirement?: pulumi.Input<string | undefined>;
 }
 
 export interface GroupPermissionsManageMembersScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GroupPermissionsManageMembershipScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GroupPermissionsManageScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GroupPermissionsViewMembersScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GroupPermissionsViewScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface OrganizationDomain {
@@ -295,16 +295,16 @@ export interface OrganizationDomain {
     /**
      * Whether domain is verified or not. Default is false.
      */
-    verified?: pulumi.Input<boolean>;
+    verified?: pulumi.Input<boolean | undefined>;
 }
 
 export interface RealmClientPolicyProfileExecutor {
-    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     name: pulumi.Input<string>;
 }
 
 export interface RealmClientPolicyProfilePolicyCondition {
-    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     name: pulumi.Input<string>;
 }
 
@@ -323,112 +323,112 @@ export interface RealmOtpPolicy {
     /**
      * What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * How many digits the OTP have. Defaults to `6`.
      */
-    digits?: pulumi.Input<number>;
+    digits?: pulumi.Input<number | undefined>;
     /**
      * What should the initial counter value be. Defaults to `2`.
      */
-    initialCounter?: pulumi.Input<number>;
+    initialCounter?: pulumi.Input<number | undefined>;
     /**
      * How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
      */
-    lookAheadWindow?: pulumi.Input<number>;
+    lookAheadWindow?: pulumi.Input<number | undefined>;
     /**
      * How many seconds should an OTP token be valid. Defaults to `30`.
      */
-    period?: pulumi.Input<number>;
+    period?: pulumi.Input<number | undefined>;
     /**
      * One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface RealmSecurityDefenses {
-    bruteForceDetection?: pulumi.Input<inputs.RealmSecurityDefensesBruteForceDetection>;
-    headers?: pulumi.Input<inputs.RealmSecurityDefensesHeaders>;
+    bruteForceDetection?: pulumi.Input<inputs.RealmSecurityDefensesBruteForceDetection | undefined>;
+    headers?: pulumi.Input<inputs.RealmSecurityDefensesHeaders | undefined>;
 }
 
 export interface RealmSecurityDefensesBruteForceDetection {
     /**
      * When will failure count be reset?
      */
-    failureResetTimeSeconds?: pulumi.Input<number>;
-    maxFailureWaitSeconds?: pulumi.Input<number>;
+    failureResetTimeSeconds?: pulumi.Input<number | undefined>;
+    maxFailureWaitSeconds?: pulumi.Input<number | undefined>;
     /**
      * How many failures before wait is triggered.
      */
-    maxLoginFailures?: pulumi.Input<number>;
+    maxLoginFailures?: pulumi.Input<number | undefined>;
     /**
      * How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
      */
-    maxTemporaryLockouts?: pulumi.Input<number>;
+    maxTemporaryLockouts?: pulumi.Input<number | undefined>;
     /**
      * How long to wait after a quick login failure.
      * - `maxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
      */
-    minimumQuickLoginWaitSeconds?: pulumi.Input<number>;
+    minimumQuickLoginWaitSeconds?: pulumi.Input<number | undefined>;
     /**
      * When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
      */
-    permanentLockout?: pulumi.Input<boolean>;
+    permanentLockout?: pulumi.Input<boolean | undefined>;
     /**
      * Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
      */
-    quickLoginCheckMilliSeconds?: pulumi.Input<number>;
+    quickLoginCheckMilliSeconds?: pulumi.Input<number | undefined>;
     /**
      * This represents the amount of time a user should be locked out when the login failure threshold has been met.
      */
-    waitIncrementSeconds?: pulumi.Input<number>;
+    waitIncrementSeconds?: pulumi.Input<number | undefined>;
 }
 
 export interface RealmSecurityDefensesHeaders {
     /**
      * Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
      */
-    contentSecurityPolicy?: pulumi.Input<string>;
+    contentSecurityPolicy?: pulumi.Input<string | undefined>;
     /**
      * Used for testing Content Security Policies.
      */
-    contentSecurityPolicyReportOnly?: pulumi.Input<string>;
+    contentSecurityPolicyReportOnly?: pulumi.Input<string | undefined>;
     /**
      * The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
      */
-    referrerPolicy?: pulumi.Input<string>;
+    referrerPolicy?: pulumi.Input<string | undefined>;
     /**
      * The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
      */
-    strictTransportSecurity?: pulumi.Input<string>;
+    strictTransportSecurity?: pulumi.Input<string | undefined>;
     /**
      * Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
      */
-    xContentTypeOptions?: pulumi.Input<string>;
+    xContentTypeOptions?: pulumi.Input<string | undefined>;
     /**
      * Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
      */
-    xFrameOptions?: pulumi.Input<string>;
+    xFrameOptions?: pulumi.Input<string | undefined>;
     /**
      * Prevent pages from appearing in search engines.
      */
-    xRobotsTag?: pulumi.Input<string>;
+    xRobotsTag?: pulumi.Input<string | undefined>;
     /**
      * This header configures the Cross-site scripting (XSS) filter in your browser.
      */
-    xXssProtection?: pulumi.Input<string>;
+    xXssProtection?: pulumi.Input<string | undefined>;
 }
 
 export interface RealmSmtpServer {
-    allowUtf8?: pulumi.Input<boolean>;
+    allowUtf8?: pulumi.Input<boolean | undefined>;
     /**
      * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      */
-    auth?: pulumi.Input<inputs.RealmSmtpServerAuth>;
+    auth?: pulumi.Input<inputs.RealmSmtpServerAuth | undefined>;
     /**
      * The email address uses for bounces.
      */
-    envelopeFrom?: pulumi.Input<string>;
+    envelopeFrom?: pulumi.Input<string | undefined>;
     /**
      * The email address for the sender.
      */
@@ -436,7 +436,7 @@ export interface RealmSmtpServer {
     /**
      * The display name of the sender email address.
      */
-    fromDisplayName?: pulumi.Input<string>;
+    fromDisplayName?: pulumi.Input<string | undefined>;
     /**
      * The host of the SMTP server.
      */
@@ -444,27 +444,27 @@ export interface RealmSmtpServer {
     /**
      * The port of the SMTP server (defaults to 25).
      */
-    port?: pulumi.Input<string>;
+    port?: pulumi.Input<string | undefined>;
     /**
      * The "reply to" email address.
      */
-    replyTo?: pulumi.Input<string>;
+    replyTo?: pulumi.Input<string | undefined>;
     /**
      * The display name of the "reply to" email address.
      */
-    replyToDisplayName?: pulumi.Input<string>;
+    replyToDisplayName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, enables SSL. Defaults to `false`.
      */
-    ssl?: pulumi.Input<boolean>;
+    ssl?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, enables StartTLS. Defaults to `false`.
      */
-    starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean | undefined>;
     /**
      * Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
      */
-    tokenAuth?: pulumi.Input<inputs.RealmSmtpServerTokenAuth>;
+    tokenAuth?: pulumi.Input<inputs.RealmSmtpServerTokenAuth | undefined>;
 }
 
 export interface RealmSmtpServerAuth {
@@ -496,40 +496,40 @@ export interface RealmSmtpServerTokenAuth {
 }
 
 export interface RealmUserProfileAttribute {
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The display name of the attribute.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
      */
-    enabledWhenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    enabledWhenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of groups.
      */
-    group?: pulumi.Input<string>;
+    group?: pulumi.Input<string | undefined>;
     /**
      * If the attribute supports multiple values. Defaults to `false`.
      */
-    multiValued?: pulumi.Input<boolean>;
+    multiValued?: pulumi.Input<boolean | undefined>;
     name: pulumi.Input<string>;
     /**
      * The permissions configuration information.
      */
-    permissions?: pulumi.Input<inputs.RealmUserProfileAttributePermissions>;
+    permissions?: pulumi.Input<inputs.RealmUserProfileAttributePermissions | undefined>;
     /**
      * A list of roles for which the attribute will be required.
      */
-    requiredForRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredForRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of scopes for which the attribute will be required.
      */
-    requiredForScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredForScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of validators for the attribute.
      */
-    validators?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttributeValidator>[]>;
+    validators?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttributeValidator>[] | undefined>;
 }
 
 export interface RealmUserProfileAttributePermissions {
@@ -547,20 +547,20 @@ export interface RealmUserProfileAttributeValidator {
     /**
      * A map defining the configuration of the validator. Values can be a String or a json object.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     name: pulumi.Input<string>;
 }
 
 export interface RealmUserProfileGroup {
-    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The display description of the group.
      */
-    displayDescription?: pulumi.Input<string>;
+    displayDescription?: pulumi.Input<string | undefined>;
     /**
      * The display header of the group.
      */
-    displayHeader?: pulumi.Input<string>;
+    displayHeader?: pulumi.Input<string | undefined>;
     name: pulumi.Input<string>;
 }
 
@@ -568,94 +568,94 @@ export interface RealmWebAuthnPasswordlessPolicy {
     /**
      * A set of AAGUIDs for which an authenticator can be registered.
      */
-    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either none, indirect or direct
      */
-    attestationConveyancePreference?: pulumi.Input<string>;
+    attestationConveyancePreference?: pulumi.Input<string | undefined>;
     /**
      * Either platform or cross-platform
      */
-    authenticatorAttachment?: pulumi.Input<string>;
+    authenticatorAttachment?: pulumi.Input<string | undefined>;
     /**
      * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
      */
-    avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
+    avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
     /**
      * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
      */
-    createTimeout?: pulumi.Input<number>;
+    createTimeout?: pulumi.Input<number | undefined>;
     /**
      * A set of extra origins for non-web applications.
      */
-    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
-    relyingPartyEntityName?: pulumi.Input<string>;
+    relyingPartyEntityName?: pulumi.Input<string | undefined>;
     /**
      * The WebAuthn relying party ID.
      */
-    relyingPartyId?: pulumi.Input<string>;
+    relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
      */
-    requireResidentKey?: pulumi.Input<string>;
+    requireResidentKey?: pulumi.Input<string | undefined>;
     /**
      * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      */
-    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */
-    userVerificationRequirement?: pulumi.Input<string>;
+    userVerificationRequirement?: pulumi.Input<string | undefined>;
 }
 
 export interface RealmWebAuthnPolicy {
     /**
      * A set of AAGUIDs for which an authenticator can be registered.
      */
-    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    acceptableAaguids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either none, indirect or direct
      */
-    attestationConveyancePreference?: pulumi.Input<string>;
+    attestationConveyancePreference?: pulumi.Input<string | undefined>;
     /**
      * Either platform or cross-platform
      */
-    authenticatorAttachment?: pulumi.Input<string>;
+    authenticatorAttachment?: pulumi.Input<string | undefined>;
     /**
      * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
      */
-    avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
+    avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
     /**
      * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
      */
-    createTimeout?: pulumi.Input<number>;
+    createTimeout?: pulumi.Input<number | undefined>;
     /**
      * A set of extra origins for non-web applications.
      */
-    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
-    relyingPartyEntityName?: pulumi.Input<string>;
+    relyingPartyEntityName?: pulumi.Input<string | undefined>;
     /**
      * The WebAuthn relying party ID.
      */
-    relyingPartyId?: pulumi.Input<string>;
+    relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
      */
-    requireResidentKey?: pulumi.Input<string>;
+    requireResidentKey?: pulumi.Input<string | undefined>;
     /**
      * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      */
-    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */
-    userVerificationRequirement?: pulumi.Input<string>;
+    userVerificationRequirement?: pulumi.Input<string | undefined>;
 }
 
 export interface UserFederatedIdentity {
@@ -677,7 +677,7 @@ export interface UserInitialPassword {
     /**
      * If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
      */
-    temporary?: pulumi.Input<boolean>;
+    temporary?: pulumi.Input<boolean | undefined>;
     /**
      * The initial password.
      */
@@ -685,62 +685,62 @@ export interface UserInitialPassword {
 }
 
 export interface UsersPermissionsImpersonateScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface UsersPermissionsManageGroupMembershipScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface UsersPermissionsManageScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface UsersPermissionsMapRolesScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface UsersPermissionsUserImpersonatedScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface UsersPermissionsViewScope {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 export namespace ldap {
     export interface UserFederationCache {
         /**
          * Day of the week the entry will become invalid on
          */
-        evictionDay?: pulumi.Input<number>;
+        evictionDay?: pulumi.Input<number | undefined>;
         /**
          * Hour of day the entry will become invalid on.
          */
-        evictionHour?: pulumi.Input<number>;
+        evictionHour?: pulumi.Input<number | undefined>;
         /**
          * Minute of day the entry will become invalid on.
          */
-        evictionMinute?: pulumi.Input<number>;
+        evictionMinute?: pulumi.Input<number | undefined>;
         /**
          * Max lifespan of cache entry (duration string).
          */
-        maxLifespan?: pulumi.Input<string>;
+        maxLifespan?: pulumi.Input<string | undefined>;
         /**
          * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
          */
-        policy?: pulumi.Input<string>;
+        policy?: pulumi.Input<string | undefined>;
     }
 
     export interface UserFederationKerberos {
@@ -759,7 +759,7 @@ export namespace ldap {
         /**
          * Use kerberos login module instead of ldap service api. Defaults to `false`.
          */
-        useKerberosForPasswordAuthentication?: pulumi.Input<boolean>;
+        useKerberosForPasswordAuthentication?: pulumi.Input<boolean | undefined>;
     }
 }
 
@@ -768,26 +768,26 @@ export namespace openid {
         /**
          * Browser flow id, (flow needs to exist)
          */
-        browserId?: pulumi.Input<string>;
+        browserId?: pulumi.Input<string | undefined>;
         /**
          * Direct grant flow id (flow needs to exist)
          */
-        directGrantId?: pulumi.Input<string>;
+        directGrantId?: pulumi.Input<string | undefined>;
     }
 
     export interface ClientAuthorization {
         /**
          * When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
          */
-        allowRemoteResourceManagement?: pulumi.Input<boolean>;
+        allowRemoteResourceManagement?: pulumi.Input<boolean | undefined>;
         /**
          * Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
          */
-        decisionStrategy?: pulumi.Input<string>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
         /**
          * When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
          */
-        keepDefaults?: pulumi.Input<boolean>;
+        keepDefaults?: pulumi.Input<boolean | undefined>;
         /**
          * Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
          */
@@ -796,7 +796,7 @@ export namespace openid {
 
     export interface ClientAuthorizationClientScopePolicyScope {
         id: pulumi.Input<string>;
-        required?: pulumi.Input<boolean>;
+        required?: pulumi.Input<boolean | undefined>;
     }
 
     export interface ClientGroupPolicyGroup {
@@ -806,45 +806,45 @@ export namespace openid {
     }
 
     export interface ClientPermissionsConfigureScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientPermissionsManageScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientPermissionsMapRolesClientScopeScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientPermissionsMapRolesCompositeScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientPermissionsMapRolesScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientPermissionsTokenExchangeScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientPermissionsViewScope {
-        decisionStrategy?: pulumi.Input<string>;
-        description?: pulumi.Input<string>;
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        decisionStrategy?: pulumi.Input<string | undefined>;
+        description?: pulumi.Input<string | undefined>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     }
 
     export interface ClientRolePolicyRole {
@@ -859,11 +859,11 @@ export namespace saml {
         /**
          * Browser flow id, (flow needs to exist)
          */
-        browserId?: pulumi.Input<string>;
+        browserId?: pulumi.Input<string | undefined>;
         /**
          * Direct grant flow id (flow needs to exist)
          */
-        directGrantId?: pulumi.Input<string>;
+        directGrantId?: pulumi.Input<string | undefined>;
     }
 
 }

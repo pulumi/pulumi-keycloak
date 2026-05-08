@@ -193,19 +193,19 @@ export interface HardcodedRoleMapperState {
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -219,7 +219,7 @@ export interface HardcodedRoleMapperArgs {
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */

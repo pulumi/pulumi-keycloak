@@ -122,66 +122,66 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
-    accessToken?: pulumi.Input<string>;
-    additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    accessToken?: pulumi.Input<string | undefined>;
+    additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
      */
-    adminUrl?: pulumi.Input<string>;
-    basePath?: pulumi.Input<string>;
-    clientId?: pulumi.Input<string>;
-    clientSecret?: pulumi.Input<string>;
+    adminUrl?: pulumi.Input<string | undefined>;
+    basePath?: pulumi.Input<string | undefined>;
+    clientId?: pulumi.Input<string | undefined>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Timeout (in seconds) of the Keycloak client
      */
-    clientTimeout?: pulumi.Input<number>;
+    clientTimeout?: pulumi.Input<number | undefined>;
     /**
      * Whether or not to login to Keycloak instance on provider initialization
      */
-    initialLogin?: pulumi.Input<boolean>;
+    initialLogin?: pulumi.Input<boolean | undefined>;
     /**
      * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
      */
-    jwtSigningAlg?: pulumi.Input<string>;
+    jwtSigningAlg?: pulumi.Input<string | undefined>;
     /**
      * The PEM-formatted private key used to sign the JWT when client-jwt is used.
      */
-    jwtSigningKey?: pulumi.Input<string>;
+    jwtSigningKey?: pulumi.Input<string | undefined>;
     /**
      * A signed JWT token used for client authentication.
      */
-    jwtToken?: pulumi.Input<string>;
+    jwtToken?: pulumi.Input<string | undefined>;
     /**
      * A path to a file containing a signed JWT token used for client authentication.
      */
-    jwtTokenFile?: pulumi.Input<string>;
-    password?: pulumi.Input<string>;
-    realm?: pulumi.Input<string>;
+    jwtTokenFile?: pulumi.Input<string | undefined>;
+    password?: pulumi.Input<string | undefined>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
      */
-    redHatSso?: pulumi.Input<boolean>;
+    redHatSso?: pulumi.Input<boolean | undefined>;
     /**
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      */
-    rootCaCertificate?: pulumi.Input<string>;
+    rootCaCertificate?: pulumi.Input<string | undefined>;
     /**
      * TLS client certificate as PEM string for mutual authentication
      */
-    tlsClientCertificate?: pulumi.Input<string>;
+    tlsClientCertificate?: pulumi.Input<string | undefined>;
     /**
      * TLS client private key as PEM string for mutual authentication
      */
-    tlsClientPrivateKey?: pulumi.Input<string>;
+    tlsClientPrivateKey?: pulumi.Input<string | undefined>;
     /**
      * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
      */
-    tlsInsecureSkipVerify?: pulumi.Input<boolean>;
+    tlsInsecureSkipVerify?: pulumi.Input<boolean | undefined>;
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */
-    url?: pulumi.Input<string>;
-    username?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

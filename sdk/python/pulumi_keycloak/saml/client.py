@@ -23,44 +23,44 @@ class ClientArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assertion_consumer_post_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 assertion_consumer_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 canonicalization_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_signature_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 front_channel_logout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 idp_initiated_sso_relay_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_initiated_sso_url_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_authn_statement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_post_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_redirect_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 master_saml_processing_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sign_documents: Optional[pulumi.Input[_builtins.bool]] = None,
-                 signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_signature_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_digest_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_key_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_mask_generation_function: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 force_name_id_format: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_post_binding: pulumi.Input[Optional[_builtins.bool]] = None,
+                 front_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 idp_initiated_sso_relay_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_initiated_sso_url_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_authn_statement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_post_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_redirect_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 master_saml_processing_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
+                 signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Client resource.
 
@@ -210,507 +210,507 @@ class ClientArgs:
 
     @_builtins.property
     @pulumi.getter(name="alwaysDisplayInConsole")
-    def always_display_in_console(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def always_display_in_console(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Always list this client in the Account UI, even if the user does not have an active session.
         """
         return pulumi.get(self, "always_display_in_console")
 
     @always_display_in_console.setter
-    def always_display_in_console(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def always_display_in_console(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "always_display_in_console", value)
 
     @_builtins.property
     @pulumi.getter(name="assertionConsumerPostUrl")
-    def assertion_consumer_post_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assertion_consumer_post_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML POST Binding URL for the client's assertion consumer service (login responses).
         """
         return pulumi.get(self, "assertion_consumer_post_url")
 
     @assertion_consumer_post_url.setter
-    def assertion_consumer_post_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assertion_consumer_post_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assertion_consumer_post_url", value)
 
     @_builtins.property
     @pulumi.getter(name="assertionConsumerRedirectUrl")
-    def assertion_consumer_redirect_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assertion_consumer_redirect_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         """
         return pulumi.get(self, "assertion_consumer_redirect_url")
 
     @assertion_consumer_redirect_url.setter
-    def assertion_consumer_redirect_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assertion_consumer_redirect_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assertion_consumer_redirect_url", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
-    def authentication_flow_binding_overrides(self) -> Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]:
+    def authentication_flow_binding_overrides(self) -> pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]:
         """
         Override realm authentication flow bindings
         """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @authentication_flow_binding_overrides.setter
-    def authentication_flow_binding_overrides(self, value: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]):
+    def authentication_flow_binding_overrides(self, value: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]):
         pulumi.set(self, "authentication_flow_binding_overrides", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this URL will be used whenever Keycloak needs to link to this client.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="canonicalizationMethod")
-    def canonicalization_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def canonicalization_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         """
         return pulumi.get(self, "canonicalization_method")
 
     @canonicalization_method.setter
-    def canonicalization_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def canonicalization_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "canonicalization_method", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSignatureRequired")
-    def client_signature_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def client_signature_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
         """
         return pulumi.get(self, "client_signature_required")
 
     @client_signature_required.setter
-    def client_signature_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def client_signature_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "client_signature_required", value)
 
     @_builtins.property
     @pulumi.getter(name="consentRequired")
-    def consent_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def consent_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users have to consent to client access. Defaults to `false`.
         """
         return pulumi.get(self, "consent_required")
 
     @consent_required.setter
-    def consent_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def consent_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "consent_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of this client in the GUI.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptAssertions")
-    def encrypt_assertions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encrypt_assertions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         """
         return pulumi.get(self, "encrypt_assertions")
 
     @encrypt_assertions.setter
-    def encrypt_assertions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encrypt_assertions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encrypt_assertions", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAlgorithm")
-    def encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         """
         return pulumi.get(self, "encryption_algorithm")
 
     @encryption_algorithm.setter
-    def encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificate")
-    def encryption_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If assertions for the client are encrypted, this certificate will be used for encryption.
         """
         return pulumi.get(self, "encryption_certificate")
 
     @encryption_certificate.setter
-    def encryption_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionDigestMethod")
-    def encryption_digest_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_digest_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
         """
         return pulumi.get(self, "encryption_digest_method")
 
     @encryption_digest_method.setter
-    def encryption_digest_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_digest_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_digest_method", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionKeyAlgorithm")
-    def encryption_key_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_key_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
         """
         return pulumi.get(self, "encryption_key_algorithm")
 
     @encryption_key_algorithm.setter
-    def encryption_key_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_key_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_key_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionMaskGenerationFunction")
-    def encryption_mask_generation_function(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_mask_generation_function(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
         """
         return pulumi.get(self, "encryption_mask_generation_function")
 
     @encryption_mask_generation_function.setter
-    def encryption_mask_generation_function(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_mask_generation_function(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_mask_generation_function", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNameIdFormat")
-    def force_name_id_format(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_name_id_format(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         """
         return pulumi.get(self, "force_name_id_format")
 
     @force_name_id_format.setter
-    def force_name_id_format(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_name_id_format(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_name_id_format", value)
 
     @_builtins.property
     @pulumi.getter(name="forcePostBinding")
-    def force_post_binding(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_post_binding(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         """
         return pulumi.get(self, "force_post_binding")
 
     @force_post_binding.setter
-    def force_post_binding(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_post_binding(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_post_binding", value)
 
     @_builtins.property
     @pulumi.getter(name="frontChannelLogout")
-    def front_channel_logout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def front_channel_logout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
         """
         return pulumi.get(self, "front_channel_logout")
 
     @front_channel_logout.setter
-    def front_channel_logout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def front_channel_logout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "front_channel_logout", value)
 
     @_builtins.property
     @pulumi.getter(name="fullScopeAllowed")
-    def full_scope_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def full_scope_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow to include all roles mappings in the access token
         """
         return pulumi.get(self, "full_scope_allowed")
 
     @full_scope_allowed.setter
-    def full_scope_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def full_scope_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "full_scope_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="idpInitiatedSsoRelayState")
-    def idp_initiated_sso_relay_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_initiated_sso_relay_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
         """
         return pulumi.get(self, "idp_initiated_sso_relay_state")
 
     @idp_initiated_sso_relay_state.setter
-    def idp_initiated_sso_relay_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_initiated_sso_relay_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_initiated_sso_relay_state", value)
 
     @_builtins.property
     @pulumi.getter(name="idpInitiatedSsoUrlName")
-    def idp_initiated_sso_url_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_initiated_sso_url_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL fragment name to reference client when you want to do IDP Initiated SSO.
         """
         return pulumi.get(self, "idp_initiated_sso_url_name")
 
     @idp_initiated_sso_url_name.setter
-    def idp_initiated_sso_url_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_initiated_sso_url_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_initiated_sso_url_name", value)
 
     @_builtins.property
     @pulumi.getter(name="includeAuthnStatement")
-    def include_authn_statement(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_authn_statement(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
         """
         return pulumi.get(self, "include_authn_statement")
 
     @include_authn_statement.setter
-    def include_authn_statement(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_authn_statement(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_authn_statement", value)
 
     @_builtins.property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The login theme of this client.
         """
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
-    def login_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_theme", value)
 
     @_builtins.property
     @pulumi.getter(name="logoutServicePostBindingUrl")
-    def logout_service_post_binding_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logout_service_post_binding_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML POST Binding URL for the client's single logout service.
         """
         return pulumi.get(self, "logout_service_post_binding_url")
 
     @logout_service_post_binding_url.setter
-    def logout_service_post_binding_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logout_service_post_binding_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logout_service_post_binding_url", value)
 
     @_builtins.property
     @pulumi.getter(name="logoutServiceRedirectBindingUrl")
-    def logout_service_redirect_binding_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logout_service_redirect_binding_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Redirect Binding URL for the client's single logout service.
         """
         return pulumi.get(self, "logout_service_redirect_binding_url")
 
     @logout_service_redirect_binding_url.setter
-    def logout_service_redirect_binding_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logout_service_redirect_binding_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logout_service_redirect_binding_url", value)
 
     @_builtins.property
     @pulumi.getter(name="masterSamlProcessingUrl")
-    def master_saml_processing_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def master_saml_processing_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this URL will be used for all SAML requests.
         """
         return pulumi.get(self, "master_saml_processing_url")
 
     @master_saml_processing_url.setter
-    def master_saml_processing_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def master_saml_processing_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "master_saml_processing_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this client in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nameIdFormat")
-    def name_id_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_id_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the Name ID format for the subject.
         """
         return pulumi.get(self, "name_id_format")
 
     @name_id_format.setter
-    def name_id_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_id_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_id_format", value)
 
     @_builtins.property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this value is prepended to all relative URLs.
         """
         return pulumi.get(self, "root_url")
 
     @root_url.setter
-    def root_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_url", value)
 
     @_builtins.property
     @pulumi.getter(name="signAssertions")
-    def sign_assertions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sign_assertions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         """
         return pulumi.get(self, "sign_assertions")
 
     @sign_assertions.setter
-    def sign_assertions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sign_assertions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sign_assertions", value)
 
     @_builtins.property
     @pulumi.getter(name="signDocuments")
-    def sign_documents(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sign_documents(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
         """
         return pulumi.get(self, "sign_documents")
 
     @sign_documents.setter
-    def sign_documents(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sign_documents(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sign_documents", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureAlgorithm")
-    def signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         """
         return pulumi.get(self, "signature_algorithm")
 
     @signature_algorithm.setter
-    def signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureKeyName")
-    def signature_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signature_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
         """
         return pulumi.get(self, "signature_key_name")
 
     @signature_key_name.setter
-    def signature_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signature_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signature_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="signingCertificate")
-    def signing_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signing_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         """
         return pulumi.get(self, "signing_certificate")
 
     @signing_certificate.setter
-    def signing_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signing_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signing_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKey")
-    def signing_private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signing_private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If documents or assertions from the client are signed, this private key will be used to verify the signature.
         """
         return pulumi.get(self, "signing_private_key")
 
     @signing_private_key.setter
-    def signing_private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signing_private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signing_private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def valid_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         return pulumi.get(self, "valid_redirect_uris")
 
     @valid_redirect_uris.setter
-    def valid_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def valid_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "valid_redirect_uris", value)
 
 
 @pulumi.input_type
 class _ClientState:
     def __init__(__self__, *,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assertion_consumer_post_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 assertion_consumer_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 canonicalization_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_signature_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 front_channel_logout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 idp_initiated_sso_relay_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_initiated_sso_url_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_authn_statement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_post_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_redirect_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 master_saml_processing_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sign_documents: Optional[pulumi.Input[_builtins.bool]] = None,
-                 signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_private_key_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_signature_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_certificate_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_digest_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_key_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_mask_generation_function: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 force_name_id_format: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_post_binding: pulumi.Input[Optional[_builtins.bool]] = None,
+                 front_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 idp_initiated_sso_relay_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_initiated_sso_url_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_authn_statement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_post_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_redirect_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 master_saml_processing_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
+                 signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_certificate_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_private_key_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Client resources.
 
@@ -847,518 +847,518 @@ class _ClientState:
 
     @_builtins.property
     @pulumi.getter(name="alwaysDisplayInConsole")
-    def always_display_in_console(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def always_display_in_console(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Always list this client in the Account UI, even if the user does not have an active session.
         """
         return pulumi.get(self, "always_display_in_console")
 
     @always_display_in_console.setter
-    def always_display_in_console(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def always_display_in_console(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "always_display_in_console", value)
 
     @_builtins.property
     @pulumi.getter(name="assertionConsumerPostUrl")
-    def assertion_consumer_post_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assertion_consumer_post_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML POST Binding URL for the client's assertion consumer service (login responses).
         """
         return pulumi.get(self, "assertion_consumer_post_url")
 
     @assertion_consumer_post_url.setter
-    def assertion_consumer_post_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assertion_consumer_post_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assertion_consumer_post_url", value)
 
     @_builtins.property
     @pulumi.getter(name="assertionConsumerRedirectUrl")
-    def assertion_consumer_redirect_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assertion_consumer_redirect_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         """
         return pulumi.get(self, "assertion_consumer_redirect_url")
 
     @assertion_consumer_redirect_url.setter
-    def assertion_consumer_redirect_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assertion_consumer_redirect_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assertion_consumer_redirect_url", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
-    def authentication_flow_binding_overrides(self) -> Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]:
+    def authentication_flow_binding_overrides(self) -> pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]:
         """
         Override realm authentication flow bindings
         """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @authentication_flow_binding_overrides.setter
-    def authentication_flow_binding_overrides(self, value: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]):
+    def authentication_flow_binding_overrides(self, value: pulumi.Input[Optional['ClientAuthenticationFlowBindingOverridesArgs']]):
         pulumi.set(self, "authentication_flow_binding_overrides", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this URL will be used whenever Keycloak needs to link to this client.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="canonicalizationMethod")
-    def canonicalization_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def canonicalization_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         """
         return pulumi.get(self, "canonicalization_method")
 
     @canonicalization_method.setter
-    def canonicalization_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def canonicalization_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "canonicalization_method", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSignatureRequired")
-    def client_signature_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def client_signature_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
         """
         return pulumi.get(self, "client_signature_required")
 
     @client_signature_required.setter
-    def client_signature_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def client_signature_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "client_signature_required", value)
 
     @_builtins.property
     @pulumi.getter(name="consentRequired")
-    def consent_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def consent_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, users have to consent to client access. Defaults to `false`.
         """
         return pulumi.get(self, "consent_required")
 
     @consent_required.setter
-    def consent_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def consent_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "consent_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of this client in the GUI.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptAssertions")
-    def encrypt_assertions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encrypt_assertions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         """
         return pulumi.get(self, "encrypt_assertions")
 
     @encrypt_assertions.setter
-    def encrypt_assertions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encrypt_assertions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encrypt_assertions", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAlgorithm")
-    def encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         """
         return pulumi.get(self, "encryption_algorithm")
 
     @encryption_algorithm.setter
-    def encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificate")
-    def encryption_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If assertions for the client are encrypted, this certificate will be used for encryption.
         """
         return pulumi.get(self, "encryption_certificate")
 
     @encryption_certificate.setter
-    def encryption_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificateSha1")
-    def encryption_certificate_sha1(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_certificate_sha1(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
         """
         return pulumi.get(self, "encryption_certificate_sha1")
 
     @encryption_certificate_sha1.setter
-    def encryption_certificate_sha1(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_certificate_sha1(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_certificate_sha1", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionDigestMethod")
-    def encryption_digest_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_digest_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
         """
         return pulumi.get(self, "encryption_digest_method")
 
     @encryption_digest_method.setter
-    def encryption_digest_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_digest_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_digest_method", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionKeyAlgorithm")
-    def encryption_key_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_key_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
         """
         return pulumi.get(self, "encryption_key_algorithm")
 
     @encryption_key_algorithm.setter
-    def encryption_key_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_key_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_key_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionMaskGenerationFunction")
-    def encryption_mask_generation_function(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_mask_generation_function(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
         """
         return pulumi.get(self, "encryption_mask_generation_function")
 
     @encryption_mask_generation_function.setter
-    def encryption_mask_generation_function(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_mask_generation_function(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_mask_generation_function", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNameIdFormat")
-    def force_name_id_format(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_name_id_format(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         """
         return pulumi.get(self, "force_name_id_format")
 
     @force_name_id_format.setter
-    def force_name_id_format(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_name_id_format(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_name_id_format", value)
 
     @_builtins.property
     @pulumi.getter(name="forcePostBinding")
-    def force_post_binding(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_post_binding(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         """
         return pulumi.get(self, "force_post_binding")
 
     @force_post_binding.setter
-    def force_post_binding(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_post_binding(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_post_binding", value)
 
     @_builtins.property
     @pulumi.getter(name="frontChannelLogout")
-    def front_channel_logout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def front_channel_logout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
         """
         return pulumi.get(self, "front_channel_logout")
 
     @front_channel_logout.setter
-    def front_channel_logout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def front_channel_logout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "front_channel_logout", value)
 
     @_builtins.property
     @pulumi.getter(name="fullScopeAllowed")
-    def full_scope_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def full_scope_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow to include all roles mappings in the access token
         """
         return pulumi.get(self, "full_scope_allowed")
 
     @full_scope_allowed.setter
-    def full_scope_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def full_scope_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "full_scope_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="idpInitiatedSsoRelayState")
-    def idp_initiated_sso_relay_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_initiated_sso_relay_state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
         """
         return pulumi.get(self, "idp_initiated_sso_relay_state")
 
     @idp_initiated_sso_relay_state.setter
-    def idp_initiated_sso_relay_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_initiated_sso_relay_state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_initiated_sso_relay_state", value)
 
     @_builtins.property
     @pulumi.getter(name="idpInitiatedSsoUrlName")
-    def idp_initiated_sso_url_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_initiated_sso_url_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL fragment name to reference client when you want to do IDP Initiated SSO.
         """
         return pulumi.get(self, "idp_initiated_sso_url_name")
 
     @idp_initiated_sso_url_name.setter
-    def idp_initiated_sso_url_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_initiated_sso_url_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_initiated_sso_url_name", value)
 
     @_builtins.property
     @pulumi.getter(name="includeAuthnStatement")
-    def include_authn_statement(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_authn_statement(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
         """
         return pulumi.get(self, "include_authn_statement")
 
     @include_authn_statement.setter
-    def include_authn_statement(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_authn_statement(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_authn_statement", value)
 
     @_builtins.property
     @pulumi.getter(name="loginTheme")
-    def login_theme(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def login_theme(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The login theme of this client.
         """
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
-    def login_theme(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def login_theme(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "login_theme", value)
 
     @_builtins.property
     @pulumi.getter(name="logoutServicePostBindingUrl")
-    def logout_service_post_binding_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logout_service_post_binding_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML POST Binding URL for the client's single logout service.
         """
         return pulumi.get(self, "logout_service_post_binding_url")
 
     @logout_service_post_binding_url.setter
-    def logout_service_post_binding_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logout_service_post_binding_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logout_service_post_binding_url", value)
 
     @_builtins.property
     @pulumi.getter(name="logoutServiceRedirectBindingUrl")
-    def logout_service_redirect_binding_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logout_service_redirect_binding_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Redirect Binding URL for the client's single logout service.
         """
         return pulumi.get(self, "logout_service_redirect_binding_url")
 
     @logout_service_redirect_binding_url.setter
-    def logout_service_redirect_binding_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logout_service_redirect_binding_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logout_service_redirect_binding_url", value)
 
     @_builtins.property
     @pulumi.getter(name="masterSamlProcessingUrl")
-    def master_saml_processing_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def master_saml_processing_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this URL will be used for all SAML requests.
         """
         return pulumi.get(self, "master_saml_processing_url")
 
     @master_saml_processing_url.setter
-    def master_saml_processing_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def master_saml_processing_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "master_saml_processing_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The display name of this client in the GUI.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nameIdFormat")
-    def name_id_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_id_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the Name ID format for the subject.
         """
         return pulumi.get(self, "name_id_format")
 
     @name_id_format.setter
-    def name_id_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_id_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_id_format", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this client is attached to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def root_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When specified, this value is prepended to all relative URLs.
         """
         return pulumi.get(self, "root_url")
 
     @root_url.setter
-    def root_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def root_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "root_url", value)
 
     @_builtins.property
     @pulumi.getter(name="signAssertions")
-    def sign_assertions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sign_assertions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         """
         return pulumi.get(self, "sign_assertions")
 
     @sign_assertions.setter
-    def sign_assertions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sign_assertions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sign_assertions", value)
 
     @_builtins.property
     @pulumi.getter(name="signDocuments")
-    def sign_documents(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sign_documents(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
         """
         return pulumi.get(self, "sign_documents")
 
     @sign_documents.setter
-    def sign_documents(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sign_documents(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sign_documents", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureAlgorithm")
-    def signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         """
         return pulumi.get(self, "signature_algorithm")
 
     @signature_algorithm.setter
-    def signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureKeyName")
-    def signature_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signature_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
         """
         return pulumi.get(self, "signature_key_name")
 
     @signature_key_name.setter
-    def signature_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signature_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signature_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="signingCertificate")
-    def signing_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signing_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If documents or assertions from the client are signed, this certificate will be used to verify the signature.
         """
         return pulumi.get(self, "signing_certificate")
 
     @signing_certificate.setter
-    def signing_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signing_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signing_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="signingCertificateSha1")
-    def signing_certificate_sha1(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signing_certificate_sha1(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
         """
         return pulumi.get(self, "signing_certificate_sha1")
 
     @signing_certificate_sha1.setter
-    def signing_certificate_sha1(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signing_certificate_sha1(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signing_certificate_sha1", value)
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKey")
-    def signing_private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signing_private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If documents or assertions from the client are signed, this private key will be used to verify the signature.
         """
         return pulumi.get(self, "signing_private_key")
 
     @signing_private_key.setter
-    def signing_private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signing_private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signing_private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKeySha1")
-    def signing_private_key_sha1(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signing_private_key_sha1(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
         """
         return pulumi.get(self, "signing_private_key_sha1")
 
     @signing_private_key_sha1.setter
-    def signing_private_key_sha1(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signing_private_key_sha1(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signing_private_key_sha1", value)
 
     @_builtins.property
     @pulumi.getter(name="validRedirectUris")
-    def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def valid_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         return pulumi.get(self, "valid_redirect_uris")
 
     @valid_redirect_uris.setter
-    def valid_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def valid_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "valid_redirect_uris", value)
 
 
@@ -1368,46 +1368,46 @@ class Client(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assertion_consumer_post_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 assertion_consumer_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 canonicalization_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_signature_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 front_channel_logout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 idp_initiated_sso_relay_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_initiated_sso_url_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_authn_statement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_post_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_redirect_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 master_saml_processing_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sign_documents: Optional[pulumi.Input[_builtins.bool]] = None,
-                 signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_signature_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_digest_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_key_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_mask_generation_function: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 force_name_id_format: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_post_binding: pulumi.Input[Optional[_builtins.bool]] = None,
+                 front_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 idp_initiated_sso_relay_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_initiated_sso_url_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_authn_statement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_post_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_redirect_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 master_saml_processing_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
+                 signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Allows for creating and managing Keycloak clients that use the SAML protocol.
@@ -1551,46 +1551,46 @@ class Client(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-                 assertion_consumer_post_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 assertion_consumer_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 canonicalization_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_signature_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 front_channel_logout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 idp_initiated_sso_relay_state: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_initiated_sso_url_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_authn_statement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_post_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 logout_service_redirect_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 master_saml_processing_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sign_documents: Optional[pulumi.Input[_builtins.bool]] = None,
-                 signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 signing_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+                 assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_signature_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encrypt_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_digest_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_key_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 encryption_mask_generation_function: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 force_name_id_format: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_post_binding: pulumi.Input[Optional[_builtins.bool]] = None,
+                 front_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 idp_initiated_sso_relay_state: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_initiated_sso_url_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_authn_statement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_post_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 logout_service_redirect_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 master_saml_processing_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
+                 signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 signing_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1657,49 +1657,49 @@ class Client(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            always_display_in_console: Optional[pulumi.Input[_builtins.bool]] = None,
-            assertion_consumer_post_url: Optional[pulumi.Input[_builtins.str]] = None,
-            assertion_consumer_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
-            authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-            base_url: Optional[pulumi.Input[_builtins.str]] = None,
-            canonicalization_method: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_signature_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            consent_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-            encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            encryption_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-            encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
-            encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
-            force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
-            front_channel_logout: Optional[pulumi.Input[_builtins.bool]] = None,
-            full_scope_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            idp_initiated_sso_relay_state: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_initiated_sso_url_name: Optional[pulumi.Input[_builtins.str]] = None,
-            include_authn_statement: Optional[pulumi.Input[_builtins.bool]] = None,
-            login_theme: Optional[pulumi.Input[_builtins.str]] = None,
-            logout_service_post_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-            logout_service_redirect_binding_url: Optional[pulumi.Input[_builtins.str]] = None,
-            master_saml_processing_url: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            name_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            root_url: Optional[pulumi.Input[_builtins.str]] = None,
-            sign_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
-            sign_documents: Optional[pulumi.Input[_builtins.bool]] = None,
-            signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            signature_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            signing_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            signing_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-            signing_private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            signing_private_key_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-            valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Client':
+            always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
+            assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
+            assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+            authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_signature_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            consent_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            encrypt_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_certificate_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_digest_method: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_key_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_mask_generation_function: pulumi.Input[Optional[_builtins.str]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            force_name_id_format: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_post_binding: pulumi.Input[Optional[_builtins.bool]] = None,
+            front_channel_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+            full_scope_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            idp_initiated_sso_relay_state: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_initiated_sso_url_name: pulumi.Input[Optional[_builtins.str]] = None,
+            include_authn_statement: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_theme: pulumi.Input[Optional[_builtins.str]] = None,
+            logout_service_post_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+            logout_service_redirect_binding_url: pulumi.Input[Optional[_builtins.str]] = None,
+            master_saml_processing_url: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            root_url: pulumi.Input[Optional[_builtins.str]] = None,
+            sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
+            sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
+            signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            signature_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            signing_certificate_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+            signing_private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            signing_private_key_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+            valid_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Client':
         """
         Get an existing Client resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -22,9 +22,9 @@ __all__ = ['RealmClientPolicyProfileArgs', 'RealmClientPolicyProfile']
 class RealmClientPolicyProfileArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 executors: Optional[pulumi.Input[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmClientPolicyProfile resource.
         """
@@ -47,39 +47,39 @@ class RealmClientPolicyProfileArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def executors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]:
+    def executors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]:
         return pulumi.get(self, "executors")
 
     @executors.setter
-    def executors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]):
+    def executors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]):
         pulumi.set(self, "executors", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _RealmClientPolicyProfileState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 executors: Optional[pulumi.Input[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmClientPolicyProfile resources.
         """
@@ -94,38 +94,38 @@ class _RealmClientPolicyProfileState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def executors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]:
+    def executors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]:
         return pulumi.get(self, "executors")
 
     @executors.setter
-    def executors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]):
+    def executors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]):
         pulumi.set(self, "executors", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -135,10 +135,10 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 executors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for managing Realm Client Policy Profiles.
@@ -248,10 +248,10 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 executors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -277,10 +277,10 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            executors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'RealmClientPolicyProfile':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmClientPolicyProfile':
         """
         Get an existing RealmClientPolicyProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -156,22 +156,22 @@ export class RealmClientPolicyProfilePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RealmClientPolicyProfilePolicy resources.
  */
 export interface RealmClientPolicyProfilePolicyState {
-    conditions?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfilePolicyCondition>[]>;
-    description?: pulumi.Input<string>;
-    enabled?: pulumi.Input<boolean>;
-    name?: pulumi.Input<string>;
-    profiles?: pulumi.Input<pulumi.Input<string>[]>;
-    realmId?: pulumi.Input<string>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfilePolicyCondition>[] | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    profiles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a RealmClientPolicyProfilePolicy resource.
  */
 export interface RealmClientPolicyProfilePolicyArgs {
-    conditions?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfilePolicyCondition>[]>;
-    description?: pulumi.Input<string>;
-    enabled?: pulumi.Input<boolean>;
-    name?: pulumi.Input<string>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.RealmClientPolicyProfilePolicyCondition>[] | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    name?: pulumi.Input<string | undefined>;
     profiles: pulumi.Input<pulumi.Input<string>[]>;
     realmId: pulumi.Input<string>;
 }

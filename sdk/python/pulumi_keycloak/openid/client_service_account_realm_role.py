@@ -73,9 +73,9 @@ class ClientServiceAccountRealmRoleArgs:
 @pulumi.input_type
 class _ClientServiceAccountRealmRoleState:
     def __init__(__self__, *,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientServiceAccountRealmRole resources.
 
@@ -92,38 +92,38 @@ class _ClientServiceAccountRealmRoleState:
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that the client and role belong to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role that is assigned.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountUserId")
-    def service_account_user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
         return pulumi.get(self, "service_account_user_id")
 
     @service_account_user_id.setter
-    def service_account_user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_user_id", value)
 
 
@@ -133,9 +133,9 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for assigning realm roles to the service account of an openid client.
@@ -244,9 +244,9 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -275,9 +275,9 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ClientServiceAccountRealmRole':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientServiceAccountRealmRole':
         """
         Get an existing ClientServiceAccountRealmRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

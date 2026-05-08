@@ -133,11 +133,11 @@ export interface DefaultRolesState {
     /**
      * Roles assigned to new users by default.
      */
-    defaultRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    defaultRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The realm this role exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**

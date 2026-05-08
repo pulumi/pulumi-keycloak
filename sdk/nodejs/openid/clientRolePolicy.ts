@@ -186,26 +186,26 @@ export class ClientRolePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientRolePolicy resources.
  */
 export interface ClientRolePolicyState {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    fetchRoles?: pulumi.Input<boolean>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    realmId?: pulumi.Input<string>;
-    resourceServerId?: pulumi.Input<string>;
-    roles?: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;
-    type?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    fetchRoles?: pulumi.Input<boolean | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    resourceServerId?: pulumi.Input<string | undefined>;
+    roles?: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[] | undefined>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ClientRolePolicy resource.
  */
 export interface ClientRolePolicyArgs {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    fetchRoles?: pulumi.Input<boolean>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    fetchRoles?: pulumi.Input<boolean | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;
     roles: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;

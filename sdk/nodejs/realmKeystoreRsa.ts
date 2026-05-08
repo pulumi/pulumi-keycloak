@@ -169,43 +169,43 @@ export interface RealmKeystoreRsaState {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * X509 Certificate encoded in PEM format.
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * Private RSA Key encoded in PEM format.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -215,11 +215,11 @@ export interface RealmKeystoreRsaArgs {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    active?: pulumi.Input<boolean>;
+    active?: pulumi.Input<boolean | undefined>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * X509 Certificate encoded in PEM format.
      */
@@ -227,19 +227,19 @@ export interface RealmKeystoreRsaArgs {
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * Private RSA Key encoded in PEM format.
      */
@@ -247,7 +247,7 @@ export interface RealmKeystoreRsaArgs {
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The realm this keystore exists in.
      */

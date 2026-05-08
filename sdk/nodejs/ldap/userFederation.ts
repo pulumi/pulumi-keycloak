@@ -353,148 +353,148 @@ export interface UserFederationState {
     /**
      * The number of users to sync within a single transaction. Defaults to `1000`.
      */
-    batchSizeForSync?: pulumi.Input<number>;
+    batchSizeForSync?: pulumi.Input<number | undefined>;
     /**
      * Password of LDAP admin. This attribute must be set if `bindDn` is set.
      */
-    bindCredential?: pulumi.Input<string>;
+    bindCredential?: pulumi.Input<string | undefined>;
     /**
      * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      */
-    bindDn?: pulumi.Input<string>;
+    bindDn?: pulumi.Input<string | undefined>;
     /**
      * A block containing the cache settings.
      */
-    cache?: pulumi.Input<inputs.ldap.UserFederationCache>;
+    cache?: pulumi.Input<inputs.ldap.UserFederationCache | undefined>;
     /**
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      */
-    changedSyncPeriod?: pulumi.Input<number>;
+    changedSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
      */
-    connectionPooling?: pulumi.Input<boolean>;
+    connectionPooling?: pulumi.Input<boolean | undefined>;
     /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
-    connectionTimeout?: pulumi.Input<string>;
+    connectionTimeout?: pulumi.Input<string | undefined>;
     /**
      * Connection URL to the LDAP server.
      */
-    connectionUrl?: pulumi.Input<string>;
+    connectionUrl?: pulumi.Input<string | undefined>;
     /**
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
-    customUserSearchFilter?: pulumi.Input<string>;
+    customUserSearchFilter?: pulumi.Input<string | undefined>;
     /**
      * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
      */
-    debug?: pulumi.Input<string>;
+    debug?: pulumi.Input<string | undefined>;
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      */
-    deleteDefaultMappers?: pulumi.Input<boolean>;
+    deleteDefaultMappers?: pulumi.Input<boolean | undefined>;
     /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      */
-    editMode?: pulumi.Input<string>;
+    editMode?: pulumi.Input<string | undefined>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
      */
-    fullSyncPeriod?: pulumi.Input<number>;
+    fullSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
      */
-    importEnabled?: pulumi.Input<boolean>;
+    importEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * A block containing the kerberos settings.
      */
-    kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos>;
+    kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos | undefined>;
     /**
      * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
      */
-    krbPrincipalAttribute?: pulumi.Input<string>;
+    krbPrincipalAttribute?: pulumi.Input<string | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
      */
-    pagination?: pulumi.Input<boolean>;
+    pagination?: pulumi.Input<boolean | undefined>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * Name of the LDAP attribute to use as the relative distinguished name.
      */
-    rdnLdapAttribute?: pulumi.Input<string>;
+    rdnLdapAttribute?: pulumi.Input<string | undefined>;
     /**
      * LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
-    readTimeout?: pulumi.Input<string>;
+    readTimeout?: pulumi.Input<string | undefined>;
     /**
      * The realm that this provider will provide user federation for.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
      * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      */
-    searchScope?: pulumi.Input<string>;
+    searchScope?: pulumi.Input<string | undefined>;
     /**
      * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      */
-    startTls?: pulumi.Input<boolean>;
+    startTls?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
-    syncRegistrations?: pulumi.Input<boolean>;
+    syncRegistrations?: pulumi.Input<boolean | undefined>;
     /**
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
      */
-    usePasswordModifyExtendedOp?: pulumi.Input<boolean>;
+    usePasswordModifyExtendedOp?: pulumi.Input<boolean | undefined>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
      * - `NEVER` - Never use the truststore SPI for LDAP connections.
      * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
      */
-    useTruststoreSpi?: pulumi.Input<string>;
+    useTruststoreSpi?: pulumi.Input<string | undefined>;
     /**
      * Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
      */
-    userObjectClasses?: pulumi.Input<pulumi.Input<string>[]>;
+    userObjectClasses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the LDAP attribute to use as the Keycloak username.
      */
-    usernameLdapAttribute?: pulumi.Input<string>;
+    usernameLdapAttribute?: pulumi.Input<string | undefined>;
     /**
      * Full DN of LDAP tree where your users are.
      */
-    usersDn?: pulumi.Input<string>;
+    usersDn?: pulumi.Input<string | undefined>;
     /**
      * Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
      */
-    uuidLdapAttribute?: pulumi.Input<string>;
+    uuidLdapAttribute?: pulumi.Input<string | undefined>;
     /**
      * When `true`, Keycloak will validate passwords using the realm policy before updating it.
      */
-    validatePasswordPolicy?: pulumi.Input<boolean>;
+    validatePasswordPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
      */
-    vendor?: pulumi.Input<string>;
+    vendor?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -504,31 +504,31 @@ export interface UserFederationArgs {
     /**
      * The number of users to sync within a single transaction. Defaults to `1000`.
      */
-    batchSizeForSync?: pulumi.Input<number>;
+    batchSizeForSync?: pulumi.Input<number | undefined>;
     /**
      * Password of LDAP admin. This attribute must be set if `bindDn` is set.
      */
-    bindCredential?: pulumi.Input<string>;
+    bindCredential?: pulumi.Input<string | undefined>;
     /**
      * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      */
-    bindDn?: pulumi.Input<string>;
+    bindDn?: pulumi.Input<string | undefined>;
     /**
      * A block containing the cache settings.
      */
-    cache?: pulumi.Input<inputs.ldap.UserFederationCache>;
+    cache?: pulumi.Input<inputs.ldap.UserFederationCache | undefined>;
     /**
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      */
-    changedSyncPeriod?: pulumi.Input<number>;
+    changedSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
      */
-    connectionPooling?: pulumi.Input<boolean>;
+    connectionPooling?: pulumi.Input<boolean | undefined>;
     /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
-    connectionTimeout?: pulumi.Input<string>;
+    connectionTimeout?: pulumi.Input<string | undefined>;
     /**
      * Connection URL to the LDAP server.
      */
@@ -536,51 +536,51 @@ export interface UserFederationArgs {
     /**
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
-    customUserSearchFilter?: pulumi.Input<string>;
+    customUserSearchFilter?: pulumi.Input<string | undefined>;
     /**
      * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
      */
-    debug?: pulumi.Input<string>;
+    debug?: pulumi.Input<string | undefined>;
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      */
-    deleteDefaultMappers?: pulumi.Input<boolean>;
+    deleteDefaultMappers?: pulumi.Input<boolean | undefined>;
     /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      */
-    editMode?: pulumi.Input<string>;
+    editMode?: pulumi.Input<string | undefined>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
      */
-    fullSyncPeriod?: pulumi.Input<number>;
+    fullSyncPeriod?: pulumi.Input<number | undefined>;
     /**
      * When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
      */
-    importEnabled?: pulumi.Input<boolean>;
+    importEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * A block containing the kerberos settings.
      */
-    kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos>;
+    kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos | undefined>;
     /**
      * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
      */
-    krbPrincipalAttribute?: pulumi.Input<string>;
+    krbPrincipalAttribute?: pulumi.Input<string | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
      */
-    pagination?: pulumi.Input<boolean>;
+    pagination?: pulumi.Input<boolean | undefined>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * Name of the LDAP attribute to use as the relative distinguished name.
      */
@@ -588,7 +588,7 @@ export interface UserFederationArgs {
     /**
      * LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
-    readTimeout?: pulumi.Input<string>;
+    readTimeout?: pulumi.Input<string | undefined>;
     /**
      * The realm that this provider will provide user federation for.
      */
@@ -598,30 +598,30 @@ export interface UserFederationArgs {
      * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      */
-    searchScope?: pulumi.Input<string>;
+    searchScope?: pulumi.Input<string | undefined>;
     /**
      * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      */
-    startTls?: pulumi.Input<boolean>;
+    startTls?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
-    syncRegistrations?: pulumi.Input<boolean>;
+    syncRegistrations?: pulumi.Input<boolean | undefined>;
     /**
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
      */
-    usePasswordModifyExtendedOp?: pulumi.Input<boolean>;
+    usePasswordModifyExtendedOp?: pulumi.Input<boolean | undefined>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
      * - `NEVER` - Never use the truststore SPI for LDAP connections.
      * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
      */
-    useTruststoreSpi?: pulumi.Input<string>;
+    useTruststoreSpi?: pulumi.Input<string | undefined>;
     /**
      * Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
      */
@@ -641,9 +641,9 @@ export interface UserFederationArgs {
     /**
      * When `true`, Keycloak will validate passwords using the realm policy before updating it.
      */
-    validatePasswordPolicy?: pulumi.Input<boolean>;
+    validatePasswordPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
      */
-    vendor?: pulumi.Input<string>;
+    vendor?: pulumi.Input<string | undefined>;
 }

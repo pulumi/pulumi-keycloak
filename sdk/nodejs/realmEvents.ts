@@ -137,31 +137,31 @@ export interface RealmEventsState {
     /**
      * When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
      */
-    adminEventsDetailsEnabled?: pulumi.Input<boolean>;
+    adminEventsDetailsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
      */
-    adminEventsEnabled?: pulumi.Input<boolean>;
+    adminEventsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
      */
-    enabledEventTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    enabledEventTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      */
-    eventsEnabled?: pulumi.Input<boolean>;
+    eventsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
      */
-    eventsExpiration?: pulumi.Input<number>;
+    eventsExpiration?: pulumi.Input<number | undefined>;
     /**
      * The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
      */
-    eventsListeners?: pulumi.Input<pulumi.Input<string>[]>;
+    eventsListeners?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the realm the event settings apply to.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -171,27 +171,27 @@ export interface RealmEventsArgs {
     /**
      * When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
      */
-    adminEventsDetailsEnabled?: pulumi.Input<boolean>;
+    adminEventsDetailsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
      */
-    adminEventsEnabled?: pulumi.Input<boolean>;
+    adminEventsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
      */
-    enabledEventTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    enabledEventTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      */
-    eventsEnabled?: pulumi.Input<boolean>;
+    eventsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
      */
-    eventsExpiration?: pulumi.Input<number>;
+    eventsExpiration?: pulumi.Input<number | undefined>;
     /**
      * The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
      */
-    eventsListeners?: pulumi.Input<pulumi.Input<string>[]>;
+    eventsListeners?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the realm the event settings apply to.
      */

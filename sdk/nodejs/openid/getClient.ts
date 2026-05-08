@@ -162,17 +162,17 @@ export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getClient.
  */
 export interface GetClientOutputArgs {
-    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    alwaysDisplayInConsole?: pulumi.Input<boolean | undefined>;
     /**
      * The client id (not its unique ID).
      */
     clientId: pulumi.Input<string>;
-    consentScreenText?: pulumi.Input<string>;
-    displayOnConsentScreen?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
-    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
-    oauth2DevicePollingInterval?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string | undefined>;
+    displayOnConsentScreen?: pulumi.Input<boolean | undefined>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
+    oauth2DeviceCodeLifespan?: pulumi.Input<string | undefined>;
+    oauth2DevicePollingInterval?: pulumi.Input<string | undefined>;
     /**
      * The realm id.
      */

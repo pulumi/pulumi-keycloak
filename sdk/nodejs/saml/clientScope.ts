@@ -134,27 +134,27 @@ export interface ClientScopeState {
     /**
      * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
      */
-    consentScreenText?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string | undefined>;
     /**
      * The description of this client scope in the GUI.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
-    guiOrder?: pulumi.Input<number>;
+    guiOrder?: pulumi.Input<number | undefined>;
     /**
      * The display name of this client scope in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this client scope belongs to.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -164,23 +164,23 @@ export interface ClientScopeArgs {
     /**
      * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
      */
-    consentScreenText?: pulumi.Input<string>;
+    consentScreenText?: pulumi.Input<string | undefined>;
     /**
      * The description of this client scope in the GUI.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
-    guiOrder?: pulumi.Input<number>;
+    guiOrder?: pulumi.Input<number | undefined>;
     /**
      * The display name of this client scope in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this client scope belongs to.
      */

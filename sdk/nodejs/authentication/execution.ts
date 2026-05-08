@@ -150,23 +150,23 @@ export interface ExecutionState {
     /**
      * The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
      */
-    authenticator?: pulumi.Input<string>;
+    authenticator?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow this execution is attached to.
      */
-    parentFlowAlias?: pulumi.Input<string>;
+    parentFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm the authentication execution exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */
-    requirement?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -184,7 +184,7 @@ export interface ExecutionArgs {
     /**
      * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * The realm the authentication execution exists in.
      */
@@ -192,5 +192,5 @@ export interface ExecutionArgs {
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */
-    requirement?: pulumi.Input<string>;
+    requirement?: pulumi.Input<string | undefined>;
 }

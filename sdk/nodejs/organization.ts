@@ -164,35 +164,35 @@ export interface OrganizationState {
     /**
      * The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The description of the organization.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A list of domains.
      */
-    domains?: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[] | undefined>;
     /**
      * Enable/disable this organization.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the organization.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this organization exists in.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      */
-    redirectUrl?: pulumi.Input<string>;
+    redirectUrl?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -202,27 +202,27 @@ export interface OrganizationArgs {
     /**
      * The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The description of the organization.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A list of domains.
      */
-    domains?: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[] | undefined>;
     /**
      * Enable/disable this organization.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the organization.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this organization exists in.
      */
@@ -230,5 +230,5 @@ export interface OrganizationArgs {
     /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      */
-    redirectUrl?: pulumi.Input<string>;
+    redirectUrl?: pulumi.Input<string | undefined>;
 }

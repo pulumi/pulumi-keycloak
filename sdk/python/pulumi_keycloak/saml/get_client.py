@@ -522,8 +522,8 @@ def get_client(client_id: Optional[_builtins.str] = None,
         signing_private_key=pulumi.get(__ret__, 'signing_private_key'),
         signing_private_key_sha1=pulumi.get(__ret__, 'signing_private_key_sha1'),
         valid_redirect_uris=pulumi.get(__ret__, 'valid_redirect_uris'))
-def get_client_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                      realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                      realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientResult]:
     """
     This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.

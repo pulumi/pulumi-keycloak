@@ -58,8 +58,8 @@ class RealmDefaultClientScopesArgs:
 @pulumi.input_type
 class _RealmDefaultClientScopesState:
     def __init__(__self__, *,
-                 default_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmDefaultClientScopes resources.
 
@@ -73,26 +73,26 @@ class _RealmDefaultClientScopesState:
 
     @_builtins.property
     @pulumi.getter(name="defaultScopes")
-    def default_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def default_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         An array of default client scope names that should be used when creating new Keycloak clients.
         """
         return pulumi.get(self, "default_scopes")
 
     @default_scopes.setter
-    def default_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def default_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this client and scopes exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -102,8 +102,8 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows you to manage the set of default client scopes for a Keycloak realm, which are used when new clients are created.
@@ -201,8 +201,8 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -228,8 +228,8 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            default_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'RealmDefaultClientScopes':
+            default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmDefaultClientScopes':
         """
         Get an existing RealmDefaultClientScopes resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

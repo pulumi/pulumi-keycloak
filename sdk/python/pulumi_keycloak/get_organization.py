@@ -169,8 +169,8 @@ def get_organization(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         realm=pulumi.get(__ret__, 'realm'),
         redirect_url=pulumi.get(__ret__, 'redirect_url'))
-def get_organization_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                            realm: Optional[pulumi.Input[_builtins.str]] = None,
+def get_organization_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                            realm: pulumi.Input[Optional[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     This data source can be used to fetch properties of a Keycloak organization for

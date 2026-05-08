@@ -380,238 +380,238 @@ export class Realm extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Realm resources.
  */
 export interface RealmState {
-    accessCodeLifespan?: pulumi.Input<string>;
-    accessCodeLifespanLogin?: pulumi.Input<string>;
-    accessCodeLifespanUserAction?: pulumi.Input<string>;
-    accessTokenLifespan?: pulumi.Input<string>;
-    accessTokenLifespanForImplicitFlow?: pulumi.Input<string>;
-    accountTheme?: pulumi.Input<string>;
-    actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
-    actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
-    adminPermissionsEnabled?: pulumi.Input<boolean>;
-    adminTheme?: pulumi.Input<string>;
+    accessCodeLifespan?: pulumi.Input<string | undefined>;
+    accessCodeLifespanLogin?: pulumi.Input<string | undefined>;
+    accessCodeLifespanUserAction?: pulumi.Input<string | undefined>;
+    accessTokenLifespan?: pulumi.Input<string | undefined>;
+    accessTokenLifespanForImplicitFlow?: pulumi.Input<string | undefined>;
+    accountTheme?: pulumi.Input<string | undefined>;
+    actionTokenGeneratedByAdminLifespan?: pulumi.Input<string | undefined>;
+    actionTokenGeneratedByUserLifespan?: pulumi.Input<string | undefined>;
+    adminPermissionsEnabled?: pulumi.Input<boolean | undefined>;
+    adminTheme?: pulumi.Input<string | undefined>;
     /**
      * A map of custom attributes to add to the realm.
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Which flow should be used for BrowserFlow
      */
-    browserFlow?: pulumi.Input<string>;
+    browserFlow?: pulumi.Input<string | undefined>;
     /**
      * Which flow should be used for ClientAuthenticationFlow
      */
-    clientAuthenticationFlow?: pulumi.Input<string>;
-    clientSessionIdleTimeout?: pulumi.Input<string>;
-    clientSessionMaxLifespan?: pulumi.Input<string>;
-    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    defaultSignatureAlgorithm?: pulumi.Input<string>;
+    clientAuthenticationFlow?: pulumi.Input<string | undefined>;
+    clientSessionIdleTimeout?: pulumi.Input<string | undefined>;
+    clientSessionMaxLifespan?: pulumi.Input<string | undefined>;
+    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    defaultSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Which flow should be used for DirectGrantFlow
      */
-    directGrantFlow?: pulumi.Input<string>;
+    directGrantFlow?: pulumi.Input<string | undefined>;
     /**
      * The display name for the realm that is shown when logging in to the admin console.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
      */
-    displayNameHtml?: pulumi.Input<string>;
+    displayNameHtml?: pulumi.Input<string | undefined>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
      */
-    dockerAuthenticationFlow?: pulumi.Input<string>;
-    duplicateEmailsAllowed?: pulumi.Input<boolean>;
-    editUsernameAllowed?: pulumi.Input<boolean>;
-    emailTheme?: pulumi.Input<string>;
+    dockerAuthenticationFlow?: pulumi.Input<string | undefined>;
+    duplicateEmailsAllowed?: pulumi.Input<boolean | undefined>;
+    editUsernameAllowed?: pulumi.Input<boolean | undefined>;
+    emailTheme?: pulumi.Input<string | undefined>;
     /**
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Which flow should be used for FirstBrokerLoginFlow
      */
-    firstBrokerLoginFlow?: pulumi.Input<string>;
+    firstBrokerLoginFlow?: pulumi.Input<string | undefined>;
     /**
      * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
      */
-    internalId?: pulumi.Input<string>;
-    internationalization?: pulumi.Input<inputs.RealmInternationalization>;
-    loginTheme?: pulumi.Input<string>;
-    loginWithEmailAllowed?: pulumi.Input<boolean>;
-    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
-    oauth2DevicePollingInterval?: pulumi.Input<number>;
-    offlineSessionIdleTimeout?: pulumi.Input<string>;
-    offlineSessionMaxLifespan?: pulumi.Input<string>;
-    offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    internalId?: pulumi.Input<string | undefined>;
+    internationalization?: pulumi.Input<inputs.RealmInternationalization | undefined>;
+    loginTheme?: pulumi.Input<string | undefined>;
+    loginWithEmailAllowed?: pulumi.Input<boolean | undefined>;
+    oauth2DeviceCodeLifespan?: pulumi.Input<string | undefined>;
+    oauth2DevicePollingInterval?: pulumi.Input<number | undefined>;
+    offlineSessionIdleTimeout?: pulumi.Input<string | undefined>;
+    offlineSessionMaxLifespan?: pulumi.Input<string | undefined>;
+    offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, organization support is enabled. Defaults to `false`.
      */
-    organizationsEnabled?: pulumi.Input<boolean>;
-    otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
+    organizationsEnabled?: pulumi.Input<boolean | undefined>;
+    otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy | undefined>;
     /**
      * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
      */
-    passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
      */
-    realm?: pulumi.Input<string>;
-    refreshTokenMaxReuse?: pulumi.Input<number>;
-    registrationAllowed?: pulumi.Input<boolean>;
-    registrationEmailAsUsername?: pulumi.Input<boolean>;
+    realm?: pulumi.Input<string | undefined>;
+    refreshTokenMaxReuse?: pulumi.Input<number | undefined>;
+    registrationAllowed?: pulumi.Input<boolean | undefined>;
+    registrationEmailAsUsername?: pulumi.Input<boolean | undefined>;
     /**
      * Which flow should be used for RegistrationFlow
      */
-    registrationFlow?: pulumi.Input<string>;
-    rememberMe?: pulumi.Input<boolean>;
+    registrationFlow?: pulumi.Input<string | undefined>;
+    rememberMe?: pulumi.Input<boolean | undefined>;
     /**
      * Which flow should be used for ResetCredentialsFlow
      */
-    resetCredentialsFlow?: pulumi.Input<string>;
-    resetPasswordAllowed?: pulumi.Input<boolean>;
-    revokeRefreshToken?: pulumi.Input<boolean>;
-    securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses>;
-    smtpServer?: pulumi.Input<inputs.RealmSmtpServer>;
+    resetCredentialsFlow?: pulumi.Input<string | undefined>;
+    resetPasswordAllowed?: pulumi.Input<boolean | undefined>;
+    revokeRefreshToken?: pulumi.Input<boolean | undefined>;
+    securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses | undefined>;
+    smtpServer?: pulumi.Input<inputs.RealmSmtpServer | undefined>;
     /**
      * SSL Required: Values can be 'none', 'external' or 'all'.
      */
-    sslRequired?: pulumi.Input<string>;
-    ssoSessionIdleTimeout?: pulumi.Input<string>;
-    ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
-    ssoSessionMaxLifespan?: pulumi.Input<string>;
-    ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    sslRequired?: pulumi.Input<string | undefined>;
+    ssoSessionIdleTimeout?: pulumi.Input<string | undefined>;
+    ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string | undefined>;
+    ssoSessionMaxLifespan?: pulumi.Input<string | undefined>;
+    ssoSessionMaxLifespanRememberMe?: pulumi.Input<string | undefined>;
     /**
      * When set to true, the realm cannot be deleted. Defaults to false.
      */
-    terraformDeletionProtection?: pulumi.Input<boolean>;
+    terraformDeletionProtection?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
-    userManagedAccess?: pulumi.Input<boolean>;
-    verifyEmail?: pulumi.Input<boolean>;
-    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
-    webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy>;
+    userManagedAccess?: pulumi.Input<boolean | undefined>;
+    verifyEmail?: pulumi.Input<boolean | undefined>;
+    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy | undefined>;
+    webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy | undefined>;
 }
 
 /**
  * The set of arguments for constructing a Realm resource.
  */
 export interface RealmArgs {
-    accessCodeLifespan?: pulumi.Input<string>;
-    accessCodeLifespanLogin?: pulumi.Input<string>;
-    accessCodeLifespanUserAction?: pulumi.Input<string>;
-    accessTokenLifespan?: pulumi.Input<string>;
-    accessTokenLifespanForImplicitFlow?: pulumi.Input<string>;
-    accountTheme?: pulumi.Input<string>;
-    actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
-    actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
-    adminPermissionsEnabled?: pulumi.Input<boolean>;
-    adminTheme?: pulumi.Input<string>;
+    accessCodeLifespan?: pulumi.Input<string | undefined>;
+    accessCodeLifespanLogin?: pulumi.Input<string | undefined>;
+    accessCodeLifespanUserAction?: pulumi.Input<string | undefined>;
+    accessTokenLifespan?: pulumi.Input<string | undefined>;
+    accessTokenLifespanForImplicitFlow?: pulumi.Input<string | undefined>;
+    accountTheme?: pulumi.Input<string | undefined>;
+    actionTokenGeneratedByAdminLifespan?: pulumi.Input<string | undefined>;
+    actionTokenGeneratedByUserLifespan?: pulumi.Input<string | undefined>;
+    adminPermissionsEnabled?: pulumi.Input<boolean | undefined>;
+    adminTheme?: pulumi.Input<string | undefined>;
     /**
      * A map of custom attributes to add to the realm.
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Which flow should be used for BrowserFlow
      */
-    browserFlow?: pulumi.Input<string>;
+    browserFlow?: pulumi.Input<string | undefined>;
     /**
      * Which flow should be used for ClientAuthenticationFlow
      */
-    clientAuthenticationFlow?: pulumi.Input<string>;
-    clientSessionIdleTimeout?: pulumi.Input<string>;
-    clientSessionMaxLifespan?: pulumi.Input<string>;
-    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    defaultSignatureAlgorithm?: pulumi.Input<string>;
+    clientAuthenticationFlow?: pulumi.Input<string | undefined>;
+    clientSessionIdleTimeout?: pulumi.Input<string | undefined>;
+    clientSessionMaxLifespan?: pulumi.Input<string | undefined>;
+    defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    defaultSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Which flow should be used for DirectGrantFlow
      */
-    directGrantFlow?: pulumi.Input<string>;
+    directGrantFlow?: pulumi.Input<string | undefined>;
     /**
      * The display name for the realm that is shown when logging in to the admin console.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
      */
-    displayNameHtml?: pulumi.Input<string>;
+    displayNameHtml?: pulumi.Input<string | undefined>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
      */
-    dockerAuthenticationFlow?: pulumi.Input<string>;
-    duplicateEmailsAllowed?: pulumi.Input<boolean>;
-    editUsernameAllowed?: pulumi.Input<boolean>;
-    emailTheme?: pulumi.Input<string>;
+    dockerAuthenticationFlow?: pulumi.Input<string | undefined>;
+    duplicateEmailsAllowed?: pulumi.Input<boolean | undefined>;
+    editUsernameAllowed?: pulumi.Input<boolean | undefined>;
+    emailTheme?: pulumi.Input<string | undefined>;
     /**
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Which flow should be used for FirstBrokerLoginFlow
      */
-    firstBrokerLoginFlow?: pulumi.Input<string>;
+    firstBrokerLoginFlow?: pulumi.Input<string | undefined>;
     /**
      * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
      */
-    internalId?: pulumi.Input<string>;
-    internationalization?: pulumi.Input<inputs.RealmInternationalization>;
-    loginTheme?: pulumi.Input<string>;
-    loginWithEmailAllowed?: pulumi.Input<boolean>;
-    oauth2DeviceCodeLifespan?: pulumi.Input<string>;
-    oauth2DevicePollingInterval?: pulumi.Input<number>;
-    offlineSessionIdleTimeout?: pulumi.Input<string>;
-    offlineSessionMaxLifespan?: pulumi.Input<string>;
-    offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    internalId?: pulumi.Input<string | undefined>;
+    internationalization?: pulumi.Input<inputs.RealmInternationalization | undefined>;
+    loginTheme?: pulumi.Input<string | undefined>;
+    loginWithEmailAllowed?: pulumi.Input<boolean | undefined>;
+    oauth2DeviceCodeLifespan?: pulumi.Input<string | undefined>;
+    oauth2DevicePollingInterval?: pulumi.Input<number | undefined>;
+    offlineSessionIdleTimeout?: pulumi.Input<string | undefined>;
+    offlineSessionMaxLifespan?: pulumi.Input<string | undefined>;
+    offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, organization support is enabled. Defaults to `false`.
      */
-    organizationsEnabled?: pulumi.Input<boolean>;
-    otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
+    organizationsEnabled?: pulumi.Input<boolean | undefined>;
+    otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy | undefined>;
     /**
      * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
      */
-    passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
      */
-    realm?: pulumi.Input<string>;
-    refreshTokenMaxReuse?: pulumi.Input<number>;
-    registrationAllowed?: pulumi.Input<boolean>;
-    registrationEmailAsUsername?: pulumi.Input<boolean>;
+    realm?: pulumi.Input<string | undefined>;
+    refreshTokenMaxReuse?: pulumi.Input<number | undefined>;
+    registrationAllowed?: pulumi.Input<boolean | undefined>;
+    registrationEmailAsUsername?: pulumi.Input<boolean | undefined>;
     /**
      * Which flow should be used for RegistrationFlow
      */
-    registrationFlow?: pulumi.Input<string>;
-    rememberMe?: pulumi.Input<boolean>;
+    registrationFlow?: pulumi.Input<string | undefined>;
+    rememberMe?: pulumi.Input<boolean | undefined>;
     /**
      * Which flow should be used for ResetCredentialsFlow
      */
-    resetCredentialsFlow?: pulumi.Input<string>;
-    resetPasswordAllowed?: pulumi.Input<boolean>;
-    revokeRefreshToken?: pulumi.Input<boolean>;
-    securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses>;
-    smtpServer?: pulumi.Input<inputs.RealmSmtpServer>;
+    resetCredentialsFlow?: pulumi.Input<string | undefined>;
+    resetPasswordAllowed?: pulumi.Input<boolean | undefined>;
+    revokeRefreshToken?: pulumi.Input<boolean | undefined>;
+    securityDefenses?: pulumi.Input<inputs.RealmSecurityDefenses | undefined>;
+    smtpServer?: pulumi.Input<inputs.RealmSmtpServer | undefined>;
     /**
      * SSL Required: Values can be 'none', 'external' or 'all'.
      */
-    sslRequired?: pulumi.Input<string>;
-    ssoSessionIdleTimeout?: pulumi.Input<string>;
-    ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
-    ssoSessionMaxLifespan?: pulumi.Input<string>;
-    ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    sslRequired?: pulumi.Input<string | undefined>;
+    ssoSessionIdleTimeout?: pulumi.Input<string | undefined>;
+    ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string | undefined>;
+    ssoSessionMaxLifespan?: pulumi.Input<string | undefined>;
+    ssoSessionMaxLifespanRememberMe?: pulumi.Input<string | undefined>;
     /**
      * When set to true, the realm cannot be deleted. Defaults to false.
      */
-    terraformDeletionProtection?: pulumi.Input<boolean>;
+    terraformDeletionProtection?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
-    userManagedAccess?: pulumi.Input<boolean>;
-    verifyEmail?: pulumi.Input<boolean>;
-    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
-    webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy>;
+    userManagedAccess?: pulumi.Input<boolean | undefined>;
+    verifyEmail?: pulumi.Input<boolean | undefined>;
+    webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy | undefined>;
+    webAuthnPolicy?: pulumi.Input<inputs.RealmWebAuthnPolicy | undefined>;
 }

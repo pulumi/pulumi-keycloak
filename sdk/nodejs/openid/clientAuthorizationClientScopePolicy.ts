@@ -187,23 +187,23 @@ export class ClientAuthorizationClientScopePolicy extends pulumi.CustomResource 
  * Input properties used for looking up and filtering ClientAuthorizationClientScopePolicy resources.
  */
 export interface ClientAuthorizationClientScopePolicyState {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    realmId?: pulumi.Input<string>;
-    resourceServerId?: pulumi.Input<string>;
-    scopes?: pulumi.Input<pulumi.Input<inputs.openid.ClientAuthorizationClientScopePolicyScope>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    resourceServerId?: pulumi.Input<string | undefined>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.openid.ClientAuthorizationClientScopePolicyScope>[] | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ClientAuthorizationClientScopePolicy resource.
  */
 export interface ClientAuthorizationClientScopePolicyArgs {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;
     scopes: pulumi.Input<pulumi.Input<inputs.openid.ClientAuthorizationClientScopePolicyScope>[]>;

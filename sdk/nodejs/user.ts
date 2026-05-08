@@ -195,51 +195,51 @@ export interface UserState {
     /**
      * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The user's email.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * Whether the email address was validated or not. Default to `false`.
      */
-    emailVerified?: pulumi.Input<boolean>;
+    emailVerified?: pulumi.Input<boolean | undefined>;
     /**
      * When false, this user cannot log in. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
      */
-    federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
+    federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[] | undefined>;
     /**
      * The user's first name.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
      */
-    import?: pulumi.Input<boolean>;
+    import?: pulumi.Input<boolean | undefined>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
-    initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
+    initialPassword?: pulumi.Input<inputs.UserInitialPassword | undefined>;
     /**
      * The user's last name.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * The realm this user belongs to.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * A list of required user actions.
      */
-    requiredActions?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredActions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique username of this user.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -249,39 +249,39 @@ export interface UserArgs {
     /**
      * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The user's email.
      */
-    email?: pulumi.Input<string>;
+    email?: pulumi.Input<string | undefined>;
     /**
      * Whether the email address was validated or not. Default to `false`.
      */
-    emailVerified?: pulumi.Input<boolean>;
+    emailVerified?: pulumi.Input<boolean | undefined>;
     /**
      * When false, this user cannot log in. Defaults to `true`.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
      */
-    federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
+    federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[] | undefined>;
     /**
      * The user's first name.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
      */
-    import?: pulumi.Input<boolean>;
+    import?: pulumi.Input<boolean | undefined>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
-    initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
+    initialPassword?: pulumi.Input<inputs.UserInitialPassword | undefined>;
     /**
      * The user's last name.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * The realm this user belongs to.
      */
@@ -289,7 +289,7 @@ export interface UserArgs {
     /**
      * A list of required user actions.
      */
-    requiredActions?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredActions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique username of this user.
      */

@@ -226,78 +226,78 @@ export interface KubernetesIdentityProviderState {
     /**
      * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
      */
-    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean | undefined>;
     /**
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
-    authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Friendly name for Identity Providers.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable this identity provider.
      */
-    enabled?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
-    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * GUI Order
      */
-    guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string | undefined>;
     /**
      * This is always set to true for Kubernetes identity provider.
      */
-    hideOnLoginPage?: pulumi.Input<boolean>;
+    hideOnLoginPage?: pulumi.Input<boolean | undefined>;
     /**
      * Internal Identity Provider Id
      */
-    internalId?: pulumi.Input<string>;
+    internalId?: pulumi.Input<string | undefined>;
     /**
      * The Kubernetes issuer URL of service account tokens. The URL <ISSUER>/.well-known/openid-configuration must be available to Keycloak.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * If true, users cannot log in through this provider.  They can only link to this provider.  This is useful if you don't want to allow login from the provider, but want to integrate with a provider
      */
-    linkOnly?: pulumi.Input<boolean>;
-    orgDomain?: pulumi.Input<string>;
-    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean | undefined>;
+    orgDomain?: pulumi.Input<string | undefined>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
      * ID of organization with which this identity is linked.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
-    postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * Provider ID, is always kubernetes.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable if tokens must be stored after authenticating users.
      */
-    storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean | undefined>;
     /**
      * Sync Mode
      */
-    syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string | undefined>;
     /**
      * If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -307,7 +307,7 @@ export interface KubernetesIdentityProviderArgs {
     /**
      * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
      */
-    addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
+    addReadTokenRoleOnCreate?: pulumi.Input<boolean | undefined>;
     /**
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
@@ -315,24 +315,24 @@ export interface KubernetesIdentityProviderArgs {
     /**
      * Enable/disable authenticate users by default.
      */
-    authenticateByDefault?: pulumi.Input<boolean>;
+    authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
      * Friendly name for Identity Providers.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable this identity provider.
      */
-    enabled?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account.
      */
-    firstBrokerLoginFlowAlias?: pulumi.Input<string>;
+    firstBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * GUI Order
      */
-    guiOrder?: pulumi.Input<string>;
+    guiOrder?: pulumi.Input<string | undefined>;
     /**
      * The Kubernetes issuer URL of service account tokens. The URL <ISSUER>/.well-known/openid-configuration must be available to Keycloak.
      */
@@ -340,21 +340,21 @@ export interface KubernetesIdentityProviderArgs {
     /**
      * If true, users cannot log in through this provider.  They can only link to this provider.  This is useful if you don't want to allow login from the provider, but want to integrate with a provider
      */
-    linkOnly?: pulumi.Input<boolean>;
-    orgDomain?: pulumi.Input<string>;
-    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    linkOnly?: pulumi.Input<boolean | undefined>;
+    orgDomain?: pulumi.Input<string | undefined>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
      * ID of organization with which this identity is linked.
      */
-    organizationId?: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
      */
-    postBrokerLoginFlowAlias?: pulumi.Input<string>;
+    postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
      * Provider ID, is always kubernetes.
      */
-    providerId?: pulumi.Input<string>;
+    providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
@@ -362,13 +362,13 @@ export interface KubernetesIdentityProviderArgs {
     /**
      * Enable/disable if tokens must be stored after authenticating users.
      */
-    storeToken?: pulumi.Input<boolean>;
+    storeToken?: pulumi.Input<boolean | undefined>;
     /**
      * Sync Mode
      */
-    syncMode?: pulumi.Input<string>;
+    syncMode?: pulumi.Input<string | undefined>;
     /**
      * If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
      */
-    trustEmail?: pulumi.Input<boolean>;
+    trustEmail?: pulumi.Input<boolean | undefined>;
 }

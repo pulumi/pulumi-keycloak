@@ -139,19 +139,19 @@ export interface ExecutionConfigState {
     /**
      * The name of the configuration.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
      */
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The authentication execution this configuration is attached to.
      */
-    executionId?: pulumi.Input<string>;
+    executionId?: pulumi.Input<string | undefined>;
     /**
      * The realm the authentication execution exists in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -161,7 +161,7 @@ export interface ExecutionConfigArgs {
     /**
      * The name of the configuration.
      */
-    alias?: pulumi.Input<string>;
+    alias?: pulumi.Input<string | undefined>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
      */

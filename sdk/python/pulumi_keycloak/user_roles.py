@@ -22,7 +22,7 @@ class UserRolesArgs:
                  realm_id: pulumi.Input[_builtins.str],
                  role_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  user_id: pulumi.Input[_builtins.str],
-                 exhaustive: Optional[pulumi.Input[_builtins.bool]] = None):
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a UserRoles resource.
 
@@ -75,24 +75,24 @@ class UserRolesArgs:
 
     @_builtins.property
     @pulumi.getter
-    def exhaustive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exhaustive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         """
         return pulumi.get(self, "exhaustive")
 
     @exhaustive.setter
-    def exhaustive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exhaustive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exhaustive", value)
 
 
 @pulumi.input_type
 class _UserRolesState:
     def __init__(__self__, *,
-                 exhaustive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserRoles resources.
 
@@ -112,50 +112,50 @@ class _UserRolesState:
 
     @_builtins.property
     @pulumi.getter
-    def exhaustive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exhaustive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         """
         return pulumi.get(self, "exhaustive")
 
     @exhaustive.setter
-    def exhaustive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exhaustive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exhaustive", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this user exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleIds")
-    def role_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of role IDs to map to the user
         """
         return pulumi.get(self, "role_ids")
 
     @role_ids.setter
-    def role_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the user this resource should manage roles for.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -165,10 +165,10 @@ class UserRoles(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 exhaustive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows you to manage roles assigned to a Keycloak user.
@@ -326,10 +326,10 @@ class UserRoles(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 exhaustive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -359,10 +359,10 @@ class UserRoles(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            exhaustive: Optional[pulumi.Input[_builtins.bool]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-            role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'UserRoles':
+            exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserRoles':
         """
         Get an existing UserRoles resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

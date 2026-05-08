@@ -172,13 +172,13 @@ export class ClientUserPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientUserPolicy resources.
  */
 export interface ClientUserPolicyState {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    realmId?: pulumi.Input<string>;
-    resourceServerId?: pulumi.Input<string>;
-    users?: pulumi.Input<pulumi.Input<string>[]>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    resourceServerId?: pulumi.Input<string | undefined>;
+    users?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -186,9 +186,9 @@ export interface ClientUserPolicyState {
  */
 export interface ClientUserPolicyArgs {
     decisionStrategy: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;
     users: pulumi.Input<pulumi.Input<string>[]>;

@@ -175,13 +175,13 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAggregatePolicy resources.
  */
 export interface ClientAggregatePolicyState {
-    decisionStrategy?: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
-    realmId?: pulumi.Input<string>;
-    resourceServerId?: pulumi.Input<string>;
+    decisionStrategy?: pulumi.Input<string | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    resourceServerId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -189,9 +189,9 @@ export interface ClientAggregatePolicyState {
  */
 export interface ClientAggregatePolicyArgs {
     decisionStrategy: pulumi.Input<string>;
-    description?: pulumi.Input<string>;
-    logic?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
+    logic?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
     policies: pulumi.Input<pulumi.Input<string>[]>;
     realmId: pulumi.Input<string>;
     resourceServerId: pulumi.Input<string>;

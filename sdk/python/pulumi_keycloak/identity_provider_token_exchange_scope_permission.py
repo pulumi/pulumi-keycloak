@@ -22,7 +22,7 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
                  clients: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  provider_alias: pulumi.Input[_builtins.str],
                  realm_id: pulumi.Input[_builtins.str],
-                 policy_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 policy_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IdentityProviderTokenExchangeScopePermission resource.
 
@@ -75,28 +75,28 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
 
     @_builtins.property
     @pulumi.getter(name="policyType")
-    def policy_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defaults to "client" This is also the only value policy type supported by this provider.
         """
         return pulumi.get(self, "policy_type")
 
     @policy_type.setter
-    def policy_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_type", value)
 
 
 @pulumi.input_type
 class _IdentityProviderTokenExchangeScopePermissionState:
     def __init__(__self__, *,
-                 authorization_idp_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_token_exchange_scope_permission_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 authorization_idp_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_token_exchange_scope_permission_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IdentityProviderTokenExchangeScopePermission resources.
 
@@ -128,98 +128,98 @@ class _IdentityProviderTokenExchangeScopePermissionState:
 
     @_builtins.property
     @pulumi.getter(name="authorizationIdpResourceId")
-    def authorization_idp_resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_idp_resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
         """
         return pulumi.get(self, "authorization_idp_resource_id")
 
     @authorization_idp_resource_id.setter
-    def authorization_idp_resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_idp_resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_idp_resource_id", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationResourceServerId")
-    def authorization_resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) Resource server ID representing the realm management client on which this permission is managed.
         """
         return pulumi.get(self, "authorization_resource_server_id")
 
     @authorization_resource_server_id.setter
-    def authorization_resource_server_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_resource_server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_resource_server_id", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationTokenExchangeScopePermissionId")
-    def authorization_token_exchange_scope_permission_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_token_exchange_scope_permission_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
         """
         return pulumi.get(self, "authorization_token_exchange_scope_permission_id")
 
     @authorization_token_exchange_scope_permission_id.setter
-    def authorization_token_exchange_scope_permission_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_token_exchange_scope_permission_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_token_exchange_scope_permission_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def clients(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
         """
         return pulumi.get(self, "clients")
 
     @clients.setter
-    def clients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def clients(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "clients", value)
 
     @_builtins.property
     @pulumi.getter(name="policyId")
-    def policy_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
         """
         return pulumi.get(self, "policy_id")
 
     @policy_id.setter
-    def policy_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_id", value)
 
     @_builtins.property
     @pulumi.getter(name="policyType")
-    def policy_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defaults to "client" This is also the only value policy type supported by this provider.
         """
         return pulumi.get(self, "policy_type")
 
     @policy_type.setter
-    def policy_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_type", value)
 
     @_builtins.property
     @pulumi.getter(name="providerAlias")
-    def provider_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alias of the identity provider.
         """
         return pulumi.get(self, "provider_alias")
 
     @provider_alias.setter
-    def provider_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm that the identity provider exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
 
@@ -229,10 +229,10 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows you to manage Identity Provider "Token exchange" Scope Based Permissions.
@@ -388,10 +388,10 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -425,14 +425,14 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authorization_idp_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-            authorization_resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
-            authorization_token_exchange_scope_permission_id: Optional[pulumi.Input[_builtins.str]] = None,
-            clients: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            policy_id: Optional[pulumi.Input[_builtins.str]] = None,
-            policy_type: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            realm_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'IdentityProviderTokenExchangeScopePermission':
+            authorization_idp_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_token_exchange_scope_permission_id: pulumi.Input[Optional[_builtins.str]] = None,
+            clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            policy_id: pulumi.Input[Optional[_builtins.str]] = None,
+            policy_type: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'IdentityProviderTokenExchangeScopePermission':
         """
         Get an existing IdentityProviderTokenExchangeScopePermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

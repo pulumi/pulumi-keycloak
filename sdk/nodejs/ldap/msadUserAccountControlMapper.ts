@@ -144,19 +144,19 @@ export interface MsadUserAccountControlMapperState {
     /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      */
-    ldapPasswordPolicyHintsEnabled?: pulumi.Input<boolean>;
+    ldapPasswordPolicyHintsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    ldapUserFederationId?: pulumi.Input<string>;
+    ldapUserFederationId?: pulumi.Input<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -166,7 +166,7 @@ export interface MsadUserAccountControlMapperArgs {
     /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      */
-    ldapPasswordPolicyHintsEnabled?: pulumi.Input<boolean>;
+    ldapPasswordPolicyHintsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
@@ -174,7 +174,7 @@ export interface MsadUserAccountControlMapperArgs {
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */

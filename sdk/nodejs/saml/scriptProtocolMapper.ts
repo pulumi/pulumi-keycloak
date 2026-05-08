@@ -173,39 +173,39 @@ export interface ScriptProtocolMapperState {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * An optional human-friendly name for this attribute.
      */
-    friendlyName?: pulumi.Input<string>;
+    friendlyName?: pulumi.Input<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId?: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
      * The name of the SAML attribute.
      */
-    samlAttributeName?: pulumi.Input<string>;
+    samlAttributeName?: pulumi.Input<string | undefined>;
     /**
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      */
-    samlAttributeNameFormat?: pulumi.Input<string>;
+    samlAttributeNameFormat?: pulumi.Input<string | undefined>;
     /**
      * JavaScript code to compute the attribute value.
      */
-    script?: pulumi.Input<string>;
+    script?: pulumi.Input<string | undefined>;
     /**
      * When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
      */
-    singleValueAttribute?: pulumi.Input<boolean>;
+    singleValueAttribute?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -215,19 +215,19 @@ export interface ScriptProtocolMapperArgs {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    clientScopeId?: pulumi.Input<string>;
+    clientScopeId?: pulumi.Input<string | undefined>;
     /**
      * An optional human-friendly name for this attribute.
      */
-    friendlyName?: pulumi.Input<string>;
+    friendlyName?: pulumi.Input<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm this protocol mapper exists within.
      */
@@ -247,5 +247,5 @@ export interface ScriptProtocolMapperArgs {
     /**
      * When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
      */
-    singleValueAttribute?: pulumi.Input<boolean>;
+    singleValueAttribute?: pulumi.Input<boolean | undefined>;
 }

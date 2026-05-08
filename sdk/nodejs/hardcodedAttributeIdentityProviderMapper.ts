@@ -148,31 +148,31 @@ export interface HardcodedAttributeIdentityProviderMapperState {
     /**
      * The name of the IDP attribute to set.
      */
-    attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string | undefined>;
     /**
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
-    attributeValue?: pulumi.Input<string>;
+    attributeValue?: pulumi.Input<string | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
-    identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm ID that this mapper will exist in.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * Is Attribute related to a User Session.
      */
-    userSession?: pulumi.Input<boolean>;
+    userSession?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -182,15 +182,15 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
     /**
      * The name of the IDP attribute to set.
      */
-    attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string | undefined>;
     /**
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
-    attributeValue?: pulumi.Input<string>;
+    attributeValue?: pulumi.Input<string | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
@@ -198,7 +198,7 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
     /**
      * Display name of this mapper when displayed in the console.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The realm ID that this mapper will exist in.
      */

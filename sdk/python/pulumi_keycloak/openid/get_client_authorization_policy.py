@@ -232,9 +232,9 @@ def get_client_authorization_policy(name: Optional[_builtins.str] = None,
         resources=pulumi.get(__ret__, 'resources'),
         scopes=pulumi.get(__ret__, 'scopes'),
         type=pulumi.get(__ret__, 'type'))
-def get_client_authorization_policy_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                           realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                           resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_authorization_policy_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                           realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                           resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientAuthorizationPolicyResult]:
     """
     This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.

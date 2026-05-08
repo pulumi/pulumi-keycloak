@@ -183,43 +183,43 @@ export interface AttributeToRoleIdentityMapperState {
     /**
      * Attribute Friendly Name. Conflicts with `attributeName`.
      */
-    attributeFriendlyName?: pulumi.Input<string>;
+    attributeFriendlyName?: pulumi.Input<string | undefined>;
     /**
      * Attribute Name.
      */
-    attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string | undefined>;
     /**
      * Attribute Value.
      */
-    attributeValue?: pulumi.Input<string>;
+    attributeValue?: pulumi.Input<string | undefined>;
     /**
      * OIDC Claim Name
      */
-    claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string | undefined>;
     /**
      * OIDC Claim Value
      */
-    claimValue?: pulumi.Input<string>;
+    claimValue?: pulumi.Input<string | undefined>;
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string | undefined>;
     /**
      * The name of the mapper.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * Role Name.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -229,27 +229,27 @@ export interface AttributeToRoleIdentityMapperArgs {
     /**
      * Attribute Friendly Name. Conflicts with `attributeName`.
      */
-    attributeFriendlyName?: pulumi.Input<string>;
+    attributeFriendlyName?: pulumi.Input<string | undefined>;
     /**
      * Attribute Name.
      */
-    attributeName?: pulumi.Input<string>;
+    attributeName?: pulumi.Input<string | undefined>;
     /**
      * Attribute Value.
      */
-    attributeValue?: pulumi.Input<string>;
+    attributeValue?: pulumi.Input<string | undefined>;
     /**
      * OIDC Claim Name
      */
-    claimName?: pulumi.Input<string>;
+    claimName?: pulumi.Input<string | undefined>;
     /**
      * OIDC Claim Value
      */
-    claimValue?: pulumi.Input<string>;
+    claimValue?: pulumi.Input<string | undefined>;
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
@@ -257,7 +257,7 @@ export interface AttributeToRoleIdentityMapperArgs {
     /**
      * The name of the mapper.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm.
      */

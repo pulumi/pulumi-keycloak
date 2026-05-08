@@ -152,23 +152,23 @@ export interface CustomIdentityProviderMappingState {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    identityProviderAlias?: pulumi.Input<string>;
+    identityProviderAlias?: pulumi.Input<string | undefined>;
     /**
      * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
-    identityProviderMapper?: pulumi.Input<string>;
+    identityProviderMapper?: pulumi.Input<string | undefined>;
     /**
      * The name of the mapper.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm.
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -178,7 +178,7 @@ export interface CustomIdentityProviderMappingArgs {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
@@ -190,7 +190,7 @@ export interface CustomIdentityProviderMappingArgs {
     /**
      * The name of the mapper.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm.
      */

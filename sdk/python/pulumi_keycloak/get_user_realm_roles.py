@@ -116,8 +116,8 @@ def get_user_realm_roles(realm_id: Optional[_builtins.str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'),
         role_names=pulumi.get(__ret__, 'role_names'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_user_realm_roles_output(realm_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                user_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_user_realm_roles_output(realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                user_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserRealmRolesResult]:
     """
     This data source can be used to fetch the realm roles of a user within Keycloak.

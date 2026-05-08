@@ -125,7 +125,7 @@ export interface GetRoleOutputArgs {
     /**
      * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */

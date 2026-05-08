@@ -229,8 +229,8 @@ def get_client_service_account_user(client_id: Optional[_builtins.str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'),
         required_actions=pulumi.get(__ret__, 'required_actions'),
         username=pulumi.get(__ret__, 'username'))
-def get_client_service_account_user_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                           realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_service_account_user_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                           realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientServiceAccountUserResult]:
     """
     This data source can be used to fetch information about the service account user that is associated with an OpenID client
