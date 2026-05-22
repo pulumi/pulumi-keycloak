@@ -616,8 +616,8 @@ class RealmOtpPolicyArgs:
 
 
 class RealmSecurityDefensesArgsDict(TypedDict):
-    brute_force_detection: NotRequired[pulumi.Input[Optional['RealmSecurityDefensesBruteForceDetectionArgs']]]
-    headers: NotRequired[pulumi.Input[Optional['RealmSecurityDefensesHeadersArgs']]]
+    brute_force_detection: NotRequired[pulumi.Input[Optional['RealmSecurityDefensesBruteForceDetectionArgsDict']]]
+    headers: NotRequired[pulumi.Input[Optional['RealmSecurityDefensesHeadersArgsDict']]]
 
 @pulumi.input_type
 class RealmSecurityDefensesArgs:
@@ -992,7 +992,7 @@ class RealmSmtpServerArgsDict(TypedDict):
     The host of the SMTP server.
     """
     allow_utf8: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
-    auth: NotRequired[pulumi.Input[Optional['RealmSmtpServerAuthArgs']]]
+    auth: NotRequired[pulumi.Input[Optional['RealmSmtpServerAuthArgsDict']]]
     """
     Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
     """
@@ -1024,7 +1024,7 @@ class RealmSmtpServerArgsDict(TypedDict):
     """
     When `true`, enables StartTLS. Defaults to `false`.
     """
-    token_auth: NotRequired[pulumi.Input[Optional['RealmSmtpServerTokenAuthArgs']]]
+    token_auth: NotRequired[pulumi.Input[Optional['RealmSmtpServerTokenAuthArgsDict']]]
     """
     Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
     """
@@ -1378,7 +1378,7 @@ class RealmUserProfileAttributeArgsDict(TypedDict):
     """
     If the attribute supports multiple values. Defaults to `false`.
     """
-    permissions: NotRequired[pulumi.Input[Optional['RealmUserProfileAttributePermissionsArgs']]]
+    permissions: NotRequired[pulumi.Input[Optional['RealmUserProfileAttributePermissionsArgsDict']]]
     """
     The permissions configuration information.
     """
@@ -1390,7 +1390,7 @@ class RealmUserProfileAttributeArgsDict(TypedDict):
     """
     A list of scopes for which the attribute will be required.
     """
-    validators: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]]
+    validators: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgsDict']]]]]
     """
     A list of validators for the attribute.
     """

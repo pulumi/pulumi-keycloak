@@ -237,13 +237,9 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         # data sources aren't technically necessary here, but they are helpful for demonstration purposes
         realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
             client_id="realm-management")
-        create_client = pulumi.Output.all(
-            id=realm.id,
-            realm_management=realm_management
-        ).apply(lambda resolved_outputs: keycloak.get_role_output(realm_id=resolved_outputs['id'],
+        create_client = keycloak.get_role_output(realm_id=realm.id,
             client_id=realm_management.id,
-            name="create-client"))
-
+            name="create-client")
         assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
@@ -347,13 +343,9 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         # data sources aren't technically necessary here, but they are helpful for demonstration purposes
         realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
             client_id="realm-management")
-        create_client = pulumi.Output.all(
-            id=realm.id,
-            realm_management=realm_management
-        ).apply(lambda resolved_outputs: keycloak.get_role_output(realm_id=resolved_outputs['id'],
+        create_client = keycloak.get_role_output(realm_id=realm.id,
             client_id=realm_management.id,
-            name="create-client"))
-
+            name="create-client")
         assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
