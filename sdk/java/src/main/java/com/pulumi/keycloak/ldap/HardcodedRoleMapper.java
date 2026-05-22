@@ -146,15 +146,11 @@ import javax.annotation.Nullable;
  *             .clientId("realm-management")
  *             .build());
  * 
- *         final var createClient = Output.tuple(realm.id(), realmManagement).applyValue(values -> {
- *             var id = values.t1;
- *             var realmManagement = values.t2;
- *             return KeycloakFunctions.getRole(GetRoleArgs.builder()
- *                 .realmId(id)
- *                 .clientId(realmManagement.id())
- *                 .name("create-client")
- *                 .build());
- *         });
+ *         final var createClient = KeycloakFunctions.getRole(GetRoleArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId(realmManagement.applyValue(_realmManagement -> _realmManagement.id()))
+ *             .name("create-client")
+ *             .build());
  * 
  *         var assignAdminRoleToAllUsers = new HardcodedRoleMapper("assignAdminRoleToAllUsers", HardcodedRoleMapperArgs.builder()
  *             .realmId(realm.id())

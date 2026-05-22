@@ -79,11 +79,11 @@ import * as utilities from "../utilities";
  *     realmId: realm.id,
  *     clientId: "realm-management",
  * });
- * const createClient = pulumi.all([realm.id, realmManagement]).apply(([id, realmManagement]) => keycloak.getRoleOutput({
- *     realmId: id,
- *     clientId: realmManagement.id,
+ * const createClient = keycloak.getRoleOutput({
+ *     realmId: realm.id,
+ *     clientId: realmManagement.apply(realmManagement => realmManagement.id),
  *     name: "create-client",
- * }));
+ * });
  * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
