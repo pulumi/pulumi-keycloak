@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericRoleMapper` instead.
+// > **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericRoleMapper` instead.
 //
 // Allow for creating and managing a client's scope mappings within Keycloak.
 //

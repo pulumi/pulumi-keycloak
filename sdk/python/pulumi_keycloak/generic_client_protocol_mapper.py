@@ -269,7 +269,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
+        > **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
 
         Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
 
@@ -334,7 +334,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  args: GenericClientProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
+        > **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
 
         Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
 
