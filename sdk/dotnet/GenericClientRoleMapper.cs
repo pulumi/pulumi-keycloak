@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericRoleMapper` instead.
+    /// &gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericRoleMapper` instead.
     /// 
     /// Allow for creating and managing a client's scope mappings within Keycloak.
     /// 

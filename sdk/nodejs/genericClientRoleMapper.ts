@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericRoleMapper` instead.
+ * > **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericRoleMapper` instead.
  *
  * Allow for creating and managing a client's scope mappings within Keycloak.
  *
