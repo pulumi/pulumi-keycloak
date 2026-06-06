@@ -70,6 +70,8 @@ type LookupClientArgs struct {
 	Oauth2DeviceAuthorizationGrantEnabled *bool             `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
 	Oauth2DeviceCodeLifespan              *string           `pulumi:"oauth2DeviceCodeLifespan"`
 	Oauth2DevicePollingInterval           *string           `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2JwtAuthorizationGrantEnabled    *bool             `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
+	Oauth2JwtAuthorizationGrantIdp        *string           `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The realm id.
 	RealmId string `pulumi:"realmId"`
 }
@@ -114,6 +116,8 @@ type LookupClientResult struct {
 	Oauth2DeviceAuthorizationGrantEnabled *bool    `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
 	Oauth2DeviceCodeLifespan              *string  `pulumi:"oauth2DeviceCodeLifespan"`
 	Oauth2DevicePollingInterval           *string  `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2JwtAuthorizationGrantEnabled    *bool    `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
+	Oauth2JwtAuthorizationGrantIdp        *string  `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	PkceCodeChallengeMethod               string   `pulumi:"pkceCodeChallengeMethod"`
 	RealmId                               string   `pulumi:"realmId"`
 	RequireDpopBoundTokens                bool     `pulumi:"requireDpopBoundTokens"`
@@ -150,6 +154,8 @@ type LookupClientOutputArgs struct {
 	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrInput   `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
 	Oauth2DeviceCodeLifespan              pulumi.StringPtrInput `pulumi:"oauth2DeviceCodeLifespan"`
 	Oauth2DevicePollingInterval           pulumi.StringPtrInput `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2JwtAuthorizationGrantEnabled    pulumi.BoolPtrInput   `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
+	Oauth2JwtAuthorizationGrantIdp        pulumi.StringPtrInput `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The realm id.
 	RealmId pulumi.StringInput `pulumi:"realmId"`
 }
@@ -322,6 +328,14 @@ func (o LookupClientResultOutput) Oauth2DeviceCodeLifespan() pulumi.StringPtrOut
 
 func (o LookupClientResultOutput) Oauth2DevicePollingInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupClientResult) *string { return v.Oauth2DevicePollingInterval }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupClientResultOutput) Oauth2JwtAuthorizationGrantEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *bool { return v.Oauth2JwtAuthorizationGrantEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o LookupClientResultOutput) Oauth2JwtAuthorizationGrantIdp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *string { return v.Oauth2JwtAuthorizationGrantIdp }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupClientResultOutput) PkceCodeChallengeMethod() pulumi.StringOutput {

@@ -62,6 +62,8 @@ class ClientArgs:
                  oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
                  oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[_builtins.str]] = None,
                  pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
                  require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
                  root_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -221,6 +223,10 @@ class ClientArgs:
             pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
         if oauth2_device_polling_interval is not None:
             pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+        if oauth2_jwt_authorization_grant_enabled is not None:
+            pulumi.set(__self__, "oauth2_jwt_authorization_grant_enabled", oauth2_jwt_authorization_grant_enabled)
+        if oauth2_jwt_authorization_grant_idp is not None:
+            pulumi.set(__self__, "oauth2_jwt_authorization_grant_idp", oauth2_jwt_authorization_grant_idp)
         if pkce_code_challenge_method is not None:
             pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
         if require_dpop_bound_tokens is not None:
@@ -747,6 +753,24 @@ class ClientArgs:
         pulumi.set(self, "oauth2_device_polling_interval", value)
 
     @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantEnabled")
+    def oauth2_jwt_authorization_grant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_enabled")
+
+    @oauth2_jwt_authorization_grant_enabled.setter
+    def oauth2_jwt_authorization_grant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "oauth2_jwt_authorization_grant_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantIdp")
+    def oauth2_jwt_authorization_grant_idp(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_idp")
+
+    @oauth2_jwt_authorization_grant_idp.setter
+    def oauth2_jwt_authorization_grant_idp(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "oauth2_jwt_authorization_grant_idp", value)
+
+    @_builtins.property
     @pulumi.getter(name="pkceCodeChallengeMethod")
     def pkce_code_challenge_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -924,6 +948,8 @@ class _ClientState:
                  oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
                  oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[_builtins.str]] = None,
                  pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1088,6 +1114,10 @@ class _ClientState:
             pulumi.set(__self__, "oauth2_device_code_lifespan", oauth2_device_code_lifespan)
         if oauth2_device_polling_interval is not None:
             pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+        if oauth2_jwt_authorization_grant_enabled is not None:
+            pulumi.set(__self__, "oauth2_jwt_authorization_grant_enabled", oauth2_jwt_authorization_grant_enabled)
+        if oauth2_jwt_authorization_grant_idp is not None:
+            pulumi.set(__self__, "oauth2_jwt_authorization_grant_idp", oauth2_jwt_authorization_grant_idp)
         if pkce_code_challenge_method is not None:
             pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
         if realm_id is not None:
@@ -1608,6 +1638,24 @@ class _ClientState:
         pulumi.set(self, "oauth2_device_polling_interval", value)
 
     @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantEnabled")
+    def oauth2_jwt_authorization_grant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_enabled")
+
+    @oauth2_jwt_authorization_grant_enabled.setter
+    def oauth2_jwt_authorization_grant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "oauth2_jwt_authorization_grant_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantIdp")
+    def oauth2_jwt_authorization_grant_idp(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_idp")
+
+    @oauth2_jwt_authorization_grant_idp.setter
+    def oauth2_jwt_authorization_grant_idp(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "oauth2_jwt_authorization_grant_idp", value)
+
+    @_builtins.property
     @pulumi.getter(name="pkceCodeChallengeMethod")
     def pkce_code_challenge_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1824,6 +1872,8 @@ class Client(pulumi.CustomResource):
                  oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
                  oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[_builtins.str]] = None,
                  pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -2109,6 +2159,8 @@ class Client(pulumi.CustomResource):
                  oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
                  oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[_builtins.str]] = None,
                  pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -2172,6 +2224,8 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["oauth2_device_authorization_grant_enabled"] = oauth2_device_authorization_grant_enabled
             __props__.__dict__["oauth2_device_code_lifespan"] = oauth2_device_code_lifespan
             __props__.__dict__["oauth2_device_polling_interval"] = oauth2_device_polling_interval
+            __props__.__dict__["oauth2_jwt_authorization_grant_enabled"] = oauth2_jwt_authorization_grant_enabled
+            __props__.__dict__["oauth2_jwt_authorization_grant_idp"] = oauth2_jwt_authorization_grant_idp
             __props__.__dict__["pkce_code_challenge_method"] = pkce_code_challenge_method
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
@@ -2240,6 +2294,8 @@ class Client(pulumi.CustomResource):
             oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             oauth2_device_code_lifespan: pulumi.Input[Optional[_builtins.str]] = None,
             oauth2_device_polling_interval: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[_builtins.str]] = None,
             pkce_code_challenge_method: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
             require_dpop_bound_tokens: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -2372,6 +2428,8 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["oauth2_device_authorization_grant_enabled"] = oauth2_device_authorization_grant_enabled
         __props__.__dict__["oauth2_device_code_lifespan"] = oauth2_device_code_lifespan
         __props__.__dict__["oauth2_device_polling_interval"] = oauth2_device_polling_interval
+        __props__.__dict__["oauth2_jwt_authorization_grant_enabled"] = oauth2_jwt_authorization_grant_enabled
+        __props__.__dict__["oauth2_jwt_authorization_grant_idp"] = oauth2_jwt_authorization_grant_idp
         __props__.__dict__["pkce_code_challenge_method"] = pkce_code_challenge_method
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["require_dpop_bound_tokens"] = require_dpop_bound_tokens
@@ -2411,7 +2469,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> pulumi.Output[_builtins.str]:
+    def admin_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         URL to the admin interface of the client.
         """
@@ -2475,7 +2533,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> pulumi.Output[_builtins.str]:
+    def base_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Default URL to use when the auth server needs to redirect or link back to the client.
         """
@@ -2576,7 +2634,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
-    def consent_screen_text(self) -> pulumi.Output[_builtins.str]:
+    def consent_screen_text(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
         """
@@ -2719,6 +2777,16 @@ class Client(pulumi.CustomResource):
         return pulumi.get(self, "oauth2_device_polling_interval")
 
     @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantEnabled")
+    def oauth2_jwt_authorization_grant_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantIdp")
+    def oauth2_jwt_authorization_grant_idp(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_idp")
+
+    @_builtins.property
     @pulumi.getter(name="pkceCodeChallengeMethod")
     def pkce_code_challenge_method(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -2752,7 +2820,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="rootUrl")
-    def root_url(self) -> pulumi.Output[_builtins.str]:
+    def root_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         """

@@ -150,32 +150,60 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper")
 public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      * 
      */
     @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
-     * @return Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * @return Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> addToAccessToken() {
         return Codegen.optional(this.addToAccessToken);
     }
     /**
-     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      * 
      */
     @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
-     * @return Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * @return Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> addToIdToken() {
         return Codegen.optional(this.addToIdToken);
+    }
+    /**
+     * Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    @Export(name="addToTokenIntrospection", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> addToTokenIntrospection() {
+        return Codegen.optional(this.addToTokenIntrospection);
+    }
+    /**
+     * Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
+    @Export(name="addToUserinfo", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> addToUserinfo;
+
+    /**
+     * @return Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> addToUserinfo() {
+        return Codegen.optional(this.addToUserinfo);
     }
     /**
      * The name of the claim to insert into a token.

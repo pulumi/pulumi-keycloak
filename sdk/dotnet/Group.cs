@@ -64,15 +64,59 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
+    /// Organization groups can be managed by setting `OrganizationId`. Organization groups require Keycloak 26.6.0 or later.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var organization = new Keycloak.Organization("organization", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Name = "my-organization",
+    ///         Domains = new[]
+    ///         {
+    ///             new Keycloak.Inputs.OrganizationDomainArgs
+    ///             {
+    ///                 Name = "example.com",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var organizationGroup = new Keycloak.Group("organization_group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         OrganizationId = organization.Id,
+    ///         Name = "organization-group",
+    ///     });
+    /// 
+    ///     var organizationChildGroup = new Keycloak.Group("organization_child_group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         OrganizationId = organization.Id,
+    ///         ParentId = organizationGroup.Id,
+    ///         Name = "organization-child-group",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `GroupId` is the unique ID that Keycloak
     /// assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
     /// 
+    /// Organization groups can be imported using the format `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+    /// 
     /// Example:
     /// 
     /// ```sh
     /// $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+    /// $ pulumi import keycloak:index/group:Group organization_group my-realm/9c9ef4b9-c4f2-4d17-ae03-0c6576df6c11/934a4a4e-28bd-4703-a0fa-332df153aabd
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/group:Group")]
@@ -92,6 +136,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+        /// </summary>
+        [Output("organizationId")]
+        public Output<string?> OrganizationId { get; private set; } = null!;
 
         /// <summary>
         /// The ID of this group's parent. If omitted, this group will be defined at the root level.
@@ -179,6 +229,12 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
         /// The ID of this group's parent. If omitted, this group will be defined at the root level.
         /// </summary>
         [Input("parentId")]
@@ -218,6 +274,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The ID of this group's parent. If omitted, this group will be defined at the root level.

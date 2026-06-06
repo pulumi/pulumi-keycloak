@@ -109,6 +109,21 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
     }
 
     /**
+     * Enable passkeys for passwordless WebAuthn authentication
+     * 
+     */
+    @Import(name="passwordlessPasskeysEnabled")
+    private @Nullable Output<Boolean> passwordlessPasskeysEnabled;
+
+    /**
+     * @return Enable passkeys for passwordless WebAuthn authentication
+     * 
+     */
+    public Optional<Output<Boolean>> passwordlessPasskeysEnabled() {
+        return Optional.ofNullable(this.passwordlessPasskeysEnabled);
+    }
+
+    /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
@@ -192,6 +207,7 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
         this.avoidSameAuthenticatorRegister = $.avoidSameAuthenticatorRegister;
         this.createTimeout = $.createTimeout;
         this.extraOrigins = $.extraOrigins;
+        this.passwordlessPasskeysEnabled = $.passwordlessPasskeysEnabled;
         this.relyingPartyEntityName = $.relyingPartyEntityName;
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
@@ -361,6 +377,27 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
          */
         public Builder extraOrigins(String... extraOrigins) {
             return extraOrigins(List.of(extraOrigins));
+        }
+
+        /**
+         * @param passwordlessPasskeysEnabled Enable passkeys for passwordless WebAuthn authentication
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordlessPasskeysEnabled(@Nullable Output<Boolean> passwordlessPasskeysEnabled) {
+            $.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
+            return this;
+        }
+
+        /**
+         * @param passwordlessPasskeysEnabled Enable passkeys for passwordless WebAuthn authentication
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordlessPasskeysEnabled(Boolean passwordlessPasskeysEnabled) {
+            return passwordlessPasskeysEnabled(Output.of(passwordlessPasskeysEnabled));
         }
 
         /**

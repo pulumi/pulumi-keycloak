@@ -79,12 +79,15 @@ type RealmKeystoreJavaGenerated struct {
 	KeyAlias pulumi.StringOutput `pulumi:"keyAlias"`
 	// Password for the private key.
 	KeyPassword pulumi.StringOutput `pulumi:"keyPassword"`
+	// Intended use for the key
+	KeyUse pulumi.StringPtrOutput `pulumi:"keyUse"`
 	// Path to keys file on keycloak instance.
 	Keystore pulumi.StringOutput `pulumi:"keystore"`
 	// Password for the keys.
 	KeystorePassword pulumi.StringOutput `pulumi:"keystorePassword"`
 	// Display name of provider when linked in admin console.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name     pulumi.StringOutput `pulumi:"name"`
+	ParentId pulumi.StringOutput `pulumi:"parentId"`
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
@@ -146,12 +149,15 @@ type realmKeystoreJavaGeneratedState struct {
 	KeyAlias *string `pulumi:"keyAlias"`
 	// Password for the private key.
 	KeyPassword *string `pulumi:"keyPassword"`
+	// Intended use for the key
+	KeyUse *string `pulumi:"keyUse"`
 	// Path to keys file on keycloak instance.
 	Keystore *string `pulumi:"keystore"`
 	// Password for the keys.
 	KeystorePassword *string `pulumi:"keystorePassword"`
 	// Display name of provider when linked in admin console.
-	Name *string `pulumi:"name"`
+	Name     *string `pulumi:"name"`
+	ParentId *string `pulumi:"parentId"`
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
@@ -169,12 +175,15 @@ type RealmKeystoreJavaGeneratedState struct {
 	KeyAlias pulumi.StringPtrInput
 	// Password for the private key.
 	KeyPassword pulumi.StringPtrInput
+	// Intended use for the key
+	KeyUse pulumi.StringPtrInput
 	// Path to keys file on keycloak instance.
 	Keystore pulumi.StringPtrInput
 	// Password for the keys.
 	KeystorePassword pulumi.StringPtrInput
 	// Display name of provider when linked in admin console.
-	Name pulumi.StringPtrInput
+	Name     pulumi.StringPtrInput
+	ParentId pulumi.StringPtrInput
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
@@ -196,6 +205,8 @@ type realmKeystoreJavaGeneratedArgs struct {
 	KeyAlias string `pulumi:"keyAlias"`
 	// Password for the private key.
 	KeyPassword string `pulumi:"keyPassword"`
+	// Intended use for the key
+	KeyUse *string `pulumi:"keyUse"`
 	// Path to keys file on keycloak instance.
 	Keystore string `pulumi:"keystore"`
 	// Password for the keys.
@@ -220,6 +231,8 @@ type RealmKeystoreJavaGeneratedArgs struct {
 	KeyAlias pulumi.StringInput
 	// Password for the private key.
 	KeyPassword pulumi.StringInput
+	// Intended use for the key
+	KeyUse pulumi.StringPtrInput
 	// Path to keys file on keycloak instance.
 	Keystore pulumi.StringInput
 	// Password for the keys.
@@ -344,6 +357,11 @@ func (o RealmKeystoreJavaGeneratedOutput) KeyPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.KeyPassword }).(pulumi.StringOutput)
 }
 
+// Intended use for the key
+func (o RealmKeystoreJavaGeneratedOutput) KeyUse() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringPtrOutput { return v.KeyUse }).(pulumi.StringPtrOutput)
+}
+
 // Path to keys file on keycloak instance.
 func (o RealmKeystoreJavaGeneratedOutput) Keystore() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.Keystore }).(pulumi.StringOutput)
@@ -357,6 +375,10 @@ func (o RealmKeystoreJavaGeneratedOutput) KeystorePassword() pulumi.StringOutput
 // Display name of provider when linked in admin console.
 func (o RealmKeystoreJavaGeneratedOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o RealmKeystoreJavaGeneratedOutput) ParentId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.ParentId }).(pulumi.StringOutput)
 }
 
 // Priority for the provider. Defaults to `0`

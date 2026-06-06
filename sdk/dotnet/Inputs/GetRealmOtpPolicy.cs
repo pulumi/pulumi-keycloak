@@ -15,6 +15,9 @@ namespace Pulumi.Keycloak.Inputs
         [Input("algorithm", required: true)]
         public string Algorithm { get; set; } = null!;
 
+        [Input("codeReusable", required: true)]
+        public bool CodeReusable { get; set; }
+
         [Input("digits", required: true)]
         public int Digits { get; set; }
 

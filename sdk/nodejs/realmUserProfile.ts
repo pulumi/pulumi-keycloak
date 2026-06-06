@@ -29,6 +29,7 @@ import * as utilities from "./utilities";
  *         {
  *             name: "field1",
  *             displayName: "Field 1",
+ *             defaultValue: "default field1 value",
  *             group: "group1",
  *             multiValued: false,
  *             enabledWhenScopes: ["offline_access"],
@@ -51,7 +52,7 @@ import * as utilities from "./utilities";
  *                 {
  *                     name: "pattern",
  *                     config: {
- *                         pattern: "^[a-z]+$",
+ *                         pattern: "^[a-z0-9 ]+$",
  *                         "error-message": "Nope",
  *                     },
  *                 },

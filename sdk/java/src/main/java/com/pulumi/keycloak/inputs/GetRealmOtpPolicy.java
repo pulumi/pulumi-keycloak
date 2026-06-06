@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -19,6 +20,13 @@ public final class GetRealmOtpPolicy extends com.pulumi.resources.InvokeArgs {
 
     public String algorithm() {
         return this.algorithm;
+    }
+
+    @Import(name="codeReusable", required=true)
+    private Boolean codeReusable;
+
+    public Boolean codeReusable() {
+        return this.codeReusable;
     }
 
     @Import(name="digits", required=true)
@@ -60,6 +68,7 @@ public final class GetRealmOtpPolicy extends com.pulumi.resources.InvokeArgs {
 
     private GetRealmOtpPolicy(GetRealmOtpPolicy $) {
         this.algorithm = $.algorithm;
+        this.codeReusable = $.codeReusable;
         this.digits = $.digits;
         this.initialCounter = $.initialCounter;
         this.lookAheadWindow = $.lookAheadWindow;
@@ -87,6 +96,11 @@ public final class GetRealmOtpPolicy extends com.pulumi.resources.InvokeArgs {
 
         public Builder algorithm(String algorithm) {
             $.algorithm = algorithm;
+            return this;
+        }
+
+        public Builder codeReusable(Boolean codeReusable) {
+            $.codeReusable = codeReusable;
             return this;
         }
 
@@ -118,6 +132,9 @@ public final class GetRealmOtpPolicy extends com.pulumi.resources.InvokeArgs {
         public GetRealmOtpPolicy build() {
             if ($.algorithm == null) {
                 throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "algorithm");
+            }
+            if ($.codeReusable == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "codeReusable");
             }
             if ($.digits == null) {
                 throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "digits");

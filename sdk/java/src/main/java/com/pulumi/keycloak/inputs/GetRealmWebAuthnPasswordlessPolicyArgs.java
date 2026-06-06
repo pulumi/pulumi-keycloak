@@ -75,6 +75,13 @@ public final class GetRealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.res
         return this.extraOrigins;
     }
 
+    @Import(name="passwordlessPasskeysEnabled", required=true)
+    private Output<Boolean> passwordlessPasskeysEnabled;
+
+    public Output<Boolean> passwordlessPasskeysEnabled() {
+        return this.passwordlessPasskeysEnabled;
+    }
+
     @Import(name="relyingPartyEntityName", required=true)
     private Output<String> relyingPartyEntityName;
 
@@ -143,6 +150,7 @@ public final class GetRealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.res
         this.avoidSameAuthenticatorRegister = $.avoidSameAuthenticatorRegister;
         this.createTimeout = $.createTimeout;
         this.extraOrigins = $.extraOrigins;
+        this.passwordlessPasskeysEnabled = $.passwordlessPasskeysEnabled;
         this.relyingPartyEntityName = $.relyingPartyEntityName;
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
@@ -254,6 +262,15 @@ public final class GetRealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.res
             return extraOrigins(List.of(extraOrigins));
         }
 
+        public Builder passwordlessPasskeysEnabled(Output<Boolean> passwordlessPasskeysEnabled) {
+            $.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
+            return this;
+        }
+
+        public Builder passwordlessPasskeysEnabled(Boolean passwordlessPasskeysEnabled) {
+            return passwordlessPasskeysEnabled(Output.of(passwordlessPasskeysEnabled));
+        }
+
         public Builder relyingPartyEntityName(Output<String> relyingPartyEntityName) {
             $.relyingPartyEntityName = relyingPartyEntityName;
             return this;
@@ -363,6 +380,9 @@ public final class GetRealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.res
             }
             if ($.extraOrigins == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicyArgs", "extraOrigins");
+            }
+            if ($.passwordlessPasskeysEnabled == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicyArgs", "passwordlessPasskeysEnabled");
             }
             if ($.relyingPartyEntityName == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicyArgs", "relyingPartyEntityName");

@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -17,6 +18,11 @@ public final class RealmOtpPolicy {
      * 
      */
     private @Nullable String algorithm;
+    /**
+     * @return Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+     * 
+     */
+    private @Nullable Boolean codeReusable;
     /**
      * @return How many digits the OTP have. Defaults to `6`.
      * 
@@ -50,6 +56,13 @@ public final class RealmOtpPolicy {
      */
     public Optional<String> algorithm() {
         return Optional.ofNullable(this.algorithm);
+    }
+    /**
+     * @return Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+     * 
+     */
+    public Optional<Boolean> codeReusable() {
+        return Optional.ofNullable(this.codeReusable);
     }
     /**
      * @return How many digits the OTP have. Defaults to `6`.
@@ -97,6 +110,7 @@ public final class RealmOtpPolicy {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String algorithm;
+        private @Nullable Boolean codeReusable;
         private @Nullable Integer digits;
         private @Nullable Integer initialCounter;
         private @Nullable Integer lookAheadWindow;
@@ -106,6 +120,7 @@ public final class RealmOtpPolicy {
         public Builder(RealmOtpPolicy defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithm = defaults.algorithm;
+    	      this.codeReusable = defaults.codeReusable;
     	      this.digits = defaults.digits;
     	      this.initialCounter = defaults.initialCounter;
     	      this.lookAheadWindow = defaults.lookAheadWindow;
@@ -117,6 +132,12 @@ public final class RealmOtpPolicy {
         public Builder algorithm(@Nullable String algorithm) {
 
             this.algorithm = algorithm;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder codeReusable(@Nullable Boolean codeReusable) {
+
+            this.codeReusable = codeReusable;
             return this;
         }
         @CustomType.Setter
@@ -152,6 +173,7 @@ public final class RealmOtpPolicy {
         public RealmOtpPolicy build() {
             final var _resultValue = new RealmOtpPolicy();
             _resultValue.algorithm = algorithm;
+            _resultValue.codeReusable = codeReusable;
             _resultValue.digits = digits;
             _resultValue.initialCounter = initialCounter;
             _resultValue.lookAheadWindow = lookAheadWindow;

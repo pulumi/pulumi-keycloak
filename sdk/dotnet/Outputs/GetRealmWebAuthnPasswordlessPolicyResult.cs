@@ -25,6 +25,7 @@ namespace Pulumi.Keycloak.Outputs
         public readonly bool AvoidSameAuthenticatorRegister;
         public readonly int CreateTimeout;
         public readonly ImmutableArray<string> ExtraOrigins;
+        public readonly bool PasswordlessPasskeysEnabled;
         public readonly string RelyingPartyEntityName;
         public readonly string RelyingPartyId;
         /// <summary>
@@ -54,6 +55,8 @@ namespace Pulumi.Keycloak.Outputs
 
             ImmutableArray<string> extraOrigins,
 
+            bool passwordlessPasskeysEnabled,
+
             string relyingPartyEntityName,
 
             string relyingPartyId,
@@ -70,6 +73,7 @@ namespace Pulumi.Keycloak.Outputs
             AvoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             CreateTimeout = createTimeout;
             ExtraOrigins = extraOrigins;
+            PasswordlessPasskeysEnabled = passwordlessPasskeysEnabled;
             RelyingPartyEntityName = relyingPartyEntityName;
             RelyingPartyId = relyingPartyId;
             RequireResidentKey = requireResidentKey;

@@ -25,6 +25,11 @@ export type IdentityProvider = import("./identityProvider").IdentityProvider;
 export const IdentityProvider: typeof import("./identityProvider").IdentityProvider = null as any;
 utilities.lazyLoad(exports, ["IdentityProvider"], () => require("./identityProvider"));
 
+export { OpenshiftV4IdentityProviderArgs, OpenshiftV4IdentityProviderState } from "./openshiftV4IdentityProvider";
+export type OpenshiftV4IdentityProvider = import("./openshiftV4IdentityProvider").OpenshiftV4IdentityProvider;
+export const OpenshiftV4IdentityProvider: typeof import("./openshiftV4IdentityProvider").OpenshiftV4IdentityProvider = null as any;
+utilities.lazyLoad(exports, ["OpenshiftV4IdentityProvider"], () => require("./openshiftV4IdentityProvider"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -38,6 +43,8 @@ const _module = {
                 return new GoogleIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:oidc/identityProvider:IdentityProvider":
                 return new IdentityProvider(name, <any>undefined, { urn })
+            case "keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider":
+                return new OpenshiftV4IdentityProvider(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -47,3 +54,4 @@ pulumi.runtime.registerResourceModule("keycloak", "oidc/facebookIdentityProvider
 pulumi.runtime.registerResourceModule("keycloak", "oidc/githubIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/googleIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/identityProvider", _module)
+pulumi.runtime.registerResourceModule("keycloak", "oidc/openshiftV4IdentityProvider", _module)

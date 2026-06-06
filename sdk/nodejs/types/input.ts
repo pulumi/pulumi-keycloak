@@ -17,6 +17,7 @@ export interface GetRealmInternationalizationArgs {
 
 export interface GetRealmOtpPolicy {
     algorithm?: string;
+    codeReusable?: boolean;
     digits?: number;
     initialCounter?: number;
     lookAheadWindow?: number;
@@ -26,6 +27,7 @@ export interface GetRealmOtpPolicy {
 
 export interface GetRealmOtpPolicyArgs {
     algorithm?: pulumi.Input<string | undefined>;
+    codeReusable?: pulumi.Input<boolean | undefined>;
     digits?: pulumi.Input<number | undefined>;
     initialCounter?: pulumi.Input<number | undefined>;
     lookAheadWindow?: pulumi.Input<number | undefined>;
@@ -154,6 +156,7 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
     extraOrigins?: string[];
+    passwordlessPasskeysEnabled?: boolean;
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
     /**
@@ -183,6 +186,7 @@ export interface GetRealmWebAuthnPasswordlessPolicyArgs {
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
     createTimeout?: pulumi.Input<number | undefined>;
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    passwordlessPasskeysEnabled?: pulumi.Input<boolean | undefined>;
     relyingPartyEntityName?: pulumi.Input<string | undefined>;
     relyingPartyId?: pulumi.Input<string | undefined>;
     /**
@@ -212,6 +216,7 @@ export interface GetRealmWebAuthnPolicy {
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
     extraOrigins?: string[];
+    passwordlessPasskeysEnabled?: boolean;
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
     /**
@@ -241,6 +246,7 @@ export interface GetRealmWebAuthnPolicyArgs {
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
     createTimeout?: pulumi.Input<number | undefined>;
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    passwordlessPasskeysEnabled?: pulumi.Input<boolean | undefined>;
     relyingPartyEntityName?: pulumi.Input<string | undefined>;
     relyingPartyId?: pulumi.Input<string | undefined>;
     /**
@@ -325,6 +331,10 @@ export interface RealmOtpPolicy {
      */
     algorithm?: pulumi.Input<string | undefined>;
     /**
+     * Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+     */
+    codeReusable?: pulumi.Input<boolean | undefined>;
+    /**
      * How many digits the OTP have. Defaults to `6`.
      */
     digits?: pulumi.Input<number | undefined>;
@@ -352,6 +362,7 @@ export interface RealmSecurityDefenses {
 }
 
 export interface RealmSecurityDefensesBruteForceDetection {
+    bruteForceStrategy?: pulumi.Input<string | undefined>;
     /**
      * When will failure count be reset?
      */
@@ -420,6 +431,9 @@ export interface RealmSecurityDefensesHeaders {
 }
 
 export interface RealmSmtpServer {
+    /**
+     * When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+     */
     allowUtf8?: pulumi.Input<boolean | undefined>;
     /**
      * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
@@ -497,6 +511,10 @@ export interface RealmSmtpServerTokenAuth {
 
 export interface RealmUserProfileAttribute {
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+     */
+    defaultValue?: pulumi.Input<string | undefined>;
     /**
      * The display name of the attribute.
      */
@@ -589,6 +607,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      * A set of extra origins for non-web applications.
      */
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Enable passkeys for passwordless WebAuthn authentication
+     */
+    passwordlessPasskeysEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
@@ -718,6 +740,21 @@ export interface UsersPermissionsViewScope {
     decisionStrategy?: pulumi.Input<string | undefined>;
     description?: pulumi.Input<string | undefined>;
     policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface WorkflowStep {
+    /**
+     * Delay in milliseconds before executing this step.
+     */
+    after?: pulumi.Input<string | undefined>;
+    /**
+     * Key-value configuration for the step.
+     */
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * The step type to execute (e.g. disable-user, delete-user, notify-user).
+     */
+    uses: pulumi.Input<string>;
 }
 export namespace ldap {
     export interface UserFederationCache {

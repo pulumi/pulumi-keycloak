@@ -15,6 +15,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSmtpServer {
+    /**
+     * @return When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean allowUtf8;
     /**
      * @return Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
@@ -73,6 +77,10 @@ public final class RealmSmtpServer {
     private @Nullable RealmSmtpServerTokenAuth tokenAuth;
 
     private RealmSmtpServer() {}
+    /**
+     * @return When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> allowUtf8() {
         return Optional.ofNullable(this.allowUtf8);
     }

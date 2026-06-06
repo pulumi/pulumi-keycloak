@@ -5,6 +5,7 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -12,6 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetRealmOtpPolicy {
     private String algorithm;
+    private Boolean codeReusable;
     private Integer digits;
     private Integer initialCounter;
     private Integer lookAheadWindow;
@@ -21,6 +23,9 @@ public final class GetRealmOtpPolicy {
     private GetRealmOtpPolicy() {}
     public String algorithm() {
         return this.algorithm;
+    }
+    public Boolean codeReusable() {
+        return this.codeReusable;
     }
     public Integer digits() {
         return this.digits;
@@ -48,6 +53,7 @@ public final class GetRealmOtpPolicy {
     @CustomType.Builder
     public static final class Builder {
         private String algorithm;
+        private Boolean codeReusable;
         private Integer digits;
         private Integer initialCounter;
         private Integer lookAheadWindow;
@@ -57,6 +63,7 @@ public final class GetRealmOtpPolicy {
         public Builder(GetRealmOtpPolicy defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithm = defaults.algorithm;
+    	      this.codeReusable = defaults.codeReusable;
     	      this.digits = defaults.digits;
     	      this.initialCounter = defaults.initialCounter;
     	      this.lookAheadWindow = defaults.lookAheadWindow;
@@ -70,6 +77,14 @@ public final class GetRealmOtpPolicy {
               throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "algorithm");
             }
             this.algorithm = algorithm;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder codeReusable(Boolean codeReusable) {
+            if (codeReusable == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "codeReusable");
+            }
+            this.codeReusable = codeReusable;
             return this;
         }
         @CustomType.Setter
@@ -115,6 +130,7 @@ public final class GetRealmOtpPolicy {
         public GetRealmOtpPolicy build() {
             final var _resultValue = new GetRealmOtpPolicy();
             _resultValue.algorithm = algorithm;
+            _resultValue.codeReusable = codeReusable;
             _resultValue.digits = digits;
             _resultValue.initialCounter = initialCounter;
             _resultValue.lookAheadWindow = lookAheadWindow;

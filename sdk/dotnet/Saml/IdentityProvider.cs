@@ -306,7 +306,7 @@ namespace Pulumi.Keycloak.Saml
         /// Indicates whether this service provider expects authentication requests to be signed (defaults to `True` if `SignatureAlgorithm` is set and this isn't).
         /// </summary>
         [Output("wantAuthnRequestsSigned")]
-        public Output<bool?> WantAuthnRequestsSigned { get; private set; } = null!;
+        public Output<bool> WantAuthnRequestsSigned { get; private set; } = null!;
 
         /// <summary>
         /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.

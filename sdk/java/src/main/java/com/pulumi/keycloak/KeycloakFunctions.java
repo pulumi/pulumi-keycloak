@@ -15,6 +15,8 @@ import com.pulumi.keycloak.inputs.GetAuthenticationFlowArgs;
 import com.pulumi.keycloak.inputs.GetAuthenticationFlowPlainArgs;
 import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
 import com.pulumi.keycloak.inputs.GetClientDescriptionConverterPlainArgs;
+import com.pulumi.keycloak.inputs.GetGenericProtocolMapperArgs;
+import com.pulumi.keycloak.inputs.GetGenericProtocolMapperPlainArgs;
 import com.pulumi.keycloak.inputs.GetGroupArgs;
 import com.pulumi.keycloak.inputs.GetGroupPlainArgs;
 import com.pulumi.keycloak.inputs.GetOrganizationArgs;
@@ -29,9 +31,12 @@ import com.pulumi.keycloak.inputs.GetUserArgs;
 import com.pulumi.keycloak.inputs.GetUserPlainArgs;
 import com.pulumi.keycloak.inputs.GetUserRealmRolesArgs;
 import com.pulumi.keycloak.inputs.GetUserRealmRolesPlainArgs;
+import com.pulumi.keycloak.inputs.GetWorkflowArgs;
+import com.pulumi.keycloak.inputs.GetWorkflowPlainArgs;
 import com.pulumi.keycloak.outputs.GetAuthenticationExecutionResult;
 import com.pulumi.keycloak.outputs.GetAuthenticationFlowResult;
 import com.pulumi.keycloak.outputs.GetClientDescriptionConverterResult;
+import com.pulumi.keycloak.outputs.GetGenericProtocolMapperResult;
 import com.pulumi.keycloak.outputs.GetGroupResult;
 import com.pulumi.keycloak.outputs.GetOrganizationResult;
 import com.pulumi.keycloak.outputs.GetRealmKeysResult;
@@ -39,6 +44,7 @@ import com.pulumi.keycloak.outputs.GetRealmResult;
 import com.pulumi.keycloak.outputs.GetRoleResult;
 import com.pulumi.keycloak.outputs.GetUserRealmRolesResult;
 import com.pulumi.keycloak.outputs.GetUserResult;
+import com.pulumi.keycloak.outputs.GetWorkflowResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class KeycloakFunctions {
@@ -948,6 +954,56 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invokeAsync("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", TypeShape.of(GetClientDescriptionConverterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
+     * 
+     * This is useful for importing auto-created protocol mappers (such as the organization membership mapper)
+     * into Terraform state by looking up their ID by name.
+     * 
+     */
+    public static Output<GetGenericProtocolMapperResult> getGenericProtocolMapper(GetGenericProtocolMapperArgs args) {
+        return getGenericProtocolMapper(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
+     * 
+     * This is useful for importing auto-created protocol mappers (such as the organization membership mapper)
+     * into Terraform state by looking up their ID by name.
+     * 
+     */
+    public static CompletableFuture<GetGenericProtocolMapperResult> getGenericProtocolMapperPlain(GetGenericProtocolMapperPlainArgs args) {
+        return getGenericProtocolMapperPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
+     * 
+     * This is useful for importing auto-created protocol mappers (such as the organization membership mapper)
+     * into Terraform state by looking up their ID by name.
+     * 
+     */
+    public static Output<GetGenericProtocolMapperResult> getGenericProtocolMapper(GetGenericProtocolMapperArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper", TypeShape.of(GetGenericProtocolMapperResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
+     * 
+     * This is useful for importing auto-created protocol mappers (such as the organization membership mapper)
+     * into Terraform state by looking up their ID by name.
+     * 
+     */
+    public static Output<GetGenericProtocolMapperResult> getGenericProtocolMapper(GetGenericProtocolMapperArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper", TypeShape.of(GetGenericProtocolMapperResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
+     * 
+     * This is useful for importing auto-created protocol mappers (such as the organization membership mapper)
+     * into Terraform state by looking up their ID by name.
+     * 
+     */
+    public static CompletableFuture<GetGenericProtocolMapperResult> getGenericProtocolMapperPlain(GetGenericProtocolMapperPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper", TypeShape.of(GetGenericProtocolMapperResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
@@ -999,6 +1055,41 @@ public final class KeycloakFunctions {
      *             .realmId(realm.id())
      *             .groupId(group.applyValue(_group -> _group.id()))
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .organizationId(organization.id())
+     *             .name("organization-group")
      *             .build());
      * 
      *     }
@@ -1069,6 +1160,41 @@ public final class KeycloakFunctions {
      * }
      * </pre>
      * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .organizationId(organization.id())
+     *             .name("organization-group")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args) {
         return getGroupPlain(args, InvokeOptions.Empty);
@@ -1125,6 +1251,41 @@ public final class KeycloakFunctions {
      *             .realmId(realm.id())
      *             .groupId(group.applyValue(_group -> _group.id()))
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .organizationId(organization.id())
+     *             .name("organization-group")
      *             .build());
      * 
      *     }
@@ -1195,6 +1356,41 @@ public final class KeycloakFunctions {
      * }
      * </pre>
      * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .organizationId(organization.id())
+     *             .name("organization-group")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
@@ -1251,6 +1447,41 @@ public final class KeycloakFunctions {
      *             .realmId(realm.id())
      *             .groupId(group.applyValue(_group -> _group.id()))
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .organizationId(organization.id())
+     *             .name("organization-group")
      *             .build());
      * 
      *     }
@@ -2946,5 +3177,240 @@ public final class KeycloakFunctions {
      */
     public static CompletableFuture<GetUserRealmRolesResult> getUserRealmRolesPlain(GetUserRealmRolesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getUserRealmRoles:getUserRealmRoles", TypeShape.of(GetUserRealmRolesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak workflow for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetWorkflowArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var onboarding = KeycloakFunctions.getWorkflow(GetWorkflowArgs.builder()
+     *             .realm(realm.id())
+     *             .name("onboarding-new-users")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWorkflowResult> getWorkflow(GetWorkflowArgs args) {
+        return getWorkflow(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak workflow for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetWorkflowArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var onboarding = KeycloakFunctions.getWorkflow(GetWorkflowArgs.builder()
+     *             .realm(realm.id())
+     *             .name("onboarding-new-users")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetWorkflowResult> getWorkflowPlain(GetWorkflowPlainArgs args) {
+        return getWorkflowPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak workflow for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetWorkflowArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var onboarding = KeycloakFunctions.getWorkflow(GetWorkflowArgs.builder()
+     *             .realm(realm.id())
+     *             .name("onboarding-new-users")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWorkflowResult> getWorkflow(GetWorkflowArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getWorkflow:getWorkflow", TypeShape.of(GetWorkflowResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak workflow for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetWorkflowArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var onboarding = KeycloakFunctions.getWorkflow(GetWorkflowArgs.builder()
+     *             .realm(realm.id())
+     *             .name("onboarding-new-users")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWorkflowResult> getWorkflow(GetWorkflowArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getWorkflow:getWorkflow", TypeShape.of(GetWorkflowResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak workflow for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetWorkflowArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var onboarding = KeycloakFunctions.getWorkflow(GetWorkflowArgs.builder()
+     *             .realm(realm.id())
+     *             .name("onboarding-new-users")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetWorkflowResult> getWorkflowPlain(GetWorkflowPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:index/getWorkflow:getWorkflow", TypeShape.of(GetWorkflowResult.class), args, Utilities.withVersion(options));
     }
 }

@@ -135,7 +135,7 @@ namespace Pulumi.Keycloak.OpenId
         /// URL to the admin interface of the client.
         /// </summary>
         [Output("adminUrl")]
-        public Output<string> AdminUrl { get; private set; } = null!;
+        public Output<string?> AdminUrl { get; private set; } = null!;
 
         /// <summary>
         /// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
@@ -183,7 +183,7 @@ namespace Pulumi.Keycloak.OpenId
         /// Default URL to use when the auth server needs to redirect or link back to the client.
         /// </summary>
         [Output("baseUrl")]
-        public Output<string> BaseUrl { get; private set; } = null!;
+        public Output<string?> BaseUrl { get; private set; } = null!;
 
         /// <summary>
         /// Defaults to `client-secret`. The authenticator type for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
@@ -260,7 +260,7 @@ namespace Pulumi.Keycloak.OpenId
         /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `DisplayOnConsentScreen` is `True`.
         /// </summary>
         [Output("consentScreenText")]
-        public Output<string> ConsentScreenText { get; private set; } = null!;
+        public Output<string?> ConsentScreenText { get; private set; } = null!;
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -364,6 +364,12 @@ namespace Pulumi.Keycloak.OpenId
         [Output("oauth2DevicePollingInterval")]
         public Output<string?> Oauth2DevicePollingInterval { get; private set; } = null!;
 
+        [Output("oauth2JwtAuthorizationGrantEnabled")]
+        public Output<bool?> Oauth2JwtAuthorizationGrantEnabled { get; private set; } = null!;
+
+        [Output("oauth2JwtAuthorizationGrantIdp")]
+        public Output<string?> Oauth2JwtAuthorizationGrantIdp { get; private set; } = null!;
+
         /// <summary>
         /// The challenge method to use for Proof Key for Code Exchange. Can be either `Plain` or `S256` or set to empty value ``.
         /// </summary>
@@ -392,7 +398,7 @@ namespace Pulumi.Keycloak.OpenId
         /// When specified, this URL is prepended to any relative URLs found within `ValidRedirectUris`, `WebOrigins`, and `AdminUrl`. NOTE: Due to limitations in the Keycloak API, when the `RootUrl` attribute is used, the `ValidRedirectUris`, `WebOrigins`, and `AdminUrl` attributes will be required.
         /// </summary>
         [Output("rootUrl")]
-        public Output<string> RootUrl { get; private set; } = null!;
+        public Output<string?> RootUrl { get; private set; } = null!;
 
         /// <summary>
         /// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
@@ -783,6 +789,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("oauth2DevicePollingInterval")]
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
+        [Input("oauth2JwtAuthorizationGrantEnabled")]
+        public Input<bool>? Oauth2JwtAuthorizationGrantEnabled { get; set; }
+
+        [Input("oauth2JwtAuthorizationGrantIdp")]
+        public Input<string>? Oauth2JwtAuthorizationGrantIdp { get; set; }
+
         /// <summary>
         /// The challenge method to use for Proof Key for Code Exchange. Can be either `Plain` or `S256` or set to empty value ``.
         /// </summary>
@@ -1164,6 +1176,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("oauth2DevicePollingInterval")]
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
+
+        [Input("oauth2JwtAuthorizationGrantEnabled")]
+        public Input<bool>? Oauth2JwtAuthorizationGrantEnabled { get; set; }
+
+        [Input("oauth2JwtAuthorizationGrantIdp")]
+        public Input<string>? Oauth2JwtAuthorizationGrantIdp { get; set; }
 
         /// <summary>
         /// The challenge method to use for Proof Key for Code Exchange. Can be either `Plain` or `S256` or set to empty value ``.

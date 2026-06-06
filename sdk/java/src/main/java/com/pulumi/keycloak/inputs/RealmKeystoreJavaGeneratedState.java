@@ -93,6 +93,21 @@ public final class RealmKeystoreJavaGeneratedState extends com.pulumi.resources.
     }
 
     /**
+     * Intended use for the key
+     * 
+     */
+    @Import(name="keyUse")
+    private @Nullable Output<String> keyUse;
+
+    /**
+     * @return Intended use for the key
+     * 
+     */
+    public Optional<Output<String>> keyUse() {
+        return Optional.ofNullable(this.keyUse);
+    }
+
+    /**
      * Path to keys file on keycloak instance.
      * 
      */
@@ -137,6 +152,13 @@ public final class RealmKeystoreJavaGeneratedState extends com.pulumi.resources.
         return Optional.ofNullable(this.name);
     }
 
+    @Import(name="parentId")
+    private @Nullable Output<String> parentId;
+
+    public Optional<Output<String>> parentId() {
+        return Optional.ofNullable(this.parentId);
+    }
+
     /**
      * Priority for the provider. Defaults to `0`
      * 
@@ -175,9 +197,11 @@ public final class RealmKeystoreJavaGeneratedState extends com.pulumi.resources.
         this.enabled = $.enabled;
         this.keyAlias = $.keyAlias;
         this.keyPassword = $.keyPassword;
+        this.keyUse = $.keyUse;
         this.keystore = $.keystore;
         this.keystorePassword = $.keystorePassword;
         this.name = $.name;
+        this.parentId = $.parentId;
         this.priority = $.priority;
         this.realmId = $.realmId;
     }
@@ -306,6 +330,27 @@ public final class RealmKeystoreJavaGeneratedState extends com.pulumi.resources.
         }
 
         /**
+         * @param keyUse Intended use for the key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUse(@Nullable Output<String> keyUse) {
+            $.keyUse = keyUse;
+            return this;
+        }
+
+        /**
+         * @param keyUse Intended use for the key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUse(String keyUse) {
+            return keyUse(Output.of(keyUse));
+        }
+
+        /**
          * @param keystore Path to keys file on keycloak instance.
          * 
          * @return builder
@@ -366,6 +411,15 @@ public final class RealmKeystoreJavaGeneratedState extends com.pulumi.resources.
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        public Builder parentId(@Nullable Output<String> parentId) {
+            $.parentId = parentId;
+            return this;
+        }
+
+        public Builder parentId(String parentId) {
+            return parentId(Output.of(parentId));
         }
 
         /**

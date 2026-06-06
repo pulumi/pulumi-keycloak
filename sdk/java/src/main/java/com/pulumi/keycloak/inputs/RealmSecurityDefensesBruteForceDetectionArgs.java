@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -15,6 +16,13 @@ import javax.annotation.Nullable;
 public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final RealmSecurityDefensesBruteForceDetectionArgs Empty = new RealmSecurityDefensesBruteForceDetectionArgs();
+
+    @Import(name="bruteForceStrategy")
+    private @Nullable Output<String> bruteForceStrategy;
+
+    public Optional<Output<String>> bruteForceStrategy() {
+        return Optional.ofNullable(this.bruteForceStrategy);
+    }
 
     /**
      * When will failure count be reset?
@@ -133,6 +141,7 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
     private RealmSecurityDefensesBruteForceDetectionArgs() {}
 
     private RealmSecurityDefensesBruteForceDetectionArgs(RealmSecurityDefensesBruteForceDetectionArgs $) {
+        this.bruteForceStrategy = $.bruteForceStrategy;
         this.failureResetTimeSeconds = $.failureResetTimeSeconds;
         this.maxFailureWaitSeconds = $.maxFailureWaitSeconds;
         this.maxLoginFailures = $.maxLoginFailures;
@@ -159,6 +168,15 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
 
         public Builder(RealmSecurityDefensesBruteForceDetectionArgs defaults) {
             $ = new RealmSecurityDefensesBruteForceDetectionArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder bruteForceStrategy(@Nullable Output<String> bruteForceStrategy) {
+            $.bruteForceStrategy = bruteForceStrategy;
+            return this;
+        }
+
+        public Builder bruteForceStrategy(String bruteForceStrategy) {
+            return bruteForceStrategy(Output.of(bruteForceStrategy));
         }
 
         /**

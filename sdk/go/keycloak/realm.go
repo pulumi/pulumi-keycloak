@@ -35,7 +35,7 @@ import (
 //				Enabled:            pulumi.Bool(true),
 //				DisplayName:        pulumi.String("my realm"),
 //				DisplayNameHtml:    pulumi.String("<b>my realm</b>"),
-//				LoginTheme:         pulumi.String("base"),
+//				LoginTheme:         pulumi.String("keycloak"),
 //				AccessCodeLifespan: pulumi.String("1h"),
 //				SslRequired:        pulumi.String("external"),
 //				PasswordPolicy:     pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),

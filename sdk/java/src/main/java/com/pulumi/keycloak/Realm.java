@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .displayName("my realm")
  *             .displayNameHtml("<b>my realm</b>")
- *             .loginTheme("base")
+ *             .loginTheme("keycloak")
  *             .accessCodeLifespan("1h")
  *             .sslRequired("external")
  *             .passwordPolicy("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername")

@@ -95,6 +95,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RequiredAction{}
 	case "keycloak:index/role:Role":
 		r = &Role{}
+	case "keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider":
+		r = &SpiffeIdentityProvider{}
 	case "keycloak:index/user:User":
 		r = &User{}
 	case "keycloak:index/userGroups:UserGroups":
@@ -105,6 +107,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &UserTemplateImporterIdentityProviderMapper{}
 	case "keycloak:index/usersPermissions:UsersPermissions":
 		r = &UsersPermissions{}
+	case "keycloak:index/workflow:Workflow":
+		r = &Workflow{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -323,6 +327,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/spiffeIdentityProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/user",
 		&module{version},
 	)
@@ -344,6 +353,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/usersPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/workflow",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

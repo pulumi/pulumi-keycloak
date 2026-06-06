@@ -29,6 +29,21 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
     }
 
     /**
+     * The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+     * 
+     */
+    @Import(name="defaultValue")
+    private @Nullable Output<String> defaultValue;
+
+    /**
+     * @return The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+     * 
+     */
+    public Optional<Output<String>> defaultValue() {
+        return Optional.ofNullable(this.defaultValue);
+    }
+
+    /**
      * The display name of the attribute.
      * 
      */
@@ -159,6 +174,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
 
     private RealmUserProfileAttributeArgs(RealmUserProfileAttributeArgs $) {
         this.annotations = $.annotations;
+        this.defaultValue = $.defaultValue;
         this.displayName = $.displayName;
         this.enabledWhenScopes = $.enabledWhenScopes;
         this.group = $.group;
@@ -195,6 +211,27 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
 
         public Builder annotations(Map<String,String> annotations) {
             return annotations(Output.of(annotations));
+        }
+
+        /**
+         * @param defaultValue The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultValue(@Nullable Output<String> defaultValue) {
+            $.defaultValue = defaultValue;
+            return this;
+        }
+
+        /**
+         * @param defaultValue The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultValue(String defaultValue) {
+            return defaultValue(Output.of(defaultValue));
         }
 
         /**

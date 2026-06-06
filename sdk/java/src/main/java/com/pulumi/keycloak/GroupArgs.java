@@ -55,6 +55,21 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     */
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    /**
+     * @return The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     */
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
+    /**
      * The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
      * 
      */
@@ -90,6 +105,7 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
         this.attributes = $.attributes;
         this.description = $.description;
         this.name = $.name;
+        this.organizationId = $.organizationId;
         this.parentId = $.parentId;
         this.realmId = $.realmId;
     }
@@ -161,6 +177,27 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param organizationId The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        /**
+         * @param organizationId The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
         }
 
         /**

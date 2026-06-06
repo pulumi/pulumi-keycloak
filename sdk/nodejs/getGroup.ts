@@ -32,12 +32,26 @@ import * as utilities from "./utilities";
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
+ *
+ * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const organizationGroup = keycloak.getGroup({
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     name: "organization-group",
+ * });
+ * ```
  */
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getGroup:getGroup", {
         "description": args.description,
         "name": args.name,
+        "organizationId": args.organizationId,
         "realmId": args.realmId,
     }, opts);
 }
@@ -51,6 +65,10 @@ export interface GetGroupArgs {
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
      */
     name: string;
+    /**
+     * The organization this group exists within. If omitted, the data source looks up realm groups.
+     */
+    organizationId?: string;
     /**
      * The realm this group exists within.
      */
@@ -68,6 +86,7 @@ export interface GetGroupResult {
      */
     readonly id: string;
     readonly name: string;
+    readonly organizationId?: string;
     readonly parentId: string;
     readonly path: string;
     readonly realmId: string;
@@ -100,12 +119,26 @@ export interface GetGroupResult {
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
+ *
+ * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const organizationGroup = keycloak.getGroup({
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     name: "organization-group",
+ * });
+ * ```
  */
 export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getGroup:getGroup", {
         "description": args.description,
         "name": args.name,
+        "organizationId": args.organizationId,
         "realmId": args.realmId,
     }, opts);
 }
@@ -119,6 +152,10 @@ export interface GetGroupOutputArgs {
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
      */
     name: pulumi.Input<string>;
+    /**
+     * The organization this group exists within. If omitted, the data source looks up realm groups.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The realm this group exists within.
      */

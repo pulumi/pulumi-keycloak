@@ -146,6 +146,12 @@ namespace Pulumi.Keycloak.OpenId
         [Input("oauth2DevicePollingInterval")]
         public string? Oauth2DevicePollingInterval { get; set; }
 
+        [Input("oauth2JwtAuthorizationGrantEnabled")]
+        public bool? Oauth2JwtAuthorizationGrantEnabled { get; set; }
+
+        [Input("oauth2JwtAuthorizationGrantIdp")]
+        public string? Oauth2JwtAuthorizationGrantIdp { get; set; }
+
         /// <summary>
         /// The realm id.
         /// </summary>
@@ -191,6 +197,12 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("oauth2DevicePollingInterval")]
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
+
+        [Input("oauth2JwtAuthorizationGrantEnabled")]
+        public Input<bool>? Oauth2JwtAuthorizationGrantEnabled { get; set; }
+
+        [Input("oauth2JwtAuthorizationGrantIdp")]
+        public Input<string>? Oauth2JwtAuthorizationGrantIdp { get; set; }
 
         /// <summary>
         /// The realm id.
@@ -248,6 +260,8 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool? Oauth2DeviceAuthorizationGrantEnabled;
         public readonly string? Oauth2DeviceCodeLifespan;
         public readonly string? Oauth2DevicePollingInterval;
+        public readonly bool? Oauth2JwtAuthorizationGrantEnabled;
+        public readonly string? Oauth2JwtAuthorizationGrantIdp;
         public readonly string PkceCodeChallengeMethod;
         public readonly string RealmId;
         public readonly bool RequireDpopBoundTokens;
@@ -339,6 +353,10 @@ namespace Pulumi.Keycloak.OpenId
 
             string? oauth2DevicePollingInterval,
 
+            bool? oauth2JwtAuthorizationGrantEnabled,
+
+            string? oauth2JwtAuthorizationGrantIdp,
+
             string pkceCodeChallengeMethod,
 
             string realmId,
@@ -404,6 +422,8 @@ namespace Pulumi.Keycloak.OpenId
             Oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
             Oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
             Oauth2DevicePollingInterval = oauth2DevicePollingInterval;
+            Oauth2JwtAuthorizationGrantEnabled = oauth2JwtAuthorizationGrantEnabled;
+            Oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
             PkceCodeChallengeMethod = pkceCodeChallengeMethod;
             RealmId = realmId;
             RequireDpopBoundTokens = requireDpopBoundTokens;

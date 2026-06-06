@@ -23,6 +23,8 @@ class UserSessionNoteProtocolMapperArgs:
                  realm_id: pulumi.Input[_builtins.str],
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -33,8 +35,10 @@ class UserSessionNoteProtocolMapperArgs:
 
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -47,6 +51,10 @@ class UserSessionNoteProtocolMapperArgs:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
             pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_token_introspection is not None:
+            pulumi.set(__self__, "add_to_token_introspection", add_to_token_introspection)
+        if add_to_userinfo is not None:
+            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if claim_value_type is not None:
             pulumi.set(__self__, "claim_value_type", claim_value_type)
         if client_id is not None:
@@ -86,7 +94,7 @@ class UserSessionNoteProtocolMapperArgs:
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -98,13 +106,37 @@ class UserSessionNoteProtocolMapperArgs:
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
     @add_to_id_token.setter
     def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @add_to_token_introspection.setter
+    def add_to_token_introspection(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_token_introspection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToUserinfo")
+    def add_to_userinfo(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_userinfo")
+
+    @add_to_userinfo.setter
+    def add_to_userinfo(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_userinfo", value)
 
     @_builtins.property
     @pulumi.getter(name="claimValueType")
@@ -172,6 +204,8 @@ class _UserSessionNoteProtocolMapperState:
     def __init__(__self__, *,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
                  claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -182,8 +216,10 @@ class _UserSessionNoteProtocolMapperState:
         """
         Input properties used for looking up and filtering UserSessionNoteProtocolMapper resources.
 
-        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[_builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -196,6 +232,10 @@ class _UserSessionNoteProtocolMapperState:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
             pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_token_introspection is not None:
+            pulumi.set(__self__, "add_to_token_introspection", add_to_token_introspection)
+        if add_to_userinfo is not None:
+            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if claim_name is not None:
             pulumi.set(__self__, "claim_name", claim_name)
         if claim_value_type is not None:
@@ -215,7 +255,7 @@ class _UserSessionNoteProtocolMapperState:
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -227,13 +267,37 @@ class _UserSessionNoteProtocolMapperState:
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
     @add_to_id_token.setter
     def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @add_to_token_introspection.setter
+    def add_to_token_introspection(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_token_introspection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToUserinfo")
+    def add_to_userinfo(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_userinfo")
+
+    @add_to_userinfo.setter
+    def add_to_userinfo(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_userinfo", value)
 
     @_builtins.property
     @pulumi.getter(name="claimName")
@@ -328,6 +392,8 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
                  claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -408,8 +474,10 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[_builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -511,6 +579,8 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
                  claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -529,6 +599,8 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
             __props__.__dict__["add_to_access_token"] = add_to_access_token
             __props__.__dict__["add_to_id_token"] = add_to_id_token
+            __props__.__dict__["add_to_token_introspection"] = add_to_token_introspection
+            __props__.__dict__["add_to_userinfo"] = add_to_userinfo
             if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
             __props__.__dict__["claim_name"] = claim_name
@@ -552,6 +624,8 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
             add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
             claim_name: pulumi.Input[Optional[_builtins.str]] = None,
             claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -566,8 +640,10 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[_builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -582,6 +658,8 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
         __props__.__dict__["add_to_access_token"] = add_to_access_token
         __props__.__dict__["add_to_id_token"] = add_to_id_token
+        __props__.__dict__["add_to_token_introspection"] = add_to_token_introspection
+        __props__.__dict__["add_to_userinfo"] = add_to_userinfo
         __props__.__dict__["claim_name"] = claim_name
         __props__.__dict__["claim_value_type"] = claim_value_type
         __props__.__dict__["client_id"] = client_id
@@ -595,7 +673,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -603,9 +681,25 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
+
+    @_builtins.property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @_builtins.property
+    @pulumi.getter(name="addToUserinfo")
+    def add_to_userinfo(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_userinfo")
 
     @_builtins.property
     @pulumi.getter(name="claimName")

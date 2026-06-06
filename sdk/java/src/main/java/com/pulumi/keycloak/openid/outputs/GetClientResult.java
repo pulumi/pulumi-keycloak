@@ -58,6 +58,8 @@ public final class GetClientResult {
     private @Nullable Boolean oauth2DeviceAuthorizationGrantEnabled;
     private @Nullable String oauth2DeviceCodeLifespan;
     private @Nullable String oauth2DevicePollingInterval;
+    private @Nullable Boolean oauth2JwtAuthorizationGrantEnabled;
+    private @Nullable String oauth2JwtAuthorizationGrantIdp;
     private String pkceCodeChallengeMethod;
     private String realmId;
     private Boolean requireDpopBoundTokens;
@@ -189,6 +191,12 @@ public final class GetClientResult {
     public Optional<String> oauth2DevicePollingInterval() {
         return Optional.ofNullable(this.oauth2DevicePollingInterval);
     }
+    public Optional<Boolean> oauth2JwtAuthorizationGrantEnabled() {
+        return Optional.ofNullable(this.oauth2JwtAuthorizationGrantEnabled);
+    }
+    public Optional<String> oauth2JwtAuthorizationGrantIdp() {
+        return Optional.ofNullable(this.oauth2JwtAuthorizationGrantIdp);
+    }
     public String pkceCodeChallengeMethod() {
         return this.pkceCodeChallengeMethod;
     }
@@ -278,6 +286,8 @@ public final class GetClientResult {
         private @Nullable Boolean oauth2DeviceAuthorizationGrantEnabled;
         private @Nullable String oauth2DeviceCodeLifespan;
         private @Nullable String oauth2DevicePollingInterval;
+        private @Nullable Boolean oauth2JwtAuthorizationGrantEnabled;
+        private @Nullable String oauth2JwtAuthorizationGrantIdp;
         private String pkceCodeChallengeMethod;
         private String realmId;
         private Boolean requireDpopBoundTokens;
@@ -332,6 +342,8 @@ public final class GetClientResult {
     	      this.oauth2DeviceAuthorizationGrantEnabled = defaults.oauth2DeviceAuthorizationGrantEnabled;
     	      this.oauth2DeviceCodeLifespan = defaults.oauth2DeviceCodeLifespan;
     	      this.oauth2DevicePollingInterval = defaults.oauth2DevicePollingInterval;
+    	      this.oauth2JwtAuthorizationGrantEnabled = defaults.oauth2JwtAuthorizationGrantEnabled;
+    	      this.oauth2JwtAuthorizationGrantIdp = defaults.oauth2JwtAuthorizationGrantIdp;
     	      this.pkceCodeChallengeMethod = defaults.pkceCodeChallengeMethod;
     	      this.realmId = defaults.realmId;
     	      this.requireDpopBoundTokens = defaults.requireDpopBoundTokens;
@@ -639,6 +651,18 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
+        public Builder oauth2JwtAuthorizationGrantEnabled(@Nullable Boolean oauth2JwtAuthorizationGrantEnabled) {
+
+            this.oauth2JwtAuthorizationGrantEnabled = oauth2JwtAuthorizationGrantEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder oauth2JwtAuthorizationGrantIdp(@Nullable String oauth2JwtAuthorizationGrantIdp) {
+
+            this.oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pkceCodeChallengeMethod(String pkceCodeChallengeMethod) {
             if (pkceCodeChallengeMethod == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "pkceCodeChallengeMethod");
@@ -798,6 +822,8 @@ public final class GetClientResult {
             _resultValue.oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
             _resultValue.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
             _resultValue.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
+            _resultValue.oauth2JwtAuthorizationGrantEnabled = oauth2JwtAuthorizationGrantEnabled;
+            _resultValue.oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
             _resultValue.pkceCodeChallengeMethod = pkceCodeChallengeMethod;
             _resultValue.realmId = realmId;
             _resultValue.requireDpopBoundTokens = requireDpopBoundTokens;

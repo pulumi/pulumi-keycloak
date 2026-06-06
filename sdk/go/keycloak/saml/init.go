@@ -29,8 +29,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ClientScope{}
 	case "keycloak:saml/identityProvider:IdentityProvider":
 		r = &IdentityProvider{}
-	case "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper":
-		r = &ScriptProtocolMapper{}
 	case "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper":
 		r = &UserAttributeProtocolMapper{}
 	case "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper":
@@ -66,11 +64,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"saml/identityProvider",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"keycloak",
-		"saml/scriptProtocolMapper",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

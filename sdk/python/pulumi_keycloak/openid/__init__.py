@@ -16,10 +16,10 @@ from .client_authorization_resource import *
 from .client_authorization_scope import *
 from .client_default_scopes import *
 from .client_group_policy import *
-from .client_js_policy import *
 from .client_optional_scopes import *
 from .client_permissions import *
 from .client_policy import *
+from .client_regex_policy import *
 from .client_role_policy import *
 from .client_scope import *
 from .client_service_account_realm_role import *
@@ -34,7 +34,6 @@ from .get_client_service_account_user import *
 from .group_membership_protocol_mapper import *
 from .hardcoded_claim_protocol_mapper import *
 from .hardcoded_role_protocol_mapper import *
-from .script_protocol_mapper import *
 from .sub_protocol_mapper import *
 from .user_attribute_protocol_mapper import *
 from .user_client_role_protocol_mapper import *

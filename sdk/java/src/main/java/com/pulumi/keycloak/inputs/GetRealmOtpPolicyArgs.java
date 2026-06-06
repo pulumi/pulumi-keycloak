@@ -6,6 +6,7 @@ package com.pulumi.keycloak.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -20,6 +21,13 @@ public final class GetRealmOtpPolicyArgs extends com.pulumi.resources.ResourceAr
 
     public Output<String> algorithm() {
         return this.algorithm;
+    }
+
+    @Import(name="codeReusable", required=true)
+    private Output<Boolean> codeReusable;
+
+    public Output<Boolean> codeReusable() {
+        return this.codeReusable;
     }
 
     @Import(name="digits", required=true)
@@ -61,6 +69,7 @@ public final class GetRealmOtpPolicyArgs extends com.pulumi.resources.ResourceAr
 
     private GetRealmOtpPolicyArgs(GetRealmOtpPolicyArgs $) {
         this.algorithm = $.algorithm;
+        this.codeReusable = $.codeReusable;
         this.digits = $.digits;
         this.initialCounter = $.initialCounter;
         this.lookAheadWindow = $.lookAheadWindow;
@@ -93,6 +102,15 @@ public final class GetRealmOtpPolicyArgs extends com.pulumi.resources.ResourceAr
 
         public Builder algorithm(String algorithm) {
             return algorithm(Output.of(algorithm));
+        }
+
+        public Builder codeReusable(Output<Boolean> codeReusable) {
+            $.codeReusable = codeReusable;
+            return this;
+        }
+
+        public Builder codeReusable(Boolean codeReusable) {
+            return codeReusable(Output.of(codeReusable));
         }
 
         public Builder digits(Output<Integer> digits) {
@@ -143,6 +161,9 @@ public final class GetRealmOtpPolicyArgs extends com.pulumi.resources.ResourceAr
         public GetRealmOtpPolicyArgs build() {
             if ($.algorithm == null) {
                 throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "algorithm");
+            }
+            if ($.codeReusable == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "codeReusable");
             }
             if ($.digits == null) {
                 throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "digits");

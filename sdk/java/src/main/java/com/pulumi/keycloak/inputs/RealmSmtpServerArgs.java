@@ -19,9 +19,17 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
 
     public static final RealmSmtpServerArgs Empty = new RealmSmtpServerArgs();
 
+    /**
+     * When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+     * 
+     */
     @Import(name="allowUtf8")
     private @Nullable Output<Boolean> allowUtf8;
 
+    /**
+     * @return When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> allowUtf8() {
         return Optional.ofNullable(this.allowUtf8);
     }
@@ -226,11 +234,23 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
             $ = new RealmSmtpServerArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allowUtf8 When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowUtf8(@Nullable Output<Boolean> allowUtf8) {
             $.allowUtf8 = allowUtf8;
             return this;
         }
 
+        /**
+         * @param allowUtf8 When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowUtf8(Boolean allowUtf8) {
             return allowUtf8(Output.of(allowUtf8));
         }

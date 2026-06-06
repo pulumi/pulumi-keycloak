@@ -108,13 +108,21 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
     }
 
     /**
-     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      */
     declare public readonly addToAccessToken: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      */
     declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
+    /**
+     * Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     */
+    declare public readonly addToTokenIntrospection: pulumi.Output<boolean | undefined>;
+    /**
+     * Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     */
+    declare public readonly addToUserinfo: pulumi.Output<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
@@ -159,6 +167,8 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             const state = argsOrState as UserSessionNoteProtocolMapperState | undefined;
             resourceInputs["addToAccessToken"] = state?.addToAccessToken;
             resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = state?.addToTokenIntrospection;
+            resourceInputs["addToUserinfo"] = state?.addToUserinfo;
             resourceInputs["claimName"] = state?.claimName;
             resourceInputs["claimValueType"] = state?.claimValueType;
             resourceInputs["clientId"] = state?.clientId;
@@ -176,6 +186,8 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = args?.addToTokenIntrospection;
+            resourceInputs["addToUserinfo"] = args?.addToUserinfo;
             resourceInputs["claimName"] = args?.claimName;
             resourceInputs["claimValueType"] = args?.claimValueType;
             resourceInputs["clientId"] = args?.clientId;
@@ -194,13 +206,21 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
  */
 export interface UserSessionNoteProtocolMapperState {
     /**
-     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      */
     addToAccessToken?: pulumi.Input<boolean | undefined>;
     /**
-     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     */
+    addToUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
@@ -236,13 +256,21 @@ export interface UserSessionNoteProtocolMapperState {
  */
 export interface UserSessionNoteProtocolMapperArgs {
     /**
-     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      */
     addToAccessToken?: pulumi.Input<boolean | undefined>;
     /**
-     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     */
+    addToUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */

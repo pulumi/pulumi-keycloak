@@ -70,6 +70,11 @@ export const getClientDescriptionConverter: typeof import("./getClientDescriptio
 export const getClientDescriptionConverterOutput: typeof import("./getClientDescriptionConverter").getClientDescriptionConverterOutput = null as any;
 utilities.lazyLoad(exports, ["getClientDescriptionConverter","getClientDescriptionConverterOutput"], () => require("./getClientDescriptionConverter"));
 
+export { GetGenericProtocolMapperArgs, GetGenericProtocolMapperResult, GetGenericProtocolMapperOutputArgs } from "./getGenericProtocolMapper";
+export const getGenericProtocolMapper: typeof import("./getGenericProtocolMapper").getGenericProtocolMapper = null as any;
+export const getGenericProtocolMapperOutput: typeof import("./getGenericProtocolMapper").getGenericProtocolMapperOutput = null as any;
+utilities.lazyLoad(exports, ["getGenericProtocolMapper","getGenericProtocolMapperOutput"], () => require("./getGenericProtocolMapper"));
+
 export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
 export const getGroup: typeof import("./getGroup").getGroup = null as any;
 export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
@@ -104,6 +109,11 @@ export { GetUserRealmRolesArgs, GetUserRealmRolesResult, GetUserRealmRolesOutput
 export const getUserRealmRoles: typeof import("./getUserRealmRoles").getUserRealmRoles = null as any;
 export const getUserRealmRolesOutput: typeof import("./getUserRealmRoles").getUserRealmRolesOutput = null as any;
 utilities.lazyLoad(exports, ["getUserRealmRoles","getUserRealmRolesOutput"], () => require("./getUserRealmRoles"));
+
+export { GetWorkflowArgs, GetWorkflowResult, GetWorkflowOutputArgs } from "./getWorkflow";
+export const getWorkflow: typeof import("./getWorkflow").getWorkflow = null as any;
+export const getWorkflowOutput: typeof import("./getWorkflow").getWorkflowOutput = null as any;
+utilities.lazyLoad(exports, ["getWorkflow","getWorkflowOutput"], () => require("./getWorkflow"));
 
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
@@ -243,6 +253,11 @@ export type Role = import("./role").Role;
 export const Role: typeof import("./role").Role = null as any;
 utilities.lazyLoad(exports, ["Role"], () => require("./role"));
 
+export { SpiffeIdentityProviderArgs, SpiffeIdentityProviderState } from "./spiffeIdentityProvider";
+export type SpiffeIdentityProvider = import("./spiffeIdentityProvider").SpiffeIdentityProvider;
+export const SpiffeIdentityProvider: typeof import("./spiffeIdentityProvider").SpiffeIdentityProvider = null as any;
+utilities.lazyLoad(exports, ["SpiffeIdentityProvider"], () => require("./spiffeIdentityProvider"));
+
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
@@ -267,6 +282,11 @@ export { UsersPermissionsArgs, UsersPermissionsState } from "./usersPermissions"
 export type UsersPermissions = import("./usersPermissions").UsersPermissions;
 export const UsersPermissions: typeof import("./usersPermissions").UsersPermissions = null as any;
 utilities.lazyLoad(exports, ["UsersPermissions"], () => require("./usersPermissions"));
+
+export { WorkflowArgs, WorkflowState } from "./workflow";
+export type Workflow = import("./workflow").Workflow;
+export const Workflow: typeof import("./workflow").Workflow = null as any;
+utilities.lazyLoad(exports, ["Workflow"], () => require("./workflow"));
 
 
 // Export sub-modules:
@@ -366,6 +386,8 @@ const _module = {
                 return new RequiredAction(name, <any>undefined, { urn })
             case "keycloak:index/role:Role":
                 return new Role(name, <any>undefined, { urn })
+            case "keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider":
+                return new SpiffeIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:index/user:User":
                 return new User(name, <any>undefined, { urn })
             case "keycloak:index/userGroups:UserGroups":
@@ -376,6 +398,8 @@ const _module = {
                 return new UserTemplateImporterIdentityProviderMapper(name, <any>undefined, { urn })
             case "keycloak:index/usersPermissions:UsersPermissions":
                 return new UsersPermissions(name, <any>undefined, { urn })
+            case "keycloak:index/workflow:Workflow":
+                return new Workflow(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -418,11 +442,13 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmOptionalClientScop
 pulumi.runtime.registerResourceModule("keycloak", "index/realmUserProfile", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/requiredAction", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/role", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/spiffeIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/user", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userGroups", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userTemplateImporterIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/usersPermissions", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/workflow", _module)
 pulumi.runtime.registerResourcePackage("keycloak", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

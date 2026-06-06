@@ -41,14 +41,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ClientDefaultScopes{}
 	case "keycloak:openid/clientGroupPolicy:ClientGroupPolicy":
 		r = &ClientGroupPolicy{}
-	case "keycloak:openid/clientJsPolicy:ClientJsPolicy":
-		r = &ClientJsPolicy{}
 	case "keycloak:openid/clientOptionalScopes:ClientOptionalScopes":
 		r = &ClientOptionalScopes{}
 	case "keycloak:openid/clientPermissions:ClientPermissions":
 		r = &ClientPermissions{}
 	case "keycloak:openid/clientPolicy:ClientPolicy":
 		r = &ClientPolicy{}
+	case "keycloak:openid/clientRegexPolicy:ClientRegexPolicy":
+		r = &ClientRegexPolicy{}
 	case "keycloak:openid/clientRolePolicy:ClientRolePolicy":
 		r = &ClientRolePolicy{}
 	case "keycloak:openid/clientScope:ClientScope":
@@ -69,8 +69,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &HardcodedClaimProtocolMapper{}
 	case "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper":
 		r = &HardcodedRoleProtocolMapper{}
-	case "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper":
-		r = &ScriptProtocolMapper{}
 	case "keycloak:openid/subProtocolMapper:SubProtocolMapper":
 		r = &SubProtocolMapper{}
 	case "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper":
@@ -148,11 +146,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
-		"openid/clientJsPolicy",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"keycloak",
 		"openid/clientOptionalScopes",
 		&module{version},
 	)
@@ -164,6 +157,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/clientPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"openid/clientRegexPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -214,11 +212,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/hardcodedRoleProtocolMapper",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"keycloak",
-		"openid/scriptProtocolMapper",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

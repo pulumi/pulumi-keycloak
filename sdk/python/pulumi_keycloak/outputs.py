@@ -46,6 +46,7 @@ __all__ = [
     'UsersPermissionsMapRolesScope',
     'UsersPermissionsUserImpersonatedScope',
     'UsersPermissionsViewScope',
+    'WorkflowStep',
     'GetClientDescriptionConverterProtocolMapperResult',
     'GetOrganizationDomainResult',
     'GetRealmInternationalizationResult',
@@ -59,6 +60,7 @@ __all__ = [
     'GetRealmSmtpServerTokenAuthResult',
     'GetRealmWebAuthnPasswordlessPolicyResult',
     'GetRealmWebAuthnPolicyResult',
+    'GetWorkflowStepResult',
 ]
 
 @pulumi.output_type
@@ -414,7 +416,9 @@ class RealmOtpPolicy(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "initialCounter":
+        if key == "codeReusable":
+            suggest = "code_reusable"
+        elif key == "initialCounter":
             suggest = "initial_counter"
         elif key == "lookAheadWindow":
             suggest = "look_ahead_window"
@@ -432,6 +436,7 @@ class RealmOtpPolicy(dict):
 
     def __init__(__self__, *,
                  algorithm: Optional[_builtins.str] = None,
+                 code_reusable: Optional[_builtins.bool] = None,
                  digits: Optional[_builtins.int] = None,
                  initial_counter: Optional[_builtins.int] = None,
                  look_ahead_window: Optional[_builtins.int] = None,
@@ -439,6 +444,7 @@ class RealmOtpPolicy(dict):
                  type: Optional[_builtins.str] = None):
         """
         :param _builtins.str algorithm: What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+        :param _builtins.bool code_reusable: Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
         :param _builtins.int digits: How many digits the OTP have. Defaults to `6`.
         :param _builtins.int initial_counter: What should the initial counter value be. Defaults to `2`.
         :param _builtins.int look_ahead_window: How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
@@ -447,6 +453,8 @@ class RealmOtpPolicy(dict):
         """
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
+        if code_reusable is not None:
+            pulumi.set(__self__, "code_reusable", code_reusable)
         if digits is not None:
             pulumi.set(__self__, "digits", digits)
         if initial_counter is not None:
@@ -465,6 +473,14 @@ class RealmOtpPolicy(dict):
         What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
         """
         return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="codeReusable")
+    def code_reusable(self) -> Optional[_builtins.bool]:
+        """
+        Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+        """
+        return pulumi.get(self, "code_reusable")
 
     @_builtins.property
     @pulumi.getter
@@ -550,7 +566,9 @@ class RealmSecurityDefensesBruteForceDetection(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "failureResetTimeSeconds":
+        if key == "bruteForceStrategy":
+            suggest = "brute_force_strategy"
+        elif key == "failureResetTimeSeconds":
             suggest = "failure_reset_time_seconds"
         elif key == "maxFailureWaitSeconds":
             suggest = "max_failure_wait_seconds"
@@ -579,6 +597,7 @@ class RealmSecurityDefensesBruteForceDetection(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 brute_force_strategy: Optional[_builtins.str] = None,
                  failure_reset_time_seconds: Optional[_builtins.int] = None,
                  max_failure_wait_seconds: Optional[_builtins.int] = None,
                  max_login_failures: Optional[_builtins.int] = None,
@@ -597,6 +616,8 @@ class RealmSecurityDefensesBruteForceDetection(dict):
         :param _builtins.int quick_login_check_milli_seconds: Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
         :param _builtins.int wait_increment_seconds: This represents the amount of time a user should be locked out when the login failure threshold has been met.
         """
+        if brute_force_strategy is not None:
+            pulumi.set(__self__, "brute_force_strategy", brute_force_strategy)
         if failure_reset_time_seconds is not None:
             pulumi.set(__self__, "failure_reset_time_seconds", failure_reset_time_seconds)
         if max_failure_wait_seconds is not None:
@@ -613,6 +634,11 @@ class RealmSecurityDefensesBruteForceDetection(dict):
             pulumi.set(__self__, "quick_login_check_milli_seconds", quick_login_check_milli_seconds)
         if wait_increment_seconds is not None:
             pulumi.set(__self__, "wait_increment_seconds", wait_increment_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="bruteForceStrategy")
+    def brute_force_strategy(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "brute_force_strategy")
 
     @_builtins.property
     @pulumi.getter(name="failureResetTimeSeconds")
@@ -858,6 +884,7 @@ class RealmSmtpServer(dict):
         """
         :param _builtins.str from_: The email address for the sender.
         :param _builtins.str host: The host of the SMTP server.
+        :param _builtins.bool allow_utf8: When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
         :param 'RealmSmtpServerAuthArgs' auth: Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
         :param _builtins.str envelope_from: The email address uses for bounces.
         :param _builtins.str from_display_name: The display name of the sender email address.
@@ -910,6 +937,9 @@ class RealmSmtpServer(dict):
     @_builtins.property
     @pulumi.getter(name="allowUtf8")
     def allow_utf8(self) -> Optional[_builtins.bool]:
+        """
+        When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+        """
         return pulumi.get(self, "allow_utf8")
 
     @_builtins.property
@@ -1092,7 +1122,9 @@ class RealmUserProfileAttribute(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "displayName":
+        if key == "defaultValue":
+            suggest = "default_value"
+        elif key == "displayName":
             suggest = "display_name"
         elif key == "enabledWhenScopes":
             suggest = "enabled_when_scopes"
@@ -1117,6 +1149,7 @@ class RealmUserProfileAttribute(dict):
     def __init__(__self__, *,
                  name: _builtins.str,
                  annotations: Optional[Mapping[str, _builtins.str]] = None,
+                 default_value: Optional[_builtins.str] = None,
                  display_name: Optional[_builtins.str] = None,
                  enabled_when_scopes: Optional[Sequence[_builtins.str]] = None,
                  group: Optional[_builtins.str] = None,
@@ -1126,6 +1159,7 @@ class RealmUserProfileAttribute(dict):
                  required_for_scopes: Optional[Sequence[_builtins.str]] = None,
                  validators: Optional[Sequence['outputs.RealmUserProfileAttributeValidator']] = None):
         """
+        :param _builtins.str default_value: The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
         :param _builtins.str display_name: The display name of the attribute.
         :param Sequence[_builtins.str] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
         :param _builtins.str group: A list of groups.
@@ -1138,6 +1172,8 @@ class RealmUserProfileAttribute(dict):
         pulumi.set(__self__, "name", name)
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if enabled_when_scopes is not None:
@@ -1164,6 +1200,14 @@ class RealmUserProfileAttribute(dict):
     @pulumi.getter
     def annotations(self) -> Optional[Mapping[str, _builtins.str]]:
         return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[_builtins.str]:
+        """
+        The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+        """
+        return pulumi.get(self, "default_value")
 
     @_builtins.property
     @pulumi.getter(name="displayName")
@@ -1367,6 +1411,8 @@ class RealmWebAuthnPasswordlessPolicy(dict):
             suggest = "create_timeout"
         elif key == "extraOrigins":
             suggest = "extra_origins"
+        elif key == "passwordlessPasskeysEnabled":
+            suggest = "passwordless_passkeys_enabled"
         elif key == "relyingPartyEntityName":
             suggest = "relying_party_entity_name"
         elif key == "relyingPartyId":
@@ -1396,6 +1442,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
                  avoid_same_authenticator_register: Optional[_builtins.bool] = None,
                  create_timeout: Optional[_builtins.int] = None,
                  extra_origins: Optional[Sequence[_builtins.str]] = None,
+                 passwordless_passkeys_enabled: Optional[_builtins.bool] = None,
                  relying_party_entity_name: Optional[_builtins.str] = None,
                  relying_party_id: Optional[_builtins.str] = None,
                  require_resident_key: Optional[_builtins.str] = None,
@@ -1408,6 +1455,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         :param _builtins.bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param _builtins.int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
         :param Sequence[_builtins.str] extra_origins: A set of extra origins for non-web applications.
+        :param _builtins.bool passwordless_passkeys_enabled: Enable passkeys for passwordless WebAuthn authentication
         :param _builtins.str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param _builtins.str relying_party_id: The WebAuthn relying party ID.
         :param _builtins.str require_resident_key: Either Yes or No
@@ -1426,6 +1474,8 @@ class RealmWebAuthnPasswordlessPolicy(dict):
             pulumi.set(__self__, "create_timeout", create_timeout)
         if extra_origins is not None:
             pulumi.set(__self__, "extra_origins", extra_origins)
+        if passwordless_passkeys_enabled is not None:
+            pulumi.set(__self__, "passwordless_passkeys_enabled", passwordless_passkeys_enabled)
         if relying_party_entity_name is not None:
             pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         if relying_party_id is not None:
@@ -1484,6 +1534,14 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         A set of extra origins for non-web applications.
         """
         return pulumi.get(self, "extra_origins")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordlessPasskeysEnabled")
+    def passwordless_passkeys_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Enable passkeys for passwordless WebAuthn authentication
+        """
+        return pulumi.get(self, "passwordless_passkeys_enabled")
 
     @_builtins.property
     @pulumi.getter(name="relyingPartyEntityName")
@@ -2070,6 +2128,48 @@ class UsersPermissionsViewScope(dict):
 
 
 @pulumi.output_type
+class WorkflowStep(dict):
+    def __init__(__self__, *,
+                 uses: _builtins.str,
+                 after: Optional[_builtins.str] = None,
+                 config: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        :param _builtins.str uses: The step type to execute (e.g. disable-user, delete-user, notify-user).
+        :param _builtins.str after: Delay in milliseconds before executing this step.
+        :param Mapping[str, _builtins.str] config: Key-value configuration for the step.
+        """
+        pulumi.set(__self__, "uses", uses)
+        if after is not None:
+            pulumi.set(__self__, "after", after)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+
+    @_builtins.property
+    @pulumi.getter
+    def uses(self) -> _builtins.str:
+        """
+        The step type to execute (e.g. disable-user, delete-user, notify-user).
+        """
+        return pulumi.get(self, "uses")
+
+    @_builtins.property
+    @pulumi.getter
+    def after(self) -> Optional[_builtins.str]:
+        """
+        Delay in milliseconds before executing this step.
+        """
+        return pulumi.get(self, "after")
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Key-value configuration for the step.
+        """
+        return pulumi.get(self, "config")
+
+
+@pulumi.output_type
 class GetClientDescriptionConverterProtocolMapperResult(dict):
     def __init__(__self__, *,
                  config: Mapping[str, _builtins.str],
@@ -2252,12 +2352,14 @@ class GetRealmKeysKeyResult(dict):
 class GetRealmOtpPolicyResult(dict):
     def __init__(__self__, *,
                  algorithm: _builtins.str,
+                 code_reusable: _builtins.bool,
                  digits: _builtins.int,
                  initial_counter: _builtins.int,
                  look_ahead_window: _builtins.int,
                  period: _builtins.int,
                  type: _builtins.str):
         pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "code_reusable", code_reusable)
         pulumi.set(__self__, "digits", digits)
         pulumi.set(__self__, "initial_counter", initial_counter)
         pulumi.set(__self__, "look_ahead_window", look_ahead_window)
@@ -2268,6 +2370,11 @@ class GetRealmOtpPolicyResult(dict):
     @pulumi.getter
     def algorithm(self) -> _builtins.str:
         return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="codeReusable")
+    def code_reusable(self) -> _builtins.bool:
+        return pulumi.get(self, "code_reusable")
 
     @_builtins.property
     @pulumi.getter
@@ -2586,6 +2693,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
                  avoid_same_authenticator_register: _builtins.bool,
                  create_timeout: _builtins.int,
                  extra_origins: Sequence[_builtins.str],
+                 passwordless_passkeys_enabled: _builtins.bool,
                  relying_party_entity_name: _builtins.str,
                  relying_party_id: _builtins.str,
                  require_resident_key: _builtins.str,
@@ -2604,6 +2712,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
         pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         pulumi.set(__self__, "create_timeout", create_timeout)
         pulumi.set(__self__, "extra_origins", extra_origins)
+        pulumi.set(__self__, "passwordless_passkeys_enabled", passwordless_passkeys_enabled)
         pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         pulumi.set(__self__, "relying_party_id", relying_party_id)
         pulumi.set(__self__, "require_resident_key", require_resident_key)
@@ -2645,6 +2754,11 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
     @pulumi.getter(name="extraOrigins")
     def extra_origins(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "extra_origins")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordlessPasskeysEnabled")
+    def passwordless_passkeys_enabled(self) -> _builtins.bool:
+        return pulumi.get(self, "passwordless_passkeys_enabled")
 
     @_builtins.property
     @pulumi.getter(name="relyingPartyEntityName")
@@ -2690,6 +2804,7 @@ class GetRealmWebAuthnPolicyResult(dict):
                  avoid_same_authenticator_register: _builtins.bool,
                  create_timeout: _builtins.int,
                  extra_origins: Sequence[_builtins.str],
+                 passwordless_passkeys_enabled: _builtins.bool,
                  relying_party_entity_name: _builtins.str,
                  relying_party_id: _builtins.str,
                  require_resident_key: _builtins.str,
@@ -2708,6 +2823,7 @@ class GetRealmWebAuthnPolicyResult(dict):
         pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         pulumi.set(__self__, "create_timeout", create_timeout)
         pulumi.set(__self__, "extra_origins", extra_origins)
+        pulumi.set(__self__, "passwordless_passkeys_enabled", passwordless_passkeys_enabled)
         pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         pulumi.set(__self__, "relying_party_id", relying_party_id)
         pulumi.set(__self__, "require_resident_key", require_resident_key)
@@ -2751,6 +2867,11 @@ class GetRealmWebAuthnPolicyResult(dict):
         return pulumi.get(self, "extra_origins")
 
     @_builtins.property
+    @pulumi.getter(name="passwordlessPasskeysEnabled")
+    def passwordless_passkeys_enabled(self) -> _builtins.bool:
+        return pulumi.get(self, "passwordless_passkeys_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> _builtins.str:
         return pulumi.get(self, "relying_party_entity_name")
@@ -2783,5 +2904,31 @@ class GetRealmWebAuthnPolicyResult(dict):
         Either required, preferred or discouraged
         """
         return pulumi.get(self, "user_verification_requirement")
+
+
+@pulumi.output_type
+class GetWorkflowStepResult(dict):
+    def __init__(__self__, *,
+                 after: _builtins.str,
+                 config: Mapping[str, _builtins.str],
+                 uses: _builtins.str):
+        pulumi.set(__self__, "after", after)
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "uses", uses)
+
+    @_builtins.property
+    @pulumi.getter
+    def after(self) -> _builtins.str:
+        return pulumi.get(self, "after")
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> Mapping[str, _builtins.str]:
+        return pulumi.get(self, "config")
+
+    @_builtins.property
+    @pulumi.getter
+    def uses(self) -> _builtins.str:
+        return pulumi.get(self, "uses")
 
 

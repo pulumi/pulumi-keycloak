@@ -39,6 +39,21 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
+     * The organization this group exists within. If omitted, the data source looks up realm groups.
+     * 
+     */
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    /**
+     * @return The organization this group exists within. If omitted, the data source looks up realm groups.
+     * 
+     */
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
+    /**
      * The realm this group exists within.
      * 
      */
@@ -58,6 +73,7 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     private GetGroupArgs(GetGroupArgs $) {
         this.description = $.description;
         this.name = $.name;
+        this.organizationId = $.organizationId;
         this.realmId = $.realmId;
     }
 
@@ -107,6 +123,27 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param organizationId The organization this group exists within. If omitted, the data source looks up realm groups.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        /**
+         * @param organizationId The organization this group exists within. If omitted, the data source looks up realm groups.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
         }
 
         /**

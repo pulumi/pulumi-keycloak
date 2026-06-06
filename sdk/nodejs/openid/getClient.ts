@@ -38,6 +38,8 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
         "oauth2DeviceAuthorizationGrantEnabled": args.oauth2DeviceAuthorizationGrantEnabled,
         "oauth2DeviceCodeLifespan": args.oauth2DeviceCodeLifespan,
         "oauth2DevicePollingInterval": args.oauth2DevicePollingInterval,
+        "oauth2JwtAuthorizationGrantEnabled": args.oauth2JwtAuthorizationGrantEnabled,
+        "oauth2JwtAuthorizationGrantIdp": args.oauth2JwtAuthorizationGrantIdp,
         "realmId": args.realmId,
     }, opts);
 }
@@ -57,6 +59,8 @@ export interface GetClientArgs {
     oauth2DeviceAuthorizationGrantEnabled?: boolean;
     oauth2DeviceCodeLifespan?: string;
     oauth2DevicePollingInterval?: string;
+    oauth2JwtAuthorizationGrantEnabled?: boolean;
+    oauth2JwtAuthorizationGrantIdp?: string;
     /**
      * The realm id.
      */
@@ -107,6 +111,8 @@ export interface GetClientResult {
     readonly oauth2DeviceAuthorizationGrantEnabled?: boolean;
     readonly oauth2DeviceCodeLifespan?: string;
     readonly oauth2DevicePollingInterval?: string;
+    readonly oauth2JwtAuthorizationGrantEnabled?: boolean;
+    readonly oauth2JwtAuthorizationGrantIdp?: string;
     readonly pkceCodeChallengeMethod: string;
     readonly realmId: string;
     readonly requireDpopBoundTokens: boolean;
@@ -154,6 +160,8 @@ export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeO
         "oauth2DeviceAuthorizationGrantEnabled": args.oauth2DeviceAuthorizationGrantEnabled,
         "oauth2DeviceCodeLifespan": args.oauth2DeviceCodeLifespan,
         "oauth2DevicePollingInterval": args.oauth2DevicePollingInterval,
+        "oauth2JwtAuthorizationGrantEnabled": args.oauth2JwtAuthorizationGrantEnabled,
+        "oauth2JwtAuthorizationGrantIdp": args.oauth2JwtAuthorizationGrantIdp,
         "realmId": args.realmId,
     }, opts);
 }
@@ -173,6 +181,8 @@ export interface GetClientOutputArgs {
     oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
     oauth2DeviceCodeLifespan?: pulumi.Input<string | undefined>;
     oauth2DevicePollingInterval?: pulumi.Input<string | undefined>;
+    oauth2JwtAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
+    oauth2JwtAuthorizationGrantIdp?: pulumi.Input<string | undefined>;
     /**
      * The realm id.
      */

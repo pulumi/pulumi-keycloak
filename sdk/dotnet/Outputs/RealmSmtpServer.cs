@@ -13,6 +13,9 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmSmtpServer
     {
+        /// <summary>
+        /// When `True`, allows UTF-8 in the local part of the email address. Defaults to `False`.
+        /// </summary>
         public readonly bool? AllowUtf8;
         /// <summary>
         /// Enables authentication to the SMTP server. Cannot be set alongside `TokenAuth`. This block supports the following arguments:

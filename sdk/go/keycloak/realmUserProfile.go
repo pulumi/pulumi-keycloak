@@ -68,10 +68,11 @@ import (
 //				UnmanagedAttributePolicy: pulumi.String("ENABLED"),
 //				Attributes: keycloak.RealmUserProfileAttributeArray{
 //					&keycloak.RealmUserProfileAttributeArgs{
-//						Name:        pulumi.String("field1"),
-//						DisplayName: pulumi.String("Field 1"),
-//						Group:       pulumi.String("group1"),
-//						MultiValued: pulumi.Bool(false),
+//						Name:         pulumi.String("field1"),
+//						DisplayName:  pulumi.String("Field 1"),
+//						DefaultValue: pulumi.String("default field1 value"),
+//						Group:        pulumi.String("group1"),
+//						MultiValued:  pulumi.Bool(false),
 //						EnabledWhenScopes: pulumi.StringArray{
 //							pulumi.String("offline_access"),
 //						},
@@ -98,7 +99,7 @@ import (
 //							&keycloak.RealmUserProfileAttributeValidatorArgs{
 //								Name: pulumi.String("pattern"),
 //								Config: pulumi.StringMap{
-//									"pattern":       pulumi.String("^[a-z]+$"),
+//									"pattern":       pulumi.String("^[a-z0-9 ]+$"),
 //									"error-message": pulumi.String("Nope"),
 //								},
 //							},

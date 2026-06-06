@@ -38,6 +38,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ExtraOrigins;
         /// <summary>
+        /// Enable passkeys for passwordless WebAuthn authentication
+        /// </summary>
+        public readonly bool? PasswordlessPasskeysEnabled;
+        /// <summary>
         /// A human-readable server name for the WebAuthn Relying Party. Defaults to `Keycloak`.
         /// </summary>
         public readonly string? RelyingPartyEntityName;
@@ -72,6 +76,8 @@ namespace Pulumi.Keycloak.Outputs
 
             ImmutableArray<string> extraOrigins,
 
+            bool? passwordlessPasskeysEnabled,
+
             string? relyingPartyEntityName,
 
             string? relyingPartyId,
@@ -88,6 +94,7 @@ namespace Pulumi.Keycloak.Outputs
             AvoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             CreateTimeout = createTimeout;
             ExtraOrigins = extraOrigins;
+            PasswordlessPasskeysEnabled = passwordlessPasskeysEnabled;
             RelyingPartyEntityName = relyingPartyEntityName;
             RelyingPartyId = relyingPartyId;
             RequireResidentKey = requireResidentKey;

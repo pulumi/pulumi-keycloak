@@ -89,6 +89,10 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
      */
     declare public readonly keyPassword: pulumi.Output<string>;
     /**
+     * Intended use for the key
+     */
+    declare public readonly keyUse: pulumi.Output<string | undefined>;
+    /**
      * Path to keys file on keycloak instance.
      */
     declare public readonly keystore: pulumi.Output<string>;
@@ -100,6 +104,7 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
      * Display name of provider when linked in admin console.
      */
     declare public readonly name: pulumi.Output<string>;
+    declare public /*out*/ readonly parentId: pulumi.Output<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
@@ -127,9 +132,11 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["keyAlias"] = state?.keyAlias;
             resourceInputs["keyPassword"] = state?.keyPassword;
+            resourceInputs["keyUse"] = state?.keyUse;
             resourceInputs["keystore"] = state?.keystore;
             resourceInputs["keystorePassword"] = state?.keystorePassword;
             resourceInputs["name"] = state?.name;
+            resourceInputs["parentId"] = state?.parentId;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
         } else {
@@ -154,11 +161,13 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["keyAlias"] = args?.keyAlias;
             resourceInputs["keyPassword"] = args?.keyPassword;
+            resourceInputs["keyUse"] = args?.keyUse;
             resourceInputs["keystore"] = args?.keystore;
             resourceInputs["keystorePassword"] = args?.keystorePassword;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["parentId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmKeystoreJavaGenerated.__pulumiType, name, resourceInputs, opts);
@@ -190,6 +199,10 @@ export interface RealmKeystoreJavaGeneratedState {
      */
     keyPassword?: pulumi.Input<string | undefined>;
     /**
+     * Intended use for the key
+     */
+    keyUse?: pulumi.Input<string | undefined>;
+    /**
      * Path to keys file on keycloak instance.
      */
     keystore?: pulumi.Input<string | undefined>;
@@ -201,6 +214,7 @@ export interface RealmKeystoreJavaGeneratedState {
      * Display name of provider when linked in admin console.
      */
     name?: pulumi.Input<string | undefined>;
+    parentId?: pulumi.Input<string | undefined>;
     /**
      * Priority for the provider. Defaults to `0`
      */
@@ -235,6 +249,10 @@ export interface RealmKeystoreJavaGeneratedArgs {
      * Password for the private key.
      */
     keyPassword: pulumi.Input<string>;
+    /**
+     * Intended use for the key
+     */
+    keyUse?: pulumi.Input<string | undefined>;
     /**
      * Path to keys file on keycloak instance.
      */

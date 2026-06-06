@@ -31,7 +31,7 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///         DisplayName = "my realm",
     ///         DisplayNameHtml = "&lt;b&gt;my realm&lt;/b&gt;",
-    ///         LoginTheme = "base",
+    ///         LoginTheme = "keycloak",
     ///         AccessCodeLifespan = "1h",
     ///         SslRequired = "external",
     ///         PasswordPolicy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",

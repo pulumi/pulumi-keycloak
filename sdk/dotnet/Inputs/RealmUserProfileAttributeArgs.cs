@@ -21,6 +21,12 @@ namespace Pulumi.Keycloak.Inputs
         }
 
         /// <summary>
+        /// The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+        /// </summary>
+        [Input("defaultValue")]
+        public Input<string>? DefaultValue { get; set; }
+
+        /// <summary>
         /// The display name of the attribute.
         /// </summary>
         [Input("displayName")]

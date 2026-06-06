@@ -19,6 +19,12 @@ namespace Pulumi.Keycloak.Inputs
         public Input<string>? Algorithm { get; set; }
 
         /// <summary>
+        /// Possibility to use the same OTP code again after successful authentication. Defaults to `False`.
+        /// </summary>
+        [Input("codeReusable")]
+        public Input<bool>? CodeReusable { get; set; }
+
+        /// <summary>
         /// How many digits the OTP have. Defaults to `6`.
         /// </summary>
         [Input("digits")]

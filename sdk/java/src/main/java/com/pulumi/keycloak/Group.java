@@ -83,15 +83,71 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * Organization groups can be managed by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Organization;
+ * import com.pulumi.keycloak.OrganizationArgs;
+ * import com.pulumi.keycloak.inputs.OrganizationDomainArgs;
+ * import com.pulumi.keycloak.Group;
+ * import com.pulumi.keycloak.GroupArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var organization = new Organization("organization", OrganizationArgs.builder()
+ *             .realm(realm.id())
+ *             .name("my-organization")
+ *             .domains(OrganizationDomainArgs.builder()
+ *                 .name("example.com")
+ *                 .build())
+ *             .build());
+ * 
+ *         var organizationGroup = new Group("organizationGroup", GroupArgs.builder()
+ *             .realmId(realm.id())
+ *             .organizationId(organization.id())
+ *             .name("organization-group")
+ *             .build());
+ * 
+ *         var organizationChildGroup = new Group("organizationChildGroup", GroupArgs.builder()
+ *             .realmId(realm.id())
+ *             .organizationId(organization.id())
+ *             .parentId(organizationGroup.id())
+ *             .name("organization-child-group")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
  * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
  * 
+ * Organization groups can be imported using the format `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+ * 
  * Example:
  * 
  * ```sh
  * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+ * $ pulumi import keycloak:index/group:Group organization_group my-realm/9c9ef4b9-c4f2-4d17-ae03-0c6576df6c11/934a4a4e-28bd-4703-a0fa-332df153aabd
  * ```
  * 
  */
@@ -130,6 +186,20 @@ public class Group extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     */
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> organizationId;
+
+    /**
+     * @return The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     */
+    public Output<Optional<String>> organizationId() {
+        return Codegen.optional(this.organizationId);
     }
     /**
      * The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.

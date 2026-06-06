@@ -134,10 +134,14 @@ import (
 type UserSessionNoteProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
-	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
+	// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrOutput `pulumi:"addToTokenIntrospection"`
+	// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
 	// The name of the claim to insert into a token.
 	ClaimName pulumi.StringOutput `pulumi:"claimName"`
 	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -190,10 +194,14 @@ func GetUserSessionNoteProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserSessionNoteProtocolMapper resources.
 type userSessionNoteProtocolMapperState struct {
-	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection *bool `pulumi:"addToTokenIntrospection"`
+	// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo *bool `pulumi:"addToUserinfo"`
 	// The name of the claim to insert into a token.
 	ClaimName *string `pulumi:"claimName"`
 	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -211,10 +219,14 @@ type userSessionNoteProtocolMapperState struct {
 }
 
 type UserSessionNoteProtocolMapperState struct {
-	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrInput
+	// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo pulumi.BoolPtrInput
 	// The name of the claim to insert into a token.
 	ClaimName pulumi.StringPtrInput
 	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -236,10 +248,14 @@ func (UserSessionNoteProtocolMapperState) ElementType() reflect.Type {
 }
 
 type userSessionNoteProtocolMapperArgs struct {
-	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection *bool `pulumi:"addToTokenIntrospection"`
+	// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo *bool `pulumi:"addToUserinfo"`
 	// The name of the claim to insert into a token.
 	ClaimName string `pulumi:"claimName"`
 	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -258,10 +274,14 @@ type userSessionNoteProtocolMapperArgs struct {
 
 // The set of arguments for constructing a UserSessionNoteProtocolMapper resource.
 type UserSessionNoteProtocolMapperArgs struct {
-	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+	// Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrInput
+	// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+	AddToUserinfo pulumi.BoolPtrInput
 	// The name of the claim to insert into a token.
 	ClaimName pulumi.StringInput
 	// The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -365,14 +385,24 @@ func (o UserSessionNoteProtocolMapperOutput) ToUserSessionNoteProtocolMapperOutp
 	return o
 }
 
-// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 func (o UserSessionNoteProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
 }
 
-// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+// Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
 func (o UserSessionNoteProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+func (o UserSessionNoteProtocolMapperOutput) AddToTokenIntrospection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.BoolPtrOutput { return v.AddToTokenIntrospection }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+func (o UserSessionNoteProtocolMapperOutput) AddToUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.BoolPtrOutput { return v.AddToUserinfo }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the claim to insert into a token.

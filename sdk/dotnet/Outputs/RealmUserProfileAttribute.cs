@@ -15,6 +15,10 @@ namespace Pulumi.Keycloak.Outputs
     {
         public readonly ImmutableDictionary<string, string>? Annotations;
         /// <summary>
+        /// The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+        /// </summary>
+        public readonly string? DefaultValue;
+        /// <summary>
         /// The display name of the attribute.
         /// </summary>
         public readonly string? DisplayName;
@@ -52,6 +56,8 @@ namespace Pulumi.Keycloak.Outputs
         private RealmUserProfileAttribute(
             ImmutableDictionary<string, string>? annotations,
 
+            string? defaultValue,
+
             string? displayName,
 
             ImmutableArray<string> enabledWhenScopes,
@@ -71,6 +77,7 @@ namespace Pulumi.Keycloak.Outputs
             ImmutableArray<Outputs.RealmUserProfileAttributeValidator> validators)
         {
             Annotations = annotations;
+            DefaultValue = defaultValue;
             DisplayName = displayName;
             EnabledWhenScopes = enabledWhenScopes;
             Group = group;

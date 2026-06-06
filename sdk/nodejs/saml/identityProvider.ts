@@ -236,7 +236,7 @@ export class IdentityProvider extends pulumi.CustomResource {
     /**
      * Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
      */
-    declare public readonly wantAuthnRequestsSigned: pulumi.Output<boolean | undefined>;
+    declare public readonly wantAuthnRequestsSigned: pulumi.Output<boolean>;
     /**
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */

@@ -125,7 +125,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * URL to the admin interface of the client.
      */
-    declare public readonly adminUrl: pulumi.Output<string>;
+    declare public readonly adminUrl: pulumi.Output<string | undefined>;
     /**
      * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
      */
@@ -157,7 +157,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
-    declare public readonly baseUrl: pulumi.Output<string>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
      * Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
@@ -210,7 +210,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      */
-    declare public readonly consentScreenText: pulumi.Output<string>;
+    declare public readonly consentScreenText: pulumi.Output<string | undefined>;
     /**
      * The description of this client in the GUI.
      */
@@ -279,6 +279,8 @@ export class Client extends pulumi.CustomResource {
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      */
     declare public readonly oauth2DevicePollingInterval: pulumi.Output<string | undefined>;
+    declare public readonly oauth2JwtAuthorizationGrantEnabled: pulumi.Output<boolean | undefined>;
+    declare public readonly oauth2JwtAuthorizationGrantIdp: pulumi.Output<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
@@ -298,7 +300,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      */
-    declare public readonly rootUrl: pulumi.Output<string>;
+    declare public readonly rootUrl: pulumi.Output<string | undefined>;
     /**
      * (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
      */
@@ -391,6 +393,8 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = state?.oauth2DeviceAuthorizationGrantEnabled;
             resourceInputs["oauth2DeviceCodeLifespan"] = state?.oauth2DeviceCodeLifespan;
             resourceInputs["oauth2DevicePollingInterval"] = state?.oauth2DevicePollingInterval;
+            resourceInputs["oauth2JwtAuthorizationGrantEnabled"] = state?.oauth2JwtAuthorizationGrantEnabled;
+            resourceInputs["oauth2JwtAuthorizationGrantIdp"] = state?.oauth2JwtAuthorizationGrantIdp;
             resourceInputs["pkceCodeChallengeMethod"] = state?.pkceCodeChallengeMethod;
             resourceInputs["realmId"] = state?.realmId;
             resourceInputs["requireDpopBoundTokens"] = state?.requireDpopBoundTokens;
@@ -453,6 +457,8 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = args?.oauth2DeviceAuthorizationGrantEnabled;
             resourceInputs["oauth2DeviceCodeLifespan"] = args?.oauth2DeviceCodeLifespan;
             resourceInputs["oauth2DevicePollingInterval"] = args?.oauth2DevicePollingInterval;
+            resourceInputs["oauth2JwtAuthorizationGrantEnabled"] = args?.oauth2JwtAuthorizationGrantEnabled;
+            resourceInputs["oauth2JwtAuthorizationGrantIdp"] = args?.oauth2JwtAuthorizationGrantIdp;
             resourceInputs["pkceCodeChallengeMethod"] = args?.pkceCodeChallengeMethod;
             resourceInputs["realmId"] = args?.realmId;
             resourceInputs["requireDpopBoundTokens"] = args?.requireDpopBoundTokens;
@@ -649,6 +655,8 @@ export interface ClientState {
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      */
     oauth2DevicePollingInterval?: pulumi.Input<string | undefined>;
+    oauth2JwtAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
+    oauth2JwtAuthorizationGrantIdp?: pulumi.Input<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
@@ -883,6 +891,8 @@ export interface ClientArgs {
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      */
     oauth2DevicePollingInterval?: pulumi.Input<string | undefined>;
+    oauth2JwtAuthorizationGrantEnabled?: pulumi.Input<boolean | undefined>;
+    oauth2JwtAuthorizationGrantIdp?: pulumi.Input<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */

@@ -55,11 +55,6 @@ export type ClientGroupPolicy = import("./clientGroupPolicy").ClientGroupPolicy;
 export const ClientGroupPolicy: typeof import("./clientGroupPolicy").ClientGroupPolicy = null as any;
 utilities.lazyLoad(exports, ["ClientGroupPolicy"], () => require("./clientGroupPolicy"));
 
-export { ClientJsPolicyArgs, ClientJsPolicyState } from "./clientJsPolicy";
-export type ClientJsPolicy = import("./clientJsPolicy").ClientJsPolicy;
-export const ClientJsPolicy: typeof import("./clientJsPolicy").ClientJsPolicy = null as any;
-utilities.lazyLoad(exports, ["ClientJsPolicy"], () => require("./clientJsPolicy"));
-
 export { ClientOptionalScopesArgs, ClientOptionalScopesState } from "./clientOptionalScopes";
 export type ClientOptionalScopes = import("./clientOptionalScopes").ClientOptionalScopes;
 export const ClientOptionalScopes: typeof import("./clientOptionalScopes").ClientOptionalScopes = null as any;
@@ -74,6 +69,11 @@ export { ClientPolicyArgs, ClientPolicyState } from "./clientPolicy";
 export type ClientPolicy = import("./clientPolicy").ClientPolicy;
 export const ClientPolicy: typeof import("./clientPolicy").ClientPolicy = null as any;
 utilities.lazyLoad(exports, ["ClientPolicy"], () => require("./clientPolicy"));
+
+export { ClientRegexPolicyArgs, ClientRegexPolicyState } from "./clientRegexPolicy";
+export type ClientRegexPolicy = import("./clientRegexPolicy").ClientRegexPolicy;
+export const ClientRegexPolicy: typeof import("./clientRegexPolicy").ClientRegexPolicy = null as any;
+utilities.lazyLoad(exports, ["ClientRegexPolicy"], () => require("./clientRegexPolicy"));
 
 export { ClientRolePolicyArgs, ClientRolePolicyState } from "./clientRolePolicy";
 export type ClientRolePolicy = import("./clientRolePolicy").ClientRolePolicy;
@@ -145,11 +145,6 @@ export type HardcodedRoleProtocolMapper = import("./hardcodedRoleProtocolMapper"
 export const HardcodedRoleProtocolMapper: typeof import("./hardcodedRoleProtocolMapper").HardcodedRoleProtocolMapper = null as any;
 utilities.lazyLoad(exports, ["HardcodedRoleProtocolMapper"], () => require("./hardcodedRoleProtocolMapper"));
 
-export { ScriptProtocolMapperArgs, ScriptProtocolMapperState } from "./scriptProtocolMapper";
-export type ScriptProtocolMapper = import("./scriptProtocolMapper").ScriptProtocolMapper;
-export const ScriptProtocolMapper: typeof import("./scriptProtocolMapper").ScriptProtocolMapper = null as any;
-utilities.lazyLoad(exports, ["ScriptProtocolMapper"], () => require("./scriptProtocolMapper"));
-
 export { SubProtocolMapperArgs, SubProtocolMapperState } from "./subProtocolMapper";
 export type SubProtocolMapper = import("./subProtocolMapper").SubProtocolMapper;
 export const SubProtocolMapper: typeof import("./subProtocolMapper").SubProtocolMapper = null as any;
@@ -205,14 +200,14 @@ const _module = {
                 return new ClientDefaultScopes(name, <any>undefined, { urn })
             case "keycloak:openid/clientGroupPolicy:ClientGroupPolicy":
                 return new ClientGroupPolicy(name, <any>undefined, { urn })
-            case "keycloak:openid/clientJsPolicy:ClientJsPolicy":
-                return new ClientJsPolicy(name, <any>undefined, { urn })
             case "keycloak:openid/clientOptionalScopes:ClientOptionalScopes":
                 return new ClientOptionalScopes(name, <any>undefined, { urn })
             case "keycloak:openid/clientPermissions:ClientPermissions":
                 return new ClientPermissions(name, <any>undefined, { urn })
             case "keycloak:openid/clientPolicy:ClientPolicy":
                 return new ClientPolicy(name, <any>undefined, { urn })
+            case "keycloak:openid/clientRegexPolicy:ClientRegexPolicy":
+                return new ClientRegexPolicy(name, <any>undefined, { urn })
             case "keycloak:openid/clientRolePolicy:ClientRolePolicy":
                 return new ClientRolePolicy(name, <any>undefined, { urn })
             case "keycloak:openid/clientScope:ClientScope":
@@ -233,8 +228,6 @@ const _module = {
                 return new HardcodedClaimProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper":
                 return new HardcodedRoleProtocolMapper(name, <any>undefined, { urn })
-            case "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper":
-                return new ScriptProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/subProtocolMapper:SubProtocolMapper":
                 return new SubProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper":
@@ -262,10 +255,10 @@ pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationRes
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientDefaultScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientGroupPolicy", _module)
-pulumi.runtime.registerResourceModule("keycloak", "openid/clientJsPolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientOptionalScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientPolicy", _module)
+pulumi.runtime.registerResourceModule("keycloak", "openid/clientRegexPolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientRolePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientServiceAccountRealmRole", _module)
@@ -276,7 +269,6 @@ pulumi.runtime.registerResourceModule("keycloak", "openid/fullNameProtocolMapper
 pulumi.runtime.registerResourceModule("keycloak", "openid/groupMembershipProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/hardcodedClaimProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/hardcodedRoleProtocolMapper", _module)
-pulumi.runtime.registerResourceModule("keycloak", "openid/scriptProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/subProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/userAttributeProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/userClientRoleProtocolMapper", _module)

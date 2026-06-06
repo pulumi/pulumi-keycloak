@@ -21,6 +21,7 @@ public final class GetGroupResult {
      */
     private String id;
     private String name;
+    private @Nullable String organizationId;
     private String parentId;
     private String path;
     private String realmId;
@@ -41,6 +42,9 @@ public final class GetGroupResult {
     }
     public String name() {
         return this.name;
+    }
+    public Optional<String> organizationId() {
+        return Optional.ofNullable(this.organizationId);
     }
     public String parentId() {
         return this.parentId;
@@ -65,6 +69,7 @@ public final class GetGroupResult {
         private @Nullable String description;
         private String id;
         private String name;
+        private @Nullable String organizationId;
         private String parentId;
         private String path;
         private String realmId;
@@ -75,6 +80,7 @@ public final class GetGroupResult {
     	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.organizationId = defaults.organizationId;
     	      this.parentId = defaults.parentId;
     	      this.path = defaults.path;
     	      this.realmId = defaults.realmId;
@@ -111,6 +117,12 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder organizationId(@Nullable String organizationId) {
+
+            this.organizationId = organizationId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder parentId(String parentId) {
             if (parentId == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "parentId");
@@ -140,6 +152,7 @@ public final class GetGroupResult {
             _resultValue.description = description;
             _resultValue.id = id;
             _resultValue.name = name;
+            _resultValue.organizationId = organizationId;
             _resultValue.parentId = parentId;
             _resultValue.path = path;
             _resultValue.realmId = realmId;

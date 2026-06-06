@@ -45,15 +45,44 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * Organization groups can be managed by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const organization = new keycloak.Organization("organization", {
+ *     realm: realm.id,
+ *     name: "my-organization",
+ *     domains: [{
+ *         name: "example.com",
+ *     }],
+ * });
+ * const organizationGroup = new keycloak.Group("organization_group", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     name: "organization-group",
+ * });
+ * const organizationChildGroup = new keycloak.Group("organization_child_group", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     parentId: organizationGroup.id,
+ *     name: "organization-child-group",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
  * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
  *
+ * Organization groups can be imported using the format `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+ *
  * Example:
  *
  * ```sh
  * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+ * $ pulumi import keycloak:index/group:Group organization_group my-realm/9c9ef4b9-c4f2-4d17-ae03-0c6576df6c11/934a4a4e-28bd-4703-a0fa-332df153aabd
  * ```
  */
 export class Group extends pulumi.CustomResource {
@@ -94,6 +123,10 @@ export class Group extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     */
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
+    /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
     declare public readonly parentId: pulumi.Output<string | undefined>;
@@ -122,6 +155,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["attributes"] = state?.attributes;
             resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["parentId"] = state?.parentId;
             resourceInputs["path"] = state?.path;
             resourceInputs["realmId"] = state?.realmId;
@@ -133,6 +167,7 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["attributes"] = args?.attributes;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
+            resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["parentId"] = args?.parentId;
             resourceInputs["realmId"] = args?.realmId;
             resourceInputs["path"] = undefined /*out*/;
@@ -155,6 +190,10 @@ export interface GroupState {
      * The name of the group.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
@@ -182,6 +221,10 @@ export interface GroupArgs {
      * The name of the group.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */

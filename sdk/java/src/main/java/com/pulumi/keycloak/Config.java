@@ -30,8 +30,8 @@ public final class Config {
     public Optional<String> basePath() {
         return Codegen.stringProp("basePath").config(config).get();
     }
-    public String clientId() {
-        return Codegen.stringProp("clientId").config(config).require();
+    public Optional<String> clientId() {
+        return Codegen.stringProp("clientId").config(config).get();
     }
     public Optional<String> clientSecret() {
         return Codegen.stringProp("clientSecret").config(config).get();
