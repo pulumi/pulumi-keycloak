@@ -47,6 +47,21 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    @Import(name="addToTokenIntrospection")
+    private @Nullable Output<Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> addToTokenIntrospection() {
+        return Optional.ofNullable(this.addToTokenIntrospection);
+    }
+
+    /**
      * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
@@ -201,6 +216,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     private UserAttributeProtocolMapperState(UserAttributeProtocolMapperState $) {
         this.addToAccessToken = $.addToAccessToken;
         this.addToIdToken = $.addToIdToken;
+        this.addToTokenIntrospection = $.addToTokenIntrospection;
         this.addToUserinfo = $.addToUserinfo;
         this.aggregateAttributes = $.aggregateAttributes;
         this.claimName = $.claimName;
@@ -271,6 +287,27 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
          */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(@Nullable Output<Boolean> addToTokenIntrospection) {
+            $.addToTokenIntrospection = addToTokenIntrospection;
+            return this;
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(Boolean addToTokenIntrospection) {
+            return addToTokenIntrospection(Output.of(addToTokenIntrospection));
         }
 
         /**

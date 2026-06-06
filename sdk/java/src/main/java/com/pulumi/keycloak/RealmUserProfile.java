@@ -67,6 +67,7 @@ import javax.annotation.Nullable;
  *                 RealmUserProfileAttributeArgs.builder()
  *                     .name("field1")
  *                     .displayName("Field 1")
+ *                     .defaultValue("default field1 value")
  *                     .group("group1")
  *                     .multiValued(false)
  *                     .enabledWhenScopes("offline_access")
@@ -87,7 +88,7 @@ import javax.annotation.Nullable;
  *                         RealmUserProfileAttributeValidatorArgs.builder()
  *                             .name("pattern")
  *                             .config(Map.ofEntries(
- *                                 Map.entry("pattern", "^[a-z]+$"),
+ *                                 Map.entry("pattern", "^[a-z0-9 ]+$"),
  *                                 Map.entry("error-message", "Nope")
  *                             ))
  *                             .build())

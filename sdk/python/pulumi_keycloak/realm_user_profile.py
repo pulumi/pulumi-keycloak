@@ -198,6 +198,7 @@ class RealmUserProfile(pulumi.CustomResource):
                 {
                     "name": "field1",
                     "display_name": "Field 1",
+                    "default_value": "default field1 value",
                     "group": "group1",
                     "multi_valued": False,
                     "enabled_when_scopes": ["offline_access"],
@@ -220,7 +221,7 @@ class RealmUserProfile(pulumi.CustomResource):
                         {
                             "name": "pattern",
                             "config": {
-                                "pattern": "^[a-z]+$",
+                                "pattern": "^[a-z0-9 ]+$",
                                 "error-message": "Nope",
                             },
                         },
@@ -304,6 +305,7 @@ class RealmUserProfile(pulumi.CustomResource):
                 {
                     "name": "field1",
                     "display_name": "Field 1",
+                    "default_value": "default field1 value",
                     "group": "group1",
                     "multi_valued": False,
                     "enabled_when_scopes": ["offline_access"],
@@ -326,7 +328,7 @@ class RealmUserProfile(pulumi.CustomResource):
                         {
                             "name": "pattern",
                             "config": {
-                                "pattern": "^[a-z]+$",
+                                "pattern": "^[a-z0-9 ]+$",
                                 "error-message": "Nope",
                             },
                         },

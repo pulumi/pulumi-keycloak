@@ -27,7 +27,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, require_dpop_bound_tokens=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, oauth2_jwt_authorization_grant_enabled=None, oauth2_jwt_authorization_grant_idp=None, pkce_code_challenge_method=None, realm_id=None, require_dpop_bound_tokens=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -139,6 +139,12 @@ class GetClientResult:
         if oauth2_device_polling_interval and not isinstance(oauth2_device_polling_interval, str):
             raise TypeError("Expected argument 'oauth2_device_polling_interval' to be a str")
         pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
+        if oauth2_jwt_authorization_grant_enabled and not isinstance(oauth2_jwt_authorization_grant_enabled, bool):
+            raise TypeError("Expected argument 'oauth2_jwt_authorization_grant_enabled' to be a bool")
+        pulumi.set(__self__, "oauth2_jwt_authorization_grant_enabled", oauth2_jwt_authorization_grant_enabled)
+        if oauth2_jwt_authorization_grant_idp and not isinstance(oauth2_jwt_authorization_grant_idp, str):
+            raise TypeError("Expected argument 'oauth2_jwt_authorization_grant_idp' to be a str")
+        pulumi.set(__self__, "oauth2_jwt_authorization_grant_idp", oauth2_jwt_authorization_grant_idp)
         if pkce_code_challenge_method and not isinstance(pkce_code_challenge_method, str):
             raise TypeError("Expected argument 'pkce_code_challenge_method' to be a str")
         pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
@@ -371,6 +377,16 @@ class GetClientResult:
         return pulumi.get(self, "oauth2_device_polling_interval")
 
     @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantEnabled")
+    def oauth2_jwt_authorization_grant_enabled(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="oauth2JwtAuthorizationGrantIdp")
+    def oauth2_jwt_authorization_grant_idp(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "oauth2_jwt_authorization_grant_idp")
+
+    @_builtins.property
     @pulumi.getter(name="pkceCodeChallengeMethod")
     def pkce_code_challenge_method(self) -> _builtins.str:
         return pulumi.get(self, "pkce_code_challenge_method")
@@ -484,6 +500,8 @@ class AwaitableGetClientResult(GetClientResult):
             oauth2_device_authorization_grant_enabled=self.oauth2_device_authorization_grant_enabled,
             oauth2_device_code_lifespan=self.oauth2_device_code_lifespan,
             oauth2_device_polling_interval=self.oauth2_device_polling_interval,
+            oauth2_jwt_authorization_grant_enabled=self.oauth2_jwt_authorization_grant_enabled,
+            oauth2_jwt_authorization_grant_idp=self.oauth2_jwt_authorization_grant_idp,
             pkce_code_challenge_method=self.pkce_code_challenge_method,
             realm_id=self.realm_id,
             require_dpop_bound_tokens=self.require_dpop_bound_tokens,
@@ -508,6 +526,8 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
                oauth2_device_authorization_grant_enabled: Optional[_builtins.bool] = None,
                oauth2_device_code_lifespan: Optional[_builtins.str] = None,
                oauth2_device_polling_interval: Optional[_builtins.str] = None,
+               oauth2_jwt_authorization_grant_enabled: Optional[_builtins.bool] = None,
+               oauth2_jwt_authorization_grant_idp: Optional[_builtins.str] = None,
                realm_id: Optional[_builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
@@ -540,6 +560,8 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
     __args__['oauth2DeviceAuthorizationGrantEnabled'] = oauth2_device_authorization_grant_enabled
     __args__['oauth2DeviceCodeLifespan'] = oauth2_device_code_lifespan
     __args__['oauth2DevicePollingInterval'] = oauth2_device_polling_interval
+    __args__['oauth2JwtAuthorizationGrantEnabled'] = oauth2_jwt_authorization_grant_enabled
+    __args__['oauth2JwtAuthorizationGrantIdp'] = oauth2_jwt_authorization_grant_idp
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult).value
@@ -582,6 +604,8 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
         oauth2_device_authorization_grant_enabled=pulumi.get(__ret__, 'oauth2_device_authorization_grant_enabled'),
         oauth2_device_code_lifespan=pulumi.get(__ret__, 'oauth2_device_code_lifespan'),
         oauth2_device_polling_interval=pulumi.get(__ret__, 'oauth2_device_polling_interval'),
+        oauth2_jwt_authorization_grant_enabled=pulumi.get(__ret__, 'oauth2_jwt_authorization_grant_enabled'),
+        oauth2_jwt_authorization_grant_idp=pulumi.get(__ret__, 'oauth2_jwt_authorization_grant_idp'),
         pkce_code_challenge_method=pulumi.get(__ret__, 'pkce_code_challenge_method'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
         require_dpop_bound_tokens=pulumi.get(__ret__, 'require_dpop_bound_tokens'),
@@ -604,6 +628,8 @@ def get_client_output(always_display_in_console: pulumi.Input[Optional[Optional[
                       oauth2_device_authorization_grant_enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                       oauth2_device_code_lifespan: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       oauth2_device_polling_interval: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                      oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientResult]:
     """
@@ -636,6 +662,8 @@ def get_client_output(always_display_in_console: pulumi.Input[Optional[Optional[
     __args__['oauth2DeviceAuthorizationGrantEnabled'] = oauth2_device_authorization_grant_enabled
     __args__['oauth2DeviceCodeLifespan'] = oauth2_device_code_lifespan
     __args__['oauth2DevicePollingInterval'] = oauth2_device_polling_interval
+    __args__['oauth2JwtAuthorizationGrantEnabled'] = oauth2_jwt_authorization_grant_enabled
+    __args__['oauth2JwtAuthorizationGrantIdp'] = oauth2_jwt_authorization_grant_idp
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
@@ -677,6 +705,8 @@ def get_client_output(always_display_in_console: pulumi.Input[Optional[Optional[
         oauth2_device_authorization_grant_enabled=pulumi.get(__response__, 'oauth2_device_authorization_grant_enabled'),
         oauth2_device_code_lifespan=pulumi.get(__response__, 'oauth2_device_code_lifespan'),
         oauth2_device_polling_interval=pulumi.get(__response__, 'oauth2_device_polling_interval'),
+        oauth2_jwt_authorization_grant_enabled=pulumi.get(__response__, 'oauth2_jwt_authorization_grant_enabled'),
+        oauth2_jwt_authorization_grant_idp=pulumi.get(__response__, 'oauth2_jwt_authorization_grant_idp'),
         pkce_code_challenge_method=pulumi.get(__response__, 'pkce_code_challenge_method'),
         realm_id=pulumi.get(__response__, 'realm_id'),
         require_dpop_bound_tokens=pulumi.get(__response__, 'require_dpop_bound_tokens'),

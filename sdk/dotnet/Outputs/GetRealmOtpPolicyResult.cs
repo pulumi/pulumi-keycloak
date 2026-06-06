@@ -14,6 +14,7 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class GetRealmOtpPolicyResult
     {
         public readonly string Algorithm;
+        public readonly bool CodeReusable;
         public readonly int Digits;
         public readonly int InitialCounter;
         public readonly int LookAheadWindow;
@@ -23,6 +24,8 @@ namespace Pulumi.Keycloak.Outputs
         [OutputConstructor]
         private GetRealmOtpPolicyResult(
             string algorithm,
+
+            bool codeReusable,
 
             int digits,
 
@@ -35,6 +38,7 @@ namespace Pulumi.Keycloak.Outputs
             string type)
         {
             Algorithm = algorithm;
+            CodeReusable = codeReusable;
             Digits = digits;
             InitialCounter = initialCounter;
             LookAheadWindow = lookAheadWindow;

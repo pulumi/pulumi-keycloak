@@ -176,6 +176,20 @@ public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomReso
         return Codegen.optional(this.addToIdToken);
     }
     /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    @Export(name="addToTokenIntrospection", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> addToTokenIntrospection() {
+        return Codegen.optional(this.addToTokenIntrospection);
+    }
+    /**
      * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */

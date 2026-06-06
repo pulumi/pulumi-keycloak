@@ -12,6 +12,9 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class RealmSecurityDefensesBruteForceDetectionGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("bruteForceStrategy")]
+        public Input<string>? BruteForceStrategy { get; set; }
+
         /// <summary>
         /// When will failure count be reset?
         /// </summary>

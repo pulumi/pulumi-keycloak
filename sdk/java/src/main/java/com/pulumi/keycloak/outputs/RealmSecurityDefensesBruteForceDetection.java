@@ -6,12 +6,14 @@ package com.pulumi.keycloak.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSecurityDefensesBruteForceDetection {
+    private @Nullable String bruteForceStrategy;
     /**
      * @return When will failure count be reset?
      * 
@@ -51,6 +53,9 @@ public final class RealmSecurityDefensesBruteForceDetection {
     private @Nullable Integer waitIncrementSeconds;
 
     private RealmSecurityDefensesBruteForceDetection() {}
+    public Optional<String> bruteForceStrategy() {
+        return Optional.ofNullable(this.bruteForceStrategy);
+    }
     /**
      * @return When will failure count be reset?
      * 
@@ -114,6 +119,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String bruteForceStrategy;
         private @Nullable Integer failureResetTimeSeconds;
         private @Nullable Integer maxFailureWaitSeconds;
         private @Nullable Integer maxLoginFailures;
@@ -125,6 +131,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
         public Builder() {}
         public Builder(RealmSecurityDefensesBruteForceDetection defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.bruteForceStrategy = defaults.bruteForceStrategy;
     	      this.failureResetTimeSeconds = defaults.failureResetTimeSeconds;
     	      this.maxFailureWaitSeconds = defaults.maxFailureWaitSeconds;
     	      this.maxLoginFailures = defaults.maxLoginFailures;
@@ -135,6 +142,12 @@ public final class RealmSecurityDefensesBruteForceDetection {
     	      this.waitIncrementSeconds = defaults.waitIncrementSeconds;
         }
 
+        @CustomType.Setter
+        public Builder bruteForceStrategy(@Nullable String bruteForceStrategy) {
+
+            this.bruteForceStrategy = bruteForceStrategy;
+            return this;
+        }
         @CustomType.Setter
         public Builder failureResetTimeSeconds(@Nullable Integer failureResetTimeSeconds) {
 
@@ -185,6 +198,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
         }
         public RealmSecurityDefensesBruteForceDetection build() {
             final var _resultValue = new RealmSecurityDefensesBruteForceDetection();
+            _resultValue.bruteForceStrategy = bruteForceStrategy;
             _resultValue.failureResetTimeSeconds = failureResetTimeSeconds;
             _resultValue.maxFailureWaitSeconds = maxFailureWaitSeconds;
             _resultValue.maxLoginFailures = maxLoginFailures;

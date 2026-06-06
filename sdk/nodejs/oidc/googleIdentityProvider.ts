@@ -138,6 +138,10 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     declare public readonly linkOnly: pulumi.Output<boolean | undefined>;
+    /**
+     * Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+     */
+    declare public readonly loginHint: pulumi.Output<string | undefined>;
     declare public readonly orgDomain: pulumi.Output<string | undefined>;
     declare public readonly orgRedirectModeEmailMatches: pulumi.Output<boolean | undefined>;
     /**
@@ -207,6 +211,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["hostedDomain"] = state?.hostedDomain;
             resourceInputs["internalId"] = state?.internalId;
             resourceInputs["linkOnly"] = state?.linkOnly;
+            resourceInputs["loginHint"] = state?.loginHint;
             resourceInputs["orgDomain"] = state?.orgDomain;
             resourceInputs["orgRedirectModeEmailMatches"] = state?.orgRedirectModeEmailMatches;
             resourceInputs["organizationId"] = state?.organizationId;
@@ -242,6 +247,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["hideOnLoginPage"] = args?.hideOnLoginPage;
             resourceInputs["hostedDomain"] = args?.hostedDomain;
             resourceInputs["linkOnly"] = args?.linkOnly;
+            resourceInputs["loginHint"] = args?.loginHint;
             resourceInputs["orgDomain"] = args?.orgDomain;
             resourceInputs["orgRedirectModeEmailMatches"] = args?.orgRedirectModeEmailMatches;
             resourceInputs["organizationId"] = args?.organizationId;
@@ -334,6 +340,10 @@ export interface GoogleIdentityProviderState {
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean | undefined>;
+    /**
+     * Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+     */
+    loginHint?: pulumi.Input<string | undefined>;
     orgDomain?: pulumi.Input<string | undefined>;
     orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**
@@ -442,6 +452,10 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean | undefined>;
+    /**
+     * Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+     */
+    loginHint?: pulumi.Input<string | undefined>;
     orgDomain?: pulumi.Input<string | undefined>;
     orgRedirectModeEmailMatches?: pulumi.Input<boolean | undefined>;
     /**

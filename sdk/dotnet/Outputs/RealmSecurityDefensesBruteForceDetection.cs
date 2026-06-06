@@ -13,6 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmSecurityDefensesBruteForceDetection
     {
+        public readonly string? BruteForceStrategy;
         /// <summary>
         /// When will failure count be reset?
         /// </summary>
@@ -46,6 +47,8 @@ namespace Pulumi.Keycloak.Outputs
 
         [OutputConstructor]
         private RealmSecurityDefensesBruteForceDetection(
+            string? bruteForceStrategy,
+
             int? failureResetTimeSeconds,
 
             int? maxFailureWaitSeconds,
@@ -62,6 +65,7 @@ namespace Pulumi.Keycloak.Outputs
 
             int? waitIncrementSeconds)
         {
+            BruteForceStrategy = bruteForceStrategy;
             FailureResetTimeSeconds = failureResetTimeSeconds;
             MaxFailureWaitSeconds = maxFailureWaitSeconds;
             MaxLoginFailures = maxLoginFailures;

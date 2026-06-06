@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GoogleIdentityProvider{}
 	case "keycloak:oidc/identityProvider:IdentityProvider":
 		r = &IdentityProvider{}
+	case "keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider":
+		r = &OpenshiftV4IdentityProvider{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -60,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"oidc/identityProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"oidc/openshiftV4IdentityProvider",
 		&module{version},
 	)
 }

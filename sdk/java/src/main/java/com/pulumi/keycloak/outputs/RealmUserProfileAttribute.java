@@ -19,6 +19,11 @@ import javax.annotation.Nullable;
 public final class RealmUserProfileAttribute {
     private @Nullable Map<String,String> annotations;
     /**
+     * @return The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+     * 
+     */
+    private @Nullable String defaultValue;
+    /**
      * @return The display name of the attribute.
      * 
      */
@@ -63,6 +68,13 @@ public final class RealmUserProfileAttribute {
     private RealmUserProfileAttribute() {}
     public Map<String,String> annotations() {
         return this.annotations == null ? Map.of() : this.annotations;
+    }
+    /**
+     * @return The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+     * 
+     */
+    public Optional<String> defaultValue() {
+        return Optional.ofNullable(this.defaultValue);
     }
     /**
      * @return The display name of the attribute.
@@ -134,6 +146,7 @@ public final class RealmUserProfileAttribute {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Map<String,String> annotations;
+        private @Nullable String defaultValue;
         private @Nullable String displayName;
         private @Nullable List<String> enabledWhenScopes;
         private @Nullable String group;
@@ -147,6 +160,7 @@ public final class RealmUserProfileAttribute {
         public Builder(RealmUserProfileAttribute defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.annotations = defaults.annotations;
+    	      this.defaultValue = defaults.defaultValue;
     	      this.displayName = defaults.displayName;
     	      this.enabledWhenScopes = defaults.enabledWhenScopes;
     	      this.group = defaults.group;
@@ -162,6 +176,12 @@ public final class RealmUserProfileAttribute {
         public Builder annotations(@Nullable Map<String,String> annotations) {
 
             this.annotations = annotations;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder defaultValue(@Nullable String defaultValue) {
+
+            this.defaultValue = defaultValue;
             return this;
         }
         @CustomType.Setter
@@ -235,6 +255,7 @@ public final class RealmUserProfileAttribute {
         public RealmUserProfileAttribute build() {
             final var _resultValue = new RealmUserProfileAttribute();
             _resultValue.annotations = annotations;
+            _resultValue.defaultValue = defaultValue;
             _resultValue.displayName = displayName;
             _resultValue.enabledWhenScopes = enabledWhenScopes;
             _resultValue.group = group;

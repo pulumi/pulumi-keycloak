@@ -113,16 +113,28 @@ namespace Pulumi.Keycloak.OpenId
     public partial class UserSessionNoteProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if the property should be added as a claim to the access token. Defaults to `True`.
+        /// Indicates if the session note should be added as a claim to the access token. Defaults to `True`.
         /// </summary>
         [Output("addToAccessToken")]
         public Output<bool?> AddToAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the property should be added as a claim to the id token. Defaults to `True`.
+        /// Indicates if the session note should be added as a claim to the id token. Defaults to `True`.
         /// </summary>
         [Output("addToIdToken")]
         public Output<bool?> AddToIdToken { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `True`.
+        /// </summary>
+        [Output("addToTokenIntrospection")]
+        public Output<bool?> AddToTokenIntrospection { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `True`.
+        /// </summary>
+        [Output("addToUserinfo")]
+        public Output<bool?> AddToUserinfo { get; private set; } = null!;
 
         /// <summary>
         /// The name of the claim to insert into a token.
@@ -213,16 +225,28 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class UserSessionNoteProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the property should be added as a claim to the access token. Defaults to `True`.
+        /// Indicates if the session note should be added as a claim to the access token. Defaults to `True`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if the property should be added as a claim to the id token. Defaults to `True`.
+        /// Indicates if the session note should be added as a claim to the id token. Defaults to `True`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
+
+        /// <summary>
+        /// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `True`.
+        /// </summary>
+        [Input("addToTokenIntrospection")]
+        public Input<bool>? AddToTokenIntrospection { get; set; }
+
+        /// <summary>
+        /// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `True`.
+        /// </summary>
+        [Input("addToUserinfo")]
+        public Input<bool>? AddToUserinfo { get; set; }
 
         /// <summary>
         /// The name of the claim to insert into a token.
@@ -275,16 +299,28 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class UserSessionNoteProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the property should be added as a claim to the access token. Defaults to `True`.
+        /// Indicates if the session note should be added as a claim to the access token. Defaults to `True`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if the property should be added as a claim to the id token. Defaults to `True`.
+        /// Indicates if the session note should be added as a claim to the id token. Defaults to `True`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
+
+        /// <summary>
+        /// Indicates if the session note should be added as a claim to the token introspection response. Defaults to `True`.
+        /// </summary>
+        [Input("addToTokenIntrospection")]
+        public Input<bool>? AddToTokenIntrospection { get; set; }
+
+        /// <summary>
+        /// Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `True`.
+        /// </summary>
+        [Input("addToUserinfo")]
+        public Input<bool>? AddToUserinfo { get; set; }
 
         /// <summary>
         /// The name of the claim to insert into a token.

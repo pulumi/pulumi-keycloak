@@ -46,6 +46,9 @@ namespace Pulumi.Keycloak.Inputs
             set => _extraOrigins = value;
         }
 
+        [Input("passwordlessPasskeysEnabled", required: true)]
+        public bool PasswordlessPasskeysEnabled { get; set; }
+
         [Input("relyingPartyEntityName", required: true)]
         public string RelyingPartyEntityName { get; set; } = null!;
 

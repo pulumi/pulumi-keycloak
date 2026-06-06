@@ -81,6 +81,20 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.oauth2DevicePollingInterval);
     }
 
+    @Import(name="oauth2JwtAuthorizationGrantEnabled")
+    private @Nullable Boolean oauth2JwtAuthorizationGrantEnabled;
+
+    public Optional<Boolean> oauth2JwtAuthorizationGrantEnabled() {
+        return Optional.ofNullable(this.oauth2JwtAuthorizationGrantEnabled);
+    }
+
+    @Import(name="oauth2JwtAuthorizationGrantIdp")
+    private @Nullable String oauth2JwtAuthorizationGrantIdp;
+
+    public Optional<String> oauth2JwtAuthorizationGrantIdp() {
+        return Optional.ofNullable(this.oauth2JwtAuthorizationGrantIdp);
+    }
+
     /**
      * The realm id.
      * 
@@ -107,6 +121,8 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.oauth2DeviceAuthorizationGrantEnabled = $.oauth2DeviceAuthorizationGrantEnabled;
         this.oauth2DeviceCodeLifespan = $.oauth2DeviceCodeLifespan;
         this.oauth2DevicePollingInterval = $.oauth2DevicePollingInterval;
+        this.oauth2JwtAuthorizationGrantEnabled = $.oauth2JwtAuthorizationGrantEnabled;
+        this.oauth2JwtAuthorizationGrantIdp = $.oauth2JwtAuthorizationGrantIdp;
         this.realmId = $.realmId;
     }
 
@@ -171,6 +187,16 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder oauth2DevicePollingInterval(@Nullable String oauth2DevicePollingInterval) {
             $.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
+            return this;
+        }
+
+        public Builder oauth2JwtAuthorizationGrantEnabled(@Nullable Boolean oauth2JwtAuthorizationGrantEnabled) {
+            $.oauth2JwtAuthorizationGrantEnabled = oauth2JwtAuthorizationGrantEnabled;
+            return this;
+        }
+
+        public Builder oauth2JwtAuthorizationGrantIdp(@Nullable String oauth2JwtAuthorizationGrantIdp) {
+            $.oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
             return this;
         }
 

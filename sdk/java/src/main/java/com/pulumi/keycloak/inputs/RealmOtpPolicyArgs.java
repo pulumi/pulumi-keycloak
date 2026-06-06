@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -29,6 +30,21 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<String>> algorithm() {
         return Optional.ofNullable(this.algorithm);
+    }
+
+    /**
+     * Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+     * 
+     */
+    @Import(name="codeReusable")
+    private @Nullable Output<Boolean> codeReusable;
+
+    /**
+     * @return Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> codeReusable() {
+        return Optional.ofNullable(this.codeReusable);
     }
 
     /**
@@ -110,6 +126,7 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
 
     private RealmOtpPolicyArgs(RealmOtpPolicyArgs $) {
         this.algorithm = $.algorithm;
+        this.codeReusable = $.codeReusable;
         this.digits = $.digits;
         this.initialCounter = $.initialCounter;
         this.lookAheadWindow = $.lookAheadWindow;
@@ -154,6 +171,27 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder algorithm(String algorithm) {
             return algorithm(Output.of(algorithm));
+        }
+
+        /**
+         * @param codeReusable Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder codeReusable(@Nullable Output<Boolean> codeReusable) {
+            $.codeReusable = codeReusable;
+            return this;
+        }
+
+        /**
+         * @param codeReusable Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder codeReusable(Boolean codeReusable) {
+            return codeReusable(Output.of(codeReusable));
         }
 
         /**

@@ -143,7 +143,7 @@ type Client struct {
 	// - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 	AccessType pulumi.StringOutput `pulumi:"accessType"`
 	// URL to the admin interface of the client.
-	AdminUrl pulumi.StringOutput `pulumi:"adminUrl"`
+	AdminUrl pulumi.StringPtrOutput `pulumi:"adminUrl"`
 	// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 	AllowRefreshTokenInStandardTokenExchange pulumi.StringPtrOutput `pulumi:"allowRefreshTokenInStandardTokenExchange"`
 	// Always list this client in the Account UI, even if the user does not have an active session.
@@ -159,7 +159,7 @@ type Client struct {
 	// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
 	BackchannelLogoutUrl pulumi.StringPtrOutput `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
-	BaseUrl pulumi.StringOutput `pulumi:"baseUrl"`
+	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 	// - `client-secret` (Default) Use client id and client secret to authenticate client.
 	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
@@ -188,7 +188,7 @@ type Client struct {
 	// When `true`, users have to consent to client access. Defaults to `false`.
 	ConsentRequired pulumi.BoolOutput `pulumi:"consentRequired"`
 	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
-	ConsentScreenText pulumi.StringOutput `pulumi:"consentScreenText"`
+	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
@@ -222,7 +222,9 @@ type Client struct {
 	// The maximum amount of time a client has to finish the device code flow before it expires.
 	Oauth2DeviceCodeLifespan pulumi.StringPtrOutput `pulumi:"oauth2DeviceCodeLifespan"`
 	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval pulumi.StringPtrOutput `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2DevicePollingInterval        pulumi.StringPtrOutput `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2JwtAuthorizationGrantEnabled pulumi.BoolPtrOutput   `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
+	Oauth2JwtAuthorizationGrantIdp     pulumi.StringPtrOutput `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod pulumi.StringPtrOutput `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
@@ -232,7 +234,7 @@ type Client struct {
 	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
 	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
-	RootUrl pulumi.StringOutput `pulumi:"rootUrl"`
+	RootUrl pulumi.StringPtrOutput `pulumi:"rootUrl"`
 	// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
 	ServiceAccountUserId pulumi.StringOutput `pulumi:"serviceAccountUserId"`
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
@@ -391,7 +393,9 @@ type clientState struct {
 	// The maximum amount of time a client has to finish the device code flow before it expires.
 	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
 	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval *string `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2DevicePollingInterval        *string `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2JwtAuthorizationGrantEnabled *bool   `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
+	Oauth2JwtAuthorizationGrantIdp     *string `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
@@ -514,7 +518,9 @@ type ClientState struct {
 	// The maximum amount of time a client has to finish the device code flow before it expires.
 	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
 	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval pulumi.StringPtrInput
+	Oauth2DevicePollingInterval        pulumi.StringPtrInput
+	Oauth2JwtAuthorizationGrantEnabled pulumi.BoolPtrInput
+	Oauth2JwtAuthorizationGrantIdp     pulumi.StringPtrInput
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod pulumi.StringPtrInput
 	// The realm this client is attached to.
@@ -641,7 +647,9 @@ type clientArgs struct {
 	// The maximum amount of time a client has to finish the device code flow before it expires.
 	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
 	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval *string `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2DevicePollingInterval        *string `pulumi:"oauth2DevicePollingInterval"`
+	Oauth2JwtAuthorizationGrantEnabled *bool   `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
+	Oauth2JwtAuthorizationGrantIdp     *string `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
@@ -761,7 +769,9 @@ type ClientArgs struct {
 	// The maximum amount of time a client has to finish the device code flow before it expires.
 	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
 	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval pulumi.StringPtrInput
+	Oauth2DevicePollingInterval        pulumi.StringPtrInput
+	Oauth2JwtAuthorizationGrantEnabled pulumi.BoolPtrInput
+	Oauth2JwtAuthorizationGrantIdp     pulumi.StringPtrInput
 	// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
 	PkceCodeChallengeMethod pulumi.StringPtrInput
 	// The realm this client is attached to.
@@ -893,8 +903,8 @@ func (o ClientOutput) AccessType() pulumi.StringOutput {
 }
 
 // URL to the admin interface of the client.
-func (o ClientOutput) AdminUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
+func (o ClientOutput) AdminUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.AdminUrl }).(pulumi.StringPtrOutput)
 }
 
 // Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
@@ -935,8 +945,8 @@ func (o ClientOutput) BackchannelLogoutUrl() pulumi.StringPtrOutput {
 }
 
 // Default URL to use when the auth server needs to redirect or link back to the client.
-func (o ClientOutput) BaseUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.BaseUrl }).(pulumi.StringOutput)
+func (o ClientOutput) BaseUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
 }
 
 // Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
@@ -1000,8 +1010,8 @@ func (o ClientOutput) ConsentRequired() pulumi.BoolOutput {
 }
 
 // The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
-func (o ClientOutput) ConsentScreenText() pulumi.StringOutput {
-	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.ConsentScreenText }).(pulumi.StringOutput)
+func (o ClientOutput) ConsentScreenText() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ConsentScreenText }).(pulumi.StringPtrOutput)
 }
 
 // The description of this client in the GUI.
@@ -1089,6 +1099,14 @@ func (o ClientOutput) Oauth2DevicePollingInterval() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Oauth2DevicePollingInterval }).(pulumi.StringPtrOutput)
 }
 
+func (o ClientOutput) Oauth2JwtAuthorizationGrantEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.Oauth2JwtAuthorizationGrantEnabled }).(pulumi.BoolPtrOutput)
+}
+
+func (o ClientOutput) Oauth2JwtAuthorizationGrantIdp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Oauth2JwtAuthorizationGrantIdp }).(pulumi.StringPtrOutput)
+}
+
 // The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value “.
 func (o ClientOutput) PkceCodeChallengeMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.PkceCodeChallengeMethod }).(pulumi.StringPtrOutput)
@@ -1110,8 +1128,8 @@ func (o ClientOutput) ResourceServerId() pulumi.StringOutput {
 }
 
 // When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
-func (o ClientOutput) RootUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.RootUrl }).(pulumi.StringOutput)
+func (o ClientOutput) RootUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.RootUrl }).(pulumi.StringPtrOutput)
 }
 
 // (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.

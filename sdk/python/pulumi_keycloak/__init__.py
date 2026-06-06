@@ -19,6 +19,7 @@ from .generic_role_mapper import *
 from .get_authentication_execution import *
 from .get_authentication_flow import *
 from .get_client_description_converter import *
+from .get_generic_protocol_mapper import *
 from .get_group import *
 from .get_organization import *
 from .get_realm import *
@@ -26,6 +27,7 @@ from .get_realm_keys import *
 from .get_role import *
 from .get_user import *
 from .get_user_realm_roles import *
+from .get_workflow import *
 from .group import *
 from .group_memberships import *
 from .group_permissions import *
@@ -54,11 +56,13 @@ from .realm_optional_client_scopes import *
 from .realm_user_profile import *
 from .required_action import *
 from .role import *
+from .spiffe_identity_provider import *
 from .user import *
 from .user_groups import *
 from .user_roles import *
 from .user_template_importer_identity_provider_mapper import *
 from .users_permissions import *
+from .workflow import *
 from ._inputs import *
 from . import outputs
 
@@ -425,6 +429,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/spiffeIdentityProvider",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider": "SpiffeIdentityProvider"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/user",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -461,6 +473,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/usersPermissions:UsersPermissions": "UsersPermissions"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/workflow",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/workflow:Workflow": "Workflow"
   }
  },
  {
@@ -585,6 +605,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "oidc/openshiftV4IdentityProvider",
+  "fqn": "pulumi_keycloak.oidc",
+  "classes": {
+   "keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider": "OpenshiftV4IdentityProvider"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "openid/audienceProtocolMapper",
   "fqn": "pulumi_keycloak.openid",
   "classes": {
@@ -665,14 +693,6 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
-  "mod": "openid/clientJsPolicy",
-  "fqn": "pulumi_keycloak.openid",
-  "classes": {
-   "keycloak:openid/clientJsPolicy:ClientJsPolicy": "ClientJsPolicy"
-  }
- },
- {
-  "pkg": "keycloak",
   "mod": "openid/clientOptionalScopes",
   "fqn": "pulumi_keycloak.openid",
   "classes": {
@@ -693,6 +713,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak.openid",
   "classes": {
    "keycloak:openid/clientPolicy:ClientPolicy": "ClientPolicy"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "openid/clientRegexPolicy",
+  "fqn": "pulumi_keycloak.openid",
+  "classes": {
+   "keycloak:openid/clientRegexPolicy:ClientRegexPolicy": "ClientRegexPolicy"
   }
  },
  {
@@ -777,14 +805,6 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
-  "mod": "openid/scriptProtocolMapper",
-  "fqn": "pulumi_keycloak.openid",
-  "classes": {
-   "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper": "ScriptProtocolMapper"
-  }
- },
- {
-  "pkg": "keycloak",
   "mod": "openid/subProtocolMapper",
   "fqn": "pulumi_keycloak.openid",
   "classes": {
@@ -861,14 +881,6 @@ _utilities.register(
   "fqn": "pulumi_keycloak.saml",
   "classes": {
    "keycloak:saml/identityProvider:IdentityProvider": "IdentityProvider"
-  }
- },
- {
-  "pkg": "keycloak",
-  "mod": "saml/scriptProtocolMapper",
-  "fqn": "pulumi_keycloak.saml",
-  "classes": {
-   "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper": "ScriptProtocolMapper"
   }
  },
  {

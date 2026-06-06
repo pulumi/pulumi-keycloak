@@ -12,6 +12,9 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class RealmSmtpServerGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When `True`, allows UTF-8 in the local part of the email address. Defaults to `False`.
+        /// </summary>
         [Input("allowUtf8")]
         public Input<bool>? AllowUtf8 { get; set; }
 

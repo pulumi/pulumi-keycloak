@@ -153,6 +153,20 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
         return this.keyPassword;
     }
     /**
+     * Intended use for the key
+     * 
+     */
+    @Export(name="keyUse", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> keyUse;
+
+    /**
+     * @return Intended use for the key
+     * 
+     */
+    public Output<Optional<String>> keyUse() {
+        return Codegen.optional(this.keyUse);
+    }
+    /**
      * Path to keys file on keycloak instance.
      * 
      */
@@ -193,6 +207,12 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      */
     public Output<String> name() {
         return this.name;
+    }
+    @Export(name="parentId", refs={String.class}, tree="[0]")
+    private Output<String> parentId;
+
+    public Output<String> parentId() {
+        return this.parentId;
     }
     /**
      * Priority for the provider. Defaults to `0`

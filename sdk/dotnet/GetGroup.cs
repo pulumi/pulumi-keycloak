@@ -55,6 +55,26 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
+        /// 
+        /// Organization groups can be looked up by setting `OrganizationId`. Organization groups require Keycloak 26.6.0 or later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var organizationGroup = Keycloak.GetGroup.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         OrganizationId = organization.Id,
+        ///         Name = "organization-group",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
@@ -99,6 +119,26 @@ namespace Pulumi.Keycloak
         ///         {
         ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),
         ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Organization groups can be looked up by setting `OrganizationId`. Organization groups require Keycloak 26.6.0 or later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var organizationGroup = Keycloak.GetGroup.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         OrganizationId = organization.Id,
+        ///         Name = "organization-group",
         ///     });
         /// 
         /// });
@@ -151,6 +191,26 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
+        /// 
+        /// Organization groups can be looked up by setting `OrganizationId`. Organization groups require Keycloak 26.6.0 or later.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var organizationGroup = Keycloak.GetGroup.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         OrganizationId = organization.Id,
+        ///         Name = "organization-group",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
@@ -167,6 +227,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
+
+        /// <summary>
+        /// The organization this group exists within. If omitted, the data source looks up realm groups.
+        /// </summary>
+        [Input("organizationId")]
+        public string? OrganizationId { get; set; }
 
         /// <summary>
         /// The realm this group exists within.
@@ -192,6 +258,12 @@ namespace Pulumi.Keycloak
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
+        /// The organization this group exists within. If omitted, the data source looks up realm groups.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
         /// The realm this group exists within.
         /// </summary>
         [Input("realmId", required: true)]
@@ -214,6 +286,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string Id;
         public readonly string Name;
+        public readonly string? OrganizationId;
         public readonly string ParentId;
         public readonly string Path;
         public readonly string RealmId;
@@ -228,6 +301,8 @@ namespace Pulumi.Keycloak
 
             string name,
 
+            string? organizationId,
+
             string parentId,
 
             string path,
@@ -238,6 +313,7 @@ namespace Pulumi.Keycloak
             Description = description;
             Id = id;
             Name = name;
+            OrganizationId = organizationId;
             ParentId = parentId;
             Path = path;
             RealmId = realmId;

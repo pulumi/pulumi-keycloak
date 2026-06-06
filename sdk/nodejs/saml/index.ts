@@ -40,11 +40,6 @@ export type IdentityProvider = import("./identityProvider").IdentityProvider;
 export const IdentityProvider: typeof import("./identityProvider").IdentityProvider = null as any;
 utilities.lazyLoad(exports, ["IdentityProvider"], () => require("./identityProvider"));
 
-export { ScriptProtocolMapperArgs, ScriptProtocolMapperState } from "./scriptProtocolMapper";
-export type ScriptProtocolMapper = import("./scriptProtocolMapper").ScriptProtocolMapper;
-export const ScriptProtocolMapper: typeof import("./scriptProtocolMapper").ScriptProtocolMapper = null as any;
-utilities.lazyLoad(exports, ["ScriptProtocolMapper"], () => require("./scriptProtocolMapper"));
-
 export { UserAttributeProtocolMapperArgs, UserAttributeProtocolMapperState } from "./userAttributeProtocolMapper";
 export type UserAttributeProtocolMapper = import("./userAttributeProtocolMapper").UserAttributeProtocolMapper;
 export const UserAttributeProtocolMapper: typeof import("./userAttributeProtocolMapper").UserAttributeProtocolMapper = null as any;
@@ -68,8 +63,6 @@ const _module = {
                 return new ClientScope(name, <any>undefined, { urn })
             case "keycloak:saml/identityProvider:IdentityProvider":
                 return new IdentityProvider(name, <any>undefined, { urn })
-            case "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper":
-                return new ScriptProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper":
                 return new UserAttributeProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper":
@@ -83,6 +76,5 @@ pulumi.runtime.registerResourceModule("keycloak", "saml/client", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/clientDefaultScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/clientScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/identityProvider", _module)
-pulumi.runtime.registerResourceModule("keycloak", "saml/scriptProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/userAttributeProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "saml/userPropertyProtocolMapper", _module)

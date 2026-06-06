@@ -61,6 +61,12 @@ namespace Pulumi.Keycloak.Inputs
         }
 
         /// <summary>
+        /// Enable passkeys for passwordless WebAuthn authentication
+        /// </summary>
+        [Input("passwordlessPasskeysEnabled")]
+        public Input<bool>? PasswordlessPasskeysEnabled { get; set; }
+
+        /// <summary>
         /// A human-readable server name for the WebAuthn Relying Party. Defaults to `Keycloak`.
         /// </summary>
         [Input("relyingPartyEntityName")]

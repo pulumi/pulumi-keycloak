@@ -18,14 +18,14 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
     public static final UserSessionNoteProtocolMapperArgs Empty = new UserSessionNoteProtocolMapperArgs();
 
     /**
-     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      * 
      */
     @Import(name="addToAccessToken")
     private @Nullable Output<Boolean> addToAccessToken;
 
     /**
-     * @return Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * @return Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> addToAccessToken() {
@@ -33,18 +33,48 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      * 
      */
     @Import(name="addToIdToken")
     private @Nullable Output<Boolean> addToIdToken;
 
     /**
-     * @return Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * @return Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> addToIdToken() {
         return Optional.ofNullable(this.addToIdToken);
+    }
+
+    /**
+     * Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    @Import(name="addToTokenIntrospection")
+    private @Nullable Output<Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> addToTokenIntrospection() {
+        return Optional.ofNullable(this.addToTokenIntrospection);
+    }
+
+    /**
+     * Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
+    @Import(name="addToUserinfo")
+    private @Nullable Output<Boolean> addToUserinfo;
+
+    /**
+     * @return Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> addToUserinfo() {
+        return Optional.ofNullable(this.addToUserinfo);
     }
 
     /**
@@ -157,6 +187,8 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
     private UserSessionNoteProtocolMapperArgs(UserSessionNoteProtocolMapperArgs $) {
         this.addToAccessToken = $.addToAccessToken;
         this.addToIdToken = $.addToIdToken;
+        this.addToTokenIntrospection = $.addToTokenIntrospection;
+        this.addToUserinfo = $.addToUserinfo;
         this.claimName = $.claimName;
         this.claimValueType = $.claimValueType;
         this.clientId = $.clientId;
@@ -185,7 +217,7 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param addToAccessToken Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+         * @param addToAccessToken Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -196,7 +228,7 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param addToAccessToken Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+         * @param addToAccessToken Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -206,7 +238,7 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param addToIdToken Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+         * @param addToIdToken Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -217,13 +249,55 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param addToIdToken Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+         * @param addToIdToken Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
          * 
          * @return builder
          * 
          */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(@Nullable Output<Boolean> addToTokenIntrospection) {
+            $.addToTokenIntrospection = addToTokenIntrospection;
+            return this;
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(Boolean addToTokenIntrospection) {
+            return addToTokenIntrospection(Output.of(addToTokenIntrospection));
+        }
+
+        /**
+         * @param addToUserinfo Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToUserinfo(@Nullable Output<Boolean> addToUserinfo) {
+            $.addToUserinfo = addToUserinfo;
+            return this;
+        }
+
+        /**
+         * @param addToUserinfo Indicates if the session note should be added as a claim to the UserInfo response body. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToUserinfo(Boolean addToUserinfo) {
+            return addToUserinfo(Output.of(addToUserinfo));
         }
 
         /**

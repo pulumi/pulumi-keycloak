@@ -26,7 +26,7 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, attributes=None, description=None, id=None, name=None, parent_id=None, path=None, realm_id=None):
+    def __init__(__self__, attributes=None, description=None, id=None, name=None, organization_id=None, parent_id=None, path=None, realm_id=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
@@ -39,6 +39,9 @@ class GetGroupResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if organization_id and not isinstance(organization_id, str):
+            raise TypeError("Expected argument 'organization_id' to be a str")
+        pulumi.set(__self__, "organization_id", organization_id)
         if parent_id and not isinstance(parent_id, str):
             raise TypeError("Expected argument 'parent_id' to be a str")
         pulumi.set(__self__, "parent_id", parent_id)
@@ -73,6 +76,11 @@ class GetGroupResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "organization_id")
+
+    @_builtins.property
     @pulumi.getter(name="parentId")
     def parent_id(self) -> _builtins.str:
         return pulumi.get(self, "parent_id")
@@ -98,6 +106,7 @@ class AwaitableGetGroupResult(GetGroupResult):
             description=self.description,
             id=self.id,
             name=self.name,
+            organization_id=self.organization_id,
             parent_id=self.parent_id,
             path=self.path,
             realm_id=self.realm_id)
@@ -105,6 +114,7 @@ class AwaitableGetGroupResult(GetGroupResult):
 
 def get_group(description: Optional[_builtins.str] = None,
               name: Optional[_builtins.str] = None,
+              organization_id: Optional[_builtins.str] = None,
               realm_id: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
@@ -130,13 +140,26 @@ def get_group(description: Optional[_builtins.str] = None,
         role_ids=[offline_access.id])
     ```
 
+    Organization groups can be looked up by setting `organization_id`. Organization groups require Keycloak 26.6.0 or later.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    organization_group = keycloak.get_group(realm_id=realm["id"],
+        organization_id=organization["id"],
+        name="organization-group")
+    ```
+
 
     :param _builtins.str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
+    :param _builtins.str organization_id: The organization this group exists within. If omitted, the data source looks up realm groups.
     :param _builtins.str realm_id: The realm this group exists within.
     """
     __args__ = dict()
     __args__['description'] = description
     __args__['name'] = name
+    __args__['organizationId'] = organization_id
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
@@ -146,11 +169,13 @@ def get_group(description: Optional[_builtins.str] = None,
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
         parent_id=pulumi.get(__ret__, 'parent_id'),
         path=pulumi.get(__ret__, 'path'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
 def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      name: pulumi.Input[Optional[_builtins.str]] = None,
+                     organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
@@ -176,13 +201,26 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
         role_ids=[offline_access.id])
     ```
 
+    Organization groups can be looked up by setting `organization_id`. Organization groups require Keycloak 26.6.0 or later.
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    organization_group = keycloak.get_group(realm_id=realm["id"],
+        organization_id=organization["id"],
+        name="organization-group")
+    ```
+
 
     :param _builtins.str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
+    :param _builtins.str organization_id: The organization this group exists within. If omitted, the data source looks up realm groups.
     :param _builtins.str realm_id: The realm this group exists within.
     """
     __args__ = dict()
     __args__['description'] = description
     __args__['name'] = name
+    __args__['organizationId'] = organization_id
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
@@ -191,6 +229,7 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
         parent_id=pulumi.get(__response__, 'parent_id'),
         path=pulumi.get(__response__, 'path'),
         realm_id=pulumi.get(__response__, 'realm_id')))

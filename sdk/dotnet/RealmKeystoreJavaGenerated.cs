@@ -90,6 +90,12 @@ namespace Pulumi.Keycloak
         public Output<string> KeyPassword { get; private set; } = null!;
 
         /// <summary>
+        /// Intended use for the key
+        /// </summary>
+        [Output("keyUse")]
+        public Output<string?> KeyUse { get; private set; } = null!;
+
+        /// <summary>
         /// Path to keys file on keycloak instance.
         /// </summary>
         [Output("keystore")]
@@ -106,6 +112,9 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        [Output("parentId")]
+        public Output<string> ParentId { get; private set; } = null!;
 
         /// <summary>
         /// Priority for the provider. Defaults to `0`
@@ -196,6 +205,12 @@ namespace Pulumi.Keycloak
         public Input<string> KeyPassword { get; set; } = null!;
 
         /// <summary>
+        /// Intended use for the key
+        /// </summary>
+        [Input("keyUse")]
+        public Input<string>? KeyUse { get; set; }
+
+        /// <summary>
         /// Path to keys file on keycloak instance.
         /// </summary>
         [Input("keystore", required: true)]
@@ -264,6 +279,12 @@ namespace Pulumi.Keycloak
         public Input<string>? KeyPassword { get; set; }
 
         /// <summary>
+        /// Intended use for the key
+        /// </summary>
+        [Input("keyUse")]
+        public Input<string>? KeyUse { get; set; }
+
+        /// <summary>
         /// Path to keys file on keycloak instance.
         /// </summary>
         [Input("keystore")]
@@ -280,6 +301,9 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("parentId")]
+        public Input<string>? ParentId { get; set; }
 
         /// <summary>
         /// Priority for the provider. Defaults to `0`

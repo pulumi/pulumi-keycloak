@@ -136,6 +136,8 @@ type UserAttributeProtocolMapper struct {
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
 	// Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
+	// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrOutput `pulumi:"addToTokenIntrospection"`
 	// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
 	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
@@ -201,6 +203,8 @@ type userAttributeProtocolMapperState struct {
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
 	// Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection *bool `pulumi:"addToTokenIntrospection"`
 	// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo *bool `pulumi:"addToUserinfo"`
 	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
@@ -228,6 +232,8 @@ type UserAttributeProtocolMapperState struct {
 	AddToAccessToken pulumi.BoolPtrInput
 	// Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrInput
 	// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrInput
 	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
@@ -259,6 +265,8 @@ type userAttributeProtocolMapperArgs struct {
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
 	// Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection *bool `pulumi:"addToTokenIntrospection"`
 	// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo *bool `pulumi:"addToUserinfo"`
 	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
@@ -287,6 +295,8 @@ type UserAttributeProtocolMapperArgs struct {
 	AddToAccessToken pulumi.BoolPtrInput
 	// Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrInput
 	// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrInput
 	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
@@ -404,6 +414,11 @@ func (o UserAttributeProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutp
 // Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
 func (o UserAttributeProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+func (o UserAttributeProtocolMapperOutput) AddToTokenIntrospection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AddToTokenIntrospection }).(pulumi.BoolPtrOutput)
 }
 
 // Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.

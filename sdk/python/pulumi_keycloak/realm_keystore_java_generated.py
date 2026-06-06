@@ -27,6 +27,7 @@ class RealmKeystoreJavaGeneratedArgs:
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_use: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
@@ -40,6 +41,7 @@ class RealmKeystoreJavaGeneratedArgs:
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] key_use: Intended use for the key
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         """
@@ -54,6 +56,8 @@ class RealmKeystoreJavaGeneratedArgs:
             pulumi.set(__self__, "algorithm", algorithm)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if key_use is not None:
+            pulumi.set(__self__, "key_use", key_use)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if priority is not None:
@@ -156,6 +160,18 @@ class RealmKeystoreJavaGeneratedArgs:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="keyUse")
+    def key_use(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Intended use for the key
+        """
+        return pulumi.get(self, "key_use")
+
+    @key_use.setter
+    def key_use(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_use", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -188,9 +204,11 @@ class _RealmKeystoreJavaGeneratedState:
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  key_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  key_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_use: pulumi.Input[Optional[_builtins.str]] = None,
                  keystore: pulumi.Input[Optional[_builtins.str]] = None,
                  keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 parent_id: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -201,6 +219,7 @@ class _RealmKeystoreJavaGeneratedState:
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_alias: Alias for the private key.
         :param pulumi.Input[_builtins.str] key_password: Password for the private key.
+        :param pulumi.Input[_builtins.str] key_use: Intended use for the key
         :param pulumi.Input[_builtins.str] keystore: Path to keys file on keycloak instance.
         :param pulumi.Input[_builtins.str] keystore_password: Password for the keys.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
@@ -217,12 +236,16 @@ class _RealmKeystoreJavaGeneratedState:
             pulumi.set(__self__, "key_alias", key_alias)
         if key_password is not None:
             pulumi.set(__self__, "key_password", key_password)
+        if key_use is not None:
+            pulumi.set(__self__, "key_use", key_use)
         if keystore is not None:
             pulumi.set(__self__, "keystore", keystore)
         if keystore_password is not None:
             pulumi.set(__self__, "keystore_password", keystore_password)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parent_id is not None:
+            pulumi.set(__self__, "parent_id", parent_id)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
@@ -289,6 +312,18 @@ class _RealmKeystoreJavaGeneratedState:
         pulumi.set(self, "key_password", value)
 
     @_builtins.property
+    @pulumi.getter(name="keyUse")
+    def key_use(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Intended use for the key
+        """
+        return pulumi.get(self, "key_use")
+
+    @key_use.setter
+    def key_use(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_use", value)
+
+    @_builtins.property
     @pulumi.getter
     def keystore(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -323,6 +358,15 @@ class _RealmKeystoreJavaGeneratedState:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "parent_id")
+
+    @parent_id.setter
+    def parent_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parent_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -360,6 +404,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  key_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  key_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_use: pulumi.Input[Optional[_builtins.str]] = None,
                  keystore: pulumi.Input[Optional[_builtins.str]] = None,
                  keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -409,6 +454,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_alias: Alias for the private key.
         :param pulumi.Input[_builtins.str] key_password: Password for the private key.
+        :param pulumi.Input[_builtins.str] key_use: Intended use for the key
         :param pulumi.Input[_builtins.str] keystore: Path to keys file on keycloak instance.
         :param pulumi.Input[_builtins.str] keystore_password: Password for the keys.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
@@ -477,6 +523,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  key_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  key_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_use: pulumi.Input[Optional[_builtins.str]] = None,
                  keystore: pulumi.Input[Optional[_builtins.str]] = None,
                  keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -500,6 +547,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             if key_password is None and not opts.urn:
                 raise TypeError("Missing required property 'key_password'")
             __props__.__dict__["key_password"] = key_password
+            __props__.__dict__["key_use"] = key_use
             if keystore is None and not opts.urn:
                 raise TypeError("Missing required property 'keystore'")
             __props__.__dict__["keystore"] = keystore
@@ -511,6 +559,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["parent_id"] = None
         super(RealmKeystoreJavaGenerated, __self__).__init__(
             'keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated',
             resource_name,
@@ -526,9 +575,11 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             key_alias: pulumi.Input[Optional[_builtins.str]] = None,
             key_password: pulumi.Input[Optional[_builtins.str]] = None,
+            key_use: pulumi.Input[Optional[_builtins.str]] = None,
             keystore: pulumi.Input[Optional[_builtins.str]] = None,
             keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_id: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreJavaGenerated':
         """
@@ -543,6 +594,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_alias: Alias for the private key.
         :param pulumi.Input[_builtins.str] key_password: Password for the private key.
+        :param pulumi.Input[_builtins.str] key_use: Intended use for the key
         :param pulumi.Input[_builtins.str] keystore: Path to keys file on keycloak instance.
         :param pulumi.Input[_builtins.str] keystore_password: Password for the keys.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
@@ -558,9 +610,11 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["key_alias"] = key_alias
         __props__.__dict__["key_password"] = key_password
+        __props__.__dict__["key_use"] = key_use
         __props__.__dict__["keystore"] = keystore
         __props__.__dict__["keystore_password"] = keystore_password
         __props__.__dict__["name"] = name
+        __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
         return RealmKeystoreJavaGenerated(resource_name, opts=opts, __props__=__props__)
@@ -606,6 +660,14 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         return pulumi.get(self, "key_password")
 
     @_builtins.property
+    @pulumi.getter(name="keyUse")
+    def key_use(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Intended use for the key
+        """
+        return pulumi.get(self, "key_use")
+
+    @_builtins.property
     @pulumi.getter
     def keystore(self) -> pulumi.Output[_builtins.str]:
         """
@@ -628,6 +690,11 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         Display name of provider when linked in admin console.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> pulumi.Output[_builtins.str]:
+        return pulumi.get(self, "parent_id")
 
     @_builtins.property
     @pulumi.getter

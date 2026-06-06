@@ -24,6 +24,7 @@ class UserAttributeProtocolMapperArgs:
                  user_attribute: pulumi.Input[_builtins.str],
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -39,6 +40,7 @@ class UserAttributeProtocolMapperArgs:
         :param pulumi.Input[_builtins.str] user_attribute: The custom user attribute to map a claim for.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[_builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -54,6 +56,8 @@ class UserAttributeProtocolMapperArgs:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
             pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_token_introspection is not None:
+            pulumi.set(__self__, "add_to_token_introspection", add_to_token_introspection)
         if add_to_userinfo is not None:
             pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if aggregate_attributes is not None:
@@ -128,6 +132,18 @@ class UserAttributeProtocolMapperArgs:
     @add_to_id_token.setter
     def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @add_to_token_introspection.setter
+    def add_to_token_introspection(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_token_introspection", value)
 
     @_builtins.property
     @pulumi.getter(name="addToUserinfo")
@@ -219,6 +235,7 @@ class _UserAttributeProtocolMapperState:
     def __init__(__self__, *,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -234,6 +251,7 @@ class _UserAttributeProtocolMapperState:
 
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
@@ -249,6 +267,8 @@ class _UserAttributeProtocolMapperState:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
             pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_token_introspection is not None:
+            pulumi.set(__self__, "add_to_token_introspection", add_to_token_introspection)
         if add_to_userinfo is not None:
             pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if aggregate_attributes is not None:
@@ -293,6 +313,18 @@ class _UserAttributeProtocolMapperState:
     @add_to_id_token.setter
     def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @add_to_token_introspection.setter
+    def add_to_token_introspection(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_token_introspection", value)
 
     @_builtins.property
     @pulumi.getter(name="addToUserinfo")
@@ -423,6 +455,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -506,6 +539,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
@@ -608,6 +642,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -629,6 +664,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
             __props__.__dict__["add_to_access_token"] = add_to_access_token
             __props__.__dict__["add_to_id_token"] = add_to_id_token
+            __props__.__dict__["add_to_token_introspection"] = add_to_token_introspection
             __props__.__dict__["add_to_userinfo"] = add_to_userinfo
             __props__.__dict__["aggregate_attributes"] = aggregate_attributes
             if claim_name is None and not opts.urn:
@@ -657,6 +693,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
             add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
             add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
             aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
             claim_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -676,6 +713,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
@@ -693,6 +731,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         __props__.__dict__["add_to_access_token"] = add_to_access_token
         __props__.__dict__["add_to_id_token"] = add_to_id_token
+        __props__.__dict__["add_to_token_introspection"] = add_to_token_introspection
         __props__.__dict__["add_to_userinfo"] = add_to_userinfo
         __props__.__dict__["aggregate_attributes"] = aggregate_attributes
         __props__.__dict__["claim_name"] = claim_name
@@ -720,6 +759,14 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
+
+    @_builtins.property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
 
     @_builtins.property
     @pulumi.getter(name="addToUserinfo")

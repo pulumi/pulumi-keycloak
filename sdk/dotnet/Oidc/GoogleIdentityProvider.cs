@@ -162,6 +162,12 @@ namespace Pulumi.Keycloak.Oidc
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
 
+        /// <summary>
+        /// Pass `LoginHint` to the Google identity provider. Set to `"true"` to forward the `LoginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+        /// </summary>
+        [Output("loginHint")]
+        public Output<string?> LoginHint { get; private set; } = null!;
+
         [Output("orgDomain")]
         public Output<string?> OrgDomain { get; private set; } = null!;
 
@@ -384,6 +390,12 @@ namespace Pulumi.Keycloak.Oidc
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
 
+        /// <summary>
+        /// Pass `LoginHint` to the Google identity provider. Set to `"true"` to forward the `LoginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+        /// </summary>
+        [Input("loginHint")]
+        public Input<string>? LoginHint { get; set; }
+
         [Input("orgDomain")]
         public Input<string>? OrgDomain { get; set; }
 
@@ -569,6 +581,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
+
+        /// <summary>
+        /// Pass `LoginHint` to the Google identity provider. Set to `"true"` to forward the `LoginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+        /// </summary>
+        [Input("loginHint")]
+        public Input<string>? LoginHint { get; set; }
 
         [Input("orgDomain")]
         public Input<string>? OrgDomain { get; set; }

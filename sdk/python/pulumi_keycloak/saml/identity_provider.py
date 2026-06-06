@@ -2123,7 +2123,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="wantAuthnRequestsSigned")
-    def want_authn_requests_signed(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def want_authn_requests_signed(self) -> pulumi.Output[_builtins.bool]:
         """
         Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
         """

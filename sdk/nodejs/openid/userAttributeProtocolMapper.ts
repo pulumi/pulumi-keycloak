@@ -114,6 +114,10 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
      */
     declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
     /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     */
+    declare public readonly addToTokenIntrospection: pulumi.Output<boolean | undefined>;
+    /**
      * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     declare public readonly addToUserinfo: pulumi.Output<boolean | undefined>;
@@ -169,6 +173,7 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             const state = argsOrState as UserAttributeProtocolMapperState | undefined;
             resourceInputs["addToAccessToken"] = state?.addToAccessToken;
             resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = state?.addToTokenIntrospection;
             resourceInputs["addToUserinfo"] = state?.addToUserinfo;
             resourceInputs["aggregateAttributes"] = state?.aggregateAttributes;
             resourceInputs["claimName"] = state?.claimName;
@@ -192,6 +197,7 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = args?.addToTokenIntrospection;
             resourceInputs["addToUserinfo"] = args?.addToUserinfo;
             resourceInputs["aggregateAttributes"] = args?.aggregateAttributes;
             resourceInputs["claimName"] = args?.claimName;
@@ -220,6 +226,10 @@ export interface UserAttributeProtocolMapperState {
      * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
@@ -274,6 +284,10 @@ export interface UserAttributeProtocolMapperArgs {
      * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
      */

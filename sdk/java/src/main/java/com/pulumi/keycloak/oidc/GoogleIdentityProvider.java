@@ -319,6 +319,20 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
     public Output<Optional<Boolean>> linkOnly() {
         return Codegen.optional(this.linkOnly);
     }
+    /**
+     * Pass `loginHint` to the Google identity provider. Set to `&#34;true&#34;` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `&#34;true&#34;` or `&#34;false&#34;`.
+     * 
+     */
+    @Export(name="loginHint", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> loginHint;
+
+    /**
+     * @return Pass `loginHint` to the Google identity provider. Set to `&#34;true&#34;` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `&#34;true&#34;` or `&#34;false&#34;`.
+     * 
+     */
+    public Output<Optional<String>> loginHint() {
+        return Codegen.optional(this.loginHint);
+    }
     @Export(name="orgDomain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> orgDomain;
 

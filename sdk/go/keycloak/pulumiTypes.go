@@ -1293,6 +1293,8 @@ func (o RealmInternationalizationPtrOutput) SupportedLocales() pulumi.StringArra
 type RealmOtpPolicy struct {
 	// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
 	Algorithm *string `pulumi:"algorithm"`
+	// Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+	CodeReusable *bool `pulumi:"codeReusable"`
 	// How many digits the OTP have. Defaults to `6`.
 	Digits *int `pulumi:"digits"`
 	// What should the initial counter value be. Defaults to `2`.
@@ -1319,6 +1321,8 @@ type RealmOtpPolicyInput interface {
 type RealmOtpPolicyArgs struct {
 	// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
 	Algorithm pulumi.StringPtrInput `pulumi:"algorithm"`
+	// Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+	CodeReusable pulumi.BoolPtrInput `pulumi:"codeReusable"`
 	// How many digits the OTP have. Defaults to `6`.
 	Digits pulumi.IntPtrInput `pulumi:"digits"`
 	// What should the initial counter value be. Defaults to `2`.
@@ -1413,6 +1417,11 @@ func (o RealmOtpPolicyOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *string { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
 
+// Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+func (o RealmOtpPolicyOutput) CodeReusable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RealmOtpPolicy) *bool { return v.CodeReusable }).(pulumi.BoolPtrOutput)
+}
+
 // How many digits the OTP have. Defaults to `6`.
 func (o RealmOtpPolicyOutput) Digits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.Digits }).(pulumi.IntPtrOutput)
@@ -1470,6 +1479,16 @@ func (o RealmOtpPolicyPtrOutput) Algorithm() pulumi.StringPtrOutput {
 		}
 		return v.Algorithm
 	}).(pulumi.StringPtrOutput)
+}
+
+// Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+func (o RealmOtpPolicyPtrOutput) CodeReusable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmOtpPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CodeReusable
+	}).(pulumi.BoolPtrOutput)
 }
 
 // How many digits the OTP have. Defaults to `6`.
@@ -1671,6 +1690,7 @@ func (o RealmSecurityDefensesPtrOutput) Headers() RealmSecurityDefensesHeadersPt
 }
 
 type RealmSecurityDefensesBruteForceDetection struct {
+	BruteForceStrategy *string `pulumi:"bruteForceStrategy"`
 	// When will failure count be reset?
 	FailureResetTimeSeconds *int `pulumi:"failureResetTimeSeconds"`
 	MaxFailureWaitSeconds   *int `pulumi:"maxFailureWaitSeconds"`
@@ -1701,6 +1721,7 @@ type RealmSecurityDefensesBruteForceDetectionInput interface {
 }
 
 type RealmSecurityDefensesBruteForceDetectionArgs struct {
+	BruteForceStrategy pulumi.StringPtrInput `pulumi:"bruteForceStrategy"`
 	// When will failure count be reset?
 	FailureResetTimeSeconds pulumi.IntPtrInput `pulumi:"failureResetTimeSeconds"`
 	MaxFailureWaitSeconds   pulumi.IntPtrInput `pulumi:"maxFailureWaitSeconds"`
@@ -1796,6 +1817,10 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) ToRealmSecurityDefensesB
 	}).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 
+func (o RealmSecurityDefensesBruteForceDetectionOutput) BruteForceStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *string { return v.BruteForceStrategy }).(pulumi.StringPtrOutput)
+}
+
 // When will failure count be reset?
 func (o RealmSecurityDefensesBruteForceDetectionOutput) FailureResetTimeSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.FailureResetTimeSeconds }).(pulumi.IntPtrOutput)
@@ -1858,6 +1883,15 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) Elem() RealmSecurityD
 		var ret RealmSecurityDefensesBruteForceDetection
 		return ret
 	}).(RealmSecurityDefensesBruteForceDetectionOutput)
+}
+
+func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) BruteForceStrategy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BruteForceStrategy
+	}).(pulumi.StringPtrOutput)
 }
 
 // When will failure count be reset?
@@ -2211,6 +2245,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XXssProtection() pulumi.StringPtr
 }
 
 type RealmSmtpServer struct {
+	// When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
 	AllowUtf8 *bool `pulumi:"allowUtf8"`
 	// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 	Auth *RealmSmtpServerAuth `pulumi:"auth"`
@@ -2248,6 +2283,7 @@ type RealmSmtpServerInput interface {
 }
 
 type RealmSmtpServerArgs struct {
+	// When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
 	AllowUtf8 pulumi.BoolPtrInput `pulumi:"allowUtf8"`
 	// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 	Auth RealmSmtpServerAuthPtrInput `pulumi:"auth"`
@@ -2350,6 +2386,7 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context
 	}).(RealmSmtpServerPtrOutput)
 }
 
+// When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
 func (o RealmSmtpServerOutput) AllowUtf8() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.AllowUtf8 }).(pulumi.BoolPtrOutput)
 }
@@ -2433,6 +2470,7 @@ func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
 	}).(RealmSmtpServerOutput)
 }
 
+// When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
 func (o RealmSmtpServerPtrOutput) AllowUtf8() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *bool {
 		if v == nil {
@@ -2915,6 +2953,8 @@ func (o RealmSmtpServerTokenAuthPtrOutput) Username() pulumi.StringPtrOutput {
 
 type RealmUserProfileAttribute struct {
 	Annotations map[string]string `pulumi:"annotations"`
+	// The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+	DefaultValue *string `pulumi:"defaultValue"`
 	// The display name of the attribute.
 	DisplayName *string `pulumi:"displayName"`
 	// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
@@ -2947,6 +2987,8 @@ type RealmUserProfileAttributeInput interface {
 
 type RealmUserProfileAttributeArgs struct {
 	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+	DefaultValue pulumi.StringPtrInput `pulumi:"defaultValue"`
 	// The display name of the attribute.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
@@ -3019,6 +3061,11 @@ func (o RealmUserProfileAttributeOutput) ToRealmUserProfileAttributeOutputWithCo
 
 func (o RealmUserProfileAttributeOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+func (o RealmUserProfileAttributeOutput) DefaultValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) *string { return v.DefaultValue }).(pulumi.StringPtrOutput)
 }
 
 // The display name of the attribute.
@@ -3475,6 +3522,8 @@ type RealmWebAuthnPasswordlessPolicy struct {
 	CreateTimeout *int `pulumi:"createTimeout"`
 	// A set of extra origins for non-web applications.
 	ExtraOrigins []string `pulumi:"extraOrigins"`
+	// Enable passkeys for passwordless WebAuthn authentication
+	PasswordlessPasskeysEnabled *bool `pulumi:"passwordlessPasskeysEnabled"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
@@ -3511,6 +3560,8 @@ type RealmWebAuthnPasswordlessPolicyArgs struct {
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
 	// A set of extra origins for non-web applications.
 	ExtraOrigins pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	// Enable passkeys for passwordless WebAuthn authentication
+	PasswordlessPasskeysEnabled pulumi.BoolPtrInput `pulumi:"passwordlessPasskeysEnabled"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
@@ -3630,6 +3681,11 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) ExtraOrigins() pulumi.StringArray
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
 }
 
+// Enable passkeys for passwordless WebAuthn authentication
+func (o RealmWebAuthnPasswordlessPolicyOutput) PasswordlessPasskeysEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *bool { return v.PasswordlessPasskeysEnabled }).(pulumi.BoolPtrOutput)
+}
+
 // A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
@@ -3737,6 +3793,16 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ExtraOrigins() pulumi.StringAr
 		}
 		return v.ExtraOrigins
 	}).(pulumi.StringArrayOutput)
+}
+
+// Enable passkeys for passwordless WebAuthn authentication
+func (o RealmWebAuthnPasswordlessPolicyPtrOutput) PasswordlessPasskeysEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordlessPasskeysEnabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
@@ -5365,6 +5431,121 @@ func (o UsersPermissionsViewScopePtrOutput) Policies() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
+type WorkflowStep struct {
+	// Delay in milliseconds before executing this step.
+	After *string `pulumi:"after"`
+	// Key-value configuration for the step.
+	Config map[string]string `pulumi:"config"`
+	// The step type to execute (e.g. disable-user, delete-user, notify-user).
+	Uses string `pulumi:"uses"`
+}
+
+// WorkflowStepInput is an input type that accepts WorkflowStepArgs and WorkflowStepOutput values.
+// You can construct a concrete instance of `WorkflowStepInput` via:
+//
+//	WorkflowStepArgs{...}
+type WorkflowStepInput interface {
+	pulumi.Input
+
+	ToWorkflowStepOutput() WorkflowStepOutput
+	ToWorkflowStepOutputWithContext(context.Context) WorkflowStepOutput
+}
+
+type WorkflowStepArgs struct {
+	// Delay in milliseconds before executing this step.
+	After pulumi.StringPtrInput `pulumi:"after"`
+	// Key-value configuration for the step.
+	Config pulumi.StringMapInput `pulumi:"config"`
+	// The step type to execute (e.g. disable-user, delete-user, notify-user).
+	Uses pulumi.StringInput `pulumi:"uses"`
+}
+
+func (WorkflowStepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkflowStep)(nil)).Elem()
+}
+
+func (i WorkflowStepArgs) ToWorkflowStepOutput() WorkflowStepOutput {
+	return i.ToWorkflowStepOutputWithContext(context.Background())
+}
+
+func (i WorkflowStepArgs) ToWorkflowStepOutputWithContext(ctx context.Context) WorkflowStepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowStepOutput)
+}
+
+// WorkflowStepArrayInput is an input type that accepts WorkflowStepArray and WorkflowStepArrayOutput values.
+// You can construct a concrete instance of `WorkflowStepArrayInput` via:
+//
+//	WorkflowStepArray{ WorkflowStepArgs{...} }
+type WorkflowStepArrayInput interface {
+	pulumi.Input
+
+	ToWorkflowStepArrayOutput() WorkflowStepArrayOutput
+	ToWorkflowStepArrayOutputWithContext(context.Context) WorkflowStepArrayOutput
+}
+
+type WorkflowStepArray []WorkflowStepInput
+
+func (WorkflowStepArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WorkflowStep)(nil)).Elem()
+}
+
+func (i WorkflowStepArray) ToWorkflowStepArrayOutput() WorkflowStepArrayOutput {
+	return i.ToWorkflowStepArrayOutputWithContext(context.Background())
+}
+
+func (i WorkflowStepArray) ToWorkflowStepArrayOutputWithContext(ctx context.Context) WorkflowStepArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowStepArrayOutput)
+}
+
+type WorkflowStepOutput struct{ *pulumi.OutputState }
+
+func (WorkflowStepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkflowStep)(nil)).Elem()
+}
+
+func (o WorkflowStepOutput) ToWorkflowStepOutput() WorkflowStepOutput {
+	return o
+}
+
+func (o WorkflowStepOutput) ToWorkflowStepOutputWithContext(ctx context.Context) WorkflowStepOutput {
+	return o
+}
+
+// Delay in milliseconds before executing this step.
+func (o WorkflowStepOutput) After() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkflowStep) *string { return v.After }).(pulumi.StringPtrOutput)
+}
+
+// Key-value configuration for the step.
+func (o WorkflowStepOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WorkflowStep) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// The step type to execute (e.g. disable-user, delete-user, notify-user).
+func (o WorkflowStepOutput) Uses() pulumi.StringOutput {
+	return o.ApplyT(func(v WorkflowStep) string { return v.Uses }).(pulumi.StringOutput)
+}
+
+type WorkflowStepArrayOutput struct{ *pulumi.OutputState }
+
+func (WorkflowStepArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WorkflowStep)(nil)).Elem()
+}
+
+func (o WorkflowStepArrayOutput) ToWorkflowStepArrayOutput() WorkflowStepArrayOutput {
+	return o
+}
+
+func (o WorkflowStepArrayOutput) ToWorkflowStepArrayOutputWithContext(ctx context.Context) WorkflowStepArrayOutput {
+	return o
+}
+
+func (o WorkflowStepArrayOutput) Index(i pulumi.IntInput) WorkflowStepOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WorkflowStep {
+		return vs[0].([]WorkflowStep)[vs[1].(int)]
+	}).(WorkflowStepOutput)
+}
+
 type GetClientDescriptionConverterProtocolMapper struct {
 	Config         map[string]string `pulumi:"config"`
 	Id             string            `pulumi:"id"`
@@ -5848,6 +6029,7 @@ func (o GetRealmKeysKeyArrayOutput) Index(i pulumi.IntInput) GetRealmKeysKeyOutp
 
 type GetRealmOtpPolicy struct {
 	Algorithm       string `pulumi:"algorithm"`
+	CodeReusable    bool   `pulumi:"codeReusable"`
 	Digits          int    `pulumi:"digits"`
 	InitialCounter  int    `pulumi:"initialCounter"`
 	LookAheadWindow int    `pulumi:"lookAheadWindow"`
@@ -5868,6 +6050,7 @@ type GetRealmOtpPolicyInput interface {
 
 type GetRealmOtpPolicyArgs struct {
 	Algorithm       pulumi.StringInput `pulumi:"algorithm"`
+	CodeReusable    pulumi.BoolInput   `pulumi:"codeReusable"`
 	Digits          pulumi.IntInput    `pulumi:"digits"`
 	InitialCounter  pulumi.IntInput    `pulumi:"initialCounter"`
 	LookAheadWindow pulumi.IntInput    `pulumi:"lookAheadWindow"`
@@ -5956,6 +6139,10 @@ func (o GetRealmOtpPolicyOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmOtpPolicy) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
+func (o GetRealmOtpPolicyOutput) CodeReusable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRealmOtpPolicy) bool { return v.CodeReusable }).(pulumi.BoolOutput)
+}
+
 func (o GetRealmOtpPolicyOutput) Digits() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRealmOtpPolicy) int { return v.Digits }).(pulumi.IntOutput)
 }
@@ -6007,6 +6194,15 @@ func (o GetRealmOtpPolicyPtrOutput) Algorithm() pulumi.StringPtrOutput {
 		}
 		return &v.Algorithm
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetRealmOtpPolicyPtrOutput) CodeReusable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetRealmOtpPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.CodeReusable
+	}).(pulumi.BoolPtrOutput)
 }
 
 func (o GetRealmOtpPolicyPtrOutput) Digits() pulumi.IntPtrOutput {
@@ -6809,6 +7005,7 @@ type GetRealmWebAuthnPasswordlessPolicy struct {
 	AvoidSameAuthenticatorRegister bool     `pulumi:"avoidSameAuthenticatorRegister"`
 	CreateTimeout                  int      `pulumi:"createTimeout"`
 	ExtraOrigins                   []string `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled    bool     `pulumi:"passwordlessPasskeysEnabled"`
 	RelyingPartyEntityName         string   `pulumi:"relyingPartyEntityName"`
 	RelyingPartyId                 string   `pulumi:"relyingPartyId"`
 	// Either Yes or No
@@ -6839,6 +7036,7 @@ type GetRealmWebAuthnPasswordlessPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
 	CreateTimeout                  pulumi.IntInput         `pulumi:"createTimeout"`
 	ExtraOrigins                   pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled    pulumi.BoolInput        `pulumi:"passwordlessPasskeysEnabled"`
 	RelyingPartyEntityName         pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
 	RelyingPartyId                 pulumi.StringInput      `pulumi:"relyingPartyId"`
 	// Either Yes or No
@@ -6952,6 +7150,10 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) ExtraOrigins() pulumi.StringAr
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
 }
 
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) PasswordlessPasskeysEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) bool { return v.PasswordlessPasskeysEnabled }).(pulumi.BoolOutput)
+}
+
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) RelyingPartyEntityName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.RelyingPartyEntityName }).(pulumi.StringOutput)
 }
@@ -7055,6 +7257,15 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ExtraOrigins() pulumi.Strin
 	}).(pulumi.StringArrayOutput)
 }
 
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) PasswordlessPasskeysEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.PasswordlessPasskeysEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -7112,6 +7323,7 @@ type GetRealmWebAuthnPolicy struct {
 	AvoidSameAuthenticatorRegister bool     `pulumi:"avoidSameAuthenticatorRegister"`
 	CreateTimeout                  int      `pulumi:"createTimeout"`
 	ExtraOrigins                   []string `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled    bool     `pulumi:"passwordlessPasskeysEnabled"`
 	RelyingPartyEntityName         string   `pulumi:"relyingPartyEntityName"`
 	RelyingPartyId                 string   `pulumi:"relyingPartyId"`
 	// Either Yes or No
@@ -7142,6 +7354,7 @@ type GetRealmWebAuthnPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
 	CreateTimeout                  pulumi.IntInput         `pulumi:"createTimeout"`
 	ExtraOrigins                   pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled    pulumi.BoolInput        `pulumi:"passwordlessPasskeysEnabled"`
 	RelyingPartyEntityName         pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
 	RelyingPartyId                 pulumi.StringInput      `pulumi:"relyingPartyId"`
 	// Either Yes or No
@@ -7255,6 +7468,10 @@ func (o GetRealmWebAuthnPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
 }
 
+func (o GetRealmWebAuthnPolicyOutput) PasswordlessPasskeysEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPolicy) bool { return v.PasswordlessPasskeysEnabled }).(pulumi.BoolOutput)
+}
+
 func (o GetRealmWebAuthnPolicyOutput) RelyingPartyEntityName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.RelyingPartyEntityName }).(pulumi.StringOutput)
 }
@@ -7358,6 +7575,15 @@ func (o GetRealmWebAuthnPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput
 	}).(pulumi.StringArrayOutput)
 }
 
+func (o GetRealmWebAuthnPolicyPtrOutput) PasswordlessPasskeysEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.PasswordlessPasskeysEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 func (o GetRealmWebAuthnPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -7404,6 +7630,112 @@ func (o GetRealmWebAuthnPolicyPtrOutput) UserVerificationRequirement() pulumi.St
 		}
 		return &v.UserVerificationRequirement
 	}).(pulumi.StringPtrOutput)
+}
+
+type GetWorkflowStep struct {
+	After  string            `pulumi:"after"`
+	Config map[string]string `pulumi:"config"`
+	Uses   string            `pulumi:"uses"`
+}
+
+// GetWorkflowStepInput is an input type that accepts GetWorkflowStepArgs and GetWorkflowStepOutput values.
+// You can construct a concrete instance of `GetWorkflowStepInput` via:
+//
+//	GetWorkflowStepArgs{...}
+type GetWorkflowStepInput interface {
+	pulumi.Input
+
+	ToGetWorkflowStepOutput() GetWorkflowStepOutput
+	ToGetWorkflowStepOutputWithContext(context.Context) GetWorkflowStepOutput
+}
+
+type GetWorkflowStepArgs struct {
+	After  pulumi.StringInput    `pulumi:"after"`
+	Config pulumi.StringMapInput `pulumi:"config"`
+	Uses   pulumi.StringInput    `pulumi:"uses"`
+}
+
+func (GetWorkflowStepArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkflowStep)(nil)).Elem()
+}
+
+func (i GetWorkflowStepArgs) ToGetWorkflowStepOutput() GetWorkflowStepOutput {
+	return i.ToGetWorkflowStepOutputWithContext(context.Background())
+}
+
+func (i GetWorkflowStepArgs) ToGetWorkflowStepOutputWithContext(ctx context.Context) GetWorkflowStepOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkflowStepOutput)
+}
+
+// GetWorkflowStepArrayInput is an input type that accepts GetWorkflowStepArray and GetWorkflowStepArrayOutput values.
+// You can construct a concrete instance of `GetWorkflowStepArrayInput` via:
+//
+//	GetWorkflowStepArray{ GetWorkflowStepArgs{...} }
+type GetWorkflowStepArrayInput interface {
+	pulumi.Input
+
+	ToGetWorkflowStepArrayOutput() GetWorkflowStepArrayOutput
+	ToGetWorkflowStepArrayOutputWithContext(context.Context) GetWorkflowStepArrayOutput
+}
+
+type GetWorkflowStepArray []GetWorkflowStepInput
+
+func (GetWorkflowStepArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkflowStep)(nil)).Elem()
+}
+
+func (i GetWorkflowStepArray) ToGetWorkflowStepArrayOutput() GetWorkflowStepArrayOutput {
+	return i.ToGetWorkflowStepArrayOutputWithContext(context.Background())
+}
+
+func (i GetWorkflowStepArray) ToGetWorkflowStepArrayOutputWithContext(ctx context.Context) GetWorkflowStepArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkflowStepArrayOutput)
+}
+
+type GetWorkflowStepOutput struct{ *pulumi.OutputState }
+
+func (GetWorkflowStepOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkflowStep)(nil)).Elem()
+}
+
+func (o GetWorkflowStepOutput) ToGetWorkflowStepOutput() GetWorkflowStepOutput {
+	return o
+}
+
+func (o GetWorkflowStepOutput) ToGetWorkflowStepOutputWithContext(ctx context.Context) GetWorkflowStepOutput {
+	return o
+}
+
+func (o GetWorkflowStepOutput) After() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkflowStep) string { return v.After }).(pulumi.StringOutput)
+}
+
+func (o GetWorkflowStepOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetWorkflowStep) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+func (o GetWorkflowStepOutput) Uses() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkflowStep) string { return v.Uses }).(pulumi.StringOutput)
+}
+
+type GetWorkflowStepArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWorkflowStepArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkflowStep)(nil)).Elem()
+}
+
+func (o GetWorkflowStepArrayOutput) ToGetWorkflowStepArrayOutput() GetWorkflowStepArrayOutput {
+	return o
+}
+
+func (o GetWorkflowStepArrayOutput) ToGetWorkflowStepArrayOutputWithContext(ctx context.Context) GetWorkflowStepArrayOutput {
+	return o
+}
+
+func (o GetWorkflowStepArrayOutput) Index(i pulumi.IntInput) GetWorkflowStepOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWorkflowStep {
+		return vs[0].([]GetWorkflowStep)[vs[1].(int)]
+	}).(GetWorkflowStepOutput)
 }
 
 func init() {
@@ -7467,6 +7799,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsUserImpersonatedScopePtrInput)(nil)).Elem(), UsersPermissionsUserImpersonatedScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopeInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopePtrInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowStepInput)(nil)).Elem(), WorkflowStepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowStepArrayInput)(nil)).Elem(), WorkflowStepArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperArrayInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationDomainInput)(nil)).Elem(), GetOrganizationDomainArgs{})
@@ -7493,6 +7827,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPasswordlessPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPasswordlessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowStepInput)(nil)).Elem(), GetWorkflowStepArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowStepArrayInput)(nil)).Elem(), GetWorkflowStepArray{})
 	pulumi.RegisterOutputType(GroupPermissionsManageMembersScopeOutput{})
 	pulumi.RegisterOutputType(GroupPermissionsManageMembersScopePtrOutput{})
 	pulumi.RegisterOutputType(GroupPermissionsManageMembershipScopeOutput{})
@@ -7553,6 +7889,8 @@ func init() {
 	pulumi.RegisterOutputType(UsersPermissionsUserImpersonatedScopePtrOutput{})
 	pulumi.RegisterOutputType(UsersPermissionsViewScopeOutput{})
 	pulumi.RegisterOutputType(UsersPermissionsViewScopePtrOutput{})
+	pulumi.RegisterOutputType(WorkflowStepOutput{})
+	pulumi.RegisterOutputType(WorkflowStepArrayOutput{})
 	pulumi.RegisterOutputType(GetClientDescriptionConverterProtocolMapperOutput{})
 	pulumi.RegisterOutputType(GetClientDescriptionConverterProtocolMapperArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationDomainOutput{})
@@ -7579,4 +7917,6 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmWebAuthnPasswordlessPolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyPtrOutput{})
+	pulumi.RegisterOutputType(GetWorkflowStepOutput{})
+	pulumi.RegisterOutputType(GetWorkflowStepArrayOutput{})
 }

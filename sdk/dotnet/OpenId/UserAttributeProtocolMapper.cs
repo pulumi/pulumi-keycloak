@@ -123,6 +123,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<bool?> AddToIdToken { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `True`.
+        /// </summary>
+        [Output("addToTokenIntrospection")]
+        public Output<bool?> AddToTokenIntrospection { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `True`.
         /// </summary>
         [Output("addToUserinfo")]
@@ -241,6 +247,12 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? AddToIdToken { get; set; }
 
         /// <summary>
+        /// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `True`.
+        /// </summary>
+        [Input("addToTokenIntrospection")]
+        public Input<bool>? AddToTokenIntrospection { get; set; }
+
+        /// <summary>
         /// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `True`.
         /// </summary>
         [Input("addToUserinfo")]
@@ -319,6 +331,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
+
+        /// <summary>
+        /// Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `True`.
+        /// </summary>
+        [Input("addToTokenIntrospection")]
+        public Input<bool>? AddToTokenIntrospection { get; set; }
 
         /// <summary>
         /// Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `True`.

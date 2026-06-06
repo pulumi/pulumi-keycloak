@@ -262,6 +262,10 @@
                 "current": "keycloak:oidc/identityProvider:IdentityProvider",
                 "majorVersion": 6
             },
+            "keycloak_oidc_openshift_v4_identity_provider": {
+                "current": "keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider",
+                "majorVersion": 6
+            },
             "keycloak_openid_audience_protocol_mapper": {
                 "current": "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper",
                 "majorVersion": 6
@@ -374,10 +378,6 @@
                     }
                 }
             },
-            "keycloak_openid_client_js_policy": {
-                "current": "keycloak:openid/clientJsPolicy:ClientJsPolicy",
-                "majorVersion": 6
-            },
             "keycloak_openid_client_optional_scopes": {
                 "current": "keycloak:openid/clientOptionalScopes:ClientOptionalScopes",
                 "majorVersion": 6,
@@ -463,6 +463,10 @@
                     }
                 }
             },
+            "keycloak_openid_client_regex_policy": {
+                "current": "keycloak:openid/clientRegexPolicy:ClientRegexPolicy",
+                "majorVersion": 6
+            },
             "keycloak_openid_client_role_policy": {
                 "current": "keycloak:openid/clientRolePolicy:ClientRolePolicy",
                 "majorVersion": 6,
@@ -511,10 +515,6 @@
             },
             "keycloak_openid_hardcoded_role_protocol_mapper": {
                 "current": "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper",
-                "majorVersion": 6
-            },
-            "keycloak_openid_script_protocol_mapper": {
-                "current": "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper",
                 "majorVersion": 6
             },
             "keycloak_openid_sub_protocol_mapper": {
@@ -803,16 +803,16 @@
                     }
                 }
             },
-            "keycloak_saml_script_protocol_mapper": {
-                "current": "keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper",
-                "majorVersion": 6
-            },
             "keycloak_saml_user_attribute_protocol_mapper": {
                 "current": "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper",
                 "majorVersion": 6
             },
             "keycloak_saml_user_property_protocol_mapper": {
                 "current": "keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper",
+                "majorVersion": 6
+            },
+            "keycloak_spiffe_identity_provider": {
+                "current": "keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider",
                 "majorVersion": 6
             },
             "keycloak_user": {
@@ -917,6 +917,15 @@
                         }
                     }
                 }
+            },
+            "keycloak_workflow": {
+                "current": "keycloak:index/workflow:Workflow",
+                "majorVersion": 6,
+                "fields": {
+                    "step": {
+                        "maxItemsOne": false
+                    }
+                }
             }
         },
         "datasources": {
@@ -955,6 +964,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "keycloak_generic_protocol_mapper": {
+                "current": "keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper",
+                "majorVersion": 6
             },
             "keycloak_group": {
                 "current": "keycloak:index/getGroup:getGroup",
@@ -1165,6 +1178,15 @@
                 "majorVersion": 6,
                 "fields": {
                     "role_names": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "keycloak_workflow": {
+                "current": "keycloak:index/getWorkflow:getWorkflow",
+                "majorVersion": 6,
+                "fields": {
+                    "step": {
                         "maxItemsOne": false
                     }
                 }

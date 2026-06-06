@@ -45,6 +45,11 @@ public final class RealmWebAuthnPasswordlessPolicy {
      */
     private @Nullable List<String> extraOrigins;
     /**
+     * @return Enable passkeys for passwordless WebAuthn authentication
+     * 
+     */
+    private @Nullable Boolean passwordlessPasskeysEnabled;
+    /**
      * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
@@ -114,6 +119,13 @@ public final class RealmWebAuthnPasswordlessPolicy {
         return this.extraOrigins == null ? List.of() : this.extraOrigins;
     }
     /**
+     * @return Enable passkeys for passwordless WebAuthn authentication
+     * 
+     */
+    public Optional<Boolean> passwordlessPasskeysEnabled() {
+        return Optional.ofNullable(this.passwordlessPasskeysEnabled);
+    }
+    /**
      * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
@@ -164,6 +176,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
         private @Nullable Boolean avoidSameAuthenticatorRegister;
         private @Nullable Integer createTimeout;
         private @Nullable List<String> extraOrigins;
+        private @Nullable Boolean passwordlessPasskeysEnabled;
         private @Nullable String relyingPartyEntityName;
         private @Nullable String relyingPartyId;
         private @Nullable String requireResidentKey;
@@ -178,6 +191,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
     	      this.avoidSameAuthenticatorRegister = defaults.avoidSameAuthenticatorRegister;
     	      this.createTimeout = defaults.createTimeout;
     	      this.extraOrigins = defaults.extraOrigins;
+    	      this.passwordlessPasskeysEnabled = defaults.passwordlessPasskeysEnabled;
     	      this.relyingPartyEntityName = defaults.relyingPartyEntityName;
     	      this.relyingPartyId = defaults.relyingPartyId;
     	      this.requireResidentKey = defaults.requireResidentKey;
@@ -228,6 +242,12 @@ public final class RealmWebAuthnPasswordlessPolicy {
             return extraOrigins(List.of(extraOrigins));
         }
         @CustomType.Setter
+        public Builder passwordlessPasskeysEnabled(@Nullable Boolean passwordlessPasskeysEnabled) {
+
+            this.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
+            return this;
+        }
+        @CustomType.Setter
         public Builder relyingPartyEntityName(@Nullable String relyingPartyEntityName) {
 
             this.relyingPartyEntityName = relyingPartyEntityName;
@@ -268,6 +288,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
             _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             _resultValue.createTimeout = createTimeout;
             _resultValue.extraOrigins = extraOrigins;
+            _resultValue.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
             _resultValue.relyingPartyEntityName = relyingPartyEntityName;
             _resultValue.relyingPartyId = relyingPartyId;
             _resultValue.requireResidentKey = requireResidentKey;

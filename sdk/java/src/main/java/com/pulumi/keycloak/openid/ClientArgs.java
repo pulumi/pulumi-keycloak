@@ -642,6 +642,20 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.oauth2DevicePollingInterval);
     }
 
+    @Import(name="oauth2JwtAuthorizationGrantEnabled")
+    private @Nullable Output<Boolean> oauth2JwtAuthorizationGrantEnabled;
+
+    public Optional<Output<Boolean>> oauth2JwtAuthorizationGrantEnabled() {
+        return Optional.ofNullable(this.oauth2JwtAuthorizationGrantEnabled);
+    }
+
+    @Import(name="oauth2JwtAuthorizationGrantIdp")
+    private @Nullable Output<String> oauth2JwtAuthorizationGrantIdp;
+
+    public Optional<Output<String>> oauth2JwtAuthorizationGrantIdp() {
+        return Optional.ofNullable(this.oauth2JwtAuthorizationGrantIdp);
+    }
+
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      * 
@@ -869,6 +883,8 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.oauth2DeviceAuthorizationGrantEnabled = $.oauth2DeviceAuthorizationGrantEnabled;
         this.oauth2DeviceCodeLifespan = $.oauth2DeviceCodeLifespan;
         this.oauth2DevicePollingInterval = $.oauth2DevicePollingInterval;
+        this.oauth2JwtAuthorizationGrantEnabled = $.oauth2JwtAuthorizationGrantEnabled;
+        this.oauth2JwtAuthorizationGrantIdp = $.oauth2JwtAuthorizationGrantIdp;
         this.pkceCodeChallengeMethod = $.pkceCodeChallengeMethod;
         this.realmId = $.realmId;
         this.requireDpopBoundTokens = $.requireDpopBoundTokens;
@@ -1759,6 +1775,24 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder oauth2DevicePollingInterval(String oauth2DevicePollingInterval) {
             return oauth2DevicePollingInterval(Output.of(oauth2DevicePollingInterval));
+        }
+
+        public Builder oauth2JwtAuthorizationGrantEnabled(@Nullable Output<Boolean> oauth2JwtAuthorizationGrantEnabled) {
+            $.oauth2JwtAuthorizationGrantEnabled = oauth2JwtAuthorizationGrantEnabled;
+            return this;
+        }
+
+        public Builder oauth2JwtAuthorizationGrantEnabled(Boolean oauth2JwtAuthorizationGrantEnabled) {
+            return oauth2JwtAuthorizationGrantEnabled(Output.of(oauth2JwtAuthorizationGrantEnabled));
+        }
+
+        public Builder oauth2JwtAuthorizationGrantIdp(@Nullable Output<String> oauth2JwtAuthorizationGrantIdp) {
+            $.oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
+            return this;
+        }
+
+        public Builder oauth2JwtAuthorizationGrantIdp(String oauth2JwtAuthorizationGrantIdp) {
+            return oauth2JwtAuthorizationGrantIdp(Output.of(oauth2JwtAuthorizationGrantIdp));
         }
 
         /**

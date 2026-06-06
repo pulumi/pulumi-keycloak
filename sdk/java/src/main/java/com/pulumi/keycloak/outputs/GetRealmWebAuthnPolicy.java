@@ -27,6 +27,7 @@ public final class GetRealmWebAuthnPolicy {
     private Boolean avoidSameAuthenticatorRegister;
     private Integer createTimeout;
     private List<String> extraOrigins;
+    private Boolean passwordlessPasskeysEnabled;
     private String relyingPartyEntityName;
     private String relyingPartyId;
     /**
@@ -72,6 +73,9 @@ public final class GetRealmWebAuthnPolicy {
     public List<String> extraOrigins() {
         return this.extraOrigins;
     }
+    public Boolean passwordlessPasskeysEnabled() {
+        return this.passwordlessPasskeysEnabled;
+    }
     public String relyingPartyEntityName() {
         return this.relyingPartyEntityName;
     }
@@ -115,6 +119,7 @@ public final class GetRealmWebAuthnPolicy {
         private Boolean avoidSameAuthenticatorRegister;
         private Integer createTimeout;
         private List<String> extraOrigins;
+        private Boolean passwordlessPasskeysEnabled;
         private String relyingPartyEntityName;
         private String relyingPartyId;
         private String requireResidentKey;
@@ -129,6 +134,7 @@ public final class GetRealmWebAuthnPolicy {
     	      this.avoidSameAuthenticatorRegister = defaults.avoidSameAuthenticatorRegister;
     	      this.createTimeout = defaults.createTimeout;
     	      this.extraOrigins = defaults.extraOrigins;
+    	      this.passwordlessPasskeysEnabled = defaults.passwordlessPasskeysEnabled;
     	      this.relyingPartyEntityName = defaults.relyingPartyEntityName;
     	      this.relyingPartyId = defaults.relyingPartyId;
     	      this.requireResidentKey = defaults.requireResidentKey;
@@ -191,6 +197,14 @@ public final class GetRealmWebAuthnPolicy {
             return extraOrigins(List.of(extraOrigins));
         }
         @CustomType.Setter
+        public Builder passwordlessPasskeysEnabled(Boolean passwordlessPasskeysEnabled) {
+            if (passwordlessPasskeysEnabled == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "passwordlessPasskeysEnabled");
+            }
+            this.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
+            return this;
+        }
+        @CustomType.Setter
         public Builder relyingPartyEntityName(String relyingPartyEntityName) {
             if (relyingPartyEntityName == null) {
               throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "relyingPartyEntityName");
@@ -241,6 +255,7 @@ public final class GetRealmWebAuthnPolicy {
             _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             _resultValue.createTimeout = createTimeout;
             _resultValue.extraOrigins = extraOrigins;
+            _resultValue.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
             _resultValue.relyingPartyEntityName = relyingPartyEntityName;
             _resultValue.relyingPartyId = relyingPartyId;
             _resultValue.requireResidentKey = requireResidentKey;

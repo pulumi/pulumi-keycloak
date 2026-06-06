@@ -36,6 +36,7 @@ class GoogleIdentityProviderArgs:
                  hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
                  hosted_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
                  org_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -66,6 +67,7 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[_builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[_builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] login_hint: Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
         :param pulumi.Input[_builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -107,6 +109,8 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "hosted_domain", hosted_domain)
         if link_only is not None:
             pulumi.set(__self__, "link_only", link_only)
+        if login_hint is not None:
+            pulumi.set(__self__, "login_hint", login_hint)
         if org_domain is not None:
             pulumi.set(__self__, "org_domain", org_domain)
         if org_redirect_mode_email_matches is not None:
@@ -333,6 +337,18 @@ class GoogleIdentityProviderArgs:
         pulumi.set(self, "link_only", value)
 
     @_builtins.property
+    @pulumi.getter(name="loginHint")
+    def login_hint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+        """
+        return pulumi.get(self, "login_hint")
+
+    @login_hint.setter
+    def login_hint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "login_hint", value)
+
+    @_builtins.property
     @pulumi.getter(name="orgDomain")
     def org_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "org_domain")
@@ -467,6 +483,7 @@ class _GoogleIdentityProviderState:
                  hosted_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
                  org_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -498,6 +515,7 @@ class _GoogleIdentityProviderState:
         :param pulumi.Input[_builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[_builtins.str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[_builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] login_hint: Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
         :param pulumi.Input[_builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -542,6 +560,8 @@ class _GoogleIdentityProviderState:
             pulumi.set(__self__, "internal_id", internal_id)
         if link_only is not None:
             pulumi.set(__self__, "link_only", link_only)
+        if login_hint is not None:
+            pulumi.set(__self__, "login_hint", login_hint)
         if org_domain is not None:
             pulumi.set(__self__, "org_domain", org_domain)
         if org_redirect_mode_email_matches is not None:
@@ -770,6 +790,18 @@ class _GoogleIdentityProviderState:
         pulumi.set(self, "link_only", value)
 
     @_builtins.property
+    @pulumi.getter(name="loginHint")
+    def login_hint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+        """
+        return pulumi.get(self, "login_hint")
+
+    @login_hint.setter
+    def login_hint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "login_hint", value)
+
+    @_builtins.property
     @pulumi.getter(name="orgDomain")
     def org_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "org_domain")
@@ -918,6 +950,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
                  hosted_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
                  org_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -985,6 +1018,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[_builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[_builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] login_hint: Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
         :param pulumi.Input[_builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -1069,6 +1103,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
                  hosted_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 login_hint: pulumi.Input[Optional[_builtins.str]] = None,
                  org_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1107,6 +1142,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
             __props__.__dict__["hosted_domain"] = hosted_domain
             __props__.__dict__["link_only"] = link_only
+            __props__.__dict__["login_hint"] = login_hint
             __props__.__dict__["org_domain"] = org_domain
             __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
             __props__.__dict__["organization_id"] = organization_id
@@ -1150,6 +1186,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             hosted_domain: pulumi.Input[Optional[_builtins.str]] = None,
             internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_hint: pulumi.Input[Optional[_builtins.str]] = None,
             org_domain: pulumi.Input[Optional[_builtins.str]] = None,
             org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1185,6 +1222,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[_builtins.str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[_builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] login_hint: Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
         :param pulumi.Input[_builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -1216,6 +1254,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["hosted_domain"] = hosted_domain
         __props__.__dict__["internal_id"] = internal_id
         __props__.__dict__["link_only"] = link_only
+        __props__.__dict__["login_hint"] = login_hint
         __props__.__dict__["org_domain"] = org_domain
         __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
         __props__.__dict__["organization_id"] = organization_id
@@ -1364,6 +1403,14 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
+
+    @_builtins.property
+    @pulumi.getter(name="loginHint")
+    def login_hint(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Pass `login_hint` to the Google identity provider. Set to `"true"` to forward the `login_hint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+        """
+        return pulumi.get(self, "login_hint")
 
     @_builtins.property
     @pulumi.getter(name="orgDomain")

@@ -258,6 +258,21 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.linkOnly);
     }
 
+    /**
+     * Pass `loginHint` to the Google identity provider. Set to `&#34;true&#34;` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `&#34;true&#34;` or `&#34;false&#34;`.
+     * 
+     */
+    @Import(name="loginHint")
+    private @Nullable Output<String> loginHint;
+
+    /**
+     * @return Pass `loginHint` to the Google identity provider. Set to `&#34;true&#34;` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `&#34;true&#34;` or `&#34;false&#34;`.
+     * 
+     */
+    public Optional<Output<String>> loginHint() {
+        return Optional.ofNullable(this.loginHint);
+    }
+
     @Import(name="orgDomain")
     private @Nullable Output<String> orgDomain;
 
@@ -426,6 +441,7 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         this.hideOnLoginPage = $.hideOnLoginPage;
         this.hostedDomain = $.hostedDomain;
         this.linkOnly = $.linkOnly;
+        this.loginHint = $.loginHint;
         this.orgDomain = $.orgDomain;
         this.orgRedirectModeEmailMatches = $.orgRedirectModeEmailMatches;
         this.organizationId = $.organizationId;
@@ -791,6 +807,27 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
          */
         public Builder linkOnly(Boolean linkOnly) {
             return linkOnly(Output.of(linkOnly));
+        }
+
+        /**
+         * @param loginHint Pass `loginHint` to the Google identity provider. Set to `&#34;true&#34;` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `&#34;true&#34;` or `&#34;false&#34;`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loginHint(@Nullable Output<String> loginHint) {
+            $.loginHint = loginHint;
+            return this;
+        }
+
+        /**
+         * @param loginHint Pass `loginHint` to the Google identity provider. Set to `&#34;true&#34;` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `&#34;true&#34;` or `&#34;false&#34;`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder loginHint(String loginHint) {
+            return loginHint(Output.of(loginHint));
         }
 
         public Builder orgDomain(@Nullable Output<String> orgDomain) {

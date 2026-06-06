@@ -103,7 +103,9 @@ type GoogleIdentityProvider struct {
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly                    pulumi.BoolPtrOutput   `pulumi:"linkOnly"`
+	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
+	// Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+	LoginHint                   pulumi.StringPtrOutput `pulumi:"loginHint"`
 	OrgDomain                   pulumi.StringPtrOutput `pulumi:"orgDomain"`
 	OrgRedirectModeEmailMatches pulumi.BoolPtrOutput   `pulumi:"orgRedirectModeEmailMatches"`
 	// ID of organization with which this identity is linked.
@@ -202,7 +204,9 @@ type googleIdentityProviderState struct {
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId *string `pulumi:"internalId"`
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly                    *bool   `pulumi:"linkOnly"`
+	LinkOnly *bool `pulumi:"linkOnly"`
+	// Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+	LoginHint                   *string `pulumi:"loginHint"`
 	OrgDomain                   *string `pulumi:"orgDomain"`
 	OrgRedirectModeEmailMatches *bool   `pulumi:"orgRedirectModeEmailMatches"`
 	// ID of organization with which this identity is linked.
@@ -259,7 +263,9 @@ type GoogleIdentityProviderState struct {
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringPtrInput
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly                    pulumi.BoolPtrInput
+	LinkOnly pulumi.BoolPtrInput
+	// Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+	LoginHint                   pulumi.StringPtrInput
 	OrgDomain                   pulumi.StringPtrInput
 	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
 	// ID of organization with which this identity is linked.
@@ -318,7 +324,9 @@ type googleIdentityProviderArgs struct {
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
 	HostedDomain *string `pulumi:"hostedDomain"`
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly                    *bool   `pulumi:"linkOnly"`
+	LinkOnly *bool `pulumi:"linkOnly"`
+	// Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+	LoginHint                   *string `pulumi:"loginHint"`
 	OrgDomain                   *string `pulumi:"orgDomain"`
 	OrgRedirectModeEmailMatches *bool   `pulumi:"orgRedirectModeEmailMatches"`
 	// ID of organization with which this identity is linked.
@@ -374,7 +382,9 @@ type GoogleIdentityProviderArgs struct {
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
 	HostedDomain pulumi.StringPtrInput
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly                    pulumi.BoolPtrInput
+	LinkOnly pulumi.BoolPtrInput
+	// Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+	LoginHint                   pulumi.StringPtrInput
 	OrgDomain                   pulumi.StringPtrInput
 	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
 	// ID of organization with which this identity is linked.
@@ -567,6 +577,11 @@ func (o GoogleIdentityProviderOutput) InternalId() pulumi.StringOutput {
 // When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o GoogleIdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
+}
+
+// Pass `loginHint` to the Google identity provider. Set to `"true"` to forward the `loginHint` query parameter from the inbound OIDC request to Google. The underlying Keycloak attribute `loginHint` is a boolean string, so the value should be `"true"` or `"false"`.
+func (o GoogleIdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.LoginHint }).(pulumi.StringPtrOutput)
 }
 
 func (o GoogleIdentityProviderOutput) OrgDomain() pulumi.StringPtrOutput {

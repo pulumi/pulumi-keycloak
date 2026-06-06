@@ -23,6 +23,7 @@ class GroupArgs:
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
@@ -30,6 +31,7 @@ class GroupArgs:
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] name: The name of the group.
+        :param pulumi.Input[_builtins.str] organization_id: The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
         :param pulumi.Input[_builtins.str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         """
         pulumi.set(__self__, "realm_id", realm_id)
@@ -39,6 +41,8 @@ class GroupArgs:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if parent_id is not None:
             pulumi.set(__self__, "parent_id", parent_id)
 
@@ -88,6 +92,18 @@ class GroupArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="parentId")
     def parent_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -106,6 +122,7 @@ class _GroupState:
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None):
@@ -114,6 +131,7 @@ class _GroupState:
 
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] name: The name of the group.
+        :param pulumi.Input[_builtins.str] organization_id: The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
         :param pulumi.Input[_builtins.str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[_builtins.str] path: (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
@@ -124,6 +142,8 @@ class _GroupState:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if parent_id is not None:
             pulumi.set(__self__, "parent_id", parent_id)
         if path is not None:
@@ -163,6 +183,18 @@ class _GroupState:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
 
     @_builtins.property
     @pulumi.getter(name="parentId")
@@ -210,6 +242,7 @@ class Group(pulumi.CustomResource):
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -250,15 +283,41 @@ class Group(pulumi.CustomResource):
             })
         ```
 
+        Organization groups can be managed by setting `organization_id`. Organization groups require Keycloak 26.6.0 or later.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        organization = keycloak.Organization("organization",
+            realm=realm["id"],
+            name="my-organization",
+            domains=[{
+                "name": "example.com",
+            }])
+        organization_group = keycloak.Group("organization_group",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            name="organization-group")
+        organization_child_group = keycloak.Group("organization_child_group",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            parent_id=organization_group.id,
+            name="organization-child-group")
+        ```
+
         ## Import
 
         Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 
+        Organization groups can be imported using the format `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+
         Example:
 
         ```sh
         $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+        $ pulumi import keycloak:index/group:Group organization_group my-realm/9c9ef4b9-c4f2-4d17-ae03-0c6576df6c11/934a4a4e-28bd-4703-a0fa-332df153aabd
         ```
 
 
@@ -266,6 +325,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] name: The name of the group.
+        :param pulumi.Input[_builtins.str] organization_id: The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
         :param pulumi.Input[_builtins.str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         """
@@ -312,15 +372,41 @@ class Group(pulumi.CustomResource):
             })
         ```
 
+        Organization groups can be managed by setting `organization_id`. Organization groups require Keycloak 26.6.0 or later.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        organization = keycloak.Organization("organization",
+            realm=realm["id"],
+            name="my-organization",
+            domains=[{
+                "name": "example.com",
+            }])
+        organization_group = keycloak.Group("organization_group",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            name="organization-group")
+        organization_child_group = keycloak.Group("organization_child_group",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            parent_id=organization_group.id,
+            name="organization-child-group")
+        ```
+
         ## Import
 
         Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 
+        Organization groups can be imported using the format `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+
         Example:
 
         ```sh
         $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+        $ pulumi import keycloak:index/group:Group organization_group my-realm/9c9ef4b9-c4f2-4d17-ae03-0c6576df6c11/934a4a4e-28bd-4703-a0fa-332df153aabd
         ```
 
 
@@ -342,6 +428,7 @@ class Group(pulumi.CustomResource):
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -356,6 +443,7 @@ class Group(pulumi.CustomResource):
             __props__.__dict__["attributes"] = attributes
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["parent_id"] = parent_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
@@ -374,6 +462,7 @@ class Group(pulumi.CustomResource):
             attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             parent_id: pulumi.Input[Optional[_builtins.str]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Group':
@@ -386,6 +475,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] name: The name of the group.
+        :param pulumi.Input[_builtins.str] organization_id: The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
         :param pulumi.Input[_builtins.str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[_builtins.str] path: (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
@@ -397,6 +487,7 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["attributes"] = attributes
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["path"] = path
         __props__.__dict__["realm_id"] = realm_id
@@ -422,6 +513,14 @@ class Group(pulumi.CustomResource):
         The name of the group.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+        """
+        return pulumi.get(self, "organization_id")
 
     @_builtins.property
     @pulumi.getter(name="parentId")

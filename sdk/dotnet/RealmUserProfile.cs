@@ -44,6 +44,7 @@ namespace Pulumi.Keycloak
     ///             {
     ///                 Name = "field1",
     ///                 DisplayName = "Field 1",
+    ///                 DefaultValue = "default field1 value",
     ///                 Group = "group1",
     ///                 MultiValued = false,
     ///                 EnabledWhenScopes = new[]
@@ -82,7 +83,7 @@ namespace Pulumi.Keycloak
     ///                         Name = "pattern",
     ///                         Config = 
     ///                         {
-    ///                             { "pattern", "^[a-z]+$" },
+    ///                             { "pattern", "^[a-z0-9 ]+$" },
     ///                             { "error-message", "Nope" },
     ///                         },
     ///                     },

@@ -63,6 +63,7 @@ export interface GetRealmKeysKey {
 
 export interface GetRealmOtpPolicy {
     algorithm: string;
+    codeReusable: boolean;
     digits: number;
     initialCounter: number;
     lookAheadWindow: number;
@@ -137,6 +138,7 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
     extraOrigins: string[];
+    passwordlessPasskeysEnabled: boolean;
     relyingPartyEntityName: string;
     relyingPartyId: string;
     /**
@@ -166,6 +168,7 @@ export interface GetRealmWebAuthnPolicy {
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
     extraOrigins: string[];
+    passwordlessPasskeysEnabled: boolean;
     relyingPartyEntityName: string;
     relyingPartyId: string;
     /**
@@ -180,6 +183,12 @@ export interface GetRealmWebAuthnPolicy {
      * Either required, preferred or discouraged
      */
     userVerificationRequirement: string;
+}
+
+export interface GetWorkflowStep {
+    after: string;
+    config: {[key: string]: string};
+    uses: string;
 }
 
 export interface GroupPermissionsManageMembersScope {
@@ -250,6 +259,10 @@ export interface RealmOtpPolicy {
      */
     algorithm?: string;
     /**
+     * Possibility to use the same OTP code again after successful authentication. Defaults to `false`.
+     */
+    codeReusable?: boolean;
+    /**
      * How many digits the OTP have. Defaults to `6`.
      */
     digits?: number;
@@ -277,6 +290,7 @@ export interface RealmSecurityDefenses {
 }
 
 export interface RealmSecurityDefensesBruteForceDetection {
+    bruteForceStrategy?: string;
     /**
      * When will failure count be reset?
      */
@@ -345,6 +359,9 @@ export interface RealmSecurityDefensesHeaders {
 }
 
 export interface RealmSmtpServer {
+    /**
+     * When `true`, allows UTF-8 in the local part of the email address. Defaults to `false`.
+     */
     allowUtf8?: boolean;
     /**
      * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
@@ -422,6 +439,10 @@ export interface RealmSmtpServerTokenAuth {
 
 export interface RealmUserProfileAttribute {
     annotations?: {[key: string]: string};
+    /**
+     * The default value of the attribute. Only applied with Keycloak 26.4.0 or later.
+     */
+    defaultValue?: string;
     /**
      * The display name of the attribute.
      */
@@ -514,6 +535,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      * A set of extra origins for non-web applications.
      */
     extraOrigins?: string[];
+    /**
+     * Enable passkeys for passwordless WebAuthn authentication
+     */
+    passwordlessPasskeysEnabled?: boolean;
     /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
@@ -643,6 +668,21 @@ export interface UsersPermissionsViewScope {
     decisionStrategy?: string;
     description?: string;
     policies?: string[];
+}
+
+export interface WorkflowStep {
+    /**
+     * Delay in milliseconds before executing this step.
+     */
+    after?: string;
+    /**
+     * Key-value configuration for the step.
+     */
+    config?: {[key: string]: string};
+    /**
+     * The step type to execute (e.g. disable-user, delete-user, notify-user).
+     */
+    uses: string;
 }
 
 export namespace ldap {

@@ -193,14 +193,14 @@ public class Client extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="adminUrl", refs={String.class}, tree="[0]")
-    private Output<String> adminUrl;
+    private Output</* @Nullable */ String> adminUrl;
 
     /**
      * @return URL to the admin interface of the client.
      * 
      */
-    public Output<String> adminUrl() {
-        return this.adminUrl;
+    public Output<Optional<String>> adminUrl() {
+        return Codegen.optional(this.adminUrl);
     }
     /**
      * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
@@ -305,14 +305,14 @@ public class Client extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="baseUrl", refs={String.class}, tree="[0]")
-    private Output<String> baseUrl;
+    private Output</* @Nullable */ String> baseUrl;
 
     /**
      * @return Default URL to use when the auth server needs to redirect or link back to the client.
      * 
      */
-    public Output<String> baseUrl() {
-        return this.baseUrl;
+    public Output<Optional<String>> baseUrl() {
+        return Codegen.optional(this.baseUrl);
     }
     /**
      * Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
@@ -483,14 +483,14 @@ public class Client extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="consentScreenText", refs={String.class}, tree="[0]")
-    private Output<String> consentScreenText;
+    private Output</* @Nullable */ String> consentScreenText;
 
     /**
      * @return The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      * 
      */
-    public Output<String> consentScreenText() {
-        return this.consentScreenText;
+    public Output<Optional<String>> consentScreenText() {
+        return Codegen.optional(this.consentScreenText);
     }
     /**
      * The description of this client in the GUI.
@@ -730,6 +730,18 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> oauth2DevicePollingInterval() {
         return Codegen.optional(this.oauth2DevicePollingInterval);
     }
+    @Export(name="oauth2JwtAuthorizationGrantEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> oauth2JwtAuthorizationGrantEnabled;
+
+    public Output<Optional<Boolean>> oauth2JwtAuthorizationGrantEnabled() {
+        return Codegen.optional(this.oauth2JwtAuthorizationGrantEnabled);
+    }
+    @Export(name="oauth2JwtAuthorizationGrantIdp", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> oauth2JwtAuthorizationGrantIdp;
+
+    public Output<Optional<String>> oauth2JwtAuthorizationGrantIdp() {
+        return Codegen.optional(this.oauth2JwtAuthorizationGrantIdp);
+    }
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      * 
@@ -791,14 +803,14 @@ public class Client extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="rootUrl", refs={String.class}, tree="[0]")
-    private Output<String> rootUrl;
+    private Output</* @Nullable */ String> rootUrl;
 
     /**
      * @return When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      * 
      */
-    public Output<String> rootUrl() {
-        return this.rootUrl;
+    public Output<Optional<String>> rootUrl() {
+        return Codegen.optional(this.rootUrl);
     }
     /**
      * (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.

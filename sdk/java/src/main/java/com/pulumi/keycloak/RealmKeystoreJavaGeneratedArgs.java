@@ -94,6 +94,21 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
     }
 
     /**
+     * Intended use for the key
+     * 
+     */
+    @Import(name="keyUse")
+    private @Nullable Output<String> keyUse;
+
+    /**
+     * @return Intended use for the key
+     * 
+     */
+    public Optional<Output<String>> keyUse() {
+        return Optional.ofNullable(this.keyUse);
+    }
+
+    /**
      * Path to keys file on keycloak instance.
      * 
      */
@@ -176,6 +191,7 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         this.enabled = $.enabled;
         this.keyAlias = $.keyAlias;
         this.keyPassword = $.keyPassword;
+        this.keyUse = $.keyUse;
         this.keystore = $.keystore;
         this.keystorePassword = $.keystorePassword;
         this.name = $.name;
@@ -304,6 +320,27 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
          */
         public Builder keyPassword(String keyPassword) {
             return keyPassword(Output.of(keyPassword));
+        }
+
+        /**
+         * @param keyUse Intended use for the key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUse(@Nullable Output<String> keyUse) {
+            $.keyUse = keyUse;
+            return this;
+        }
+
+        /**
+         * @param keyUse Intended use for the key
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUse(String keyUse) {
+            return keyUse(Output.of(keyUse));
         }
 
         /**

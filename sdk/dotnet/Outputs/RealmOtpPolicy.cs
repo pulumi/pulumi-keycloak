@@ -18,6 +18,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string? Algorithm;
         /// <summary>
+        /// Possibility to use the same OTP code again after successful authentication. Defaults to `False`.
+        /// </summary>
+        public readonly bool? CodeReusable;
+        /// <summary>
         /// How many digits the OTP have. Defaults to `6`.
         /// </summary>
         public readonly int? Digits;
@@ -42,6 +46,8 @@ namespace Pulumi.Keycloak.Outputs
         private RealmOtpPolicy(
             string? algorithm,
 
+            bool? codeReusable,
+
             int? digits,
 
             int? initialCounter,
@@ -53,6 +59,7 @@ namespace Pulumi.Keycloak.Outputs
             string? type)
         {
             Algorithm = algorithm;
+            CodeReusable = codeReusable;
             Digits = digits;
             InitialCounter = initialCounter;
             LookAheadWindow = lookAheadWindow;

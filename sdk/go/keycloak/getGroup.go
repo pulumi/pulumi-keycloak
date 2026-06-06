@@ -62,6 +62,34 @@ import (
 //	}
 //
 // ```
+//
+// Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.GetGroup(ctx, &keycloak.LookupGroupArgs{
+//				RealmId:        realm.Id,
+//				OrganizationId: pulumi.StringRef(organization.Id),
+//				Name:           "organization-group",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGroupResult
@@ -77,6 +105,8 @@ type LookupGroupArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
 	Name string `pulumi:"name"`
+	// The organization this group exists within. If omitted, the data source looks up realm groups.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists within.
 	RealmId string `pulumi:"realmId"`
 }
@@ -86,11 +116,12 @@ type LookupGroupResult struct {
 	Attributes  map[string]string `pulumi:"attributes"`
 	Description *string           `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string `pulumi:"id"`
-	Name     string `pulumi:"name"`
-	ParentId string `pulumi:"parentId"`
-	Path     string `pulumi:"path"`
-	RealmId  string `pulumi:"realmId"`
+	Id             string  `pulumi:"id"`
+	Name           string  `pulumi:"name"`
+	OrganizationId *string `pulumi:"organizationId"`
+	ParentId       string  `pulumi:"parentId"`
+	Path           string  `pulumi:"path"`
+	RealmId        string  `pulumi:"realmId"`
 }
 
 func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...pulumi.InvokeOption) LookupGroupResultOutput {
@@ -107,6 +138,8 @@ type LookupGroupOutputArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The organization this group exists within. If omitted, the data source looks up realm groups.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// The realm this group exists within.
 	RealmId pulumi.StringInput `pulumi:"realmId"`
 }
@@ -145,6 +178,10 @@ func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupGroupResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGroupResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupGroupResultOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupGroupResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupGroupResultOutput) ParentId() pulumi.StringOutput {

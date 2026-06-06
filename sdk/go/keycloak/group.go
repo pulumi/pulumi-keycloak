@@ -76,15 +76,67 @@ import (
 //
 // ```
 //
+// Organization groups can be managed by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			organization, err := keycloak.NewOrganization(ctx, "organization", &keycloak.OrganizationArgs{
+//				Realm: pulumi.Any(realm.Id),
+//				Name:  pulumi.String("my-organization"),
+//				Domains: keycloak.OrganizationDomainArray{
+//					&keycloak.OrganizationDomainArgs{
+//						Name: pulumi.String("example.com"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			organizationGroup, err := keycloak.NewGroup(ctx, "organization_group", &keycloak.GroupArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				Name:           pulumi.String("organization-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroup(ctx, "organization_child_group", &keycloak.GroupArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				ParentId:       organizationGroup.ID(),
+//				Name:           pulumi.String("organization-child-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
 // assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 //
+// Organization groups can be imported using the format `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+//
 // Example:
 //
 // ```sh
 // $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+// $ pulumi import keycloak:index/group:Group organization_group my-realm/9c9ef4b9-c4f2-4d17-ae03-0c6576df6c11/934a4a4e-28bd-4703-a0fa-332df153aabd
 // ```
 type Group struct {
 	pulumi.CustomResourceState
@@ -94,6 +146,8 @@ type Group struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the group.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId pulumi.StringPtrOutput `pulumi:"parentId"`
 	// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
@@ -140,6 +194,8 @@ type groupState struct {
 	Description *string           `pulumi:"description"`
 	// The name of the group.
 	Name *string `pulumi:"name"`
+	// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId *string `pulumi:"parentId"`
 	// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
@@ -154,6 +210,8 @@ type GroupState struct {
 	Description pulumi.StringPtrInput
 	// The name of the group.
 	Name pulumi.StringPtrInput
+	// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+	OrganizationId pulumi.StringPtrInput
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId pulumi.StringPtrInput
 	// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
@@ -172,6 +230,8 @@ type groupArgs struct {
 	Description *string           `pulumi:"description"`
 	// The name of the group.
 	Name *string `pulumi:"name"`
+	// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId *string `pulumi:"parentId"`
 	// The realm this group exists in.
@@ -185,6 +245,8 @@ type GroupArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of the group.
 	Name pulumi.StringPtrInput
+	// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+	OrganizationId pulumi.StringPtrInput
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId pulumi.StringPtrInput
 	// The realm this group exists in.
@@ -290,6 +352,11 @@ func (o GroupOutput) Description() pulumi.StringPtrOutput {
 // The name of the group.
 func (o GroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The organization this group exists in. If omitted, this group will be managed as a realm group. Organization groups require Keycloak 26.6.0 or later.
+func (o GroupOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
 // The ID of this group's parent. If omitted, this group will be defined at the root level.
