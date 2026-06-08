@@ -41,6 +41,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.keycloak.RealmUserProfileArgs;
  * import com.pulumi.keycloak.inputs.RealmUserProfileAttributeArgs;
  * import com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;
+ * import com.pulumi.keycloak.inputs.RealmUserProfileAttributeValidatorArgs;
  * import com.pulumi.keycloak.inputs.RealmUserProfileGroupArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.ArrayList;
