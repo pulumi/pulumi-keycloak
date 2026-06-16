@@ -46,11 +46,11 @@ import (
 //			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
 //				RealmId: realm.ID(),
 //				GroupId: pulumi.String(group.ApplyT(func(group keycloak.GetGroupResult) (*string, error) {
-//					return &group.Id, nil
+//					return group.Id, nil
 //				}).(pulumi.StringPtrOutput)),
 //				RoleIds: pulumi.StringArray{
 //					pulumi.String(offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
-//						return &offlineAccess.Id, nil
+//						return offlineAccess.Id, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
 //			})

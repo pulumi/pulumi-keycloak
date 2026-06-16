@@ -55,7 +55,7 @@ import (
 //			realmManagementPermission, err := openid.NewClientPermissions(ctx, "realm_management_permission", &openid.ClientPermissionsArgs{
 //				RealmId: realm.ID(),
 //				ClientId: pulumi.String(realmManagement.ApplyT(func(realmManagement openid.GetClientResult) (*string, error) {
-//					return &realmManagement.Id, nil
+//					return realmManagement.Id, nil
 //				}).(pulumi.StringPtrOutput)),
 //				Enabled: true,
 //			})
@@ -76,7 +76,7 @@ import (
 //			testClientUserPolicy, err := openid.NewClientUserPolicy(ctx, "test", &openid.ClientUserPolicyArgs{
 //				RealmId: realm.ID(),
 //				ResourceServerId: pulumi.String(realmManagement.ApplyT(func(realmManagement openid.GetClientResult) (*string, error) {
-//					return &realmManagement.Id, nil
+//					return realmManagement.Id, nil
 //				}).(pulumi.StringPtrOutput)),
 //				Name: pulumi.String("client_user_policy_test"),
 //				Users: pulumi.StringArray{

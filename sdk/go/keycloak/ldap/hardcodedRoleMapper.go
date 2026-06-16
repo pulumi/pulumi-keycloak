@@ -132,7 +132,7 @@ import (
 //			createClient := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
 //				RealmId: realm.ID(),
 //				ClientId: realmManagement.ApplyT(func(realmManagement openid.GetClientResult) (*string, error) {
-//					return &realmManagement.Id, nil
+//					return realmManagement.Id, nil
 //				}).(pulumi.StringPtrOutput),
 //				Name: pulumi.String("create-client"),
 //			}, nil)
