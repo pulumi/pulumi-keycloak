@@ -52,7 +52,7 @@ import (
 //				GroupId: group.ID(),
 //				RoleIds: pulumi.StringArray{
 //					pulumi.String(offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
-//						return &offlineAccess.Id, nil
+//						return offlineAccess.Id, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
 //			})

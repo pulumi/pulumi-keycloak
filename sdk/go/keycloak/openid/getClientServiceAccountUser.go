@@ -61,11 +61,11 @@ import (
 //			_, err = keycloak.NewUserRoles(ctx, "service_account_user_roles", &keycloak.UserRolesArgs{
 //				RealmId: realm.ID(),
 //				UserId: pulumi.String(serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (*string, error) {
-//					return &serviceAccountUser.Id, nil
+//					return serviceAccountUser.Id, nil
 //				}).(pulumi.StringPtrOutput)),
 //				RoleIds: pulumi.StringArray{
 //					pulumi.String(offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
-//						return &offlineAccess.Id, nil
+//						return offlineAccess.Id, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
 //			})

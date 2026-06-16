@@ -77,7 +77,7 @@ import (
 //				Name:             pulumi.String("authorization-permission"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String(defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (*string, error) {
-//						return &defaultPermission.Id, nil
+//						return defaultPermission.Id, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
 //				Resources: pulumi.StringArray{

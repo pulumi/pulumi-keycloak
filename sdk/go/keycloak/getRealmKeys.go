@@ -52,7 +52,7 @@ import (
 //				},
 //			}, nil)
 //			ctx.Export("certificate", realmKeys.ApplyT(func(realmKeys keycloak.GetRealmKeysResult) (*string, error) {
-//				return &realmKeys.Keys[0].Certificate, nil
+//				return realmKeys.Keys[0].Certificate, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})

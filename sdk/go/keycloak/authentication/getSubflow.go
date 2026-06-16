@@ -61,7 +61,7 @@ import (
 //				Alias:           pulumi.String("my-subflow"),
 //			}, nil)
 //			ctx.Export("subflowId", subflow.ApplyT(func(subflow authentication.GetSubflowResult) (*string, error) {
-//				return &subflow.Id, nil
+//				return subflow.Id, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})
