@@ -140,7 +140,7 @@ export class IdentityProvider extends pulumi.CustomResource {
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
-     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
      */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -413,7 +413,7 @@ export interface IdentityProviderState {
     enabled?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
-     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
      */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -573,7 +573,7 @@ export interface IdentityProviderArgs {
     enabled?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
-     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
      */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**

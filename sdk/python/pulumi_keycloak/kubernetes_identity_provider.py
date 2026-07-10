@@ -712,7 +712,6 @@ class KubernetesIdentityProvider(pulumi.CustomResource):
         $ pulumi import keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider realm_identity_provider my-realm/my-idp
         ```
 
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
@@ -776,7 +775,6 @@ class KubernetesIdentityProvider(pulumi.CustomResource):
         ```sh
         $ pulumi import keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider realm_identity_provider my-realm/my-idp
         ```
-
 
         :param str resource_name: The name of the resource.
         :param KubernetesIdentityProviderArgs args: The arguments to use to populate this resource's properties.
