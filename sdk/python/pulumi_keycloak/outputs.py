@@ -611,7 +611,7 @@ class RealmSecurityDefensesBruteForceDetection(dict):
         :param _builtins.int max_login_failures: How many failures before wait is triggered.
         :param _builtins.int max_temporary_lockouts: How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
         :param _builtins.int minimum_quick_login_wait_seconds: How long to wait after a quick login failure.
-               - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
+               - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
         :param _builtins.bool permanent_lockout: When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
         :param _builtins.int quick_login_check_milli_seconds: Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
         :param _builtins.int wait_increment_seconds: This represents the amount of time a user should be locked out when the login failure threshold has been met.
@@ -674,7 +674,7 @@ class RealmSecurityDefensesBruteForceDetection(dict):
     def minimum_quick_login_wait_seconds(self) -> Optional[_builtins.int]:
         """
         How long to wait after a quick login failure.
-        - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
+        - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
         """
         return pulumi.get(self, "minimum_quick_login_wait_seconds")
 

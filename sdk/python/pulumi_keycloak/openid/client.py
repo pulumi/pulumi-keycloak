@@ -80,9 +80,9 @@ class ClientArgs:
 
         :param pulumi.Input[_builtins.str] access_type: Specifies the type of client, which can be one of the following:
                - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-               This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+                 This client should be used for applications using the Authorization Code or Client Credentials grant flows.
                - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-               URIs for security. This client should be used for applications using the Implicit grant flow.
+                 URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
@@ -256,9 +256,9 @@ class ClientArgs:
         """
         Specifies the type of client, which can be one of the following:
         - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-        This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+          This client should be used for applications using the Authorization Code or Client Credentials grant flows.
         - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-        URIs for security. This client should be used for applications using the Implicit grant flow.
+          URIs for security. This client should be used for applications using the Implicit grant flow.
         - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         """
         return pulumi.get(self, "access_type")
@@ -970,9 +970,9 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
         :param pulumi.Input[_builtins.str] access_type: Specifies the type of client, which can be one of the following:
                - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-               This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+                 This client should be used for applications using the Authorization Code or Client Credentials grant flows.
                - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-               URIs for security. This client should be used for applications using the Implicit grant flow.
+                 URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
@@ -1165,9 +1165,9 @@ class _ClientState:
         """
         Specifies the type of client, which can be one of the following:
         - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-        This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+          This client should be used for applications using the Authorization Code or Client Credentials grant flows.
         - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-        URIs for security. This client should be used for applications using the Implicit grant flow.
+          URIs for security. This client should be used for applications using the Implicit grant flow.
         - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         """
         return pulumi.get(self, "access_type")
@@ -1964,9 +1964,9 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
         :param pulumi.Input[_builtins.str] access_type: Specifies the type of client, which can be one of the following:
                - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-               This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+                 This client should be used for applications using the Authorization Code or Client Credentials grant flows.
                - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-               URIs for security. This client should be used for applications using the Implicit grant flow.
+                 URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
@@ -2320,9 +2320,9 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
         :param pulumi.Input[_builtins.str] access_type: Specifies the type of client, which can be one of the following:
                - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-               This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+                 This client should be used for applications using the Authorization Code or Client Credentials grant flows.
                - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-               URIs for security. This client should be used for applications using the Implicit grant flow.
+                 URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
@@ -2460,9 +2460,9 @@ class Client(pulumi.CustomResource):
         """
         Specifies the type of client, which can be one of the following:
         - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-        This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+          This client should be used for applications using the Authorization Code or Client Credentials grant flows.
         - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-        URIs for security. This client should be used for applications using the Implicit grant flow.
+          URIs for security. This client should be used for applications using the Implicit grant flow.
         - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         """
         return pulumi.get(self, "access_type")

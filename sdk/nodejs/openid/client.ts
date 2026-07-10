@@ -116,9 +116,9 @@ export class Client extends pulumi.CustomResource {
     /**
      * Specifies the type of client, which can be one of the following:
      * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-     * This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+     *   This client should be used for applications using the Authorization Code or Client Credentials grant flows.
      * - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-     * URIs for security. This client should be used for applications using the Implicit grant flow.
+     *   URIs for security. This client should be used for applications using the Implicit grant flow.
      * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
      */
     declare public readonly accessType: pulumi.Output<string>;
@@ -492,9 +492,9 @@ export interface ClientState {
     /**
      * Specifies the type of client, which can be one of the following:
      * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-     * This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+     *   This client should be used for applications using the Authorization Code or Client Credentials grant flows.
      * - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-     * URIs for security. This client should be used for applications using the Implicit grant flow.
+     *   URIs for security. This client should be used for applications using the Implicit grant flow.
      * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
      */
     accessType?: pulumi.Input<string | undefined>;
@@ -728,9 +728,9 @@ export interface ClientArgs {
     /**
      * Specifies the type of client, which can be one of the following:
      * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-     * This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+     *   This client should be used for applications using the Authorization Code or Client Credentials grant flows.
      * - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-     * URIs for security. This client should be used for applications using the Implicit grant flow.
+     *   URIs for security. This client should be used for applications using the Implicit grant flow.
      * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
      */
     accessType: pulumi.Input<string>;
