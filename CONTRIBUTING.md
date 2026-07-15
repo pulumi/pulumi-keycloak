@@ -35,19 +35,23 @@ test suite or CI.
 Start Keycloak from the repository root:
 
 ```sh
+export KEYCLOAK_PORT=${KEYCLOAK_PORT:-8080}
 docker compose -f docker-compose.test.yml up -d
 
-until curl --fail --silent http://localhost:8080/realms/master > /dev/null; do
+until curl --fail --silent \
+    http://localhost:${KEYCLOAK_PORT}/realms/master > /dev/null; do
     sleep 1
 done
 ```
 
-The environment uses Keycloak 26.6.3 by default. Set `KEYCLOAK_VERSION` to test
-another version, or `KEYCLOAK_PORT` if port 8080 is unavailable:
+The environment uses Keycloak 26.6.3 by default. Export `KEYCLOAK_VERSION` to
+test another version, or `KEYCLOAK_PORT` if port 8080 is unavailable, before
+starting the environment:
 
 ```sh
-KEYCLOAK_VERSION=26.5.7 KEYCLOAK_PORT=8081 \
-    docker compose -f docker-compose.test.yml up -d
+export KEYCLOAK_VERSION=26.5.7
+export KEYCLOAK_PORT=8081
+docker compose -f docker-compose.test.yml up -d
 ```
 
 Configure the provider to authenticate as the local bootstrap administrator:
