@@ -28,9 +28,51 @@ You must generate and check in the SDKs on each pull request containing a code c
 
 ## Running Integration Tests
 
-The examples and integration tests in this repository will create and destroy real AWS
-cloud resources while running. Before running these tests, make sure that you have
-[configured Pulumi with AWS](https://pulumi.io/install/aws.html) successfully once before.
+Integration tests require a running Keycloak server. The repository includes a
+Docker Compose environment for manual testing; it is not started by the regular
+test suite or CI.
 
-_TODO: Add any steps you need to take to run integration tests here_
+Start Keycloak from the repository root:
+
+```sh
+export KEYCLOAK_PORT=${KEYCLOAK_PORT:-8080}
+docker compose -f docker-compose.test.yml up -d
+
+until curl --fail --silent \
+    http://localhost:${KEYCLOAK_PORT}/realms/master > /dev/null; do
+    sleep 1
+done
+```
+
+The environment uses Keycloak 26.6.3 by default. Export `KEYCLOAK_VERSION` to
+test another version, or `KEYCLOAK_PORT` if port 8080 is unavailable, before
+starting the environment:
+
+```sh
+export KEYCLOAK_VERSION=26.5.7
+export KEYCLOAK_PORT=8081
+docker compose -f docker-compose.test.yml up -d
+```
+
+Configure the provider to authenticate as the local bootstrap administrator:
+
+```sh
+export KEYCLOAK_URL=http://localhost:${KEYCLOAK_PORT:-8080}
+export KEYCLOAK_CLIENT_ID=admin-cli
+export KEYCLOAK_USER=keycloak
+export KEYCLOAK_PASSWORD=password
+unset KEYCLOAK_CLIENT_SECRET
+```
+
+You can now run a Pulumi program or focused reproduction against the local
+server. These credentials and the development-mode server are for local testing
+only.
+
+Destroy resources created by the Pulumi program before stopping Keycloak. Then
+remove the local environment and its data:
+
+```sh
+pulumi destroy
+docker compose -f docker-compose.test.yml down --volumes
+```
 

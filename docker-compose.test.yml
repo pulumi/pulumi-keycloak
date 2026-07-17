@@ -1,0 +1,10 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION:-26.6.3}
+    command: start-dev
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: keycloak
+      KC_BOOTSTRAP_ADMIN_PASSWORD: password
+      KC_FEATURES: preview,admin-fine-grained-authz:v1
+    ports:
+      - "${KEYCLOAK_PORT:-8080}:8080"
