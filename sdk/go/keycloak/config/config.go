@@ -69,6 +69,11 @@ func GetJwtToken(ctx *pulumi.Context) string {
 func GetJwtTokenFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:jwtTokenFile")
 }
+
+// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+func GetKeycloakVersion(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:keycloakVersion")
+}
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:password")
 }

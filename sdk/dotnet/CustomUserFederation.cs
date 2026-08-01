@@ -73,7 +73,7 @@ namespace Pulumi.Keycloak
         public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        /// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
@@ -182,7 +182,7 @@ namespace Pulumi.Keycloak
         private InputMap<string>? _config;
 
         /// <summary>
-        /// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        /// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         /// </summary>
         public InputMap<string> Config
         {
@@ -256,7 +256,7 @@ namespace Pulumi.Keycloak
         private InputMap<string>? _config;
 
         /// <summary>
-        /// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        /// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         /// </summary>
         public InputMap<string> Config
         {

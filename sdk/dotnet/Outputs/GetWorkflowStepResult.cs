@@ -15,6 +15,9 @@ namespace Pulumi.Keycloak.Outputs
     {
         public readonly string After;
         public readonly ImmutableDictionary<string, string> Config;
+        public readonly string Priority;
+        public readonly int ScheduledAt;
+        public readonly string Status;
         public readonly string Uses;
 
         [OutputConstructor]
@@ -23,10 +26,19 @@ namespace Pulumi.Keycloak.Outputs
 
             ImmutableDictionary<string, string> config,
 
+            string priority,
+
+            int scheduledAt,
+
+            string status,
+
             string uses)
         {
             After = after;
             Config = config;
+            Priority = priority;
+            ScheduledAt = scheduledAt;
+            Status = status;
             Uses = uses;
         }
     }

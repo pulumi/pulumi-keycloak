@@ -22,6 +22,7 @@ public final class GetClientScopeResult {
      * 
      */
     private String id;
+    private Boolean includeInOpenidProviderMetadata;
     private Boolean includeInTokenScope;
     private String name;
     private String realmId;
@@ -45,6 +46,9 @@ public final class GetClientScopeResult {
      */
     public String id() {
         return this.id;
+    }
+    public Boolean includeInOpenidProviderMetadata() {
+        return this.includeInOpenidProviderMetadata;
     }
     public Boolean includeInTokenScope() {
         return this.includeInTokenScope;
@@ -70,6 +74,7 @@ public final class GetClientScopeResult {
         private Map<String,String> extraConfig;
         private Integer guiOrder;
         private String id;
+        private Boolean includeInOpenidProviderMetadata;
         private Boolean includeInTokenScope;
         private String name;
         private String realmId;
@@ -81,6 +86,7 @@ public final class GetClientScopeResult {
     	      this.extraConfig = defaults.extraConfig;
     	      this.guiOrder = defaults.guiOrder;
     	      this.id = defaults.id;
+    	      this.includeInOpenidProviderMetadata = defaults.includeInOpenidProviderMetadata;
     	      this.includeInTokenScope = defaults.includeInTokenScope;
     	      this.name = defaults.name;
     	      this.realmId = defaults.realmId;
@@ -127,6 +133,14 @@ public final class GetClientScopeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder includeInOpenidProviderMetadata(Boolean includeInOpenidProviderMetadata) {
+            if (includeInOpenidProviderMetadata == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "includeInOpenidProviderMetadata");
+            }
+            this.includeInOpenidProviderMetadata = includeInOpenidProviderMetadata;
+            return this;
+        }
+        @CustomType.Setter
         public Builder includeInTokenScope(Boolean includeInTokenScope) {
             if (includeInTokenScope == null) {
               throw new MissingRequiredPropertyException("GetClientScopeResult", "includeInTokenScope");
@@ -157,6 +171,7 @@ public final class GetClientScopeResult {
             _resultValue.extraConfig = extraConfig;
             _resultValue.guiOrder = guiOrder;
             _resultValue.id = id;
+            _resultValue.includeInOpenidProviderMetadata = includeInOpenidProviderMetadata;
             _resultValue.includeInTokenScope = includeInTokenScope;
             _resultValue.name = name;
             _resultValue.realmId = realmId;

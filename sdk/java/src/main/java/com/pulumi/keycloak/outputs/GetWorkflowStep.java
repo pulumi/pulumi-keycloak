@@ -5,6 +5,7 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -13,6 +14,9 @@ import java.util.Objects;
 public final class GetWorkflowStep {
     private String after;
     private Map<String,String> config;
+    private String priority;
+    private Integer scheduledAt;
+    private String status;
     private String uses;
 
     private GetWorkflowStep() {}
@@ -21,6 +25,15 @@ public final class GetWorkflowStep {
     }
     public Map<String,String> config() {
         return this.config;
+    }
+    public String priority() {
+        return this.priority;
+    }
+    public Integer scheduledAt() {
+        return this.scheduledAt;
+    }
+    public String status() {
+        return this.status;
     }
     public String uses() {
         return this.uses;
@@ -37,12 +50,18 @@ public final class GetWorkflowStep {
     public static final class Builder {
         private String after;
         private Map<String,String> config;
+        private String priority;
+        private Integer scheduledAt;
+        private String status;
         private String uses;
         public Builder() {}
         public Builder(GetWorkflowStep defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.after = defaults.after;
     	      this.config = defaults.config;
+    	      this.priority = defaults.priority;
+    	      this.scheduledAt = defaults.scheduledAt;
+    	      this.status = defaults.status;
     	      this.uses = defaults.uses;
         }
 
@@ -63,6 +82,30 @@ public final class GetWorkflowStep {
             return this;
         }
         @CustomType.Setter
+        public Builder priority(String priority) {
+            if (priority == null) {
+              throw new MissingRequiredPropertyException("GetWorkflowStep", "priority");
+            }
+            this.priority = priority;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder scheduledAt(Integer scheduledAt) {
+            if (scheduledAt == null) {
+              throw new MissingRequiredPropertyException("GetWorkflowStep", "scheduledAt");
+            }
+            this.scheduledAt = scheduledAt;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder status(String status) {
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetWorkflowStep", "status");
+            }
+            this.status = status;
+            return this;
+        }
+        @CustomType.Setter
         public Builder uses(String uses) {
             if (uses == null) {
               throw new MissingRequiredPropertyException("GetWorkflowStep", "uses");
@@ -74,6 +117,9 @@ public final class GetWorkflowStep {
             final var _resultValue = new GetWorkflowStep();
             _resultValue.after = after;
             _resultValue.config = config;
+            _resultValue.priority = priority;
+            _resultValue.scheduledAt = scheduledAt;
+            _resultValue.status = status;
             _resultValue.uses = uses;
             return _resultValue;
         }

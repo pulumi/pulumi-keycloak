@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
  * const germanTexts = new keycloak.RealmLocalization("german_texts", {
- *     realmId: myRealm.id,
+ *     realmId: realm.id,
  *     locale: "de",
  *     texts: {
  *         Hello: "Hallo",
@@ -29,7 +29,14 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource does not currently support importing.
+ * This resource can be imported using the format `{{realm_id}}/{{locale}}`, where `locale` is the language code the
+ * localization texts apply to.
+ *
+ * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/realmLocalization:RealmLocalization german_texts my-realm/de
+ * ```
  */
 export class RealmLocalization extends pulumi.CustomResource {
     /**
@@ -64,7 +71,7 @@ export class RealmLocalization extends pulumi.CustomResource {
      */
     declare public readonly locale: pulumi.Output<string>;
     /**
-     * The ID of the realm the user profile applies to.
+     * The ID of the realm the localization texts apply to.
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
@@ -114,7 +121,7 @@ export interface RealmLocalizationState {
      */
     locale?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the realm the user profile applies to.
+     * The ID of the realm the localization texts apply to.
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
@@ -132,7 +139,7 @@ export interface RealmLocalizationArgs {
      */
     locale: pulumi.Input<string>;
     /**
-     * The ID of the realm the user profile applies to.
+     * The ID of the realm the localization texts apply to.
      */
     realmId: pulumi.Input<string>;
     /**

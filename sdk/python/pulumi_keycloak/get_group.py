@@ -26,13 +26,16 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, attributes=None, description=None, id=None, name=None, organization_id=None, parent_id=None, path=None, realm_id=None):
+    def __init__(__self__, attributes=None, description=None, group_path=None, id=None, name=None, organization_id=None, parent_id=None, path=None, realm_id=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if group_path and not isinstance(group_path, str):
+            raise TypeError("Expected argument 'group_path' to be a str")
+        pulumi.set(__self__, "group_path", group_path)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -63,6 +66,11 @@ class GetGroupResult:
         return pulumi.get(self, "description")
 
     @_builtins.property
+    @pulumi.getter(name="groupPath")
+    def group_path(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "group_path")
+
+    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
@@ -72,7 +80,7 @@ class GetGroupResult:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> _builtins.str:
+    def name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -104,6 +112,7 @@ class AwaitableGetGroupResult(GetGroupResult):
         return GetGroupResult(
             attributes=self.attributes,
             description=self.description,
+            group_path=self.group_path,
             id=self.id,
             name=self.name,
             organization_id=self.organization_id,
@@ -113,6 +122,7 @@ class AwaitableGetGroupResult(GetGroupResult):
 
 
 def get_group(description: Optional[_builtins.str] = None,
+              group_path: Optional[_builtins.str] = None,
               name: Optional[_builtins.str] = None,
               organization_id: Optional[_builtins.str] = None,
               realm_id: Optional[_builtins.str] = None,
@@ -138,6 +148,15 @@ def get_group(description: Optional[_builtins.str] = None,
         realm_id=realm.id,
         group_id=group.id,
         role_ids=[offline_access.id])
+    # Using group_path to look up nested groups by their full path
+    super_admin = keycloak.get_role_output(realm_id=realm.id,
+        name="super_admin")
+    admins = keycloak.get_group_output(realm_id=realm.id,
+        group_path="/Administration/Full Admins")
+    admins_roles = keycloak.GroupRoles("admins_roles",
+        realm_id=realm.id,
+        group_id=admins.id,
+        role_ids=[super_admin.id])
     ```
 
     Organization groups can be looked up by setting `organization_id`. Organization groups require Keycloak 26.6.0 or later.
@@ -152,12 +171,14 @@ def get_group(description: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
+    :param _builtins.str group_path: The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
+    :param _builtins.str name: The name of the group. Mutually exclusive with `group_path`. If there are multiple groups matching `name`, the first result is returned.
     :param _builtins.str organization_id: The organization this group exists within. If omitted, the data source looks up realm groups.
     :param _builtins.str realm_id: The realm this group exists within.
     """
     __args__ = dict()
     __args__['description'] = description
+    __args__['groupPath'] = group_path
     __args__['name'] = name
     __args__['organizationId'] = organization_id
     __args__['realmId'] = realm_id
@@ -167,6 +188,7 @@ def get_group(description: Optional[_builtins.str] = None,
     return AwaitableGetGroupResult(
         attributes=pulumi.get(__ret__, 'attributes'),
         description=pulumi.get(__ret__, 'description'),
+        group_path=pulumi.get(__ret__, 'group_path'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
@@ -174,7 +196,8 @@ def get_group(description: Optional[_builtins.str] = None,
         path=pulumi.get(__ret__, 'path'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
 def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                     name: pulumi.Input[Optional[_builtins.str]] = None,
+                     group_path: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
@@ -199,6 +222,15 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
         realm_id=realm.id,
         group_id=group.id,
         role_ids=[offline_access.id])
+    # Using group_path to look up nested groups by their full path
+    super_admin = keycloak.get_role_output(realm_id=realm.id,
+        name="super_admin")
+    admins = keycloak.get_group_output(realm_id=realm.id,
+        group_path="/Administration/Full Admins")
+    admins_roles = keycloak.GroupRoles("admins_roles",
+        realm_id=realm.id,
+        group_id=admins.id,
+        role_ids=[super_admin.id])
     ```
 
     Organization groups can be looked up by setting `organization_id`. Organization groups require Keycloak 26.6.0 or later.
@@ -213,12 +245,14 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
     ```
 
 
-    :param _builtins.str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
+    :param _builtins.str group_path: The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
+    :param _builtins.str name: The name of the group. Mutually exclusive with `group_path`. If there are multiple groups matching `name`, the first result is returned.
     :param _builtins.str organization_id: The organization this group exists within. If omitted, the data source looks up realm groups.
     :param _builtins.str realm_id: The realm this group exists within.
     """
     __args__ = dict()
     __args__['description'] = description
+    __args__['groupPath'] = group_path
     __args__['name'] = name
     __args__['organizationId'] = organization_id
     __args__['realmId'] = realm_id
@@ -227,6 +261,7 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
     return __ret__.apply(lambda __response__: GetGroupResult(
         attributes=pulumi.get(__response__, 'attributes'),
         description=pulumi.get(__response__, 'description'),
+        group_path=pulumi.get(__response__, 'group_path'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),

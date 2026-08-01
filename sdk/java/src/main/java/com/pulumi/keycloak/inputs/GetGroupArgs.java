@@ -24,18 +24,33 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
      * 
      */
-    @Import(name="name", required=true)
-    private Output<String> name;
+    @Import(name="groupPath")
+    private @Nullable Output<String> groupPath;
 
     /**
-     * @return The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * @return The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
      * 
      */
-    public Output<String> name() {
-        return this.name;
+    public Optional<Output<String>> groupPath() {
+        return Optional.ofNullable(this.groupPath);
+    }
+
+    /**
+     * The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+     * 
+     */
+    @Import(name="name")
+    private @Nullable Output<String> name;
+
+    /**
+     * @return The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+     * 
+     */
+    public Optional<Output<String>> name() {
+        return Optional.ofNullable(this.name);
     }
 
     /**
@@ -72,6 +87,7 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetGroupArgs(GetGroupArgs $) {
         this.description = $.description;
+        this.groupPath = $.groupPath;
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.realmId = $.realmId;
@@ -105,18 +121,39 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The name of the group. If there are multiple groups match `name`, the first result will be returned.
+         * @param groupPath The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
          * 
          * @return builder
          * 
          */
-        public Builder name(Output<String> name) {
+        public Builder groupPath(@Nullable Output<String> groupPath) {
+            $.groupPath = groupPath;
+            return this;
+        }
+
+        /**
+         * @param groupPath The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder groupPath(String groupPath) {
+            return groupPath(Output.of(groupPath));
+        }
+
+        /**
+         * @param name The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
         /**
-         * @param name The name of the group. If there are multiple groups match `name`, the first result will be returned.
+         * @param name The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
          * 
          * @return builder
          * 
@@ -168,9 +205,6 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetGroupArgs build() {
-            if ($.name == null) {
-                throw new MissingRequiredPropertyException("GetGroupArgs", "name");
-            }
             if ($.realmId == null) {
                 throw new MissingRequiredPropertyException("GetGroupArgs", "realmId");
             }

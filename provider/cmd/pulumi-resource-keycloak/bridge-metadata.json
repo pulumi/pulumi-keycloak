@@ -55,6 +55,10 @@
                     }
                 }
             },
+            "keycloak_generic_client_authorization_policy": {
+                "current": "keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy",
+                "majorVersion": 6
+            },
             "keycloak_generic_client_protocol_mapper": {
                 "current": "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper",
                 "majorVersion": 6
@@ -74,6 +78,21 @@
             "keycloak_group": {
                 "current": "keycloak:index/group:Group",
                 "majorVersion": 6
+            },
+            "keycloak_group_admin_permissions": {
+                "current": "keycloak:index/groupAdminPermissions:GroupAdminPermissions",
+                "majorVersion": 6,
+                "fields": {
+                    "group_ids": {
+                        "maxItemsOne": false
+                    },
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "keycloak_group_memberships": {
                 "current": "keycloak:index/groupMemberships:GroupMemberships",
@@ -262,6 +281,10 @@
                 "current": "keycloak:oidc/identityProvider:IdentityProvider",
                 "majorVersion": 6
             },
+            "keycloak_oidc_microsoft_identity_provider": {
+                "current": "keycloak:oidc/microsoftIdentityProvider:MicrosoftIdentityProvider",
+                "majorVersion": 6
+            },
             "keycloak_oidc_openshift_v4_identity_provider": {
                 "current": "keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider",
                 "majorVersion": 6
@@ -298,6 +321,21 @@
                         "maxItemsOne": false
                     },
                     "web_origins": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "keycloak_openid_client_admin_permissions": {
+                "current": "keycloak:openid/clientAdminPermissions:ClientAdminPermissions",
+                "majorVersion": 6,
+                "fields": {
+                    "client_ids": {
+                        "maxItemsOne": false
+                    },
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
                         "maxItemsOne": false
                     }
                 }
@@ -377,6 +415,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "keycloak_openid_client_js_policy": {
+                "current": "keycloak:openid/clientJsPolicy:ClientJsPolicy",
+                "majorVersion": 6
             },
             "keycloak_openid_client_optional_scopes": {
                 "current": "keycloak:openid/clientOptionalScopes:ClientOptionalScopes",
@@ -654,6 +696,10 @@
                     }
                 }
             },
+            "keycloak_realm_client_registration_policy": {
+                "current": "keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy",
+                "majorVersion": 6
+            },
             "keycloak_realm_default_client_scopes": {
                 "current": "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes",
                 "majorVersion": 6,
@@ -766,6 +812,21 @@
                     }
                 }
             },
+            "keycloak_role_admin_permissions": {
+                "current": "keycloak:index/roleAdminPermissions:RoleAdminPermissions",
+                "majorVersion": 6,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "role_ids": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "keycloak_saml_client": {
                 "current": "keycloak:saml/client:Client",
                 "majorVersion": 6,
@@ -852,6 +913,18 @@
                 "current": "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper",
                 "majorVersion": 6
             },
+            "keycloak_users_admin_permissions": {
+                "current": "keycloak:index/usersAdminPermissions:UsersAdminPermissions",
+                "majorVersion": 6,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "keycloak_users_permissions": {
                 "current": "keycloak:index/usersPermissions:UsersPermissions",
                 "majorVersion": 6,
@@ -922,6 +995,19 @@
                 "current": "keycloak:index/workflow:Workflow",
                 "majorVersion": 6,
                 "fields": {
+                    "schedule": {
+                        "maxItemsOne": true
+                    },
+                    "state": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "errors": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "step": {
                         "maxItemsOne": false
                     }
@@ -1008,6 +1094,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "keycloak_openid_client_authorization_scope": {
+                "current": "keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope",
+                "majorVersion": 6
             },
             "keycloak_openid_client_scope": {
                 "current": "keycloak:openid/getClientScope:getClientScope",
@@ -1117,6 +1207,10 @@
                     }
                 }
             },
+            "keycloak_realm_client_registration_policy": {
+                "current": "keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy",
+                "majorVersion": 6
+            },
             "keycloak_realm_keys": {
                 "current": "keycloak:index/getRealmKeys:getRealmKeys",
                 "majorVersion": 6,
@@ -1186,6 +1280,19 @@
                 "current": "keycloak:index/getWorkflow:getWorkflow",
                 "majorVersion": 6,
                 "fields": {
+                    "schedule": {
+                        "maxItemsOne": false
+                    },
+                    "state": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "errors": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "step": {
                         "maxItemsOne": false
                     }

@@ -40,11 +40,12 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientScope(ctx, "openid_client_scope", &openid.ClientScopeArgs{
-//				RealmId:             realm.ID(),
-//				Name:                pulumi.String("groups"),
-//				Description:         pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
-//				IncludeInTokenScope: pulumi.Bool(true),
-//				GuiOrder:            pulumi.Int(1),
+//				RealmId:                         realm.ID(),
+//				Name:                            pulumi.String("groups"),
+//				Description:                     pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
+//				IncludeInTokenScope:             pulumi.Bool(true),
+//				IncludeInOpenidProviderMetadata: pulumi.Bool(true),
+//				GuiOrder:                        pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -76,6 +77,8 @@ type ClientScope struct {
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrOutput `pulumi:"guiOrder"`
+	// When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+	IncludeInOpenidProviderMetadata pulumi.BoolPtrOutput `pulumi:"includeInOpenidProviderMetadata"`
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope pulumi.BoolPtrOutput `pulumi:"includeInTokenScope"`
 	// The display name of this client scope in the GUI.
@@ -125,6 +128,8 @@ type clientScopeState struct {
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder *int `pulumi:"guiOrder"`
+	// When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+	IncludeInOpenidProviderMetadata *bool `pulumi:"includeInOpenidProviderMetadata"`
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope *bool `pulumi:"includeInTokenScope"`
 	// The display name of this client scope in the GUI.
@@ -142,6 +147,8 @@ type ClientScopeState struct {
 	ExtraConfig pulumi.StringMapInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrInput
+	// When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+	IncludeInOpenidProviderMetadata pulumi.BoolPtrInput
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope pulumi.BoolPtrInput
 	// The display name of this client scope in the GUI.
@@ -163,6 +170,8 @@ type clientScopeArgs struct {
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder *int `pulumi:"guiOrder"`
+	// When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+	IncludeInOpenidProviderMetadata *bool `pulumi:"includeInOpenidProviderMetadata"`
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope *bool `pulumi:"includeInTokenScope"`
 	// The display name of this client scope in the GUI.
@@ -181,6 +190,8 @@ type ClientScopeArgs struct {
 	ExtraConfig pulumi.StringMapInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrInput
+	// When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+	IncludeInOpenidProviderMetadata pulumi.BoolPtrInput
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope pulumi.BoolPtrInput
 	// The display name of this client scope in the GUI.
@@ -294,6 +305,11 @@ func (o ClientScopeOutput) ExtraConfig() pulumi.StringMapOutput {
 // Specify order of the client scope in GUI (such as in Consent page) as integer.
 func (o ClientScopeOutput) GuiOrder() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.IntPtrOutput { return v.GuiOrder }).(pulumi.IntPtrOutput)
+}
+
+// When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+func (o ClientScopeOutput) IncludeInOpenidProviderMetadata() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.BoolPtrOutput { return v.IncludeInOpenidProviderMetadata }).(pulumi.BoolPtrOutput)
 }
 
 // When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.

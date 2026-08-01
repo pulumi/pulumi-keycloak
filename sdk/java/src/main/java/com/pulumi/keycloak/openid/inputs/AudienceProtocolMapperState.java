@@ -47,6 +47,21 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
+     * Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+     * 
+     */
+    @Import(name="addToTokenIntrospection")
+    private @Nullable Output<Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> addToTokenIntrospection() {
+        return Optional.ofNullable(this.addToTokenIntrospection);
+    }
+
+    /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
@@ -141,6 +156,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
     private AudienceProtocolMapperState(AudienceProtocolMapperState $) {
         this.addToAccessToken = $.addToAccessToken;
         this.addToIdToken = $.addToIdToken;
+        this.addToTokenIntrospection = $.addToTokenIntrospection;
         this.clientId = $.clientId;
         this.clientScopeId = $.clientScopeId;
         this.includedClientAudience = $.includedClientAudience;
@@ -207,6 +223,27 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
          */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(@Nullable Output<Boolean> addToTokenIntrospection) {
+            $.addToTokenIntrospection = addToTokenIntrospection;
+            return this;
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(Boolean addToTokenIntrospection) {
+            return addToTokenIntrospection(Output.of(addToTokenIntrospection));
         }
 
         /**

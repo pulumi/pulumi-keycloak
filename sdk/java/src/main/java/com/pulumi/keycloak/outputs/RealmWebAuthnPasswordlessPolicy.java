@@ -40,6 +40,11 @@ public final class RealmWebAuthnPasswordlessPolicy {
      */
     private @Nullable Integer createTimeout;
     /**
+     * @return Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     * 
+     */
+    private @Nullable String discoverableCredential;
+    /**
      * @return A set of extra origins for non-web applications.
      * 
      */
@@ -62,7 +67,11 @@ public final class RealmWebAuthnPasswordlessPolicy {
     /**
      * @return Either Yes or No
      * 
+     * @deprecated
+     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * 
      */
+    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
     private @Nullable String requireResidentKey;
     /**
      * @return Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -112,6 +121,13 @@ public final class RealmWebAuthnPasswordlessPolicy {
         return Optional.ofNullable(this.createTimeout);
     }
     /**
+     * @return Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     * 
+     */
+    public Optional<String> discoverableCredential() {
+        return Optional.ofNullable(this.discoverableCredential);
+    }
+    /**
      * @return A set of extra origins for non-web applications.
      * 
      */
@@ -142,7 +158,11 @@ public final class RealmWebAuthnPasswordlessPolicy {
     /**
      * @return Either Yes or No
      * 
+     * @deprecated
+     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * 
      */
+    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
     public Optional<String> requireResidentKey() {
         return Optional.ofNullable(this.requireResidentKey);
     }
@@ -175,6 +195,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
         private @Nullable String authenticatorAttachment;
         private @Nullable Boolean avoidSameAuthenticatorRegister;
         private @Nullable Integer createTimeout;
+        private @Nullable String discoverableCredential;
         private @Nullable List<String> extraOrigins;
         private @Nullable Boolean passwordlessPasskeysEnabled;
         private @Nullable String relyingPartyEntityName;
@@ -190,6 +211,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
     	      this.authenticatorAttachment = defaults.authenticatorAttachment;
     	      this.avoidSameAuthenticatorRegister = defaults.avoidSameAuthenticatorRegister;
     	      this.createTimeout = defaults.createTimeout;
+    	      this.discoverableCredential = defaults.discoverableCredential;
     	      this.extraOrigins = defaults.extraOrigins;
     	      this.passwordlessPasskeysEnabled = defaults.passwordlessPasskeysEnabled;
     	      this.relyingPartyEntityName = defaults.relyingPartyEntityName;
@@ -230,6 +252,12 @@ public final class RealmWebAuthnPasswordlessPolicy {
         public Builder createTimeout(@Nullable Integer createTimeout) {
 
             this.createTimeout = createTimeout;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder discoverableCredential(@Nullable String discoverableCredential) {
+
+            this.discoverableCredential = discoverableCredential;
             return this;
         }
         @CustomType.Setter
@@ -287,6 +315,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
             _resultValue.authenticatorAttachment = authenticatorAttachment;
             _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             _resultValue.createTimeout = createTimeout;
+            _resultValue.discoverableCredential = discoverableCredential;
             _resultValue.extraOrigins = extraOrigins;
             _resultValue.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
             _resultValue.relyingPartyEntityName = relyingPartyEntityName;

@@ -75,10 +75,11 @@ type LookupClientScopeResult struct {
 	ExtraConfig       map[string]string `pulumi:"extraConfig"`
 	GuiOrder          int               `pulumi:"guiOrder"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                  string `pulumi:"id"`
-	IncludeInTokenScope bool   `pulumi:"includeInTokenScope"`
-	Name                string `pulumi:"name"`
-	RealmId             string `pulumi:"realmId"`
+	Id                              string `pulumi:"id"`
+	IncludeInOpenidProviderMetadata bool   `pulumi:"includeInOpenidProviderMetadata"`
+	IncludeInTokenScope             bool   `pulumi:"includeInTokenScope"`
+	Name                            string `pulumi:"name"`
+	RealmId                         string `pulumi:"realmId"`
 }
 
 func LookupClientScopeOutput(ctx *pulumi.Context, args LookupClientScopeOutputArgs, opts ...pulumi.InvokeOption) LookupClientScopeResultOutput {
@@ -137,6 +138,10 @@ func (o LookupClientScopeResultOutput) GuiOrder() pulumi.IntOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupClientScopeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientScopeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupClientScopeResultOutput) IncludeInOpenidProviderMetadata() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientScopeResult) bool { return v.IncludeInOpenidProviderMetadata }).(pulumi.BoolOutput)
 }
 
 func (o LookupClientScopeResultOutput) IncludeInTokenScope() pulumi.BoolOutput {

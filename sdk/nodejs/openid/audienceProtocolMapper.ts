@@ -66,11 +66,23 @@ import * as utilities from "../utilities";
  * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
  * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  *
+ * As an alternative to importing by Keycloak protocol mapper ID, you can import by protocol mapper name.
+ *
+ * When using name-based import:
+ * - Use the literal `name` segment in the import path.
+ * - URL-encode the mapper name using path encoding (for example, `my protocol mapper` becomes `my%20protocol%20mapper`).
+ *
+ * Supported name-based formats:
+ * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/name/{{url_encoded_protocol_mapper_name}}`
+ * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/name/{{url_encoded_protocol_mapper_name}}`
+ *
  * Example:
  *
  * ```sh
  * $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
  * $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/name/my%20protocol%20mapper
+ * $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/name/my%20protocol%20mapper
  * ```
  */
 export class AudienceProtocolMapper extends pulumi.CustomResource {
@@ -109,6 +121,10 @@ export class AudienceProtocolMapper extends pulumi.CustomResource {
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
     declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+     */
+    declare public readonly addToTokenIntrospection: pulumi.Output<boolean | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
@@ -149,6 +165,7 @@ export class AudienceProtocolMapper extends pulumi.CustomResource {
             const state = argsOrState as AudienceProtocolMapperState | undefined;
             resourceInputs["addToAccessToken"] = state?.addToAccessToken;
             resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = state?.addToTokenIntrospection;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["includedClientAudience"] = state?.includedClientAudience;
@@ -162,6 +179,7 @@ export class AudienceProtocolMapper extends pulumi.CustomResource {
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = args?.addToTokenIntrospection;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["includedClientAudience"] = args?.includedClientAudience;
@@ -186,6 +204,10 @@ export interface AudienceProtocolMapperState {
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
@@ -224,6 +246,10 @@ export interface AudienceProtocolMapperArgs {
      * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim on the token introspection response. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */

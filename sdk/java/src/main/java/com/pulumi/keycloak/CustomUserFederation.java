@@ -112,14 +112,14 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.changedSyncPeriod);
     }
     /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+     * The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
      * 
      */
     @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> config;
 
     /**
-     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+     * @return The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
      * 
      */
     public Output<Optional<Map<String,String>>> config() {

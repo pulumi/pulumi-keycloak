@@ -68,11 +68,23 @@ import * as utilities from "../utilities";
  * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
  * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  *
+ * As an alternative to importing by Keycloak protocol mapper ID, you can import by protocol mapper name.
+ *
+ * When using name-based import:
+ * - Use the literal `name` segment in the import path.
+ * - URL-encode the mapper name using path encoding (for example, `my protocol mapper` becomes `my%20protocol%20mapper`).
+ *
+ * Supported name-based formats:
+ * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/name/{{url_encoded_protocol_mapper_name}}`
+ * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/name/{{url_encoded_protocol_mapper_name}}`
+ *
  * Example:
  *
  * ```sh
  * $ pulumi import keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper group_membership_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
  * $ pulumi import keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper group_membership_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * $ pulumi import keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper group_membership_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/name/my%20protocol%20mapper
+ * $ pulumi import keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper group_membership_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/name/my%20protocol%20mapper
  * ```
  */
 export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
@@ -111,6 +123,10 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+     */
+    declare public readonly addToTokenIntrospection: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
@@ -155,6 +171,7 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             const state = argsOrState as GroupMembershipProtocolMapperState | undefined;
             resourceInputs["addToAccessToken"] = state?.addToAccessToken;
             resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = state?.addToTokenIntrospection;
             resourceInputs["addToUserinfo"] = state?.addToUserinfo;
             resourceInputs["claimName"] = state?.claimName;
             resourceInputs["clientId"] = state?.clientId;
@@ -172,6 +189,7 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = args?.addToTokenIntrospection;
             resourceInputs["addToUserinfo"] = args?.addToUserinfo;
             resourceInputs["claimName"] = args?.claimName;
             resourceInputs["clientId"] = args?.clientId;
@@ -197,6 +215,10 @@ export interface GroupMembershipProtocolMapperState {
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
@@ -239,6 +261,10 @@ export interface GroupMembershipProtocolMapperArgs {
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */

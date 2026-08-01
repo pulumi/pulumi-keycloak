@@ -73,7 +73,7 @@ type CustomUserFederation struct {
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrOutput `pulumi:"changedSyncPeriod"`
-	// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+	// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
 	Config pulumi.StringMapOutput `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
@@ -131,7 +131,7 @@ type customUserFederationState struct {
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
-	// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+	// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
 	Config map[string]string `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -154,7 +154,7 @@ type CustomUserFederationState struct {
 	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
-	// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+	// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
 	Config pulumi.StringMapInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -181,7 +181,7 @@ type customUserFederationArgs struct {
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
-	// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+	// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
 	Config map[string]string `pulumi:"config"`
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -205,7 +205,7 @@ type CustomUserFederationArgs struct {
 	CachePolicy pulumi.StringPtrInput
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
-	// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+	// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
 	Config pulumi.StringMapInput
 	// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -320,7 +320,7 @@ func (o CustomUserFederationOutput) ChangedSyncPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.IntPtrOutput { return v.ChangedSyncPeriod }).(pulumi.IntPtrOutput)
 }
 
-// The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+// The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
 func (o CustomUserFederationOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }

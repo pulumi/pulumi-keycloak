@@ -33,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DefaultGroups{}
 	case "keycloak:index/defaultRoles:DefaultRoles":
 		r = &DefaultRoles{}
+	case "keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy":
+		r = &GenericClientAuthorizationPolicy{}
 	case "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
 		r = &GenericClientProtocolMapper{}
 	case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
@@ -43,6 +45,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GenericRoleMapper{}
 	case "keycloak:index/group:Group":
 		r = &Group{}
+	case "keycloak:index/groupAdminPermissions:GroupAdminPermissions":
+		r = &GroupAdminPermissions{}
 	case "keycloak:index/groupMemberships:GroupMemberships":
 		r = &GroupMemberships{}
 	case "keycloak:index/groupPermissions:GroupPermissions":
@@ -69,6 +73,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RealmClientPolicyProfile{}
 	case "keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy":
 		r = &RealmClientPolicyProfilePolicy{}
+	case "keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy":
+		r = &RealmClientRegistrationPolicy{}
 	case "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes":
 		r = &RealmDefaultClientScopes{}
 	case "keycloak:index/realmEvents:RealmEvents":
@@ -95,6 +101,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RequiredAction{}
 	case "keycloak:index/role:Role":
 		r = &Role{}
+	case "keycloak:index/roleAdminPermissions:RoleAdminPermissions":
+		r = &RoleAdminPermissions{}
 	case "keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider":
 		r = &SpiffeIdentityProvider{}
 	case "keycloak:index/user:User":
@@ -105,6 +113,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &UserRoles{}
 	case "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper":
 		r = &UserTemplateImporterIdentityProviderMapper{}
+	case "keycloak:index/usersAdminPermissions:UsersAdminPermissions":
+		r = &UsersAdminPermissions{}
 	case "keycloak:index/usersPermissions:UsersPermissions":
 		r = &UsersPermissions{}
 	case "keycloak:index/workflow:Workflow":
@@ -172,6 +182,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/genericClientAuthorizationPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/genericClientProtocolMapper",
 		&module{version},
 	)
@@ -193,6 +208,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/group",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/groupAdminPermissions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -262,6 +282,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/realmClientRegistrationPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/realmDefaultClientScopes",
 		&module{version},
 	)
@@ -327,6 +352,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/roleAdminPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/spiffeIdentityProvider",
 		&module{version},
 	)
@@ -348,6 +378,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/userTemplateImporterIdentityProviderMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/usersAdminPermissions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

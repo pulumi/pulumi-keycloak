@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  *     name: "groups",
  *     description: "When requested, this scope will map a user's group memberships to a claim",
  *     includeInTokenScope: true,
+ *     includeInOpenidProviderMetadata: true,
  *     guiOrder: 1,
  * });
  * ```
@@ -85,6 +86,10 @@ export class ClientScope extends pulumi.CustomResource {
      */
     declare public readonly guiOrder: pulumi.Output<number | undefined>;
     /**
+     * When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     */
+    declare public readonly includeInOpenidProviderMetadata: pulumi.Output<boolean | undefined>;
+    /**
      * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      */
     declare public readonly includeInTokenScope: pulumi.Output<boolean | undefined>;
@@ -114,6 +119,7 @@ export class ClientScope extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["extraConfig"] = state?.extraConfig;
             resourceInputs["guiOrder"] = state?.guiOrder;
+            resourceInputs["includeInOpenidProviderMetadata"] = state?.includeInOpenidProviderMetadata;
             resourceInputs["includeInTokenScope"] = state?.includeInTokenScope;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
@@ -126,6 +132,7 @@ export class ClientScope extends pulumi.CustomResource {
             resourceInputs["description"] = args?.description;
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["guiOrder"] = args?.guiOrder;
+            resourceInputs["includeInOpenidProviderMetadata"] = args?.includeInOpenidProviderMetadata;
             resourceInputs["includeInTokenScope"] = args?.includeInTokenScope;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
@@ -155,6 +162,10 @@ export interface ClientScopeState {
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
     guiOrder?: pulumi.Input<number | undefined>;
+    /**
+     * When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     */
+    includeInOpenidProviderMetadata?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      */
@@ -189,6 +200,10 @@ export interface ClientScopeArgs {
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
     guiOrder?: pulumi.Input<number | undefined>;
+    /**
+     * When `true`, this client scope will be listed in the `scopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     */
+    includeInOpenidProviderMetadata?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      */

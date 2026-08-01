@@ -422,6 +422,20 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
+     * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
+     * 
+     */
+    @Export(name="relativeCreateDn", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> relativeCreateDn;
+
+    /**
+     * @return Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
+     * 
+     */
+    public Output<Optional<String>> relativeCreateDn() {
+        return Codegen.optional(this.relativeCreateDn);
+    }
+    /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
      * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.

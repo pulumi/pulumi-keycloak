@@ -32,14 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
 //				Realm: pulumi.String("my-realm"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewRealmLocalization(ctx, "german_texts", &keycloak.RealmLocalizationArgs{
-//				RealmId: pulumi.Any(myRealm.Id),
+//				RealmId: realm.ID(),
 //				Locale:  pulumi.String("de"),
 //				Texts: pulumi.StringMap{
 //					"Hello": pulumi.String("Hallo"),
@@ -56,13 +56,20 @@ import (
 //
 // ## Import
 //
-// This resource does not currently support importing.
+// This resource can be imported using the format `{{realm_id}}/{{locale}}`, where `locale` is the language code the
+// localization texts apply to.
+//
+// Example:
+//
+// ```sh
+// $ pulumi import keycloak:index/realmLocalization:RealmLocalization german_texts my-realm/de
+// ```
 type RealmLocalization struct {
 	pulumi.CustomResourceState
 
 	// The locale (language code) the texts apply to.
 	Locale pulumi.StringOutput `pulumi:"locale"`
-	// The ID of the realm the user profile applies to.
+	// The ID of the realm the localization texts apply to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	// A map of translation keys to values.
 	Texts pulumi.StringMapOutput `pulumi:"texts"`
@@ -106,7 +113,7 @@ func GetRealmLocalization(ctx *pulumi.Context,
 type realmLocalizationState struct {
 	// The locale (language code) the texts apply to.
 	Locale *string `pulumi:"locale"`
-	// The ID of the realm the user profile applies to.
+	// The ID of the realm the localization texts apply to.
 	RealmId *string `pulumi:"realmId"`
 	// A map of translation keys to values.
 	Texts map[string]string `pulumi:"texts"`
@@ -115,7 +122,7 @@ type realmLocalizationState struct {
 type RealmLocalizationState struct {
 	// The locale (language code) the texts apply to.
 	Locale pulumi.StringPtrInput
-	// The ID of the realm the user profile applies to.
+	// The ID of the realm the localization texts apply to.
 	RealmId pulumi.StringPtrInput
 	// A map of translation keys to values.
 	Texts pulumi.StringMapInput
@@ -128,7 +135,7 @@ func (RealmLocalizationState) ElementType() reflect.Type {
 type realmLocalizationArgs struct {
 	// The locale (language code) the texts apply to.
 	Locale string `pulumi:"locale"`
-	// The ID of the realm the user profile applies to.
+	// The ID of the realm the localization texts apply to.
 	RealmId string `pulumi:"realmId"`
 	// A map of translation keys to values.
 	Texts map[string]string `pulumi:"texts"`
@@ -138,7 +145,7 @@ type realmLocalizationArgs struct {
 type RealmLocalizationArgs struct {
 	// The locale (language code) the texts apply to.
 	Locale pulumi.StringInput
-	// The ID of the realm the user profile applies to.
+	// The ID of the realm the localization texts apply to.
 	RealmId pulumi.StringInput
 	// A map of translation keys to values.
 	Texts pulumi.StringMapInput
@@ -236,7 +243,7 @@ func (o RealmLocalizationOutput) Locale() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmLocalization) pulumi.StringOutput { return v.Locale }).(pulumi.StringOutput)
 }
 
-// The ID of the realm the user profile applies to.
+// The ID of the realm the localization texts apply to.
 func (o RealmLocalizationOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmLocalization) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

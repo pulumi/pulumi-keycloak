@@ -62,6 +62,8 @@ export interface GetWorkflowResult {
     readonly on: string;
     readonly realm: string;
     readonly restartInProgress: string;
+    readonly schedules: outputs.GetWorkflowSchedule[];
+    readonly states: outputs.GetWorkflowState[];
     readonly steps: outputs.GetWorkflowStep[];
 }
 /**

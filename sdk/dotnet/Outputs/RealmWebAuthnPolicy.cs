@@ -34,6 +34,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly int? CreateTimeout;
         /// <summary>
+        /// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated RequireResidentKey attribute. Requires Keycloak 26.7 or higher.
+        /// </summary>
+        public readonly string? DiscoverableCredential;
+        /// <summary>
         /// A set of extra origins for non-web applications.
         /// </summary>
         public readonly ImmutableArray<string> ExtraOrigins;
@@ -70,6 +74,8 @@ namespace Pulumi.Keycloak.Outputs
 
             int? createTimeout,
 
+            string? discoverableCredential,
+
             ImmutableArray<string> extraOrigins,
 
             string? relyingPartyEntityName,
@@ -87,6 +93,7 @@ namespace Pulumi.Keycloak.Outputs
             AuthenticatorAttachment = authenticatorAttachment;
             AvoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             CreateTimeout = createTimeout;
+            DiscoverableCredential = discoverableCredential;
             ExtraOrigins = extraOrigins;
             RelyingPartyEntityName = relyingPartyEntityName;
             RelyingPartyId = relyingPartyId;

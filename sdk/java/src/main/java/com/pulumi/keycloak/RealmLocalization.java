@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var germanTexts = new RealmLocalization("germanTexts", RealmLocalizationArgs.builder()
- *             .realmId(myRealm.id())
+ *             .realmId(realm.id())
  *             .locale("de")
  *             .texts(Map.of("Hello", "Hallo"))
  *             .build());
@@ -65,7 +65,14 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource does not currently support importing.
+ * This resource can be imported using the format `{{realm_id}}/{{locale}}`, where `locale` is the language code the
+ * localization texts apply to.
+ * 
+ * Example:
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/realmLocalization:RealmLocalization german_texts my-realm/de
+ * ```
  * 
  */
 @ResourceType(type="keycloak:index/realmLocalization:RealmLocalization")
@@ -85,14 +92,14 @@ public class RealmLocalization extends com.pulumi.resources.CustomResource {
         return this.locale;
     }
     /**
-     * The ID of the realm the user profile applies to.
+     * The ID of the realm the localization texts apply to.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The ID of the realm the user profile applies to.
+     * @return The ID of the realm the localization texts apply to.
      * 
      */
     public Output<String> realmId() {

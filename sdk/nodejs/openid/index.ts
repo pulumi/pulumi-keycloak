@@ -20,6 +20,11 @@ export type Client = import("./client").Client;
 export const Client: typeof import("./client").Client = null as any;
 utilities.lazyLoad(exports, ["Client"], () => require("./client"));
 
+export { ClientAdminPermissionsArgs, ClientAdminPermissionsState } from "./clientAdminPermissions";
+export type ClientAdminPermissions = import("./clientAdminPermissions").ClientAdminPermissions;
+export const ClientAdminPermissions: typeof import("./clientAdminPermissions").ClientAdminPermissions = null as any;
+utilities.lazyLoad(exports, ["ClientAdminPermissions"], () => require("./clientAdminPermissions"));
+
 export { ClientAggregatePolicyArgs, ClientAggregatePolicyState } from "./clientAggregatePolicy";
 export type ClientAggregatePolicy = import("./clientAggregatePolicy").ClientAggregatePolicy;
 export const ClientAggregatePolicy: typeof import("./clientAggregatePolicy").ClientAggregatePolicy = null as any;
@@ -54,6 +59,11 @@ export { ClientGroupPolicyArgs, ClientGroupPolicyState } from "./clientGroupPoli
 export type ClientGroupPolicy = import("./clientGroupPolicy").ClientGroupPolicy;
 export const ClientGroupPolicy: typeof import("./clientGroupPolicy").ClientGroupPolicy = null as any;
 utilities.lazyLoad(exports, ["ClientGroupPolicy"], () => require("./clientGroupPolicy"));
+
+export { ClientJsPolicyArgs, ClientJsPolicyState } from "./clientJsPolicy";
+export type ClientJsPolicy = import("./clientJsPolicy").ClientJsPolicy;
+export const ClientJsPolicy: typeof import("./clientJsPolicy").ClientJsPolicy = null as any;
+utilities.lazyLoad(exports, ["ClientJsPolicy"], () => require("./clientJsPolicy"));
 
 export { ClientOptionalScopesArgs, ClientOptionalScopesState } from "./clientOptionalScopes";
 export type ClientOptionalScopes = import("./clientOptionalScopes").ClientOptionalScopes;
@@ -119,6 +129,11 @@ export { GetClientAuthorizationPolicyArgs, GetClientAuthorizationPolicyResult, G
 export const getClientAuthorizationPolicy: typeof import("./getClientAuthorizationPolicy").getClientAuthorizationPolicy = null as any;
 export const getClientAuthorizationPolicyOutput: typeof import("./getClientAuthorizationPolicy").getClientAuthorizationPolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getClientAuthorizationPolicy","getClientAuthorizationPolicyOutput"], () => require("./getClientAuthorizationPolicy"));
+
+export { GetClientAuthorizationScopeArgs, GetClientAuthorizationScopeResult, GetClientAuthorizationScopeOutputArgs } from "./getClientAuthorizationScope";
+export const getClientAuthorizationScope: typeof import("./getClientAuthorizationScope").getClientAuthorizationScope = null as any;
+export const getClientAuthorizationScopeOutput: typeof import("./getClientAuthorizationScope").getClientAuthorizationScopeOutput = null as any;
+utilities.lazyLoad(exports, ["getClientAuthorizationScope","getClientAuthorizationScopeOutput"], () => require("./getClientAuthorizationScope"));
 
 export { GetClientScopeArgs, GetClientScopeResult, GetClientScopeOutputArgs } from "./getClientScope";
 export const getClientScope: typeof import("./getClientScope").getClientScope = null as any;
@@ -186,6 +201,8 @@ const _module = {
                 return new AudienceResolveProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/client:Client":
                 return new Client(name, <any>undefined, { urn })
+            case "keycloak:openid/clientAdminPermissions:ClientAdminPermissions":
+                return new ClientAdminPermissions(name, <any>undefined, { urn })
             case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
                 return new ClientAggregatePolicy(name, <any>undefined, { urn })
             case "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy":
@@ -200,6 +217,8 @@ const _module = {
                 return new ClientDefaultScopes(name, <any>undefined, { urn })
             case "keycloak:openid/clientGroupPolicy:ClientGroupPolicy":
                 return new ClientGroupPolicy(name, <any>undefined, { urn })
+            case "keycloak:openid/clientJsPolicy:ClientJsPolicy":
+                return new ClientJsPolicy(name, <any>undefined, { urn })
             case "keycloak:openid/clientOptionalScopes:ClientOptionalScopes":
                 return new ClientOptionalScopes(name, <any>undefined, { urn })
             case "keycloak:openid/clientPermissions:ClientPermissions":
@@ -248,6 +267,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("keycloak", "openid/audienceProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/audienceResolveProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/client", _module)
+pulumi.runtime.registerResourceModule("keycloak", "openid/clientAdminPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAggregatePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationClientScopePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationPermission", _module)
@@ -255,6 +275,7 @@ pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationRes
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationScope", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientDefaultScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientGroupPolicy", _module)
+pulumi.runtime.registerResourceModule("keycloak", "openid/clientJsPolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientOptionalScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientPolicy", _module)

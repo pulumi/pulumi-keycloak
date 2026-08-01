@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AudienceResolveProtocolMapper{}
 	case "keycloak:openid/client:Client":
 		r = &Client{}
+	case "keycloak:openid/clientAdminPermissions:ClientAdminPermissions":
+		r = &ClientAdminPermissions{}
 	case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
 		r = &ClientAggregatePolicy{}
 	case "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy":
@@ -41,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ClientDefaultScopes{}
 	case "keycloak:openid/clientGroupPolicy:ClientGroupPolicy":
 		r = &ClientGroupPolicy{}
+	case "keycloak:openid/clientJsPolicy:ClientJsPolicy":
+		r = &ClientJsPolicy{}
 	case "keycloak:openid/clientOptionalScopes:ClientOptionalScopes":
 		r = &ClientOptionalScopes{}
 	case "keycloak:openid/clientPermissions:ClientPermissions":
@@ -111,6 +115,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"openid/clientAdminPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"openid/clientAggregatePolicy",
 		&module{version},
 	)
@@ -142,6 +151,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/clientGroupPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"openid/clientJsPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

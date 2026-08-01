@@ -133,6 +133,113 @@ import (
 //
 // ```
 //
+// ### Onboard gold members only
+//
+// This mirrors the [common use cases guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_understanding_common_use_cases).
+// The `conditions` expression restricts the workflow to users that have the `membership=gold` attribute, then
+// sends a welcome message and grants the `gold-member` role.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewWorkflow(ctx, "onboard_gold_members", &keycloak.WorkflowArgs{
+//				Realm:      pulumi.Any(realm.Id),
+//				Name:       pulumi.String("onboarding-gold-members"),
+//				On:         pulumi.String("user_created"),
+//				Enabled:    pulumi.Bool(true),
+//				Conditions: pulumi.String("has-user-attribute(membership=gold)"),
+//				Steps: keycloak.WorkflowStepArray{
+//					&keycloak.WorkflowStepArgs{
+//						Uses: pulumi.String("notify-user"),
+//						Config: pulumi.StringMap{
+//							"message": pulumi.String("Welcome to the Gold Membership program!"),
+//						},
+//					},
+//					&keycloak.WorkflowStepArgs{
+//						Uses: pulumi.String("grant-role"),
+//						Config: pulumi.StringMap{
+//							"role": pulumi.String("gold-member"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Track inactive users on a schedule
+//
+// This example mirrors the [scheduling workflows guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_scheduling_workflows).
+// Instead of reacting to a single event, the workflow engine periodically scans realm resources (here, every
+// `30s`, up to `100` users per run) and progresses each matching user through the steps. `restartInProgress`
+// restarts an in-progress execution when the user authenticates again, so the inactivity countdown resets.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewWorkflow(ctx, "track_inactive_users", &keycloak.WorkflowArgs{
+//				Realm:             pulumi.Any(realm.Id),
+//				Name:              pulumi.String("track-inactive-users"),
+//				On:                pulumi.String("user_authenticated"),
+//				Enabled:           pulumi.Bool(true),
+//				RestartInProgress: pulumi.String("true"),
+//				Schedule: &keycloak.WorkflowScheduleArgs{
+//					After:     pulumi.String("30s"),
+//					BatchSize: pulumi.Int(100),
+//				},
+//				Steps: keycloak.WorkflowStepArray{
+//					&keycloak.WorkflowStepArgs{
+//						Uses:  pulumi.String("notify-user"),
+//						After: pulumi.String("180d"),
+//						Config: pulumi.StringMap{
+//							"message": pulumi.String("It has been a while since your last login. We miss you!"),
+//						},
+//					},
+//					&keycloak.WorkflowStepArgs{
+//						Uses:  pulumi.String("notify-user"),
+//						After: pulumi.String("60d"),
+//						Config: pulumi.StringMap{
+//							"message": pulumi.String("Your account will be disabled in ${workflow.daysUntilNextStep} days!"),
+//						},
+//					},
+//					&keycloak.WorkflowStepArgs{
+//						Uses:  pulumi.String("disable-user"),
+//						After: pulumi.String("7d"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Workflows can be imported using the format `{{realm}}/{{workflow_id}}`, where `realm` is the realm name and `workflowId` is the unique ID Keycloak assigns upon creation.
@@ -143,7 +250,7 @@ import (
 type Workflow struct {
 	pulumi.CustomResourceState
 
-	// Event that cancels an in-progress workflow execution.
+	// Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	CancelInProgress pulumi.StringPtrOutput `pulumi:"cancelInProgress"`
 	// An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
 	Conditions pulumi.StringPtrOutput `pulumi:"conditions"`
@@ -155,8 +262,12 @@ type Workflow struct {
 	On pulumi.StringOutput `pulumi:"on"`
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm pulumi.StringOutput `pulumi:"realm"`
-	// Event that restarts an in-progress workflow execution.
+	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress pulumi.StringPtrOutput `pulumi:"restartInProgress"`
+	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+	Schedule WorkflowSchedulePtrOutput `pulumi:"schedule"`
+	// The runtime state of the workflow as reported by Keycloak. Contains:
+	States WorkflowStateTypeArrayOutput `pulumi:"states"`
 	// One or more step blocks defining the actions to execute, in order.
 	Steps WorkflowStepArrayOutput `pulumi:"steps"`
 }
@@ -200,7 +311,7 @@ func GetWorkflow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Workflow resources.
 type workflowState struct {
-	// Event that cancels an in-progress workflow execution.
+	// Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	CancelInProgress *string `pulumi:"cancelInProgress"`
 	// An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
 	Conditions *string `pulumi:"conditions"`
@@ -212,14 +323,18 @@ type workflowState struct {
 	On *string `pulumi:"on"`
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm *string `pulumi:"realm"`
-	// Event that restarts an in-progress workflow execution.
+	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress *string `pulumi:"restartInProgress"`
+	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+	Schedule *WorkflowSchedule `pulumi:"schedule"`
+	// The runtime state of the workflow as reported by Keycloak. Contains:
+	States []WorkflowStateType `pulumi:"states"`
 	// One or more step blocks defining the actions to execute, in order.
 	Steps []WorkflowStep `pulumi:"steps"`
 }
 
 type WorkflowState struct {
-	// Event that cancels an in-progress workflow execution.
+	// Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	CancelInProgress pulumi.StringPtrInput
 	// An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
 	Conditions pulumi.StringPtrInput
@@ -231,8 +346,12 @@ type WorkflowState struct {
 	On pulumi.StringPtrInput
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm pulumi.StringPtrInput
-	// Event that restarts an in-progress workflow execution.
+	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress pulumi.StringPtrInput
+	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+	Schedule WorkflowSchedulePtrInput
+	// The runtime state of the workflow as reported by Keycloak. Contains:
+	States WorkflowStateTypeArrayInput
 	// One or more step blocks defining the actions to execute, in order.
 	Steps WorkflowStepArrayInput
 }
@@ -242,7 +361,7 @@ func (WorkflowState) ElementType() reflect.Type {
 }
 
 type workflowArgs struct {
-	// Event that cancels an in-progress workflow execution.
+	// Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	CancelInProgress *string `pulumi:"cancelInProgress"`
 	// An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
 	Conditions *string `pulumi:"conditions"`
@@ -254,15 +373,17 @@ type workflowArgs struct {
 	On string `pulumi:"on"`
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm string `pulumi:"realm"`
-	// Event that restarts an in-progress workflow execution.
+	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress *string `pulumi:"restartInProgress"`
+	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+	Schedule *WorkflowSchedule `pulumi:"schedule"`
 	// One or more step blocks defining the actions to execute, in order.
 	Steps []WorkflowStep `pulumi:"steps"`
 }
 
 // The set of arguments for constructing a Workflow resource.
 type WorkflowArgs struct {
-	// Event that cancels an in-progress workflow execution.
+	// Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	CancelInProgress pulumi.StringPtrInput
 	// An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
 	Conditions pulumi.StringPtrInput
@@ -274,8 +395,10 @@ type WorkflowArgs struct {
 	On pulumi.StringInput
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm pulumi.StringInput
-	// Event that restarts an in-progress workflow execution.
+	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress pulumi.StringPtrInput
+	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+	Schedule WorkflowSchedulePtrInput
 	// One or more step blocks defining the actions to execute, in order.
 	Steps WorkflowStepArrayInput
 }
@@ -367,7 +490,7 @@ func (o WorkflowOutput) ToWorkflowOutputWithContext(ctx context.Context) Workflo
 	return o
 }
 
-// Event that cancels an in-progress workflow execution.
+// Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 func (o WorkflowOutput) CancelInProgress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Workflow) pulumi.StringPtrOutput { return v.CancelInProgress }).(pulumi.StringPtrOutput)
 }
@@ -397,9 +520,19 @@ func (o WorkflowOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Workflow) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
 }
 
-// Event that restarts an in-progress workflow execution.
+// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 func (o WorkflowOutput) RestartInProgress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Workflow) pulumi.StringPtrOutput { return v.RestartInProgress }).(pulumi.StringPtrOutput)
+}
+
+// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+func (o WorkflowOutput) Schedule() WorkflowSchedulePtrOutput {
+	return o.ApplyT(func(v *Workflow) WorkflowSchedulePtrOutput { return v.Schedule }).(WorkflowSchedulePtrOutput)
+}
+
+// The runtime state of the workflow as reported by Keycloak. Contains:
+func (o WorkflowOutput) States() WorkflowStateTypeArrayOutput {
+	return o.ApplyT(func(v *Workflow) WorkflowStateTypeArrayOutput { return v.States }).(WorkflowStateTypeArrayOutput)
 }
 
 // One or more step blocks defining the actions to execute, in order.

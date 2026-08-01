@@ -79,7 +79,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     declare public readonly changedSyncPeriod: pulumi.Output<number | undefined>;
     /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+     * The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
      */
     declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -171,7 +171,7 @@ export interface CustomUserFederationState {
      */
     changedSyncPeriod?: pulumi.Input<number | undefined>;
     /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+     * The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -217,7 +217,7 @@ export interface CustomUserFederationArgs {
      */
     changedSyncPeriod?: pulumi.Input<number | undefined>;
     /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+     * The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**

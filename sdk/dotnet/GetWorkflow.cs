@@ -161,6 +161,8 @@ namespace Pulumi.Keycloak
         public readonly string On;
         public readonly string Realm;
         public readonly string RestartInProgress;
+        public readonly ImmutableArray<Outputs.GetWorkflowScheduleResult> Schedules;
+        public readonly ImmutableArray<Outputs.GetWorkflowStateResult> States;
         public readonly ImmutableArray<Outputs.GetWorkflowStepResult> Steps;
 
         [OutputConstructor]
@@ -181,6 +183,10 @@ namespace Pulumi.Keycloak
 
             string restartInProgress,
 
+            ImmutableArray<Outputs.GetWorkflowScheduleResult> schedules,
+
+            ImmutableArray<Outputs.GetWorkflowStateResult> states,
+
             ImmutableArray<Outputs.GetWorkflowStepResult> steps)
         {
             CancelInProgress = cancelInProgress;
@@ -191,6 +197,8 @@ namespace Pulumi.Keycloak
             On = on;
             Realm = realm;
             RestartInProgress = restartInProgress;
+            Schedules = schedules;
+            States = states;
             Steps = steps;
         }
     }

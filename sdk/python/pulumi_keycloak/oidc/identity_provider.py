@@ -30,7 +30,7 @@ class IdentityProviderArgs:
                  backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -71,7 +71,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -304,14 +304,14 @@ class IdentityProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
@@ -628,7 +628,7 @@ class _IdentityProviderState:
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -670,7 +670,7 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -889,14 +889,14 @@ class _IdentityProviderState:
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
@@ -1252,7 +1252,7 @@ class IdentityProvider(pulumi.CustomResource):
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1337,7 +1337,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -1441,7 +1441,7 @@ class IdentityProvider(pulumi.CustomResource):
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1547,7 +1547,7 @@ class IdentityProvider(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_secret: pulumi.Input[Optional[_builtins.str]] = None,
             client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
-            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
             default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
             disable_type_claim_check: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1593,7 +1593,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -1743,7 +1743,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """

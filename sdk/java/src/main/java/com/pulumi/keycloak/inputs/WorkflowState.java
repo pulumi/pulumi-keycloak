@@ -5,6 +5,8 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.keycloak.inputs.WorkflowScheduleArgs;
+import com.pulumi.keycloak.inputs.WorkflowStateArgs;
 import com.pulumi.keycloak.inputs.WorkflowStepArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -19,14 +21,14 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
     public static final WorkflowState Empty = new WorkflowState();
 
     /**
-     * Event that cancels an in-progress workflow execution.
+     * Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     @Import(name="cancelInProgress")
     private @Nullable Output<String> cancelInProgress;
 
     /**
-     * @return Event that cancels an in-progress workflow execution.
+     * @return Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     public Optional<Output<String>> cancelInProgress() {
@@ -109,18 +111,48 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Event that restarts an in-progress workflow execution.
+     * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     @Import(name="restartInProgress")
     private @Nullable Output<String> restartInProgress;
 
     /**
-     * @return Event that restarts an in-progress workflow execution.
+     * @return Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     public Optional<Output<String>> restartInProgress() {
         return Optional.ofNullable(this.restartInProgress);
+    }
+
+    /**
+     * A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     * 
+     */
+    @Import(name="schedule")
+    private @Nullable Output<WorkflowScheduleArgs> schedule;
+
+    /**
+     * @return A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     * 
+     */
+    public Optional<Output<WorkflowScheduleArgs>> schedule() {
+        return Optional.ofNullable(this.schedule);
+    }
+
+    /**
+     * The runtime state of the workflow as reported by Keycloak. Contains:
+     * 
+     */
+    @Import(name="states")
+    private @Nullable Output<List<WorkflowStateArgs>> states;
+
+    /**
+     * @return The runtime state of the workflow as reported by Keycloak. Contains:
+     * 
+     */
+    public Optional<Output<List<WorkflowStateArgs>>> states() {
+        return Optional.ofNullable(this.states);
     }
 
     /**
@@ -148,6 +180,8 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
         this.on = $.on;
         this.realm = $.realm;
         this.restartInProgress = $.restartInProgress;
+        this.schedule = $.schedule;
+        this.states = $.states;
         this.steps = $.steps;
     }
 
@@ -170,7 +204,7 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cancelInProgress Event that cancels an in-progress workflow execution.
+         * @param cancelInProgress Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
          * 
          * @return builder
          * 
@@ -181,7 +215,7 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cancelInProgress Event that cancels an in-progress workflow execution.
+         * @param cancelInProgress Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
          * 
          * @return builder
          * 
@@ -296,7 +330,7 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param restartInProgress Event that restarts an in-progress workflow execution.
+         * @param restartInProgress Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
          * 
          * @return builder
          * 
@@ -307,13 +341,65 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param restartInProgress Event that restarts an in-progress workflow execution.
+         * @param restartInProgress Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
          * 
          * @return builder
          * 
          */
         public Builder restartInProgress(String restartInProgress) {
             return restartInProgress(Output.of(restartInProgress));
+        }
+
+        /**
+         * @param schedule A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder schedule(@Nullable Output<WorkflowScheduleArgs> schedule) {
+            $.schedule = schedule;
+            return this;
+        }
+
+        /**
+         * @param schedule A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder schedule(WorkflowScheduleArgs schedule) {
+            return schedule(Output.of(schedule));
+        }
+
+        /**
+         * @param states The runtime state of the workflow as reported by Keycloak. Contains:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder states(@Nullable Output<List<WorkflowStateArgs>> states) {
+            $.states = states;
+            return this;
+        }
+
+        /**
+         * @param states The runtime state of the workflow as reported by Keycloak. Contains:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder states(List<WorkflowStateArgs> states) {
+            return states(Output.of(states));
+        }
+
+        /**
+         * @param states The runtime state of the workflow as reported by Keycloak. Contains:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder states(WorkflowStateArgs... states) {
+            return states(List.of(states));
         }
 
         /**

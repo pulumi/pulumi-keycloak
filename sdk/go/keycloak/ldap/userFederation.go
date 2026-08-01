@@ -130,6 +130,8 @@ type UserFederation struct {
 	ReadTimeout pulumi.StringPtrOutput `pulumi:"readTimeout"`
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+	RelativeCreateDn pulumi.StringPtrOutput `pulumi:"relativeCreateDn"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
@@ -265,6 +267,8 @@ type userFederationState struct {
 	ReadTimeout *string `pulumi:"readTimeout"`
 	// The realm that this provider will provide user federation for.
 	RealmId *string `pulumi:"realmId"`
+	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+	RelativeCreateDn *string `pulumi:"relativeCreateDn"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
@@ -343,6 +347,8 @@ type UserFederationState struct {
 	ReadTimeout pulumi.StringPtrInput
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringPtrInput
+	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+	RelativeCreateDn pulumi.StringPtrInput
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
@@ -425,6 +431,8 @@ type userFederationArgs struct {
 	ReadTimeout *string `pulumi:"readTimeout"`
 	// The realm that this provider will provide user federation for.
 	RealmId string `pulumi:"realmId"`
+	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+	RelativeCreateDn *string `pulumi:"relativeCreateDn"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
@@ -504,6 +512,8 @@ type UserFederationArgs struct {
 	ReadTimeout pulumi.StringPtrInput
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringInput
+	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+	RelativeCreateDn pulumi.StringPtrInput
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
 	// - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
 	// - `SUBTREE`: Search entire LDAP subtree.
@@ -735,6 +745,11 @@ func (o UserFederationOutput) ReadTimeout() pulumi.StringPtrOutput {
 // The realm that this provider will provide user federation for.
 func (o UserFederationOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+func (o UserFederationOutput) RelativeCreateDn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.RelativeCreateDn }).(pulumi.StringPtrOutput)
 }
 
 // Can be one of `ONE_LEVEL` or `SUBTREE`:

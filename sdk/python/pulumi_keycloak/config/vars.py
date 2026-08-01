@@ -90,6 +90,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('jwtTokenFile')
 
     @_builtins.property
+    def keycloak_version(self) -> Optional[str]:
+        """
+        The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+        """
+        return __config__.get('keycloakVersion')
+
+    @_builtins.property
     def password(self) -> Optional[str]:
         return __config__.get('password')
 

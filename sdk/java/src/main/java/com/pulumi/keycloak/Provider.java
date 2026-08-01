@@ -117,6 +117,20 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> jwtTokenFile() {
         return Codegen.optional(this.jwtTokenFile);
     }
+    /**
+     * The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: &#34;26.4.7&#34;.
+     * 
+     */
+    @Export(name="keycloakVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> keycloakVersion;
+
+    /**
+     * @return The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: &#34;26.4.7&#34;.
+     * 
+     */
+    public Output<Optional<String>> keycloakVersion() {
+        return Codegen.optional(this.keycloakVersion);
+    }
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 

@@ -31,6 +31,7 @@ class ProviderArgs:
                  jwt_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_token: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 keycloak_version: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  red_hat_sso: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -50,6 +51,7 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
         :param pulumi.Input[_builtins.str] jwt_token: A signed JWT token used for client authentication.
         :param pulumi.Input[_builtins.str] jwt_token_file: A path to a file containing a signed JWT token used for client authentication.
+        :param pulumi.Input[_builtins.str] keycloak_version: The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[_builtins.str] tls_client_certificate: TLS client certificate as PEM string for mutual authentication
@@ -83,6 +85,8 @@ class ProviderArgs:
             pulumi.set(__self__, "jwt_token", jwt_token)
         if jwt_token_file is not None:
             pulumi.set(__self__, "jwt_token_file", jwt_token_file)
+        if keycloak_version is not None:
+            pulumi.set(__self__, "keycloak_version", keycloak_version)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if realm is not None:
@@ -232,6 +236,18 @@ class ProviderArgs:
         pulumi.set(self, "jwt_token_file", value)
 
     @_builtins.property
+    @pulumi.getter(name="keycloakVersion")
+    def keycloak_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+        """
+        return pulumi.get(self, "keycloak_version")
+
+    @keycloak_version.setter
+    def keycloak_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "keycloak_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "password")
@@ -349,6 +365,7 @@ class Provider(pulumi.ProviderResource):
                  jwt_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_token: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 keycloak_version: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  red_hat_sso: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -375,6 +392,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
         :param pulumi.Input[_builtins.str] jwt_token: A signed JWT token used for client authentication.
         :param pulumi.Input[_builtins.str] jwt_token_file: A path to a file containing a signed JWT token used for client authentication.
+        :param pulumi.Input[_builtins.str] keycloak_version: The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[_builtins.str] tls_client_certificate: TLS client certificate as PEM string for mutual authentication
@@ -422,6 +440,7 @@ class Provider(pulumi.ProviderResource):
                  jwt_signing_key: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_token: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 keycloak_version: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  red_hat_sso: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -454,6 +473,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["jwt_signing_key"] = None if jwt_signing_key is None else pulumi.Output.secret(jwt_signing_key)
             __props__.__dict__["jwt_token"] = None if jwt_token is None else pulumi.Output.secret(jwt_token)
             __props__.__dict__["jwt_token_file"] = jwt_token_file
+            __props__.__dict__["keycloak_version"] = keycloak_version
             __props__.__dict__["password"] = password
             __props__.__dict__["realm"] = realm
             __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
@@ -530,6 +550,14 @@ class Provider(pulumi.ProviderResource):
         A path to a file containing a signed JWT token used for client authentication.
         """
         return pulumi.get(self, "jwt_token_file")
+
+    @_builtins.property
+    @pulumi.getter(name="keycloakVersion")
+    def keycloak_version(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+        """
+        return pulumi.get(self, "keycloak_version")
 
     @_builtins.property
     @pulumi.getter

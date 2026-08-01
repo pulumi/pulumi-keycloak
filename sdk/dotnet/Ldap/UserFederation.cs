@@ -214,6 +214,12 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
+        /// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+        /// </summary>
+        [Output("relativeCreateDn")]
+        public Output<string?> RelativeCreateDn { get; private set; } = null!;
+
+        /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
         /// - `ONE_LEVEL`: Only search for users in the DN specified by `UserDn`.
         /// - `SUBTREE`: Search entire LDAP subtree.
@@ -489,6 +495,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
+        /// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+        /// </summary>
+        [Input("relativeCreateDn")]
+        public Input<string>? RelativeCreateDn { get; set; }
+
+        /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
         /// - `ONE_LEVEL`: Only search for users in the DN specified by `UserDn`.
         /// - `SUBTREE`: Search entire LDAP subtree.
@@ -726,6 +738,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+        /// </summary>
+        [Input("relativeCreateDn")]
+        public Input<string>? RelativeCreateDn { get; set; }
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:

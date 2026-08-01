@@ -12,6 +12,7 @@ from .custom_identity_provider_mapping import *
 from .custom_user_federation import *
 from .default_groups import *
 from .default_roles import *
+from .generic_client_authorization_policy import *
 from .generic_client_protocol_mapper import *
 from .generic_client_role_mapper import *
 from .generic_protocol_mapper import *
@@ -23,12 +24,14 @@ from .get_generic_protocol_mapper import *
 from .get_group import *
 from .get_organization import *
 from .get_realm import *
+from .get_realm_client_registration_policy import *
 from .get_realm_keys import *
 from .get_role import *
 from .get_user import *
 from .get_user_realm_roles import *
 from .get_workflow import *
 from .group import *
+from .group_admin_permissions import *
 from .group_memberships import *
 from .group_permissions import *
 from .group_roles import *
@@ -43,6 +46,7 @@ from .provider import *
 from .realm import *
 from .realm_client_policy_profile import *
 from .realm_client_policy_profile_policy import *
+from .realm_client_registration_policy import *
 from .realm_default_client_scopes import *
 from .realm_events import *
 from .realm_keystore_aes_generated import *
@@ -56,11 +60,13 @@ from .realm_optional_client_scopes import *
 from .realm_user_profile import *
 from .required_action import *
 from .role import *
+from .role_admin_permissions import *
 from .spiffe_identity_provider import *
 from .user import *
 from .user_groups import *
 from .user_roles import *
 from .user_template_importer_identity_provider_mapper import *
+from .users_admin_permissions import *
 from .users_permissions import *
 from .workflow import *
 from ._inputs import *
@@ -181,6 +187,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/genericClientAuthorizationPolicy",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy": "GenericClientAuthorizationPolicy"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/genericClientProtocolMapper",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -217,6 +231,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/groupAdminPermissions",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/groupAdminPermissions:GroupAdminPermissions": "GroupAdminPermissions"
   }
  },
  {
@@ -325,6 +347,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/realmClientRegistrationPolicy",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy": "RealmClientRegistrationPolicy"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/realmDefaultClientScopes",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -429,6 +459,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/roleAdminPermissions",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/roleAdminPermissions:RoleAdminPermissions": "RoleAdminPermissions"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/spiffeIdentityProvider",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -465,6 +503,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper": "UserTemplateImporterIdentityProviderMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/usersAdminPermissions",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/usersAdminPermissions:UsersAdminPermissions": "UsersAdminPermissions"
   }
  },
  {
@@ -605,6 +651,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "oidc/microsoftIdentityProvider",
+  "fqn": "pulumi_keycloak.oidc",
+  "classes": {
+   "keycloak:oidc/microsoftIdentityProvider:MicrosoftIdentityProvider": "MicrosoftIdentityProvider"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "oidc/openshiftV4IdentityProvider",
   "fqn": "pulumi_keycloak.oidc",
   "classes": {
@@ -633,6 +687,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak.openid",
   "classes": {
    "keycloak:openid/client:Client": "Client"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "openid/clientAdminPermissions",
+  "fqn": "pulumi_keycloak.openid",
+  "classes": {
+   "keycloak:openid/clientAdminPermissions:ClientAdminPermissions": "ClientAdminPermissions"
   }
  },
  {
@@ -689,6 +751,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak.openid",
   "classes": {
    "keycloak:openid/clientGroupPolicy:ClientGroupPolicy": "ClientGroupPolicy"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "openid/clientJsPolicy",
+  "fqn": "pulumi_keycloak.openid",
+  "classes": {
+   "keycloak:openid/clientJsPolicy:ClientJsPolicy": "ClientJsPolicy"
   }
  },
  {

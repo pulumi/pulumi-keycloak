@@ -22,6 +22,8 @@ import com.pulumi.keycloak.inputs.GetGroupPlainArgs;
 import com.pulumi.keycloak.inputs.GetOrganizationArgs;
 import com.pulumi.keycloak.inputs.GetOrganizationPlainArgs;
 import com.pulumi.keycloak.inputs.GetRealmArgs;
+import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyArgs;
+import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyPlainArgs;
 import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
 import com.pulumi.keycloak.inputs.GetRealmKeysPlainArgs;
 import com.pulumi.keycloak.inputs.GetRealmPlainArgs;
@@ -39,6 +41,7 @@ import com.pulumi.keycloak.outputs.GetClientDescriptionConverterResult;
 import com.pulumi.keycloak.outputs.GetGenericProtocolMapperResult;
 import com.pulumi.keycloak.outputs.GetGroupResult;
 import com.pulumi.keycloak.outputs.GetOrganizationResult;
+import com.pulumi.keycloak.outputs.GetRealmClientRegistrationPolicyResult;
 import com.pulumi.keycloak.outputs.GetRealmKeysResult;
 import com.pulumi.keycloak.outputs.GetRealmResult;
 import com.pulumi.keycloak.outputs.GetRoleResult;
@@ -1057,6 +1060,23 @@ public final class KeycloakFunctions {
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
+     *             .build());
+     * 
      *     }
      * }
      * }
@@ -1153,6 +1173,23 @@ public final class KeycloakFunctions {
      *             .realmId(realm.id())
      *             .groupId(group.applyValue(_group -> _group.id()))
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
      *             .build());
      * 
      *     }
@@ -1253,6 +1290,23 @@ public final class KeycloakFunctions {
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
+     *             .build());
+     * 
      *     }
      * }
      * }
@@ -1351,6 +1405,23 @@ public final class KeycloakFunctions {
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
+     *             .build());
+     * 
      *     }
      * }
      * }
@@ -1447,6 +1518,23 @@ public final class KeycloakFunctions {
      *             .realmId(realm.id())
      *             .groupId(group.applyValue(_group -> _group.id()))
      *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
      *             .build());
      * 
      *     }
@@ -2037,6 +2125,281 @@ public final class KeycloakFunctions {
      */
     public static CompletableFuture<GetRealmResult> getRealmPlain(GetRealmPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getRealm:getRealm", TypeShape.of(GetRealmResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to look up an existing client registration policy in a realm by name,
+     * optionally narrowing the match by `providerId` and/or `subType`. This is primarily useful
+     * for discovering the server-generated ID of a default policy Keycloak auto-creates (e.g.
+     * &#34;Trusted Hosts&#34;, &#34;Max Clients Limit&#34;) so it can be referenced elsewhere.
+     * 
+     * If no policy matches, or more than one policy matches, an error is returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var trustedHosts = KeycloakFunctions.getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("Trusted Hosts")
+     *             .providerId("trusted-hosts")
+     *             .subType("anonymous")
+     *             .build());
+     * 
+     *         ctx.export("trustedHostsPolicyId", trustedHosts.applyValue(_trustedHosts -> _trustedHosts.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRealmClientRegistrationPolicyResult> getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs args) {
+        return getRealmClientRegistrationPolicy(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to look up an existing client registration policy in a realm by name,
+     * optionally narrowing the match by `providerId` and/or `subType`. This is primarily useful
+     * for discovering the server-generated ID of a default policy Keycloak auto-creates (e.g.
+     * &#34;Trusted Hosts&#34;, &#34;Max Clients Limit&#34;) so it can be referenced elsewhere.
+     * 
+     * If no policy matches, or more than one policy matches, an error is returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var trustedHosts = KeycloakFunctions.getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("Trusted Hosts")
+     *             .providerId("trusted-hosts")
+     *             .subType("anonymous")
+     *             .build());
+     * 
+     *         ctx.export("trustedHostsPolicyId", trustedHosts.applyValue(_trustedHosts -> _trustedHosts.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetRealmClientRegistrationPolicyResult> getRealmClientRegistrationPolicyPlain(GetRealmClientRegistrationPolicyPlainArgs args) {
+        return getRealmClientRegistrationPolicyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to look up an existing client registration policy in a realm by name,
+     * optionally narrowing the match by `providerId` and/or `subType`. This is primarily useful
+     * for discovering the server-generated ID of a default policy Keycloak auto-creates (e.g.
+     * &#34;Trusted Hosts&#34;, &#34;Max Clients Limit&#34;) so it can be referenced elsewhere.
+     * 
+     * If no policy matches, or more than one policy matches, an error is returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var trustedHosts = KeycloakFunctions.getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("Trusted Hosts")
+     *             .providerId("trusted-hosts")
+     *             .subType("anonymous")
+     *             .build());
+     * 
+     *         ctx.export("trustedHostsPolicyId", trustedHosts.applyValue(_trustedHosts -> _trustedHosts.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRealmClientRegistrationPolicyResult> getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy", TypeShape.of(GetRealmClientRegistrationPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to look up an existing client registration policy in a realm by name,
+     * optionally narrowing the match by `providerId` and/or `subType`. This is primarily useful
+     * for discovering the server-generated ID of a default policy Keycloak auto-creates (e.g.
+     * &#34;Trusted Hosts&#34;, &#34;Max Clients Limit&#34;) so it can be referenced elsewhere.
+     * 
+     * If no policy matches, or more than one policy matches, an error is returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var trustedHosts = KeycloakFunctions.getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("Trusted Hosts")
+     *             .providerId("trusted-hosts")
+     *             .subType("anonymous")
+     *             .build());
+     * 
+     *         ctx.export("trustedHostsPolicyId", trustedHosts.applyValue(_trustedHosts -> _trustedHosts.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRealmClientRegistrationPolicyResult> getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy", TypeShape.of(GetRealmClientRegistrationPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to look up an existing client registration policy in a realm by name,
+     * optionally narrowing the match by `providerId` and/or `subType`. This is primarily useful
+     * for discovering the server-generated ID of a default policy Keycloak auto-creates (e.g.
+     * &#34;Trusted Hosts&#34;, &#34;Max Clients Limit&#34;) so it can be referenced elsewhere.
+     * 
+     * If no policy matches, or more than one policy matches, an error is returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmClientRegistrationPolicyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var trustedHosts = KeycloakFunctions.getRealmClientRegistrationPolicy(GetRealmClientRegistrationPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("Trusted Hosts")
+     *             .providerId("trusted-hosts")
+     *             .subType("anonymous")
+     *             .build());
+     * 
+     *         ctx.export("trustedHostsPolicyId", trustedHosts.applyValue(_trustedHosts -> _trustedHosts.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetRealmClientRegistrationPolicyResult> getRealmClientRegistrationPolicyPlain(GetRealmClientRegistrationPolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy", TypeShape.of(GetRealmClientRegistrationPolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.

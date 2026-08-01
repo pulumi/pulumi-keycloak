@@ -26,6 +26,11 @@ public final class GetRealmWebAuthnPolicy {
     private String authenticatorAttachment;
     private Boolean avoidSameAuthenticatorRegister;
     private Integer createTimeout;
+    /**
+     * @return Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     * 
+     */
+    private String discoverableCredential;
     private List<String> extraOrigins;
     private Boolean passwordlessPasskeysEnabled;
     private String relyingPartyEntityName;
@@ -33,7 +38,11 @@ public final class GetRealmWebAuthnPolicy {
     /**
      * @return Either Yes or No
      * 
+     * @deprecated
+     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * 
      */
+    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
     private String requireResidentKey;
     /**
      * @return Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
@@ -70,6 +79,13 @@ public final class GetRealmWebAuthnPolicy {
     public Integer createTimeout() {
         return this.createTimeout;
     }
+    /**
+     * @return Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     * 
+     */
+    public String discoverableCredential() {
+        return this.discoverableCredential;
+    }
     public List<String> extraOrigins() {
         return this.extraOrigins;
     }
@@ -85,7 +101,11 @@ public final class GetRealmWebAuthnPolicy {
     /**
      * @return Either Yes or No
      * 
+     * @deprecated
+     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * 
      */
+    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
     public String requireResidentKey() {
         return this.requireResidentKey;
     }
@@ -118,6 +138,7 @@ public final class GetRealmWebAuthnPolicy {
         private String authenticatorAttachment;
         private Boolean avoidSameAuthenticatorRegister;
         private Integer createTimeout;
+        private String discoverableCredential;
         private List<String> extraOrigins;
         private Boolean passwordlessPasskeysEnabled;
         private String relyingPartyEntityName;
@@ -133,6 +154,7 @@ public final class GetRealmWebAuthnPolicy {
     	      this.authenticatorAttachment = defaults.authenticatorAttachment;
     	      this.avoidSameAuthenticatorRegister = defaults.avoidSameAuthenticatorRegister;
     	      this.createTimeout = defaults.createTimeout;
+    	      this.discoverableCredential = defaults.discoverableCredential;
     	      this.extraOrigins = defaults.extraOrigins;
     	      this.passwordlessPasskeysEnabled = defaults.passwordlessPasskeysEnabled;
     	      this.relyingPartyEntityName = defaults.relyingPartyEntityName;
@@ -183,6 +205,14 @@ public final class GetRealmWebAuthnPolicy {
               throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "createTimeout");
             }
             this.createTimeout = createTimeout;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder discoverableCredential(String discoverableCredential) {
+            if (discoverableCredential == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "discoverableCredential");
+            }
+            this.discoverableCredential = discoverableCredential;
             return this;
         }
         @CustomType.Setter
@@ -254,6 +284,7 @@ public final class GetRealmWebAuthnPolicy {
             _resultValue.authenticatorAttachment = authenticatorAttachment;
             _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             _resultValue.createTimeout = createTimeout;
+            _resultValue.discoverableCredential = discoverableCredential;
             _resultValue.extraOrigins = extraOrigins;
             _resultValue.passwordlessPasskeysEnabled = passwordlessPasskeysEnabled;
             _resultValue.relyingPartyEntityName = relyingPartyEntityName;

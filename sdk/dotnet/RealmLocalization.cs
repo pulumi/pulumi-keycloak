@@ -33,7 +33,7 @@ namespace Pulumi.Keycloak
     /// 
     ///     var germanTexts = new Keycloak.RealmLocalization("german_texts", new()
     ///     {
-    ///         RealmId = myRealm.Id,
+    ///         RealmId = realm.Id,
     ///         Locale = "de",
     ///         Texts = 
     ///         {
@@ -46,7 +46,14 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Import
     /// 
-    /// This resource does not currently support importing.
+    /// This resource can be imported using the format `{{realm_id}}/{{locale}}`, where `Locale` is the language code the
+    /// localization texts apply to.
+    /// 
+    /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/realmLocalization:RealmLocalization german_texts my-realm/de
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmLocalization:RealmLocalization")]
     public partial class RealmLocalization : global::Pulumi.CustomResource
@@ -58,7 +65,7 @@ namespace Pulumi.Keycloak
         public Output<string> Locale { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the realm the user profile applies to.
+        /// The ID of the realm the localization texts apply to.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -122,7 +129,7 @@ namespace Pulumi.Keycloak
         public Input<string> Locale { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the realm the user profile applies to.
+        /// The ID of the realm the localization texts apply to.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -154,7 +161,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Locale { get; set; }
 
         /// <summary>
-        /// The ID of the realm the user profile applies to.
+        /// The ID of the realm the localization texts apply to.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

@@ -5,6 +5,8 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.keycloak.outputs.GetWorkflowSchedule;
+import com.pulumi.keycloak.outputs.GetWorkflowState;
 import com.pulumi.keycloak.outputs.GetWorkflowStep;
 import java.lang.Boolean;
 import java.lang.String;
@@ -25,6 +27,8 @@ public final class GetWorkflowResult {
     private String on;
     private String realm;
     private String restartInProgress;
+    private List<GetWorkflowSchedule> schedules;
+    private List<GetWorkflowState> states;
     private List<GetWorkflowStep> steps;
 
     private GetWorkflowResult() {}
@@ -56,6 +60,12 @@ public final class GetWorkflowResult {
     public String restartInProgress() {
         return this.restartInProgress;
     }
+    public List<GetWorkflowSchedule> schedules() {
+        return this.schedules;
+    }
+    public List<GetWorkflowState> states() {
+        return this.states;
+    }
     public List<GetWorkflowStep> steps() {
         return this.steps;
     }
@@ -77,6 +87,8 @@ public final class GetWorkflowResult {
         private String on;
         private String realm;
         private String restartInProgress;
+        private List<GetWorkflowSchedule> schedules;
+        private List<GetWorkflowState> states;
         private List<GetWorkflowStep> steps;
         public Builder() {}
         public Builder(GetWorkflowResult defaults) {
@@ -89,6 +101,8 @@ public final class GetWorkflowResult {
     	      this.on = defaults.on;
     	      this.realm = defaults.realm;
     	      this.restartInProgress = defaults.restartInProgress;
+    	      this.schedules = defaults.schedules;
+    	      this.states = defaults.states;
     	      this.steps = defaults.steps;
         }
 
@@ -157,6 +171,28 @@ public final class GetWorkflowResult {
             return this;
         }
         @CustomType.Setter
+        public Builder schedules(List<GetWorkflowSchedule> schedules) {
+            if (schedules == null) {
+              throw new MissingRequiredPropertyException("GetWorkflowResult", "schedules");
+            }
+            this.schedules = schedules;
+            return this;
+        }
+        public Builder schedules(GetWorkflowSchedule... schedules) {
+            return schedules(List.of(schedules));
+        }
+        @CustomType.Setter
+        public Builder states(List<GetWorkflowState> states) {
+            if (states == null) {
+              throw new MissingRequiredPropertyException("GetWorkflowResult", "states");
+            }
+            this.states = states;
+            return this;
+        }
+        public Builder states(GetWorkflowState... states) {
+            return states(List.of(states));
+        }
+        @CustomType.Setter
         public Builder steps(List<GetWorkflowStep> steps) {
             if (steps == null) {
               throw new MissingRequiredPropertyException("GetWorkflowResult", "steps");
@@ -177,6 +213,8 @@ public final class GetWorkflowResult {
             _resultValue.on = on;
             _resultValue.realm = realm;
             _resultValue.restartInProgress = restartInProgress;
+            _resultValue.schedules = schedules;
+            _resultValue.states = states;
             _resultValue.steps = steps;
             return _resultValue;
         }

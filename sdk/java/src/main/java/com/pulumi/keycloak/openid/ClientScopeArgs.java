@@ -80,6 +80,21 @@ public final class ClientScopeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When `true`, this client scope will be listed in the `scopesSupported` field of the realm&#39;s OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     * 
+     */
+    @Import(name="includeInOpenidProviderMetadata")
+    private @Nullable Output<Boolean> includeInOpenidProviderMetadata;
+
+    /**
+     * @return When `true`, this client scope will be listed in the `scopesSupported` field of the realm&#39;s OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> includeInOpenidProviderMetadata() {
+        return Optional.ofNullable(this.includeInOpenidProviderMetadata);
+    }
+
+    /**
      * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      * 
      */
@@ -131,6 +146,7 @@ public final class ClientScopeArgs extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.extraConfig = $.extraConfig;
         this.guiOrder = $.guiOrder;
+        this.includeInOpenidProviderMetadata = $.includeInOpenidProviderMetadata;
         this.includeInTokenScope = $.includeInTokenScope;
         this.name = $.name;
         this.realmId = $.realmId;
@@ -236,6 +252,27 @@ public final class ClientScopeArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder guiOrder(Integer guiOrder) {
             return guiOrder(Output.of(guiOrder));
+        }
+
+        /**
+         * @param includeInOpenidProviderMetadata When `true`, this client scope will be listed in the `scopesSupported` field of the realm&#39;s OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includeInOpenidProviderMetadata(@Nullable Output<Boolean> includeInOpenidProviderMetadata) {
+            $.includeInOpenidProviderMetadata = includeInOpenidProviderMetadata;
+            return this;
+        }
+
+        /**
+         * @param includeInOpenidProviderMetadata When `true`, this client scope will be listed in the `scopesSupported` field of the realm&#39;s OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includeInOpenidProviderMetadata(Boolean includeInOpenidProviderMetadata) {
+            return includeInOpenidProviderMetadata(Output.of(includeInOpenidProviderMetadata));
         }
 
         /**

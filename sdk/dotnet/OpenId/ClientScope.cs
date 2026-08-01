@@ -37,6 +37,7 @@ namespace Pulumi.Keycloak.OpenId
     ///         Name = "groups",
     ///         Description = "When requested, this scope will map a user's group memberships to a claim",
     ///         IncludeInTokenScope = true,
+    ///         IncludeInOpenidProviderMetadata = true,
     ///         GuiOrder = 1,
     ///     });
     /// 
@@ -80,6 +81,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("guiOrder")]
         public Output<int?> GuiOrder { get; private set; } = null!;
+
+        /// <summary>
+        /// When `True`, this client scope will be listed in the `ScopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `False`, it will be omitted. Defaults to `True`.
+        /// </summary>
+        [Output("includeInOpenidProviderMetadata")]
+        public Output<bool?> IncludeInOpenidProviderMetadata { get; private set; } = null!;
 
         /// <summary>
         /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `False`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `True`.
@@ -176,6 +183,12 @@ namespace Pulumi.Keycloak.OpenId
         public Input<int>? GuiOrder { get; set; }
 
         /// <summary>
+        /// When `True`, this client scope will be listed in the `ScopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `False`, it will be omitted. Defaults to `True`.
+        /// </summary>
+        [Input("includeInOpenidProviderMetadata")]
+        public Input<bool>? IncludeInOpenidProviderMetadata { get; set; }
+
+        /// <summary>
         /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `False`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `True`.
         /// </summary>
         [Input("includeInTokenScope")]
@@ -230,6 +243,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("guiOrder")]
         public Input<int>? GuiOrder { get; set; }
+
+        /// <summary>
+        /// When `True`, this client scope will be listed in the `ScopesSupported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `False`, it will be omitted. Defaults to `True`.
+        /// </summary>
+        [Input("includeInOpenidProviderMetadata")]
+        public Input<bool>? IncludeInOpenidProviderMetadata { get; set; }
 
         /// <summary>
         /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `False`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `True`.

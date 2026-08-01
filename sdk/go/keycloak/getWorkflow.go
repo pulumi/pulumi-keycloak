@@ -70,12 +70,14 @@ type LookupWorkflowResult struct {
 	Conditions       string `pulumi:"conditions"`
 	Enabled          bool   `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                string            `pulumi:"id"`
-	Name              string            `pulumi:"name"`
-	On                string            `pulumi:"on"`
-	Realm             string            `pulumi:"realm"`
-	RestartInProgress string            `pulumi:"restartInProgress"`
-	Steps             []GetWorkflowStep `pulumi:"steps"`
+	Id                string                `pulumi:"id"`
+	Name              string                `pulumi:"name"`
+	On                string                `pulumi:"on"`
+	Realm             string                `pulumi:"realm"`
+	RestartInProgress string                `pulumi:"restartInProgress"`
+	Schedules         []GetWorkflowSchedule `pulumi:"schedules"`
+	States            []GetWorkflowState    `pulumi:"states"`
+	Steps             []GetWorkflowStep     `pulumi:"steps"`
 }
 
 func LookupWorkflowOutput(ctx *pulumi.Context, args LookupWorkflowOutputArgs, opts ...pulumi.InvokeOption) LookupWorkflowResultOutput {
@@ -145,6 +147,14 @@ func (o LookupWorkflowResultOutput) Realm() pulumi.StringOutput {
 
 func (o LookupWorkflowResultOutput) RestartInProgress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkflowResult) string { return v.RestartInProgress }).(pulumi.StringOutput)
+}
+
+func (o LookupWorkflowResultOutput) Schedules() GetWorkflowScheduleArrayOutput {
+	return o.ApplyT(func(v LookupWorkflowResult) []GetWorkflowSchedule { return v.Schedules }).(GetWorkflowScheduleArrayOutput)
+}
+
+func (o LookupWorkflowResultOutput) States() GetWorkflowStateArrayOutput {
+	return o.ApplyT(func(v LookupWorkflowResult) []GetWorkflowState { return v.States }).(GetWorkflowStateArrayOutput)
 }
 
 func (o LookupWorkflowResultOutput) Steps() GetWorkflowStepArrayOutput {

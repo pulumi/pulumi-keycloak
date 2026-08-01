@@ -180,7 +180,7 @@ type Client struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
+	ClientSecretWoVersion pulumi.StringPtrOutput `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout pulumi.StringOutput `pulumi:"clientSessionIdleTimeout"`
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
@@ -351,7 +351,7 @@ type clientState struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
+	ClientSecretWoVersion *string `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
@@ -476,7 +476,7 @@ type ClientState struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrInput
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion pulumi.IntPtrInput
+	ClientSecretWoVersion pulumi.StringPtrInput
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout pulumi.StringPtrInput
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
@@ -605,7 +605,7 @@ type clientArgs struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
+	ClientSecretWoVersion *string `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
@@ -727,7 +727,7 @@ type ClientArgs struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrInput
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion pulumi.IntPtrInput
+	ClientSecretWoVersion pulumi.StringPtrInput
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout pulumi.StringPtrInput
 	// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
@@ -990,8 +990,8 @@ func (o ClientOutput) ClientSecretWo() pulumi.StringPtrOutput {
 }
 
 // Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-func (o ClientOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *Client) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
+func (o ClientOutput) ClientSecretWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientSecretWoVersion }).(pulumi.StringPtrOutput)
 }
 
 // Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
