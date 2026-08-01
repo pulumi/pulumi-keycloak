@@ -1,3 +1,0 @@
-name: realm-python
-runtime: python
-description: A minimal Python Pulumi program to create KeyCloak Realm
