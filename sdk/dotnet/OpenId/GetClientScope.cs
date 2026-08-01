@@ -183,6 +183,7 @@ namespace Pulumi.Keycloak.OpenId
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly bool IncludeInOpenidProviderMetadata;
         public readonly bool IncludeInTokenScope;
         public readonly string Name;
         public readonly string RealmId;
@@ -199,6 +200,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string id,
 
+            bool includeInOpenidProviderMetadata,
+
             bool includeInTokenScope,
 
             string name,
@@ -210,6 +213,7 @@ namespace Pulumi.Keycloak.OpenId
             ExtraConfig = extraConfig;
             GuiOrder = guiOrder;
             Id = id;
+            IncludeInOpenidProviderMetadata = includeInOpenidProviderMetadata;
             IncludeInTokenScope = includeInTokenScope;
             Name = name;
             RealmId = realmId;

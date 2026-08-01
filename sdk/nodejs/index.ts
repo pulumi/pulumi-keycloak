@@ -35,6 +35,11 @@ export type DefaultRoles = import("./defaultRoles").DefaultRoles;
 export const DefaultRoles: typeof import("./defaultRoles").DefaultRoles = null as any;
 utilities.lazyLoad(exports, ["DefaultRoles"], () => require("./defaultRoles"));
 
+export { GenericClientAuthorizationPolicyArgs, GenericClientAuthorizationPolicyState } from "./genericClientAuthorizationPolicy";
+export type GenericClientAuthorizationPolicy = import("./genericClientAuthorizationPolicy").GenericClientAuthorizationPolicy;
+export const GenericClientAuthorizationPolicy: typeof import("./genericClientAuthorizationPolicy").GenericClientAuthorizationPolicy = null as any;
+utilities.lazyLoad(exports, ["GenericClientAuthorizationPolicy"], () => require("./genericClientAuthorizationPolicy"));
+
 export { GenericClientProtocolMapperArgs, GenericClientProtocolMapperState } from "./genericClientProtocolMapper";
 export type GenericClientProtocolMapper = import("./genericClientProtocolMapper").GenericClientProtocolMapper;
 export const GenericClientProtocolMapper: typeof import("./genericClientProtocolMapper").GenericClientProtocolMapper = null as any;
@@ -90,6 +95,11 @@ export const getRealm: typeof import("./getRealm").getRealm = null as any;
 export const getRealmOutput: typeof import("./getRealm").getRealmOutput = null as any;
 utilities.lazyLoad(exports, ["getRealm","getRealmOutput"], () => require("./getRealm"));
 
+export { GetRealmClientRegistrationPolicyArgs, GetRealmClientRegistrationPolicyResult, GetRealmClientRegistrationPolicyOutputArgs } from "./getRealmClientRegistrationPolicy";
+export const getRealmClientRegistrationPolicy: typeof import("./getRealmClientRegistrationPolicy").getRealmClientRegistrationPolicy = null as any;
+export const getRealmClientRegistrationPolicyOutput: typeof import("./getRealmClientRegistrationPolicy").getRealmClientRegistrationPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getRealmClientRegistrationPolicy","getRealmClientRegistrationPolicyOutput"], () => require("./getRealmClientRegistrationPolicy"));
+
 export { GetRealmKeysArgs, GetRealmKeysResult, GetRealmKeysOutputArgs } from "./getRealmKeys";
 export const getRealmKeys: typeof import("./getRealmKeys").getRealmKeys = null as any;
 export const getRealmKeysOutput: typeof import("./getRealmKeys").getRealmKeysOutput = null as any;
@@ -119,6 +129,11 @@ export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;
 utilities.lazyLoad(exports, ["Group"], () => require("./group"));
+
+export { GroupAdminPermissionsArgs, GroupAdminPermissionsState } from "./groupAdminPermissions";
+export type GroupAdminPermissions = import("./groupAdminPermissions").GroupAdminPermissions;
+export const GroupAdminPermissions: typeof import("./groupAdminPermissions").GroupAdminPermissions = null as any;
+utilities.lazyLoad(exports, ["GroupAdminPermissions"], () => require("./groupAdminPermissions"));
 
 export { GroupMembershipsArgs, GroupMembershipsState } from "./groupMemberships";
 export type GroupMemberships = import("./groupMemberships").GroupMemberships;
@@ -188,6 +203,11 @@ export type RealmClientPolicyProfilePolicy = import("./realmClientPolicyProfileP
 export const RealmClientPolicyProfilePolicy: typeof import("./realmClientPolicyProfilePolicy").RealmClientPolicyProfilePolicy = null as any;
 utilities.lazyLoad(exports, ["RealmClientPolicyProfilePolicy"], () => require("./realmClientPolicyProfilePolicy"));
 
+export { RealmClientRegistrationPolicyArgs, RealmClientRegistrationPolicyState } from "./realmClientRegistrationPolicy";
+export type RealmClientRegistrationPolicy = import("./realmClientRegistrationPolicy").RealmClientRegistrationPolicy;
+export const RealmClientRegistrationPolicy: typeof import("./realmClientRegistrationPolicy").RealmClientRegistrationPolicy = null as any;
+utilities.lazyLoad(exports, ["RealmClientRegistrationPolicy"], () => require("./realmClientRegistrationPolicy"));
+
 export { RealmDefaultClientScopesArgs, RealmDefaultClientScopesState } from "./realmDefaultClientScopes";
 export type RealmDefaultClientScopes = import("./realmDefaultClientScopes").RealmDefaultClientScopes;
 export const RealmDefaultClientScopes: typeof import("./realmDefaultClientScopes").RealmDefaultClientScopes = null as any;
@@ -253,6 +273,11 @@ export type Role = import("./role").Role;
 export const Role: typeof import("./role").Role = null as any;
 utilities.lazyLoad(exports, ["Role"], () => require("./role"));
 
+export { RoleAdminPermissionsArgs, RoleAdminPermissionsState } from "./roleAdminPermissions";
+export type RoleAdminPermissions = import("./roleAdminPermissions").RoleAdminPermissions;
+export const RoleAdminPermissions: typeof import("./roleAdminPermissions").RoleAdminPermissions = null as any;
+utilities.lazyLoad(exports, ["RoleAdminPermissions"], () => require("./roleAdminPermissions"));
+
 export { SpiffeIdentityProviderArgs, SpiffeIdentityProviderState } from "./spiffeIdentityProvider";
 export type SpiffeIdentityProvider = import("./spiffeIdentityProvider").SpiffeIdentityProvider;
 export const SpiffeIdentityProvider: typeof import("./spiffeIdentityProvider").SpiffeIdentityProvider = null as any;
@@ -277,6 +302,11 @@ export { UserTemplateImporterIdentityProviderMapperArgs, UserTemplateImporterIde
 export type UserTemplateImporterIdentityProviderMapper = import("./userTemplateImporterIdentityProviderMapper").UserTemplateImporterIdentityProviderMapper;
 export const UserTemplateImporterIdentityProviderMapper: typeof import("./userTemplateImporterIdentityProviderMapper").UserTemplateImporterIdentityProviderMapper = null as any;
 utilities.lazyLoad(exports, ["UserTemplateImporterIdentityProviderMapper"], () => require("./userTemplateImporterIdentityProviderMapper"));
+
+export { UsersAdminPermissionsArgs, UsersAdminPermissionsState } from "./usersAdminPermissions";
+export type UsersAdminPermissions = import("./usersAdminPermissions").UsersAdminPermissions;
+export const UsersAdminPermissions: typeof import("./usersAdminPermissions").UsersAdminPermissions = null as any;
+utilities.lazyLoad(exports, ["UsersAdminPermissions"], () => require("./usersAdminPermissions"));
 
 export { UsersPermissionsArgs, UsersPermissionsState } from "./usersPermissions";
 export type UsersPermissions = import("./usersPermissions").UsersPermissions;
@@ -324,6 +354,8 @@ const _module = {
                 return new DefaultGroups(name, <any>undefined, { urn })
             case "keycloak:index/defaultRoles:DefaultRoles":
                 return new DefaultRoles(name, <any>undefined, { urn })
+            case "keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy":
+                return new GenericClientAuthorizationPolicy(name, <any>undefined, { urn })
             case "keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper":
                 return new GenericClientProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper":
@@ -334,6 +366,8 @@ const _module = {
                 return new GenericRoleMapper(name, <any>undefined, { urn })
             case "keycloak:index/group:Group":
                 return new Group(name, <any>undefined, { urn })
+            case "keycloak:index/groupAdminPermissions:GroupAdminPermissions":
+                return new GroupAdminPermissions(name, <any>undefined, { urn })
             case "keycloak:index/groupMemberships:GroupMemberships":
                 return new GroupMemberships(name, <any>undefined, { urn })
             case "keycloak:index/groupPermissions:GroupPermissions":
@@ -360,6 +394,8 @@ const _module = {
                 return new RealmClientPolicyProfile(name, <any>undefined, { urn })
             case "keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy":
                 return new RealmClientPolicyProfilePolicy(name, <any>undefined, { urn })
+            case "keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy":
+                return new RealmClientRegistrationPolicy(name, <any>undefined, { urn })
             case "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes":
                 return new RealmDefaultClientScopes(name, <any>undefined, { urn })
             case "keycloak:index/realmEvents:RealmEvents":
@@ -386,6 +422,8 @@ const _module = {
                 return new RequiredAction(name, <any>undefined, { urn })
             case "keycloak:index/role:Role":
                 return new Role(name, <any>undefined, { urn })
+            case "keycloak:index/roleAdminPermissions:RoleAdminPermissions":
+                return new RoleAdminPermissions(name, <any>undefined, { urn })
             case "keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider":
                 return new SpiffeIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:index/user:User":
@@ -396,6 +434,8 @@ const _module = {
                 return new UserRoles(name, <any>undefined, { urn })
             case "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper":
                 return new UserTemplateImporterIdentityProviderMapper(name, <any>undefined, { urn })
+            case "keycloak:index/usersAdminPermissions:UsersAdminPermissions":
+                return new UsersAdminPermissions(name, <any>undefined, { urn })
             case "keycloak:index/usersPermissions:UsersPermissions":
                 return new UsersPermissions(name, <any>undefined, { urn })
             case "keycloak:index/workflow:Workflow":
@@ -411,11 +451,13 @@ pulumi.runtime.registerResourceModule("keycloak", "index/customIdentityProviderM
 pulumi.runtime.registerResourceModule("keycloak", "index/customUserFederation", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/defaultGroups", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/defaultRoles", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/genericClientAuthorizationPolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericClientRoleMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/genericRoleMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/group", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/groupAdminPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupMemberships", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupRoles", _module)
@@ -429,6 +471,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/organization", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfile", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfilePolicy", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmClientRegistrationPolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmDefaultClientScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmEvents", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreAesGenerated", _module)
@@ -442,11 +485,13 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmOptionalClientScop
 pulumi.runtime.registerResourceModule("keycloak", "index/realmUserProfile", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/requiredAction", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/role", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/roleAdminPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/spiffeIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/user", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userGroups", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/userTemplateImporterIdentityProviderMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/usersAdminPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/usersPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/workflow", _module)
 pulumi.runtime.registerResourcePackage("keycloak", {

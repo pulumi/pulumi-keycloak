@@ -24,6 +24,7 @@ class ClientScopeArgs:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+                 include_in_openid_provider_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
                  include_in_token_scope: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -34,6 +35,7 @@ class ClientScopeArgs:
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[_builtins.bool] include_in_openid_provider_metadata: When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         """
@@ -46,6 +48,8 @@ class ClientScopeArgs:
             pulumi.set(__self__, "extra_config", extra_config)
         if gui_order is not None:
             pulumi.set(__self__, "gui_order", gui_order)
+        if include_in_openid_provider_metadata is not None:
+            pulumi.set(__self__, "include_in_openid_provider_metadata", include_in_openid_provider_metadata)
         if include_in_token_scope is not None:
             pulumi.set(__self__, "include_in_token_scope", include_in_token_scope)
         if name is not None:
@@ -112,6 +116,18 @@ class ClientScopeArgs:
         pulumi.set(self, "gui_order", value)
 
     @_builtins.property
+    @pulumi.getter(name="includeInOpenidProviderMetadata")
+    def include_in_openid_provider_metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+        """
+        return pulumi.get(self, "include_in_openid_provider_metadata")
+
+    @include_in_openid_provider_metadata.setter
+    def include_in_openid_provider_metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "include_in_openid_provider_metadata", value)
+
+    @_builtins.property
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -143,6 +159,7 @@ class _ClientScopeState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+                 include_in_openid_provider_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
                  include_in_token_scope: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None):
@@ -153,6 +170,7 @@ class _ClientScopeState:
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[_builtins.bool] include_in_openid_provider_metadata: When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
@@ -165,6 +183,8 @@ class _ClientScopeState:
             pulumi.set(__self__, "extra_config", extra_config)
         if gui_order is not None:
             pulumi.set(__self__, "gui_order", gui_order)
+        if include_in_openid_provider_metadata is not None:
+            pulumi.set(__self__, "include_in_openid_provider_metadata", include_in_openid_provider_metadata)
         if include_in_token_scope is not None:
             pulumi.set(__self__, "include_in_token_scope", include_in_token_scope)
         if name is not None:
@@ -221,6 +241,18 @@ class _ClientScopeState:
         pulumi.set(self, "gui_order", value)
 
     @_builtins.property
+    @pulumi.getter(name="includeInOpenidProviderMetadata")
+    def include_in_openid_provider_metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+        """
+        return pulumi.get(self, "include_in_openid_provider_metadata")
+
+    @include_in_openid_provider_metadata.setter
+    def include_in_openid_provider_metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "include_in_openid_provider_metadata", value)
+
+    @_builtins.property
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -267,6 +299,7 @@ class ClientScope(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+                 include_in_openid_provider_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
                  include_in_token_scope: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -291,6 +324,7 @@ class ClientScope(pulumi.CustomResource):
             name="groups",
             description="When requested, this scope will map a user's group memberships to a claim",
             include_in_token_scope=True,
+            include_in_openid_provider_metadata=True,
             gui_order=1)
         ```
 
@@ -312,6 +346,7 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[_builtins.bool] include_in_openid_provider_metadata: When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
@@ -342,6 +377,7 @@ class ClientScope(pulumi.CustomResource):
             name="groups",
             description="When requested, this scope will map a user's group memberships to a claim",
             include_in_token_scope=True,
+            include_in_openid_provider_metadata=True,
             gui_order=1)
         ```
 
@@ -376,6 +412,7 @@ class ClientScope(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+                 include_in_openid_provider_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
                  include_in_token_scope: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -392,6 +429,7 @@ class ClientScope(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["gui_order"] = gui_order
+            __props__.__dict__["include_in_openid_provider_metadata"] = include_in_openid_provider_metadata
             __props__.__dict__["include_in_token_scope"] = include_in_token_scope
             __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
@@ -411,6 +449,7 @@ class ClientScope(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+            include_in_openid_provider_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
             include_in_token_scope: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientScope':
@@ -425,6 +464,7 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[_builtins.bool] include_in_openid_provider_metadata: When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
@@ -437,6 +477,7 @@ class ClientScope(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["gui_order"] = gui_order
+        __props__.__dict__["include_in_openid_provider_metadata"] = include_in_openid_provider_metadata
         __props__.__dict__["include_in_token_scope"] = include_in_token_scope
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
@@ -473,6 +514,14 @@ class ClientScope(pulumi.CustomResource):
         Specify order of the client scope in GUI (such as in Consent page) as integer.
         """
         return pulumi.get(self, "gui_order")
+
+    @_builtins.property
+    @pulumi.getter(name="includeInOpenidProviderMetadata")
+    def include_in_openid_provider_metadata(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When `true`, this client scope will be listed in the `scopes_supported` field of the realm's OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+        """
+        return pulumi.get(self, "include_in_openid_provider_metadata")
 
     @_builtins.property
     @pulumi.getter(name="includeInTokenScope")

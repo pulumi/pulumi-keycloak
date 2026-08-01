@@ -12,6 +12,8 @@ namespace Pulumi.Keycloak.OpenId
     /// <summary>
     /// Allows you to manage all openid client Scope Based Permissions.
     /// 
+    /// This resource requires Fine-Grained Admin Permissions **v1** (`admin-fine-grained-authz:v1`). It is **not compatible** with v2 (`admin-fine-grained-authz:v2`, enabled by default in Keycloak 26.2+), which uses a different API and resource server. If your Keycloak instance has v2 enabled, use `keycloak.openid.ClientAdminPermissions` instead.
+    /// 
     /// This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
     /// information about enabling the preview feature can be found
     /// here: https://www.keycloak.org/securing-apps/token-exchange

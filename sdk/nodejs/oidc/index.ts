@@ -25,6 +25,11 @@ export type IdentityProvider = import("./identityProvider").IdentityProvider;
 export const IdentityProvider: typeof import("./identityProvider").IdentityProvider = null as any;
 utilities.lazyLoad(exports, ["IdentityProvider"], () => require("./identityProvider"));
 
+export { MicrosoftIdentityProviderArgs, MicrosoftIdentityProviderState } from "./microsoftIdentityProvider";
+export type MicrosoftIdentityProvider = import("./microsoftIdentityProvider").MicrosoftIdentityProvider;
+export const MicrosoftIdentityProvider: typeof import("./microsoftIdentityProvider").MicrosoftIdentityProvider = null as any;
+utilities.lazyLoad(exports, ["MicrosoftIdentityProvider"], () => require("./microsoftIdentityProvider"));
+
 export { OpenshiftV4IdentityProviderArgs, OpenshiftV4IdentityProviderState } from "./openshiftV4IdentityProvider";
 export type OpenshiftV4IdentityProvider = import("./openshiftV4IdentityProvider").OpenshiftV4IdentityProvider;
 export const OpenshiftV4IdentityProvider: typeof import("./openshiftV4IdentityProvider").OpenshiftV4IdentityProvider = null as any;
@@ -43,6 +48,8 @@ const _module = {
                 return new GoogleIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:oidc/identityProvider:IdentityProvider":
                 return new IdentityProvider(name, <any>undefined, { urn })
+            case "keycloak:oidc/microsoftIdentityProvider:MicrosoftIdentityProvider":
+                return new MicrosoftIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider":
                 return new OpenshiftV4IdentityProvider(name, <any>undefined, { urn })
             default:
@@ -54,4 +61,5 @@ pulumi.runtime.registerResourceModule("keycloak", "oidc/facebookIdentityProvider
 pulumi.runtime.registerResourceModule("keycloak", "oidc/githubIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/googleIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/identityProvider", _module)
+pulumi.runtime.registerResourceModule("keycloak", "oidc/microsoftIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/openshiftV4IdentityProvider", _module)

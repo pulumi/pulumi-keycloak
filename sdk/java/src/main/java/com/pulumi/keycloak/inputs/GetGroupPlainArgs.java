@@ -23,18 +23,33 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
      * 
      */
-    @Import(name="name", required=true)
-    private String name;
+    @Import(name="groupPath")
+    private @Nullable String groupPath;
 
     /**
-     * @return The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * @return The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
      * 
      */
-    public String name() {
-        return this.name;
+    public Optional<String> groupPath() {
+        return Optional.ofNullable(this.groupPath);
+    }
+
+    /**
+     * The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+     * 
+     */
+    @Import(name="name")
+    private @Nullable String name;
+
+    /**
+     * @return The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+     * 
+     */
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
     }
 
     /**
@@ -71,6 +86,7 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetGroupPlainArgs(GetGroupPlainArgs $) {
         this.description = $.description;
+        this.groupPath = $.groupPath;
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.realmId = $.realmId;
@@ -100,12 +116,23 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The name of the group. If there are multiple groups match `name`, the first result will be returned.
+         * @param groupPath The full path of the group (e.g. `&#34;/parent/child/subgroup&#34;`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
          * 
          * @return builder
          * 
          */
-        public Builder name(String name) {
+        public Builder groupPath(@Nullable String groupPath) {
+            $.groupPath = groupPath;
+            return this;
+        }
+
+        /**
+         * @param name The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder name(@Nullable String name) {
             $.name = name;
             return this;
         }
@@ -133,9 +160,6 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetGroupPlainArgs build() {
-            if ($.name == null) {
-                throw new MissingRequiredPropertyException("GetGroupPlainArgs", "name");
-            }
             if ($.realmId == null) {
                 throw new MissingRequiredPropertyException("GetGroupPlainArgs", "realmId");
             }

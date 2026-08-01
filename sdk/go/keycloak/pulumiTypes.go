@@ -3520,6 +3520,8 @@ type RealmWebAuthnPasswordlessPolicy struct {
 	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout *int `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential *string `pulumi:"discoverableCredential"`
 	// A set of extra origins for non-web applications.
 	ExtraOrigins []string `pulumi:"extraOrigins"`
 	// Enable passkeys for passwordless WebAuthn authentication
@@ -3529,6 +3531,8 @@ type RealmWebAuthnPasswordlessPolicy struct {
 	// The WebAuthn relying party ID.
 	RelyingPartyId *string `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey *string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
@@ -3558,6 +3562,8 @@ type RealmWebAuthnPasswordlessPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential pulumi.StringPtrInput `pulumi:"discoverableCredential"`
 	// A set of extra origins for non-web applications.
 	ExtraOrigins pulumi.StringArrayInput `pulumi:"extraOrigins"`
 	// Enable passkeys for passwordless WebAuthn authentication
@@ -3567,6 +3573,8 @@ type RealmWebAuthnPasswordlessPolicyArgs struct {
 	// The WebAuthn relying party ID.
 	RelyingPartyId pulumi.StringPtrInput `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey pulumi.StringPtrInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
@@ -3676,6 +3684,11 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) CreateTimeout() pulumi.IntPtrOutp
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o RealmWebAuthnPasswordlessPolicyOutput) DiscoverableCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.DiscoverableCredential }).(pulumi.StringPtrOutput)
+}
+
 // A set of extra origins for non-web applications.
 func (o RealmWebAuthnPasswordlessPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
@@ -3697,6 +3710,8 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) RelyingPartyId() pulumi.StringPtr
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o RealmWebAuthnPasswordlessPolicyOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.RequireResidentKey }).(pulumi.StringPtrOutput)
 }
@@ -3785,6 +3800,16 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o RealmWebAuthnPasswordlessPolicyPtrOutput) DiscoverableCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DiscoverableCredential
+	}).(pulumi.StringPtrOutput)
+}
+
 // A set of extra origins for non-web applications.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) []string {
@@ -3826,6 +3851,8 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyId() pulumi.String
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -3866,6 +3893,8 @@ type RealmWebAuthnPolicy struct {
 	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout *int `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential *string `pulumi:"discoverableCredential"`
 	// A set of extra origins for non-web applications.
 	ExtraOrigins []string `pulumi:"extraOrigins"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
@@ -3873,6 +3902,8 @@ type RealmWebAuthnPolicy struct {
 	// The WebAuthn relying party ID.
 	RelyingPartyId *string `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey *string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
@@ -3902,6 +3933,8 @@ type RealmWebAuthnPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential pulumi.StringPtrInput `pulumi:"discoverableCredential"`
 	// A set of extra origins for non-web applications.
 	ExtraOrigins pulumi.StringArrayInput `pulumi:"extraOrigins"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
@@ -3909,6 +3942,8 @@ type RealmWebAuthnPolicyArgs struct {
 	// The WebAuthn relying party ID.
 	RelyingPartyId pulumi.StringPtrInput `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey pulumi.StringPtrInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
@@ -4018,6 +4053,11 @@ func (o RealmWebAuthnPolicyOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o RealmWebAuthnPolicyOutput) DiscoverableCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.DiscoverableCredential }).(pulumi.StringPtrOutput)
+}
+
 // A set of extra origins for non-web applications.
 func (o RealmWebAuthnPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
@@ -4034,6 +4074,8 @@ func (o RealmWebAuthnPolicyOutput) RelyingPartyId() pulumi.StringPtrOutput {
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o RealmWebAuthnPolicyOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.RequireResidentKey }).(pulumi.StringPtrOutput)
 }
@@ -4122,6 +4164,16 @@ func (o RealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o RealmWebAuthnPolicyPtrOutput) DiscoverableCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DiscoverableCredential
+	}).(pulumi.StringPtrOutput)
+}
+
 // A set of extra origins for non-web applications.
 func (o RealmWebAuthnPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) []string {
@@ -4153,6 +4205,8 @@ func (o RealmWebAuthnPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput {
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o RealmWebAuthnPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -5431,11 +5485,273 @@ func (o UsersPermissionsViewScopePtrOutput) Policies() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
+type WorkflowSchedule struct {
+	// Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+	After *string `pulumi:"after"`
+	// Maximum number of resources processed per scheduled batch.
+	BatchSize *int `pulumi:"batchSize"`
+}
+
+// WorkflowScheduleInput is an input type that accepts WorkflowScheduleArgs and WorkflowScheduleOutput values.
+// You can construct a concrete instance of `WorkflowScheduleInput` via:
+//
+//	WorkflowScheduleArgs{...}
+type WorkflowScheduleInput interface {
+	pulumi.Input
+
+	ToWorkflowScheduleOutput() WorkflowScheduleOutput
+	ToWorkflowScheduleOutputWithContext(context.Context) WorkflowScheduleOutput
+}
+
+type WorkflowScheduleArgs struct {
+	// Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+	After pulumi.StringPtrInput `pulumi:"after"`
+	// Maximum number of resources processed per scheduled batch.
+	BatchSize pulumi.IntPtrInput `pulumi:"batchSize"`
+}
+
+func (WorkflowScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkflowSchedule)(nil)).Elem()
+}
+
+func (i WorkflowScheduleArgs) ToWorkflowScheduleOutput() WorkflowScheduleOutput {
+	return i.ToWorkflowScheduleOutputWithContext(context.Background())
+}
+
+func (i WorkflowScheduleArgs) ToWorkflowScheduleOutputWithContext(ctx context.Context) WorkflowScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowScheduleOutput)
+}
+
+func (i WorkflowScheduleArgs) ToWorkflowSchedulePtrOutput() WorkflowSchedulePtrOutput {
+	return i.ToWorkflowSchedulePtrOutputWithContext(context.Background())
+}
+
+func (i WorkflowScheduleArgs) ToWorkflowSchedulePtrOutputWithContext(ctx context.Context) WorkflowSchedulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowScheduleOutput).ToWorkflowSchedulePtrOutputWithContext(ctx)
+}
+
+// WorkflowSchedulePtrInput is an input type that accepts WorkflowScheduleArgs, WorkflowSchedulePtr and WorkflowSchedulePtrOutput values.
+// You can construct a concrete instance of `WorkflowSchedulePtrInput` via:
+//
+//	        WorkflowScheduleArgs{...}
+//
+//	or:
+//
+//	        nil
+type WorkflowSchedulePtrInput interface {
+	pulumi.Input
+
+	ToWorkflowSchedulePtrOutput() WorkflowSchedulePtrOutput
+	ToWorkflowSchedulePtrOutputWithContext(context.Context) WorkflowSchedulePtrOutput
+}
+
+type workflowSchedulePtrType WorkflowScheduleArgs
+
+func WorkflowSchedulePtr(v *WorkflowScheduleArgs) WorkflowSchedulePtrInput {
+	return (*workflowSchedulePtrType)(v)
+}
+
+func (*workflowSchedulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WorkflowSchedule)(nil)).Elem()
+}
+
+func (i *workflowSchedulePtrType) ToWorkflowSchedulePtrOutput() WorkflowSchedulePtrOutput {
+	return i.ToWorkflowSchedulePtrOutputWithContext(context.Background())
+}
+
+func (i *workflowSchedulePtrType) ToWorkflowSchedulePtrOutputWithContext(ctx context.Context) WorkflowSchedulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowSchedulePtrOutput)
+}
+
+type WorkflowScheduleOutput struct{ *pulumi.OutputState }
+
+func (WorkflowScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkflowSchedule)(nil)).Elem()
+}
+
+func (o WorkflowScheduleOutput) ToWorkflowScheduleOutput() WorkflowScheduleOutput {
+	return o
+}
+
+func (o WorkflowScheduleOutput) ToWorkflowScheduleOutputWithContext(ctx context.Context) WorkflowScheduleOutput {
+	return o
+}
+
+func (o WorkflowScheduleOutput) ToWorkflowSchedulePtrOutput() WorkflowSchedulePtrOutput {
+	return o.ToWorkflowSchedulePtrOutputWithContext(context.Background())
+}
+
+func (o WorkflowScheduleOutput) ToWorkflowSchedulePtrOutputWithContext(ctx context.Context) WorkflowSchedulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WorkflowSchedule) *WorkflowSchedule {
+		return &v
+	}).(WorkflowSchedulePtrOutput)
+}
+
+// Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+func (o WorkflowScheduleOutput) After() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkflowSchedule) *string { return v.After }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of resources processed per scheduled batch.
+func (o WorkflowScheduleOutput) BatchSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WorkflowSchedule) *int { return v.BatchSize }).(pulumi.IntPtrOutput)
+}
+
+type WorkflowSchedulePtrOutput struct{ *pulumi.OutputState }
+
+func (WorkflowSchedulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WorkflowSchedule)(nil)).Elem()
+}
+
+func (o WorkflowSchedulePtrOutput) ToWorkflowSchedulePtrOutput() WorkflowSchedulePtrOutput {
+	return o
+}
+
+func (o WorkflowSchedulePtrOutput) ToWorkflowSchedulePtrOutputWithContext(ctx context.Context) WorkflowSchedulePtrOutput {
+	return o
+}
+
+func (o WorkflowSchedulePtrOutput) Elem() WorkflowScheduleOutput {
+	return o.ApplyT(func(v *WorkflowSchedule) WorkflowSchedule {
+		if v != nil {
+			return *v
+		}
+		var ret WorkflowSchedule
+		return ret
+	}).(WorkflowScheduleOutput)
+}
+
+// Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+func (o WorkflowSchedulePtrOutput) After() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WorkflowSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.After
+	}).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of resources processed per scheduled batch.
+func (o WorkflowSchedulePtrOutput) BatchSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WorkflowSchedule) *int {
+		if v == nil {
+			return nil
+		}
+		return v.BatchSize
+	}).(pulumi.IntPtrOutput)
+}
+
+type WorkflowStateType struct {
+	// A list of error messages recorded for the workflow.
+	// - Each `step` block additionally exports:
+	Errors []string `pulumi:"errors"`
+}
+
+// WorkflowStateTypeInput is an input type that accepts WorkflowStateTypeArgs and WorkflowStateTypeOutput values.
+// You can construct a concrete instance of `WorkflowStateTypeInput` via:
+//
+//	WorkflowStateTypeArgs{...}
+type WorkflowStateTypeInput interface {
+	pulumi.Input
+
+	ToWorkflowStateTypeOutput() WorkflowStateTypeOutput
+	ToWorkflowStateTypeOutputWithContext(context.Context) WorkflowStateTypeOutput
+}
+
+type WorkflowStateTypeArgs struct {
+	// A list of error messages recorded for the workflow.
+	// - Each `step` block additionally exports:
+	Errors pulumi.StringArrayInput `pulumi:"errors"`
+}
+
+func (WorkflowStateTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkflowStateType)(nil)).Elem()
+}
+
+func (i WorkflowStateTypeArgs) ToWorkflowStateTypeOutput() WorkflowStateTypeOutput {
+	return i.ToWorkflowStateTypeOutputWithContext(context.Background())
+}
+
+func (i WorkflowStateTypeArgs) ToWorkflowStateTypeOutputWithContext(ctx context.Context) WorkflowStateTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowStateTypeOutput)
+}
+
+// WorkflowStateTypeArrayInput is an input type that accepts WorkflowStateTypeArray and WorkflowStateTypeArrayOutput values.
+// You can construct a concrete instance of `WorkflowStateTypeArrayInput` via:
+//
+//	WorkflowStateTypeArray{ WorkflowStateTypeArgs{...} }
+type WorkflowStateTypeArrayInput interface {
+	pulumi.Input
+
+	ToWorkflowStateTypeArrayOutput() WorkflowStateTypeArrayOutput
+	ToWorkflowStateTypeArrayOutputWithContext(context.Context) WorkflowStateTypeArrayOutput
+}
+
+type WorkflowStateTypeArray []WorkflowStateTypeInput
+
+func (WorkflowStateTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WorkflowStateType)(nil)).Elem()
+}
+
+func (i WorkflowStateTypeArray) ToWorkflowStateTypeArrayOutput() WorkflowStateTypeArrayOutput {
+	return i.ToWorkflowStateTypeArrayOutputWithContext(context.Background())
+}
+
+func (i WorkflowStateTypeArray) ToWorkflowStateTypeArrayOutputWithContext(ctx context.Context) WorkflowStateTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WorkflowStateTypeArrayOutput)
+}
+
+type WorkflowStateTypeOutput struct{ *pulumi.OutputState }
+
+func (WorkflowStateTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WorkflowStateType)(nil)).Elem()
+}
+
+func (o WorkflowStateTypeOutput) ToWorkflowStateTypeOutput() WorkflowStateTypeOutput {
+	return o
+}
+
+func (o WorkflowStateTypeOutput) ToWorkflowStateTypeOutputWithContext(ctx context.Context) WorkflowStateTypeOutput {
+	return o
+}
+
+// A list of error messages recorded for the workflow.
+// - Each `step` block additionally exports:
+func (o WorkflowStateTypeOutput) Errors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v WorkflowStateType) []string { return v.Errors }).(pulumi.StringArrayOutput)
+}
+
+type WorkflowStateTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (WorkflowStateTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WorkflowStateType)(nil)).Elem()
+}
+
+func (o WorkflowStateTypeArrayOutput) ToWorkflowStateTypeArrayOutput() WorkflowStateTypeArrayOutput {
+	return o
+}
+
+func (o WorkflowStateTypeArrayOutput) ToWorkflowStateTypeArrayOutputWithContext(ctx context.Context) WorkflowStateTypeArrayOutput {
+	return o
+}
+
+func (o WorkflowStateTypeArrayOutput) Index(i pulumi.IntInput) WorkflowStateTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WorkflowStateType {
+		return vs[0].([]WorkflowStateType)[vs[1].(int)]
+	}).(WorkflowStateTypeOutput)
+}
+
 type WorkflowStep struct {
-	// Delay in milliseconds before executing this step.
+	// Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
 	After *string `pulumi:"after"`
 	// Key-value configuration for the step.
 	Config map[string]string `pulumi:"config"`
+	// Execution priority of the step, used to order steps that would otherwise run at the same time.
+	Priority *string `pulumi:"priority"`
+	// Epoch timestamp in milliseconds at which the step is scheduled to execute.
+	ScheduledAt *int `pulumi:"scheduledAt"`
+	// The execution status of the step.
+	Status *string `pulumi:"status"`
 	// The step type to execute (e.g. disable-user, delete-user, notify-user).
 	Uses string `pulumi:"uses"`
 }
@@ -5452,10 +5768,16 @@ type WorkflowStepInput interface {
 }
 
 type WorkflowStepArgs struct {
-	// Delay in milliseconds before executing this step.
+	// Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
 	After pulumi.StringPtrInput `pulumi:"after"`
 	// Key-value configuration for the step.
 	Config pulumi.StringMapInput `pulumi:"config"`
+	// Execution priority of the step, used to order steps that would otherwise run at the same time.
+	Priority pulumi.StringPtrInput `pulumi:"priority"`
+	// Epoch timestamp in milliseconds at which the step is scheduled to execute.
+	ScheduledAt pulumi.IntPtrInput `pulumi:"scheduledAt"`
+	// The execution status of the step.
+	Status pulumi.StringPtrInput `pulumi:"status"`
 	// The step type to execute (e.g. disable-user, delete-user, notify-user).
 	Uses pulumi.StringInput `pulumi:"uses"`
 }
@@ -5511,7 +5833,7 @@ func (o WorkflowStepOutput) ToWorkflowStepOutputWithContext(ctx context.Context)
 	return o
 }
 
-// Delay in milliseconds before executing this step.
+// Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
 func (o WorkflowStepOutput) After() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WorkflowStep) *string { return v.After }).(pulumi.StringPtrOutput)
 }
@@ -5519,6 +5841,21 @@ func (o WorkflowStepOutput) After() pulumi.StringPtrOutput {
 // Key-value configuration for the step.
 func (o WorkflowStepOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v WorkflowStep) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// Execution priority of the step, used to order steps that would otherwise run at the same time.
+func (o WorkflowStepOutput) Priority() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkflowStep) *string { return v.Priority }).(pulumi.StringPtrOutput)
+}
+
+// Epoch timestamp in milliseconds at which the step is scheduled to execute.
+func (o WorkflowStepOutput) ScheduledAt() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WorkflowStep) *int { return v.ScheduledAt }).(pulumi.IntPtrOutput)
+}
+
+// The execution status of the step.
+func (o WorkflowStepOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WorkflowStep) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
 // The step type to execute (e.g. disable-user, delete-user, notify-user).
@@ -7001,14 +7338,18 @@ type GetRealmWebAuthnPasswordlessPolicy struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference string `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        string   `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister bool     `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  int      `pulumi:"createTimeout"`
-	ExtraOrigins                   []string `pulumi:"extraOrigins"`
-	PasswordlessPasskeysEnabled    bool     `pulumi:"passwordlessPasskeysEnabled"`
-	RelyingPartyEntityName         string   `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 string   `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        string `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister bool   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  int    `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential      string   `pulumi:"discoverableCredential"`
+	ExtraOrigins                []string `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled bool     `pulumi:"passwordlessPasskeysEnabled"`
+	RelyingPartyEntityName      string   `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId              string   `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
@@ -7032,14 +7373,18 @@ type GetRealmWebAuthnPasswordlessPolicyArgs struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference pulumi.StringInput `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        pulumi.StringInput      `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  pulumi.IntInput         `pulumi:"createTimeout"`
-	ExtraOrigins                   pulumi.StringArrayInput `pulumi:"extraOrigins"`
-	PasswordlessPasskeysEnabled    pulumi.BoolInput        `pulumi:"passwordlessPasskeysEnabled"`
-	RelyingPartyEntityName         pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 pulumi.StringInput      `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        pulumi.StringInput `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister pulumi.BoolInput   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  pulumi.IntInput    `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential      pulumi.StringInput      `pulumi:"discoverableCredential"`
+	ExtraOrigins                pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled pulumi.BoolInput        `pulumi:"passwordlessPasskeysEnabled"`
+	RelyingPartyEntityName      pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId              pulumi.StringInput      `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
@@ -7146,6 +7491,11 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) CreateTimeout() pulumi.IntOutp
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) int { return v.CreateTimeout }).(pulumi.IntOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) DiscoverableCredential() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.DiscoverableCredential }).(pulumi.StringOutput)
+}
+
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
 }
@@ -7163,6 +7513,8 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) RelyingPartyId() pulumi.String
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) RequireResidentKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.RequireResidentKey }).(pulumi.StringOutput)
 }
@@ -7248,6 +7600,16 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) DiscoverableCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DiscoverableCredential
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) []string {
 		if v == nil {
@@ -7285,6 +7647,8 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyId() pulumi.Str
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -7319,14 +7683,18 @@ type GetRealmWebAuthnPolicy struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference string `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        string   `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister bool     `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  int      `pulumi:"createTimeout"`
-	ExtraOrigins                   []string `pulumi:"extraOrigins"`
-	PasswordlessPasskeysEnabled    bool     `pulumi:"passwordlessPasskeysEnabled"`
-	RelyingPartyEntityName         string   `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 string   `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        string `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister bool   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  int    `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential      string   `pulumi:"discoverableCredential"`
+	ExtraOrigins                []string `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled bool     `pulumi:"passwordlessPasskeysEnabled"`
+	RelyingPartyEntityName      string   `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId              string   `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
@@ -7350,14 +7718,18 @@ type GetRealmWebAuthnPolicyArgs struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference pulumi.StringInput `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        pulumi.StringInput      `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  pulumi.IntInput         `pulumi:"createTimeout"`
-	ExtraOrigins                   pulumi.StringArrayInput `pulumi:"extraOrigins"`
-	PasswordlessPasskeysEnabled    pulumi.BoolInput        `pulumi:"passwordlessPasskeysEnabled"`
-	RelyingPartyEntityName         pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 pulumi.StringInput      `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        pulumi.StringInput `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister pulumi.BoolInput   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  pulumi.IntInput    `pulumi:"createTimeout"`
+	// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+	DiscoverableCredential      pulumi.StringInput      `pulumi:"discoverableCredential"`
+	ExtraOrigins                pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	PasswordlessPasskeysEnabled pulumi.BoolInput        `pulumi:"passwordlessPasskeysEnabled"`
+	RelyingPartyEntityName      pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId              pulumi.StringInput      `pulumi:"relyingPartyId"`
 	// Either Yes or No
+	//
+	// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
@@ -7464,6 +7836,11 @@ func (o GetRealmWebAuthnPolicyOutput) CreateTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) int { return v.CreateTimeout }).(pulumi.IntOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o GetRealmWebAuthnPolicyOutput) DiscoverableCredential() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.DiscoverableCredential }).(pulumi.StringOutput)
+}
+
 func (o GetRealmWebAuthnPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
 }
@@ -7481,6 +7858,8 @@ func (o GetRealmWebAuthnPolicyOutput) RelyingPartyId() pulumi.StringOutput {
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o GetRealmWebAuthnPolicyOutput) RequireResidentKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.RequireResidentKey }).(pulumi.StringOutput)
 }
@@ -7566,6 +7945,16 @@ func (o GetRealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+func (o GetRealmWebAuthnPolicyPtrOutput) DiscoverableCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DiscoverableCredential
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o GetRealmWebAuthnPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) []string {
 		if v == nil {
@@ -7603,6 +7992,8 @@ func (o GetRealmWebAuthnPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput
 }
 
 // Either Yes or No
+//
+// Deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
 func (o GetRealmWebAuthnPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -7632,10 +8023,207 @@ func (o GetRealmWebAuthnPolicyPtrOutput) UserVerificationRequirement() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetWorkflowSchedule struct {
+	After     string `pulumi:"after"`
+	BatchSize int    `pulumi:"batchSize"`
+}
+
+// GetWorkflowScheduleInput is an input type that accepts GetWorkflowScheduleArgs and GetWorkflowScheduleOutput values.
+// You can construct a concrete instance of `GetWorkflowScheduleInput` via:
+//
+//	GetWorkflowScheduleArgs{...}
+type GetWorkflowScheduleInput interface {
+	pulumi.Input
+
+	ToGetWorkflowScheduleOutput() GetWorkflowScheduleOutput
+	ToGetWorkflowScheduleOutputWithContext(context.Context) GetWorkflowScheduleOutput
+}
+
+type GetWorkflowScheduleArgs struct {
+	After     pulumi.StringInput `pulumi:"after"`
+	BatchSize pulumi.IntInput    `pulumi:"batchSize"`
+}
+
+func (GetWorkflowScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkflowSchedule)(nil)).Elem()
+}
+
+func (i GetWorkflowScheduleArgs) ToGetWorkflowScheduleOutput() GetWorkflowScheduleOutput {
+	return i.ToGetWorkflowScheduleOutputWithContext(context.Background())
+}
+
+func (i GetWorkflowScheduleArgs) ToGetWorkflowScheduleOutputWithContext(ctx context.Context) GetWorkflowScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkflowScheduleOutput)
+}
+
+// GetWorkflowScheduleArrayInput is an input type that accepts GetWorkflowScheduleArray and GetWorkflowScheduleArrayOutput values.
+// You can construct a concrete instance of `GetWorkflowScheduleArrayInput` via:
+//
+//	GetWorkflowScheduleArray{ GetWorkflowScheduleArgs{...} }
+type GetWorkflowScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetWorkflowScheduleArrayOutput() GetWorkflowScheduleArrayOutput
+	ToGetWorkflowScheduleArrayOutputWithContext(context.Context) GetWorkflowScheduleArrayOutput
+}
+
+type GetWorkflowScheduleArray []GetWorkflowScheduleInput
+
+func (GetWorkflowScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkflowSchedule)(nil)).Elem()
+}
+
+func (i GetWorkflowScheduleArray) ToGetWorkflowScheduleArrayOutput() GetWorkflowScheduleArrayOutput {
+	return i.ToGetWorkflowScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetWorkflowScheduleArray) ToGetWorkflowScheduleArrayOutputWithContext(ctx context.Context) GetWorkflowScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkflowScheduleArrayOutput)
+}
+
+type GetWorkflowScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetWorkflowScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkflowSchedule)(nil)).Elem()
+}
+
+func (o GetWorkflowScheduleOutput) ToGetWorkflowScheduleOutput() GetWorkflowScheduleOutput {
+	return o
+}
+
+func (o GetWorkflowScheduleOutput) ToGetWorkflowScheduleOutputWithContext(ctx context.Context) GetWorkflowScheduleOutput {
+	return o
+}
+
+func (o GetWorkflowScheduleOutput) After() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkflowSchedule) string { return v.After }).(pulumi.StringOutput)
+}
+
+func (o GetWorkflowScheduleOutput) BatchSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWorkflowSchedule) int { return v.BatchSize }).(pulumi.IntOutput)
+}
+
+type GetWorkflowScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWorkflowScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkflowSchedule)(nil)).Elem()
+}
+
+func (o GetWorkflowScheduleArrayOutput) ToGetWorkflowScheduleArrayOutput() GetWorkflowScheduleArrayOutput {
+	return o
+}
+
+func (o GetWorkflowScheduleArrayOutput) ToGetWorkflowScheduleArrayOutputWithContext(ctx context.Context) GetWorkflowScheduleArrayOutput {
+	return o
+}
+
+func (o GetWorkflowScheduleArrayOutput) Index(i pulumi.IntInput) GetWorkflowScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWorkflowSchedule {
+		return vs[0].([]GetWorkflowSchedule)[vs[1].(int)]
+	}).(GetWorkflowScheduleOutput)
+}
+
+type GetWorkflowState struct {
+	Errors []string `pulumi:"errors"`
+}
+
+// GetWorkflowStateInput is an input type that accepts GetWorkflowStateArgs and GetWorkflowStateOutput values.
+// You can construct a concrete instance of `GetWorkflowStateInput` via:
+//
+//	GetWorkflowStateArgs{...}
+type GetWorkflowStateInput interface {
+	pulumi.Input
+
+	ToGetWorkflowStateOutput() GetWorkflowStateOutput
+	ToGetWorkflowStateOutputWithContext(context.Context) GetWorkflowStateOutput
+}
+
+type GetWorkflowStateArgs struct {
+	Errors pulumi.StringArrayInput `pulumi:"errors"`
+}
+
+func (GetWorkflowStateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkflowState)(nil)).Elem()
+}
+
+func (i GetWorkflowStateArgs) ToGetWorkflowStateOutput() GetWorkflowStateOutput {
+	return i.ToGetWorkflowStateOutputWithContext(context.Background())
+}
+
+func (i GetWorkflowStateArgs) ToGetWorkflowStateOutputWithContext(ctx context.Context) GetWorkflowStateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkflowStateOutput)
+}
+
+// GetWorkflowStateArrayInput is an input type that accepts GetWorkflowStateArray and GetWorkflowStateArrayOutput values.
+// You can construct a concrete instance of `GetWorkflowStateArrayInput` via:
+//
+//	GetWorkflowStateArray{ GetWorkflowStateArgs{...} }
+type GetWorkflowStateArrayInput interface {
+	pulumi.Input
+
+	ToGetWorkflowStateArrayOutput() GetWorkflowStateArrayOutput
+	ToGetWorkflowStateArrayOutputWithContext(context.Context) GetWorkflowStateArrayOutput
+}
+
+type GetWorkflowStateArray []GetWorkflowStateInput
+
+func (GetWorkflowStateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkflowState)(nil)).Elem()
+}
+
+func (i GetWorkflowStateArray) ToGetWorkflowStateArrayOutput() GetWorkflowStateArrayOutput {
+	return i.ToGetWorkflowStateArrayOutputWithContext(context.Background())
+}
+
+func (i GetWorkflowStateArray) ToGetWorkflowStateArrayOutputWithContext(ctx context.Context) GetWorkflowStateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWorkflowStateArrayOutput)
+}
+
+type GetWorkflowStateOutput struct{ *pulumi.OutputState }
+
+func (GetWorkflowStateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWorkflowState)(nil)).Elem()
+}
+
+func (o GetWorkflowStateOutput) ToGetWorkflowStateOutput() GetWorkflowStateOutput {
+	return o
+}
+
+func (o GetWorkflowStateOutput) ToGetWorkflowStateOutputWithContext(ctx context.Context) GetWorkflowStateOutput {
+	return o
+}
+
+func (o GetWorkflowStateOutput) Errors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetWorkflowState) []string { return v.Errors }).(pulumi.StringArrayOutput)
+}
+
+type GetWorkflowStateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWorkflowStateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWorkflowState)(nil)).Elem()
+}
+
+func (o GetWorkflowStateArrayOutput) ToGetWorkflowStateArrayOutput() GetWorkflowStateArrayOutput {
+	return o
+}
+
+func (o GetWorkflowStateArrayOutput) ToGetWorkflowStateArrayOutputWithContext(ctx context.Context) GetWorkflowStateArrayOutput {
+	return o
+}
+
+func (o GetWorkflowStateArrayOutput) Index(i pulumi.IntInput) GetWorkflowStateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWorkflowState {
+		return vs[0].([]GetWorkflowState)[vs[1].(int)]
+	}).(GetWorkflowStateOutput)
+}
+
 type GetWorkflowStep struct {
-	After  string            `pulumi:"after"`
-	Config map[string]string `pulumi:"config"`
-	Uses   string            `pulumi:"uses"`
+	After       string            `pulumi:"after"`
+	Config      map[string]string `pulumi:"config"`
+	Priority    string            `pulumi:"priority"`
+	ScheduledAt int               `pulumi:"scheduledAt"`
+	Status      string            `pulumi:"status"`
+	Uses        string            `pulumi:"uses"`
 }
 
 // GetWorkflowStepInput is an input type that accepts GetWorkflowStepArgs and GetWorkflowStepOutput values.
@@ -7650,9 +8238,12 @@ type GetWorkflowStepInput interface {
 }
 
 type GetWorkflowStepArgs struct {
-	After  pulumi.StringInput    `pulumi:"after"`
-	Config pulumi.StringMapInput `pulumi:"config"`
-	Uses   pulumi.StringInput    `pulumi:"uses"`
+	After       pulumi.StringInput    `pulumi:"after"`
+	Config      pulumi.StringMapInput `pulumi:"config"`
+	Priority    pulumi.StringInput    `pulumi:"priority"`
+	ScheduledAt pulumi.IntInput       `pulumi:"scheduledAt"`
+	Status      pulumi.StringInput    `pulumi:"status"`
+	Uses        pulumi.StringInput    `pulumi:"uses"`
 }
 
 func (GetWorkflowStepArgs) ElementType() reflect.Type {
@@ -7712,6 +8303,18 @@ func (o GetWorkflowStepOutput) After() pulumi.StringOutput {
 
 func (o GetWorkflowStepOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetWorkflowStep) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+func (o GetWorkflowStepOutput) Priority() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkflowStep) string { return v.Priority }).(pulumi.StringOutput)
+}
+
+func (o GetWorkflowStepOutput) ScheduledAt() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWorkflowStep) int { return v.ScheduledAt }).(pulumi.IntOutput)
+}
+
+func (o GetWorkflowStepOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWorkflowStep) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o GetWorkflowStepOutput) Uses() pulumi.StringOutput {
@@ -7799,6 +8402,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsUserImpersonatedScopePtrInput)(nil)).Elem(), UsersPermissionsUserImpersonatedScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopeInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopePtrInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowScheduleInput)(nil)).Elem(), WorkflowScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowSchedulePtrInput)(nil)).Elem(), WorkflowScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowStateTypeInput)(nil)).Elem(), WorkflowStateTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowStateTypeArrayInput)(nil)).Elem(), WorkflowStateTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowStepInput)(nil)).Elem(), WorkflowStepArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkflowStepArrayInput)(nil)).Elem(), WorkflowStepArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArgs{})
@@ -7827,6 +8434,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPasswordlessPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPasswordlessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowScheduleInput)(nil)).Elem(), GetWorkflowScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowScheduleArrayInput)(nil)).Elem(), GetWorkflowScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowStateInput)(nil)).Elem(), GetWorkflowStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowStateArrayInput)(nil)).Elem(), GetWorkflowStateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowStepInput)(nil)).Elem(), GetWorkflowStepArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWorkflowStepArrayInput)(nil)).Elem(), GetWorkflowStepArray{})
 	pulumi.RegisterOutputType(GroupPermissionsManageMembersScopeOutput{})
@@ -7889,6 +8500,10 @@ func init() {
 	pulumi.RegisterOutputType(UsersPermissionsUserImpersonatedScopePtrOutput{})
 	pulumi.RegisterOutputType(UsersPermissionsViewScopeOutput{})
 	pulumi.RegisterOutputType(UsersPermissionsViewScopePtrOutput{})
+	pulumi.RegisterOutputType(WorkflowScheduleOutput{})
+	pulumi.RegisterOutputType(WorkflowSchedulePtrOutput{})
+	pulumi.RegisterOutputType(WorkflowStateTypeOutput{})
+	pulumi.RegisterOutputType(WorkflowStateTypeArrayOutput{})
 	pulumi.RegisterOutputType(WorkflowStepOutput{})
 	pulumi.RegisterOutputType(WorkflowStepArrayOutput{})
 	pulumi.RegisterOutputType(GetClientDescriptionConverterProtocolMapperOutput{})
@@ -7917,6 +8532,10 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmWebAuthnPasswordlessPolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyPtrOutput{})
+	pulumi.RegisterOutputType(GetWorkflowScheduleOutput{})
+	pulumi.RegisterOutputType(GetWorkflowScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetWorkflowStateOutput{})
+	pulumi.RegisterOutputType(GetWorkflowStateArrayOutput{})
 	pulumi.RegisterOutputType(GetWorkflowStepOutput{})
 	pulumi.RegisterOutputType(GetWorkflowStepArrayOutput{})
 }

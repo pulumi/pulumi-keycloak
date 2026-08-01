@@ -367,6 +367,21 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
+     * 
+     */
+    @Import(name="relativeCreateDn")
+    private @Nullable Output<String> relativeCreateDn;
+
+    /**
+     * @return Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
+     * 
+     */
+    public Optional<Output<String>> relativeCreateDn() {
+        return Optional.ofNullable(this.relativeCreateDn);
+    }
+
+    /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
      * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
@@ -582,6 +597,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         this.rdnLdapAttribute = $.rdnLdapAttribute;
         this.readTimeout = $.readTimeout;
         this.realmId = $.realmId;
+        this.relativeCreateDn = $.relativeCreateDn;
         this.searchScope = $.searchScope;
         this.startTls = $.startTls;
         this.syncRegistrations = $.syncRegistrations;
@@ -1095,6 +1111,27 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param relativeCreateDn Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder relativeCreateDn(@Nullable Output<String> relativeCreateDn) {
+            $.relativeCreateDn = relativeCreateDn;
+            return this;
+        }
+
+        /**
+         * @param relativeCreateDn Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder relativeCreateDn(String relativeCreateDn) {
+            return relativeCreateDn(Output.of(relativeCreateDn));
         }
 
         /**

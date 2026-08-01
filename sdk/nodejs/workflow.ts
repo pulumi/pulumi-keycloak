@@ -91,6 +91,83 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Onboard gold members only
+ *
+ * This mirrors the [common use cases guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_understanding_common_use_cases).
+ * The `conditions` expression restricts the workflow to users that have the `membership=gold` attribute, then
+ * sends a welcome message and grants the `gold-member` role.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const onboardGoldMembers = new keycloak.Workflow("onboard_gold_members", {
+ *     realm: realm.id,
+ *     name: "onboarding-gold-members",
+ *     on: "user_created",
+ *     enabled: true,
+ *     conditions: "has-user-attribute(membership=gold)",
+ *     steps: [
+ *         {
+ *             uses: "notify-user",
+ *             config: {
+ *                 message: "Welcome to the Gold Membership program!",
+ *             },
+ *         },
+ *         {
+ *             uses: "grant-role",
+ *             config: {
+ *                 role: "gold-member",
+ *             },
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Track inactive users on a schedule
+ *
+ * This example mirrors the [scheduling workflows guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_scheduling_workflows).
+ * Instead of reacting to a single event, the workflow engine periodically scans realm resources (here, every
+ * `30s`, up to `100` users per run) and progresses each matching user through the steps. `restartInProgress`
+ * restarts an in-progress execution when the user authenticates again, so the inactivity countdown resets.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const trackInactiveUsers = new keycloak.Workflow("track_inactive_users", {
+ *     realm: realm.id,
+ *     name: "track-inactive-users",
+ *     on: "user_authenticated",
+ *     enabled: true,
+ *     restartInProgress: "true",
+ *     schedule: {
+ *         after: "30s",
+ *         batchSize: 100,
+ *     },
+ *     steps: [
+ *         {
+ *             uses: "notify-user",
+ *             after: "180d",
+ *             config: {
+ *                 message: "It has been a while since your last login. We miss you!",
+ *             },
+ *         },
+ *         {
+ *             uses: "notify-user",
+ *             after: "60d",
+ *             config: {
+ *                 message: "Your account will be disabled in ${workflow.daysUntilNextStep} days!",
+ *             },
+ *         },
+ *         {
+ *             uses: "disable-user",
+ *             after: "7d",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Workflows can be imported using the format `{{realm}}/{{workflow_id}}`, where `realm` is the realm name and `workflowId` is the unique ID Keycloak assigns upon creation.
@@ -128,7 +205,7 @@ export class Workflow extends pulumi.CustomResource {
     }
 
     /**
-     * Event that cancels an in-progress workflow execution.
+     * Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     declare public readonly cancelInProgress: pulumi.Output<string | undefined>;
     /**
@@ -152,9 +229,17 @@ export class Workflow extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
-     * Event that restarts an in-progress workflow execution.
+     * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     declare public readonly restartInProgress: pulumi.Output<string | undefined>;
+    /**
+     * A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     */
+    declare public readonly schedule: pulumi.Output<outputs.WorkflowSchedule | undefined>;
+    /**
+     * The runtime state of the workflow as reported by Keycloak. Contains:
+     */
+    declare public /*out*/ readonly states: pulumi.Output<outputs.WorkflowState[]>;
     /**
      * One or more step blocks defining the actions to execute, in order.
      */
@@ -180,6 +265,8 @@ export class Workflow extends pulumi.CustomResource {
             resourceInputs["on"] = state?.on;
             resourceInputs["realm"] = state?.realm;
             resourceInputs["restartInProgress"] = state?.restartInProgress;
+            resourceInputs["schedule"] = state?.schedule;
+            resourceInputs["states"] = state?.states;
             resourceInputs["steps"] = state?.steps;
         } else {
             const args = argsOrState as WorkflowArgs | undefined;
@@ -199,7 +286,9 @@ export class Workflow extends pulumi.CustomResource {
             resourceInputs["on"] = args?.on;
             resourceInputs["realm"] = args?.realm;
             resourceInputs["restartInProgress"] = args?.restartInProgress;
+            resourceInputs["schedule"] = args?.schedule;
             resourceInputs["steps"] = args?.steps;
+            resourceInputs["states"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Workflow.__pulumiType, name, resourceInputs, opts);
@@ -211,7 +300,7 @@ export class Workflow extends pulumi.CustomResource {
  */
 export interface WorkflowState {
     /**
-     * Event that cancels an in-progress workflow execution.
+     * Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     cancelInProgress?: pulumi.Input<string | undefined>;
     /**
@@ -235,9 +324,17 @@ export interface WorkflowState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
-     * Event that restarts an in-progress workflow execution.
+     * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     restartInProgress?: pulumi.Input<string | undefined>;
+    /**
+     * A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     */
+    schedule?: pulumi.Input<inputs.WorkflowSchedule | undefined>;
+    /**
+     * The runtime state of the workflow as reported by Keycloak. Contains:
+     */
+    states?: pulumi.Input<pulumi.Input<inputs.WorkflowState>[] | undefined>;
     /**
      * One or more step blocks defining the actions to execute, in order.
      */
@@ -249,7 +346,7 @@ export interface WorkflowState {
  */
 export interface WorkflowArgs {
     /**
-     * Event that cancels an in-progress workflow execution.
+     * Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     cancelInProgress?: pulumi.Input<string | undefined>;
     /**
@@ -273,9 +370,13 @@ export interface WorkflowArgs {
      */
     realm: pulumi.Input<string>;
     /**
-     * Event that restarts an in-progress workflow execution.
+     * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     restartInProgress?: pulumi.Input<string | undefined>;
+    /**
+     * A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     */
+    schedule?: pulumi.Input<inputs.WorkflowSchedule | undefined>;
     /**
      * One or more step blocks defining the actions to execute, in order.
      */

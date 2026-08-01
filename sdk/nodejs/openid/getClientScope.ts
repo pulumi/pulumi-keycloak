@@ -62,6 +62,7 @@ export interface GetClientScopeResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly includeInOpenidProviderMetadata: boolean;
     readonly includeInTokenScope: boolean;
     readonly name: string;
     readonly realmId: string;

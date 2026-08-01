@@ -6,6 +6,7 @@ package com.pulumi.keycloak.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -18,14 +19,14 @@ public final class WorkflowStepArgs extends com.pulumi.resources.ResourceArgs {
     public static final WorkflowStepArgs Empty = new WorkflowStepArgs();
 
     /**
-     * Delay in milliseconds before executing this step.
+     * Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
      * 
      */
     @Import(name="after")
     private @Nullable Output<String> after;
 
     /**
-     * @return Delay in milliseconds before executing this step.
+     * @return Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
      * 
      */
     public Optional<Output<String>> after() {
@@ -48,6 +49,51 @@ public final class WorkflowStepArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Execution priority of the step, used to order steps that would otherwise run at the same time.
+     * 
+     */
+    @Import(name="priority")
+    private @Nullable Output<String> priority;
+
+    /**
+     * @return Execution priority of the step, used to order steps that would otherwise run at the same time.
+     * 
+     */
+    public Optional<Output<String>> priority() {
+        return Optional.ofNullable(this.priority);
+    }
+
+    /**
+     * Epoch timestamp in milliseconds at which the step is scheduled to execute.
+     * 
+     */
+    @Import(name="scheduledAt")
+    private @Nullable Output<Integer> scheduledAt;
+
+    /**
+     * @return Epoch timestamp in milliseconds at which the step is scheduled to execute.
+     * 
+     */
+    public Optional<Output<Integer>> scheduledAt() {
+        return Optional.ofNullable(this.scheduledAt);
+    }
+
+    /**
+     * The execution status of the step.
+     * 
+     */
+    @Import(name="status")
+    private @Nullable Output<String> status;
+
+    /**
+     * @return The execution status of the step.
+     * 
+     */
+    public Optional<Output<String>> status() {
+        return Optional.ofNullable(this.status);
+    }
+
+    /**
      * The step type to execute (e.g. disable-user, delete-user, notify-user).
      * 
      */
@@ -67,6 +113,9 @@ public final class WorkflowStepArgs extends com.pulumi.resources.ResourceArgs {
     private WorkflowStepArgs(WorkflowStepArgs $) {
         this.after = $.after;
         this.config = $.config;
+        this.priority = $.priority;
+        this.scheduledAt = $.scheduledAt;
+        this.status = $.status;
         this.uses = $.uses;
     }
 
@@ -89,7 +138,7 @@ public final class WorkflowStepArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param after Delay in milliseconds before executing this step.
+         * @param after Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
          * 
          * @return builder
          * 
@@ -100,7 +149,7 @@ public final class WorkflowStepArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param after Delay in milliseconds before executing this step.
+         * @param after Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
          * 
          * @return builder
          * 
@@ -128,6 +177,69 @@ public final class WorkflowStepArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder config(Map<String,String> config) {
             return config(Output.of(config));
+        }
+
+        /**
+         * @param priority Execution priority of the step, used to order steps that would otherwise run at the same time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder priority(@Nullable Output<String> priority) {
+            $.priority = priority;
+            return this;
+        }
+
+        /**
+         * @param priority Execution priority of the step, used to order steps that would otherwise run at the same time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder priority(String priority) {
+            return priority(Output.of(priority));
+        }
+
+        /**
+         * @param scheduledAt Epoch timestamp in milliseconds at which the step is scheduled to execute.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scheduledAt(@Nullable Output<Integer> scheduledAt) {
+            $.scheduledAt = scheduledAt;
+            return this;
+        }
+
+        /**
+         * @param scheduledAt Epoch timestamp in milliseconds at which the step is scheduled to execute.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scheduledAt(Integer scheduledAt) {
+            return scheduledAt(Output.of(scheduledAt));
+        }
+
+        /**
+         * @param status The execution status of the step.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(@Nullable Output<String> status) {
+            $.status = status;
+            return this;
+        }
+
+        /**
+         * @param status The execution status of the step.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(String status) {
+            return status(Output.of(status));
         }
 
         /**

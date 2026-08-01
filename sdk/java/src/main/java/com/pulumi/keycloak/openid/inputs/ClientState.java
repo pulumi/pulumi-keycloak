@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.keycloak.openid.inputs.ClientAuthenticationFlowBindingOverridesArgs;
 import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -316,13 +315,13 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="clientSecretWoVersion")
-    private @Nullable Output<Integer> clientSecretWoVersion;
+    private @Nullable Output<String> clientSecretWoVersion;
 
     /**
      * @return Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
-    public Optional<Output<Integer>> clientSecretWoVersion() {
+    public Optional<Output<String>> clientSecretWoVersion() {
         return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
@@ -1352,7 +1351,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+        public Builder clientSecretWoVersion(@Nullable Output<String> clientSecretWoVersion) {
             $.clientSecretWoVersion = clientSecretWoVersion;
             return this;
         }
@@ -1363,7 +1362,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+        public Builder clientSecretWoVersion(String clientSecretWoVersion) {
             return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 

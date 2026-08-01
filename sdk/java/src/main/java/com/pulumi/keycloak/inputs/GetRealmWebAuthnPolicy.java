@@ -67,6 +67,21 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
         return this.createTimeout;
     }
 
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     * 
+     */
+    @Import(name="discoverableCredential", required=true)
+    private String discoverableCredential;
+
+    /**
+     * @return Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     * 
+     */
+    public String discoverableCredential() {
+        return this.discoverableCredential;
+    }
+
     @Import(name="extraOrigins", required=true)
     private List<String> extraOrigins;
 
@@ -98,14 +113,22 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
     /**
      * Either Yes or No
      * 
+     * @deprecated
+     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * 
      */
+    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
     @Import(name="requireResidentKey", required=true)
     private String requireResidentKey;
 
     /**
      * @return Either Yes or No
      * 
+     * @deprecated
+     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * 
      */
+    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
     public String requireResidentKey() {
         return this.requireResidentKey;
     }
@@ -148,6 +171,7 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
         this.authenticatorAttachment = $.authenticatorAttachment;
         this.avoidSameAuthenticatorRegister = $.avoidSameAuthenticatorRegister;
         this.createTimeout = $.createTimeout;
+        this.discoverableCredential = $.discoverableCredential;
         this.extraOrigins = $.extraOrigins;
         this.passwordlessPasskeysEnabled = $.passwordlessPasskeysEnabled;
         this.relyingPartyEntityName = $.relyingPartyEntityName;
@@ -216,6 +240,17 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
             return this;
         }
 
+        /**
+         * @param discoverableCredential Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder discoverableCredential(String discoverableCredential) {
+            $.discoverableCredential = discoverableCredential;
+            return this;
+        }
+
         public Builder extraOrigins(List<String> extraOrigins) {
             $.extraOrigins = extraOrigins;
             return this;
@@ -245,7 +280,11 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+         * 
          */
+        @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
         public Builder requireResidentKey(String requireResidentKey) {
             $.requireResidentKey = requireResidentKey;
             return this;
@@ -298,6 +337,9 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
             }
             if ($.createTimeout == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "createTimeout");
+            }
+            if ($.discoverableCredential == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "discoverableCredential");
             }
             if ($.extraOrigins == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "extraOrigins");

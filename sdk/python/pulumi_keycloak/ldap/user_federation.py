@@ -48,6 +48,7 @@ class UserFederationArgs:
                  pagination: pulumi.Input[Optional[_builtins.bool]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  read_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+                 relative_create_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  search_scope: pulumi.Input[Optional[_builtins.str]] = None,
                  start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_registrations: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -86,6 +87,7 @@ class UserFederationArgs:
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        :param pulumi.Input[_builtins.str] relative_create_dn: Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
         :param pulumi.Input[_builtins.str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
@@ -147,6 +149,8 @@ class UserFederationArgs:
             pulumi.set(__self__, "priority", priority)
         if read_timeout is not None:
             pulumi.set(__self__, "read_timeout", read_timeout)
+        if relative_create_dn is not None:
+            pulumi.set(__self__, "relative_create_dn", relative_create_dn)
         if search_scope is not None:
             pulumi.set(__self__, "search_scope", search_scope)
         if start_tls is not None:
@@ -489,6 +493,18 @@ class UserFederationArgs:
         pulumi.set(self, "read_timeout", value)
 
     @_builtins.property
+    @pulumi.getter(name="relativeCreateDn")
+    def relative_create_dn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+        """
+        return pulumi.get(self, "relative_create_dn")
+
+    @relative_create_dn.setter
+    def relative_create_dn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "relative_create_dn", value)
+
+    @_builtins.property
     @pulumi.getter(name="searchScope")
     def search_scope(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -616,6 +632,7 @@ class _UserFederationState:
                  rdn_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  read_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 relative_create_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  search_scope: pulumi.Input[Optional[_builtins.str]] = None,
                  start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_registrations: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -654,6 +671,7 @@ class _UserFederationState:
         :param pulumi.Input[_builtins.str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
         :param pulumi.Input[_builtins.str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] relative_create_dn: Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
         :param pulumi.Input[_builtins.str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
@@ -718,6 +736,8 @@ class _UserFederationState:
             pulumi.set(__self__, "read_timeout", read_timeout)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if relative_create_dn is not None:
+            pulumi.set(__self__, "relative_create_dn", relative_create_dn)
         if search_scope is not None:
             pulumi.set(__self__, "search_scope", search_scope)
         if start_tls is not None:
@@ -1020,6 +1040,18 @@ class _UserFederationState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="relativeCreateDn")
+    def relative_create_dn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+        """
+        return pulumi.get(self, "relative_create_dn")
+
+    @relative_create_dn.setter
+    def relative_create_dn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "relative_create_dn", value)
+
+    @_builtins.property
     @pulumi.getter(name="searchScope")
     def search_scope(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1198,6 +1230,7 @@ class UserFederation(pulumi.CustomResource):
                  rdn_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  read_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 relative_create_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  search_scope: pulumi.Input[Optional[_builtins.str]] = None,
                  start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_registrations: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1287,6 +1320,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
         :param pulumi.Input[_builtins.str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] relative_create_dn: Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
         :param pulumi.Input[_builtins.str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
@@ -1400,6 +1434,7 @@ class UserFederation(pulumi.CustomResource):
                  rdn_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  read_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 relative_create_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  search_scope: pulumi.Input[Optional[_builtins.str]] = None,
                  start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_registrations: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1450,6 +1485,7 @@ class UserFederation(pulumi.CustomResource):
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["relative_create_dn"] = relative_create_dn
             __props__.__dict__["search_scope"] = search_scope
             __props__.__dict__["start_tls"] = start_tls
             __props__.__dict__["sync_registrations"] = sync_registrations
@@ -1505,6 +1541,7 @@ class UserFederation(pulumi.CustomResource):
             rdn_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
             read_timeout: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            relative_create_dn: pulumi.Input[Optional[_builtins.str]] = None,
             search_scope: pulumi.Input[Optional[_builtins.str]] = None,
             start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_registrations: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1547,6 +1584,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
         :param pulumi.Input[_builtins.str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] relative_create_dn: Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
         :param pulumi.Input[_builtins.str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
                - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
                - `SUBTREE`: Search entire LDAP subtree.
@@ -1592,6 +1630,7 @@ class UserFederation(pulumi.CustomResource):
         __props__.__dict__["rdn_ldap_attribute"] = rdn_ldap_attribute
         __props__.__dict__["read_timeout"] = read_timeout
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["relative_create_dn"] = relative_create_dn
         __props__.__dict__["search_scope"] = search_scope
         __props__.__dict__["start_tls"] = start_tls
         __props__.__dict__["sync_registrations"] = sync_registrations
@@ -1789,6 +1828,14 @@ class UserFederation(pulumi.CustomResource):
         The realm that this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="relativeCreateDn")
+    def relative_create_dn(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
+        """
+        return pulumi.get(self, "relative_create_dn")
 
     @_builtins.property
     @pulumi.getter(name="searchScope")

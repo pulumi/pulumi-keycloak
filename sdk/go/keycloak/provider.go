@@ -32,8 +32,10 @@ type Provider struct {
 	JwtToken pulumi.StringPtrOutput `pulumi:"jwtToken"`
 	// A path to a file containing a signed JWT token used for client authentication.
 	JwtTokenFile pulumi.StringPtrOutput `pulumi:"jwtTokenFile"`
-	Password     pulumi.StringPtrOutput `pulumi:"password"`
-	Realm        pulumi.StringPtrOutput `pulumi:"realm"`
+	// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+	KeycloakVersion pulumi.StringPtrOutput `pulumi:"keycloakVersion"`
+	Password        pulumi.StringPtrOutput `pulumi:"password"`
+	Realm           pulumi.StringPtrOutput `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrOutput `pulumi:"rootCaCertificate"`
 	// TLS client certificate as PEM string for mutual authentication
@@ -97,8 +99,10 @@ type providerArgs struct {
 	JwtToken *string `pulumi:"jwtToken"`
 	// A path to a file containing a signed JWT token used for client authentication.
 	JwtTokenFile *string `pulumi:"jwtTokenFile"`
-	Password     *string `pulumi:"password"`
-	Realm        *string `pulumi:"realm"`
+	// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+	KeycloakVersion *string `pulumi:"keycloakVersion"`
+	Password        *string `pulumi:"password"`
+	Realm           *string `pulumi:"realm"`
 	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 	RedHatSso *bool `pulumi:"redHatSso"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -135,8 +139,10 @@ type ProviderArgs struct {
 	JwtToken pulumi.StringPtrInput
 	// A path to a file containing a signed JWT token used for client authentication.
 	JwtTokenFile pulumi.StringPtrInput
-	Password     pulumi.StringPtrInput
-	Realm        pulumi.StringPtrInput
+	// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+	KeycloakVersion pulumi.StringPtrInput
+	Password        pulumi.StringPtrInput
+	Realm           pulumi.StringPtrInput
 	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 	RedHatSso pulumi.BoolPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -251,6 +257,11 @@ func (o ProviderOutput) JwtToken() pulumi.StringPtrOutput {
 // A path to a file containing a signed JWT token used for client authentication.
 func (o ProviderOutput) JwtTokenFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtTokenFile }).(pulumi.StringPtrOutput)
+}
+
+// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+func (o ProviderOutput) KeycloakVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.KeycloakVersion }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Password() pulumi.StringPtrOutput {

@@ -12,12 +12,15 @@ import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.openid.inputs.GetClientArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationPolicyArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationPolicyPlainArgs;
+import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopePlainArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientPlainArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientScopeArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientScopePlainArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientServiceAccountUserArgs;
 import com.pulumi.keycloak.openid.inputs.GetClientServiceAccountUserPlainArgs;
 import com.pulumi.keycloak.openid.outputs.GetClientAuthorizationPolicyResult;
+import com.pulumi.keycloak.openid.outputs.GetClientAuthorizationScopeResult;
 import com.pulumi.keycloak.openid.outputs.GetClientResult;
 import com.pulumi.keycloak.openid.outputs.GetClientScopeResult;
 import com.pulumi.keycloak.openid.outputs.GetClientServiceAccountUserResult;
@@ -708,6 +711,1006 @@ public final class OpenidFunctions {
      */
     public static CompletableFuture<GetClientAuthorizationPolicyResult> getClientAuthorizationPolicyPlain(GetClientAuthorizationPolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", TypeShape.of(GetClientAuthorizationPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source fetches an authorization scope by name from an OpenID client that has authorization enabled.
+     * 
+     * The primary use case is looking up scopes that Keycloak creates automatically — for example, the `view`, `manage`, `view-members`, `manage-members`, and `manage-membership` scopes that Keycloak creates on the `realm-management` client when Fine-Grained Admin Permissions are enabled for a group. These scopes need to be referenced by ID in `keycloak.openid.ClientAuthorizationPermission`, but their IDs are not known until after the permissions have been initialized. Providing a scope name directly (instead of an ID) causes plan instability because Keycloak always stores and returns scope IDs.
+     * 
+     * ## Example Usage
+     * 
+     * The following example demonstrates the primary use case: resolving an authorization scope by name so it can be referenced by ID in a `keycloak.openid.ClientAuthorizationPermission`. Using a scope name directly causes plan instability because Keycloak normalises the value to an ID on write — this data source fixes that.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.Client;
+     * import com.pulumi.keycloak.openid.ClientArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         // An application client with authorization enabled.
+     *         var app = new Client("app", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("my-app")
+     *             .accessType("CONFIDENTIAL")
+     *             .serviceAccountsEnabled(true)
+     *             .authorization(ClientAuthorizationArgs.builder()
+     *                 .policyEnforcementMode("ENFORCING")
+     *                 .build())
+     *             .build());
+     * 
+     *         // A named scope on the authorization-enabled client.
+     *         var readOrdersClientAuthorizationScope = new ClientAuthorizationScope("readOrdersClientAuthorizationScope", ClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         // Resolve the scope ID by name — stable across plan/apply cycles.
+     *         final var readOrders = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         var orders = new ClientAuthorizationResource("orders", ClientAuthorizationResourceArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("orders")
+     *             .uris("/orders/*")
+     *             .build());
+     * 
+     *         var readOrdersClientAuthorizationPermission = new ClientAuthorizationPermission("readOrdersClientAuthorizationPermission", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read-orders-permission")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(orders.id())
+     *             .scopes(readOrders.applyValue(_readOrders -> _readOrders.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### FGAPv2 example: role-based map-role permission
+     * 
+     * The following shows how to use FGAPv2 (`admin-fine-grained-authz:v2`) to grant members of an `hr-managers` group permission to map an `hr-viewer` role. The `map-role` scope lives on the `admin-permissions` resource server; this data source resolves its ID for use in a custom scope-based permission alongside the one managed by `keycloak.RoleAdminPermissions`.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.Role;
+     * import com.pulumi.keycloak.RoleArgs;
+     * import com.pulumi.keycloak.RoleAdminPermissions;
+     * import com.pulumi.keycloak.RoleAdminPermissionsArgs;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.Group;
+     * import com.pulumi.keycloak.GroupArgs;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicy;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicyArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientGroupPolicyGroupArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .adminPermissionsEnabled(true)
+     *             .build());
+     * 
+     *         final var adminPermissions = OpenidFunctions.getClient(GetClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("admin-permissions")
+     *             .build());
+     * 
+     *         var hrViewer = new Role("hrViewer", RoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-viewer")
+     *             .build());
+     * 
+     *         var hrViewerRoleAdminPermissions = new RoleAdminPermissions("hrViewerRoleAdminPermissions", RoleAdminPermissionsArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("map-role-hr-viewer")
+     *             .roleIds(hrViewer.id())
+     *             .scopes("map-role")
+     *             .build());
+     * 
+     *         // Resolve the map-role scope by name for use in a custom permission.
+     *         final var mapRole = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("map-role")
+     *             .build());
+     * 
+     *         var hrManagers = new Group("hrManagers", GroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-managers")
+     *             .build());
+     * 
+     *         var hrManagersClientGroupPolicy = new ClientGroupPolicy("hrManagersClientGroupPolicy", ClientGroupPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("policy-hr-managers")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .logic("POSITIVE")
+     *             .groups(ClientGroupPolicyGroupArgs.builder()
+     *                 .id(hrManagers.id())
+     *                 .path(hrManagers.path())
+     *                 .extendChildren(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         var hrManagersMapRole = new ClientAuthorizationPermission("hrManagersMapRole", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("hr-managers-map-hr-viewer-role")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(hrViewer.id())
+     *             .scopes(mapRole.applyValue(_mapRole -> _mapRole.id()))
+     *             .policies(hrManagersClientGroupPolicy.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClientAuthorizationScopeResult> getClientAuthorizationScope(GetClientAuthorizationScopeArgs args) {
+        return getClientAuthorizationScope(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source fetches an authorization scope by name from an OpenID client that has authorization enabled.
+     * 
+     * The primary use case is looking up scopes that Keycloak creates automatically — for example, the `view`, `manage`, `view-members`, `manage-members`, and `manage-membership` scopes that Keycloak creates on the `realm-management` client when Fine-Grained Admin Permissions are enabled for a group. These scopes need to be referenced by ID in `keycloak.openid.ClientAuthorizationPermission`, but their IDs are not known until after the permissions have been initialized. Providing a scope name directly (instead of an ID) causes plan instability because Keycloak always stores and returns scope IDs.
+     * 
+     * ## Example Usage
+     * 
+     * The following example demonstrates the primary use case: resolving an authorization scope by name so it can be referenced by ID in a `keycloak.openid.ClientAuthorizationPermission`. Using a scope name directly causes plan instability because Keycloak normalises the value to an ID on write — this data source fixes that.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.Client;
+     * import com.pulumi.keycloak.openid.ClientArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         // An application client with authorization enabled.
+     *         var app = new Client("app", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("my-app")
+     *             .accessType("CONFIDENTIAL")
+     *             .serviceAccountsEnabled(true)
+     *             .authorization(ClientAuthorizationArgs.builder()
+     *                 .policyEnforcementMode("ENFORCING")
+     *                 .build())
+     *             .build());
+     * 
+     *         // A named scope on the authorization-enabled client.
+     *         var readOrdersClientAuthorizationScope = new ClientAuthorizationScope("readOrdersClientAuthorizationScope", ClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         // Resolve the scope ID by name — stable across plan/apply cycles.
+     *         final var readOrders = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         var orders = new ClientAuthorizationResource("orders", ClientAuthorizationResourceArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("orders")
+     *             .uris("/orders/*")
+     *             .build());
+     * 
+     *         var readOrdersClientAuthorizationPermission = new ClientAuthorizationPermission("readOrdersClientAuthorizationPermission", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read-orders-permission")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(orders.id())
+     *             .scopes(readOrders.applyValue(_readOrders -> _readOrders.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### FGAPv2 example: role-based map-role permission
+     * 
+     * The following shows how to use FGAPv2 (`admin-fine-grained-authz:v2`) to grant members of an `hr-managers` group permission to map an `hr-viewer` role. The `map-role` scope lives on the `admin-permissions` resource server; this data source resolves its ID for use in a custom scope-based permission alongside the one managed by `keycloak.RoleAdminPermissions`.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.Role;
+     * import com.pulumi.keycloak.RoleArgs;
+     * import com.pulumi.keycloak.RoleAdminPermissions;
+     * import com.pulumi.keycloak.RoleAdminPermissionsArgs;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.Group;
+     * import com.pulumi.keycloak.GroupArgs;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicy;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicyArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientGroupPolicyGroupArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .adminPermissionsEnabled(true)
+     *             .build());
+     * 
+     *         final var adminPermissions = OpenidFunctions.getClient(GetClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("admin-permissions")
+     *             .build());
+     * 
+     *         var hrViewer = new Role("hrViewer", RoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-viewer")
+     *             .build());
+     * 
+     *         var hrViewerRoleAdminPermissions = new RoleAdminPermissions("hrViewerRoleAdminPermissions", RoleAdminPermissionsArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("map-role-hr-viewer")
+     *             .roleIds(hrViewer.id())
+     *             .scopes("map-role")
+     *             .build());
+     * 
+     *         // Resolve the map-role scope by name for use in a custom permission.
+     *         final var mapRole = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("map-role")
+     *             .build());
+     * 
+     *         var hrManagers = new Group("hrManagers", GroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-managers")
+     *             .build());
+     * 
+     *         var hrManagersClientGroupPolicy = new ClientGroupPolicy("hrManagersClientGroupPolicy", ClientGroupPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("policy-hr-managers")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .logic("POSITIVE")
+     *             .groups(ClientGroupPolicyGroupArgs.builder()
+     *                 .id(hrManagers.id())
+     *                 .path(hrManagers.path())
+     *                 .extendChildren(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         var hrManagersMapRole = new ClientAuthorizationPermission("hrManagersMapRole", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("hr-managers-map-hr-viewer-role")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(hrViewer.id())
+     *             .scopes(mapRole.applyValue(_mapRole -> _mapRole.id()))
+     *             .policies(hrManagersClientGroupPolicy.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClientAuthorizationScopeResult> getClientAuthorizationScopePlain(GetClientAuthorizationScopePlainArgs args) {
+        return getClientAuthorizationScopePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source fetches an authorization scope by name from an OpenID client that has authorization enabled.
+     * 
+     * The primary use case is looking up scopes that Keycloak creates automatically — for example, the `view`, `manage`, `view-members`, `manage-members`, and `manage-membership` scopes that Keycloak creates on the `realm-management` client when Fine-Grained Admin Permissions are enabled for a group. These scopes need to be referenced by ID in `keycloak.openid.ClientAuthorizationPermission`, but their IDs are not known until after the permissions have been initialized. Providing a scope name directly (instead of an ID) causes plan instability because Keycloak always stores and returns scope IDs.
+     * 
+     * ## Example Usage
+     * 
+     * The following example demonstrates the primary use case: resolving an authorization scope by name so it can be referenced by ID in a `keycloak.openid.ClientAuthorizationPermission`. Using a scope name directly causes plan instability because Keycloak normalises the value to an ID on write — this data source fixes that.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.Client;
+     * import com.pulumi.keycloak.openid.ClientArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         // An application client with authorization enabled.
+     *         var app = new Client("app", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("my-app")
+     *             .accessType("CONFIDENTIAL")
+     *             .serviceAccountsEnabled(true)
+     *             .authorization(ClientAuthorizationArgs.builder()
+     *                 .policyEnforcementMode("ENFORCING")
+     *                 .build())
+     *             .build());
+     * 
+     *         // A named scope on the authorization-enabled client.
+     *         var readOrdersClientAuthorizationScope = new ClientAuthorizationScope("readOrdersClientAuthorizationScope", ClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         // Resolve the scope ID by name — stable across plan/apply cycles.
+     *         final var readOrders = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         var orders = new ClientAuthorizationResource("orders", ClientAuthorizationResourceArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("orders")
+     *             .uris("/orders/*")
+     *             .build());
+     * 
+     *         var readOrdersClientAuthorizationPermission = new ClientAuthorizationPermission("readOrdersClientAuthorizationPermission", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read-orders-permission")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(orders.id())
+     *             .scopes(readOrders.applyValue(_readOrders -> _readOrders.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### FGAPv2 example: role-based map-role permission
+     * 
+     * The following shows how to use FGAPv2 (`admin-fine-grained-authz:v2`) to grant members of an `hr-managers` group permission to map an `hr-viewer` role. The `map-role` scope lives on the `admin-permissions` resource server; this data source resolves its ID for use in a custom scope-based permission alongside the one managed by `keycloak.RoleAdminPermissions`.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.Role;
+     * import com.pulumi.keycloak.RoleArgs;
+     * import com.pulumi.keycloak.RoleAdminPermissions;
+     * import com.pulumi.keycloak.RoleAdminPermissionsArgs;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.Group;
+     * import com.pulumi.keycloak.GroupArgs;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicy;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicyArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientGroupPolicyGroupArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .adminPermissionsEnabled(true)
+     *             .build());
+     * 
+     *         final var adminPermissions = OpenidFunctions.getClient(GetClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("admin-permissions")
+     *             .build());
+     * 
+     *         var hrViewer = new Role("hrViewer", RoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-viewer")
+     *             .build());
+     * 
+     *         var hrViewerRoleAdminPermissions = new RoleAdminPermissions("hrViewerRoleAdminPermissions", RoleAdminPermissionsArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("map-role-hr-viewer")
+     *             .roleIds(hrViewer.id())
+     *             .scopes("map-role")
+     *             .build());
+     * 
+     *         // Resolve the map-role scope by name for use in a custom permission.
+     *         final var mapRole = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("map-role")
+     *             .build());
+     * 
+     *         var hrManagers = new Group("hrManagers", GroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-managers")
+     *             .build());
+     * 
+     *         var hrManagersClientGroupPolicy = new ClientGroupPolicy("hrManagersClientGroupPolicy", ClientGroupPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("policy-hr-managers")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .logic("POSITIVE")
+     *             .groups(ClientGroupPolicyGroupArgs.builder()
+     *                 .id(hrManagers.id())
+     *                 .path(hrManagers.path())
+     *                 .extendChildren(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         var hrManagersMapRole = new ClientAuthorizationPermission("hrManagersMapRole", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("hr-managers-map-hr-viewer-role")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(hrViewer.id())
+     *             .scopes(mapRole.applyValue(_mapRole -> _mapRole.id()))
+     *             .policies(hrManagersClientGroupPolicy.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClientAuthorizationScopeResult> getClientAuthorizationScope(GetClientAuthorizationScopeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", TypeShape.of(GetClientAuthorizationScopeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source fetches an authorization scope by name from an OpenID client that has authorization enabled.
+     * 
+     * The primary use case is looking up scopes that Keycloak creates automatically — for example, the `view`, `manage`, `view-members`, `manage-members`, and `manage-membership` scopes that Keycloak creates on the `realm-management` client when Fine-Grained Admin Permissions are enabled for a group. These scopes need to be referenced by ID in `keycloak.openid.ClientAuthorizationPermission`, but their IDs are not known until after the permissions have been initialized. Providing a scope name directly (instead of an ID) causes plan instability because Keycloak always stores and returns scope IDs.
+     * 
+     * ## Example Usage
+     * 
+     * The following example demonstrates the primary use case: resolving an authorization scope by name so it can be referenced by ID in a `keycloak.openid.ClientAuthorizationPermission`. Using a scope name directly causes plan instability because Keycloak normalises the value to an ID on write — this data source fixes that.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.Client;
+     * import com.pulumi.keycloak.openid.ClientArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         // An application client with authorization enabled.
+     *         var app = new Client("app", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("my-app")
+     *             .accessType("CONFIDENTIAL")
+     *             .serviceAccountsEnabled(true)
+     *             .authorization(ClientAuthorizationArgs.builder()
+     *                 .policyEnforcementMode("ENFORCING")
+     *                 .build())
+     *             .build());
+     * 
+     *         // A named scope on the authorization-enabled client.
+     *         var readOrdersClientAuthorizationScope = new ClientAuthorizationScope("readOrdersClientAuthorizationScope", ClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         // Resolve the scope ID by name — stable across plan/apply cycles.
+     *         final var readOrders = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         var orders = new ClientAuthorizationResource("orders", ClientAuthorizationResourceArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("orders")
+     *             .uris("/orders/*")
+     *             .build());
+     * 
+     *         var readOrdersClientAuthorizationPermission = new ClientAuthorizationPermission("readOrdersClientAuthorizationPermission", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read-orders-permission")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(orders.id())
+     *             .scopes(readOrders.applyValue(_readOrders -> _readOrders.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### FGAPv2 example: role-based map-role permission
+     * 
+     * The following shows how to use FGAPv2 (`admin-fine-grained-authz:v2`) to grant members of an `hr-managers` group permission to map an `hr-viewer` role. The `map-role` scope lives on the `admin-permissions` resource server; this data source resolves its ID for use in a custom scope-based permission alongside the one managed by `keycloak.RoleAdminPermissions`.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.Role;
+     * import com.pulumi.keycloak.RoleArgs;
+     * import com.pulumi.keycloak.RoleAdminPermissions;
+     * import com.pulumi.keycloak.RoleAdminPermissionsArgs;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.Group;
+     * import com.pulumi.keycloak.GroupArgs;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicy;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicyArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientGroupPolicyGroupArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .adminPermissionsEnabled(true)
+     *             .build());
+     * 
+     *         final var adminPermissions = OpenidFunctions.getClient(GetClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("admin-permissions")
+     *             .build());
+     * 
+     *         var hrViewer = new Role("hrViewer", RoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-viewer")
+     *             .build());
+     * 
+     *         var hrViewerRoleAdminPermissions = new RoleAdminPermissions("hrViewerRoleAdminPermissions", RoleAdminPermissionsArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("map-role-hr-viewer")
+     *             .roleIds(hrViewer.id())
+     *             .scopes("map-role")
+     *             .build());
+     * 
+     *         // Resolve the map-role scope by name for use in a custom permission.
+     *         final var mapRole = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("map-role")
+     *             .build());
+     * 
+     *         var hrManagers = new Group("hrManagers", GroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-managers")
+     *             .build());
+     * 
+     *         var hrManagersClientGroupPolicy = new ClientGroupPolicy("hrManagersClientGroupPolicy", ClientGroupPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("policy-hr-managers")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .logic("POSITIVE")
+     *             .groups(ClientGroupPolicyGroupArgs.builder()
+     *                 .id(hrManagers.id())
+     *                 .path(hrManagers.path())
+     *                 .extendChildren(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         var hrManagersMapRole = new ClientAuthorizationPermission("hrManagersMapRole", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("hr-managers-map-hr-viewer-role")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(hrViewer.id())
+     *             .scopes(mapRole.applyValue(_mapRole -> _mapRole.id()))
+     *             .policies(hrManagersClientGroupPolicy.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClientAuthorizationScopeResult> getClientAuthorizationScope(GetClientAuthorizationScopeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", TypeShape.of(GetClientAuthorizationScopeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source fetches an authorization scope by name from an OpenID client that has authorization enabled.
+     * 
+     * The primary use case is looking up scopes that Keycloak creates automatically — for example, the `view`, `manage`, `view-members`, `manage-members`, and `manage-membership` scopes that Keycloak creates on the `realm-management` client when Fine-Grained Admin Permissions are enabled for a group. These scopes need to be referenced by ID in `keycloak.openid.ClientAuthorizationPermission`, but their IDs are not known until after the permissions have been initialized. Providing a scope name directly (instead of an ID) causes plan instability because Keycloak always stores and returns scope IDs.
+     * 
+     * ## Example Usage
+     * 
+     * The following example demonstrates the primary use case: resolving an authorization scope by name so it can be referenced by ID in a `keycloak.openid.ClientAuthorizationPermission`. Using a scope name directly causes plan instability because Keycloak normalises the value to an ID on write — this data source fixes that.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.Client;
+     * import com.pulumi.keycloak.openid.ClientArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         // An application client with authorization enabled.
+     *         var app = new Client("app", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("my-app")
+     *             .accessType("CONFIDENTIAL")
+     *             .serviceAccountsEnabled(true)
+     *             .authorization(ClientAuthorizationArgs.builder()
+     *                 .policyEnforcementMode("ENFORCING")
+     *                 .build())
+     *             .build());
+     * 
+     *         // A named scope on the authorization-enabled client.
+     *         var readOrdersClientAuthorizationScope = new ClientAuthorizationScope("readOrdersClientAuthorizationScope", ClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         // Resolve the scope ID by name — stable across plan/apply cycles.
+     *         final var readOrders = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read:orders")
+     *             .build());
+     * 
+     *         var orders = new ClientAuthorizationResource("orders", ClientAuthorizationResourceArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("orders")
+     *             .uris("/orders/*")
+     *             .build());
+     * 
+     *         var readOrdersClientAuthorizationPermission = new ClientAuthorizationPermission("readOrdersClientAuthorizationPermission", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(app.resourceServerId())
+     *             .name("read-orders-permission")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(orders.id())
+     *             .scopes(readOrders.applyValue(_readOrders -> _readOrders.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### FGAPv2 example: role-based map-role permission
+     * 
+     * The following shows how to use FGAPv2 (`admin-fine-grained-authz:v2`) to grant members of an `hr-managers` group permission to map an `hr-viewer` role. The `map-role` scope lives on the `admin-permissions` resource server; this data source resolves its ID for use in a custom scope-based permission alongside the one managed by `keycloak.RoleAdminPermissions`.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.openid.OpenidFunctions;
+     * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.Role;
+     * import com.pulumi.keycloak.RoleArgs;
+     * import com.pulumi.keycloak.RoleAdminPermissions;
+     * import com.pulumi.keycloak.RoleAdminPermissionsArgs;
+     * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationScopeArgs;
+     * import com.pulumi.keycloak.Group;
+     * import com.pulumi.keycloak.GroupArgs;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicy;
+     * import com.pulumi.keycloak.openid.ClientGroupPolicyArgs;
+     * import com.pulumi.keycloak.openid.inputs.ClientGroupPolicyGroupArgs;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+     * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .adminPermissionsEnabled(true)
+     *             .build());
+     * 
+     *         final var adminPermissions = OpenidFunctions.getClient(GetClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("admin-permissions")
+     *             .build());
+     * 
+     *         var hrViewer = new Role("hrViewer", RoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-viewer")
+     *             .build());
+     * 
+     *         var hrViewerRoleAdminPermissions = new RoleAdminPermissions("hrViewerRoleAdminPermissions", RoleAdminPermissionsArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("map-role-hr-viewer")
+     *             .roleIds(hrViewer.id())
+     *             .scopes("map-role")
+     *             .build());
+     * 
+     *         // Resolve the map-role scope by name for use in a custom permission.
+     *         final var mapRole = OpenidFunctions.getClientAuthorizationScope(GetClientAuthorizationScopeArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("map-role")
+     *             .build());
+     * 
+     *         var hrManagers = new Group("hrManagers", GroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("hr-managers")
+     *             .build());
+     * 
+     *         var hrManagersClientGroupPolicy = new ClientGroupPolicy("hrManagersClientGroupPolicy", ClientGroupPolicyArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("policy-hr-managers")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .logic("POSITIVE")
+     *             .groups(ClientGroupPolicyGroupArgs.builder()
+     *                 .id(hrManagers.id())
+     *                 .path(hrManagers.path())
+     *                 .extendChildren(false)
+     *                 .build())
+     *             .build());
+     * 
+     *         var hrManagersMapRole = new ClientAuthorizationPermission("hrManagersMapRole", ClientAuthorizationPermissionArgs.builder()
+     *             .realmId(realm.id())
+     *             .resourceServerId(adminPermissions.applyValue(_adminPermissions -> _adminPermissions.id()))
+     *             .name("hr-managers-map-hr-viewer-role")
+     *             .type("scope")
+     *             .decisionStrategy("UNANIMOUS")
+     *             .resources(hrViewer.id())
+     *             .scopes(mapRole.applyValue(_mapRole -> _mapRole.id()))
+     *             .policies(hrManagersClientGroupPolicy.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClientAuthorizationScopeResult> getClientAuthorizationScopePlain(GetClientAuthorizationScopePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", TypeShape.of(GetClientAuthorizationScopeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.

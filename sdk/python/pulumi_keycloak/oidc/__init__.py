@@ -10,4 +10,5 @@ from .facebook_identity_provider import *
 from .github_identity_provider import *
 from .google_identity_provider import *
 from .identity_provider import *
+from .microsoft_identity_provider import *
 from .openshift_v4_identity_provider import *

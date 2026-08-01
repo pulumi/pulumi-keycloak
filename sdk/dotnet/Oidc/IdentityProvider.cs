@@ -126,7 +126,7 @@ namespace Pulumi.Keycloak.Oidc
         /// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `ClientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `ClientSecretWo`.
         /// </summary>
         [Output("clientSecretWoVersion")]
-        public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
+        public Output<string?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `Openid`.
@@ -427,7 +427,7 @@ namespace Pulumi.Keycloak.Oidc
         /// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `ClientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `ClientSecretWo`.
         /// </summary>
         [Input("clientSecretWoVersion")]
-        public Input<int>? ClientSecretWoVersion { get; set; }
+        public Input<string>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `Openid`.
@@ -685,7 +685,7 @@ namespace Pulumi.Keycloak.Oidc
         /// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `ClientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `ClientSecretWo`.
         /// </summary>
         [Input("clientSecretWoVersion")]
-        public Input<int>? ClientSecretWoVersion { get; set; }
+        public Input<string>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `Openid`.

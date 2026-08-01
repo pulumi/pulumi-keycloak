@@ -28,18 +28,20 @@ class WorkflowArgs:
                  conditions: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None):
+                 restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional['WorkflowScheduleArgs']] = None):
         """
         The set of arguments for constructing a Workflow resource.
 
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['WorkflowStepArgs']]] steps: One or more step blocks defining the actions to execute, in order.
-        :param pulumi.Input[_builtins.str] cancel_in_progress: Event that cancels an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] cancel_in_progress: Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[_builtins.str] conditions: An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
         :param pulumi.Input[_builtins.bool] enabled: Whether the workflow is enabled. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
-        :param pulumi.Input[_builtins.str] restart_in_progress: Event that restarts an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
+        :param pulumi.Input['WorkflowScheduleArgs'] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
         """
         pulumi.set(__self__, "on", on)
         pulumi.set(__self__, "realm", realm)
@@ -54,6 +56,8 @@ class WorkflowArgs:
             pulumi.set(__self__, "name", name)
         if restart_in_progress is not None:
             pulumi.set(__self__, "restart_in_progress", restart_in_progress)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
 
     @_builtins.property
     @pulumi.getter
@@ -95,7 +99,7 @@ class WorkflowArgs:
     @pulumi.getter(name="cancelInProgress")
     def cancel_in_progress(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event that cancels an in-progress workflow execution.
+        Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         """
         return pulumi.get(self, "cancel_in_progress")
 
@@ -143,13 +147,25 @@ class WorkflowArgs:
     @pulumi.getter(name="restartInProgress")
     def restart_in_progress(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event that restarts an in-progress workflow execution.
+        Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         """
         return pulumi.get(self, "restart_in_progress")
 
     @restart_in_progress.setter
     def restart_in_progress(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "restart_in_progress", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[Optional['WorkflowScheduleArgs']]:
+        """
+        A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[Optional['WorkflowScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
 
 
 @pulumi.input_type
@@ -162,17 +178,21 @@ class _WorkflowState:
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional['WorkflowScheduleArgs']] = None,
+                 states: pulumi.Input[Optional[Sequence[pulumi.Input['WorkflowStateArgs']]]] = None,
                  steps: pulumi.Input[Optional[Sequence[pulumi.Input['WorkflowStepArgs']]]] = None):
         """
         Input properties used for looking up and filtering Workflow resources.
 
-        :param pulumi.Input[_builtins.str] cancel_in_progress: Event that cancels an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] cancel_in_progress: Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[_builtins.str] conditions: An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
         :param pulumi.Input[_builtins.bool] enabled: Whether the workflow is enabled. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
-        :param pulumi.Input[_builtins.str] restart_in_progress: Event that restarts an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
+        :param pulumi.Input['WorkflowScheduleArgs'] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        :param pulumi.Input[Sequence[pulumi.Input['WorkflowStateArgs']]] states: The runtime state of the workflow as reported by Keycloak. Contains:
         :param pulumi.Input[Sequence[pulumi.Input['WorkflowStepArgs']]] steps: One or more step blocks defining the actions to execute, in order.
         """
         if cancel_in_progress is not None:
@@ -189,6 +209,10 @@ class _WorkflowState:
             pulumi.set(__self__, "realm", realm)
         if restart_in_progress is not None:
             pulumi.set(__self__, "restart_in_progress", restart_in_progress)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+        if states is not None:
+            pulumi.set(__self__, "states", states)
         if steps is not None:
             pulumi.set(__self__, "steps", steps)
 
@@ -196,7 +220,7 @@ class _WorkflowState:
     @pulumi.getter(name="cancelInProgress")
     def cancel_in_progress(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event that cancels an in-progress workflow execution.
+        Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         """
         return pulumi.get(self, "cancel_in_progress")
 
@@ -268,13 +292,37 @@ class _WorkflowState:
     @pulumi.getter(name="restartInProgress")
     def restart_in_progress(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Event that restarts an in-progress workflow execution.
+        Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         """
         return pulumi.get(self, "restart_in_progress")
 
     @restart_in_progress.setter
     def restart_in_progress(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "restart_in_progress", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[Optional['WorkflowScheduleArgs']]:
+        """
+        A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[Optional['WorkflowScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def states(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['WorkflowStateArgs']]]]:
+        """
+        The runtime state of the workflow as reported by Keycloak. Contains:
+        """
+        return pulumi.get(self, "states")
+
+    @states.setter
+    def states(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['WorkflowStateArgs']]]]):
+        pulumi.set(self, "states", value)
 
     @_builtins.property
     @pulumi.getter
@@ -302,6 +350,7 @@ class Workflow(pulumi.CustomResource):
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']]] = None,
                  steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]]] = None,
                  __props__=None):
         """
@@ -386,6 +435,81 @@ class Workflow(pulumi.CustomResource):
             ])
         ```
 
+        ### Onboard gold members only
+
+        This mirrors the [common use cases guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_understanding_common_use_cases).
+        The `conditions` expression restricts the workflow to users that have the `membership=gold` attribute, then
+        sends a welcome message and grants the `gold-member` role.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        onboard_gold_members = keycloak.Workflow("onboard_gold_members",
+            realm=realm["id"],
+            name="onboarding-gold-members",
+            on="user_created",
+            enabled=True,
+            conditions="has-user-attribute(membership=gold)",
+            steps=[
+                {
+                    "uses": "notify-user",
+                    "config": {
+                        "message": "Welcome to the Gold Membership program!",
+                    },
+                },
+                {
+                    "uses": "grant-role",
+                    "config": {
+                        "role": "gold-member",
+                    },
+                },
+            ])
+        ```
+
+        ### Track inactive users on a schedule
+
+        This example mirrors the [scheduling workflows guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_scheduling_workflows).
+        Instead of reacting to a single event, the workflow engine periodically scans realm resources (here, every
+        `30s`, up to `100` users per run) and progresses each matching user through the steps. `restart_in_progress`
+        restarts an in-progress execution when the user authenticates again, so the inactivity countdown resets.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        track_inactive_users = keycloak.Workflow("track_inactive_users",
+            realm=realm["id"],
+            name="track-inactive-users",
+            on="user_authenticated",
+            enabled=True,
+            restart_in_progress="true",
+            schedule={
+                "after": "30s",
+                "batch_size": 100,
+            },
+            steps=[
+                {
+                    "uses": "notify-user",
+                    "after": "180d",
+                    "config": {
+                        "message": "It has been a while since your last login. We miss you!",
+                    },
+                },
+                {
+                    "uses": "notify-user",
+                    "after": "60d",
+                    "config": {
+                        "message": "Your account will be disabled in ${workflow.daysUntilNextStep} days!",
+                    },
+                },
+                {
+                    "uses": "disable-user",
+                    "after": "7d",
+                },
+            ])
+        ```
+
         ## Import
 
         Workflows can be imported using the format `{{realm}}/{{workflow_id}}`, where `realm` is the realm name and `workflow_id` is the unique ID Keycloak assigns upon creation.
@@ -397,13 +521,14 @@ class Workflow(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cancel_in_progress: Event that cancels an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] cancel_in_progress: Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[_builtins.str] conditions: An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
         :param pulumi.Input[_builtins.bool] enabled: Whether the workflow is enabled. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
-        :param pulumi.Input[_builtins.str] restart_in_progress: Event that restarts an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
+        :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
         :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]] steps: One or more step blocks defining the actions to execute, in order.
         """
         ...
@@ -494,6 +619,81 @@ class Workflow(pulumi.CustomResource):
             ])
         ```
 
+        ### Onboard gold members only
+
+        This mirrors the [common use cases guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_understanding_common_use_cases).
+        The `conditions` expression restricts the workflow to users that have the `membership=gold` attribute, then
+        sends a welcome message and grants the `gold-member` role.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        onboard_gold_members = keycloak.Workflow("onboard_gold_members",
+            realm=realm["id"],
+            name="onboarding-gold-members",
+            on="user_created",
+            enabled=True,
+            conditions="has-user-attribute(membership=gold)",
+            steps=[
+                {
+                    "uses": "notify-user",
+                    "config": {
+                        "message": "Welcome to the Gold Membership program!",
+                    },
+                },
+                {
+                    "uses": "grant-role",
+                    "config": {
+                        "role": "gold-member",
+                    },
+                },
+            ])
+        ```
+
+        ### Track inactive users on a schedule
+
+        This example mirrors the [scheduling workflows guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_scheduling_workflows).
+        Instead of reacting to a single event, the workflow engine periodically scans realm resources (here, every
+        `30s`, up to `100` users per run) and progresses each matching user through the steps. `restart_in_progress`
+        restarts an in-progress execution when the user authenticates again, so the inactivity countdown resets.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        track_inactive_users = keycloak.Workflow("track_inactive_users",
+            realm=realm["id"],
+            name="track-inactive-users",
+            on="user_authenticated",
+            enabled=True,
+            restart_in_progress="true",
+            schedule={
+                "after": "30s",
+                "batch_size": 100,
+            },
+            steps=[
+                {
+                    "uses": "notify-user",
+                    "after": "180d",
+                    "config": {
+                        "message": "It has been a while since your last login. We miss you!",
+                    },
+                },
+                {
+                    "uses": "notify-user",
+                    "after": "60d",
+                    "config": {
+                        "message": "Your account will be disabled in ${workflow.daysUntilNextStep} days!",
+                    },
+                },
+                {
+                    "uses": "disable-user",
+                    "after": "7d",
+                },
+            ])
+        ```
+
         ## Import
 
         Workflows can be imported using the format `{{realm}}/{{workflow_id}}`, where `realm` is the realm name and `workflow_id` is the unique ID Keycloak assigns upon creation.
@@ -525,6 +725,7 @@ class Workflow(pulumi.CustomResource):
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']]] = None,
                  steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -546,9 +747,11 @@ class Workflow(pulumi.CustomResource):
                 raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
             __props__.__dict__["restart_in_progress"] = restart_in_progress
+            __props__.__dict__["schedule"] = schedule
             if steps is None and not opts.urn:
                 raise TypeError("Missing required property 'steps'")
             __props__.__dict__["steps"] = steps
+            __props__.__dict__["states"] = None
         super(Workflow, __self__).__init__(
             'keycloak:index/workflow:Workflow',
             resource_name,
@@ -566,6 +769,8 @@ class Workflow(pulumi.CustomResource):
             on: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
             restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']]] = None,
+            states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict']]]]] = None,
             steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]]] = None) -> 'Workflow':
         """
         Get an existing Workflow resource's state with the given name, id, and optional extra
@@ -574,13 +779,15 @@ class Workflow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cancel_in_progress: Event that cancels an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] cancel_in_progress: Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[_builtins.str] conditions: An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
         :param pulumi.Input[_builtins.bool] enabled: Whether the workflow is enabled. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
-        :param pulumi.Input[_builtins.str] restart_in_progress: Event that restarts an in-progress workflow execution.
+        :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
+        :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict']]]] states: The runtime state of the workflow as reported by Keycloak. Contains:
         :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]] steps: One or more step blocks defining the actions to execute, in order.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -594,6 +801,8 @@ class Workflow(pulumi.CustomResource):
         __props__.__dict__["on"] = on
         __props__.__dict__["realm"] = realm
         __props__.__dict__["restart_in_progress"] = restart_in_progress
+        __props__.__dict__["schedule"] = schedule
+        __props__.__dict__["states"] = states
         __props__.__dict__["steps"] = steps
         return Workflow(resource_name, opts=opts, __props__=__props__)
 
@@ -601,7 +810,7 @@ class Workflow(pulumi.CustomResource):
     @pulumi.getter(name="cancelInProgress")
     def cancel_in_progress(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Event that cancels an in-progress workflow execution.
+        Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         """
         return pulumi.get(self, "cancel_in_progress")
 
@@ -649,9 +858,25 @@ class Workflow(pulumi.CustomResource):
     @pulumi.getter(name="restartInProgress")
     def restart_in_progress(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Event that restarts an in-progress workflow execution.
+        Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         """
         return pulumi.get(self, "restart_in_progress")
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Output[Optional['outputs.WorkflowSchedule']]:
+        """
+        A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def states(self) -> pulumi.Output[Sequence['outputs.WorkflowState']]:
+        """
+        The runtime state of the workflow as reported by Keycloak. Contains:
+        """
+        return pulumi.get(self, "states")
 
     @_builtins.property
     @pulumi.getter

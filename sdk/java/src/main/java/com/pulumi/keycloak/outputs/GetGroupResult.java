@@ -15,12 +15,13 @@ import javax.annotation.Nullable;
 public final class GetGroupResult {
     private Map<String,String> attributes;
     private @Nullable String description;
+    private @Nullable String groupPath;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
-    private String name;
+    private @Nullable String name;
     private @Nullable String organizationId;
     private String parentId;
     private String path;
@@ -33,6 +34,9 @@ public final class GetGroupResult {
     public Optional<String> description() {
         return Optional.ofNullable(this.description);
     }
+    public Optional<String> groupPath() {
+        return Optional.ofNullable(this.groupPath);
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -40,8 +44,8 @@ public final class GetGroupResult {
     public String id() {
         return this.id;
     }
-    public String name() {
-        return this.name;
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
     }
     public Optional<String> organizationId() {
         return Optional.ofNullable(this.organizationId);
@@ -67,8 +71,9 @@ public final class GetGroupResult {
     public static final class Builder {
         private Map<String,String> attributes;
         private @Nullable String description;
+        private @Nullable String groupPath;
         private String id;
-        private String name;
+        private @Nullable String name;
         private @Nullable String organizationId;
         private String parentId;
         private String path;
@@ -78,6 +83,7 @@ public final class GetGroupResult {
     	      Objects.requireNonNull(defaults);
     	      this.attributes = defaults.attributes;
     	      this.description = defaults.description;
+    	      this.groupPath = defaults.groupPath;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.organizationId = defaults.organizationId;
@@ -101,6 +107,12 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
+        public Builder groupPath(@Nullable String groupPath) {
+
+            this.groupPath = groupPath;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "id");
@@ -109,10 +121,8 @@ public final class GetGroupResult {
             return this;
         }
         @CustomType.Setter
-        public Builder name(String name) {
-            if (name == null) {
-              throw new MissingRequiredPropertyException("GetGroupResult", "name");
-            }
+        public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
@@ -150,6 +160,7 @@ public final class GetGroupResult {
             final var _resultValue = new GetGroupResult();
             _resultValue.attributes = attributes;
             _resultValue.description = description;
+            _resultValue.groupPath = groupPath;
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.organizationId = organizationId;

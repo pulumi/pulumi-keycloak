@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// &gt; **This resource requires Fine-Grained Admin Permissions v1.** It is not compatible with Keycloak instances
+    /// that have `ADMIN_FINE_GRAINED_AUTHZ_V2` enabled (Keycloak 26.2+, where v2 is the default).
+    /// There is currently no v2 replacement for this resource: the Keycloak v2 permission model does not include a resource type for identity providers.
+    /// 
     /// Allows you to manage Identity Provider "Token exchange" Scope Based Permissions.
     /// 
     /// This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource.
@@ -25,6 +29,14 @@ namespace Pulumi.Keycloak
     /// As the policy lives within the context of the realm-management client, you cannot create a policy resource and link to from with your _.tf_ file. This would also cause an implicit cycle dependency.
     /// Thus, the only way to manage this in terraform is to create and manage the policy internally from within this terraform resource itself.
     /// At the moment only a client policy type is supported. The client policy will automatically be created for the `Clients` parameter.
+    /// 
+    /// ## Migration to v2
+    /// 
+    /// If you are upgrading your Keycloak instance to 26.2 or later (where Fine-Grained Admin Permissions v2 is enabled by default),
+    /// this resource will return an error. There is currently no v2 replacement resource for identity provider token exchange
+    /// permissions, as the Keycloak v2 permission model does not include a resource type for identity providers.
+    /// 
+    /// To stop managing this permission with Terraform, remove it from state:
     /// 
     /// ## Example Usage
     /// 

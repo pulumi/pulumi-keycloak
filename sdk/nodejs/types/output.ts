@@ -137,12 +137,18 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     authenticatorAttachment: string;
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential: string;
     extraOrigins: string[];
     passwordlessPasskeysEnabled: boolean;
     relyingPartyEntityName: string;
     relyingPartyId: string;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey: string;
     /**
@@ -167,12 +173,18 @@ export interface GetRealmWebAuthnPolicy {
     authenticatorAttachment: string;
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential: string;
     extraOrigins: string[];
     passwordlessPasskeysEnabled: boolean;
     relyingPartyEntityName: string;
     relyingPartyId: string;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey: string;
     /**
@@ -185,9 +197,21 @@ export interface GetRealmWebAuthnPolicy {
     userVerificationRequirement: string;
 }
 
+export interface GetWorkflowSchedule {
+    after: string;
+    batchSize: number;
+}
+
+export interface GetWorkflowState {
+    errors: string[];
+}
+
 export interface GetWorkflowStep {
     after: string;
     config: {[key: string]: string};
+    priority: string;
+    scheduledAt: number;
+    status: string;
     uses: string;
 }
 
@@ -532,6 +556,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     createTimeout?: number;
     /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: string;
+    /**
      * A set of extra origins for non-web applications.
      */
     extraOrigins?: string[];
@@ -549,6 +577,8 @@ export interface RealmWebAuthnPasswordlessPolicy {
     relyingPartyId?: string;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: string;
     /**
@@ -583,6 +613,10 @@ export interface RealmWebAuthnPolicy {
      */
     createTimeout?: number;
     /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: string;
+    /**
      * A set of extra origins for non-web applications.
      */
     extraOrigins?: string[];
@@ -596,6 +630,8 @@ export interface RealmWebAuthnPolicy {
     relyingPartyId?: string;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: string;
     /**
@@ -670,15 +706,46 @@ export interface UsersPermissionsViewScope {
     policies?: string[];
 }
 
+export interface WorkflowSchedule {
+    /**
+     * Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+     */
+    after?: string;
+    /**
+     * Maximum number of resources processed per scheduled batch.
+     */
+    batchSize?: number;
+}
+
+export interface WorkflowState {
+    /**
+     * A list of error messages recorded for the workflow.
+     * - Each `step` block additionally exports:
+     */
+    errors: string[];
+}
+
 export interface WorkflowStep {
     /**
-     * Delay in milliseconds before executing this step.
+     * Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
      */
     after?: string;
     /**
      * Key-value configuration for the step.
      */
     config?: {[key: string]: string};
+    /**
+     * Execution priority of the step, used to order steps that would otherwise run at the same time.
+     */
+    priority?: string;
+    /**
+     * Epoch timestamp in milliseconds at which the step is scheduled to execute.
+     */
+    scheduledAt: number;
+    /**
+     * The execution status of the step.
+     */
+    status: string;
     /**
      * The step type to execute (e.g. disable-user, delete-user, notify-user).
      */

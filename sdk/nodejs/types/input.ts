@@ -155,12 +155,18 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     authenticatorAttachment?: string;
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: string;
     extraOrigins?: string[];
     passwordlessPasskeysEnabled?: boolean;
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: string;
     /**
@@ -185,12 +191,18 @@ export interface GetRealmWebAuthnPasswordlessPolicyArgs {
     authenticatorAttachment?: pulumi.Input<string | undefined>;
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
     createTimeout?: pulumi.Input<number | undefined>;
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: pulumi.Input<string | undefined>;
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     passwordlessPasskeysEnabled?: pulumi.Input<boolean | undefined>;
     relyingPartyEntityName?: pulumi.Input<string | undefined>;
     relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: pulumi.Input<string | undefined>;
     /**
@@ -215,12 +227,18 @@ export interface GetRealmWebAuthnPolicy {
     authenticatorAttachment?: string;
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: string;
     extraOrigins?: string[];
     passwordlessPasskeysEnabled?: boolean;
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: string;
     /**
@@ -245,12 +263,18 @@ export interface GetRealmWebAuthnPolicyArgs {
     authenticatorAttachment?: pulumi.Input<string | undefined>;
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean | undefined>;
     createTimeout?: pulumi.Input<number | undefined>;
+    /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: pulumi.Input<string | undefined>;
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     passwordlessPasskeysEnabled?: pulumi.Input<boolean | undefined>;
     relyingPartyEntityName?: pulumi.Input<string | undefined>;
     relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: pulumi.Input<string | undefined>;
     /**
@@ -604,6 +628,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     createTimeout?: pulumi.Input<number | undefined>;
     /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: pulumi.Input<string | undefined>;
+    /**
      * A set of extra origins for non-web applications.
      */
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -621,6 +649,8 @@ export interface RealmWebAuthnPasswordlessPolicy {
     relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: pulumi.Input<string | undefined>;
     /**
@@ -655,6 +685,10 @@ export interface RealmWebAuthnPolicy {
      */
     createTimeout?: pulumi.Input<number | undefined>;
     /**
+     * Either required, preferred or discouraged. Replaces and takes precedence over the deprecated requireResidentKey attribute. Requires Keycloak 26.7 or higher.
+     */
+    discoverableCredential?: pulumi.Input<string | undefined>;
+    /**
      * A set of extra origins for non-web applications.
      */
     extraOrigins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -668,6 +702,8 @@ export interface RealmWebAuthnPolicy {
     relyingPartyId?: pulumi.Input<string | undefined>;
     /**
      * Either Yes or No
+     *
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as "not specified" and is planned to be removed in a future Keycloak version.
      */
     requireResidentKey?: pulumi.Input<string | undefined>;
     /**
@@ -742,15 +778,46 @@ export interface UsersPermissionsViewScope {
     policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
+export interface WorkflowSchedule {
+    /**
+     * Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+     */
+    after?: pulumi.Input<string | undefined>;
+    /**
+     * Maximum number of resources processed per scheduled batch.
+     */
+    batchSize?: pulumi.Input<number | undefined>;
+}
+
+export interface WorkflowState {
+    /**
+     * A list of error messages recorded for the workflow.
+     * - Each `step` block additionally exports:
+     */
+    errors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
 export interface WorkflowStep {
     /**
-     * Delay in milliseconds before executing this step.
+     * Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
      */
     after?: pulumi.Input<string | undefined>;
     /**
      * Key-value configuration for the step.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Execution priority of the step, used to order steps that would otherwise run at the same time.
+     */
+    priority?: pulumi.Input<string | undefined>;
+    /**
+     * Epoch timestamp in milliseconds at which the step is scheduled to execute.
+     */
+    scheduledAt?: pulumi.Input<number | undefined>;
+    /**
+     * The execution status of the step.
+     */
+    status?: pulumi.Input<string | undefined>;
     /**
      * The step type to execute (e.g. disable-user, delete-user, notify-user).
      */

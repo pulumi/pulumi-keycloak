@@ -47,6 +47,21 @@ public final class GroupMembershipProtocolMapperState extends com.pulumi.resourc
     }
 
     /**
+     * Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+     * 
+     */
+    @Import(name="addToTokenIntrospection")
+    private @Nullable Output<Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> addToTokenIntrospection() {
+        return Optional.ofNullable(this.addToTokenIntrospection);
+    }
+
+    /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
@@ -156,6 +171,7 @@ public final class GroupMembershipProtocolMapperState extends com.pulumi.resourc
     private GroupMembershipProtocolMapperState(GroupMembershipProtocolMapperState $) {
         this.addToAccessToken = $.addToAccessToken;
         this.addToIdToken = $.addToIdToken;
+        this.addToTokenIntrospection = $.addToTokenIntrospection;
         this.addToUserinfo = $.addToUserinfo;
         this.claimName = $.claimName;
         this.clientId = $.clientId;
@@ -223,6 +239,27 @@ public final class GroupMembershipProtocolMapperState extends com.pulumi.resourc
          */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(@Nullable Output<Boolean> addToTokenIntrospection) {
+            $.addToTokenIntrospection = addToTokenIntrospection;
+            return this;
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the attribute should be added as a claim to the token introspection response. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(Boolean addToTokenIntrospection) {
+            return addToTokenIntrospection(Output.of(addToTokenIntrospection));
         }
 
         /**

@@ -32,14 +32,14 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The ID of the realm the user profile applies to.
+     * The ID of the realm the localization texts apply to.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The ID of the realm the user profile applies to.
+     * @return The ID of the realm the localization texts apply to.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -109,7 +109,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param realmId The ID of the realm the user profile applies to.
+         * @param realmId The ID of the realm the localization texts apply to.
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param realmId The ID of the realm the user profile applies to.
+         * @param realmId The ID of the realm the localization texts apply to.
          * 
          * @return builder
          * 

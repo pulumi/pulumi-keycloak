@@ -194,7 +194,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
+    declare public readonly clientSecretWoVersion: pulumi.Output<string | undefined>;
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
@@ -570,7 +570,7 @@ export interface ClientState {
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number | undefined>;
+    clientSecretWoVersion?: pulumi.Input<string | undefined>;
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
@@ -806,7 +806,7 @@ export interface ClientArgs {
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number | undefined>;
+    clientSecretWoVersion?: pulumi.Input<string | undefined>;
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */

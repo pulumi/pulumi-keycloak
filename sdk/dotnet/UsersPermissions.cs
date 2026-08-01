@@ -12,6 +12,8 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
     /// 
+    /// This resource requires Fine-Grained Admin Permissions **v1** (`admin-fine-grained-authz:v1`). It is **not compatible** with v2 (`admin-fine-grained-authz:v2`, enabled by default in Keycloak 26.2+), which uses a different API and resource server. If your Keycloak instance has v2 enabled, use `keycloak.UsersAdminPermissions` instead.
+    /// 
     /// This is part of a preview Keycloak feature: `AdminFineGrainedAuthz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
     /// This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
     /// example `docker-compose.yml` file for an example.

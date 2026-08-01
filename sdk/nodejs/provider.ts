@@ -49,6 +49,10 @@ export class Provider extends pulumi.ProviderResource {
      * A path to a file containing a signed JWT token used for client authentication.
      */
     declare public readonly jwtTokenFile: pulumi.Output<string | undefined>;
+    /**
+     * The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+     */
+    declare public readonly keycloakVersion: pulumi.Output<string | undefined>;
     declare public readonly password: pulumi.Output<string | undefined>;
     declare public readonly realm: pulumi.Output<string | undefined>;
     /**
@@ -92,6 +96,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["jwtSigningKey"] = args?.jwtSigningKey ? pulumi.secret(args.jwtSigningKey) : undefined;
             resourceInputs["jwtToken"] = args?.jwtToken ? pulumi.secret(args.jwtToken) : undefined;
             resourceInputs["jwtTokenFile"] = args?.jwtTokenFile;
+            resourceInputs["keycloakVersion"] = args?.keycloakVersion;
             resourceInputs["password"] = args?.password;
             resourceInputs["realm"] = args?.realm;
             resourceInputs["redHatSso"] = pulumi.output(args?.redHatSso).apply(JSON.stringify);
@@ -155,6 +160,10 @@ export interface ProviderArgs {
      * A path to a file containing a signed JWT token used for client authentication.
      */
     jwtTokenFile?: pulumi.Input<string | undefined>;
+    /**
+     * The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+     */
+    keycloakVersion?: pulumi.Input<string | undefined>;
     password?: pulumi.Input<string | undefined>;
     realm?: pulumi.Input<string | undefined>;
     /**

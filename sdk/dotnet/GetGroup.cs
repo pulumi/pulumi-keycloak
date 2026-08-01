@@ -53,6 +53,29 @@ namespace Pulumi.Keycloak
         ///         },
         ///     });
         /// 
+        ///     // Using group_path to look up nested groups by their full path
+        ///     var superAdmin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Name = "super_admin",
+        ///     });
+        /// 
+        ///     var admins = Keycloak.GetGroup.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupPath = "/Administration/Full Admins",
+        ///     });
+        /// 
+        ///     var adminsRoles = new Keycloak.GroupRoles("admins_roles", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupId = admins.Apply(getGroupResult =&gt; getGroupResult.Id),
+        ///         RoleIds = new[]
+        ///         {
+        ///             superAdmin.Apply(getRoleResult =&gt; getRoleResult.Id),
+        ///         },
+        ///     });
+        /// 
         /// });
         /// ```
         /// 
@@ -118,6 +141,29 @@ namespace Pulumi.Keycloak
         ///         RoleIds = new[]
         ///         {
         ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),
+        ///         },
+        ///     });
+        /// 
+        ///     // Using group_path to look up nested groups by their full path
+        ///     var superAdmin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Name = "super_admin",
+        ///     });
+        /// 
+        ///     var admins = Keycloak.GetGroup.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupPath = "/Administration/Full Admins",
+        ///     });
+        /// 
+        ///     var adminsRoles = new Keycloak.GroupRoles("admins_roles", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupId = admins.Apply(getGroupResult =&gt; getGroupResult.Id),
+        ///         RoleIds = new[]
+        ///         {
+        ///             superAdmin.Apply(getRoleResult =&gt; getRoleResult.Id),
         ///         },
         ///     });
         /// 
@@ -189,6 +235,29 @@ namespace Pulumi.Keycloak
         ///         },
         ///     });
         /// 
+        ///     // Using group_path to look up nested groups by their full path
+        ///     var superAdmin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Name = "super_admin",
+        ///     });
+        /// 
+        ///     var admins = Keycloak.GetGroup.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupPath = "/Administration/Full Admins",
+        ///     });
+        /// 
+        ///     var adminsRoles = new Keycloak.GroupRoles("admins_roles", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupId = admins.Apply(getGroupResult =&gt; getGroupResult.Id),
+        ///         RoleIds = new[]
+        ///         {
+        ///             superAdmin.Apply(getRoleResult =&gt; getRoleResult.Id),
+        ///         },
+        ///     });
+        /// 
         /// });
         /// ```
         /// 
@@ -223,10 +292,16 @@ namespace Pulumi.Keycloak
         public string? Description { get; set; }
 
         /// <summary>
-        /// The name of the group. If there are multiple groups match `Name`, the first result will be returned.
+        /// The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `Name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
         /// </summary>
-        [Input("name", required: true)]
-        public string Name { get; set; } = null!;
+        [Input("groupPath")]
+        public string? GroupPath { get; set; }
+
+        /// <summary>
+        /// The name of the group. Mutually exclusive with `GroupPath`. If there are multiple groups matching `Name`, the first result is returned.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
 
         /// <summary>
         /// The organization this group exists within. If omitted, the data source looks up realm groups.
@@ -252,10 +327,16 @@ namespace Pulumi.Keycloak
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the group. If there are multiple groups match `Name`, the first result will be returned.
+        /// The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `Name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("groupPath")]
+        public Input<string>? GroupPath { get; set; }
+
+        /// <summary>
+        /// The name of the group. Mutually exclusive with `GroupPath`. If there are multiple groups matching `Name`, the first result is returned.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// The organization this group exists within. If omitted, the data source looks up realm groups.
@@ -281,11 +362,12 @@ namespace Pulumi.Keycloak
     {
         public readonly ImmutableDictionary<string, string> Attributes;
         public readonly string? Description;
+        public readonly string? GroupPath;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly string Name;
+        public readonly string? Name;
         public readonly string? OrganizationId;
         public readonly string ParentId;
         public readonly string Path;
@@ -297,9 +379,11 @@ namespace Pulumi.Keycloak
 
             string? description,
 
+            string? groupPath,
+
             string id,
 
-            string name,
+            string? name,
 
             string? organizationId,
 
@@ -311,6 +395,7 @@ namespace Pulumi.Keycloak
         {
             Attributes = attributes;
             Description = description;
+            GroupPath = groupPath;
             Id = id;
             Name = name;
             OrganizationId = organizationId;

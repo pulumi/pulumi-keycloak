@@ -137,6 +137,16 @@ namespace Pulumi.Keycloak
             set => _jwtTokenFile.Set(value);
         }
 
+        private static readonly __Value<string?> _keycloakVersion = new __Value<string?>(() => __config.Get("keycloakVersion"));
+        /// <summary>
+        /// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+        /// </summary>
+        public static string? KeycloakVersion
+        {
+            get => _keycloakVersion.Get();
+            set => _keycloakVersion.Set(value);
+        }
+
         private static readonly __Value<string?> _password = new __Value<string?>(() => __config.Get("password"));
         public static string? Password
         {

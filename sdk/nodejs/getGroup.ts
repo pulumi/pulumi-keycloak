@@ -31,6 +31,20 @@ import * as utilities from "./utilities";
  *     groupId: group.apply(group => group.id),
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
+ * // Using group_path to look up nested groups by their full path
+ * const superAdmin = keycloak.getRoleOutput({
+ *     realmId: realm.id,
+ *     name: "super_admin",
+ * });
+ * const admins = keycloak.getGroupOutput({
+ *     realmId: realm.id,
+ *     groupPath: "/Administration/Full Admins",
+ * });
+ * const adminsRoles = new keycloak.GroupRoles("admins_roles", {
+ *     realmId: realm.id,
+ *     groupId: admins.apply(admins => admins.id),
+ *     roleIds: [superAdmin.apply(superAdmin => superAdmin.id)],
+ * });
  * ```
  *
  * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
@@ -50,6 +64,7 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getGroup:getGroup", {
         "description": args.description,
+        "groupPath": args.groupPath,
         "name": args.name,
         "organizationId": args.organizationId,
         "realmId": args.realmId,
@@ -62,9 +77,13 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
 export interface GetGroupArgs {
     description?: string;
     /**
-     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
      */
-    name: string;
+    groupPath?: string;
+    /**
+     * The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+     */
+    name?: string;
     /**
      * The organization this group exists within. If omitted, the data source looks up realm groups.
      */
@@ -81,11 +100,12 @@ export interface GetGroupArgs {
 export interface GetGroupResult {
     readonly attributes: {[key: string]: string};
     readonly description?: string;
+    readonly groupPath?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly name: string;
+    readonly name?: string;
     readonly organizationId?: string;
     readonly parentId: string;
     readonly path: string;
@@ -118,6 +138,20 @@ export interface GetGroupResult {
  *     groupId: group.apply(group => group.id),
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
+ * // Using group_path to look up nested groups by their full path
+ * const superAdmin = keycloak.getRoleOutput({
+ *     realmId: realm.id,
+ *     name: "super_admin",
+ * });
+ * const admins = keycloak.getGroupOutput({
+ *     realmId: realm.id,
+ *     groupPath: "/Administration/Full Admins",
+ * });
+ * const adminsRoles = new keycloak.GroupRoles("admins_roles", {
+ *     realmId: realm.id,
+ *     groupId: admins.apply(admins => admins.id),
+ *     roleIds: [superAdmin.apply(superAdmin => superAdmin.id)],
+ * });
  * ```
  *
  * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
@@ -137,6 +171,7 @@ export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOut
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getGroup:getGroup", {
         "description": args.description,
+        "groupPath": args.groupPath,
         "name": args.name,
         "organizationId": args.organizationId,
         "realmId": args.realmId,
@@ -149,9 +184,13 @@ export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOut
 export interface GetGroupOutputArgs {
     description?: pulumi.Input<string | undefined>;
     /**
-     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
      */
-    name: pulumi.Input<string>;
+    groupPath?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+     */
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization this group exists within. If omitted, the data source looks up realm groups.
      */

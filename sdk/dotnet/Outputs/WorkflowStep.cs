@@ -14,13 +14,25 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class WorkflowStep
     {
         /// <summary>
-        /// Delay in milliseconds before executing this step.
+        /// Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
         /// </summary>
         public readonly string? After;
         /// <summary>
         /// Key-value configuration for the step.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Config;
+        /// <summary>
+        /// Execution priority of the step, used to order steps that would otherwise run at the same time.
+        /// </summary>
+        public readonly string? Priority;
+        /// <summary>
+        /// Epoch timestamp in milliseconds at which the step is scheduled to execute.
+        /// </summary>
+        public readonly int? ScheduledAt;
+        /// <summary>
+        /// The execution status of the step.
+        /// </summary>
+        public readonly string? Status;
         /// <summary>
         /// The step type to execute (e.g. disable-user, delete-user, notify-user).
         /// </summary>
@@ -32,10 +44,19 @@ namespace Pulumi.Keycloak.Outputs
 
             ImmutableDictionary<string, string>? config,
 
+            string? priority,
+
+            int? scheduledAt,
+
+            string? status,
+
             string uses)
         {
             After = after;
             Config = config;
+            Priority = priority;
+            ScheduledAt = scheduledAt;
+            Status = status;
             Uses = uses;
         }
     }

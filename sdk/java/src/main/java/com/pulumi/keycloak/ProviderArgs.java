@@ -159,6 +159,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.jwtTokenFile);
     }
 
+    /**
+     * The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: &#34;26.4.7&#34;.
+     * 
+     */
+    @Import(name="keycloakVersion")
+    private @Nullable Output<String> keycloakVersion;
+
+    /**
+     * @return The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: &#34;26.4.7&#34;.
+     * 
+     */
+    public Optional<Output<String>> keycloakVersion() {
+        return Optional.ofNullable(this.keycloakVersion);
+    }
+
     @Import(name="password")
     private @Nullable Output<String> password;
 
@@ -285,6 +300,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.jwtSigningKey = $.jwtSigningKey;
         this.jwtToken = $.jwtToken;
         this.jwtTokenFile = $.jwtTokenFile;
+        this.keycloakVersion = $.keycloakVersion;
         this.password = $.password;
         this.realm = $.realm;
         this.redHatSso = $.redHatSso;
@@ -504,6 +520,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder jwtTokenFile(String jwtTokenFile) {
             return jwtTokenFile(Output.of(jwtTokenFile));
+        }
+
+        /**
+         * @param keycloakVersion The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: &#34;26.4.7&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keycloakVersion(@Nullable Output<String> keycloakVersion) {
+            $.keycloakVersion = keycloakVersion;
+            return this;
+        }
+
+        /**
+         * @param keycloakVersion The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: &#34;26.4.7&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keycloakVersion(String keycloakVersion) {
+            return keycloakVersion(Output.of(keycloakVersion));
         }
 
         public Builder password(@Nullable Output<String> password) {

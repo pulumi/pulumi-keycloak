@@ -57,6 +57,29 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Using group_path to look up nested groups by their full path
+//			superAdmin := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("super_admin"),
+//			}, nil)
+//			admins := keycloak.GetGroupOutput(ctx, keycloak.GetGroupOutputArgs{
+//				RealmId:   realm.ID(),
+//				GroupPath: pulumi.String("/Administration/Full Admins"),
+//			}, nil)
+//			_, err = keycloak.NewGroupRoles(ctx, "admins_roles", &keycloak.GroupRolesArgs{
+//				RealmId: realm.ID(),
+//				GroupId: pulumi.String(admins.ApplyT(func(admins keycloak.GetGroupResult) (*string, error) {
+//					return admins.Id, nil
+//				}).(pulumi.StringPtrOutput)),
+//				RoleIds: pulumi.StringArray{
+//					pulumi.String(superAdmin.ApplyT(func(superAdmin keycloak.GetRoleResult) (*string, error) {
+//						return superAdmin.Id, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -80,7 +103,7 @@ import (
 //			_, err := keycloak.GetGroup(ctx, &keycloak.LookupGroupArgs{
 //				RealmId:        realm.Id,
 //				OrganizationId: pulumi.StringRef(organization.Id),
-//				Name:           "organization-group",
+//				Name:           pulumi.StringRef("organization-group"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -103,8 +126,10 @@ func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.Invo
 // A collection of arguments for invoking getGroup.
 type LookupGroupArgs struct {
 	Description *string `pulumi:"description"`
-	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
-	Name string `pulumi:"name"`
+	// The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
+	GroupPath *string `pulumi:"groupPath"`
+	// The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+	Name *string `pulumi:"name"`
 	// The organization this group exists within. If omitted, the data source looks up realm groups.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists within.
@@ -115,9 +140,10 @@ type LookupGroupArgs struct {
 type LookupGroupResult struct {
 	Attributes  map[string]string `pulumi:"attributes"`
 	Description *string           `pulumi:"description"`
+	GroupPath   *string           `pulumi:"groupPath"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
-	Name           string  `pulumi:"name"`
+	Name           *string `pulumi:"name"`
 	OrganizationId *string `pulumi:"organizationId"`
 	ParentId       string  `pulumi:"parentId"`
 	Path           string  `pulumi:"path"`
@@ -136,8 +162,10 @@ func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...
 // A collection of arguments for invoking getGroup.
 type LookupGroupOutputArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
-	Name pulumi.StringInput `pulumi:"name"`
+	// The full path of the group (e.g. `"/parent/child/subgroup"`). Mutually exclusive with `name`. This uses the Keycloak `/group-by-path` endpoint for a precise lookup.
+	GroupPath pulumi.StringPtrInput `pulumi:"groupPath"`
+	// The name of the group. Mutually exclusive with `groupPath`. If there are multiple groups matching `name`, the first result is returned.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The organization this group exists within. If omitted, the data source looks up realm groups.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// The realm this group exists within.
@@ -171,13 +199,17 @@ func (o LookupGroupResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupGroupResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupGroupResultOutput) GroupPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupGroupResult) *string { return v.GroupPath }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupGroupResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupGroupResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupGroupResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupGroupResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupGroupResultOutput) OrganizationId() pulumi.StringPtrOutput {

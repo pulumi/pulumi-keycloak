@@ -117,7 +117,7 @@ export class IdentityProvider extends pulumi.CustomResource {
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
+    declare public readonly clientSecretWoVersion: pulumi.Output<string | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
@@ -390,7 +390,7 @@ export interface IdentityProviderState {
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number | undefined>;
+    clientSecretWoVersion?: pulumi.Input<string | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
@@ -550,7 +550,7 @@ export interface IdentityProviderArgs {
     /**
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number | undefined>;
+    clientSecretWoVersion?: pulumi.Input<string | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */

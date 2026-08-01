@@ -27,7 +27,7 @@ class GetWorkflowResult:
     """
     A collection of values returned by getWorkflow.
     """
-    def __init__(__self__, cancel_in_progress=None, conditions=None, enabled=None, id=None, name=None, on=None, realm=None, restart_in_progress=None, steps=None):
+    def __init__(__self__, cancel_in_progress=None, conditions=None, enabled=None, id=None, name=None, on=None, realm=None, restart_in_progress=None, schedules=None, states=None, steps=None):
         if cancel_in_progress and not isinstance(cancel_in_progress, str):
             raise TypeError("Expected argument 'cancel_in_progress' to be a str")
         pulumi.set(__self__, "cancel_in_progress", cancel_in_progress)
@@ -52,6 +52,12 @@ class GetWorkflowResult:
         if restart_in_progress and not isinstance(restart_in_progress, str):
             raise TypeError("Expected argument 'restart_in_progress' to be a str")
         pulumi.set(__self__, "restart_in_progress", restart_in_progress)
+        if schedules and not isinstance(schedules, list):
+            raise TypeError("Expected argument 'schedules' to be a list")
+        pulumi.set(__self__, "schedules", schedules)
+        if states and not isinstance(states, list):
+            raise TypeError("Expected argument 'states' to be a list")
+        pulumi.set(__self__, "states", states)
         if steps and not isinstance(steps, list):
             raise TypeError("Expected argument 'steps' to be a list")
         pulumi.set(__self__, "steps", steps)
@@ -101,6 +107,16 @@ class GetWorkflowResult:
 
     @_builtins.property
     @pulumi.getter
+    def schedules(self) -> Sequence['outputs.GetWorkflowScheduleResult']:
+        return pulumi.get(self, "schedules")
+
+    @_builtins.property
+    @pulumi.getter
+    def states(self) -> Sequence['outputs.GetWorkflowStateResult']:
+        return pulumi.get(self, "states")
+
+    @_builtins.property
+    @pulumi.getter
     def steps(self) -> Sequence['outputs.GetWorkflowStepResult']:
         return pulumi.get(self, "steps")
 
@@ -119,6 +135,8 @@ class AwaitableGetWorkflowResult(GetWorkflowResult):
             on=self.on,
             realm=self.realm,
             restart_in_progress=self.restart_in_progress,
+            schedules=self.schedules,
+            states=self.states,
             steps=self.steps)
 
 
@@ -159,6 +177,8 @@ def get_workflow(name: Optional[_builtins.str] = None,
         on=pulumi.get(__ret__, 'on'),
         realm=pulumi.get(__ret__, 'realm'),
         restart_in_progress=pulumi.get(__ret__, 'restart_in_progress'),
+        schedules=pulumi.get(__ret__, 'schedules'),
+        states=pulumi.get(__ret__, 'states'),
         steps=pulumi.get(__ret__, 'steps'))
 def get_workflow_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                         realm: pulumi.Input[Optional[_builtins.str]] = None,
@@ -196,4 +216,6 @@ def get_workflow_output(name: pulumi.Input[Optional[_builtins.str]] = None,
         on=pulumi.get(__response__, 'on'),
         realm=pulumi.get(__response__, 'realm'),
         restart_in_progress=pulumi.get(__response__, 'restart_in_progress'),
+        schedules=pulumi.get(__response__, 'schedules'),
+        states=pulumi.get(__response__, 'states'),
         steps=pulumi.get(__response__, 'steps')))

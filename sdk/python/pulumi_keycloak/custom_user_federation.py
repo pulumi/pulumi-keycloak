@@ -36,7 +36,7 @@ class CustomUserFederationArgs:
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
         :param pulumi.Input[_builtins.str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
@@ -114,7 +114,7 @@ class CustomUserFederationArgs:
     @pulumi.getter
     def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         """
         return pulumi.get(self, "config")
 
@@ -201,7 +201,7 @@ class _CustomUserFederationState:
 
         :param pulumi.Input[_builtins.str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
@@ -259,7 +259,7 @@ class _CustomUserFederationState:
     @pulumi.getter
     def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         """
         return pulumi.get(self, "config")
 
@@ -410,7 +410,7 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
@@ -539,7 +539,7 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
@@ -584,7 +584,7 @@ class CustomUserFederation(pulumi.CustomResource):
     @pulumi.getter
     def config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
+        The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
         """
         return pulumi.get(self, "config")
 

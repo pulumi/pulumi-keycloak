@@ -26,7 +26,7 @@ class GetClientScopeResult:
     """
     A collection of values returned by getClientScope.
     """
-    def __init__(__self__, consent_screen_text=None, description=None, extra_config=None, gui_order=None, id=None, include_in_token_scope=None, name=None, realm_id=None):
+    def __init__(__self__, consent_screen_text=None, description=None, extra_config=None, gui_order=None, id=None, include_in_openid_provider_metadata=None, include_in_token_scope=None, name=None, realm_id=None):
         if consent_screen_text and not isinstance(consent_screen_text, str):
             raise TypeError("Expected argument 'consent_screen_text' to be a str")
         pulumi.set(__self__, "consent_screen_text", consent_screen_text)
@@ -42,6 +42,9 @@ class GetClientScopeResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if include_in_openid_provider_metadata and not isinstance(include_in_openid_provider_metadata, bool):
+            raise TypeError("Expected argument 'include_in_openid_provider_metadata' to be a bool")
+        pulumi.set(__self__, "include_in_openid_provider_metadata", include_in_openid_provider_metadata)
         if include_in_token_scope and not isinstance(include_in_token_scope, bool):
             raise TypeError("Expected argument 'include_in_token_scope' to be a bool")
         pulumi.set(__self__, "include_in_token_scope", include_in_token_scope)
@@ -81,6 +84,11 @@ class GetClientScopeResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="includeInOpenidProviderMetadata")
+    def include_in_openid_provider_metadata(self) -> _builtins.bool:
+        return pulumi.get(self, "include_in_openid_provider_metadata")
+
+    @_builtins.property
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> _builtins.bool:
         return pulumi.get(self, "include_in_token_scope")
@@ -107,6 +115,7 @@ class AwaitableGetClientScopeResult(GetClientScopeResult):
             extra_config=self.extra_config,
             gui_order=self.gui_order,
             id=self.id,
+            include_in_openid_provider_metadata=self.include_in_openid_provider_metadata,
             include_in_token_scope=self.include_in_token_scope,
             name=self.name,
             realm_id=self.realm_id)
@@ -152,6 +161,7 @@ def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
         extra_config=pulumi.get(__ret__, 'extra_config'),
         gui_order=pulumi.get(__ret__, 'gui_order'),
         id=pulumi.get(__ret__, 'id'),
+        include_in_openid_provider_metadata=pulumi.get(__ret__, 'include_in_openid_provider_metadata'),
         include_in_token_scope=pulumi.get(__ret__, 'include_in_token_scope'),
         name=pulumi.get(__ret__, 'name'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
@@ -194,6 +204,7 @@ def get_client_scope_output(extra_config: pulumi.Input[Optional[Optional[Mapping
         extra_config=pulumi.get(__response__, 'extra_config'),
         gui_order=pulumi.get(__response__, 'gui_order'),
         id=pulumi.get(__response__, 'id'),
+        include_in_openid_provider_metadata=pulumi.get(__response__, 'include_in_openid_provider_metadata'),
         include_in_token_scope=pulumi.get(__response__, 'include_in_token_scope'),
         name=pulumi.get(__response__, 'name'),
         realm_id=pulumi.get(__response__, 'realm_id')))

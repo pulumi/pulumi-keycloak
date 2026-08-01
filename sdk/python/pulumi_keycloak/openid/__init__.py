@@ -9,6 +9,7 @@ import typing
 from .audience_protocol_mapper import *
 from .audience_resolve_protocol_mapper import *
 from .client import *
+from .client_admin_permissions import *
 from .client_aggregate_policy import *
 from .client_authorization_client_scope_policy import *
 from .client_authorization_permission import *
@@ -16,6 +17,7 @@ from .client_authorization_resource import *
 from .client_authorization_scope import *
 from .client_default_scopes import *
 from .client_group_policy import *
+from .client_js_policy import *
 from .client_optional_scopes import *
 from .client_permissions import *
 from .client_policy import *
@@ -29,6 +31,7 @@ from .client_user_policy import *
 from .full_name_protocol_mapper import *
 from .get_client import *
 from .get_client_authorization_policy import *
+from .get_client_authorization_scope import *
 from .get_client_scope import *
 from .get_client_service_account_user import *
 from .group_membership_protocol_mapper import *

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -14,7 +15,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class WorkflowStep {
     /**
-     * @return Delay in milliseconds before executing this step.
+     * @return Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
      * 
      */
     private @Nullable String after;
@@ -24,6 +25,21 @@ public final class WorkflowStep {
      */
     private @Nullable Map<String,String> config;
     /**
+     * @return Execution priority of the step, used to order steps that would otherwise run at the same time.
+     * 
+     */
+    private @Nullable String priority;
+    /**
+     * @return Epoch timestamp in milliseconds at which the step is scheduled to execute.
+     * 
+     */
+    private @Nullable Integer scheduledAt;
+    /**
+     * @return The execution status of the step.
+     * 
+     */
+    private @Nullable String status;
+    /**
      * @return The step type to execute (e.g. disable-user, delete-user, notify-user).
      * 
      */
@@ -31,7 +47,7 @@ public final class WorkflowStep {
 
     private WorkflowStep() {}
     /**
-     * @return Delay in milliseconds before executing this step.
+     * @return Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
      * 
      */
     public Optional<String> after() {
@@ -43,6 +59,27 @@ public final class WorkflowStep {
      */
     public Map<String,String> config() {
         return this.config == null ? Map.of() : this.config;
+    }
+    /**
+     * @return Execution priority of the step, used to order steps that would otherwise run at the same time.
+     * 
+     */
+    public Optional<String> priority() {
+        return Optional.ofNullable(this.priority);
+    }
+    /**
+     * @return Epoch timestamp in milliseconds at which the step is scheduled to execute.
+     * 
+     */
+    public Optional<Integer> scheduledAt() {
+        return Optional.ofNullable(this.scheduledAt);
+    }
+    /**
+     * @return The execution status of the step.
+     * 
+     */
+    public Optional<String> status() {
+        return Optional.ofNullable(this.status);
     }
     /**
      * @return The step type to execute (e.g. disable-user, delete-user, notify-user).
@@ -63,12 +100,18 @@ public final class WorkflowStep {
     public static final class Builder {
         private @Nullable String after;
         private @Nullable Map<String,String> config;
+        private @Nullable String priority;
+        private @Nullable Integer scheduledAt;
+        private @Nullable String status;
         private String uses;
         public Builder() {}
         public Builder(WorkflowStep defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.after = defaults.after;
     	      this.config = defaults.config;
+    	      this.priority = defaults.priority;
+    	      this.scheduledAt = defaults.scheduledAt;
+    	      this.status = defaults.status;
     	      this.uses = defaults.uses;
         }
 
@@ -85,6 +128,24 @@ public final class WorkflowStep {
             return this;
         }
         @CustomType.Setter
+        public Builder priority(@Nullable String priority) {
+
+            this.priority = priority;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder scheduledAt(@Nullable Integer scheduledAt) {
+
+            this.scheduledAt = scheduledAt;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder status(@Nullable String status) {
+
+            this.status = status;
+            return this;
+        }
+        @CustomType.Setter
         public Builder uses(String uses) {
             if (uses == null) {
               throw new MissingRequiredPropertyException("WorkflowStep", "uses");
@@ -96,6 +157,9 @@ public final class WorkflowStep {
             final var _resultValue = new WorkflowStep();
             _resultValue.after = after;
             _resultValue.config = config;
+            _resultValue.priority = priority;
+            _resultValue.scheduledAt = scheduledAt;
+            _resultValue.status = status;
             _resultValue.uses = uses;
             return _resultValue;
         }

@@ -124,6 +124,17 @@ Object.defineProperty(exports, "jwtTokenFile", {
     enumerable: true,
 });
 
+/**
+ * The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+ */
+export declare const keycloakVersion: string | undefined;
+Object.defineProperty(exports, "keycloakVersion", {
+    get() {
+        return __config.get("keycloakVersion");
+    },
+    enumerable: true,
+});
+
 export declare const password: string | undefined;
 Object.defineProperty(exports, "password", {
     get() {

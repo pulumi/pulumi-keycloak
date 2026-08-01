@@ -9,7 +9,8 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.WorkflowArgs;
-import com.pulumi.keycloak.inputs.WorkflowState;
+import com.pulumi.keycloak.outputs.WorkflowSchedule;
+import com.pulumi.keycloak.outputs.WorkflowState;
 import com.pulumi.keycloak.outputs.WorkflowStep;
 import java.lang.Boolean;
 import java.lang.String;
@@ -142,6 +143,120 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Onboard gold members only
+ * 
+ * This mirrors the [common use cases guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_understanding_common_use_cases).
+ * The `conditions` expression restricts the workflow to users that have the `membership=gold` attribute, then
+ * sends a welcome message and grants the `gold-member` role.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Workflow;
+ * import com.pulumi.keycloak.WorkflowArgs;
+ * import com.pulumi.keycloak.inputs.WorkflowStepArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var onboardGoldMembers = new Workflow("onboardGoldMembers", WorkflowArgs.builder()
+ *             .realm(realm.id())
+ *             .name("onboarding-gold-members")
+ *             .on("user_created")
+ *             .enabled(true)
+ *             .conditions("has-user-attribute(membership=gold)")
+ *             .steps(            
+ *                 WorkflowStepArgs.builder()
+ *                     .uses("notify-user")
+ *                     .config(Map.of("message", "Welcome to the Gold Membership program!"))
+ *                     .build(),
+ *                 WorkflowStepArgs.builder()
+ *                     .uses("grant-role")
+ *                     .config(Map.of("role", "gold-member"))
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Track inactive users on a schedule
+ * 
+ * This example mirrors the [scheduling workflows guide](https://www.keycloak.org/docs/latest/server_admin/index.html#_scheduling_workflows).
+ * Instead of reacting to a single event, the workflow engine periodically scans realm resources (here, every
+ * `30s`, up to `100` users per run) and progresses each matching user through the steps. `restartInProgress`
+ * restarts an in-progress execution when the user authenticates again, so the inactivity countdown resets.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Workflow;
+ * import com.pulumi.keycloak.WorkflowArgs;
+ * import com.pulumi.keycloak.inputs.WorkflowScheduleArgs;
+ * import com.pulumi.keycloak.inputs.WorkflowStepArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var trackInactiveUsers = new Workflow("trackInactiveUsers", WorkflowArgs.builder()
+ *             .realm(realm.id())
+ *             .name("track-inactive-users")
+ *             .on("user_authenticated")
+ *             .enabled(true)
+ *             .restartInProgress("true")
+ *             .schedule(WorkflowScheduleArgs.builder()
+ *                 .after("30s")
+ *                 .batchSize(100)
+ *                 .build())
+ *             .steps(            
+ *                 WorkflowStepArgs.builder()
+ *                     .uses("notify-user")
+ *                     .after("180d")
+ *                     .config(Map.of("message", "It has been a while since your last login. We miss you!"))
+ *                     .build(),
+ *                 WorkflowStepArgs.builder()
+ *                     .uses("notify-user")
+ *                     .after("60d")
+ *                     .config(Map.of("message", "Your account will be disabled in ${workflow.daysUntilNextStep} days!"))
+ *                     .build(),
+ *                 WorkflowStepArgs.builder()
+ *                     .uses("disable-user")
+ *                     .after("7d")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Workflows can be imported using the format `{{realm}}/{{workflow_id}}`, where `realm` is the realm name and `workflowId` is the unique ID Keycloak assigns upon creation.
@@ -154,14 +269,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/workflow:Workflow")
 public class Workflow extends com.pulumi.resources.CustomResource {
     /**
-     * Event that cancels an in-progress workflow execution.
+     * Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     @Export(name="cancelInProgress", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cancelInProgress;
 
     /**
-     * @return Event that cancels an in-progress workflow execution.
+     * @return Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     public Output<Optional<String>> cancelInProgress() {
@@ -238,18 +353,46 @@ public class Workflow extends com.pulumi.resources.CustomResource {
         return this.realm;
     }
     /**
-     * Event that restarts an in-progress workflow execution.
+     * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     @Export(name="restartInProgress", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> restartInProgress;
 
     /**
-     * @return Event that restarts an in-progress workflow execution.
+     * @return Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
     public Output<Optional<String>> restartInProgress() {
         return Codegen.optional(this.restartInProgress);
+    }
+    /**
+     * A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     * 
+     */
+    @Export(name="schedule", refs={WorkflowSchedule.class}, tree="[0]")
+    private Output</* @Nullable */ WorkflowSchedule> schedule;
+
+    /**
+     * @return A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+     * 
+     */
+    public Output<Optional<WorkflowSchedule>> schedule() {
+        return Codegen.optional(this.schedule);
+    }
+    /**
+     * The runtime state of the workflow as reported by Keycloak. Contains:
+     * 
+     */
+    @Export(name="states", refs={List.class,WorkflowState.class}, tree="[0,1]")
+    private Output<List<WorkflowState>> states;
+
+    /**
+     * @return The runtime state of the workflow as reported by Keycloak. Contains:
+     * 
+     */
+    public Output<List<WorkflowState>> states() {
+        return this.states;
     }
     /**
      * One or more step blocks defining the actions to execute, in order.
@@ -291,7 +434,7 @@ public class Workflow extends com.pulumi.resources.CustomResource {
         super("keycloak:index/workflow:Workflow", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Workflow(java.lang.String name, Output<java.lang.String> id, @Nullable WorkflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private Workflow(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.keycloak.inputs.WorkflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/workflow:Workflow", name, state, makeResourceOptions(options, id), false);
     }
 
@@ -318,7 +461,7 @@ public class Workflow extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Workflow get(java.lang.String name, Output<java.lang.String> id, @Nullable WorkflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Workflow get(java.lang.String name, Output<java.lang.String> id, @Nullable com.pulumi.keycloak.inputs.WorkflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Workflow(name, id, state, options);
     }
 }

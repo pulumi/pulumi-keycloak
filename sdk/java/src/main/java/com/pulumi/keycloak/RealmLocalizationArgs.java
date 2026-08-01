@@ -33,14 +33,14 @@ public final class RealmLocalizationArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The ID of the realm the user profile applies to.
+     * The ID of the realm the localization texts apply to.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The ID of the realm the user profile applies to.
+     * @return The ID of the realm the localization texts apply to.
      * 
      */
     public Output<String> realmId() {
@@ -110,7 +110,7 @@ public final class RealmLocalizationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param realmId The ID of the realm the user profile applies to.
+         * @param realmId The ID of the realm the localization texts apply to.
          * 
          * @return builder
          * 
@@ -121,7 +121,7 @@ public final class RealmLocalizationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param realmId The ID of the realm the user profile applies to.
+         * @param realmId The ID of the realm the localization texts apply to.
          * 
          * @return builder
          * 

@@ -46,6 +46,8 @@ __all__ = [
     'UsersPermissionsMapRolesScope',
     'UsersPermissionsUserImpersonatedScope',
     'UsersPermissionsViewScope',
+    'WorkflowSchedule',
+    'WorkflowState',
     'WorkflowStep',
     'GetClientDescriptionConverterProtocolMapperResult',
     'GetOrganizationDomainResult',
@@ -60,6 +62,8 @@ __all__ = [
     'GetRealmSmtpServerTokenAuthResult',
     'GetRealmWebAuthnPasswordlessPolicyResult',
     'GetRealmWebAuthnPolicyResult',
+    'GetWorkflowScheduleResult',
+    'GetWorkflowStateResult',
     'GetWorkflowStepResult',
 ]
 
@@ -1409,6 +1413,8 @@ class RealmWebAuthnPasswordlessPolicy(dict):
             suggest = "avoid_same_authenticator_register"
         elif key == "createTimeout":
             suggest = "create_timeout"
+        elif key == "discoverableCredential":
+            suggest = "discoverable_credential"
         elif key == "extraOrigins":
             suggest = "extra_origins"
         elif key == "passwordlessPasskeysEnabled":
@@ -1441,6 +1447,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
                  authenticator_attachment: Optional[_builtins.str] = None,
                  avoid_same_authenticator_register: Optional[_builtins.bool] = None,
                  create_timeout: Optional[_builtins.int] = None,
+                 discoverable_credential: Optional[_builtins.str] = None,
                  extra_origins: Optional[Sequence[_builtins.str]] = None,
                  passwordless_passkeys_enabled: Optional[_builtins.bool] = None,
                  relying_party_entity_name: Optional[_builtins.str] = None,
@@ -1454,6 +1461,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         :param _builtins.str authenticator_attachment: Either platform or cross-platform
         :param _builtins.bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param _builtins.int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+        :param _builtins.str discoverable_credential: Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
         :param Sequence[_builtins.str] extra_origins: A set of extra origins for non-web applications.
         :param _builtins.bool passwordless_passkeys_enabled: Enable passkeys for passwordless WebAuthn authentication
         :param _builtins.str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
@@ -1472,6 +1480,8 @@ class RealmWebAuthnPasswordlessPolicy(dict):
             pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         if create_timeout is not None:
             pulumi.set(__self__, "create_timeout", create_timeout)
+        if discoverable_credential is not None:
+            pulumi.set(__self__, "discoverable_credential", discoverable_credential)
         if extra_origins is not None:
             pulumi.set(__self__, "extra_origins", extra_origins)
         if passwordless_passkeys_enabled is not None:
@@ -1528,6 +1538,14 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         return pulumi.get(self, "create_timeout")
 
     @_builtins.property
+    @pulumi.getter(name="discoverableCredential")
+    def discoverable_credential(self) -> Optional[_builtins.str]:
+        """
+        Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
+        """
+        return pulumi.get(self, "discoverable_credential")
+
+    @_builtins.property
     @pulumi.getter(name="extraOrigins")
     def extra_origins(self) -> Optional[Sequence[_builtins.str]]:
         """
@@ -1561,6 +1579,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
 
     @_builtins.property
     @pulumi.getter(name="requireResidentKey")
+    @_utilities.deprecated("""Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverable_credential is left as \"not specified\" and is planned to be removed in a future Keycloak version.""")
     def require_resident_key(self) -> Optional[_builtins.str]:
         """
         Either Yes or No
@@ -1599,6 +1618,8 @@ class RealmWebAuthnPolicy(dict):
             suggest = "avoid_same_authenticator_register"
         elif key == "createTimeout":
             suggest = "create_timeout"
+        elif key == "discoverableCredential":
+            suggest = "discoverable_credential"
         elif key == "extraOrigins":
             suggest = "extra_origins"
         elif key == "relyingPartyEntityName":
@@ -1629,6 +1650,7 @@ class RealmWebAuthnPolicy(dict):
                  authenticator_attachment: Optional[_builtins.str] = None,
                  avoid_same_authenticator_register: Optional[_builtins.bool] = None,
                  create_timeout: Optional[_builtins.int] = None,
+                 discoverable_credential: Optional[_builtins.str] = None,
                  extra_origins: Optional[Sequence[_builtins.str]] = None,
                  relying_party_entity_name: Optional[_builtins.str] = None,
                  relying_party_id: Optional[_builtins.str] = None,
@@ -1641,6 +1663,7 @@ class RealmWebAuthnPolicy(dict):
         :param _builtins.str authenticator_attachment: Either platform or cross-platform
         :param _builtins.bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param _builtins.int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+        :param _builtins.str discoverable_credential: Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
         :param Sequence[_builtins.str] extra_origins: A set of extra origins for non-web applications.
         :param _builtins.str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param _builtins.str relying_party_id: The WebAuthn relying party ID.
@@ -1658,6 +1681,8 @@ class RealmWebAuthnPolicy(dict):
             pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         if create_timeout is not None:
             pulumi.set(__self__, "create_timeout", create_timeout)
+        if discoverable_credential is not None:
+            pulumi.set(__self__, "discoverable_credential", discoverable_credential)
         if extra_origins is not None:
             pulumi.set(__self__, "extra_origins", extra_origins)
         if relying_party_entity_name is not None:
@@ -1712,6 +1737,14 @@ class RealmWebAuthnPolicy(dict):
         return pulumi.get(self, "create_timeout")
 
     @_builtins.property
+    @pulumi.getter(name="discoverableCredential")
+    def discoverable_credential(self) -> Optional[_builtins.str]:
+        """
+        Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
+        """
+        return pulumi.get(self, "discoverable_credential")
+
+    @_builtins.property
     @pulumi.getter(name="extraOrigins")
     def extra_origins(self) -> Optional[Sequence[_builtins.str]]:
         """
@@ -1737,6 +1770,7 @@ class RealmWebAuthnPolicy(dict):
 
     @_builtins.property
     @pulumi.getter(name="requireResidentKey")
+    @_utilities.deprecated("""Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverable_credential is left as \"not specified\" and is planned to be removed in a future Keycloak version.""")
     def require_resident_key(self) -> Optional[_builtins.str]:
         """
         Either Yes or No
@@ -2128,21 +2162,119 @@ class UsersPermissionsViewScope(dict):
 
 
 @pulumi.output_type
+class WorkflowSchedule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "batchSize":
+            suggest = "batch_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WorkflowSchedule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WorkflowSchedule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WorkflowSchedule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 after: Optional[_builtins.str] = None,
+                 batch_size: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str after: Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+        :param _builtins.int batch_size: Maximum number of resources processed per scheduled batch.
+        """
+        if after is not None:
+            pulumi.set(__self__, "after", after)
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def after(self) -> Optional[_builtins.str]:
+        """
+        Interval between successive scheduled runs, as a duration string (e.g. 30s, 1d) or milliseconds.
+        """
+        return pulumi.get(self, "after")
+
+    @_builtins.property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> Optional[_builtins.int]:
+        """
+        Maximum number of resources processed per scheduled batch.
+        """
+        return pulumi.get(self, "batch_size")
+
+
+@pulumi.output_type
+class WorkflowState(dict):
+    def __init__(__self__, *,
+                 errors: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] errors: A list of error messages recorded for the workflow.
+               - Each `step` block additionally exports:
+        """
+        if errors is not None:
+            pulumi.set(__self__, "errors", errors)
+
+    @_builtins.property
+    @pulumi.getter
+    def errors(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of error messages recorded for the workflow.
+        - Each `step` block additionally exports:
+        """
+        return pulumi.get(self, "errors")
+
+
+@pulumi.output_type
 class WorkflowStep(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "scheduledAt":
+            suggest = "scheduled_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WorkflowStep. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WorkflowStep.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WorkflowStep.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  uses: _builtins.str,
                  after: Optional[_builtins.str] = None,
-                 config: Optional[Mapping[str, _builtins.str]] = None):
+                 config: Optional[Mapping[str, _builtins.str]] = None,
+                 priority: Optional[_builtins.str] = None,
+                 scheduled_at: Optional[_builtins.int] = None,
+                 status: Optional[_builtins.str] = None):
         """
         :param _builtins.str uses: The step type to execute (e.g. disable-user, delete-user, notify-user).
-        :param _builtins.str after: Delay in milliseconds before executing this step.
+        :param _builtins.str after: Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
         :param Mapping[str, _builtins.str] config: Key-value configuration for the step.
+        :param _builtins.str priority: Execution priority of the step, used to order steps that would otherwise run at the same time.
+        :param _builtins.int scheduled_at: Epoch timestamp in milliseconds at which the step is scheduled to execute.
+        :param _builtins.str status: The execution status of the step.
         """
         pulumi.set(__self__, "uses", uses)
         if after is not None:
             pulumi.set(__self__, "after", after)
         if config is not None:
             pulumi.set(__self__, "config", config)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if scheduled_at is not None:
+            pulumi.set(__self__, "scheduled_at", scheduled_at)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @_builtins.property
     @pulumi.getter
@@ -2156,7 +2288,7 @@ class WorkflowStep(dict):
     @pulumi.getter
     def after(self) -> Optional[_builtins.str]:
         """
-        Delay in milliseconds before executing this step.
+        Delay before executing this step, as a duration string (e.g. 7d) or milliseconds (e.g. 2592000000).
         """
         return pulumi.get(self, "after")
 
@@ -2167,6 +2299,30 @@ class WorkflowStep(dict):
         Key-value configuration for the step.
         """
         return pulumi.get(self, "config")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> Optional[_builtins.str]:
+        """
+        Execution priority of the step, used to order steps that would otherwise run at the same time.
+        """
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledAt")
+    def scheduled_at(self) -> Optional[_builtins.int]:
+        """
+        Epoch timestamp in milliseconds at which the step is scheduled to execute.
+        """
+        return pulumi.get(self, "scheduled_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        The execution status of the step.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -2692,6 +2848,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
                  authenticator_attachment: _builtins.str,
                  avoid_same_authenticator_register: _builtins.bool,
                  create_timeout: _builtins.int,
+                 discoverable_credential: _builtins.str,
                  extra_origins: Sequence[_builtins.str],
                  passwordless_passkeys_enabled: _builtins.bool,
                  relying_party_entity_name: _builtins.str,
@@ -2702,6 +2859,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
         """
         :param _builtins.str attestation_conveyance_preference: Either none, indirect or direct
         :param _builtins.str authenticator_attachment: Either platform or cross-platform
+        :param _builtins.str discoverable_credential: Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
         :param _builtins.str require_resident_key: Either Yes or No
         :param Sequence[_builtins.str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
         :param _builtins.str user_verification_requirement: Either required, preferred or discouraged
@@ -2711,6 +2869,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
         pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
         pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         pulumi.set(__self__, "create_timeout", create_timeout)
+        pulumi.set(__self__, "discoverable_credential", discoverable_credential)
         pulumi.set(__self__, "extra_origins", extra_origins)
         pulumi.set(__self__, "passwordless_passkeys_enabled", passwordless_passkeys_enabled)
         pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
@@ -2751,6 +2910,14 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
         return pulumi.get(self, "create_timeout")
 
     @_builtins.property
+    @pulumi.getter(name="discoverableCredential")
+    def discoverable_credential(self) -> _builtins.str:
+        """
+        Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
+        """
+        return pulumi.get(self, "discoverable_credential")
+
+    @_builtins.property
     @pulumi.getter(name="extraOrigins")
     def extra_origins(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "extra_origins")
@@ -2772,6 +2939,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="requireResidentKey")
+    @_utilities.deprecated("""Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverable_credential is left as \"not specified\" and is planned to be removed in a future Keycloak version.""")
     def require_resident_key(self) -> _builtins.str:
         """
         Either Yes or No
@@ -2803,6 +2971,7 @@ class GetRealmWebAuthnPolicyResult(dict):
                  authenticator_attachment: _builtins.str,
                  avoid_same_authenticator_register: _builtins.bool,
                  create_timeout: _builtins.int,
+                 discoverable_credential: _builtins.str,
                  extra_origins: Sequence[_builtins.str],
                  passwordless_passkeys_enabled: _builtins.bool,
                  relying_party_entity_name: _builtins.str,
@@ -2813,6 +2982,7 @@ class GetRealmWebAuthnPolicyResult(dict):
         """
         :param _builtins.str attestation_conveyance_preference: Either none, indirect or direct
         :param _builtins.str authenticator_attachment: Either platform or cross-platform
+        :param _builtins.str discoverable_credential: Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
         :param _builtins.str require_resident_key: Either Yes or No
         :param Sequence[_builtins.str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
         :param _builtins.str user_verification_requirement: Either required, preferred or discouraged
@@ -2822,6 +2992,7 @@ class GetRealmWebAuthnPolicyResult(dict):
         pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
         pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         pulumi.set(__self__, "create_timeout", create_timeout)
+        pulumi.set(__self__, "discoverable_credential", discoverable_credential)
         pulumi.set(__self__, "extra_origins", extra_origins)
         pulumi.set(__self__, "passwordless_passkeys_enabled", passwordless_passkeys_enabled)
         pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
@@ -2862,6 +3033,14 @@ class GetRealmWebAuthnPolicyResult(dict):
         return pulumi.get(self, "create_timeout")
 
     @_builtins.property
+    @pulumi.getter(name="discoverableCredential")
+    def discoverable_credential(self) -> _builtins.str:
+        """
+        Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
+        """
+        return pulumi.get(self, "discoverable_credential")
+
+    @_builtins.property
     @pulumi.getter(name="extraOrigins")
     def extra_origins(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "extra_origins")
@@ -2883,6 +3062,7 @@ class GetRealmWebAuthnPolicyResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="requireResidentKey")
+    @_utilities.deprecated("""Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverable_credential is left as \"not specified\" and is planned to be removed in a future Keycloak version.""")
     def require_resident_key(self) -> _builtins.str:
         """
         Either Yes or No
@@ -2907,13 +3087,50 @@ class GetRealmWebAuthnPolicyResult(dict):
 
 
 @pulumi.output_type
+class GetWorkflowScheduleResult(dict):
+    def __init__(__self__, *,
+                 after: _builtins.str,
+                 batch_size: _builtins.int):
+        pulumi.set(__self__, "after", after)
+        pulumi.set(__self__, "batch_size", batch_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def after(self) -> _builtins.str:
+        return pulumi.get(self, "after")
+
+    @_builtins.property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> _builtins.int:
+        return pulumi.get(self, "batch_size")
+
+
+@pulumi.output_type
+class GetWorkflowStateResult(dict):
+    def __init__(__self__, *,
+                 errors: Sequence[_builtins.str]):
+        pulumi.set(__self__, "errors", errors)
+
+    @_builtins.property
+    @pulumi.getter
+    def errors(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "errors")
+
+
+@pulumi.output_type
 class GetWorkflowStepResult(dict):
     def __init__(__self__, *,
                  after: _builtins.str,
                  config: Mapping[str, _builtins.str],
+                 priority: _builtins.str,
+                 scheduled_at: _builtins.int,
+                 status: _builtins.str,
                  uses: _builtins.str):
         pulumi.set(__self__, "after", after)
         pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "scheduled_at", scheduled_at)
+        pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "uses", uses)
 
     @_builtins.property
@@ -2925,6 +3142,21 @@ class GetWorkflowStepResult(dict):
     @pulumi.getter
     def config(self) -> Mapping[str, _builtins.str]:
         return pulumi.get(self, "config")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> _builtins.str:
+        return pulumi.get(self, "priority")
+
+    @_builtins.property
+    @pulumi.getter(name="scheduledAt")
+    def scheduled_at(self) -> _builtins.int:
+        return pulumi.get(self, "scheduled_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter

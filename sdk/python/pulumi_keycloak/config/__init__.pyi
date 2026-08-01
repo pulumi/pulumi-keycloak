@@ -59,6 +59,11 @@ jwtTokenFile: Optional[str]
 A path to a file containing a signed JWT token used for client authentication.
 """
 
+keycloakVersion: Optional[str]
+"""
+The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+"""
+
 password: Optional[str]
 
 realm: Optional[str]

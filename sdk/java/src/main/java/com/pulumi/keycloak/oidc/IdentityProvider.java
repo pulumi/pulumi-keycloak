@@ -11,7 +11,6 @@ import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.oidc.IdentityProviderArgs;
 import com.pulumi.keycloak.oidc.inputs.IdentityProviderState;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -221,14 +220,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
-    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+    @Export(name="clientSecretWoVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecretWoVersion;
 
     /**
      * @return Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
-    public Output<Optional<Integer>> clientSecretWoVersion() {
+    public Output<Optional<String>> clientSecretWoVersion() {
         return Codegen.optional(this.clientSecretWoVersion);
     }
     /**

@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  *             .name("groups")
  *             .description("When requested, this scope will map a user's group memberships to a claim")
  *             .includeInTokenScope(true)
+ *             .includeInOpenidProviderMetadata(true)
  *             .guiOrder(1)
  *             .build());
  * 
@@ -136,6 +137,20 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> guiOrder() {
         return Codegen.optional(this.guiOrder);
+    }
+    /**
+     * When `true`, this client scope will be listed in the `scopesSupported` field of the realm&#39;s OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     * 
+     */
+    @Export(name="includeInOpenidProviderMetadata", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> includeInOpenidProviderMetadata;
+
+    /**
+     * @return When `true`, this client scope will be listed in the `scopesSupported` field of the realm&#39;s OpenID Provider Metadata (the `.well-known/openid-configuration` discovery document). When `false`, it will be omitted. Defaults to `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> includeInOpenidProviderMetadata() {
+        return Codegen.optional(this.includeInOpenidProviderMetadata);
     }
     /**
      * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.

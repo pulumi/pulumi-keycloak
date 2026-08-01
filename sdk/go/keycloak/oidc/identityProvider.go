@@ -97,7 +97,7 @@ type IdentityProvider struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
+	ClientSecretWoVersion pulumi.StringPtrOutput `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes pulumi.StringPtrOutput `pulumi:"defaultScopes"`
 	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -233,7 +233,7 @@ type identityProviderState struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
+	ClientSecretWoVersion *string `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes *string `pulumi:"defaultScopes"`
 	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -314,7 +314,7 @@ type IdentityProviderState struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrInput
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion pulumi.IntPtrInput
+	ClientSecretWoVersion pulumi.StringPtrInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes pulumi.StringPtrInput
 	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -399,7 +399,7 @@ type identityProviderArgs struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
+	ClientSecretWoVersion *string `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes *string `pulumi:"defaultScopes"`
 	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -479,7 +479,7 @@ type IdentityProviderArgs struct {
 	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrInput
 	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-	ClientSecretWoVersion pulumi.IntPtrInput
+	ClientSecretWoVersion pulumi.StringPtrInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes pulumi.StringPtrInput
 	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -671,8 +671,8 @@ func (o IdentityProviderOutput) ClientSecretWo() pulumi.StringPtrOutput {
 }
 
 // Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
-func (o IdentityProviderOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *IdentityProvider) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
+func (o IdentityProviderOutput) ClientSecretWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ClientSecretWoVersion }).(pulumi.StringPtrOutput)
 }
 
 // The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.

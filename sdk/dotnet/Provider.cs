@@ -60,6 +60,12 @@ namespace Pulumi.Keycloak
         [Output("jwtTokenFile")]
         public Output<string?> JwtTokenFile { get; private set; } = null!;
 
+        /// <summary>
+        /// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+        /// </summary>
+        [Output("keycloakVersion")]
+        public Output<string?> KeycloakVersion { get; private set; } = null!;
+
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
@@ -213,6 +219,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("jwtTokenFile")]
         public Input<string>? JwtTokenFile { get; set; }
+
+        /// <summary>
+        /// The Keycloak version to assume when the server does not report it via the /admin/serverinfo endpoint. Useful on Keycloak 26.4+ when the service account lacks the view-system (or, since 26.5.4, manage-realms) role. Example: "26.4.7".
+        /// </summary>
+        [Input("keycloakVersion")]
+        public Input<string>? KeycloakVersion { get; set; }
 
         [Input("password")]
         public Input<string>? Password { get; set; }

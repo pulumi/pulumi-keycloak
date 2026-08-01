@@ -38,6 +38,12 @@ namespace Pulumi.Keycloak.Inputs
         [Input("createTimeout", required: true)]
         public Input<int> CreateTimeout { get; set; } = null!;
 
+        /// <summary>
+        /// Either required, preferred or discouraged. Replaces and takes precedence over the deprecated RequireResidentKey attribute. Requires Keycloak 26.7 or higher.
+        /// </summary>
+        [Input("discoverableCredential", required: true)]
+        public Input<string> DiscoverableCredential { get; set; } = null!;
+
         [Input("extraOrigins", required: true)]
         private InputList<string>? _extraOrigins;
         public InputList<string> ExtraOrigins
