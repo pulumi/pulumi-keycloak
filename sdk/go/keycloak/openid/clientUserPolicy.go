@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -51,7 +51,7 @@ import (
 //				return err
 //			}
 //			alice, err := keycloak.NewUser(ctx, "alice", &keycloak.UserArgs{
-//				RealmId:   realm.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
 //				Username:  pulumi.String("alice"),
 //				Enabled:   pulumi.Bool(true),
 //				Email:     pulumi.String("alice@example.com"),
@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			bob, err := keycloak.NewUser(ctx, "bob", &keycloak.UserArgs{
-//				RealmId:   realm.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
 //				Username:  pulumi.String("bob"),
 //				Enabled:   pulumi.Bool(true),
 //				Email:     pulumi.String("bob@example.com"),
@@ -74,13 +74,13 @@ import (
 //			}
 //			_, err = openid.NewClientUserPolicy(ctx, "test", &openid.ClientUserPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("user_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Users: pulumi.StringArray{
-//					alice.ID(),
-//					bob.ID(),
+//					alice.ID().ToIDOutput().ToStringOutput(),
+//					bob.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

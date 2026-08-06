@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			example, err := keycloak.NewSpiffeIdentityProvider(ctx, "example", &keycloak.SpiffeIdentityProviderArgs{
-//				Realm:          realm.ID(),
+//				Realm:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Alias:          pulumi.String("my-spiffe-idp"),
 //				TrustDomain:    pulumi.String("spiffe://my-trust-domain"),
 //				BundleEndpoint: pulumi.String("https://example.com/spiffe/bundle"),
@@ -50,7 +50,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "spiffe_client", &openid.ClientArgs{
-//				RealmId:                 realm.ID(),
+//				RealmId:                 realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:                pulumi.String("spiffe-client"),
 //				Name:                    pulumi.String("SPIFFE Client"),
 //				Enabled:                 pulumi.Bool(true),

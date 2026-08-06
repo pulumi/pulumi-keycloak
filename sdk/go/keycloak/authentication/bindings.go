@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Alias:   pulumi.String("my-flow-alias"),
 //			})
 //			if err != nil {
@@ -57,7 +57,7 @@ import (
 //			}
 //			// first execution
 //			executionOne, err := authentication.NewExecution(ctx, "execution_one", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
+//				RealmId:         realm.ID().ToIDOutput().ToStringOutput(),
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("auth-cookie"),
 //				Requirement:     pulumi.String("ALTERNATIVE"),
@@ -67,7 +67,7 @@ import (
 //			}
 //			// second execution
 //			_, err = authentication.NewExecution(ctx, "execution_two", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
+//				RealmId:         realm.ID().ToIDOutput().ToStringOutput(),
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("identity-provider-redirector"),
 //				Requirement:     pulumi.String("ALTERNATIVE"),
@@ -78,7 +78,7 @@ import (
 //				return err
 //			}
 //			_, err = authentication.NewBindings(ctx, "browser_authentication_binding", &authentication.BindingsArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				BrowserFlow: flow.Alias,
 //			})
 //			if err != nil {

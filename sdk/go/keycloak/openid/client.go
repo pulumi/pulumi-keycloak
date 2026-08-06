@@ -48,7 +48,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
-//				RealmId:             realm.ID(),
+//				RealmId:             realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:            pulumi.String("test-client"),
 //				Name:                pulumi.String("test client"),
 //				Enabled:             pulumi.Bool(true),
@@ -102,7 +102,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("test-client"),
 //				Name:       pulumi.String("test client"),
 //				Enabled:    pulumi.Bool(true),

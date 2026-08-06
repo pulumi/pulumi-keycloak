@@ -39,14 +39,12 @@ import (
 //				return err
 //			}
 //			trustedHosts := keycloak.GetRealmClientRegistrationPolicyOutput(ctx, keycloak.GetRealmClientRegistrationPolicyOutputArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("Trusted Hosts"),
 //				ProviderId: pulumi.String("trusted-hosts"),
 //				SubType:    pulumi.String("anonymous"),
 //			}, nil)
-//			ctx.Export("trustedHostsPolicyId", trustedHosts.ApplyT(func(trustedHosts keycloak.GetRealmClientRegistrationPolicyResult) (*string, error) {
-//				return trustedHosts.Id, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("trustedHostsPolicyId", trustedHosts.Id())
 //			return nil
 //		})
 //	}

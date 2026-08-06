@@ -42,7 +42,7 @@ import (
 //			}
 //			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
 //				Name:                  pulumi.String("openldap"),
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
 //				UuidLdapAttribute:     pulumi.String("entryDN"),
@@ -60,8 +60,8 @@ import (
 //				return err
 //			}
 //			_, err = ldap.NewHardcodedAttributeMapper(ctx, "assign_bar_to_foo", &ldap.HardcodedAttributeMapperArgs{
-//				RealmId:              realm.ID(),
-//				LdapUserFederationId: ldapUserFederation.ID(),
+//				RealmId:              realm.ID().ToIDOutput().ToStringOutput(),
+//				LdapUserFederationId: ldapUserFederation.ID().ToIDOutput().ToStringOutput(),
 //				Name:                 pulumi.String("assign-foo-to-bar"),
 //				AttributeName:        pulumi.String("foo"),
 //				AttributeValue:       pulumi.String("bar"),

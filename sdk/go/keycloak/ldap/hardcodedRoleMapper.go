@@ -42,7 +42,7 @@ import (
 //			}
 //			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
 //				Name:                  pulumi.String("openldap"),
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
 //				UuidLdapAttribute:     pulumi.String("entryDN"),
@@ -59,7 +59,7 @@ import (
 //				return err
 //			}
 //			realmAdminRole, err := keycloak.NewRole(ctx, "realm_admin_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-admin-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
@@ -67,8 +67,8 @@ import (
 //				return err
 //			}
 //			_, err = ldap.NewHardcodedRoleMapper(ctx, "assign_admin_role_to_all_users", &ldap.HardcodedRoleMapperArgs{
-//				RealmId:              realm.ID(),
-//				LdapUserFederationId: ldapUserFederation.ID(),
+//				RealmId:              realm.ID().ToIDOutput().ToStringOutput(),
+//				LdapUserFederationId: ldapUserFederation.ID().ToIDOutput().ToStringOutput(),
 //				Name:                 pulumi.String("assign-admin-role-to-all-users"),
 //				Role:                 realmAdminRole.Name,
 //			})
@@ -108,7 +108,7 @@ import (
 //			}
 //			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
 //				Name:                  pulumi.String("openldap"),
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
 //				UuidLdapAttribute:     pulumi.String("entryDN"),
@@ -126,19 +126,17 @@ import (
 //			}
 //			// data sources aren't technically necessary here, but they are helpful for demonstration purposes
 //			realmManagement := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.String("realm-management"),
 //			}, nil)
 //			createClient := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID(),
-//				ClientId: realmManagement.ApplyT(func(realmManagement openid.GetClientResult) (*string, error) {
-//					return realmManagement.Id, nil
-//				}).(pulumi.StringPtrOutput),
-//				Name: pulumi.String("create-client"),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId: realmManagement.Id(),
+//				Name:     pulumi.String("create-client"),
 //			}, nil)
 //			_, err = ldap.NewHardcodedRoleMapper(ctx, "assign_admin_role_to_all_users", &ldap.HardcodedRoleMapperArgs{
-//				RealmId:              realm.ID(),
-//				LdapUserFederationId: ldapUserFederation.ID(),
+//				RealmId:              realm.ID().ToIDOutput().ToStringOutput(),
+//				LdapUserFederationId: ldapUserFederation.ID().ToIDOutput().ToStringOutput(),
 //				Name:                 pulumi.String("assign-admin-role-to-all-users"),
 //				Role: pulumi.All(realmManagement, createClient).ApplyT(func(_args []interface{}) (string, error) {
 //					realmManagement := _args[0].(openid.GetClientResult)

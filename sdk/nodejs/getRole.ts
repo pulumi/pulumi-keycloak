@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     realmId: realm.id,
  *     groupId: group.id,
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ *     roleIds: [offlineAccess.id],
  * });
  * ```
  */
@@ -105,7 +105,7 @@ export interface GetRoleResult {
  * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     realmId: realm.id,
  *     groupId: group.id,
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ *     roleIds: [offlineAccess.id],
  * });
  * ```
  */

@@ -42,7 +42,7 @@ import (
 //			}
 //			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
 //				Name:                  pulumi.String("openldap"),
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
 //				UuidLdapAttribute:     pulumi.String("entryDN"),
@@ -59,8 +59,8 @@ import (
 //				return err
 //			}
 //			_, err = ldap.NewUserAttributeMapper(ctx, "ldap_user_attribute_mapper", &ldap.UserAttributeMapperArgs{
-//				RealmId:              realm.ID(),
-//				LdapUserFederationId: ldapUserFederation.ID(),
+//				RealmId:              realm.ID().ToIDOutput().ToStringOutput(),
+//				LdapUserFederationId: ldapUserFederation.ID().ToIDOutput().ToStringOutput(),
 //				Name:                 pulumi.String("user-attribute-mapper"),
 //				UserModelAttribute:   pulumi.String("foo"),
 //				LdapAttribute:        pulumi.String("bar"),

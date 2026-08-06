@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = saml.NewIdentityProvider(ctx, "realm_saml_identity_provider", &saml.IdentityProviderArgs{
-//				Realm:                   realm.ID(),
+//				Realm:                   realm.ID().ToIDOutput().ToStringOutput(),
 //				Alias:                   pulumi.String("my-saml-idp"),
 //				EntityId:                pulumi.String("https://domain.com/entity_id"),
 //				SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),

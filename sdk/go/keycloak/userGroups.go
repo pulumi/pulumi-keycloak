@@ -40,24 +40,24 @@ import (
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("foo"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				Username: pulumi.String("my-user"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewUserGroups(ctx, "user_groups", &keycloak.UserGroupsArgs{
-//				RealmId: realm.ID(),
-//				UserId:  user.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				UserId:  user.ID().ToIDOutput().ToStringOutput(),
 //				GroupIds: pulumi.StringArray{
-//					group.ID(),
+//					group.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

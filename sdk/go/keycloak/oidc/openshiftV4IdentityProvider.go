@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			_, err = oidc.NewOpenshiftV4IdentityProvider(ctx, "openshift_v4", &oidc.OpenshiftV4IdentityProviderArgs{
-//				Realm:         realm.ID(),
+//				Realm:         realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:      pulumi.Any(openshiftClientId),
 //				ClientSecret:  pulumi.Any(openshiftClientSecret),
 //				BaseUrl:       pulumi.String("https://openshift.example.com:8443"),

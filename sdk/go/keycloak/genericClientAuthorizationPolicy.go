@@ -59,7 +59,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -73,7 +73,7 @@ import (
 //			// "type" is the id returned by your PolicyProviderFactory.getId().
 //			_, err = keycloak.NewGenericClientAuthorizationPolicy(ctx, "custom", &keycloak.GenericClientAuthorizationPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("my-custom-policy"),
 //				Type:             pulumi.String("my-custom-policy-provider"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
@@ -87,7 +87,7 @@ import (
 //			// type as "script-" + the fileName from META-INF/keycloak-scripts.json.
 //			_, err = keycloak.NewGenericClientAuthorizationPolicy(ctx, "deployed_js", &keycloak.GenericClientAuthorizationPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("deployed-js-policy"),
 //				Type:             pulumi.String("script-my-policy.js"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),

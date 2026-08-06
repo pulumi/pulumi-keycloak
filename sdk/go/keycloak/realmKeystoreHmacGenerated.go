@@ -38,7 +38,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmKeystoreHmacGenerated(ctx, "keystore_hmac_generated", &keycloak.RealmKeystoreHmacGeneratedArgs{
 //				Name:       pulumi.String("my-hmac-generated-key"),
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				Enabled:    pulumi.Bool(true),
 //				Active:     pulumi.Bool(true),
 //				Priority:   pulumi.Int(100),

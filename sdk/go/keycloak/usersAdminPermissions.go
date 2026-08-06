@@ -53,32 +53,30 @@ import (
 //				return err
 //			}
 //			adminPermissions := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.String("admin-permissions"),
 //			}, nil)
 //			admins, err := keycloak.NewGroup(ctx, "admins", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("admins"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			auditors, err := keycloak.NewGroup(ctx, "auditors", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("auditors"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			adminsPolicy, err := openid.NewClientGroupPolicy(ctx, "admins_policy", &openid.ClientGroupPolicyArgs{
-//				RealmId: realm.ID(),
-//				ResourceServerId: pulumi.String(adminPermissions.ApplyT(func(adminPermissions openid.GetClientResult) (*string, error) {
-//					return adminPermissions.Id, nil
-//				}).(pulumi.StringPtrOutput)),
-//				Name: pulumi.String("admins-policy"),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				ResourceServerId: adminPermissions.Id(),
+//				Name:             pulumi.String("admins-policy"),
 //				Groups: openid.ClientGroupPolicyGroupArray{
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             admins.ID(),
+//						Id:             admins.ID().ToIDOutput().ToStringOutput(),
 //						Path:           admins.Path,
 //						ExtendChildren: pulumi.Bool(false),
 //					},
@@ -90,14 +88,12 @@ import (
 //				return err
 //			}
 //			auditorsPolicy, err := openid.NewClientGroupPolicy(ctx, "auditors_policy", &openid.ClientGroupPolicyArgs{
-//				RealmId: realm.ID(),
-//				ResourceServerId: pulumi.String(adminPermissions.ApplyT(func(adminPermissions openid.GetClientResult) (*string, error) {
-//					return adminPermissions.Id, nil
-//				}).(pulumi.StringPtrOutput)),
-//				Name: pulumi.String("auditors-policy"),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				ResourceServerId: adminPermissions.Id(),
+//				Name:             pulumi.String("auditors-policy"),
 //				Groups: openid.ClientGroupPolicyGroupArray{
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             auditors.ID(),
+//						Id:             auditors.ID().ToIDOutput().ToStringOutput(),
 //						Path:           auditors.Path,
 //						ExtendChildren: pulumi.Bool(false),
 //					},
@@ -110,7 +106,7 @@ import (
 //			}
 //			// One permission per logical role — each is a separate Terraform resource.
 //			_, err = keycloak.NewUsersAdminPermissions(ctx, "admins_manage_users", &keycloak.UsersAdminPermissionsArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("admins-can-manage-users"),
 //				Description:      pulumi.String("Admins can view and manage all users"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
@@ -119,21 +115,21 @@ import (
 //					pulumi.String("manage"),
 //				},
 //				Policies: pulumi.StringArray{
-//					adminsPolicy.ID(),
+//					adminsPolicy.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewUsersAdminPermissions(ctx, "auditors_view_users", &keycloak.UsersAdminPermissionsArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("auditors-can-view-users"),
 //				Description: pulumi.String("Auditors can view all users"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("view"),
 //				},
 //				Policies: pulumi.StringArray{
-//					auditorsPolicy.ID(),
+//					auditorsPolicy.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

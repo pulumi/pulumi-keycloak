@@ -41,8 +41,8 @@ import * as utilities from "../utilities";
  * });
  * const serviceAccountUserRoles = new keycloak.UserRoles("service_account_user_roles", {
  *     realmId: realm.id,
- *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ *     userId: serviceAccountUser.id,
+ *     roleIds: [offlineAccess.id],
  * });
  * ```
  */
@@ -144,8 +144,8 @@ export interface GetClientServiceAccountUserResult {
  * });
  * const serviceAccountUserRoles = new keycloak.UserRoles("service_account_user_roles", {
  *     realmId: realm.id,
- *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ *     userId: serviceAccountUser.id,
+ *     roleIds: [offlineAccess.id],
  * });
  * ```
  */

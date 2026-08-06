@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -52,7 +52,7 @@ import (
 //			}
 //			client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client1"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //			})
@@ -61,7 +61,7 @@ import (
 //			}
 //			client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client2"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //			})
@@ -70,13 +70,13 @@ import (
 //			}
 //			_, err = openid.NewClientPolicy(ctx, "test", &openid.ClientPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("client_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Clients: pulumi.StringArray{
-//					client1.ID(),
-//					client2.ID(),
+//					client1.ID().ToIDOutput().ToStringOutput(),
+//					client2.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

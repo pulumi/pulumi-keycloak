@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  *     type: "scope",
  *     decisionStrategy: "UNANIMOUS",
  *     resources: [orders.id],
- *     scopes: [readOrders.apply(readOrders => readOrders.id)],
+ *     scopes: [readOrders.id],
  * });
  * ```
  *
@@ -86,7 +86,7 @@ import * as utilities from "../utilities";
  * // Resolve the map-role scope by name for use in a custom permission.
  * const mapRole = keycloak.openid.getClientAuthorizationScopeOutput({
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "map-role",
  * });
  * const hrManagers = new keycloak.Group("hr_managers", {
@@ -95,7 +95,7 @@ import * as utilities from "../utilities";
  * });
  * const hrManagersClientGroupPolicy = new keycloak.openid.ClientGroupPolicy("hr_managers", {
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "policy-hr-managers",
  *     decisionStrategy: "UNANIMOUS",
  *     logic: "POSITIVE",
@@ -107,12 +107,12 @@ import * as utilities from "../utilities";
  * });
  * const hrManagersMapRole = new keycloak.openid.ClientAuthorizationPermission("hr_managers_map_role", {
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "hr-managers-map-hr-viewer-role",
  *     type: "scope",
  *     decisionStrategy: "UNANIMOUS",
  *     resources: [hrViewer.id],
- *     scopes: [mapRole.apply(mapRole => mapRole.id)],
+ *     scopes: [mapRole.id],
  *     policies: [hrManagersClientGroupPolicy.id],
  * });
  * ```
@@ -213,7 +213,7 @@ export interface GetClientAuthorizationScopeResult {
  *     type: "scope",
  *     decisionStrategy: "UNANIMOUS",
  *     resources: [orders.id],
- *     scopes: [readOrders.apply(readOrders => readOrders.id)],
+ *     scopes: [readOrders.id],
  * });
  * ```
  *
@@ -246,7 +246,7 @@ export interface GetClientAuthorizationScopeResult {
  * // Resolve the map-role scope by name for use in a custom permission.
  * const mapRole = keycloak.openid.getClientAuthorizationScopeOutput({
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "map-role",
  * });
  * const hrManagers = new keycloak.Group("hr_managers", {
@@ -255,7 +255,7 @@ export interface GetClientAuthorizationScopeResult {
  * });
  * const hrManagersClientGroupPolicy = new keycloak.openid.ClientGroupPolicy("hr_managers", {
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "policy-hr-managers",
  *     decisionStrategy: "UNANIMOUS",
  *     logic: "POSITIVE",
@@ -267,12 +267,12 @@ export interface GetClientAuthorizationScopeResult {
  * });
  * const hrManagersMapRole = new keycloak.openid.ClientAuthorizationPermission("hr_managers_map_role", {
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "hr-managers-map-hr-viewer-role",
  *     type: "scope",
  *     decisionStrategy: "UNANIMOUS",
  *     resources: [hrViewer.id],
- *     scopes: [mapRole.apply(mapRole => mapRole.id)],
+ *     scopes: [mapRole.id],
  *     policies: [hrManagersClientGroupPolicy.id],
  * });
  * ```

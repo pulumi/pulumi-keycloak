@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * });
  * const adminsPolicy = new keycloak.openid.ClientGroupPolicy("admins_policy", {
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "admins-policy",
  *     groups: [{
  *         id: admins.id,
@@ -59,7 +59,7 @@ import * as utilities from "./utilities";
  * });
  * const auditorsPolicy = new keycloak.openid.ClientGroupPolicy("auditors_policy", {
  *     realmId: realm.id,
- *     resourceServerId: adminPermissions.apply(adminPermissions => adminPermissions.id),
+ *     resourceServerId: adminPermissions.id,
  *     name: "auditors-policy",
  *     groups: [{
  *         id: auditors.id,

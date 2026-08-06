@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  *     providerId: "trusted-hosts",
  *     subType: "anonymous",
  * });
- * export const trustedHostsPolicyId = trustedHosts.apply(trustedHosts => trustedHosts.id);
+ * export const trustedHostsPolicyId = trustedHosts.id;
  * ```
  */
 export function getRealmClientRegistrationPolicy(args: GetRealmClientRegistrationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmClientRegistrationPolicyResult> {
@@ -98,7 +98,7 @@ export interface GetRealmClientRegistrationPolicyResult {
  *     providerId: "trusted-hosts",
  *     subType: "anonymous",
  * });
- * export const trustedHostsPolicyId = trustedHosts.apply(trustedHosts => trustedHosts.id);
+ * export const trustedHostsPolicyId = trustedHosts.id;
  * ```
  */
 export function getRealmClientRegistrationPolicyOutput(args: GetRealmClientRegistrationPolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRealmClientRegistrationPolicyResult> {

@@ -38,7 +38,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystore_ecdsa_generated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
 //				Name:             pulumi.String("my-ecdsa-generated-key"),
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Enabled:          pulumi.Bool(true),
 //				Active:           pulumi.Bool(true),
 //				Priority:         pulumi.Int(100),

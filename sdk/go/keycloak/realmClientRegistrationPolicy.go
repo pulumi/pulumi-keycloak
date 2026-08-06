@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRealmClientRegistrationPolicy(ctx, "custom", &keycloak.RealmClientRegistrationPolicyArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("My Custom Policy"),
 //				ProviderId: pulumi.String("my-client-registration-policy"),
 //				SubType:    pulumi.String("anonymous"),
@@ -45,7 +45,7 @@ import (
 //			}
 //			// A built-in policy with multi-value config (trusted-hosts is an array in Keycloak)
 //			_, err = keycloak.NewRealmClientRegistrationPolicy(ctx, "trusted_hosts", &keycloak.RealmClientRegistrationPolicyArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:       pulumi.String("Trusted Hosts"),
 //				ProviderId: pulumi.String("trusted-hosts"),
 //				SubType:    pulumi.String("anonymous"),

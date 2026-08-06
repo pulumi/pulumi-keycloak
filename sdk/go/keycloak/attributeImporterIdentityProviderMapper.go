@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			oidc2, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
-//				Realm:            realm.ID(),
+//				Realm:            realm.ID().ToIDOutput().ToStringOutput(),
 //				Alias:            pulumi.String("oidc"),
 //				AuthorizationUrl: pulumi.String("https://example.com/auth"),
 //				TokenUrl:         pulumi.String("https://example.com/token"),
@@ -56,7 +56,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewAttributeImporterIdentityProviderMapper(ctx, "oidc", &keycloak.AttributeImporterIdentityProviderMapperArgs{
-//				Realm:                 realm.ID(),
+//				Realm:                 realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:                  pulumi.String("email-attribute-importer"),
 //				ClaimName:             pulumi.String("my-email-claim"),
 //				IdentityProviderAlias: oidc2.Alias,

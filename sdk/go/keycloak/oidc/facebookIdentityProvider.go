@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = oidc.NewFacebookIdentityProvider(ctx, "facebook", &oidc.FacebookIdentityProviderArgs{
-//				Realm:         realm.ID(),
+//				Realm:         realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:      pulumi.Any(facebookIdentityProviderClientId),
 //				ClientSecret:  pulumi.Any(facebookIdentityProviderClientSecret),
 //				TrustEmail:    pulumi.Bool(true),

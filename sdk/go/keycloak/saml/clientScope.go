@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = saml.NewClientScope(ctx, "saml_client_scope", &saml.ClientScopeArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("groups"),
 //				Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
 //				GuiOrder:    pulumi.Int(1),

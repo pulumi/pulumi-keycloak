@@ -49,39 +49,37 @@ import (
 //				return err
 //			}
 //			adminPermissions := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.String("admin-permissions"),
 //			}, nil)
 //			roleA, err := keycloak.NewRole(ctx, "role_a", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("role-a"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			roleB, err := keycloak.NewRole(ctx, "role_b", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("role-b"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			admins, err := keycloak.NewGroup(ctx, "admins", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("admins"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			adminsPolicy, err := openid.NewClientGroupPolicy(ctx, "admins_policy", &openid.ClientGroupPolicyArgs{
-//				RealmId: realm.ID(),
-//				ResourceServerId: pulumi.String(adminPermissions.ApplyT(func(adminPermissions openid.GetClientResult) (*string, error) {
-//					return adminPermissions.Id, nil
-//				}).(pulumi.StringPtrOutput)),
-//				Name: pulumi.String("admins-policy"),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				ResourceServerId: adminPermissions.Id(),
+//				Name:             pulumi.String("admins-policy"),
 //				Groups: openid.ClientGroupPolicyGroupArray{
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             admins.ID(),
+//						Id:             admins.ID().ToIDOutput().ToStringOutput(),
 //						Path:           admins.Path,
 //						ExtendChildren: pulumi.Bool(false),
 //					},
@@ -94,20 +92,20 @@ import (
 //			}
 //			// Permission targeting two specific roles with multiple scopes.
 //			_, err = keycloak.NewRoleAdminPermissions(ctx, "admins_map_specific_roles", &keycloak.RoleAdminPermissionsArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("admins-can-map-specific-roles"),
 //				Description:      pulumi.String("Admins can map or make composite role-a and role-b"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				RoleIds: pulumi.StringArray{
-//					roleA.ID(),
-//					roleB.ID(),
+//					roleA.ID().ToIDOutput().ToStringOutput(),
+//					roleB.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("map-role"),
 //					pulumi.String("map-role-composite"),
 //				},
 //				Policies: pulumi.StringArray{
-//					adminsPolicy.ID(),
+//					adminsPolicy.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -115,13 +113,13 @@ import (
 //			}
 //			// Permission targeting ALL roles in the realm (role_ids omitted).
 //			_, err = keycloak.NewRoleAdminPermissions(ctx, "admins_map_any_role", &keycloak.RoleAdminPermissionsArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("admins-can-map-any-role"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("map-role"),
 //				},
 //				Policies: pulumi.StringArray{
-//					adminsPolicy.ID(),
+//					adminsPolicy.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

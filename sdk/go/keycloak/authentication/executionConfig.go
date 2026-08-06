@@ -38,14 +38,14 @@ import (
 //				return err
 //			}
 //			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Alias:   pulumi.String("my-flow-alias"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			execution, err := authentication.NewExecution(ctx, "execution", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
+//				RealmId:         realm.ID().ToIDOutput().ToStringOutput(),
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("identity-provider-redirector"),
 //			})
@@ -53,8 +53,8 @@ import (
 //				return err
 //			}
 //			_, err = authentication.NewExecutionConfig(ctx, "config", &authentication.ExecutionConfigArgs{
-//				RealmId:     realm.ID(),
-//				ExecutionId: execution.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
+//				ExecutionId: execution.ID().ToIDOutput().ToStringOutput(),
 //				Alias:       pulumi.String("my-config-alias"),
 //				Config: pulumi.StringMap{
 //					"defaultProvider": pulumi.String("my-config-default-idp"),

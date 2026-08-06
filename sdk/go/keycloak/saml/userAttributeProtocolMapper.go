@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.String("saml-client"),
 //				Name:     pulumi.String("saml-client"),
 //			})
@@ -51,8 +51,8 @@ import (
 //				return err
 //			}
 //			_, err = saml.NewUserAttributeProtocolMapper(ctx, "saml_user_attribute_mapper", &saml.UserAttributeProtocolMapperArgs{
-//				RealmId:                 realm.ID(),
-//				ClientId:                samlClient.ID(),
+//				RealmId:                 realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:                samlClient.ID().ToIDOutput().ToStringOutput(),
 //				Name:                    pulumi.String("displayname-user-attribute-mapper"),
 //				UserAttribute:           pulumi.String("displayName"),
 //				SamlAttributeName:       pulumi.String("displayName"),

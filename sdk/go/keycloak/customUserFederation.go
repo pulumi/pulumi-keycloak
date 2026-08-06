@@ -40,7 +40,7 @@ import (
 //			}
 //			_, err = keycloak.NewCustomUserFederation(ctx, "custom_user_federation", &keycloak.CustomUserFederationArgs{
 //				Name:       pulumi.String("custom"),
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ProviderId: pulumi.String("custom"),
 //				Enabled:    pulumi.Bool(true),
 //				Config: pulumi.StringMap{

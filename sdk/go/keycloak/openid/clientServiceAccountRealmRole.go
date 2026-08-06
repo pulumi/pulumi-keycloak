@@ -41,14 +41,14 @@ import (
 //				return err
 //			}
 //			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("my-realm-role"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:                   pulumi.String("client"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //			})
@@ -56,7 +56,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientServiceAccountRealmRole(ctx, "client_service_account_role", &openid.ClientServiceAccountRealmRoleArgs{
-//				RealmId:              realm.ID(),
+//				RealmId:              realm.ID().ToIDOutput().ToStringOutput(),
 //				ServiceAccountUserId: client.ServiceAccountUserId,
 //				Role:                 realmRole.Name,
 //			})

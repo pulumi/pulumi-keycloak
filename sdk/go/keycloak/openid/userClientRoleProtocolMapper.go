@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -57,8 +57,8 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewUserClientRoleProtocolMapper(ctx, "user_client_role_mapper", &openid.UserClientRoleProtocolMapperArgs{
-//				RealmId:   realm.ID(),
-//				ClientId:  openidClient.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:  openidClient.ID().ToIDOutput().ToStringOutput(),
 //				Name:      pulumi.String("user-client-role-mapper"),
 //				ClaimName: pulumi.String("foo"),
 //			})
@@ -94,15 +94,15 @@ import (
 //				return err
 //			}
 //			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = openid.NewUserClientRoleProtocolMapper(ctx, "user_client_role_mapper", &openid.UserClientRoleProtocolMapperArgs{
-//				RealmId:       realm.ID(),
-//				ClientScopeId: clientScope.ID(),
+//				RealmId:       realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientScopeId: clientScope.ID().ToIDOutput().ToStringOutput(),
 //				Name:          pulumi.String("user-client-role-mapper"),
 //				ClaimName:     pulumi.String("foo"),
 //			})

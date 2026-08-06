@@ -36,22 +36,18 @@ import (
 //				return err
 //			}
 //			offlineAccess := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
 //			group := keycloak.GetGroupOutput(ctx, keycloak.GetGroupOutputArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("group"),
 //			}, nil)
 //			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
-//				RealmId: realm.ID(),
-//				GroupId: pulumi.String(group.ApplyT(func(group keycloak.GetGroupResult) (*string, error) {
-//					return group.Id, nil
-//				}).(pulumi.StringPtrOutput)),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				GroupId: group.Id(),
 //				RoleIds: pulumi.StringArray{
-//					pulumi.String(offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
-//						return offlineAccess.Id, nil
-//					}).(pulumi.StringPtrOutput)),
+//					offlineAccess.Id(),
 //				},
 //			})
 //			if err != nil {
@@ -59,22 +55,18 @@ import (
 //			}
 //			// Using group_path to look up nested groups by their full path
 //			superAdmin := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("super_admin"),
 //			}, nil)
 //			admins := keycloak.GetGroupOutput(ctx, keycloak.GetGroupOutputArgs{
-//				RealmId:   realm.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
 //				GroupPath: pulumi.String("/Administration/Full Admins"),
 //			}, nil)
 //			_, err = keycloak.NewGroupRoles(ctx, "admins_roles", &keycloak.GroupRolesArgs{
-//				RealmId: realm.ID(),
-//				GroupId: pulumi.String(admins.ApplyT(func(admins keycloak.GetGroupResult) (*string, error) {
-//					return admins.Id, nil
-//				}).(pulumi.StringPtrOutput)),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				GroupId: admins.Id(),
 //				RoleIds: pulumi.StringArray{
-//					pulumi.String(superAdmin.ApplyT(func(superAdmin keycloak.GetRoleResult) (*string, error) {
-//						return superAdmin.Id, nil
-//					}).(pulumi.StringPtrOutput)),
+//					superAdmin.Id(),
 //				},
 //			})
 //			if err != nil {

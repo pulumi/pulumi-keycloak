@@ -40,7 +40,7 @@ import (
 //			}
 //			// An application client with authorization enabled.
 //			app, err := openid.NewClient(ctx, "app", &openid.ClientArgs{
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:               pulumi.String("my-app"),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
@@ -53,7 +53,7 @@ import (
 //			}
 //			// A named scope on the authorization-enabled client.
 //			_, err = openid.NewClientAuthorizationScope(ctx, "read_orders", &openid.ClientAuthorizationScopeArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				ResourceServerId: app.ResourceServerId,
 //				Name:             pulumi.String("read:orders"),
 //			})
@@ -62,12 +62,12 @@ import (
 //			}
 //			// Resolve the scope ID by name — stable across plan/apply cycles.
 //			readOrders := openid.LookupClientAuthorizationScopeOutput(ctx, openid.GetClientAuthorizationScopeOutputArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				ResourceServerId: app.ResourceServerId,
 //				Name:             pulumi.String("read:orders"),
 //			}, nil)
 //			orders, err := openid.NewClientAuthorizationResource(ctx, "orders", &openid.ClientAuthorizationResourceArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				ResourceServerId: app.ResourceServerId,
 //				Name:             pulumi.String("orders"),
 //				Uris: pulumi.StringArray{
@@ -78,18 +78,16 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientAuthorizationPermission(ctx, "read_orders", &openid.ClientAuthorizationPermissionArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				ResourceServerId: app.ResourceServerId,
 //				Name:             pulumi.String("read-orders-permission"),
 //				Type:             pulumi.String("scope"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Resources: pulumi.StringArray{
-//					orders.ID(),
+//					orders.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Scopes: pulumi.StringArray{
-//					pulumi.String(readOrders.ApplyT(func(readOrders openid.GetClientAuthorizationScopeResult) (*string, error) {
-//						return readOrders.Id, nil
-//					}).(pulumi.StringPtrOutput)),
+//					readOrders.Id(),
 //				},
 //			})
 //			if err != nil {
@@ -126,21 +124,21 @@ import (
 //				return err
 //			}
 //			adminPermissions := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.String("admin-permissions"),
 //			}, nil)
 //			hrViewer, err := keycloak.NewRole(ctx, "hr_viewer", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("hr-viewer"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewRoleAdminPermissions(ctx, "hr_viewer", &keycloak.RoleAdminPermissionsArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("map-role-hr-viewer"),
 //				RoleIds: pulumi.StringArray{
-//					hrViewer.ID(),
+//					hrViewer.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("map-role"),
@@ -151,30 +149,26 @@ import (
 //			}
 //			// Resolve the map-role scope by name for use in a custom permission.
 //			mapRole := openid.LookupClientAuthorizationScopeOutput(ctx, openid.GetClientAuthorizationScopeOutputArgs{
-//				RealmId: realm.ID(),
-//				ResourceServerId: adminPermissions.ApplyT(func(adminPermissions openid.GetClientResult) (*string, error) {
-//					return adminPermissions.Id, nil
-//				}).(pulumi.StringPtrOutput),
-//				Name: pulumi.String("map-role"),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				ResourceServerId: adminPermissions.Id(),
+//				Name:             pulumi.String("map-role"),
 //			}, nil)
 //			hrManagers, err := keycloak.NewGroup(ctx, "hr_managers", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("hr-managers"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			hrManagersClientGroupPolicy, err := openid.NewClientGroupPolicy(ctx, "hr_managers", &openid.ClientGroupPolicyArgs{
-//				RealmId: realm.ID(),
-//				ResourceServerId: pulumi.String(adminPermissions.ApplyT(func(adminPermissions openid.GetClientResult) (*string, error) {
-//					return adminPermissions.Id, nil
-//				}).(pulumi.StringPtrOutput)),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				ResourceServerId: adminPermissions.Id(),
 //				Name:             pulumi.String("policy-hr-managers"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Groups: openid.ClientGroupPolicyGroupArray{
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             hrManagers.ID(),
+//						Id:             hrManagers.ID().ToIDOutput().ToStringOutput(),
 //						Path:           hrManagers.Path,
 //						ExtendChildren: pulumi.Bool(false),
 //					},
@@ -184,23 +178,19 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientAuthorizationPermission(ctx, "hr_managers_map_role", &openid.ClientAuthorizationPermissionArgs{
-//				RealmId: realm.ID(),
-//				ResourceServerId: pulumi.String(adminPermissions.ApplyT(func(adminPermissions openid.GetClientResult) (*string, error) {
-//					return adminPermissions.Id, nil
-//				}).(pulumi.StringPtrOutput)),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				ResourceServerId: adminPermissions.Id(),
 //				Name:             pulumi.String("hr-managers-map-hr-viewer-role"),
 //				Type:             pulumi.String("scope"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Resources: pulumi.StringArray{
-//					hrViewer.ID(),
+//					hrViewer.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Scopes: pulumi.StringArray{
-//					pulumi.String(mapRole.ApplyT(func(mapRole openid.GetClientAuthorizationScopeResult) (*string, error) {
-//						return mapRole.Id, nil
-//					}).(pulumi.StringPtrOutput)),
+//					mapRole.Id(),
 //				},
 //				Policies: pulumi.StringArray{
-//					hrManagersClientGroupPolicy.ID(),
+//					hrManagersClientGroupPolicy.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

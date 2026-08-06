@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_, err = oidc.NewGithubIdentityProvider(ctx, "github", &oidc.GithubIdentityProviderArgs{
-//				Realm:        realm.ID(),
+//				Realm:        realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:     pulumi.Any(githubIdentityProviderClientId),
 //				ClientSecret: pulumi.Any(githubIdentityProviderClientSecret),
 //				TrustEmail:   pulumi.Bool(true),

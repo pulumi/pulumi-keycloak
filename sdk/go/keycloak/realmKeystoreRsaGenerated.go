@@ -38,7 +38,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmKeystoreRsaGenerated(ctx, "keystore_rsa_generated", &keycloak.RealmKeystoreRsaGeneratedArgs{
 //				Name:      pulumi.String("my-rsa-generated-key"),
-//				RealmId:   realm.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
 //				Enabled:   pulumi.Bool(true),
 //				Active:    pulumi.Bool(true),
 //				Priority:  pulumi.Int(100),
