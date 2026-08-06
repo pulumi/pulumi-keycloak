@@ -39,20 +39,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//			invokeFile, err := std.File(ctx, map[string]string{
 //				"input": "saml-cert.pem",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//			invokeFile1, err := std.File(ctx, map[string]string{
 //				"input": "saml-key.pem",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:              pulumi.String("test-saml-client"),
 //				Name:                  pulumi.String("test-saml-client"),
 //				SignDocuments:         pulumi.Bool(false),
@@ -65,8 +65,8 @@ import (
 //				return err
 //			}
 //			samlIdpDescriptor := saml.GetClientInstallationProviderOutput(ctx, saml.GetClientInstallationProviderOutputArgs{
-//				RealmId:    realm.ID(),
-//				ClientId:   samlClient.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:   samlClient.ID().ToIDOutput().ToStringOutput(),
 //				ProviderId: pulumi.String("saml-idp-descriptor"),
 //			}, nil)
 //			_, err = aws.NewIamSamlProvider(ctx, "default", &aws.IamSamlProviderArgs{

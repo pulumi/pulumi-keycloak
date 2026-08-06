@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * // enable permissions for realm-management client
  * const realmManagementPermission = new keycloak.openid.ClientPermissions("realm_management_permission", {
  *     realmId: realm.id,
- *     clientId: realmManagement.apply(realmManagement => realmManagement.id),
+ *     clientId: realmManagement.id,
  *     enabled: true,
  * });
  * // creating a user to use with the keycloak_openid_client_user_policy resource
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * });
  * const testClientUserPolicy = new keycloak.openid.ClientUserPolicy("test", {
  *     realmId: realm.id,
- *     resourceServerId: realmManagement.apply(realmManagement => realmManagement.id),
+ *     resourceServerId: realmManagement.id,
  *     name: "client_user_policy_test",
  *     users: [test.id],
  *     logic: "POSITIVE",

@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -52,7 +52,7 @@ import (
 //			}
 //			rolePolicy, err := openid.NewClientRolePolicy(ctx, "role_policy", &openid.ClientRolePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("role_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
@@ -68,7 +68,7 @@ import (
 //			}
 //			userPolicy, err := openid.NewClientUserPolicy(ctx, "user_policy", &openid.ClientUserPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("user_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
@@ -81,13 +81,13 @@ import (
 //			}
 //			_, err = openid.NewClientAggregatePolicy(ctx, "test", &openid.ClientAggregatePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("aggregate_policy"),
 //				DecisionStrategy: pulumi.String("AFFIRMATIVE"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Policies: pulumi.StringArray{
-//					rolePolicy.ID(),
-//					userPolicy.ID(),
+//					rolePolicy.ID().ToIDOutput().ToStringOutput(),
+//					userPolicy.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

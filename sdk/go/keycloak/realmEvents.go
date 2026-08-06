@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRealmEvents(ctx, "realm_events", &keycloak.RealmEventsArgs{
-//				RealmId:                   realm.ID(),
+//				RealmId:                   realm.ID().ToIDOutput().ToStringOutput(),
 //				EventsEnabled:             pulumi.Bool(true),
 //				EventsExpiration:          pulumi.Int(3600),
 //				AdminEventsEnabled:        pulumi.Bool(true),

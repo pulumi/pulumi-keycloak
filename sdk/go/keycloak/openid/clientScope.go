@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientScope(ctx, "openid_client_scope", &openid.ClientScopeArgs{
-//				RealmId:                         realm.ID(),
+//				RealmId:                         realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:                            pulumi.String("groups"),
 //				Description:                     pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
 //				IncludeInTokenScope:             pulumi.Bool(true),

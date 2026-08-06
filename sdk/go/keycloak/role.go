@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //				Attributes: pulumi.StringMap{
@@ -80,7 +80,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -93,7 +93,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:    pulumi.Any(openidClientKeycloakClient.Id),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
@@ -134,7 +134,7 @@ import (
 //			}
 //			// realm roles
 //			createRole, err := keycloak.NewRole(ctx, "create_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("create"),
 //				Attributes: pulumi.StringMap{
 //					"key": pulumi.String("value"),
@@ -144,7 +144,7 @@ import (
 //				return err
 //			}
 //			readRole, err := keycloak.NewRole(ctx, "read_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("read"),
 //				Attributes: pulumi.StringMap{
 //					"key": pulumi.String("value"),
@@ -154,7 +154,7 @@ import (
 //				return err
 //			}
 //			updateRole, err := keycloak.NewRole(ctx, "update_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("update"),
 //				Attributes: pulumi.StringMap{
 //					"key": pulumi.String("value"),
@@ -164,7 +164,7 @@ import (
 //				return err
 //			}
 //			deleteRole, err := keycloak.NewRole(ctx, "delete_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("delete"),
 //				Attributes: pulumi.StringMap{
 //					"key": pulumi.String("value"),
@@ -175,7 +175,7 @@ import (
 //			}
 //			// client role
 //			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -188,7 +188,7 @@ import (
 //				return err
 //			}
 //			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:    pulumi.Any(openidClientKeycloakClient.Id),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
@@ -200,14 +200,14 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRole(ctx, "admin_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("admin"),
 //				CompositeRoles: pulumi.StringArray{
-//					createRole.ID(),
-//					readRole.ID(),
-//					updateRole.ID(),
-//					deleteRole.ID(),
-//					clientRole.ID(),
+//					createRole.ID().ToIDOutput().ToStringOutput(),
+//					readRole.ID().ToIDOutput().ToStringOutput(),
+//					updateRole.ID().ToIDOutput().ToStringOutput(),
+//					deleteRole.ID().ToIDOutput().ToStringOutput(),
+//					clientRole.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				Attributes: pulumi.StringMap{
 //					"key": pulumi.String("value"),

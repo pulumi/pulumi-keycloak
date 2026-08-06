@@ -38,7 +38,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			test1, err := openid.NewClientScope(ctx, "test1", &openid.ClientScopeArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("test1"),
 //				Description: pulumi.String("test1"),
 //			})
@@ -57,7 +57,7 @@ import (
 //				return err
 //			}
 //			test2, err := openid.NewClientScope(ctx, "test2", &openid.ClientScopeArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("test2"),
 //				Description: pulumi.String("test2"),
 //			})
@@ -66,14 +66,14 @@ import (
 //			}
 //			_, err = openid.NewClientAuthorizationClientScopePolicy(ctx, "test", &openid.ClientAuthorizationClientScopePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("test_policy_single"),
 //				Description:      pulumi.String("test"),
 //				DecisionStrategy: pulumi.String("AFFIRMATIVE"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Scopes: openid.ClientAuthorizationClientScopePolicyScopeArray{
 //					&openid.ClientAuthorizationClientScopePolicyScopeArgs{
-//						Id:       test1.ID(),
+//						Id:       test1.ID().ToIDOutput().ToStringOutput(),
 //						Required: pulumi.Bool(false),
 //					},
 //				},
@@ -83,18 +83,18 @@ import (
 //			}
 //			_, err = openid.NewClientAuthorizationClientScopePolicy(ctx, "test_multiple", &openid.ClientAuthorizationClientScopePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("test_policy_multiple"),
 //				Description:      pulumi.String("test"),
 //				DecisionStrategy: pulumi.String("AFFIRMATIVE"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Scopes: openid.ClientAuthorizationClientScopePolicyScopeArray{
 //					&openid.ClientAuthorizationClientScopePolicyScopeArgs{
-//						Id:       test1.ID(),
+//						Id:       test1.ID().ToIDOutput().ToStringOutput(),
 //						Required: pulumi.Bool(false),
 //					},
 //					&openid.ClientAuthorizationClientScopePolicyScopeArgs{
-//						Id:       test2.ID(),
+//						Id:       test2.ID().ToIDOutput().ToStringOutput(),
 //						Required: pulumi.Bool(true),
 //					},
 //				},

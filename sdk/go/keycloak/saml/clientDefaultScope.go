@@ -45,20 +45,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//			invokeFile, err := std.File(ctx, map[string]string{
 //				"input": "saml-cert.pem",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//			invokeFile1, err := std.File(ctx, map[string]string{
 //				"input": "saml-key.pem",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:              pulumi.String("saml-client"),
 //				Name:                  pulumi.String("saml-client"),
 //				SignDocuments:         pulumi.Bool(false),
@@ -71,14 +71,14 @@ import (
 //				return err
 //			}
 //			clientScope, err := saml.NewClientScope(ctx, "client_scope", &saml.ClientScopeArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = saml.NewClientDefaultScope(ctx, "client_default_scopes", &saml.ClientDefaultScopeArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.Any(client.Id),
 //				DefaultScopes: pulumi.StringArray{
 //					pulumi.String("role_list"),

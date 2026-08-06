@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = oidc.NewMicrosoftIdentityProvider(ctx, "microsoft", &oidc.MicrosoftIdentityProviderArgs{
-//				Realm:        realm.ID(),
+//				Realm:        realm.ID().ToIDOutput().ToStringOutput(),
 //				DisplayName:  pulumi.String("myMicrosoft-idp"),
 //				ClientId:     pulumi.Any(microsoftIdentityProviderClientId),
 //				ClientSecret: pulumi.Any(microsoftIdentityProviderClientSecret),

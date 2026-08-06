@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  *     parentFlowAlias: myFlow.alias,
  *     alias: "my-subflow",
  * });
- * export const subflowId = subflow.apply(subflow => subflow.id);
+ * export const subflowId = subflow.id;
  * ```
  *
  * ### Lookup by ID (Direct)
@@ -151,7 +151,7 @@ export interface GetSubflowResult {
  *     parentFlowAlias: myFlow.alias,
  *     alias: "my-subflow",
  * });
- * export const subflowId = subflow.apply(subflow => subflow.id);
+ * export const subflowId = subflow.id;
  * ```
  *
  * ### Lookup by ID (Direct)

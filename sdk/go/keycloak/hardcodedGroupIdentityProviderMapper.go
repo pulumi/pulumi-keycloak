@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			oidc2, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
-//				Realm:            realm.ID(),
+//				Realm:            realm.ID().ToIDOutput().ToStringOutput(),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
 //				ClientId:         pulumi.String("clientID"),
@@ -50,7 +50,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewGroup(ctx, "realm_group", &keycloak.GroupArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-realm-group"),
 //				Description: pulumi.String("My Realm Group"),
 //			})
@@ -58,7 +58,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewHardcodedGroupIdentityProviderMapper(ctx, "oidc", &keycloak.HardcodedGroupIdentityProviderMapperArgs{
-//				Realm:                 realm.ID(),
+//				Realm:                 realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:                  pulumi.String("hardcodedGroup"),
 //				IdentityProviderAlias: oidc2.Alias,
 //				Group:                 pulumi.String("my-realm-group"),

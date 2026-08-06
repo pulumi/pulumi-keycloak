@@ -28,8 +28,8 @@ import * as utilities from "./utilities";
  * });
  * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     realmId: realm.id,
- *     groupId: group.apply(group => group.id),
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ *     groupId: group.id,
+ *     roleIds: [offlineAccess.id],
  * });
  * // Using group_path to look up nested groups by their full path
  * const superAdmin = keycloak.getRoleOutput({
@@ -42,8 +42,8 @@ import * as utilities from "./utilities";
  * });
  * const adminsRoles = new keycloak.GroupRoles("admins_roles", {
  *     realmId: realm.id,
- *     groupId: admins.apply(admins => admins.id),
- *     roleIds: [superAdmin.apply(superAdmin => superAdmin.id)],
+ *     groupId: admins.id,
+ *     roleIds: [superAdmin.id],
  * });
  * ```
  *
@@ -135,8 +135,8 @@ export interface GetGroupResult {
  * });
  * const groupRoles = new keycloak.GroupRoles("group_roles", {
  *     realmId: realm.id,
- *     groupId: group.apply(group => group.id),
- *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
+ *     groupId: group.id,
+ *     roleIds: [offlineAccess.id],
  * });
  * // Using group_path to look up nested groups by their full path
  * const superAdmin = keycloak.getRoleOutput({
@@ -149,8 +149,8 @@ export interface GetGroupResult {
  * });
  * const adminsRoles = new keycloak.GroupRoles("admins_roles", {
  *     realmId: realm.id,
- *     groupId: admins.apply(admins => admins.id),
- *     roleIds: [superAdmin.apply(superAdmin => superAdmin.id)],
+ *     groupId: admins.id,
+ *     roleIds: [superAdmin.id],
  * });
  * ```
  *

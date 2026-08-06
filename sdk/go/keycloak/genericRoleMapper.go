@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
@@ -61,9 +61,9 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewGenericRoleMapper(ctx, "client_role_mapper", &keycloak.GenericRoleMapperArgs{
-//				RealmId:  realm.ID(),
-//				ClientId: client.ID(),
-//				RoleId:   realmRole.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId: client.ID().ToIDOutput().ToStringOutput(),
+//				RoleId:   realmRole.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -97,7 +97,7 @@ import (
 //				return err
 //			}
 //			clientA, err := openid.NewClient(ctx, "client_a", &openid.ClientArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:         pulumi.String("client-a"),
 //				Name:             pulumi.String("client-a"),
 //				Enabled:          pulumi.Bool(true),
@@ -108,8 +108,8 @@ import (
 //				return err
 //			}
 //			clientRoleA, err := keycloak.NewRole(ctx, "client_role_a", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
-//				ClientId:    clientA.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:    clientA.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
 //			})
@@ -117,7 +117,7 @@ import (
 //				return err
 //			}
 //			clientB, err := openid.NewClient(ctx, "client_b", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client-b"),
 //				Name:       pulumi.String("client-b"),
 //				Enabled:    pulumi.Bool(true),
@@ -127,8 +127,8 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRole(ctx, "client_role_b", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
-//				ClientId:    clientB.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:    clientB.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
 //			})
@@ -136,9 +136,9 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewGenericRoleMapper(ctx, "client_b_role_mapper", &keycloak.GenericRoleMapperArgs{
-//				RealmId:  realm.ID(),
-//				ClientId: clientB.ID(),
-//				RoleId:   clientRoleA.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId: clientB.ID().ToIDOutput().ToStringOutput(),
+//				RoleId:   clientRoleA.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -172,14 +172,14 @@ import (
 //				return err
 //			}
 //			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("my-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
@@ -187,9 +187,9 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewGenericRoleMapper(ctx, "client_role_mapper", &keycloak.GenericRoleMapperArgs{
-//				RealmId:       realm.ID(),
-//				ClientScopeId: clientScope.ID(),
-//				RoleId:        realmRole.ID(),
+//				RealmId:       realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientScopeId: clientScope.ID().ToIDOutput().ToStringOutput(),
+//				RoleId:        realmRole.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -223,7 +223,7 @@ import (
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -233,8 +233,8 @@ import (
 //				return err
 //			}
 //			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
-//				ClientId:    client.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:    client.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
 //			})
@@ -242,16 +242,16 @@ import (
 //				return err
 //			}
 //			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("my-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGenericRoleMapper(ctx, "client_b_role_mapper", &keycloak.GenericRoleMapperArgs{
-//				RealmId:       realm.ID(),
-//				ClientScopeId: clientScope.ID(),
-//				RoleId:        clientRole.ID(),
+//				RealmId:       realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientScopeId: clientScope.ID().ToIDOutput().ToStringOutput(),
+//				RoleId:        clientRole.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

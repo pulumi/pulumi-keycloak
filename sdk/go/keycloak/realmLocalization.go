@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewRealmLocalization(ctx, "german_texts", &keycloak.RealmLocalizationArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Locale:  pulumi.String("de"),
 //				Texts: pulumi.StringMap{
 //					"Hello": pulumi.String("Hallo"),

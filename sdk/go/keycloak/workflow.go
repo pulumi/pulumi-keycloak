@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewWorkflow(ctx, "onboarding", &keycloak.WorkflowArgs{
-//				Realm:   realm.ID(),
+//				Realm:   realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("onboarding-new-users"),
 //				On:      pulumi.String("user_created"),
 //				Enabled: pulumi.Bool(true),

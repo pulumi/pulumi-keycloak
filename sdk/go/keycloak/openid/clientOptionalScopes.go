@@ -48,7 +48,7 @@ import (
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("test-client"),
 //				AccessType: pulumi.String("CONFIDENTIAL"),
 //			})
@@ -56,15 +56,15 @@ import (
 //				return err
 //			}
 //			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("test-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = openid.NewClientOptionalScopes(ctx, "client_optional_scopes", &openid.ClientOptionalScopesArgs{
-//				RealmId:  realm.ID(),
-//				ClientId: client.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				ClientId: client.ID().ToIDOutput().ToStringOutput(),
 //				OptionalScopes: pulumi.StringArray{
 //					pulumi.String("address"),
 //					pulumi.String("phone"),

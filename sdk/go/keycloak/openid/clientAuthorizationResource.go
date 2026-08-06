@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -52,7 +52,7 @@ import (
 //			}
 //			readScope, err := openid.NewClientAuthorizationScope(ctx, "read_scope", &openid.ClientAuthorizationScopeArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("read"),
 //			})
 //			if err != nil {
@@ -60,7 +60,7 @@ import (
 //			}
 //			writeScope, err := openid.NewClientAuthorizationScope(ctx, "write_scope", &openid.ClientAuthorizationScopeArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("write"),
 //			})
 //			if err != nil {
@@ -68,7 +68,7 @@ import (
 //			}
 //			_, err = openid.NewClientAuthorizationResource(ctx, "test", &openid.ClientAuthorizationResourceArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("my_resource"),
 //				DisplayName:      pulumi.String("My Resource"),
 //				Uris: pulumi.StringArray{

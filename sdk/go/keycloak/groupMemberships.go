@@ -50,22 +50,22 @@ import (
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-//				RealmId:  realm.ID(),
+//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				Username: pulumi.String("my-user"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroupMemberships(ctx, "group_members", &keycloak.GroupMembershipsArgs{
-//				RealmId: realm.ID(),
-//				GroupId: group.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				GroupId: group.ID().ToIDOutput().ToStringOutput(),
 //				Members: pulumi.StringArray{
 //					user.Username,
 //				},

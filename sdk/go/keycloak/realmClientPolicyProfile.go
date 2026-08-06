@@ -36,7 +36,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmClientPolicyProfile(ctx, "profile", &keycloak.RealmClientPolicyProfileArgs{
 //				Name:    pulumi.String("my-profile"),
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Executors: keycloak.RealmClientPolicyProfileExecutorArray{
 //					&keycloak.RealmClientPolicyProfileExecutorArgs{
 //						Name: pulumi.String("intent-client-bind-checker"),

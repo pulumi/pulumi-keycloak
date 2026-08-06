@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-//				RealmId:   realm.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
 //				Username:  pulumi.String("bob"),
 //				Enabled:   pulumi.Bool(true),
 //				Email:     pulumi.String("bob@domain.com"),
@@ -51,7 +51,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewUser(ctx, "user_with_initial_password", &keycloak.UserArgs{
-//				RealmId:   realm.ID(),
+//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
 //				Username:  pulumi.String("alice"),
 //				Enabled:   pulumi.Bool(true),
 //				Email:     pulumi.String("alice@domain.com"),

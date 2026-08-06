@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -51,14 +51,14 @@ import (
 //				return err
 //			}
 //			adminRole, err := keycloak.NewRole(ctx, "admin_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			userRole, err := keycloak.NewRole(ctx, "user_role", &keycloak.RoleArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("user"),
 //			})
 //			if err != nil {
@@ -66,18 +66,18 @@ import (
 //			}
 //			_, err = openid.NewClientRolePolicy(ctx, "test", &openid.ClientRolePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("role_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Type:             pulumi.String("role"),
 //				Roles: openid.ClientRolePolicyRoleArray{
 //					&openid.ClientRolePolicyRoleArgs{
-//						Id:       adminRole.ID(),
+//						Id:       adminRole.ID().ToIDOutput().ToStringOutput(),
 //						Required: pulumi.Bool(true),
 //					},
 //					&openid.ClientRolePolicyRoleArgs{
-//						Id:       userRole.ID(),
+//						Id:       userRole.ID().ToIDOutput().ToStringOutput(),
 //						Required: pulumi.Bool(false),
 //					},
 //				},

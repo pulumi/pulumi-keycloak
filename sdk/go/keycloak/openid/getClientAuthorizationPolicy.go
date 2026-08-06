@@ -42,7 +42,7 @@ import (
 //			clientWithAuthz, err := openid.NewClient(ctx, "client_with_authz", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client-with-authz"),
 //				Name:                   pulumi.String("client-with-authz"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -53,14 +53,14 @@ import (
 //				return err
 //			}
 //			defaultPermission := openid.GetClientAuthorizationPolicyOutput(ctx, openid.GetClientAuthorizationPolicyOutputArgs{
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
 //				Name:             pulumi.String("Default Permission"),
 //			}, nil)
 //			resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
 //				Name:             pulumi.String("authorization-resource"),
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Uris: pulumi.StringArray{
 //					pulumi.String("/endpoint/*"),
 //				},
@@ -73,15 +73,13 @@ import (
 //			}
 //			_, err = openid.NewClientAuthorizationPermission(ctx, "permission", &openid.ClientAuthorizationPermissionArgs{
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("authorization-permission"),
 //				Policies: pulumi.StringArray{
-//					pulumi.String(defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (*string, error) {
-//						return defaultPermission.Id, nil
-//					}).(pulumi.StringPtrOutput)),
+//					defaultPermission.Id(),
 //				},
 //				Resources: pulumi.StringArray{
-//					resource.ID(),
+//					resource.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

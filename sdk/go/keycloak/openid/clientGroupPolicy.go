@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -51,14 +51,14 @@ import (
 //				return err
 //			}
 //			group1, err := keycloak.NewGroup(ctx, "group1", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("group1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			group2, err := keycloak.NewGroup(ctx, "group2", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("group2"),
 //			})
 //			if err != nil {
@@ -66,18 +66,18 @@ import (
 //			}
 //			_, err = openid.NewClientGroupPolicy(ctx, "test", &openid.ClientGroupPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("group_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				Groups: openid.ClientGroupPolicyGroupArray{
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             group1.ID(),
+//						Id:             group1.ID().ToIDOutput().ToStringOutput(),
 //						Path:           group1.Path,
 //						ExtendChildren: pulumi.Bool(false),
 //					},
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             group2.ID(),
+//						Id:             group2.ID().ToIDOutput().ToStringOutput(),
 //						Path:           group2.Path,
 //						ExtendChildren: pulumi.Bool(true),
 //					},

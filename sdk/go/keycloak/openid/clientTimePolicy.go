@@ -40,7 +40,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID(),
+//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -53,7 +53,7 @@ import (
 //			// Policy for business hours only (9 AM - 5 PM)
 //			_, err = openid.NewClientTimePolicy(ctx, "business_hours", &openid.ClientTimePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("business_hours_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
@@ -66,7 +66,7 @@ import (
 //			// Policy for specific date range
 //			_, err = openid.NewClientTimePolicy(ctx, "date_range", &openid.ClientTimePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("date_range_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),
@@ -79,7 +79,7 @@ import (
 //			// Policy for specific months (January to March)
 //			_, err = openid.NewClientTimePolicy(ctx, "quarter1", &openid.ClientTimePolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID(),
+//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("q1_policy"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Logic:            pulumi.String("POSITIVE"),

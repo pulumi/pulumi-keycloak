@@ -53,7 +53,7 @@ import * as utilities from "./utilities";
  * });
  * const samlClientClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
- *     clientId: samlClient.apply(samlClient => samlClient.clientId),
+ *     clientId: samlClient.clientId,
  * });
  * ```
  */
@@ -173,7 +173,7 @@ export interface GetClientDescriptionConverterResult {
  * });
  * const samlClientClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
- *     clientId: samlClient.apply(samlClient => samlClient.clientId),
+ *     clientId: samlClient.clientId,
  * });
  * ```
  */

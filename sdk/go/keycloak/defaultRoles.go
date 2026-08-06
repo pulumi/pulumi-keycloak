@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewDefaultRoles(ctx, "default_roles", &keycloak.DefaultRolesArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				DefaultRoles: pulumi.StringArray{
 //					pulumi.String("uma_authorization"),
 //				},
@@ -76,7 +76,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewDefaultRoles(ctx, "default_roles", &keycloak.DefaultRolesArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				DefaultRoles: pulumi.StringArray{
 //					pulumi.String("account/manage-account"),
 //					pulumi.String("account/view-groups"),

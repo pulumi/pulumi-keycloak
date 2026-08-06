@@ -49,7 +49,7 @@ import * as utilities from "../utilities";
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
  *     name: "authorization-permission",
- *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
+ *     policies: [defaultPermission.id],
  *     resources: [resource.id],
  * });
  * ```
@@ -166,7 +166,7 @@ export interface GetClientAuthorizationPolicyResult {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
  *     name: "authorization-permission",
- *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
+ *     policies: [defaultPermission.id],
  *     resources: [resource.id],
  * });
  * ```

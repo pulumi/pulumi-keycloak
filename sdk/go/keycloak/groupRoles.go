@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
@@ -54,7 +54,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -64,7 +64,7 @@ import (
 //				return err
 //			}
 //			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:    pulumi.Any(clientKeycloakClient.Id),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
@@ -73,18 +73,18 @@ import (
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
-//				RealmId: realm.ID(),
-//				GroupId: group.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				GroupId: group.ID().ToIDOutput().ToStringOutput(),
 //				RoleIds: pulumi.StringArray{
-//					realmRole.ID(),
-//					clientRole.ID(),
+//					realmRole.ID().ToIDOutput().ToStringOutput(),
+//					clientRole.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
@@ -119,7 +119,7 @@ import (
 //				return err
 //			}
 //			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
@@ -127,7 +127,7 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
@@ -137,7 +137,7 @@ import (
 //				return err
 //			}
 //			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID(),
+//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId:    pulumi.Any(clientKeycloakClient.Id),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
@@ -146,29 +146,29 @@ import (
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
+//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroupRoles(ctx, "group_role_association1", &keycloak.GroupRolesArgs{
-//				RealmId:    realm.ID(),
-//				GroupId:    group.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
+//				GroupId:    group.ID().ToIDOutput().ToStringOutput(),
 //				Exhaustive: pulumi.Bool(false),
 //				RoleIds: pulumi.StringArray{
-//					realmRole.ID(),
+//					realmRole.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroupRoles(ctx, "group_role_association2", &keycloak.GroupRolesArgs{
-//				RealmId:    realm.ID(),
-//				GroupId:    group.ID(),
+//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
+//				GroupId:    group.ID().ToIDOutput().ToStringOutput(),
 //				Exhaustive: pulumi.Bool(false),
 //				RoleIds: pulumi.StringArray{
-//					clientRole.ID(),
+//					clientRole.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {

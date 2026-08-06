@@ -61,7 +61,7 @@ import (
 //				ClientId:                    pulumi.String("clientID"),
 //				ClientSecret:                pulumi.String("clientSecret"),
 //				TokenUrl:                    pulumi.String("https://tokenurl.com"),
-//				OrganizationId:              this.ID(),
+//				OrganizationId:              this.ID().ToIDOutput().ToStringOutput(),
 //				OrgDomain:                   pulumi.String("example.com"),
 //				OrgRedirectModeEmailMatches: pulumi.Bool(true),
 //			})

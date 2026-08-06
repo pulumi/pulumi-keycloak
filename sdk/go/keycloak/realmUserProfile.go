@@ -49,14 +49,14 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//			tmpJSON1, err := json.Marshal(map[string]string{
 //				"key": "val",
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//			tmpJSON2, err := json.Marshal(map[string]string{
 //				"key": "val",
 //			})
 //			if err != nil {

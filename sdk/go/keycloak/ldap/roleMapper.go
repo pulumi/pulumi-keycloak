@@ -40,7 +40,7 @@ import (
 //			}
 //			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
 //				Name:                  pulumi.String("openldap"),
-//				RealmId:               realm.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
 //				UuidLdapAttribute:     pulumi.String("entryDN"),
@@ -57,8 +57,8 @@ import (
 //				return err
 //			}
 //			_, err = ldap.NewRoleMapper(ctx, "ldap_role_mapper", &ldap.RoleMapperArgs{
-//				RealmId:               realm.ID(),
-//				LdapUserFederationId:  ldapUserFederation.ID(),
+//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
+//				LdapUserFederationId:  ldapUserFederation.ID().ToIDOutput().ToStringOutput(),
 //				Name:                  pulumi.String("role-mapper"),
 //				LdapRolesDn:           pulumi.String("dc=example,dc=org"),
 //				RoleNameLdapAttribute: pulumi.String("cn"),
