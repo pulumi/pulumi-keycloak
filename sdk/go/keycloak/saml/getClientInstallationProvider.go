@@ -113,12 +113,8 @@ type GetClientInstallationProviderResult struct {
 }
 
 func GetClientInstallationProviderOutput(ctx *pulumi.Context, args GetClientInstallationProviderOutputArgs, opts ...pulumi.InvokeOption) GetClientInstallationProviderResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetClientInstallationProviderResultOutput, error) {
-			args := v.(GetClientInstallationProviderArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args, GetClientInstallationProviderResultOutput{}, options).(GetClientInstallationProviderResultOutput), nil
-		}).(GetClientInstallationProviderResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args, GetClientInstallationProviderResultOutput{}, options).(GetClientInstallationProviderResultOutput)
 }
 
 // A collection of arguments for invoking getClientInstallationProvider.

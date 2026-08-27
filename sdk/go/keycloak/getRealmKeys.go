@@ -92,12 +92,8 @@ type GetRealmKeysResult struct {
 }
 
 func GetRealmKeysOutput(ctx *pulumi.Context, args GetRealmKeysOutputArgs, opts ...pulumi.InvokeOption) GetRealmKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetRealmKeysResultOutput, error) {
-			args := v.(GetRealmKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:index/getRealmKeys:getRealmKeys", args, GetRealmKeysResultOutput{}, options).(GetRealmKeysResultOutput), nil
-		}).(GetRealmKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:index/getRealmKeys:getRealmKeys", args, GetRealmKeysResultOutput{}, options).(GetRealmKeysResultOutput)
 }
 
 // A collection of arguments for invoking getRealmKeys.

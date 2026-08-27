@@ -235,12 +235,8 @@ type LookupClientAuthorizationScopeResult struct {
 }
 
 func LookupClientAuthorizationScopeOutput(ctx *pulumi.Context, args LookupClientAuthorizationScopeOutputArgs, opts ...pulumi.InvokeOption) LookupClientAuthorizationScopeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupClientAuthorizationScopeResultOutput, error) {
-			args := v.(LookupClientAuthorizationScopeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", args, LookupClientAuthorizationScopeResultOutput{}, options).(LookupClientAuthorizationScopeResultOutput), nil
-		}).(LookupClientAuthorizationScopeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", args, LookupClientAuthorizationScopeResultOutput{}, options).(LookupClientAuthorizationScopeResultOutput)
 }
 
 // A collection of arguments for invoking getClientAuthorizationScope.

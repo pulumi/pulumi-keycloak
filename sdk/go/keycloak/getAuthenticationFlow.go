@@ -70,12 +70,8 @@ type GetAuthenticationFlowResult struct {
 }
 
 func GetAuthenticationFlowOutput(ctx *pulumi.Context, args GetAuthenticationFlowOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationFlowResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAuthenticationFlowResultOutput, error) {
-			args := v.(GetAuthenticationFlowArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args, GetAuthenticationFlowResultOutput{}, options).(GetAuthenticationFlowResultOutput), nil
-		}).(GetAuthenticationFlowResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args, GetAuthenticationFlowResultOutput{}, options).(GetAuthenticationFlowResultOutput)
 }
 
 // A collection of arguments for invoking getAuthenticationFlow.

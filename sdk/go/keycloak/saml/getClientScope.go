@@ -89,12 +89,8 @@ type LookupClientScopeResult struct {
 }
 
 func LookupClientScopeOutput(ctx *pulumi.Context, args LookupClientScopeOutputArgs, opts ...pulumi.InvokeOption) LookupClientScopeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupClientScopeResultOutput, error) {
-			args := v.(LookupClientScopeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:saml/getClientScope:getClientScope", args, LookupClientScopeResultOutput{}, options).(LookupClientScopeResultOutput), nil
-		}).(LookupClientScopeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:saml/getClientScope:getClientScope", args, LookupClientScopeResultOutput{}, options).(LookupClientScopeResultOutput)
 }
 
 // A collection of arguments for invoking getClientScope.

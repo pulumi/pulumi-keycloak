@@ -134,12 +134,8 @@ type GetClientAuthorizationPolicyResult struct {
 }
 
 func GetClientAuthorizationPolicyOutput(ctx *pulumi.Context, args GetClientAuthorizationPolicyOutputArgs, opts ...pulumi.InvokeOption) GetClientAuthorizationPolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetClientAuthorizationPolicyResultOutput, error) {
-			args := v.(GetClientAuthorizationPolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args, GetClientAuthorizationPolicyResultOutput{}, options).(GetClientAuthorizationPolicyResultOutput), nil
-		}).(GetClientAuthorizationPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args, GetClientAuthorizationPolicyResultOutput{}, options).(GetClientAuthorizationPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getClientAuthorizationPolicy.

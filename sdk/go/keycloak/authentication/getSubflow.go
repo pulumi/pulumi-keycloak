@@ -139,12 +139,8 @@ type LookupSubflowResult struct {
 }
 
 func LookupSubflowOutput(ctx *pulumi.Context, args LookupSubflowOutputArgs, opts ...pulumi.InvokeOption) LookupSubflowResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSubflowResultOutput, error) {
-			args := v.(LookupSubflowArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:authentication/getSubflow:getSubflow", args, LookupSubflowResultOutput{}, options).(LookupSubflowResultOutput), nil
-		}).(LookupSubflowResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:authentication/getSubflow:getSubflow", args, LookupSubflowResultOutput{}, options).(LookupSubflowResultOutput)
 }
 
 // A collection of arguments for invoking getSubflow.
