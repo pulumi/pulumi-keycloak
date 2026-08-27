@@ -56,12 +56,8 @@ type LookupGenericProtocolMapperResult struct {
 }
 
 func LookupGenericProtocolMapperOutput(ctx *pulumi.Context, args LookupGenericProtocolMapperOutputArgs, opts ...pulumi.InvokeOption) LookupGenericProtocolMapperResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupGenericProtocolMapperResultOutput, error) {
-			args := v.(LookupGenericProtocolMapperArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper", args, LookupGenericProtocolMapperResultOutput{}, options).(LookupGenericProtocolMapperResultOutput), nil
-		}).(LookupGenericProtocolMapperResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper", args, LookupGenericProtocolMapperResultOutput{}, options).(LookupGenericProtocolMapperResultOutput)
 }
 
 // A collection of arguments for invoking getGenericProtocolMapper.

@@ -116,12 +116,8 @@ type GetClientServiceAccountUserResult struct {
 }
 
 func GetClientServiceAccountUserOutput(ctx *pulumi.Context, args GetClientServiceAccountUserOutputArgs, opts ...pulumi.InvokeOption) GetClientServiceAccountUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetClientServiceAccountUserResultOutput, error) {
-			args := v.(GetClientServiceAccountUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args, GetClientServiceAccountUserResultOutput{}, options).(GetClientServiceAccountUserResultOutput), nil
-		}).(GetClientServiceAccountUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args, GetClientServiceAccountUserResultOutput{}, options).(GetClientServiceAccountUserResultOutput)
 }
 
 // A collection of arguments for invoking getClientServiceAccountUser.

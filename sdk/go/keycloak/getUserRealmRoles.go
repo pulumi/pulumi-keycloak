@@ -84,12 +84,8 @@ type GetUserRealmRolesResult struct {
 }
 
 func GetUserRealmRolesOutput(ctx *pulumi.Context, args GetUserRealmRolesOutputArgs, opts ...pulumi.InvokeOption) GetUserRealmRolesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetUserRealmRolesResultOutput, error) {
-			args := v.(GetUserRealmRolesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:index/getUserRealmRoles:getUserRealmRoles", args, GetUserRealmRolesResultOutput{}, options).(GetUserRealmRolesResultOutput), nil
-		}).(GetUserRealmRolesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:index/getUserRealmRoles:getUserRealmRoles", args, GetUserRealmRolesResultOutput{}, options).(GetUserRealmRolesResultOutput)
 }
 
 // A collection of arguments for invoking getUserRealmRoles.

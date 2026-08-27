@@ -85,12 +85,8 @@ type LookupRealmClientRegistrationPolicyResult struct {
 }
 
 func LookupRealmClientRegistrationPolicyOutput(ctx *pulumi.Context, args LookupRealmClientRegistrationPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupRealmClientRegistrationPolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupRealmClientRegistrationPolicyResultOutput, error) {
-			args := v.(LookupRealmClientRegistrationPolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy", args, LookupRealmClientRegistrationPolicyResultOutput{}, options).(LookupRealmClientRegistrationPolicyResultOutput), nil
-		}).(LookupRealmClientRegistrationPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy", args, LookupRealmClientRegistrationPolicyResultOutput{}, options).(LookupRealmClientRegistrationPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getRealmClientRegistrationPolicy.
