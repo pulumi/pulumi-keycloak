@@ -136,7 +136,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -249,7 +249,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -278,7 +278,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict']]]]] = None,
+            executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmClientPolicyProfile':
         """

@@ -300,7 +300,7 @@ class Organization(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict', 'outputs.OrganizationDomain']]]]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
@@ -359,7 +359,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
         :param pulumi.Input[_builtins.str] description: The description of the organization.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]] domains: A list of domains.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict', 'outputs.OrganizationDomain']]]] domains: A list of domains.
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
@@ -437,7 +437,7 @@ class Organization(pulumi.CustomResource):
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict', 'outputs.OrganizationDomain']]]]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
@@ -474,7 +474,7 @@ class Organization(pulumi.CustomResource):
             alias: pulumi.Input[Optional[_builtins.str]] = None,
             attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]]] = None,
+            domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict', 'outputs.OrganizationDomain']]]]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
@@ -489,7 +489,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
         :param pulumi.Input[_builtins.str] description: The description of the organization.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]] domains: A list of domains.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict', 'outputs.OrganizationDomain']]]] domains: A list of domains.
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.

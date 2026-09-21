@@ -1837,8 +1837,8 @@ class Client(pulumi.CustomResource):
                  admin_url: pulumi.Input[Optional[_builtins.str]] = None,
                  allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
                  always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
-                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-                 authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']]] = None,
+                 authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict', 'outputs.ClientAuthorization']]] = None,
                  backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
                  backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
                  backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1971,8 +1971,8 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
-        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
-        :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict', 'outputs.ClientAuthorization']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         :param pulumi.Input[_builtins.bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         :param pulumi.Input[_builtins.bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         :param pulumi.Input[_builtins.str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
@@ -2124,8 +2124,8 @@ class Client(pulumi.CustomResource):
                  admin_url: pulumi.Input[Optional[_builtins.str]] = None,
                  allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
                  always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
-                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-                 authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']]] = None,
+                 authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict', 'outputs.ClientAuthorization']]] = None,
                  backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
                  backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
                  backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -2259,8 +2259,8 @@ class Client(pulumi.CustomResource):
             admin_url: pulumi.Input[Optional[_builtins.str]] = None,
             allow_refresh_token_in_standard_token_exchange: pulumi.Input[Optional[_builtins.str]] = None,
             always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
-            authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
-            authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
+            authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']]] = None,
+            authorization: pulumi.Input[Optional[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict', 'outputs.ClientAuthorization']]] = None,
             backchannel_logout_revoke_offline_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
             backchannel_logout_session_required: pulumi.Input[Optional[_builtins.bool]] = None,
             backchannel_logout_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -2327,8 +2327,8 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
         :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
-        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
-        :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict', 'outputs.ClientAuthorization']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         :param pulumi.Input[_builtins.bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         :param pulumi.Input[_builtins.bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         :param pulumi.Input[_builtins.str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.

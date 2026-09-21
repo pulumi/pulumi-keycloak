@@ -1210,7 +1210,7 @@ class UserFederation(pulumi.CustomResource):
                  batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
                  bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
                  bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
-                 cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
+                 cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
                  connection_pooling: pulumi.Input[Optional[_builtins.bool]] = None,
                  connection_timeout: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1222,7 +1222,7 @@ class UserFederation(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
                  import_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
+                 kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict', 'outputs.UserFederationKerberos']]] = None,
                  krb_principal_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pagination: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1300,7 +1300,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
         :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-        :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']] cache: A block containing the cache settings.
+        :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
         :param pulumi.Input[_builtins.str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -1312,7 +1312,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-        :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict', 'outputs.UserFederationKerberos']] kerberos: A block containing the kerberos settings.
         :param pulumi.Input[_builtins.str] krb_principal_attribute: Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
@@ -1414,7 +1414,7 @@ class UserFederation(pulumi.CustomResource):
                  batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
                  bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
                  bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
-                 cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
+                 cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
                  connection_pooling: pulumi.Input[Optional[_builtins.bool]] = None,
                  connection_timeout: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1426,7 +1426,7 @@ class UserFederation(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
                  import_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
+                 kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict', 'outputs.UserFederationKerberos']]] = None,
                  krb_principal_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pagination: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1521,7 +1521,7 @@ class UserFederation(pulumi.CustomResource):
             batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
             bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
             bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
-            cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
+            cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
             changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
             connection_pooling: pulumi.Input[Optional[_builtins.bool]] = None,
             connection_timeout: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1533,7 +1533,7 @@ class UserFederation(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
             import_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
+            kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict', 'outputs.UserFederationKerberos']]] = None,
             krb_principal_attribute: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             pagination: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1564,7 +1564,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
         :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-        :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']] cache: A block containing the cache settings.
+        :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
         :param pulumi.Input[_builtins.str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
@@ -1576,7 +1576,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-        :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict', 'outputs.UserFederationKerberos']] kerberos: A block containing the kerberos settings.
         :param pulumi.Input[_builtins.str] krb_principal_attribute: Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
