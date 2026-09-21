@@ -211,7 +211,7 @@ class ClientAuthorizationClientScopePolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientAuthorizationClientScopePolicyScopeArgs', 'ClientAuthorizationClientScopePolicyScopeArgsDict']]]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientAuthorizationClientScopePolicyScopeArgs', 'ClientAuthorizationClientScopePolicyScopeArgsDict', 'outputs.ClientAuthorizationClientScopePolicyScope']]]]] = None,
                  __props__=None):
         """
         Allows you to manage openid Client Authorization Client Scope type Policies.
@@ -427,7 +427,7 @@ class ClientAuthorizationClientScopePolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientAuthorizationClientScopePolicyScopeArgs', 'ClientAuthorizationClientScopePolicyScopeArgsDict']]]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientAuthorizationClientScopePolicyScopeArgs', 'ClientAuthorizationClientScopePolicyScopeArgsDict', 'outputs.ClientAuthorizationClientScopePolicyScope']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -466,7 +466,7 @@ class ClientAuthorizationClientScopePolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
-            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientAuthorizationClientScopePolicyScopeArgs', 'ClientAuthorizationClientScopePolicyScopeArgsDict']]]]] = None) -> 'ClientAuthorizationClientScopePolicy':
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientAuthorizationClientScopePolicyScopeArgs', 'ClientAuthorizationClientScopePolicyScopeArgsDict', 'outputs.ClientAuthorizationClientScopePolicyScope']]]]] = None) -> 'ClientAuthorizationClientScopePolicy':
         """
         Get an existing ClientAuthorizationClientScopePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

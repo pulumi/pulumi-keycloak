@@ -259,7 +259,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -459,7 +459,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -504,7 +504,7 @@ class ClientRolePolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
-            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict']]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientRolePolicy':
         """
         Get an existing ClientRolePolicy resource's state with the given name, id, and optional extra

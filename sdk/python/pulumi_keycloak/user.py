@@ -428,10 +428,10 @@ class User(pulumi.CustomResource):
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
+                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict', 'outputs.UserFederatedIdentity']]]]] = None,
                  first_name: pulumi.Input[Optional[_builtins.str]] = None,
                  import_: pulumi.Input[Optional[_builtins.bool]] = None,
-                 initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
+                 initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -495,10 +495,10 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] email: The user's email.
         :param pulumi.Input[_builtins.bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When false, this user cannot log in. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict', 'outputs.UserFederatedIdentity']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[_builtins.str] first_name: The user's first name.
         :param pulumi.Input[_builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
-        :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_actions: A list of required user actions.
@@ -581,10 +581,10 @@ class User(pulumi.CustomResource):
                  email: pulumi.Input[Optional[_builtins.str]] = None,
                  email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
+                 federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict', 'outputs.UserFederatedIdentity']]]]] = None,
                  first_name: pulumi.Input[Optional[_builtins.str]] = None,
                  import_: pulumi.Input[Optional[_builtins.bool]] = None,
-                 initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
+                 initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
                  required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -628,10 +628,10 @@ class User(pulumi.CustomResource):
             email: pulumi.Input[Optional[_builtins.str]] = None,
             email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
+            federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict', 'outputs.UserFederatedIdentity']]]]] = None,
             first_name: pulumi.Input[Optional[_builtins.str]] = None,
             import_: pulumi.Input[Optional[_builtins.bool]] = None,
-            initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
+            initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
             last_name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
             required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -647,10 +647,10 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] email: The user's email.
         :param pulumi.Input[_builtins.bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When false, this user cannot log in. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict', 'outputs.UserFederatedIdentity']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[_builtins.str] first_name: The user's first name.
         :param pulumi.Input[_builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
-        :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_actions: A list of required user actions.

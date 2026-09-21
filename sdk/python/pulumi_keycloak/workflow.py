@@ -350,8 +350,8 @@ class Workflow(pulumi.CustomResource):
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
-                 schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']]] = None,
-                 steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]]] = None,
+                 schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
+                 steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]]] = None,
                  __props__=None):
         """
         Allows creating and managing workflows within Keycloak.
@@ -528,8 +528,8 @@ class Workflow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
         :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
-        :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]] steps: One or more step blocks defining the actions to execute, in order.
+        :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]] steps: One or more step blocks defining the actions to execute, in order.
         """
         ...
     @overload
@@ -725,8 +725,8 @@ class Workflow(pulumi.CustomResource):
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
-                 schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']]] = None,
-                 steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]]] = None,
+                 schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
+                 steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -769,9 +769,9 @@ class Workflow(pulumi.CustomResource):
             on: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
             restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
-            schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']]] = None,
-            states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict']]]]] = None,
-            steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]]] = None) -> 'Workflow':
+            schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
+            states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict', 'outputs.WorkflowState']]]]] = None,
+            steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]]] = None) -> 'Workflow':
         """
         Get an existing Workflow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -786,9 +786,9 @@ class Workflow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
         :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
-        :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict']]]] states: The runtime state of the workflow as reported by Keycloak. Contains:
-        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict']]]] steps: One or more step blocks defining the actions to execute, in order.
+        :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict', 'outputs.WorkflowState']]]] states: The runtime state of the workflow as reported by Keycloak. Contains:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]] steps: One or more step blocks defining the actions to execute, in order.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

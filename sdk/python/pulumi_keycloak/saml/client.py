@@ -1371,7 +1371,7 @@ class Client(pulumi.CustomResource):
                  always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
                  assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
                  assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
-                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']]] = None,
                  base_url: pulumi.Input[Optional[_builtins.str]] = None,
                  canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1453,7 +1453,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[_builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[_builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
-        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[_builtins.str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
         :param pulumi.Input[_builtins.str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         :param pulumi.Input[_builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
@@ -1554,7 +1554,7 @@ class Client(pulumi.CustomResource):
                  always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
                  assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
                  assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
-                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+                 authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']]] = None,
                  base_url: pulumi.Input[Optional[_builtins.str]] = None,
                  canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1660,7 +1660,7 @@ class Client(pulumi.CustomResource):
             always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
             assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
             assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
-            authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
+            authentication_flow_binding_overrides: pulumi.Input[Optional[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']]] = None,
             base_url: pulumi.Input[Optional[_builtins.str]] = None,
             canonicalization_method: pulumi.Input[Optional[_builtins.str]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1710,7 +1710,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[_builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[_builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
-        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict', 'outputs.ClientAuthenticationFlowBindingOverrides']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[_builtins.str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
         :param pulumi.Input[_builtins.str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         :param pulumi.Input[_builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
