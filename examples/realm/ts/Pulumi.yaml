@@ -1,3 +1,0 @@
-name: realm-typescript
-runtime: nodejs
-description: A minimal TypeScript Pulumi program to create KeyCloak Realm
