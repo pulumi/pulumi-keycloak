@@ -75,6 +75,7 @@ namespace Pulumi.Keycloak
     ///             {
     ///                 PermanentLockout = false,
     ///                 MaxLoginFailures = 30,
+    ///                 MaxSecondaryAuthFailures = 0,
     ///                 WaitIncrementSeconds = 60,
     ///                 QuickLoginCheckMilliSeconds = 1000,
     ///                 MinimumQuickLoginWaitSeconds = 60,

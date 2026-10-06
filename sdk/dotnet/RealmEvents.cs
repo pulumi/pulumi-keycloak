@@ -51,7 +51,15 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Import
     /// 
-    /// This resource currently does not support importing.
+    /// This resource can be imported using the realm ID.
+    /// 
+    /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/realmEvents:RealmEvents realm_events my-realm
+    /// ```
+    /// 
+    /// Note: `EnabledEventTypes` is not populated on import (the provider only tracks it when set in configuration). If you manage the list, declare it explicitly; the first apply records it in state.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmEvents:RealmEvents")]
     public partial class RealmEvents : global::Pulumi.CustomResource

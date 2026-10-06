@@ -109,16 +109,24 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
+     * 
+     * @deprecated
+     * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      * 
      */
+    @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
     @Import(name="parentId")
     private @Nullable Output<String> parentId;
 
     /**
-     * @return Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * @return **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
+     * 
+     * @deprecated
+     * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      * 
      */
+    @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
     public Optional<Output<String>> parentId() {
         return Optional.ofNullable(this.parentId);
     }
@@ -328,22 +336,30 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param parentId Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+         * @param parentId **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+         * 
          */
+        @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
         public Builder parentId(@Nullable Output<String> parentId) {
             $.parentId = parentId;
             return this;
         }
 
         /**
-         * @param parentId Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+         * @param parentId **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+         * 
          */
+        @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
         public Builder parentId(String parentId) {
             return parentId(Output.of(parentId));
         }

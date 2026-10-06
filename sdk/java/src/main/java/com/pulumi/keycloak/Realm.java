@@ -99,6 +99,7 @@ import javax.annotation.Nullable;
  *                 .bruteForceDetection(RealmSecurityDefensesBruteForceDetectionArgs.builder()
  *                     .permanentLockout(false)
  *                     .maxLoginFailures(30)
+ *                     .maxSecondaryAuthFailures(0)
  *                     .waitIncrementSeconds(60)
  *                     .quickLoginCheckMilliSeconds(1000)
  *                     .minimumQuickLoginWaitSeconds(60)

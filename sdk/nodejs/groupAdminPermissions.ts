@@ -20,6 +20,8 @@ import * as utilities from "./utilities";
  * - `view-members` — view user details of the group's members
  * - `manage-members` — manage the users that belong to this group
  * - `manage-membership` — add or remove members from this group
+ * - `manage-membership-of-members` — change the group memberships of this group's members (requires Keycloak 26.6 or later)
+ * - `impersonate-members` — impersonate the users that belong to this group
  *
  * ## Example Usage
  *
@@ -152,7 +154,7 @@ export class GroupAdminPermissions extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      */
     declare public readonly scopes: pulumi.Output<string[]>;
 
@@ -244,7 +246,7 @@ export interface GroupAdminPermissionsState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
@@ -278,7 +280,7 @@ export interface GroupAdminPermissionsArgs {
      */
     realmId: pulumi.Input<string>;
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      */
     scopes: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -62,6 +62,21 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
     }
 
     /**
+     * How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+     * 
+     */
+    @Import(name="maxSecondaryAuthFailures")
+    private @Nullable Output<Integer> maxSecondaryAuthFailures;
+
+    /**
+     * @return How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+     * 
+     */
+    public Optional<Output<Integer>> maxSecondaryAuthFailures() {
+        return Optional.ofNullable(this.maxSecondaryAuthFailures);
+    }
+
+    /**
      * How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
      * 
      */
@@ -145,6 +160,7 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
         this.failureResetTimeSeconds = $.failureResetTimeSeconds;
         this.maxFailureWaitSeconds = $.maxFailureWaitSeconds;
         this.maxLoginFailures = $.maxLoginFailures;
+        this.maxSecondaryAuthFailures = $.maxSecondaryAuthFailures;
         this.maxTemporaryLockouts = $.maxTemporaryLockouts;
         this.minimumQuickLoginWaitSeconds = $.minimumQuickLoginWaitSeconds;
         this.permanentLockout = $.permanentLockout;
@@ -228,6 +244,27 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
          */
         public Builder maxLoginFailures(Integer maxLoginFailures) {
             return maxLoginFailures(Output.of(maxLoginFailures));
+        }
+
+        /**
+         * @param maxSecondaryAuthFailures How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxSecondaryAuthFailures(@Nullable Output<Integer> maxSecondaryAuthFailures) {
+            $.maxSecondaryAuthFailures = maxSecondaryAuthFailures;
+            return this;
+        }
+
+        /**
+         * @param maxSecondaryAuthFailures How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxSecondaryAuthFailures(Integer maxSecondaryAuthFailures) {
+            return maxSecondaryAuthFailures(Output.of(maxSecondaryAuthFailures));
         }
 
         /**

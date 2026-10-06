@@ -30,7 +30,7 @@ class GroupAdminPermissionsArgs:
         The set of arguments for constructing a GroupAdminPermissions resource.
 
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         :param pulumi.Input[_builtins.str] decision_strategy: Decision strategy. One of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
         :param pulumi.Input[_builtins.str] description: Description of the permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: Set of group UUIDs (`keycloak_group.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all groups** in the realm.
@@ -66,7 +66,7 @@ class GroupAdminPermissionsArgs:
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         return pulumi.get(self, "scopes")
 
@@ -160,7 +160,7 @@ class _GroupAdminPermissionsState:
         :param pulumi.Input[_builtins.str] permission_id: The internal Keycloak UUID of the permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         if authorization_resource_server_id is not None:
             pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
@@ -295,7 +295,7 @@ class _GroupAdminPermissionsState:
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         return pulumi.get(self, "scopes")
 
@@ -334,6 +334,8 @@ class GroupAdminPermissions(pulumi.CustomResource):
         - `view-members` — view user details of the group's members
         - `manage-members` — manage the users that belong to this group
         - `manage-membership` — add or remove members from this group
+        - `manage-membership-of-members` — change the group memberships of this group's members (requires Keycloak 26.6 or later)
+        - `impersonate-members` — impersonate the users that belong to this group
 
         ## Example Usage
 
@@ -402,7 +404,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the permission. Must be unique within the `admin-permissions` resource server. On first apply, if a permission with this name already exists it is adopted; otherwise a new one is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         ...
     @overload
@@ -426,6 +428,8 @@ class GroupAdminPermissions(pulumi.CustomResource):
         - `view-members` — view user details of the group's members
         - `manage-members` — manage the users that belong to this group
         - `manage-membership` — add or remove members from this group
+        - `manage-membership-of-members` — change the group memberships of this group's members (requires Keycloak 26.6 or later)
+        - `impersonate-members` — impersonate the users that belong to this group
 
         ## Example Usage
 
@@ -567,7 +571,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] permission_id: The internal Keycloak UUID of the permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -661,7 +665,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+        Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         return pulumi.get(self, "scopes")
 

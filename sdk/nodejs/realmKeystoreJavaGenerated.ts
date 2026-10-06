@@ -160,16 +160,18 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["keyAlias"] = args?.keyAlias;
-            resourceInputs["keyPassword"] = args?.keyPassword;
+            resourceInputs["keyPassword"] = args?.keyPassword ? pulumi.secret(args.keyPassword) : undefined;
             resourceInputs["keyUse"] = args?.keyUse;
             resourceInputs["keystore"] = args?.keystore;
-            resourceInputs["keystorePassword"] = args?.keystorePassword;
+            resourceInputs["keystorePassword"] = args?.keystorePassword ? pulumi.secret(args.keystorePassword) : undefined;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
             resourceInputs["parentId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["keyPassword", "keystorePassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(RealmKeystoreJavaGenerated.__pulumiType, name, resourceInputs, opts);
     }
 }

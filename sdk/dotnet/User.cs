@@ -16,6 +16,16 @@ namespace Pulumi.Keycloak
     /// Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
     /// or identity providers.
     /// 
+    /// &gt; **NOTICE:** This resource now supports write-only arguments
+    /// for the initial password via the new arguments `initial_password.value_wo` and `initial_password.value_wo_version`. Using
+    /// write-only arguments prevents sensitive values from being stored in plan and state files. You cannot use
+    /// `initial_password.value_wo` and `initial_password.value_wo_version` alongside `initial_password.value` as this will result
+    /// in a validation error due to conflicts.
+    /// &gt; 
+    /// &gt; For backward compatibility, the behavior of the original `initial_password.value` argument remains unchanged: it is only
+    /// respected during user creation. Unlike `initial_password.value`, bumping `initial_password.value_wo_version` resets the
+    /// password of an existing user.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -122,7 +132,7 @@ namespace Pulumi.Keycloak
         public Output<bool?> Import { get; private set; } = null!;
 
         /// <summary>
-        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// When given, the user's initial password will be set. Exactly one of `Value` and `ValueWo` must be given.
         /// </summary>
         [Output("initialPassword")]
         public Output<Outputs.UserInitialPassword?> InitialPassword { get; private set; } = null!;
@@ -252,7 +262,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? Import { get; set; }
 
         /// <summary>
-        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// When given, the user's initial password will be set. Exactly one of `Value` and `ValueWo` must be given.
         /// </summary>
         [Input("initialPassword")]
         public Input<Inputs.UserInitialPasswordArgs>? InitialPassword { get; set; }
@@ -350,7 +360,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? Import { get; set; }
 
         /// <summary>
-        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// When given, the user's initial password will be set. Exactly one of `Value` and `ValueWo` must be given.
         /// </summary>
         [Input("initialPassword")]
         public Input<Inputs.UserInitialPasswordGetArgs>? InitialPassword { get; set; }

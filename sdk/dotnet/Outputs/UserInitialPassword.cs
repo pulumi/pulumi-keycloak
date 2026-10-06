@@ -18,18 +18,33 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly bool? Temporary;
         /// <summary>
-        /// The initial password.
+        /// The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `ValueWo` and `ValueWoVersion`.
         /// </summary>
-        public readonly string Value;
+        public readonly string? Value;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `Value`. Required when using `ValueWoVersion`. Must not be an empty string.
+        /// </summary>
+        public readonly string? ValueWo;
+        /// <summary>
+        /// Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `ValueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `Value`. Required when using `ValueWo`. Must not be an empty string.
+        /// </summary>
+        public readonly string? ValueWoVersion;
 
         [OutputConstructor]
         private UserInitialPassword(
             bool? temporary,
 
-            string value)
+            string? value,
+
+            string? valueWo,
+
+            string? valueWoVersion)
         {
             Temporary = temporary;
             Value = value;
+            ValueWo = valueWo;
+            ValueWoVersion = valueWoVersion;
         }
     }
 }

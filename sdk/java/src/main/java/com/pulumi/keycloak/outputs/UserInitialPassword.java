@@ -4,7 +4,6 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -19,10 +18,21 @@ public final class UserInitialPassword {
      */
     private @Nullable Boolean temporary;
     /**
-     * @return The initial password.
+     * @return The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
      * 
      */
-    private String value;
+    private @Nullable String value;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+     * 
+     */
+    private @Nullable String valueWo;
+    /**
+     * @return Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+     * 
+     */
+    private @Nullable String valueWoVersion;
 
     private UserInitialPassword() {}
     /**
@@ -33,11 +43,26 @@ public final class UserInitialPassword {
         return Optional.ofNullable(this.temporary);
     }
     /**
-     * @return The initial password.
+     * @return The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
      * 
      */
-    public String value() {
-        return this.value;
+    public Optional<String> value() {
+        return Optional.ofNullable(this.value);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+     * 
+     */
+    public Optional<String> valueWo() {
+        return Optional.ofNullable(this.valueWo);
+    }
+    /**
+     * @return Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+     * 
+     */
+    public Optional<String> valueWoVersion() {
+        return Optional.ofNullable(this.valueWoVersion);
     }
 
     public static Builder builder() {
@@ -50,12 +75,16 @@ public final class UserInitialPassword {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean temporary;
-        private String value;
+        private @Nullable String value;
+        private @Nullable String valueWo;
+        private @Nullable String valueWoVersion;
         public Builder() {}
         public Builder(UserInitialPassword defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.temporary = defaults.temporary;
     	      this.value = defaults.value;
+    	      this.valueWo = defaults.valueWo;
+    	      this.valueWoVersion = defaults.valueWoVersion;
         }
 
         @CustomType.Setter
@@ -65,17 +94,29 @@ public final class UserInitialPassword {
             return this;
         }
         @CustomType.Setter
-        public Builder value(String value) {
-            if (value == null) {
-              throw new MissingRequiredPropertyException("UserInitialPassword", "value");
-            }
+        public Builder value(@Nullable String value) {
+
             this.value = value;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder valueWo(@Nullable String valueWo) {
+
+            this.valueWo = valueWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder valueWoVersion(@Nullable String valueWoVersion) {
+
+            this.valueWoVersion = valueWoVersion;
             return this;
         }
         public UserInitialPassword build() {
             final var _resultValue = new UserInitialPassword();
             _resultValue.temporary = temporary;
             _resultValue.value = value;
+            _resultValue.valueWo = valueWo;
+            _resultValue.valueWoVersion = valueWoVersion;
             return _resultValue;
         }
     }

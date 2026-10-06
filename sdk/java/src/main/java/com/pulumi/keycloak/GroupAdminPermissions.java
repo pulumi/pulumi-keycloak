@@ -32,6 +32,8 @@ import javax.annotation.Nullable;
  * - `view-members` — view user details of the group&#39;s members
  * - `manage-members` — manage the users that belong to this group
  * - `manage-membership` — add or remove members from this group
+ * - `manage-membership-of-members` — change the group memberships of this group&#39;s members (requires Keycloak 26.6 or later)
+ * - `impersonate-members` — impersonate the users that belong to this group
  * 
  * ## Example Usage
  * 
@@ -265,14 +267,14 @@ public class GroupAdminPermissions extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      * 
      */
     @Export(name="scopes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> scopes;
 
     /**
-     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      * 
      */
     public Output<List<String>> scopes() {

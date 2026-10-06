@@ -62,6 +62,61 @@ import (
 //
 // ```
 //
+// ### Copying a built-in flow, then restructuring it
+//
+// Built-in flows (such as `browser`, `direct grant`, `registration`, `first broker login`, `clients`, and `docker auth`) can have
+// the `requirement` of their *existing* executions configured freely (that part already works against the built-in flow itself),
+// but Keycloak rejects any attempt to restructure them - adding a new execution, removing one, or adding a subflow all fail with
+// errors like `It is illegal to add execution to a built in flow`. Copying the flow with `copyFrom` removes that restriction:
+// the copy includes all of the source flow's executions and subflows, and - unlike the original - is not built-in, so executions
+// and subflows can be added to or removed from it. The new flow can then be bound in place of the original via
+// `authentication.Bindings`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/authentication"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			customBrowser, err := authentication.NewFlow(ctx, "custom_browser", &authentication.FlowArgs{
+//				RealmId:  pulumi.Any(realm.Id),
+//				Alias:    pulumi.String("my-custom-browser"),
+//				CopyFrom: pulumi.String("browser"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewBindings(ctx, "bindings", &authentication.BindingsArgs{
+//				RealmId:     pulumi.Any(realm.Id),
+//				BrowserFlow: customBrowser.Alias,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Adding a brand new top-level execution like this - e.g. offering WebAuthn/passkey login as
+//			// an alternative to username+password - fails with "It is illegal to add execution to a built
+//			// in flow" against "browser" itself, but succeeds on the copy.
+//			_, err = authentication.NewExecution(ctx, "webauthn_passwordless", &authentication.ExecutionArgs{
+//				RealmId:         pulumi.Any(realm.Id),
+//				ParentFlowAlias: customBrowser.Alias,
+//				Authenticator:   pulumi.String("webauthn-authenticator-passwordless"),
+//				Requirement:     pulumi.String("ALTERNATIVE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Authentication flows can be imported using the format `{{realmId}}/{{authenticationFlowId}}`. The authentication flow ID is
@@ -81,10 +136,12 @@ type Flow struct {
 
 	// The alias for this authentication flow.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+	CopyFrom pulumi.StringPtrOutput `pulumi:"copyFrom"`
 	// A description for the authentication flow.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
-	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
+	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
+	ProviderId pulumi.StringOutput `pulumi:"providerId"`
 	// The realm that the authentication flow exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
@@ -124,9 +181,11 @@ func GetFlow(ctx *pulumi.Context,
 type flowState struct {
 	// The alias for this authentication flow.
 	Alias *string `pulumi:"alias"`
+	// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+	CopyFrom *string `pulumi:"copyFrom"`
 	// A description for the authentication flow.
 	Description *string `pulumi:"description"`
-	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
 	ProviderId *string `pulumi:"providerId"`
 	// The realm that the authentication flow exists in.
 	RealmId *string `pulumi:"realmId"`
@@ -135,9 +194,11 @@ type flowState struct {
 type FlowState struct {
 	// The alias for this authentication flow.
 	Alias pulumi.StringPtrInput
+	// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+	CopyFrom pulumi.StringPtrInput
 	// A description for the authentication flow.
 	Description pulumi.StringPtrInput
-	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
 	ProviderId pulumi.StringPtrInput
 	// The realm that the authentication flow exists in.
 	RealmId pulumi.StringPtrInput
@@ -150,9 +211,11 @@ func (FlowState) ElementType() reflect.Type {
 type flowArgs struct {
 	// The alias for this authentication flow.
 	Alias *string `pulumi:"alias"`
+	// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+	CopyFrom *string `pulumi:"copyFrom"`
 	// A description for the authentication flow.
 	Description *string `pulumi:"description"`
-	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
 	ProviderId *string `pulumi:"providerId"`
 	// The realm that the authentication flow exists in.
 	RealmId string `pulumi:"realmId"`
@@ -162,9 +225,11 @@ type flowArgs struct {
 type FlowArgs struct {
 	// The alias for this authentication flow.
 	Alias pulumi.StringPtrInput
+	// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+	CopyFrom pulumi.StringPtrInput
 	// A description for the authentication flow.
 	Description pulumi.StringPtrInput
-	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
 	ProviderId pulumi.StringPtrInput
 	// The realm that the authentication flow exists in.
 	RealmId pulumi.StringInput
@@ -262,14 +327,19 @@ func (o FlowOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *Flow) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
+// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+func (o FlowOutput) CopyFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringPtrOutput { return v.CopyFrom }).(pulumi.StringPtrOutput)
+}
+
 // A description for the authentication flow.
 func (o FlowOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Flow) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
-func (o FlowOutput) ProviderId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Flow) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
+// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
+func (o FlowOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringOutput { return v.ProviderId }).(pulumi.StringOutput)
 }
 
 // The realm that the authentication flow exists in.

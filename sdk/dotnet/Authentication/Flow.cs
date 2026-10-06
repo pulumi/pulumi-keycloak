@@ -49,6 +49,51 @@ namespace Pulumi.Keycloak.Authentication
     /// });
     /// ```
     /// 
+    /// ### Copying a built-in flow, then restructuring it
+    /// 
+    /// Built-in flows (such as `Browser`, `direct grant`, `Registration`, `first broker login`, `Clients`, and `docker auth`) can have
+    /// the `Requirement` of their *existing* executions configured freely (that part already works against the built-in flow itself),
+    /// but Keycloak rejects any attempt to restructure them - adding a new execution, removing one, or adding a subflow all fail with
+    /// errors like `It is illegal to add execution to a built in flow`. Copying the flow with `CopyFrom` removes that restriction:
+    /// the copy includes all of the source flow's executions and subflows, and - unlike the original - is not built-in, so executions
+    /// and subflows can be added to or removed from it. The new flow can then be bound in place of the original via
+    /// `keycloak.authentication.Bindings`.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var customBrowser = new Keycloak.Authentication.Flow("custom_browser", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-custom-browser",
+    ///         CopyFrom = "browser",
+    ///     });
+    /// 
+    ///     var bindings = new Keycloak.Authentication.Bindings("bindings", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         BrowserFlow = customBrowser.Alias,
+    ///     });
+    /// 
+    ///     // Adding a brand new top-level execution like this - e.g. offering WebAuthn/passkey login as
+    ///     // an alternative to username+password - fails with "It is illegal to add execution to a built
+    ///     // in flow" against "browser" itself, but succeeds on the copy.
+    ///     var webauthnPasswordless = new Keycloak.Authentication.Execution("webauthn_passwordless", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = customBrowser.Alias,
+    ///         Authenticator = "webauthn-authenticator-passwordless",
+    ///         Requirement = "ALTERNATIVE",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Authentication flows can be imported using the format `{{realmId}}/{{authenticationFlowId}}`. The authentication flow ID is
@@ -74,16 +119,22 @@ namespace Pulumi.Keycloak.Authentication
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
+        /// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        /// </summary>
+        [Output("copyFrom")]
+        public Output<string?> CopyFrom { get; private set; } = null!;
+
+        /// <summary>
         /// A description for the authentication flow.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `CopyFrom` is set, since the copy inherits its type from the source flow.
         /// </summary>
         [Output("providerId")]
-        public Output<string?> ProviderId { get; private set; } = null!;
+        public Output<string> ProviderId { get; private set; } = null!;
 
         /// <summary>
         /// The realm that the authentication flow exists in.
@@ -144,13 +195,19 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        /// </summary>
+        [Input("copyFrom")]
+        public Input<string>? CopyFrom { get; set; }
+
+        /// <summary>
         /// A description for the authentication flow.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `CopyFrom` is set, since the copy inherits its type from the source flow.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -176,13 +233,19 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        /// </summary>
+        [Input("copyFrom")]
+        public Input<string>? CopyFrom { get; set; }
+
+        /// <summary>
         /// A description for the authentication flow.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        /// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `CopyFrom` is set, since the copy inherits its type from the source flow.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }

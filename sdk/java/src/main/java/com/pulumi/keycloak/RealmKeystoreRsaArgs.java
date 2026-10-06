@@ -50,18 +50,50 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * X509 Certificate encoded in PEM format.
+     * X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      * 
      */
-    @Import(name="certificate", required=true)
-    private Output<String> certificate;
+    @Import(name="certificate")
+    private @Nullable Output<String> certificate;
 
     /**
-     * @return X509 Certificate encoded in PEM format.
+     * @return X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      * 
      */
-    public Output<String> certificate() {
-        return this.certificate;
+    public Optional<Output<String>> certificate() {
+        return Optional.ofNullable(this.certificate);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     * 
+     */
+    @Import(name="certificateWo")
+    private @Nullable Output<String> certificateWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     * 
+     */
+    public Optional<Output<String>> certificateWo() {
+        return Optional.ofNullable(this.certificateWo);
+    }
+
+    /**
+     * Version of the `certificateWo` argument. Stored in state.
+     * 
+     */
+    @Import(name="certificateWoVersion")
+    private @Nullable Output<String> certificateWoVersion;
+
+    /**
+     * @return Version of the `certificateWo` argument. Stored in state.
+     * 
+     */
+    public Optional<Output<String>> certificateWoVersion() {
+        return Optional.ofNullable(this.certificateWoVersion);
     }
 
     /**
@@ -125,18 +157,50 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Private RSA Key encoded in PEM format.
+     * Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      * 
      */
-    @Import(name="privateKey", required=true)
-    private Output<String> privateKey;
+    @Import(name="privateKey")
+    private @Nullable Output<String> privateKey;
 
     /**
-     * @return Private RSA Key encoded in PEM format.
+     * @return Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Optional<Output<String>> privateKey() {
+        return Optional.ofNullable(this.privateKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+
+    /**
+     * Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<String> privateKeyWoVersion;
+
+    /**
+     * @return Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -175,11 +239,15 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         this.active = $.active;
         this.algorithm = $.algorithm;
         this.certificate = $.certificate;
+        this.certificateWo = $.certificateWo;
+        this.certificateWoVersion = $.certificateWoVersion;
         this.enabled = $.enabled;
         this.extraConfig = $.extraConfig;
         this.name = $.name;
         this.priority = $.priority;
         this.privateKey = $.privateKey;
+        this.privateKeyWo = $.privateKeyWo;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
     }
@@ -245,24 +313,68 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param certificate X509 Certificate encoded in PEM format.
+         * @param certificate X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
          * 
          * @return builder
          * 
          */
-        public Builder certificate(Output<String> certificate) {
+        public Builder certificate(@Nullable Output<String> certificate) {
             $.certificate = certificate;
             return this;
         }
 
         /**
-         * @param certificate X509 Certificate encoded in PEM format.
+         * @param certificate X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
          * 
          * @return builder
          * 
          */
         public Builder certificate(String certificate) {
             return certificate(Output.of(certificate));
+        }
+
+        /**
+         * @param certificateWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWo(@Nullable Output<String> certificateWo) {
+            $.certificateWo = certificateWo;
+            return this;
+        }
+
+        /**
+         * @param certificateWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWo(String certificateWo) {
+            return certificateWo(Output.of(certificateWo));
+        }
+
+        /**
+         * @param certificateWoVersion Version of the `certificateWo` argument. Stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWoVersion(@Nullable Output<String> certificateWoVersion) {
+            $.certificateWoVersion = certificateWoVersion;
+            return this;
+        }
+
+        /**
+         * @param certificateWoVersion Version of the `certificateWo` argument. Stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWoVersion(String certificateWoVersion) {
+            return certificateWoVersion(Output.of(certificateWoVersion));
         }
 
         /**
@@ -350,24 +462,68 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey Private RSA Key encoded in PEM format.
+         * @param privateKey Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
          * 
          * @return builder
          * 
          */
-        public Builder privateKey(Output<String> privateKey) {
+        public Builder privateKey(@Nullable Output<String> privateKey) {
             $.privateKey = privateKey;
             return this;
         }
 
         /**
-         * @param privateKey Private RSA Key encoded in PEM format.
+         * @param privateKey Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
          * 
          * @return builder
          * 
          */
         public Builder privateKey(String privateKey) {
             return privateKey(Output.of(privateKey));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
+        }
+
+        /**
+         * @param privateKeyWoVersion Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<String> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(String privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**
@@ -413,12 +569,6 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         public RealmKeystoreRsaArgs build() {
-            if ($.certificate == null) {
-                throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "certificate");
-            }
-            if ($.privateKey == null) {
-                throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "privateKey");
-            }
             if ($.realmId == null) {
                 throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "realmId");
             }

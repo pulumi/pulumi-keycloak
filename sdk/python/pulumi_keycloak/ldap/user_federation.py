@@ -30,6 +30,8 @@ class UserFederationArgs:
                  uuid_ldap_attribute: pulumi.Input[_builtins.str],
                  batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
                  bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  cache: pulumi.Input[Optional['UserFederationCacheArgs']] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
@@ -68,8 +70,11 @@ class UserFederationArgs:
         :param pulumi.Input[_builtins.str] users_dn: Full DN of LDAP tree where your users are.
         :param pulumi.Input[_builtins.str] uuid_ldap_attribute: Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo_version: Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
@@ -113,6 +118,10 @@ class UserFederationArgs:
             pulumi.set(__self__, "batch_size_for_sync", batch_size_for_sync)
         if bind_credential is not None:
             pulumi.set(__self__, "bind_credential", bind_credential)
+        if bind_credential_wo is not None:
+            pulumi.set(__self__, "bind_credential_wo", bind_credential_wo)
+        if bind_credential_wo_version is not None:
+            pulumi.set(__self__, "bind_credential_wo_version", bind_credential_wo_version)
         if bind_dn is not None:
             pulumi.set(__self__, "bind_dn", bind_dn)
         if cache is not None:
@@ -268,7 +277,7 @@ class UserFederationArgs:
     @pulumi.getter(name="bindCredential")
     def bind_credential(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
         """
         return pulumi.get(self, "bind_credential")
 
@@ -277,10 +286,35 @@ class UserFederationArgs:
         pulumi.set(self, "bind_credential", value)
 
     @_builtins.property
+    @pulumi.getter(name="bindCredentialWo")
+    def bind_credential_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        """
+        return pulumi.get(self, "bind_credential_wo")
+
+    @bind_credential_wo.setter
+    def bind_credential_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "bind_credential_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindCredentialWoVersion")
+    def bind_credential_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        """
+        return pulumi.get(self, "bind_credential_wo_version")
+
+    @bind_credential_wo_version.setter
+    def bind_credential_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "bind_credential_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="bindDn")
     def bind_dn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         """
         return pulumi.get(self, "bind_dn")
 
@@ -611,6 +645,8 @@ class _UserFederationState:
     def __init__(__self__, *,
                  batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
                  bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  cache: pulumi.Input[Optional['UserFederationCacheArgs']] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
@@ -649,8 +685,11 @@ class _UserFederationState:
         Input properties used for looking up and filtering UserFederation resources.
 
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo_version: Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
@@ -694,6 +733,10 @@ class _UserFederationState:
             pulumi.set(__self__, "batch_size_for_sync", batch_size_for_sync)
         if bind_credential is not None:
             pulumi.set(__self__, "bind_credential", bind_credential)
+        if bind_credential_wo is not None:
+            pulumi.set(__self__, "bind_credential_wo", bind_credential_wo)
+        if bind_credential_wo_version is not None:
+            pulumi.set(__self__, "bind_credential_wo_version", bind_credential_wo_version)
         if bind_dn is not None:
             pulumi.set(__self__, "bind_dn", bind_dn)
         if cache is not None:
@@ -779,7 +822,7 @@ class _UserFederationState:
     @pulumi.getter(name="bindCredential")
     def bind_credential(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
         """
         return pulumi.get(self, "bind_credential")
 
@@ -788,10 +831,35 @@ class _UserFederationState:
         pulumi.set(self, "bind_credential", value)
 
     @_builtins.property
+    @pulumi.getter(name="bindCredentialWo")
+    def bind_credential_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        """
+        return pulumi.get(self, "bind_credential_wo")
+
+    @bind_credential_wo.setter
+    def bind_credential_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "bind_credential_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindCredentialWoVersion")
+    def bind_credential_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        """
+        return pulumi.get(self, "bind_credential_wo_version")
+
+    @bind_credential_wo_version.setter
+    def bind_credential_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "bind_credential_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="bindDn")
     def bind_dn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         """
         return pulumi.get(self, "bind_dn")
 
@@ -1209,6 +1277,8 @@ class UserFederation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
                  bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1287,7 +1357,12 @@ class UserFederation(pulumi.CustomResource):
 
         ## Import
 
-        LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
+        LDAP user federation providers can be imported using one of these formats:
+        - `{{realm_id}}/{{ldap_user_federation_id}}`
+        - `{{realm_id}}/{{ldap_user_federation_id}}/{{bind_credential}}` (required when using `bind_credential` and LDAP bind authentication)
+
+        When using `bind_credential_wo`, import with `{{realm_id}}/{{ldap_user_federation_id}}` and then configure `bind_credential_wo` and `bind_credential_wo_version` in Terraform.
+
         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
         ```sh
@@ -1298,8 +1373,11 @@ class UserFederation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo_version: Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
@@ -1388,7 +1466,12 @@ class UserFederation(pulumi.CustomResource):
 
         ## Import
 
-        LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
+        LDAP user federation providers can be imported using one of these formats:
+        - `{{realm_id}}/{{ldap_user_federation_id}}`
+        - `{{realm_id}}/{{ldap_user_federation_id}}/{{bind_credential}}` (required when using `bind_credential` and LDAP bind authentication)
+
+        When using `bind_credential_wo`, import with `{{realm_id}}/{{ldap_user_federation_id}}` and then configure `bind_credential_wo` and `bind_credential_wo_version` in Terraform.
+
         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
         ```sh
@@ -1413,6 +1496,8 @@ class UserFederation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
                  bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_credential_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
                  cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1458,6 +1543,8 @@ class UserFederation(pulumi.CustomResource):
 
             __props__.__dict__["batch_size_for_sync"] = batch_size_for_sync
             __props__.__dict__["bind_credential"] = None if bind_credential is None else pulumi.Output.secret(bind_credential)
+            __props__.__dict__["bind_credential_wo"] = None if bind_credential_wo is None else pulumi.Output.secret(bind_credential_wo)
+            __props__.__dict__["bind_credential_wo_version"] = bind_credential_wo_version
             __props__.__dict__["bind_dn"] = bind_dn
             __props__.__dict__["cache"] = cache
             __props__.__dict__["changed_sync_period"] = changed_sync_period
@@ -1506,7 +1593,7 @@ class UserFederation(pulumi.CustomResource):
             __props__.__dict__["uuid_ldap_attribute"] = uuid_ldap_attribute
             __props__.__dict__["validate_password_policy"] = validate_password_policy
             __props__.__dict__["vendor"] = vendor
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindCredential"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindCredential", "bindCredentialWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(UserFederation, __self__).__init__(
             'keycloak:ldap/userFederation:UserFederation',
@@ -1520,6 +1607,8 @@ class UserFederation(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
             bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_credential_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_credential_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
             bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
             cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
             changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1562,8 +1651,11 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_credential_wo_version: Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
@@ -1609,6 +1701,8 @@ class UserFederation(pulumi.CustomResource):
 
         __props__.__dict__["batch_size_for_sync"] = batch_size_for_sync
         __props__.__dict__["bind_credential"] = bind_credential
+        __props__.__dict__["bind_credential_wo"] = bind_credential_wo
+        __props__.__dict__["bind_credential_wo_version"] = bind_credential_wo_version
         __props__.__dict__["bind_dn"] = bind_dn
         __props__.__dict__["cache"] = cache
         __props__.__dict__["changed_sync_period"] = changed_sync_period
@@ -1657,15 +1751,32 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="bindCredential")
     def bind_credential(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        Password of LDAP admin. This attribute must be set if `bind_dn` is set. Conflicts with `bind_credential_wo` and `bind_credential_wo_version`.
         """
         return pulumi.get(self, "bind_credential")
+
+    @_builtins.property
+    @pulumi.getter(name="bindCredentialWo")
+    def bind_credential_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bind_credential_wo_version` and conflicts with `bind_credential`.
+        """
+        return pulumi.get(self, "bind_credential_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="bindCredentialWoVersion")
+    def bind_credential_wo_version(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Version for `bind_credential_wo`. Change this value to rotate the write-only credential. Must be set together with `bind_credential_wo` and conflicts with `bind_credential`.
+        """
+        return pulumi.get(self, "bind_credential_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="bindDn")
     def bind_dn(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` or `bind_credential_wo` is set.
         """
         return pulumi.get(self, "bind_dn")
 

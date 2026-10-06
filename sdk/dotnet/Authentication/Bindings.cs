@@ -78,6 +78,16 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// This resource can be imported using the realm ID.
+    /// 
+    /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:authentication/bindings:Bindings example my-realm
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/bindings:Bindings")]
     public partial class Bindings : global::Pulumi.CustomResource

@@ -71,6 +71,7 @@ import (
 //					BruteForceDetection: &keycloak.RealmSecurityDefensesBruteForceDetectionArgs{
 //						PermanentLockout:             pulumi.Bool(false),
 //						MaxLoginFailures:             pulumi.Int(30),
+//						MaxSecondaryAuthFailures:     pulumi.Int(0),
 //						WaitIncrementSeconds:         pulumi.Int(60),
 //						QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
 //						MinimumQuickLoginWaitSeconds: pulumi.Int(60),

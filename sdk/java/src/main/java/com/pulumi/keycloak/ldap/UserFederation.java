@@ -89,7 +89,12 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
+ * LDAP user federation providers can be imported using one of these formats:
+ * - `{{realm_id}}/{{ldap_user_federation_id}}`
+ * - `{{realm_id}}/{{ldap_user_federation_id}}/{{bind_credential}}` (required when using `bindCredential` and LDAP bind authentication)
+ * 
+ * When using `bindCredentialWo`, import with `{{realm_id}}/{{ldap_user_federation_id}}` and then configure `bindCredentialWo` and `bindCredentialWoVersion` in Terraform.
+ * 
  * The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
  * 
  * ```sh
@@ -114,28 +119,58 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.batchSizeForSync);
     }
     /**
-     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      * 
      */
     @Export(name="bindCredential", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindCredential;
 
     /**
-     * @return Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * @return Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      * 
      */
     public Output<Optional<String>> bindCredential() {
         return Codegen.optional(this.bindCredential);
     }
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     * 
+     */
+    @Export(name="bindCredentialWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> bindCredentialWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     * 
+     */
+    public Output<Optional<String>> bindCredentialWo() {
+        return Codegen.optional(this.bindCredentialWo);
+    }
+    /**
+     * Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     * 
+     */
+    @Export(name="bindCredentialWoVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> bindCredentialWoVersion;
+
+    /**
+     * @return Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     * 
+     */
+    public Output<Optional<String>> bindCredentialWoVersion() {
+        return Codegen.optional(this.bindCredentialWoVersion);
+    }
+    /**
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      * 
      */
     @Export(name="bindDn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindDn;
 
     /**
-     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      * 
      */
     public Output<Optional<String>> bindDn() {
@@ -654,7 +689,8 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "bindCredential"
+                "bindCredential",
+                "bindCredentialWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

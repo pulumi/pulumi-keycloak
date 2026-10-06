@@ -54,6 +54,16 @@ import * as utilities from "../utilities";
  *     browserFlow: flow.alias,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * This resource can be imported using the realm ID.
+ *
+ * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:authentication/bindings:Bindings example my-realm
+ * ```
  */
 export class Bindings extends pulumi.CustomResource {
     /**

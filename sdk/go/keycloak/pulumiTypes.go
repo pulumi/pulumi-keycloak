@@ -1696,6 +1696,8 @@ type RealmSecurityDefensesBruteForceDetection struct {
 	MaxFailureWaitSeconds   *int `pulumi:"maxFailureWaitSeconds"`
 	// How many failures before wait is triggered.
 	MaxLoginFailures *int `pulumi:"maxLoginFailures"`
+	// How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+	MaxSecondaryAuthFailures *int `pulumi:"maxSecondaryAuthFailures"`
 	// How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
 	MaxTemporaryLockouts *int `pulumi:"maxTemporaryLockouts"`
 	// How long to wait after a quick login failure.
@@ -1727,6 +1729,8 @@ type RealmSecurityDefensesBruteForceDetectionArgs struct {
 	MaxFailureWaitSeconds   pulumi.IntPtrInput `pulumi:"maxFailureWaitSeconds"`
 	// How many failures before wait is triggered.
 	MaxLoginFailures pulumi.IntPtrInput `pulumi:"maxLoginFailures"`
+	// How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+	MaxSecondaryAuthFailures pulumi.IntPtrInput `pulumi:"maxSecondaryAuthFailures"`
 	// How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
 	MaxTemporaryLockouts pulumi.IntPtrInput `pulumi:"maxTemporaryLockouts"`
 	// How long to wait after a quick login failure.
@@ -1835,6 +1839,11 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxLoginFailures() pulum
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
 }
 
+// How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxSecondaryAuthFailures() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxSecondaryAuthFailures }).(pulumi.IntPtrOutput)
+}
+
 // How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxTemporaryLockouts() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxTemporaryLockouts }).(pulumi.IntPtrOutput)
@@ -1920,6 +1929,16 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxLoginFailures() pu
 			return nil
 		}
 		return v.MaxLoginFailures
+	}).(pulumi.IntPtrOutput)
+}
+
+// How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxSecondaryAuthFailures() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxSecondaryAuthFailures
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -4354,8 +4373,13 @@ func (o UserFederatedIdentityArrayOutput) Index(i pulumi.IntInput) UserFederated
 type UserInitialPassword struct {
 	// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
 	Temporary *bool `pulumi:"temporary"`
-	// The initial password.
-	Value string `pulumi:"value"`
+	// The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
+	Value *string `pulumi:"value"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+	ValueWo *string `pulumi:"valueWo"`
+	// Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+	ValueWoVersion *string `pulumi:"valueWoVersion"`
 }
 
 // UserInitialPasswordInput is an input type that accepts UserInitialPasswordArgs and UserInitialPasswordOutput values.
@@ -4372,8 +4396,13 @@ type UserInitialPasswordInput interface {
 type UserInitialPasswordArgs struct {
 	// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
 	Temporary pulumi.BoolPtrInput `pulumi:"temporary"`
-	// The initial password.
-	Value pulumi.StringInput `pulumi:"value"`
+	// The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+	ValueWo pulumi.StringPtrInput `pulumi:"valueWo"`
+	// Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+	ValueWoVersion pulumi.StringPtrInput `pulumi:"valueWoVersion"`
 }
 
 func (UserInitialPasswordArgs) ElementType() reflect.Type {
@@ -4458,9 +4487,20 @@ func (o UserInitialPasswordOutput) Temporary() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
 }
 
-// The initial password.
-func (o UserInitialPasswordOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v UserInitialPassword) string { return v.Value }).(pulumi.StringOutput)
+// The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
+func (o UserInitialPasswordOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInitialPassword) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+func (o UserInitialPasswordOutput) ValueWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInitialPassword) *string { return v.ValueWo }).(pulumi.StringPtrOutput)
+}
+
+// Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+func (o UserInitialPasswordOutput) ValueWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserInitialPassword) *string { return v.ValueWoVersion }).(pulumi.StringPtrOutput)
 }
 
 type UserInitialPasswordPtrOutput struct{ *pulumi.OutputState }
@@ -4497,13 +4537,34 @@ func (o UserInitialPasswordPtrOutput) Temporary() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The initial password.
+// The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
 func (o UserInitialPasswordPtrOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserInitialPassword) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Value
+		return v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+func (o UserInitialPasswordPtrOutput) ValueWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInitialPassword) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValueWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+func (o UserInitialPasswordPtrOutput) ValueWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserInitialPassword) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ValueWoVersion
 	}).(pulumi.StringPtrOutput)
 }
 

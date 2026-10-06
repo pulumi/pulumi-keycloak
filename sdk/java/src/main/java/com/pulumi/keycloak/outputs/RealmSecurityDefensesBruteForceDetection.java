@@ -26,6 +26,11 @@ public final class RealmSecurityDefensesBruteForceDetection {
      */
     private @Nullable Integer maxLoginFailures;
     /**
+     * @return How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+     * 
+     */
+    private @Nullable Integer maxSecondaryAuthFailures;
+    /**
      * @return How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
      * 
      */
@@ -72,6 +77,13 @@ public final class RealmSecurityDefensesBruteForceDetection {
      */
     public Optional<Integer> maxLoginFailures() {
         return Optional.ofNullable(this.maxLoginFailures);
+    }
+    /**
+     * @return How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+     * 
+     */
+    public Optional<Integer> maxSecondaryAuthFailures() {
+        return Optional.ofNullable(this.maxSecondaryAuthFailures);
     }
     /**
      * @return How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
@@ -123,6 +135,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
         private @Nullable Integer failureResetTimeSeconds;
         private @Nullable Integer maxFailureWaitSeconds;
         private @Nullable Integer maxLoginFailures;
+        private @Nullable Integer maxSecondaryAuthFailures;
         private @Nullable Integer maxTemporaryLockouts;
         private @Nullable Integer minimumQuickLoginWaitSeconds;
         private @Nullable Boolean permanentLockout;
@@ -135,6 +148,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
     	      this.failureResetTimeSeconds = defaults.failureResetTimeSeconds;
     	      this.maxFailureWaitSeconds = defaults.maxFailureWaitSeconds;
     	      this.maxLoginFailures = defaults.maxLoginFailures;
+    	      this.maxSecondaryAuthFailures = defaults.maxSecondaryAuthFailures;
     	      this.maxTemporaryLockouts = defaults.maxTemporaryLockouts;
     	      this.minimumQuickLoginWaitSeconds = defaults.minimumQuickLoginWaitSeconds;
     	      this.permanentLockout = defaults.permanentLockout;
@@ -164,6 +178,12 @@ public final class RealmSecurityDefensesBruteForceDetection {
         public Builder maxLoginFailures(@Nullable Integer maxLoginFailures) {
 
             this.maxLoginFailures = maxLoginFailures;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxSecondaryAuthFailures(@Nullable Integer maxSecondaryAuthFailures) {
+
+            this.maxSecondaryAuthFailures = maxSecondaryAuthFailures;
             return this;
         }
         @CustomType.Setter
@@ -202,6 +222,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
             _resultValue.failureResetTimeSeconds = failureResetTimeSeconds;
             _resultValue.maxFailureWaitSeconds = maxFailureWaitSeconds;
             _resultValue.maxLoginFailures = maxLoginFailures;
+            _resultValue.maxSecondaryAuthFailures = maxSecondaryAuthFailures;
             _resultValue.maxTemporaryLockouts = maxTemporaryLockouts;
             _resultValue.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             _resultValue.permanentLockout = permanentLockout;

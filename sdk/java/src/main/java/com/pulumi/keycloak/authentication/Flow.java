@@ -71,6 +71,68 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Copying a built-in flow, then restructuring it
+ * 
+ * Built-in flows (such as `browser`, `direct grant`, `registration`, `first broker login`, `clients`, and `docker auth`) can have
+ * the `requirement` of their *existing* executions configured freely (that part already works against the built-in flow itself),
+ * but Keycloak rejects any attempt to restructure them - adding a new execution, removing one, or adding a subflow all fail with
+ * errors like `It is illegal to add execution to a built in flow`. Copying the flow with `copyFrom` removes that restriction:
+ * the copy includes all of the source flow&#39;s executions and subflows, and - unlike the original - is not built-in, so executions
+ * and subflows can be added to or removed from it. The new flow can then be bound in place of the original via
+ * `keycloak.authentication.Bindings`.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.authentication.Flow;
+ * import com.pulumi.keycloak.authentication.FlowArgs;
+ * import com.pulumi.keycloak.authentication.Bindings;
+ * import com.pulumi.keycloak.authentication.BindingsArgs;
+ * import com.pulumi.keycloak.authentication.Execution;
+ * import com.pulumi.keycloak.authentication.ExecutionArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var customBrowser = new Flow("customBrowser", FlowArgs.builder()
+ *             .realmId(realm.id())
+ *             .alias("my-custom-browser")
+ *             .copyFrom("browser")
+ *             .build());
+ * 
+ *         var bindings = new Bindings("bindings", BindingsArgs.builder()
+ *             .realmId(realm.id())
+ *             .browserFlow(customBrowser.alias())
+ *             .build());
+ * 
+ *         // Adding a brand new top-level execution like this - e.g. offering WebAuthn/passkey login as
+ *         // an alternative to username+password - fails with "It is illegal to add execution to a built
+ *         // in flow" against "browser" itself, but succeeds on the copy.
+ *         var webauthnPasswordless = new Execution("webauthnPasswordless", ExecutionArgs.builder()
+ *             .realmId(realm.id())
+ *             .parentFlowAlias(customBrowser.alias())
+ *             .authenticator("webauthn-authenticator-passwordless")
+ *             .requirement("ALTERNATIVE")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Authentication flows can be imported using the format `{{realmId}}/{{authenticationFlowId}}`. The authentication flow ID is
@@ -104,6 +166,20 @@ public class Flow extends com.pulumi.resources.CustomResource {
         return this.alias;
     }
     /**
+     * The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     * 
+     */
+    @Export(name="copyFrom", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> copyFrom;
+
+    /**
+     * @return The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     * 
+     */
+    public Output<Optional<String>> copyFrom() {
+        return Codegen.optional(this.copyFrom);
+    }
+    /**
      * A description for the authentication flow.
      * 
      */
@@ -118,18 +194,18 @@ public class Flow extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      * 
      */
     @Export(name="providerId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> providerId;
+    private Output<String> providerId;
 
     /**
-     * @return The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * @return The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      * 
      */
-    public Output<Optional<String>> providerId() {
-        return Codegen.optional(this.providerId);
+    public Output<String> providerId() {
+        return this.providerId;
     }
     /**
      * The realm that the authentication flow exists in.

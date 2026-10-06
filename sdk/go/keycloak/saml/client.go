@@ -165,8 +165,12 @@ type Client struct {
 	// (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
 	SigningCertificateSha1 pulumi.StringOutput `pulumi:"signingCertificateSha1"`
 	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	//
+	// Deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
 	SigningPrivateKey pulumi.StringOutput `pulumi:"signingPrivateKey"`
 	// (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+	//
+	// Deprecated: Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
 	SigningPrivateKeySha1 pulumi.StringOutput `pulumi:"signingPrivateKeySha1"`
 	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
 	ValidRedirectUris pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
@@ -185,6 +189,13 @@ func NewClient(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	if args.SigningPrivateKey != nil {
+		args.SigningPrivateKey = pulumi.ToSecret(args.SigningPrivateKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"signingPrivateKey",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Client
 	err := ctx.RegisterResource("keycloak:saml/client:Client", name, args, &resource, opts...)
@@ -289,8 +300,12 @@ type clientState struct {
 	// (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
 	SigningCertificateSha1 *string `pulumi:"signingCertificateSha1"`
 	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	//
+	// Deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
 	SigningPrivateKey *string `pulumi:"signingPrivateKey"`
 	// (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+	//
+	// Deprecated: Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
 	SigningPrivateKeySha1 *string `pulumi:"signingPrivateKeySha1"`
 	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
 	ValidRedirectUris []string `pulumi:"validRedirectUris"`
@@ -378,8 +393,12 @@ type ClientState struct {
 	// (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
 	SigningCertificateSha1 pulumi.StringPtrInput
 	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	//
+	// Deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
 	SigningPrivateKey pulumi.StringPtrInput
 	// (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+	//
+	// Deprecated: Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
 	SigningPrivateKeySha1 pulumi.StringPtrInput
 	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
 	ValidRedirectUris pulumi.StringArrayInput
@@ -467,6 +486,8 @@ type clientArgs struct {
 	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
 	SigningCertificate *string `pulumi:"signingCertificate"`
 	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	//
+	// Deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
 	SigningPrivateKey *string `pulumi:"signingPrivateKey"`
 	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
 	ValidRedirectUris []string `pulumi:"validRedirectUris"`
@@ -551,6 +572,8 @@ type ClientArgs struct {
 	// If documents or assertions from the client are signed, this certificate will be used to verify the signature.
 	SigningCertificate pulumi.StringPtrInput
 	// If documents or assertions from the client are signed, this private key will be used to verify the signature.
+	//
+	// Deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
 	SigningPrivateKey pulumi.StringPtrInput
 	// When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
 	ValidRedirectUris pulumi.StringArrayInput
@@ -846,11 +869,15 @@ func (o ClientOutput) SigningCertificateSha1() pulumi.StringOutput {
 }
 
 // If documents or assertions from the client are signed, this private key will be used to verify the signature.
+//
+// Deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
 func (o ClientOutput) SigningPrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.SigningPrivateKey }).(pulumi.StringOutput)
 }
 
 // (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+//
+// Deprecated: Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
 func (o ClientOutput) SigningPrivateKeySha1() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.SigningPrivateKeySha1 }).(pulumi.StringOutput)
 }

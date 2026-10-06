@@ -87,6 +87,21 @@ namespace Pulumi.Keycloak
     ///         Description = "Authorization policy backed by a deployed JavaScript script",
     ///     });
     /// 
+    ///     // A custom Java SPI policy provider that reads its own settings from config.
+    ///     var customWithConfig = new Keycloak.GenericClientAuthorizationPolicy("custom_with_config", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "my-configurable-policy",
+    ///         Type = "my-custom-policy-provider",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Config = 
+    ///         {
+    ///             { "some_setting", "some_value" },
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -103,6 +118,16 @@ namespace Pulumi.Keycloak
     [KeycloakResourceType("keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy")]
     public partial class GenericClientAuthorizationPolicy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A map of provider-specific settings, passed through as-is to the policy's
+        /// `Config` object. This is how a custom Java SPI provider that reads its own settings (connection
+        /// details, thresholds, anything the provider defines) receives them; Keycloak's generic
+        /// `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+        /// and nested structures are not supported.
+        /// </summary>
+        [Output("config")]
+        public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
+
         /// <summary>
         /// The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
         /// </summary>
@@ -194,6 +219,22 @@ namespace Pulumi.Keycloak
 
     public sealed class GenericClientAuthorizationPolicyArgs : global::Pulumi.ResourceArgs
     {
+        [Input("config")]
+        private InputMap<string>? _config;
+
+        /// <summary>
+        /// A map of provider-specific settings, passed through as-is to the policy's
+        /// `Config` object. This is how a custom Java SPI provider that reads its own settings (connection
+        /// details, thresholds, anything the provider defines) receives them; Keycloak's generic
+        /// `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+        /// and nested structures are not supported.
+        /// </summary>
+        public InputMap<string> Config
+        {
+            get => _config ?? (_config = new InputMap<string>());
+            set => _config = value;
+        }
+
         /// <summary>
         /// The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
         /// </summary>
@@ -247,6 +288,22 @@ namespace Pulumi.Keycloak
 
     public sealed class GenericClientAuthorizationPolicyState : global::Pulumi.ResourceArgs
     {
+        [Input("config")]
+        private InputMap<string>? _config;
+
+        /// <summary>
+        /// A map of provider-specific settings, passed through as-is to the policy's
+        /// `Config` object. This is how a custom Java SPI provider that reads its own settings (connection
+        /// details, thresholds, anything the provider defines) receives them; Keycloak's generic
+        /// `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+        /// and nested structures are not supported.
+        /// </summary>
+        public InputMap<string> Config
+        {
+            get => _config ?? (_config = new InputMap<string>());
+            set => _config = value;
+        }
+
         /// <summary>
         /// The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
         /// </summary>

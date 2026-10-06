@@ -31,6 +31,21 @@ public final class FlowState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     * 
+     */
+    @Import(name="copyFrom")
+    private @Nullable Output<String> copyFrom;
+
+    /**
+     * @return The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     * 
+     */
+    public Optional<Output<String>> copyFrom() {
+        return Optional.ofNullable(this.copyFrom);
+    }
+
+    /**
      * A description for the authentication flow.
      * 
      */
@@ -46,14 +61,14 @@ public final class FlowState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      * 
      */
     @Import(name="providerId")
     private @Nullable Output<String> providerId;
 
     /**
-     * @return The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * @return The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      * 
      */
     public Optional<Output<String>> providerId() {
@@ -79,6 +94,7 @@ public final class FlowState extends com.pulumi.resources.ResourceArgs {
 
     private FlowState(FlowState $) {
         this.alias = $.alias;
+        this.copyFrom = $.copyFrom;
         this.description = $.description;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
@@ -124,6 +140,27 @@ public final class FlowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param copyFrom The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copyFrom(@Nullable Output<String> copyFrom) {
+            $.copyFrom = copyFrom;
+            return this;
+        }
+
+        /**
+         * @param copyFrom The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copyFrom(String copyFrom) {
+            return copyFrom(Output.of(copyFrom));
+        }
+
+        /**
          * @param description A description for the authentication flow.
          * 
          * @return builder
@@ -145,7 +182,7 @@ public final class FlowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param providerId The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+         * @param providerId The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
          * 
          * @return builder
          * 
@@ -156,7 +193,7 @@ public final class FlowState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param providerId The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+         * @param providerId The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
          * 
          * @return builder
          * 

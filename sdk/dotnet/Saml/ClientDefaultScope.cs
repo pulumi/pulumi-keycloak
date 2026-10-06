@@ -77,8 +77,13 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// ## Import
     /// 
-    /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
-    /// on the server.
+    /// This resource can be imported using the format `{{realmId}}/{{clientId}}`, where `clientId` is the unique ID that Keycloak assigns to the client upon creation.
+    /// 
+    /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:saml/clientDefaultScope:ClientDefaultScope example my-realm/d7bc2e7f-8ffd-4c56-a7d7-59cbaf3a7d13
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/clientDefaultScope:ClientDefaultScope")]
     public partial class ClientDefaultScope : global::Pulumi.CustomResource

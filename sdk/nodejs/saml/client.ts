@@ -240,10 +240,14 @@ export class Client extends pulumi.CustomResource {
     declare public /*out*/ readonly signingCertificateSha1: pulumi.Output<string>;
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
+     *
+     * @deprecated Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate. 
      */
     declare public readonly signingPrivateKey: pulumi.Output<string>;
     /**
      * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+     *
+     * @deprecated Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak 
      */
     declare public /*out*/ readonly signingPrivateKeySha1: pulumi.Output<string>;
     /**
@@ -353,13 +357,15 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["signatureAlgorithm"] = args?.signatureAlgorithm;
             resourceInputs["signatureKeyName"] = args?.signatureKeyName;
             resourceInputs["signingCertificate"] = args?.signingCertificate;
-            resourceInputs["signingPrivateKey"] = args?.signingPrivateKey;
+            resourceInputs["signingPrivateKey"] = args?.signingPrivateKey ? pulumi.secret(args.signingPrivateKey) : undefined;
             resourceInputs["validRedirectUris"] = args?.validRedirectUris;
             resourceInputs["encryptionCertificateSha1"] = undefined /*out*/;
             resourceInputs["signingCertificateSha1"] = undefined /*out*/;
             resourceInputs["signingPrivateKeySha1"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["signingPrivateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Client.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -530,10 +536,14 @@ export interface ClientState {
     signingCertificateSha1?: pulumi.Input<string | undefined>;
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
+     *
+     * @deprecated Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate. 
      */
     signingPrivateKey?: pulumi.Input<string | undefined>;
     /**
      * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+     *
+     * @deprecated Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak 
      */
     signingPrivateKeySha1?: pulumi.Input<string | undefined>;
     /**
@@ -700,6 +710,8 @@ export interface ClientArgs {
     signingCertificate?: pulumi.Input<string | undefined>;
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
+     *
+     * @deprecated Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate. 
      */
     signingPrivateKey?: pulumi.Input<string | undefined>;
     /**

@@ -67,6 +67,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KubernetesIdentityProvider{}
 	case "keycloak:index/organization:Organization":
 		r = &Organization{}
+	case "keycloak:index/organizationMemberships:OrganizationMemberships":
+		r = &OrganizationMemberships{}
 	case "keycloak:index/realm:Realm":
 		r = &Realm{}
 	case "keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile":
@@ -89,6 +91,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RealmKeystoreJavaGenerated{}
 	case "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa":
 		r = &RealmKeystoreRsa{}
+	case "keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated":
+		r = &RealmKeystoreRsaEncGenerated{}
 	case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
 		r = &RealmKeystoreRsaGenerated{}
 	case "keycloak:index/realmLocalization:RealmLocalization":
@@ -267,6 +271,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/organizationMemberships",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/realm",
 		&module{version},
 	)
@@ -318,6 +327,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/realmKeystoreRsa",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreRsaEncGenerated",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

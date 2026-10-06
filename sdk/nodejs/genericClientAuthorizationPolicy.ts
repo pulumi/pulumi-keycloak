@@ -69,6 +69,18 @@ import * as utilities from "./utilities";
  *     logic: "POSITIVE",
  *     description: "Authorization policy backed by a deployed JavaScript script",
  * });
+ * // A custom Java SPI policy provider that reads its own settings from config.
+ * const customWithConfig = new keycloak.GenericClientAuthorizationPolicy("custom_with_config", {
+ *     resourceServerId: test.resourceServerId,
+ *     realmId: realm.id,
+ *     name: "my-configurable-policy",
+ *     type: "my-custom-policy-provider",
+ *     decisionStrategy: "UNANIMOUS",
+ *     logic: "POSITIVE",
+ *     config: {
+ *         some_setting: "some_value",
+ *     },
+ * });
  * ```
  *
  * ## Import
@@ -109,6 +121,14 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === GenericClientAuthorizationPolicy.__pulumiType;
     }
 
+    /**
+     * A map of provider-specific settings, passed through as-is to the policy's
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak's generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     */
+    declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
      */
@@ -154,6 +174,7 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GenericClientAuthorizationPolicyState | undefined;
+            resourceInputs["config"] = state?.config;
             resourceInputs["decisionStrategy"] = state?.decisionStrategy;
             resourceInputs["description"] = state?.description;
             resourceInputs["logic"] = state?.logic;
@@ -175,6 +196,7 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
             if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["config"] = args?.config;
             resourceInputs["decisionStrategy"] = args?.decisionStrategy;
             resourceInputs["description"] = args?.description;
             resourceInputs["logic"] = args?.logic;
@@ -192,6 +214,14 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GenericClientAuthorizationPolicy resources.
  */
 export interface GenericClientAuthorizationPolicyState {
+    /**
+     * A map of provider-specific settings, passed through as-is to the policy's
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak's generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     */
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
      */
@@ -229,6 +259,14 @@ export interface GenericClientAuthorizationPolicyState {
  * The set of arguments for constructing a GenericClientAuthorizationPolicy resource.
  */
 export interface GenericClientAuthorizationPolicyArgs {
+    /**
+     * A map of provider-specific settings, passed through as-is to the policy's
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak's generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     */
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
      */

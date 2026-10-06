@@ -185,6 +185,11 @@ export type Organization = import("./organization").Organization;
 export const Organization: typeof import("./organization").Organization = null as any;
 utilities.lazyLoad(exports, ["Organization"], () => require("./organization"));
 
+export { OrganizationMembershipsArgs, OrganizationMembershipsState } from "./organizationMemberships";
+export type OrganizationMemberships = import("./organizationMemberships").OrganizationMemberships;
+export const OrganizationMemberships: typeof import("./organizationMemberships").OrganizationMemberships = null as any;
+utilities.lazyLoad(exports, ["OrganizationMemberships"], () => require("./organizationMemberships"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -242,6 +247,11 @@ export { RealmKeystoreRsaArgs, RealmKeystoreRsaState } from "./realmKeystoreRsa"
 export type RealmKeystoreRsa = import("./realmKeystoreRsa").RealmKeystoreRsa;
 export const RealmKeystoreRsa: typeof import("./realmKeystoreRsa").RealmKeystoreRsa = null as any;
 utilities.lazyLoad(exports, ["RealmKeystoreRsa"], () => require("./realmKeystoreRsa"));
+
+export { RealmKeystoreRsaEncGeneratedArgs, RealmKeystoreRsaEncGeneratedState } from "./realmKeystoreRsaEncGenerated";
+export type RealmKeystoreRsaEncGenerated = import("./realmKeystoreRsaEncGenerated").RealmKeystoreRsaEncGenerated;
+export const RealmKeystoreRsaEncGenerated: typeof import("./realmKeystoreRsaEncGenerated").RealmKeystoreRsaEncGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreRsaEncGenerated"], () => require("./realmKeystoreRsaEncGenerated"));
 
 export { RealmKeystoreRsaGeneratedArgs, RealmKeystoreRsaGeneratedState } from "./realmKeystoreRsaGenerated";
 export type RealmKeystoreRsaGenerated = import("./realmKeystoreRsaGenerated").RealmKeystoreRsaGenerated;
@@ -388,6 +398,8 @@ const _module = {
                 return new KubernetesIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:index/organization:Organization":
                 return new Organization(name, <any>undefined, { urn })
+            case "keycloak:index/organizationMemberships:OrganizationMemberships":
+                return new OrganizationMemberships(name, <any>undefined, { urn })
             case "keycloak:index/realm:Realm":
                 return new Realm(name, <any>undefined, { urn })
             case "keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile":
@@ -410,6 +422,8 @@ const _module = {
                 return new RealmKeystoreJavaGenerated(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa":
                 return new RealmKeystoreRsa(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated":
+                return new RealmKeystoreRsaEncGenerated(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
                 return new RealmKeystoreRsaGenerated(name, <any>undefined, { urn })
             case "keycloak:index/realmLocalization:RealmLocalization":
@@ -468,6 +482,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMa
 pulumi.runtime.registerResourceModule("keycloak", "index/identityProviderTokenExchangeScopePermission", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/kubernetesIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/organization", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/organizationMemberships", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfile", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfilePolicy", _module)
@@ -479,6 +494,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreEcdsaGener
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreHmacGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreJavaGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsa", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsaEncGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsaGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmLocalization", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmOptionalClientScopes", _module)

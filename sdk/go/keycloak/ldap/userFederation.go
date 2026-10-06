@@ -75,7 +75,12 @@ import (
 //
 // ## Import
 //
-// LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
+// LDAP user federation providers can be imported using one of these formats:
+// - `{{realm_id}}/{{ldap_user_federation_id}}`
+// - `{{realm_id}}/{{ldap_user_federation_id}}/{{bind_credential}}` (required when using `bindCredential` and LDAP bind authentication)
+//
+// When using `bindCredentialWo`, import with `{{realm_id}}/{{ldap_user_federation_id}}` and then configure `bindCredentialWo` and `bindCredentialWoVersion` in Terraform.
+//
 // The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 //
 // ```sh
@@ -86,9 +91,14 @@ type UserFederation struct {
 
 	// The number of users to sync within a single transaction. Defaults to `1000`.
 	BatchSizeForSync pulumi.IntPtrOutput `pulumi:"batchSizeForSync"`
-	// Password of LDAP admin. This attribute must be set if `bindDn` is set.
+	// Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
 	BindCredential pulumi.StringPtrOutput `pulumi:"bindCredential"`
-	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+	BindCredentialWo pulumi.StringPtrOutput `pulumi:"bindCredentialWo"`
+	// Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+	BindCredentialWoVersion pulumi.StringPtrOutput `pulumi:"bindCredentialWoVersion"`
+	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
 	BindDn pulumi.StringPtrOutput `pulumi:"bindDn"`
 	// A block containing the cache settings.
 	Cache UserFederationCachePtrOutput `pulumi:"cache"`
@@ -194,8 +204,12 @@ func NewUserFederation(ctx *pulumi.Context,
 	if args.BindCredential != nil {
 		args.BindCredential = pulumi.ToSecret(args.BindCredential).(pulumi.StringPtrInput)
 	}
+	if args.BindCredentialWo != nil {
+		args.BindCredentialWo = pulumi.ToSecret(args.BindCredentialWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"bindCredential",
+		"bindCredentialWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -223,9 +237,14 @@ func GetUserFederation(ctx *pulumi.Context,
 type userFederationState struct {
 	// The number of users to sync within a single transaction. Defaults to `1000`.
 	BatchSizeForSync *int `pulumi:"batchSizeForSync"`
-	// Password of LDAP admin. This attribute must be set if `bindDn` is set.
+	// Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
 	BindCredential *string `pulumi:"bindCredential"`
-	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+	BindCredentialWo *string `pulumi:"bindCredentialWo"`
+	// Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+	BindCredentialWoVersion *string `pulumi:"bindCredentialWoVersion"`
+	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
 	BindDn *string `pulumi:"bindDn"`
 	// A block containing the cache settings.
 	Cache *UserFederationCache `pulumi:"cache"`
@@ -303,9 +322,14 @@ type userFederationState struct {
 type UserFederationState struct {
 	// The number of users to sync within a single transaction. Defaults to `1000`.
 	BatchSizeForSync pulumi.IntPtrInput
-	// Password of LDAP admin. This attribute must be set if `bindDn` is set.
+	// Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
 	BindCredential pulumi.StringPtrInput
-	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+	BindCredentialWo pulumi.StringPtrInput
+	// Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+	BindCredentialWoVersion pulumi.StringPtrInput
+	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
 	BindDn pulumi.StringPtrInput
 	// A block containing the cache settings.
 	Cache UserFederationCachePtrInput
@@ -387,9 +411,14 @@ func (UserFederationState) ElementType() reflect.Type {
 type userFederationArgs struct {
 	// The number of users to sync within a single transaction. Defaults to `1000`.
 	BatchSizeForSync *int `pulumi:"batchSizeForSync"`
-	// Password of LDAP admin. This attribute must be set if `bindDn` is set.
+	// Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
 	BindCredential *string `pulumi:"bindCredential"`
-	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+	BindCredentialWo *string `pulumi:"bindCredentialWo"`
+	// Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+	BindCredentialWoVersion *string `pulumi:"bindCredentialWoVersion"`
+	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
 	BindDn *string `pulumi:"bindDn"`
 	// A block containing the cache settings.
 	Cache *UserFederationCache `pulumi:"cache"`
@@ -468,9 +497,14 @@ type userFederationArgs struct {
 type UserFederationArgs struct {
 	// The number of users to sync within a single transaction. Defaults to `1000`.
 	BatchSizeForSync pulumi.IntPtrInput
-	// Password of LDAP admin. This attribute must be set if `bindDn` is set.
+	// Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
 	BindCredential pulumi.StringPtrInput
-	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+	BindCredentialWo pulumi.StringPtrInput
+	// Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+	BindCredentialWoVersion pulumi.StringPtrInput
+	// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
 	BindDn pulumi.StringPtrInput
 	// A block containing the cache settings.
 	Cache UserFederationCachePtrInput
@@ -637,12 +671,23 @@ func (o UserFederationOutput) BatchSizeForSync() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.IntPtrOutput { return v.BatchSizeForSync }).(pulumi.IntPtrOutput)
 }
 
-// Password of LDAP admin. This attribute must be set if `bindDn` is set.
+// Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
 func (o UserFederationOutput) BindCredential() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.BindCredential }).(pulumi.StringPtrOutput)
 }
 
-// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+func (o UserFederationOutput) BindCredentialWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.BindCredentialWo }).(pulumi.StringPtrOutput)
+}
+
+// Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+func (o UserFederationOutput) BindCredentialWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.BindCredentialWoVersion }).(pulumi.StringPtrOutput)
+}
+
+// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
 func (o UserFederationOutput) BindDn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.BindDn }).(pulumi.StringPtrOutput)
 }

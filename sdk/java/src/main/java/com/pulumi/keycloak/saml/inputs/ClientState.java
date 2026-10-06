@@ -622,14 +622,22 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
      * 
+     * @deprecated
+     * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+     * 
      */
+    @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
     @Import(name="signingPrivateKey")
     private @Nullable Output<String> signingPrivateKey;
 
     /**
      * @return If documents or assertions from the client are signed, this private key will be used to verify the signature.
      * 
+     * @deprecated
+     * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+     * 
      */
+    @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
     public Optional<Output<String>> signingPrivateKey() {
         return Optional.ofNullable(this.signingPrivateKey);
     }
@@ -637,14 +645,22 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     /**
      * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
      * 
+     * @deprecated
+     * Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
+     * 
      */
+    @Deprecated /* Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak  */
     @Import(name="signingPrivateKeySha1")
     private @Nullable Output<String> signingPrivateKeySha1;
 
     /**
      * @return (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
      * 
+     * @deprecated
+     * Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
+     * 
      */
+    @Deprecated /* Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak  */
     public Optional<Output<String>> signingPrivateKeySha1() {
         return Optional.ofNullable(this.signingPrivateKeySha1);
     }
@@ -1575,7 +1591,11 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+         * 
          */
+        @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
         public Builder signingPrivateKey(@Nullable Output<String> signingPrivateKey) {
             $.signingPrivateKey = signingPrivateKey;
             return this;
@@ -1586,7 +1606,11 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+         * 
          */
+        @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
         public Builder signingPrivateKey(String signingPrivateKey) {
             return signingPrivateKey(Output.of(signingPrivateKey));
         }
@@ -1596,7 +1620,11 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
+         * 
          */
+        @Deprecated /* Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak  */
         public Builder signingPrivateKeySha1(@Nullable Output<String> signingPrivateKeySha1) {
             $.signingPrivateKeySha1 = signingPrivateKeySha1;
             return this;
@@ -1607,7 +1635,11 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
+         * 
          */
+        @Deprecated /* Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak  */
         public Builder signingPrivateKeySha1(String signingPrivateKeySha1) {
             return signingPrivateKeySha1(Output.of(signingPrivateKeySha1));
         }

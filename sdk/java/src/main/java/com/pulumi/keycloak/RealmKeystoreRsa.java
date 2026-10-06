@@ -13,6 +13,7 @@ import com.pulumi.keycloak.inputs.RealmKeystoreRsaState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -21,6 +22,10 @@ import javax.annotation.Nullable;
  * Allows for creating and managing `rsa` Realm keystores within Keycloak.
  * 
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+ * 
+ * &gt; **Write-only arguments:** `privateKeyWo` and `certificateWo` (with `privateKeyWoVersion` and
+ * `certificateWoVersion`) can be used instead of `privateKey` and `certificate`. Write-only arguments are never
+ * stored in the plan or state files. Each write-only argument conflicts with its non-write-only counterpart.
  * 
  * ## Example Usage
  * 
@@ -113,18 +118,48 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.algorithm);
     }
     /**
-     * X509 Certificate encoded in PEM format.
+     * X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      * 
      */
     @Export(name="certificate", refs={String.class}, tree="[0]")
-    private Output<String> certificate;
+    private Output</* @Nullable */ String> certificate;
 
     /**
-     * @return X509 Certificate encoded in PEM format.
+     * @return X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      * 
      */
-    public Output<String> certificate() {
-        return this.certificate;
+    public Output<Optional<String>> certificate() {
+        return Codegen.optional(this.certificate);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     * 
+     */
+    @Export(name="certificateWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> certificateWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     * 
+     */
+    public Output<Optional<String>> certificateWo() {
+        return Codegen.optional(this.certificateWo);
+    }
+    /**
+     * Version of the `certificateWo` argument. Stored in state.
+     * 
+     */
+    @Export(name="certificateWoVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> certificateWoVersion;
+
+    /**
+     * @return Version of the `certificateWo` argument. Stored in state.
+     * 
+     */
+    public Output<Optional<String>> certificateWoVersion() {
+        return Codegen.optional(this.certificateWoVersion);
     }
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
@@ -183,18 +218,48 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.priority);
     }
     /**
-     * Private RSA Key encoded in PEM format.
+     * Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
-    private Output<String> privateKey;
+    private Output</* @Nullable */ String> privateKey;
 
     /**
-     * @return Private RSA Key encoded in PEM format.
+     * @return Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Output<Optional<String>> privateKey() {
+        return Codegen.optional(this.privateKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     * 
+     */
+    @Export(name="privateKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWo() {
+        return Codegen.optional(this.privateKeyWo);
+    }
+    /**
+     * Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     * 
+     */
+    @Export(name="privateKeyWoVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWoVersion;
+
+    /**
+     * @return Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWoVersion() {
+        return Codegen.optional(this.privateKeyWoVersion);
     }
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
@@ -264,6 +329,11 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "certificateWo",
+                "privateKey",
+                "privateKeyWo"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -546,20 +546,22 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             __props__.__dict__["key_alias"] = key_alias
             if key_password is None and not opts.urn:
                 raise TypeError("Missing required property 'key_password'")
-            __props__.__dict__["key_password"] = key_password
+            __props__.__dict__["key_password"] = None if key_password is None else pulumi.Output.secret(key_password)
             __props__.__dict__["key_use"] = key_use
             if keystore is None and not opts.urn:
                 raise TypeError("Missing required property 'keystore'")
             __props__.__dict__["keystore"] = keystore
             if keystore_password is None and not opts.urn:
                 raise TypeError("Missing required property 'keystore_password'")
-            __props__.__dict__["keystore_password"] = keystore_password
+            __props__.__dict__["keystore_password"] = None if keystore_password is None else pulumi.Output.secret(keystore_password)
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
             __props__.__dict__["parent_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["keyPassword", "keystorePassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RealmKeystoreJavaGenerated, __self__).__init__(
             'keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated',
             resource_name,

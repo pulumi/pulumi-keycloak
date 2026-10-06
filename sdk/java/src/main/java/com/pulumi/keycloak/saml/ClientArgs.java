@@ -593,14 +593,22 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
      * 
+     * @deprecated
+     * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+     * 
      */
+    @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
     @Import(name="signingPrivateKey")
     private @Nullable Output<String> signingPrivateKey;
 
     /**
      * @return If documents or assertions from the client are signed, this private key will be used to verify the signature.
      * 
+     * @deprecated
+     * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+     * 
      */
+    @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
     public Optional<Output<String>> signingPrivateKey() {
         return Optional.ofNullable(this.signingPrivateKey);
     }
@@ -1486,7 +1494,11 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+         * 
          */
+        @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
         public Builder signingPrivateKey(@Nullable Output<String> signingPrivateKey) {
             $.signingPrivateKey = signingPrivateKey;
             return this;
@@ -1497,7 +1509,11 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+         * 
          */
+        @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
         public Builder signingPrivateKey(String signingPrivateKey) {
             return signingPrivateKey(Output.of(signingPrivateKey));
         }

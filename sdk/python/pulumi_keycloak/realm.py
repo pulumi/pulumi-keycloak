@@ -1740,6 +1740,7 @@ class Realm(pulumi.CustomResource):
                 "brute_force_detection": {
                     "permanent_lockout": False,
                     "max_login_failures": 30,
+                    "max_secondary_auth_failures": 0,
                     "wait_increment_seconds": 60,
                     "quick_login_check_milli_seconds": 1000,
                     "minimum_quick_login_wait_seconds": 60,
@@ -1853,6 +1854,7 @@ class Realm(pulumi.CustomResource):
                 "brute_force_detection": {
                     "permanent_lockout": False,
                     "max_login_failures": 30,
+                    "max_secondary_auth_failures": 0,
                     "wait_increment_seconds": 60,
                     "quick_login_check_milli_seconds": 1000,
                     "minimum_quick_login_wait_seconds": 60,

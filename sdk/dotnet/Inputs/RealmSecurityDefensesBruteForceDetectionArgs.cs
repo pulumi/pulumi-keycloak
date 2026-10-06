@@ -31,6 +31,12 @@ namespace Pulumi.Keycloak.Inputs
         public Input<int>? MaxLoginFailures { get; set; }
 
         /// <summary>
+        /// How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+        /// </summary>
+        [Input("maxSecondaryAuthFailures")]
+        public Input<int>? MaxSecondaryAuthFailures { get; set; }
+
+        /// <summary>
         /// How many temporary lockouts are permitted before a user is permanently locked out. `PermanentLockout` needs to be `True`. Defaults to `0`
         /// </summary>
         [Input("maxTemporaryLockouts")]

@@ -210,11 +210,17 @@ namespace Pulumi.Keycloak
 
     public sealed class GetClientDescriptionConverterArgs : global::Pulumi.InvokeArgs
     {
+        [Input("body", required: true)]
+        private string? _body;
+
         /// <summary>
         /// The body of the request to convert.
         /// </summary>
-        [Input("body", required: true)]
-        public string Body { get; set; } = null!;
+        public string? Body
+        {
+            get => _body;
+            set => _body = value;
+        }
 
         /// <summary>
         /// The realm to use for the client description converter API call.
@@ -230,11 +236,21 @@ namespace Pulumi.Keycloak
 
     public sealed class GetClientDescriptionConverterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("body", required: true)]
+        private Input<string>? _body;
+
         /// <summary>
         /// The body of the request to convert.
         /// </summary>
-        [Input("body", required: true)]
-        public Input<string> Body { get; set; } = null!;
+        public Input<string>? Body
+        {
+            get => _body;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _body = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The realm to use for the client description converter API call.

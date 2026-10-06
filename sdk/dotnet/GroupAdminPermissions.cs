@@ -25,6 +25,8 @@ namespace Pulumi.Keycloak
     /// - `view-members` — view user details of the group's members
     /// - `manage-members` — manage the users that belong to this group
     /// - `manage-membership` — add or remove members from this group
+    /// - `manage-membership-of-members` — change the group memberships of this group's members (requires Keycloak 26.6 or later)
+    /// - `impersonate-members` — impersonate the users that belong to this group
     /// 
     /// ## Example Usage
     /// 
@@ -186,7 +188,7 @@ namespace Pulumi.Keycloak
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `view-members`, `manage-members`, `manage-membership`.
+        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
@@ -289,7 +291,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `view-members`, `manage-members`, `manage-membership`.
+        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         /// </summary>
         public InputList<string> Scopes
         {
@@ -375,7 +377,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `view-members`, `manage-members`, `manage-membership`.
+        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         /// </summary>
         public InputList<string> Scopes
         {

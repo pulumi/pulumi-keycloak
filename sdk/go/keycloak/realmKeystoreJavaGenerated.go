@@ -116,6 +116,17 @@ func NewRealmKeystoreJavaGenerated(ctx *pulumi.Context,
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	if args.KeyPassword != nil {
+		args.KeyPassword = pulumi.ToSecret(args.KeyPassword).(pulumi.StringInput)
+	}
+	if args.KeystorePassword != nil {
+		args.KeystorePassword = pulumi.ToSecret(args.KeystorePassword).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"keyPassword",
+		"keystorePassword",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreJavaGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated", name, args, &resource, opts...)

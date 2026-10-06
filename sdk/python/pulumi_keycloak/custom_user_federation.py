@@ -40,7 +40,7 @@ class CustomUserFederationArgs:
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[_builtins.str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        :param pulumi.Input[_builtins.str] parent_id: **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         """
         pulumi.set(__self__, "provider_id", provider_id)
@@ -57,6 +57,9 @@ class CustomUserFederationArgs:
             pulumi.set(__self__, "full_sync_period", full_sync_period)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parent_id is not None:
+            warnings.warn("""Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""", DeprecationWarning)
+            pulumi.log.warn("""parent_id is deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""")
         if parent_id is not None:
             pulumi.set(__self__, "parent_id", parent_id)
         if priority is not None:
@@ -160,9 +163,10 @@ class CustomUserFederationArgs:
 
     @_builtins.property
     @pulumi.getter(name="parentId")
+    @_utilities.deprecated("""Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""")
     def parent_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         """
         return pulumi.get(self, "parent_id")
 
@@ -205,7 +209,7 @@ class _CustomUserFederationState:
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[_builtins.str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        :param pulumi.Input[_builtins.str] parent_id: **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
@@ -222,6 +226,9 @@ class _CustomUserFederationState:
             pulumi.set(__self__, "full_sync_period", full_sync_period)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if parent_id is not None:
+            warnings.warn("""Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""", DeprecationWarning)
+            pulumi.log.warn("""parent_id is deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""")
         if parent_id is not None:
             pulumi.set(__self__, "parent_id", parent_id)
         if priority is not None:
@@ -305,9 +312,10 @@ class _CustomUserFederationState:
 
     @_builtins.property
     @pulumi.getter(name="parentId")
+    @_utilities.deprecated("""Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""")
     def parent_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         """
         return pulumi.get(self, "parent_id")
 
@@ -414,7 +422,7 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[_builtins.str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        :param pulumi.Input[_builtins.str] parent_id: **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
@@ -543,7 +551,7 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[_builtins.str] parent_id: Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        :param pulumi.Input[_builtins.str] parent_id: **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
@@ -614,9 +622,10 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="parentId")
+    @_utilities.deprecated("""Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.""")
     def parent_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         """
         return pulumi.get(self, "parent_id")
 
