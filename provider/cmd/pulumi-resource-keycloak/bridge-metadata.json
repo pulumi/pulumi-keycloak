@@ -592,6 +592,15 @@
                     }
                 }
             },
+            "keycloak_organization_memberships": {
+                "current": "keycloak:index/organizationMemberships:OrganizationMemberships",
+                "majorVersion": 6,
+                "fields": {
+                    "members": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "keycloak_realm": {
                 "current": "keycloak:index/realm:Realm",
                 "majorVersion": 6,
@@ -739,6 +748,10 @@
             },
             "keycloak_realm_keystore_rsa": {
                 "current": "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa",
+                "majorVersion": 6
+            },
+            "keycloak_realm_keystore_rsa_enc_generated": {
+                "current": "keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated",
                 "majorVersion": 6
             },
             "keycloak_realm_keystore_rsa_generated": {
