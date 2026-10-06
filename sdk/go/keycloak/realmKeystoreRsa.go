@@ -16,6 +16,10 @@ import (
 //
 // A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 //
+// > **Write-only arguments:** `privateKeyWo` and `certificateWo` (with `privateKeyWoVersion` and
+// `certificateWoVersion`) can be used instead of `privateKey` and `certificate`. Write-only arguments are never
+// stored in the plan or state files. Each write-only argument conflicts with its non-write-only counterpart.
+//
 // ## Example Usage
 //
 // ```go
@@ -76,8 +80,13 @@ type RealmKeystoreRsa struct {
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
-	// X509 Certificate encoded in PEM format.
-	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
+	Certificate pulumi.StringPtrOutput `pulumi:"certificate"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+	CertificateWo pulumi.StringPtrOutput `pulumi:"certificateWo"`
+	// Version of the `certificateWo` argument. Stored in state.
+	CertificateWoVersion pulumi.StringPtrOutput `pulumi:"certificateWoVersion"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
@@ -86,8 +95,13 @@ type RealmKeystoreRsa struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	// Private RSA Key encoded in PEM format.
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
+	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+	PrivateKeyWo pulumi.StringPtrOutput `pulumi:"privateKeyWo"`
+	// Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+	PrivateKeyWoVersion pulumi.StringPtrOutput `pulumi:"privateKeyWoVersion"`
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The realm this keystore exists in.
@@ -101,15 +115,24 @@ func NewRealmKeystoreRsa(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Certificate == nil {
-		return nil, errors.New("invalid value for required argument 'Certificate'")
-	}
-	if args.PrivateKey == nil {
-		return nil, errors.New("invalid value for required argument 'PrivateKey'")
-	}
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
+	if args.CertificateWo != nil {
+		args.CertificateWo = pulumi.ToSecret(args.CertificateWo).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyWo != nil {
+		args.PrivateKeyWo = pulumi.ToSecret(args.PrivateKeyWo).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"certificateWo",
+		"privateKey",
+		"privateKeyWo",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreRsa
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", name, args, &resource, opts...)
@@ -137,8 +160,13 @@ type realmKeystoreRsaState struct {
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm *string `pulumi:"algorithm"`
-	// X509 Certificate encoded in PEM format.
+	// X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
 	Certificate *string `pulumi:"certificate"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+	CertificateWo *string `pulumi:"certificateWo"`
+	// Version of the `certificateWo` argument. Stored in state.
+	CertificateWoVersion *string `pulumi:"certificateWoVersion"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
@@ -147,8 +175,13 @@ type realmKeystoreRsaState struct {
 	Name *string `pulumi:"name"`
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
-	// Private RSA Key encoded in PEM format.
+	// Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
 	PrivateKey *string `pulumi:"privateKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+	PrivateKeyWoVersion *string `pulumi:"privateKeyWoVersion"`
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId *string `pulumi:"providerId"`
 	// The realm this keystore exists in.
@@ -160,8 +193,13 @@ type RealmKeystoreRsaState struct {
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrInput
-	// X509 Certificate encoded in PEM format.
+	// X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
 	Certificate pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+	CertificateWo pulumi.StringPtrInput
+	// Version of the `certificateWo` argument. Stored in state.
+	CertificateWoVersion pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
@@ -170,8 +208,13 @@ type RealmKeystoreRsaState struct {
 	Name pulumi.StringPtrInput
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
-	// Private RSA Key encoded in PEM format.
+	// Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
 	PrivateKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+	PrivateKeyWoVersion pulumi.StringPtrInput
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId pulumi.StringPtrInput
 	// The realm this keystore exists in.
@@ -187,8 +230,13 @@ type realmKeystoreRsaArgs struct {
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm *string `pulumi:"algorithm"`
-	// X509 Certificate encoded in PEM format.
-	Certificate string `pulumi:"certificate"`
+	// X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
+	Certificate *string `pulumi:"certificate"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+	CertificateWo *string `pulumi:"certificateWo"`
+	// Version of the `certificateWo` argument. Stored in state.
+	CertificateWoVersion *string `pulumi:"certificateWoVersion"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
@@ -197,8 +245,13 @@ type realmKeystoreRsaArgs struct {
 	Name *string `pulumi:"name"`
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
-	// Private RSA Key encoded in PEM format.
-	PrivateKey string `pulumi:"privateKey"`
+	// Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
+	PrivateKey *string `pulumi:"privateKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+	PrivateKeyWoVersion *string `pulumi:"privateKeyWoVersion"`
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId *string `pulumi:"providerId"`
 	// The realm this keystore exists in.
@@ -211,8 +264,13 @@ type RealmKeystoreRsaArgs struct {
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrInput
-	// X509 Certificate encoded in PEM format.
-	Certificate pulumi.StringInput
+	// X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
+	Certificate pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+	CertificateWo pulumi.StringPtrInput
+	// Version of the `certificateWo` argument. Stored in state.
+	CertificateWoVersion pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
@@ -221,8 +279,13 @@ type RealmKeystoreRsaArgs struct {
 	Name pulumi.StringPtrInput
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
-	// Private RSA Key encoded in PEM format.
-	PrivateKey pulumi.StringInput
+	// Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
+	PrivateKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+	PrivateKeyWo pulumi.StringPtrInput
+	// Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+	PrivateKeyWoVersion pulumi.StringPtrInput
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId pulumi.StringPtrInput
 	// The realm this keystore exists in.
@@ -326,9 +389,20 @@ func (o RealmKeystoreRsaOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
 
-// X509 Certificate encoded in PEM format.
-func (o RealmKeystoreRsaOutput) Certificate() pulumi.StringOutput {
-	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+// X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
+func (o RealmKeystoreRsaOutput) Certificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.Certificate }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+func (o RealmKeystoreRsaOutput) CertificateWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.CertificateWo }).(pulumi.StringPtrOutput)
+}
+
+// Version of the `certificateWo` argument. Stored in state.
+func (o RealmKeystoreRsaOutput) CertificateWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.CertificateWoVersion }).(pulumi.StringPtrOutput)
 }
 
 // When `false`, key is not accessible in this realm. Defaults to `true`.
@@ -351,9 +425,20 @@ func (o RealmKeystoreRsaOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Private RSA Key encoded in PEM format.
-func (o RealmKeystoreRsaOutput) PrivateKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+// Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
+func (o RealmKeystoreRsaOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+func (o RealmKeystoreRsaOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+func (o RealmKeystoreRsaOutput) PrivateKeyWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.PrivateKeyWoVersion }).(pulumi.StringPtrOutput)
 }
 
 // Use `rsa` for signing keys, `rsa-enc` for encryption keys

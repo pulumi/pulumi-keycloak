@@ -89,6 +89,16 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// This resource can be imported using the realm ID.
+//
+// Example:
+//
+// ```sh
+// $ pulumi import keycloak:authentication/bindings:Bindings example my-realm
+// ```
 type Bindings struct {
 	pulumi.CustomResourceState
 

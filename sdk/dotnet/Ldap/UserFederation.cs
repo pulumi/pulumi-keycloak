@@ -65,7 +65,12 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// ## Import
     /// 
-    /// LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
+    /// LDAP user federation providers can be imported using one of these formats:
+    /// - `{{realm_id}}/{{ldap_user_federation_id}}`
+    /// - `{{realm_id}}/{{ldap_user_federation_id}}/{{bind_credential}}` (required when using `BindCredential` and LDAP bind authentication)
+    /// 
+    /// When using `BindCredentialWo`, import with `{{realm_id}}/{{ldap_user_federation_id}}` and then configure `BindCredentialWo` and `BindCredentialWoVersion` in Terraform.
+    /// 
     /// The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
     /// 
     /// ```sh
@@ -82,13 +87,26 @@ namespace Pulumi.Keycloak.Ldap
         public Output<int?> BatchSizeForSync { get; private set; } = null!;
 
         /// <summary>
-        /// Password of LDAP admin. This attribute must be set if `BindDn` is set.
+        /// Password of LDAP admin. This attribute must be set if `BindDn` is set. Conflicts with `BindCredentialWo` and `BindCredentialWoVersion`.
         /// </summary>
         [Output("bindCredential")]
         public Output<string?> BindCredential { get; private set; } = null!;
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` is set.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `BindCredentialWoVersion` and conflicts with `BindCredential`.
+        /// </summary>
+        [Output("bindCredentialWo")]
+        public Output<string?> BindCredentialWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version for `BindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `BindCredentialWo` and conflicts with `BindCredential`.
+        /// </summary>
+        [Output("bindCredentialWoVersion")]
+        public Output<string?> BindCredentialWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` or `BindCredentialWo` is set.
         /// </summary>
         [Output("bindDn")]
         public Output<string?> BindDn { get; private set; } = null!;
@@ -322,6 +340,7 @@ namespace Pulumi.Keycloak.Ldap
                 AdditionalSecretOutputs =
                 {
                     "bindCredential",
+                    "bindCredentialWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -356,7 +375,7 @@ namespace Pulumi.Keycloak.Ldap
         private Input<string>? _bindCredential;
 
         /// <summary>
-        /// Password of LDAP admin. This attribute must be set if `BindDn` is set.
+        /// Password of LDAP admin. This attribute must be set if `BindDn` is set. Conflicts with `BindCredentialWo` and `BindCredentialWoVersion`.
         /// </summary>
         public Input<string>? BindCredential
         {
@@ -368,8 +387,31 @@ namespace Pulumi.Keycloak.Ldap
             }
         }
 
+        [Input("bindCredentialWo")]
+        private Input<string>? _bindCredentialWo;
+
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` is set.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `BindCredentialWoVersion` and conflicts with `BindCredential`.
+        /// </summary>
+        public Input<string>? BindCredentialWo
+        {
+            get => _bindCredentialWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindCredentialWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version for `BindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `BindCredentialWo` and conflicts with `BindCredential`.
+        /// </summary>
+        [Input("bindCredentialWoVersion")]
+        public Input<string>? BindCredentialWoVersion { get; set; }
+
+        /// <summary>
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` or `BindCredentialWo` is set.
         /// </summary>
         [Input("bindDn")]
         public Input<string>? BindDn { get; set; }
@@ -601,7 +643,7 @@ namespace Pulumi.Keycloak.Ldap
         private Input<string>? _bindCredential;
 
         /// <summary>
-        /// Password of LDAP admin. This attribute must be set if `BindDn` is set.
+        /// Password of LDAP admin. This attribute must be set if `BindDn` is set. Conflicts with `BindCredentialWo` and `BindCredentialWoVersion`.
         /// </summary>
         public Input<string>? BindCredential
         {
@@ -613,8 +655,31 @@ namespace Pulumi.Keycloak.Ldap
             }
         }
 
+        [Input("bindCredentialWo")]
+        private Input<string>? _bindCredentialWo;
+
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` is set.
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `BindCredentialWoVersion` and conflicts with `BindCredential`.
+        /// </summary>
+        public Input<string>? BindCredentialWo
+        {
+            get => _bindCredentialWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindCredentialWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version for `BindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `BindCredentialWo` and conflicts with `BindCredential`.
+        /// </summary>
+        [Input("bindCredentialWoVersion")]
+        public Input<string>? BindCredentialWoVersion { get; set; }
+
+        /// <summary>
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` or `BindCredentialWo` is set.
         /// </summary>
         [Input("bindDn")]
         public Input<string>? BindDn { get; set; }

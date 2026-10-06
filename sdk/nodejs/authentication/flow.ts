@@ -33,6 +33,40 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Copying a built-in flow, then restructuring it
+ *
+ * Built-in flows (such as `browser`, `direct grant`, `registration`, `first broker login`, `clients`, and `docker auth`) can have
+ * the `requirement` of their *existing* executions configured freely (that part already works against the built-in flow itself),
+ * but Keycloak rejects any attempt to restructure them - adding a new execution, removing one, or adding a subflow all fail with
+ * errors like `It is illegal to add execution to a built in flow`. Copying the flow with `copyFrom` removes that restriction:
+ * the copy includes all of the source flow's executions and subflows, and - unlike the original - is not built-in, so executions
+ * and subflows can be added to or removed from it. The new flow can then be bound in place of the original via
+ * `keycloak.authentication.Bindings`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const customBrowser = new keycloak.authentication.Flow("custom_browser", {
+ *     realmId: realm.id,
+ *     alias: "my-custom-browser",
+ *     copyFrom: "browser",
+ * });
+ * const bindings = new keycloak.authentication.Bindings("bindings", {
+ *     realmId: realm.id,
+ *     browserFlow: customBrowser.alias,
+ * });
+ * // Adding a brand new top-level execution like this - e.g. offering WebAuthn/passkey login as
+ * // an alternative to username+password - fails with "It is illegal to add execution to a built
+ * // in flow" against "browser" itself, but succeeds on the copy.
+ * const webauthnPasswordless = new keycloak.authentication.Execution("webauthn_passwordless", {
+ *     realmId: realm.id,
+ *     parentFlowAlias: customBrowser.alias,
+ *     authenticator: "webauthn-authenticator-passwordless",
+ *     requirement: "ALTERNATIVE",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Authentication flows can be imported using the format `{{realmId}}/{{authenticationFlowId}}`. The authentication flow ID is
@@ -81,13 +115,17 @@ export class Flow extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     */
+    declare public readonly copyFrom: pulumi.Output<string | undefined>;
+    /**
      * A description for the authentication flow.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      */
-    declare public readonly providerId: pulumi.Output<string | undefined>;
+    declare public readonly providerId: pulumi.Output<string>;
     /**
      * The realm that the authentication flow exists in.
      */
@@ -107,6 +145,7 @@ export class Flow extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FlowState | undefined;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["copyFrom"] = state?.copyFrom;
             resourceInputs["description"] = state?.description;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realmId"] = state?.realmId;
@@ -116,6 +155,7 @@ export class Flow extends pulumi.CustomResource {
                 throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["copyFrom"] = args?.copyFrom;
             resourceInputs["description"] = args?.description;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realmId"] = args?.realmId;
@@ -134,11 +174,15 @@ export interface FlowState {
      */
     alias?: pulumi.Input<string | undefined>;
     /**
+     * The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     */
+    copyFrom?: pulumi.Input<string | undefined>;
+    /**
      * A description for the authentication flow.
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      */
     providerId?: pulumi.Input<string | undefined>;
     /**
@@ -156,11 +200,15 @@ export interface FlowArgs {
      */
     alias?: pulumi.Input<string | undefined>;
     /**
+     * The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+     */
+    copyFrom?: pulumi.Input<string | undefined>;
+    /**
      * A description for the authentication flow.
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+     * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
      */
     providerId?: pulumi.Input<string | undefined>;
     /**

@@ -108,14 +108,14 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      * 
      */
     @Import(name="scopes", required=true)
     private Output<List<String>> scopes;
 
     /**
-     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
      * 
      */
     public Output<List<String>> scopes() {
@@ -299,7 +299,7 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
          * 
          * @return builder
          * 
@@ -310,7 +310,7 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
          * 
          * @return builder
          * 
@@ -320,7 +320,7 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
          * 
          * @return builder
          * 

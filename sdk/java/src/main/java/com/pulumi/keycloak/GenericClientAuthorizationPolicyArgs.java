@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -15,6 +16,29 @@ import javax.annotation.Nullable;
 public final class GenericClientAuthorizationPolicyArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final GenericClientAuthorizationPolicyArgs Empty = new GenericClientAuthorizationPolicyArgs();
+
+    /**
+     * A map of provider-specific settings, passed through as-is to the policy&#39;s
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak&#39;s generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     * 
+     */
+    @Import(name="config")
+    private @Nullable Output<Map<String,String>> config;
+
+    /**
+     * @return A map of provider-specific settings, passed through as-is to the policy&#39;s
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak&#39;s generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> config() {
+        return Optional.ofNullable(this.config);
+    }
 
     /**
      * The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
@@ -130,6 +154,7 @@ public final class GenericClientAuthorizationPolicyArgs extends com.pulumi.resou
     private GenericClientAuthorizationPolicyArgs() {}
 
     private GenericClientAuthorizationPolicyArgs(GenericClientAuthorizationPolicyArgs $) {
+        this.config = $.config;
         this.decisionStrategy = $.decisionStrategy;
         this.description = $.description;
         this.logic = $.logic;
@@ -155,6 +180,35 @@ public final class GenericClientAuthorizationPolicyArgs extends com.pulumi.resou
 
         public Builder(GenericClientAuthorizationPolicyArgs defaults) {
             $ = new GenericClientAuthorizationPolicyArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param config A map of provider-specific settings, passed through as-is to the policy&#39;s
+         * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+         * details, thresholds, anything the provider defines) receives them; Keycloak&#39;s generic
+         * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+         * and nested structures are not supported.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder config(@Nullable Output<Map<String,String>> config) {
+            $.config = config;
+            return this;
+        }
+
+        /**
+         * @param config A map of provider-specific settings, passed through as-is to the policy&#39;s
+         * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+         * details, thresholds, anything the provider defines) receives them; Keycloak&#39;s generic
+         * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+         * and nested structures are not supported.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder config(Map<String,String> config) {
+            return config(Output.of(config));
         }
 
         /**

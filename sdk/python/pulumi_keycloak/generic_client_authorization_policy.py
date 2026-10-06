@@ -23,6 +23,7 @@ class GenericClientAuthorizationPolicyArgs:
                  realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None):
@@ -36,6 +37,11 @@ class GenericClientAuthorizationPolicyArgs:
                `PolicyProviderFactory.getId()`. For a custom Java SPI this is whatever id your factory exposes; for a
                JavaScript policy deployed as a script it is `script-` followed by the `fileName` declared in
                `META-INF/keycloak-scripts.json`, e.g. `script-my-policy.js`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map of provider-specific settings, passed through as-is to the policy's
+               `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+               details, thresholds, anything the provider defines) receives them; Keycloak's generic
+               `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+               and nested structures are not supported.
         :param pulumi.Input[_builtins.str] description: A description for the authorization policy.
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
         :param pulumi.Input[_builtins.str] name: The name of the policy.
@@ -44,6 +50,8 @@ class GenericClientAuthorizationPolicyArgs:
         pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "resource_server_id", resource_server_id)
         pulumi.set(__self__, "type", type)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if logic is not None:
@@ -104,6 +112,22 @@ class GenericClientAuthorizationPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of provider-specific settings, passed through as-is to the policy's
+        `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+        details, thresholds, anything the provider defines) receives them; Keycloak's generic
+        `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+        and nested structures are not supported.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description for the authorization policy.
@@ -142,6 +166,7 @@ class GenericClientAuthorizationPolicyArgs:
 @pulumi.input_type
 class _GenericClientAuthorizationPolicyState:
     def __init__(__self__, *,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
@@ -152,6 +177,11 @@ class _GenericClientAuthorizationPolicyState:
         """
         Input properties used for looking up and filtering GenericClientAuthorizationPolicy resources.
 
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map of provider-specific settings, passed through as-is to the policy's
+               `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+               details, thresholds, anything the provider defines) receives them; Keycloak's generic
+               `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+               and nested structures are not supported.
         :param pulumi.Input[_builtins.str] decision_strategy: The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
         :param pulumi.Input[_builtins.str] description: A description for the authorization policy.
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
@@ -163,6 +193,8 @@ class _GenericClientAuthorizationPolicyState:
                JavaScript policy deployed as a script it is `script-` followed by the `fileName` declared in
                `META-INF/keycloak-scripts.json`, e.g. `script-my-policy.js`.
         """
+        if config is not None:
+            pulumi.set(__self__, "config", config)
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
@@ -177,6 +209,22 @@ class _GenericClientAuthorizationPolicyState:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of provider-specific settings, passed through as-is to the policy's
+        `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+        details, thresholds, anything the provider defines) receives them; Keycloak's generic
+        `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+        and nested structures are not supported.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
@@ -272,6 +320,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
@@ -341,6 +390,17 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
             decision_strategy="UNANIMOUS",
             logic="POSITIVE",
             description="Authorization policy backed by a deployed JavaScript script")
+        # A custom Java SPI policy provider that reads its own settings from config.
+        custom_with_config = keycloak.GenericClientAuthorizationPolicy("custom_with_config",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="my-configurable-policy",
+            type="my-custom-policy-provider",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            config={
+                "some_setting": "some_value",
+            })
         ```
 
         ## Import
@@ -356,6 +416,11 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map of provider-specific settings, passed through as-is to the policy's
+               `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+               details, thresholds, anything the provider defines) receives them; Keycloak's generic
+               `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+               and nested structures are not supported.
         :param pulumi.Input[_builtins.str] decision_strategy: The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
         :param pulumi.Input[_builtins.str] description: A description for the authorization policy.
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
@@ -434,6 +499,17 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
             decision_strategy="UNANIMOUS",
             logic="POSITIVE",
             description="Authorization policy backed by a deployed JavaScript script")
+        # A custom Java SPI policy provider that reads its own settings from config.
+        custom_with_config = keycloak.GenericClientAuthorizationPolicy("custom_with_config",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="my-configurable-policy",
+            type="my-custom-policy-provider",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            config={
+                "some_setting": "some_value",
+            })
         ```
 
         ## Import
@@ -462,6 +538,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
@@ -478,6 +555,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = GenericClientAuthorizationPolicyArgs.__new__(GenericClientAuthorizationPolicyArgs)
 
+            __props__.__dict__["config"] = config
             if decision_strategy is None and not opts.urn:
                 raise TypeError("Missing required property 'decision_strategy'")
             __props__.__dict__["decision_strategy"] = decision_strategy
@@ -503,6 +581,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             logic: pulumi.Input[Optional[_builtins.str]] = None,
@@ -517,6 +596,11 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map of provider-specific settings, passed through as-is to the policy's
+               `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+               details, thresholds, anything the provider defines) receives them; Keycloak's generic
+               `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+               and nested structures are not supported.
         :param pulumi.Input[_builtins.str] decision_strategy: The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
         :param pulumi.Input[_builtins.str] description: A description for the authorization policy.
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
@@ -532,6 +616,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
 
         __props__ = _GenericClientAuthorizationPolicyState.__new__(_GenericClientAuthorizationPolicyState)
 
+        __props__.__dict__["config"] = config
         __props__.__dict__["decision_strategy"] = decision_strategy
         __props__.__dict__["description"] = description
         __props__.__dict__["logic"] = logic
@@ -540,6 +625,18 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["type"] = type
         return GenericClientAuthorizationPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of provider-specific settings, passed through as-is to the policy's
+        `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+        details, thresholds, anything the provider defines) receives them; Keycloak's generic
+        `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+        and nested structures are not supported.
+        """
+        return pulumi.get(self, "config")
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")

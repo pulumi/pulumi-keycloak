@@ -685,6 +685,10 @@ class RealmSecurityDefensesBruteForceDetectionArgsDict(TypedDict):
     """
     How many failures before wait is triggered.
     """
+    max_secondary_auth_failures: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+    """
     max_temporary_lockouts: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
@@ -714,6 +718,7 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
                  failure_reset_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  max_failure_wait_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  max_login_failures: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_secondary_auth_failures: pulumi.Input[Optional[_builtins.int]] = None,
                  max_temporary_lockouts: pulumi.Input[Optional[_builtins.int]] = None,
                  minimum_quick_login_wait_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  permanent_lockout: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -722,6 +727,7 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
         """
         :param pulumi.Input[_builtins.int] failure_reset_time_seconds: When will failure count be reset?
         :param pulumi.Input[_builtins.int] max_login_failures: How many failures before wait is triggered.
+        :param pulumi.Input[_builtins.int] max_secondary_auth_failures: How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
         :param pulumi.Input[_builtins.int] max_temporary_lockouts: How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
         :param pulumi.Input[_builtins.int] minimum_quick_login_wait_seconds: How long to wait after a quick login failure.
                - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
@@ -737,6 +743,8 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
             pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
         if max_login_failures is not None:
             pulumi.set(__self__, "max_login_failures", max_login_failures)
+        if max_secondary_auth_failures is not None:
+            pulumi.set(__self__, "max_secondary_auth_failures", max_secondary_auth_failures)
         if max_temporary_lockouts is not None:
             pulumi.set(__self__, "max_temporary_lockouts", max_temporary_lockouts)
         if minimum_quick_login_wait_seconds is not None:
@@ -789,6 +797,18 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
     @max_login_failures.setter
     def max_login_failures(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_login_failures", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxSecondaryAuthFailures")
+    def max_secondary_auth_failures(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+        """
+        return pulumi.get(self, "max_secondary_auth_failures")
+
+    @max_secondary_auth_failures.setter
+    def max_secondary_auth_failures(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_secondary_auth_failures", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTemporaryLockouts")
@@ -2374,39 +2394,46 @@ class UserFederatedIdentityArgs:
 
 
 class UserInitialPasswordArgsDict(TypedDict):
-    value: pulumi.Input[_builtins.str]
-    """
-    The initial password.
-    """
     temporary: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+    """
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `value_wo` and `value_wo_version`.
+    """
+    value_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `value_wo_version`. Must not be an empty string.
+    """
+    value_wo_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `value_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `value_wo`. Must not be an empty string.
     """
 
 @pulumi.input_type
 class UserInitialPasswordArgs:
     def __init__(__self__, *,
-                 value: pulumi.Input[_builtins.str],
-                 temporary: pulumi.Input[Optional[_builtins.bool]] = None):
+                 temporary: pulumi.Input[Optional[_builtins.bool]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 value_wo_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] value: The initial password.
         :param pulumi.Input[_builtins.bool] temporary: If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+        :param pulumi.Input[_builtins.str] value: The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `value_wo` and `value_wo_version`.
+        :param pulumi.Input[_builtins.str] value_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `value_wo_version`. Must not be an empty string.
+        :param pulumi.Input[_builtins.str] value_wo_version: Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `value_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `value_wo`. Must not be an empty string.
         """
-        pulumi.set(__self__, "value", value)
         if temporary is not None:
             pulumi.set(__self__, "temporary", temporary)
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> pulumi.Input[_builtins.str]:
-        """
-        The initial password.
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "value", value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+        if value_wo is not None:
+            pulumi.set(__self__, "value_wo", value_wo)
+        if value_wo_version is not None:
+            pulumi.set(__self__, "value_wo_version", value_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -2419,6 +2446,43 @@ class UserInitialPasswordArgs:
     @temporary.setter
     def temporary(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "temporary", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `value_wo` and `value_wo_version`.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="valueWo")
+    def value_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `value_wo_version`. Must not be an empty string.
+        """
+        return pulumi.get(self, "value_wo")
+
+    @value_wo.setter
+    def value_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "value_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="valueWoVersion")
+    def value_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `value_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `value_wo`. Must not be an empty string.
+        """
+        return pulumi.get(self, "value_wo_version")
+
+    @value_wo_version.setter
+    def value_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "value_wo_version", value)
 
 
 class UsersPermissionsImpersonateScopeArgsDict(TypedDict):

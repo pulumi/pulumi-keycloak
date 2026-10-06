@@ -97,6 +97,16 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Import
+ * 
+ * This resource can be imported using the realm ID.
+ * 
+ * Example:
+ * 
+ * ```sh
+ * $ pulumi import keycloak:authentication/bindings:Bindings example my-realm
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:authentication/bindings:Bindings")
 public class Bindings extends com.pulumi.resources.CustomResource {

@@ -349,6 +349,16 @@ class Bindings(pulumi.CustomResource):
             browser_flow=flow.alias)
         ```
 
+        ## Import
+
+        This resource can be imported using the realm ID.
+
+        Example:
+
+        ```sh
+        $ pulumi import keycloak:authentication/bindings:Bindings example my-realm
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -410,6 +420,16 @@ class Bindings(pulumi.CustomResource):
         browser_authentication_binding = keycloak.authentication.Bindings("browser_authentication_binding",
             realm_id=realm.id,
             browser_flow=flow.alias)
+        ```
+
+        ## Import
+
+        This resource can be imported using the realm ID.
+
+        Example:
+
+        ```sh
+        $ pulumi import keycloak:authentication/bindings:Bindings example my-realm
         ```
 
 

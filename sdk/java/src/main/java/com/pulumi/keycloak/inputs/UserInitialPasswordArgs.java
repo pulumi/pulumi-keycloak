@@ -5,7 +5,6 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -33,18 +32,50 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The initial password.
+     * The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
      * 
      */
-    @Import(name="value", required=true)
-    private Output<String> value;
+    @Import(name="value")
+    private @Nullable Output<String> value;
 
     /**
-     * @return The initial password.
+     * @return The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
      * 
      */
-    public Output<String> value() {
-        return this.value;
+    public Optional<Output<String>> value() {
+        return Optional.ofNullable(this.value);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+     * 
+     */
+    @Import(name="valueWo")
+    private @Nullable Output<String> valueWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+     * 
+     */
+    public Optional<Output<String>> valueWo() {
+        return Optional.ofNullable(this.valueWo);
+    }
+
+    /**
+     * Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+     * 
+     */
+    @Import(name="valueWoVersion")
+    private @Nullable Output<String> valueWoVersion;
+
+    /**
+     * @return Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+     * 
+     */
+    public Optional<Output<String>> valueWoVersion() {
+        return Optional.ofNullable(this.valueWoVersion);
     }
 
     private UserInitialPasswordArgs() {}
@@ -52,6 +83,8 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
     private UserInitialPasswordArgs(UserInitialPasswordArgs $) {
         this.temporary = $.temporary;
         this.value = $.value;
+        this.valueWo = $.valueWo;
+        this.valueWoVersion = $.valueWoVersion;
     }
 
     public static Builder builder() {
@@ -94,18 +127,18 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param value The initial password.
+         * @param value The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
          * 
          * @return builder
          * 
          */
-        public Builder value(Output<String> value) {
+        public Builder value(@Nullable Output<String> value) {
             $.value = value;
             return this;
         }
 
         /**
-         * @param value The initial password.
+         * @param value The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
          * 
          * @return builder
          * 
@@ -114,10 +147,51 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
             return value(Output.of(value));
         }
 
+        /**
+         * @param valueWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valueWo(@Nullable Output<String> valueWo) {
+            $.valueWo = valueWo;
+            return this;
+        }
+
+        /**
+         * @param valueWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valueWo(String valueWo) {
+            return valueWo(Output.of(valueWo));
+        }
+
+        /**
+         * @param valueWoVersion Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valueWoVersion(@Nullable Output<String> valueWoVersion) {
+            $.valueWoVersion = valueWoVersion;
+            return this;
+        }
+
+        /**
+         * @param valueWoVersion Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder valueWoVersion(String valueWoVersion) {
+            return valueWoVersion(Output.of(valueWoVersion));
+        }
+
         public UserInitialPasswordArgs build() {
-            if ($.value == null) {
-                throw new MissingRequiredPropertyException("UserInitialPasswordArgs", "value");
-            }
             return $;
         }
     }

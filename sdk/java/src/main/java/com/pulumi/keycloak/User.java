@@ -26,6 +26,16 @@ import javax.annotation.Nullable;
  * Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
  * or identity providers.
  * 
+ * &gt; **NOTICE:** This resource now supports write-only arguments
+ * for the initial password via the new arguments `initial_password.value_wo` and `initial_password.value_wo_version`. Using
+ * write-only arguments prevents sensitive values from being stored in plan and state files. You cannot use
+ * `initial_password.value_wo` and `initial_password.value_wo_version` alongside `initial_password.value` as this will result
+ * in a validation error due to conflicts.
+ * &gt; 
+ * &gt; For backward compatibility, the behavior of the original `initial_password.value` argument remains unchanged: it is only
+ * respected during user creation. Unlike `initial_password.value`, bumping `initial_password.value_wo_version` resets the
+ * password of an existing user.
+ * 
  * ## Example Usage
  * 
  * <pre>
@@ -202,14 +212,14 @@ public class User extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.import_);
     }
     /**
-     * When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+     * When given, the user&#39;s initial password will be set. Exactly one of `value` and `valueWo` must be given.
      * 
      */
     @Export(name="initialPassword", refs={UserInitialPassword.class}, tree="[0]")
     private Output</* @Nullable */ UserInitialPassword> initialPassword;
 
     /**
-     * @return When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+     * @return When given, the user&#39;s initial password will be set. Exactly one of `value` and `valueWo` must be given.
      * 
      */
     public Output<Optional<UserInitialPassword>> initialPassword() {

@@ -59,6 +59,7 @@ import * as utilities from "./utilities";
  *         bruteForceDetection: {
  *             permanentLockout: false,
  *             maxLoginFailures: 30,
+ *             maxSecondaryAuthFailures: 0,
  *             waitIncrementSeconds: 60,
  *             quickLoginCheckMilliSeconds: 1000,
  *             minimumQuickLoginWaitSeconds: 60,

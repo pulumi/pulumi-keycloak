@@ -9,6 +9,10 @@ import * as utilities from "./utilities";
  *
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  *
+ * > **Write-only arguments:** `privateKeyWo` and `certificateWo` (with `privateKeyWoVersion` and
+ * `certificateWoVersion`) can be used instead of `privateKey` and `certificate`. Write-only arguments are never
+ * stored in the plan or state files. Each write-only argument conflicts with its non-write-only counterpart.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -80,9 +84,18 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      */
     declare public readonly algorithm: pulumi.Output<string | undefined>;
     /**
-     * X509 Certificate encoded in PEM format.
+     * X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      */
-    declare public readonly certificate: pulumi.Output<string>;
+    declare public readonly certificate: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     */
+    declare public readonly certificateWo: pulumi.Output<string | undefined>;
+    /**
+     * Version of the `certificateWo` argument. Stored in state.
+     */
+    declare public readonly certificateWoVersion: pulumi.Output<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
@@ -100,9 +113,18 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      */
     declare public readonly priority: pulumi.Output<number | undefined>;
     /**
-     * Private RSA Key encoded in PEM format.
+     * Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      */
-    declare public readonly privateKey: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     */
+    declare public readonly privateKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     */
+    declare public readonly privateKeyWoVersion: pulumi.Output<string | undefined>;
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
      */
@@ -128,36 +150,40 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["active"] = state?.active;
             resourceInputs["algorithm"] = state?.algorithm;
             resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["certificateWo"] = state?.certificateWo;
+            resourceInputs["certificateWoVersion"] = state?.certificateWoVersion;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["extraConfig"] = state?.extraConfig;
             resourceInputs["name"] = state?.name;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyWo"] = state?.privateKeyWo;
+            resourceInputs["privateKeyWoVersion"] = state?.privateKeyWoVersion;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmKeystoreRsaArgs | undefined;
-            if (args?.certificate === undefined && !opts.urn) {
-                throw new Error("Missing required property 'certificate'");
-            }
-            if (args?.privateKey === undefined && !opts.urn) {
-                throw new Error("Missing required property 'privateKey'");
-            }
             if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["active"] = args?.active;
             resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["certificate"] = args?.certificate;
+            resourceInputs["certificateWo"] = args?.certificateWo ? pulumi.secret(args.certificateWo) : undefined;
+            resourceInputs["certificateWoVersion"] = args?.certificateWoVersion;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
-            resourceInputs["privateKey"] = args?.privateKey;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["privateKeyWo"] = args?.privateKeyWo ? pulumi.secret(args.privateKeyWo) : undefined;
+            resourceInputs["privateKeyWoVersion"] = args?.privateKeyWoVersion;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["certificateWo", "privateKey", "privateKeyWo"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(RealmKeystoreRsa.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -175,9 +201,18 @@ export interface RealmKeystoreRsaState {
      */
     algorithm?: pulumi.Input<string | undefined>;
     /**
-     * X509 Certificate encoded in PEM format.
+     * X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      */
     certificate?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     */
+    certificateWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the `certificateWo` argument. Stored in state.
+     */
+    certificateWoVersion?: pulumi.Input<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
@@ -195,9 +230,18 @@ export interface RealmKeystoreRsaState {
      */
     priority?: pulumi.Input<number | undefined>;
     /**
-     * Private RSA Key encoded in PEM format.
+     * Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      */
     privateKey?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     */
+    privateKeyWo?: pulumi.Input<string | undefined>;
+    /**
+     * Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     */
+    privateKeyWoVersion?: pulumi.Input<string | undefined>;
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
      */
@@ -221,9 +265,18 @@ export interface RealmKeystoreRsaArgs {
      */
     algorithm?: pulumi.Input<string | undefined>;
     /**
-     * X509 Certificate encoded in PEM format.
+     * X509 Certificate encoded in PEM format. Required without `certificateWo` and `certificateWoVersion`.
      */
-    certificate: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+     */
+    certificateWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the `certificateWo` argument. Stored in state.
+     */
+    certificateWoVersion?: pulumi.Input<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
@@ -241,9 +294,18 @@ export interface RealmKeystoreRsaArgs {
      */
     priority?: pulumi.Input<number | undefined>;
     /**
-     * Private RSA Key encoded in PEM format.
+     * Private RSA Key encoded in PEM format. Required without `privateKeyWo` and `privateKeyWoVersion`.
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `privateKeyWoVersion`.
+     */
+    privateKeyWo?: pulumi.Input<string | undefined>;
+    /**
+     * Trigger for `privateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+     */
+    privateKeyWoVersion?: pulumi.Input<string | undefined>;
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
      */

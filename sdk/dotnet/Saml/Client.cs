@@ -348,6 +348,10 @@ namespace Pulumi.Keycloak.Saml
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "signingPrivateKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -605,11 +609,22 @@ namespace Pulumi.Keycloak.Saml
         [Input("signingCertificate")]
         public Input<string>? SigningCertificate { get; set; }
 
+        [Input("signingPrivateKey")]
+        private Input<string>? _signingPrivateKey;
+
         /// <summary>
         /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
         /// </summary>
-        [Input("signingPrivateKey")]
-        public Input<string>? SigningPrivateKey { get; set; }
+        [Obsolete(@"Keycloak starting 26.8 does not need the SAML client's private key. Remove SigningPrivateKey from your configuration and configure only signing_certificate. ")]
+        public Input<string>? SigningPrivateKey
+        {
+            get => _signingPrivateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _signingPrivateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
@@ -877,11 +892,22 @@ namespace Pulumi.Keycloak.Saml
         [Input("signingCertificateSha1")]
         public Input<string>? SigningCertificateSha1 { get; set; }
 
+        [Input("signingPrivateKey")]
+        private Input<string>? _signingPrivateKey;
+
         /// <summary>
         /// If documents or assertions from the client are signed, this private key will be used to verify the signature.
         /// </summary>
-        [Input("signingPrivateKey")]
-        public Input<string>? SigningPrivateKey { get; set; }
+        [Obsolete(@"Keycloak starting 26.8 does not need the SAML client's private key. Remove SigningPrivateKey from your configuration and configure only signing_certificate. ")]
+        public Input<string>? SigningPrivateKey
+        {
+            get => _signingPrivateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _signingPrivateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.

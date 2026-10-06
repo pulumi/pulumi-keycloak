@@ -27,6 +27,8 @@ import (
 // - `view-members` — view user details of the group's members
 // - `manage-members` — manage the users that belong to this group
 // - `manage-membership` — add or remove members from this group
+// - `manage-membership-of-members` — change the group memberships of this group's members (requires Keycloak 26.6 or later)
+// - `impersonate-members` — impersonate the users that belong to this group
 //
 // ## Example Usage
 //
@@ -155,7 +157,7 @@ type GroupAdminPermissions struct {
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 }
 
@@ -213,7 +215,7 @@ type groupAdminPermissionsState struct {
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId *string `pulumi:"realmId"`
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -236,7 +238,7 @@ type GroupAdminPermissionsState struct {
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringPtrInput
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
 	Scopes pulumi.StringArrayInput
 }
 
@@ -257,7 +259,7 @@ type groupAdminPermissionsArgs struct {
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId string `pulumi:"realmId"`
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -275,7 +277,7 @@ type GroupAdminPermissionsArgs struct {
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringInput
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
 	Scopes pulumi.StringArrayInput
 }
 
@@ -411,7 +413,7 @@ func (o GroupAdminPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupAdminPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
-// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+// Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
 func (o GroupAdminPermissionsOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GroupAdminPermissions) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }

@@ -180,6 +180,9 @@ class ClientArgs:
         if signing_certificate is not None:
             pulumi.set(__self__, "signing_certificate", signing_certificate)
         if signing_private_key is not None:
+            warnings.warn("""Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """, DeprecationWarning)
+            pulumi.log.warn("""signing_private_key is deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """)
+        if signing_private_key is not None:
             pulumi.set(__self__, "signing_private_key", signing_private_key)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
@@ -642,6 +645,7 @@ class ClientArgs:
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKey")
+    @_utilities.deprecated("""Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """)
     def signing_private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If documents or assertions from the client are signed, this private key will be used to verify the signature.
@@ -839,7 +843,13 @@ class _ClientState:
         if signing_certificate_sha1 is not None:
             pulumi.set(__self__, "signing_certificate_sha1", signing_certificate_sha1)
         if signing_private_key is not None:
+            warnings.warn("""Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """, DeprecationWarning)
+            pulumi.log.warn("""signing_private_key is deprecated: Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """)
+        if signing_private_key is not None:
             pulumi.set(__self__, "signing_private_key", signing_private_key)
+        if signing_private_key_sha1 is not None:
+            warnings.warn("""Deprecated together with signing_private_key since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak """, DeprecationWarning)
+            pulumi.log.warn("""signing_private_key_sha1 is deprecated: Deprecated together with signing_private_key since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak """)
         if signing_private_key_sha1 is not None:
             pulumi.set(__self__, "signing_private_key_sha1", signing_private_key_sha1)
         if valid_redirect_uris is not None:
@@ -1327,6 +1337,7 @@ class _ClientState:
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKey")
+    @_utilities.deprecated("""Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """)
     def signing_private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If documents or assertions from the client are signed, this private key will be used to verify the signature.
@@ -1339,6 +1350,7 @@ class _ClientState:
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKeySha1")
+    @_utilities.deprecated("""Deprecated together with signing_private_key since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak """)
     def signing_private_key_sha1(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
@@ -1642,11 +1654,13 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["signature_algorithm"] = signature_algorithm
             __props__.__dict__["signature_key_name"] = signature_key_name
             __props__.__dict__["signing_certificate"] = signing_certificate
-            __props__.__dict__["signing_private_key"] = signing_private_key
+            __props__.__dict__["signing_private_key"] = None if signing_private_key is None else pulumi.Output.secret(signing_private_key)
             __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
             __props__.__dict__["encryption_certificate_sha1"] = None
             __props__.__dict__["signing_certificate_sha1"] = None
             __props__.__dict__["signing_private_key_sha1"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["signingPrivateKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Client, __self__).__init__(
             'keycloak:saml/client:Client',
             resource_name,
@@ -2122,6 +2136,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKey")
+    @_utilities.deprecated("""Keycloak starting 26.8 does not need the SAML client's private key. Remove signing_private_key from your configuration and configure only signing_certificate. """)
     def signing_private_key(self) -> pulumi.Output[_builtins.str]:
         """
         If documents or assertions from the client are signed, this private key will be used to verify the signature.
@@ -2130,6 +2145,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="signingPrivateKeySha1")
+    @_utilities.deprecated("""Deprecated together with signing_private_key since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak """)
     def signing_private_key_sha1(self) -> pulumi.Output[_builtins.str]:
         """
         (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.

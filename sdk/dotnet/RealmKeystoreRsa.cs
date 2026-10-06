@@ -14,6 +14,10 @@ namespace Pulumi.Keycloak
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
     /// 
+    /// &gt; **Write-only arguments:** `PrivateKeyWo` and `CertificateWo` (with `PrivateKeyWoVersion` and
+    /// `CertificateWoVersion`) can be used instead of `PrivateKey` and `Certificate`. Write-only arguments are never
+    /// stored in the plan or state files. Each write-only argument conflicts with its non-write-only counterpart.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -76,10 +80,23 @@ namespace Pulumi.Keycloak
         public Output<string?> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// X509 Certificate encoded in PEM format.
+        /// X509 Certificate encoded in PEM format. Required without `CertificateWo` and `CertificateWoVersion`.
         /// </summary>
         [Output("certificate")]
-        public Output<string> Certificate { get; private set; } = null!;
+        public Output<string?> Certificate { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `CertificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+        /// </summary>
+        [Output("certificateWo")]
+        public Output<string?> CertificateWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version of the `CertificateWo` argument. Stored in state.
+        /// </summary>
+        [Output("certificateWoVersion")]
+        public Output<string?> CertificateWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// When `False`, key is not accessible in this realm. Defaults to `True`.
@@ -106,10 +123,23 @@ namespace Pulumi.Keycloak
         public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// Private RSA Key encoded in PEM format.
+        /// Private RSA Key encoded in PEM format. Required without `PrivateKeyWo` and `PrivateKeyWoVersion`.
         /// </summary>
         [Output("privateKey")]
-        public Output<string> PrivateKey { get; private set; } = null!;
+        public Output<string?> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `PrivateKeyWoVersion`.
+        /// </summary>
+        [Output("privateKeyWo")]
+        public Output<string?> PrivateKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Trigger for `PrivateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+        /// </summary>
+        [Output("privateKeyWoVersion")]
+        public Output<string?> PrivateKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
@@ -146,6 +176,12 @@ namespace Pulumi.Keycloak
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "certificateWo",
+                    "privateKey",
+                    "privateKeyWo",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -182,10 +218,33 @@ namespace Pulumi.Keycloak
         public Input<string>? Algorithm { get; set; }
 
         /// <summary>
-        /// X509 Certificate encoded in PEM format.
+        /// X509 Certificate encoded in PEM format. Required without `CertificateWo` and `CertificateWoVersion`.
         /// </summary>
-        [Input("certificate", required: true)]
-        public Input<string> Certificate { get; set; } = null!;
+        [Input("certificate")]
+        public Input<string>? Certificate { get; set; }
+
+        [Input("certificateWo")]
+        private Input<string>? _certificateWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `CertificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+        /// </summary>
+        public Input<string>? CertificateWo
+        {
+            get => _certificateWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _certificateWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version of the `CertificateWo` argument. Stored in state.
+        /// </summary>
+        [Input("certificateWoVersion")]
+        public Input<string>? CertificateWoVersion { get; set; }
 
         /// <summary>
         /// When `False`, key is not accessible in this realm. Defaults to `True`.
@@ -217,11 +276,44 @@ namespace Pulumi.Keycloak
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
-        /// Private RSA Key encoded in PEM format.
+        /// Private RSA Key encoded in PEM format. Required without `PrivateKeyWo` and `PrivateKeyWoVersion`.
         /// </summary>
-        [Input("privateKey", required: true)]
-        public Input<string> PrivateKey { get; set; } = null!;
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `PrivateKeyWoVersion`.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Trigger for `PrivateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<string>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
@@ -256,10 +348,33 @@ namespace Pulumi.Keycloak
         public Input<string>? Algorithm { get; set; }
 
         /// <summary>
-        /// X509 Certificate encoded in PEM format.
+        /// X509 Certificate encoded in PEM format. Required without `CertificateWo` and `CertificateWoVersion`.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
+
+        [Input("certificateWo")]
+        private Input<string>? _certificateWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `CertificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+        /// </summary>
+        public Input<string>? CertificateWo
+        {
+            get => _certificateWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _certificateWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version of the `CertificateWo` argument. Stored in state.
+        /// </summary>
+        [Input("certificateWoVersion")]
+        public Input<string>? CertificateWoVersion { get; set; }
 
         /// <summary>
         /// When `False`, key is not accessible in this realm. Defaults to `True`.
@@ -291,11 +406,44 @@ namespace Pulumi.Keycloak
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
-        /// <summary>
-        /// Private RSA Key encoded in PEM format.
-        /// </summary>
         [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        private Input<string>? _privateKey;
+
+        /// <summary>
+        /// Private RSA Key encoded in PEM format. Required without `PrivateKeyWo` and `PrivateKeyWoVersion`.
+        /// </summary>
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `PrivateKeyWoVersion`.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Trigger for `PrivateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<string>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys

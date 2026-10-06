@@ -397,6 +397,10 @@ export interface RealmSecurityDefensesBruteForceDetection {
      */
     maxLoginFailures?: pulumi.Input<number | undefined>;
     /**
+     * How many failures of the secondary authentication factor (e.g. OTP) are permitted before the wait is triggered. Defaults to `0`. Requires Keycloak 26.6 or higher.
+     */
+    maxSecondaryAuthFailures?: pulumi.Input<number | undefined>;
+    /**
      * How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
      */
     maxTemporaryLockouts?: pulumi.Input<number | undefined>;
@@ -737,9 +741,18 @@ export interface UserInitialPassword {
      */
     temporary?: pulumi.Input<boolean | undefined>;
     /**
-     * The initial password.
+     * The initial password. This argument is only respected during initial user creation; later changes to it are ignored. Conflicts with `valueWo` and `valueWoVersion`.
      */
-    value: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The initial password. This is a write-only argument and Terraform does not store it in state or plan files. Conflicts with `value`. Required when using `valueWoVersion`. Must not be an empty string.
+     */
+    valueWo?: pulumi.Input<string | undefined>;
+    /**
+     * Functions as a flag and/or trigger to indicate to Terraform when to use the input value in `valueWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Changing it resets the password of an existing user. Conflicts with `value`. Required when using `valueWo`. Must not be an empty string.
+     */
+    valueWoVersion?: pulumi.Input<string | undefined>;
 }
 
 export interface UsersPermissionsImpersonateScope {

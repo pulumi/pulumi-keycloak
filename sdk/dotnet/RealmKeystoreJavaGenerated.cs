@@ -151,6 +151,11 @@ namespace Pulumi.Keycloak
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "keyPassword",
+                    "keystorePassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -198,11 +203,21 @@ namespace Pulumi.Keycloak
         [Input("keyAlias", required: true)]
         public Input<string> KeyAlias { get; set; } = null!;
 
+        [Input("keyPassword", required: true)]
+        private Input<string>? _keyPassword;
+
         /// <summary>
         /// Password for the private key.
         /// </summary>
-        [Input("keyPassword", required: true)]
-        public Input<string> KeyPassword { get; set; } = null!;
+        public Input<string>? KeyPassword
+        {
+            get => _keyPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keyPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Intended use for the key
@@ -216,11 +231,21 @@ namespace Pulumi.Keycloak
         [Input("keystore", required: true)]
         public Input<string> Keystore { get; set; } = null!;
 
+        [Input("keystorePassword", required: true)]
+        private Input<string>? _keystorePassword;
+
         /// <summary>
         /// Password for the keys.
         /// </summary>
-        [Input("keystorePassword", required: true)]
-        public Input<string> KeystorePassword { get; set; } = null!;
+        public Input<string>? KeystorePassword
+        {
+            get => _keystorePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keystorePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Display name of provider when linked in admin console.
@@ -272,11 +297,21 @@ namespace Pulumi.Keycloak
         [Input("keyAlias")]
         public Input<string>? KeyAlias { get; set; }
 
+        [Input("keyPassword")]
+        private Input<string>? _keyPassword;
+
         /// <summary>
         /// Password for the private key.
         /// </summary>
-        [Input("keyPassword")]
-        public Input<string>? KeyPassword { get; set; }
+        public Input<string>? KeyPassword
+        {
+            get => _keyPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keyPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Intended use for the key
@@ -290,11 +325,21 @@ namespace Pulumi.Keycloak
         [Input("keystore")]
         public Input<string>? Keystore { get; set; }
 
+        [Input("keystorePassword")]
+        private Input<string>? _keystorePassword;
+
         /// <summary>
         /// Password for the keys.
         /// </summary>
-        [Input("keystorePassword")]
-        public Input<string>? KeystorePassword { get; set; }
+        public Input<string>? KeystorePassword
+        {
+            get => _keystorePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keystorePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Display name of provider when linked in admin console.

@@ -21,6 +21,7 @@ class FlowArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_from: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -28,12 +29,15 @@ class FlowArgs:
 
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
+        :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
-        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         """
         pulumi.set(__self__, "realm_id", realm_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if copy_from is not None:
+            pulumi.set(__self__, "copy_from", copy_from)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if provider_id is not None:
@@ -64,6 +68,18 @@ class FlowArgs:
         pulumi.set(self, "alias", value)
 
     @_builtins.property
+    @pulumi.getter(name="copyFrom")
+    def copy_from(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        """
+        return pulumi.get(self, "copy_from")
+
+    @copy_from.setter
+    def copy_from(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "copy_from", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -79,7 +95,7 @@ class FlowArgs:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         """
         return pulumi.get(self, "provider_id")
 
@@ -92,6 +108,7 @@ class FlowArgs:
 class _FlowState:
     def __init__(__self__, *,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_from: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None):
@@ -99,12 +116,15 @@ class _FlowState:
         Input properties used for looking up and filtering Flow resources.
 
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
+        :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
-        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if copy_from is not None:
+            pulumi.set(__self__, "copy_from", copy_from)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if provider_id is not None:
@@ -125,6 +145,18 @@ class _FlowState:
         pulumi.set(self, "alias", value)
 
     @_builtins.property
+    @pulumi.getter(name="copyFrom")
+    def copy_from(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        """
+        return pulumi.get(self, "copy_from")
+
+    @copy_from.setter
+    def copy_from(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "copy_from", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -140,7 +172,7 @@ class _FlowState:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         """
         return pulumi.get(self, "provider_id")
 
@@ -168,6 +200,7 @@ class Flow(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_from: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -198,6 +231,37 @@ class Flow(pulumi.CustomResource):
             requirement="REQUIRED")
         ```
 
+        ### Copying a built-in flow, then restructuring it
+
+        Built-in flows (such as `browser`, `direct grant`, `registration`, `first broker login`, `clients`, and `docker auth`) can have
+        the `requirement` of their *existing* executions configured freely (that part already works against the built-in flow itself),
+        but Keycloak rejects any attempt to restructure them - adding a new execution, removing one, or adding a subflow all fail with
+        errors like `It is illegal to add execution to a built in flow`. Copying the flow with `copy_from` removes that restriction:
+        the copy includes all of the source flow's executions and subflows, and - unlike the original - is not built-in, so executions
+        and subflows can be added to or removed from it. The new flow can then be bound in place of the original via
+        `authentication.Bindings`.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        custom_browser = keycloak.authentication.Flow("custom_browser",
+            realm_id=realm["id"],
+            alias="my-custom-browser",
+            copy_from="browser")
+        bindings = keycloak.authentication.Bindings("bindings",
+            realm_id=realm["id"],
+            browser_flow=custom_browser.alias)
+        # Adding a brand new top-level execution like this - e.g. offering WebAuthn/passkey login as
+        # an alternative to username+password - fails with "It is illegal to add execution to a built
+        # in flow" against "browser" itself, but succeeds on the copy.
+        webauthn_passwordless = keycloak.authentication.Execution("webauthn_passwordless",
+            realm_id=realm["id"],
+            parent_flow_alias=custom_browser.alias,
+            authenticator="webauthn-authenticator-passwordless",
+            requirement="ALTERNATIVE")
+        ```
+
         ## Import
 
         Authentication flows can be imported using the format `{{realmId}}/{{authenticationFlowId}}`. The authentication flow ID is
@@ -217,8 +281,9 @@ class Flow(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
+        :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
-        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
         """
         ...
@@ -253,6 +318,37 @@ class Flow(pulumi.CustomResource):
             requirement="REQUIRED")
         ```
 
+        ### Copying a built-in flow, then restructuring it
+
+        Built-in flows (such as `browser`, `direct grant`, `registration`, `first broker login`, `clients`, and `docker auth`) can have
+        the `requirement` of their *existing* executions configured freely (that part already works against the built-in flow itself),
+        but Keycloak rejects any attempt to restructure them - adding a new execution, removing one, or adding a subflow all fail with
+        errors like `It is illegal to add execution to a built in flow`. Copying the flow with `copy_from` removes that restriction:
+        the copy includes all of the source flow's executions and subflows, and - unlike the original - is not built-in, so executions
+        and subflows can be added to or removed from it. The new flow can then be bound in place of the original via
+        `authentication.Bindings`.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        custom_browser = keycloak.authentication.Flow("custom_browser",
+            realm_id=realm["id"],
+            alias="my-custom-browser",
+            copy_from="browser")
+        bindings = keycloak.authentication.Bindings("bindings",
+            realm_id=realm["id"],
+            browser_flow=custom_browser.alias)
+        # Adding a brand new top-level execution like this - e.g. offering WebAuthn/passkey login as
+        # an alternative to username+password - fails with "It is illegal to add execution to a built
+        # in flow" against "browser" itself, but succeeds on the copy.
+        webauthn_passwordless = keycloak.authentication.Execution("webauthn_passwordless",
+            realm_id=realm["id"],
+            parent_flow_alias=custom_browser.alias,
+            authenticator="webauthn-authenticator-passwordless",
+            requirement="ALTERNATIVE")
+        ```
+
         ## Import
 
         Authentication flows can be imported using the format `{{realmId}}/{{authenticationFlowId}}`. The authentication flow ID is
@@ -285,6 +381,7 @@ class Flow(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_from: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -298,6 +395,7 @@ class Flow(pulumi.CustomResource):
             __props__ = FlowArgs.__new__(FlowArgs)
 
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["copy_from"] = copy_from
             __props__.__dict__["description"] = description
             __props__.__dict__["provider_id"] = provider_id
             if realm_id is None and not opts.urn:
@@ -314,6 +412,7 @@ class Flow(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_from: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Flow':
@@ -325,8 +424,9 @@ class Flow(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
+        :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
-        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -334,6 +434,7 @@ class Flow(pulumi.CustomResource):
         __props__ = _FlowState.__new__(_FlowState)
 
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["copy_from"] = copy_from
         __props__.__dict__["description"] = description
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
@@ -348,6 +449,14 @@ class Flow(pulumi.CustomResource):
         return pulumi.get(self, "alias")
 
     @_builtins.property
+    @pulumi.getter(name="copyFrom")
+    def copy_from(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        """
+        return pulumi.get(self, "copy_from")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -357,9 +466,9 @@ class Flow(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="providerId")
-    def provider_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def provider_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
+        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         """
         return pulumi.get(self, "provider_id")
 

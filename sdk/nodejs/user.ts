@@ -13,6 +13,16 @@ import * as utilities from "./utilities";
  * Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
  * or identity providers.
  *
+ * > **NOTICE:** This resource now supports write-only arguments
+ * for the initial password via the new arguments `initial_password.value_wo` and `initial_password.value_wo_version`. Using
+ * write-only arguments prevents sensitive values from being stored in plan and state files. You cannot use
+ * `initial_password.value_wo` and `initial_password.value_wo_version` alongside `initial_password.value` as this will result
+ * in a validation error due to conflicts.
+ * > 
+ * > For backward compatibility, the behavior of the original `initial_password.value` argument remains unchanged: it is only
+ * respected during user creation. Unlike `initial_password.value`, bumping `initial_password.value_wo_version` resets the
+ * password of an existing user.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -117,7 +127,7 @@ export class User extends pulumi.CustomResource {
      */
     declare public readonly import: pulumi.Output<boolean | undefined>;
     /**
-     * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+     * When given, the user's initial password will be set. Exactly one of `value` and `valueWo` must be given.
      */
     declare public readonly initialPassword: pulumi.Output<outputs.UserInitialPassword | undefined>;
     /**
@@ -221,7 +231,7 @@ export interface UserState {
      */
     import?: pulumi.Input<boolean | undefined>;
     /**
-     * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+     * When given, the user's initial password will be set. Exactly one of `value` and `valueWo` must be given.
      */
     initialPassword?: pulumi.Input<inputs.UserInitialPassword | undefined>;
     /**
@@ -275,7 +285,7 @@ export interface UserArgs {
      */
     import?: pulumi.Input<boolean | undefined>;
     /**
-     * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+     * When given, the user's initial password will be set. Exactly one of `value` and `valueWo` must be given.
      */
     initialPassword?: pulumi.Input<inputs.UserInitialPassword | undefined>;
     /**

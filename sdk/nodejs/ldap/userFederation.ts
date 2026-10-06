@@ -51,7 +51,12 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
+ * LDAP user federation providers can be imported using one of these formats:
+ * - `{{realm_id}}/{{ldap_user_federation_id}}`
+ * - `{{realm_id}}/{{ldap_user_federation_id}}/{{bind_credential}}` (required when using `bindCredential` and LDAP bind authentication)
+ *
+ * When using `bindCredentialWo`, import with `{{realm_id}}/{{ldap_user_federation_id}}` and then configure `bindCredentialWo` and `bindCredentialWoVersion` in Terraform.
+ *
  * The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
  *
  * ```sh
@@ -91,11 +96,20 @@ export class UserFederation extends pulumi.CustomResource {
      */
     declare public readonly batchSizeForSync: pulumi.Output<number | undefined>;
     /**
-     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      */
     declare public readonly bindCredential: pulumi.Output<string | undefined>;
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     */
+    declare public readonly bindCredentialWo: pulumi.Output<string | undefined>;
+    /**
+     * Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     */
+    declare public readonly bindCredentialWoVersion: pulumi.Output<string | undefined>;
+    /**
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      */
     declare public readonly bindDn: pulumi.Output<string | undefined>;
     /**
@@ -251,6 +265,8 @@ export class UserFederation extends pulumi.CustomResource {
             const state = argsOrState as UserFederationState | undefined;
             resourceInputs["batchSizeForSync"] = state?.batchSizeForSync;
             resourceInputs["bindCredential"] = state?.bindCredential;
+            resourceInputs["bindCredentialWo"] = state?.bindCredentialWo;
+            resourceInputs["bindCredentialWoVersion"] = state?.bindCredentialWoVersion;
             resourceInputs["bindDn"] = state?.bindDn;
             resourceInputs["cache"] = state?.cache;
             resourceInputs["changedSyncPeriod"] = state?.changedSyncPeriod;
@@ -310,6 +326,8 @@ export class UserFederation extends pulumi.CustomResource {
             }
             resourceInputs["batchSizeForSync"] = args?.batchSizeForSync;
             resourceInputs["bindCredential"] = args?.bindCredential ? pulumi.secret(args.bindCredential) : undefined;
+            resourceInputs["bindCredentialWo"] = args?.bindCredentialWo ? pulumi.secret(args.bindCredentialWo) : undefined;
+            resourceInputs["bindCredentialWoVersion"] = args?.bindCredentialWoVersion;
             resourceInputs["bindDn"] = args?.bindDn;
             resourceInputs["cache"] = args?.cache;
             resourceInputs["changedSyncPeriod"] = args?.changedSyncPeriod;
@@ -346,7 +364,7 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["vendor"] = args?.vendor;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["bindCredential"] };
+        const secretOpts = { additionalSecretOutputs: ["bindCredential", "bindCredentialWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(UserFederation.__pulumiType, name, resourceInputs, opts);
     }
@@ -361,11 +379,20 @@ export interface UserFederationState {
      */
     batchSizeForSync?: pulumi.Input<number | undefined>;
     /**
-     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      */
     bindCredential?: pulumi.Input<string | undefined>;
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     */
+    bindCredentialWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     */
+    bindCredentialWoVersion?: pulumi.Input<string | undefined>;
+    /**
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      */
     bindDn?: pulumi.Input<string | undefined>;
     /**
@@ -516,11 +543,20 @@ export interface UserFederationArgs {
      */
     batchSizeForSync?: pulumi.Input<number | undefined>;
     /**
-     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      */
     bindCredential?: pulumi.Input<string | undefined>;
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     */
+    bindCredentialWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     */
+    bindCredentialWoVersion?: pulumi.Input<string | undefined>;
+    /**
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      */
     bindDn?: pulumi.Input<string | undefined>;
     /**

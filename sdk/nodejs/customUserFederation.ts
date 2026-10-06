@@ -95,7 +95,9 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+     *
+     * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      */
     declare public readonly parentId: pulumi.Output<string>;
     /**
@@ -187,7 +189,9 @@ export interface CustomUserFederationState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+     *
+     * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      */
     parentId?: pulumi.Input<string | undefined>;
     /**
@@ -233,7 +237,9 @@ export interface CustomUserFederationArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+     *
+     * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      */
     parentId?: pulumi.Input<string | undefined>;
     /**

@@ -649,7 +649,11 @@ public class Client extends com.pulumi.resources.CustomResource {
     /**
      * If documents or assertions from the client are signed, this private key will be used to verify the signature.
      * 
+     * @deprecated
+     * Keycloak starting 26.8 does not need the SAML client&#39;s private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.
+     * 
      */
+    @Deprecated /* Keycloak starting 26.8 does not need the SAML client's private key. Remove signingPrivateKey from your configuration and configure only signing_certificate.  */
     @Export(name="signingPrivateKey", refs={String.class}, tree="[0]")
     private Output<String> signingPrivateKey;
 
@@ -663,7 +667,11 @@ public class Client extends com.pulumi.resources.CustomResource {
     /**
      * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
      * 
+     * @deprecated
+     * Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak
+     * 
      */
+    @Deprecated /* Deprecated together with signingPrivateKey since Keycloak 26.8. Remove references to this attribute and manage the private key outside of Keycloak  */
     @Export(name="signingPrivateKeySha1", refs={String.class}, tree="[0]")
     private Output<String> signingPrivateKeySha1;
 
@@ -728,6 +736,9 @@ public class Client extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "signingPrivateKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

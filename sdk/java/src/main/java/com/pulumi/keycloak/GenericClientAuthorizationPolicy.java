@@ -11,6 +11,7 @@ import com.pulumi.keycloak.GenericClientAuthorizationPolicyArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.GenericClientAuthorizationPolicyState;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -106,6 +107,17 @@ import javax.annotation.Nullable;
  *             .description("Authorization policy backed by a deployed JavaScript script")
  *             .build());
  * 
+ *         // A custom Java SPI policy provider that reads its own settings from config.
+ *         var customWithConfig = new GenericClientAuthorizationPolicy("customWithConfig", GenericClientAuthorizationPolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("my-configurable-policy")
+ *             .type("my-custom-policy-provider")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .config(Map.of("some_setting", "some_value"))
+ *             .build());
+ * 
  *     }
  * }
  * }
@@ -124,6 +136,28 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy")
 public class GenericClientAuthorizationPolicy extends com.pulumi.resources.CustomResource {
+    /**
+     * A map of provider-specific settings, passed through as-is to the policy&#39;s
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak&#39;s generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     * 
+     */
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> config;
+
+    /**
+     * @return A map of provider-specific settings, passed through as-is to the policy&#39;s
+     * `config` object. This is how a custom Java SPI provider that reads its own settings (connection
+     * details, thresholds, anything the provider defines) receives them; Keycloak&#39;s generic
+     * `PolicyRepresentation` carries these as a flat string-to-string map, so values must be strings
+     * and nested structures are not supported.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> config() {
+        return Codegen.optional(this.config);
+    }
     /**
      * The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
      * 

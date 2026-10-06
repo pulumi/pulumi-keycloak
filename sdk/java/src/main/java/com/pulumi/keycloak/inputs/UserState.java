@@ -126,14 +126,14 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+     * When given, the user&#39;s initial password will be set. Exactly one of `value` and `valueWo` must be given.
      * 
      */
     @Import(name="initialPassword")
     private @Nullable Output<UserInitialPasswordArgs> initialPassword;
 
     /**
-     * @return When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+     * @return When given, the user&#39;s initial password will be set. Exactly one of `value` and `valueWo` must be given.
      * 
      */
     public Optional<Output<UserInitialPasswordArgs>> initialPassword() {
@@ -393,7 +393,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialPassword When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+         * @param initialPassword When given, the user&#39;s initial password will be set. Exactly one of `value` and `valueWo` must be given.
          * 
          * @return builder
          * 
@@ -404,7 +404,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialPassword When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+         * @param initialPassword When given, the user&#39;s initial password will be set. Exactly one of `value` and `valueWo` must be given.
          * 
          * @return builder
          * 

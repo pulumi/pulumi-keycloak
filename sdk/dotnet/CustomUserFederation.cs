@@ -97,7 +97,7 @@ namespace Pulumi.Keycloak
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Must be set to the realms' `InternalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        /// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `InternalId` differs from its name. This attribute will be removed in a future release.
         /// </summary>
         [Output("parentId")]
         public Output<string> ParentId { get; private set; } = null!;
@@ -209,7 +209,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Must be set to the realms' `InternalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        /// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `InternalId` differs from its name. This attribute will be removed in a future release.
         /// </summary>
         [Input("parentId")]
         public Input<string>? ParentId { get; set; }
@@ -283,7 +283,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Must be set to the realms' `InternalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        /// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `InternalId` differs from its name. This attribute will be removed in a future release.
         /// </summary>
         [Input("parentId")]
         public Input<string>? ParentId { get; set; }

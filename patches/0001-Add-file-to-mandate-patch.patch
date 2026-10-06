@@ -6,7 +6,7 @@ Subject: [PATCH] Add file to mandate patch
 
 diff --git a/patch.md b/patch.md
 new file mode 100644
-index 0000000..a8fee35
+index 000000000000..a8fee35df940
 --- /dev/null
 +++ b/patch.md
 @@ -0,0 +1,7 @@

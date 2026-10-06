@@ -37,14 +37,14 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      * 
      */
     @Import(name="bindCredential")
     private @Nullable Output<String> bindCredential;
 
     /**
-     * @return Password of LDAP admin. This attribute must be set if `bindDn` is set.
+     * @return Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
      * 
      */
     public Optional<Output<String>> bindCredential() {
@@ -52,14 +52,46 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     * 
+     */
+    @Import(name="bindCredentialWo")
+    private @Nullable Output<String> bindCredentialWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+     * 
+     */
+    public Optional<Output<String>> bindCredentialWo() {
+        return Optional.ofNullable(this.bindCredentialWo);
+    }
+
+    /**
+     * Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     * 
+     */
+    @Import(name="bindCredentialWoVersion")
+    private @Nullable Output<String> bindCredentialWoVersion;
+
+    /**
+     * @return Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+     * 
+     */
+    public Optional<Output<String>> bindCredentialWoVersion() {
+        return Optional.ofNullable(this.bindCredentialWoVersion);
+    }
+
+    /**
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      * 
      */
     @Import(name="bindDn")
     private @Nullable Output<String> bindDn;
 
     /**
-     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
      * 
      */
     public Optional<Output<String>> bindDn() {
@@ -576,6 +608,8 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     private UserFederationArgs(UserFederationArgs $) {
         this.batchSizeForSync = $.batchSizeForSync;
         this.bindCredential = $.bindCredential;
+        this.bindCredentialWo = $.bindCredentialWo;
+        this.bindCredentialWoVersion = $.bindCredentialWoVersion;
         this.bindDn = $.bindDn;
         this.cache = $.cache;
         this.changedSyncPeriod = $.changedSyncPeriod;
@@ -652,7 +686,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindCredential Password of LDAP admin. This attribute must be set if `bindDn` is set.
+         * @param bindCredential Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
          * 
          * @return builder
          * 
@@ -663,7 +697,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindCredential Password of LDAP admin. This attribute must be set if `bindDn` is set.
+         * @param bindCredential Password of LDAP admin. This attribute must be set if `bindDn` is set. Conflicts with `bindCredentialWo` and `bindCredentialWoVersion`.
          * 
          * @return builder
          * 
@@ -673,7 +707,51 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+         * @param bindCredentialWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindCredentialWo(@Nullable Output<String> bindCredentialWo) {
+            $.bindCredentialWo = bindCredentialWo;
+            return this;
+        }
+
+        /**
+         * @param bindCredentialWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Password of LDAP admin as a write-only argument for ephemeral values. Must be set together with `bindCredentialWoVersion` and conflicts with `bindCredential`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindCredentialWo(String bindCredentialWo) {
+            return bindCredentialWo(Output.of(bindCredentialWo));
+        }
+
+        /**
+         * @param bindCredentialWoVersion Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindCredentialWoVersion(@Nullable Output<String> bindCredentialWoVersion) {
+            $.bindCredentialWoVersion = bindCredentialWoVersion;
+            return this;
+        }
+
+        /**
+         * @param bindCredentialWoVersion Version for `bindCredentialWo`. Change this value to rotate the write-only credential. Must be set together with `bindCredentialWo` and conflicts with `bindCredential`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindCredentialWoVersion(String bindCredentialWoVersion) {
+            return bindCredentialWoVersion(Output.of(bindCredentialWoVersion));
+        }
+
+        /**
+         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
          * 
          * @return builder
          * 
@@ -684,7 +762,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
+         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` or `bindCredentialWo` is set.
          * 
          * @return builder
          * 

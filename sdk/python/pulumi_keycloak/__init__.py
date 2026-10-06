@@ -42,6 +42,7 @@ from .hardcoded_role_identity_mapper import *
 from .identity_provider_token_exchange_scope_permission import *
 from .kubernetes_identity_provider import *
 from .organization import *
+from .organization_memberships import *
 from .provider import *
 from .realm import *
 from .realm_client_policy_profile import *
@@ -54,6 +55,7 @@ from .realm_keystore_ecdsa_generated import *
 from .realm_keystore_hmac_generated import *
 from .realm_keystore_java_generated import *
 from .realm_keystore_rsa import *
+from .realm_keystore_rsa_enc_generated import *
 from .realm_keystore_rsa_generated import *
 from .realm_localization import *
 from .realm_optional_client_scopes import *
@@ -323,6 +325,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/organizationMemberships",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/organizationMemberships:OrganizationMemberships": "OrganizationMemberships"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/realm",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -407,6 +417,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa": "RealmKeystoreRsa"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmKeystoreRsaEncGenerated",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated": "RealmKeystoreRsaEncGenerated"
   }
  },
  {

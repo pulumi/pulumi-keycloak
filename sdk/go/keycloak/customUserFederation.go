@@ -81,7 +81,9 @@ type CustomUserFederation struct {
 	FullSyncPeriod pulumi.IntPtrOutput `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+	// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+	//
+	// Deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
 	ParentId pulumi.StringOutput `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
@@ -139,7 +141,9 @@ type customUserFederationState struct {
 	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
-	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+	// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+	//
+	// Deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
 	ParentId *string `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority *int `pulumi:"priority"`
@@ -162,7 +166,9 @@ type CustomUserFederationState struct {
 	FullSyncPeriod pulumi.IntPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
-	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+	// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+	//
+	// Deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
 	ParentId pulumi.StringPtrInput
 	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrInput
@@ -189,7 +195,9 @@ type customUserFederationArgs struct {
 	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
-	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+	// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+	//
+	// Deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
 	ParentId *string `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority *int `pulumi:"priority"`
@@ -213,7 +221,9 @@ type CustomUserFederationArgs struct {
 	FullSyncPeriod pulumi.IntPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
-	// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+	// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+	//
+	// Deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
 	ParentId pulumi.StringPtrInput
 	// Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
 	Priority pulumi.IntPtrInput
@@ -340,7 +350,9 @@ func (o CustomUserFederationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
+// **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internalId` differs from its name. This attribute will be removed in a future release.
+//
+// Deprecated: Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
 func (o CustomUserFederationOutput) ParentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.ParentId }).(pulumi.StringOutput)
 }
