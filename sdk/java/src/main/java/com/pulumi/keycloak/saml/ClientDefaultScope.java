@@ -68,8 +68,8 @@ import javax.annotation.Nullable;
  *             .signDocuments(false)
  *             .signAssertions(true)
  *             .includeAuthnStatement(true)
- *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
- *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+ *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+ *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
  *             .build());
  * 
  *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  * 
  *         var clientDefaultScopes = new ClientDefaultScope("clientDefaultScopes", ClientDefaultScopeArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(client.id())
+ *             .clientId(client.get("id"))
  *             .defaultScopes(            
  *                 "role_list",
  *                 clientScope.name())

@@ -30,7 +30,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audience_mapper", new()
         ///     {
         ///         RealmId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.RealmId),
@@ -64,7 +64,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audience_mapper", new()
         ///     {
         ///         RealmId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.RealmId),
@@ -98,7 +98,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audience_mapper", new()
         ///     {
         ///         RealmId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.RealmId),

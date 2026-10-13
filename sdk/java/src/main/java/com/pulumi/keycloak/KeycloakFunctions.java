@@ -1107,8 +1107,8 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .organizationId(organization.id())
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
      *             .name("organization-group")
      *             .build());
      * 
@@ -1222,8 +1222,8 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .organizationId(organization.id())
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
      *             .name("organization-group")
      *             .build());
      * 
@@ -1337,8 +1337,8 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .organizationId(organization.id())
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
      *             .name("organization-group")
      *             .build());
      * 
@@ -1452,8 +1452,8 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .organizationId(organization.id())
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
      *             .name("organization-group")
      *             .build());
      * 
@@ -1567,8 +1567,8 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .organizationId(organization.id())
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
      *             .name("organization-group")
      *             .build());
      * 
@@ -1621,7 +1621,7 @@ public final class KeycloakFunctions {
      *             .name("my-org")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
      *             .realm(realm.id())
      *             .alias("my-idp")
@@ -1681,7 +1681,7 @@ public final class KeycloakFunctions {
      *             .name("my-org")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
      *             .realm(realm.id())
      *             .alias("my-idp")
@@ -1741,7 +1741,7 @@ public final class KeycloakFunctions {
      *             .name("my-org")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
      *             .realm(realm.id())
      *             .alias("my-idp")
@@ -1801,7 +1801,7 @@ public final class KeycloakFunctions {
      *             .name("my-org")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
      *             .realm(realm.id())
      *             .alias("my-idp")
@@ -1861,7 +1861,7 @@ public final class KeycloakFunctions {
      *             .name("my-org")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
      *             .realm(realm.id())
      *             .alias("my-idp")
@@ -1915,7 +1915,7 @@ public final class KeycloakFunctions {
      *             .realm("my-realm")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -1964,7 +1964,7 @@ public final class KeycloakFunctions {
      *             .realm("my-realm")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2013,7 +2013,7 @@ public final class KeycloakFunctions {
      *             .realm("my-realm")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2062,7 +2062,7 @@ public final class KeycloakFunctions {
      *             .realm("my-realm")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2111,7 +2111,7 @@ public final class KeycloakFunctions {
      *             .realm("my-realm")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2451,7 +2451,7 @@ public final class KeycloakFunctions {
      *                 "PASSIVE")
      *             .build());
      * 
-     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
      *     }
      * }
      * }
@@ -2511,7 +2511,7 @@ public final class KeycloakFunctions {
      *                 "PASSIVE")
      *             .build());
      * 
-     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
      *     }
      * }
      * }
@@ -2571,7 +2571,7 @@ public final class KeycloakFunctions {
      *                 "PASSIVE")
      *             .build());
      * 
-     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
      *     }
      * }
      * }
@@ -2631,7 +2631,7 @@ public final class KeycloakFunctions {
      *                 "PASSIVE")
      *             .build());
      * 
-     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
      *     }
      * }
      * }
@@ -2691,7 +2691,7 @@ public final class KeycloakFunctions {
      *                 "PASSIVE")
      *             .build());
      * 
-     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
      *     }
      * }
      * }
@@ -2745,7 +2745,7 @@ public final class KeycloakFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Group("group", GroupArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2810,7 +2810,7 @@ public final class KeycloakFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Group("group", GroupArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2875,7 +2875,7 @@ public final class KeycloakFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Group("group", GroupArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -2940,7 +2940,7 @@ public final class KeycloakFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Group("group", GroupArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -3005,7 +3005,7 @@ public final class KeycloakFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var group = new Group("group", GroupArgs.builder()
      *             .realmId(realm.id())
      *             .name("group")
@@ -3058,7 +3058,7 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
@@ -3106,7 +3106,7 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
@@ -3154,7 +3154,7 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
@@ -3202,7 +3202,7 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
@@ -3250,7 +3250,7 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
@@ -3299,13 +3299,13 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         // use the keycloak_user_realm_roles data source to list role names
+     *         // use the keycloak_user_realm_roles function to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
      *             .realmId(masterRealm.id())
      *             .userId(defaultAdminUser.id())
@@ -3354,13 +3354,13 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         // use the keycloak_user_realm_roles data source to list role names
+     *         // use the keycloak_user_realm_roles function to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
      *             .realmId(masterRealm.id())
      *             .userId(defaultAdminUser.id())
@@ -3409,13 +3409,13 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         // use the keycloak_user_realm_roles data source to list role names
+     *         // use the keycloak_user_realm_roles function to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
      *             .realmId(masterRealm.id())
      *             .userId(defaultAdminUser.id())
@@ -3464,13 +3464,13 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         // use the keycloak_user_realm_roles data source to list role names
+     *         // use the keycloak_user_realm_roles function to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
      *             .realmId(masterRealm.id())
      *             .userId(defaultAdminUser.id())
@@ -3519,13 +3519,13 @@ public final class KeycloakFunctions {
      *             .realm("master")
      *             .build());
      * 
-     *         // use the keycloak_user data source to grab the admin user's ID
+     *         // use the keycloak_user function to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
      *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         // use the keycloak_user_realm_roles data source to list role names
+     *         // use the keycloak_user_realm_roles function to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
      *             .realmId(masterRealm.id())
      *             .userId(defaultAdminUser.id())

@@ -114,7 +114,7 @@ import javax.annotation.Nullable;
  *             .decisionStrategy("UNANIMOUS")
  *             .build());
  * 
- *         // One permission per logical role — each is a separate Terraform resource.
+ *         // One permission per logical role — each is a separate Pulumi resource.
  *         var adminsManageUsers = new UsersAdminPermissions("adminsManageUsers", UsersAdminPermissionsArgs.builder()
  *             .realmId(realm.id())
  *             .name("admins-can-manage-users")

@@ -63,8 +63,8 @@ import javax.annotation.Nullable;
  *             .signDocuments(false)
  *             .signAssertions(true)
  *             .includeAuthnStatement(true)
- *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
- *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+ *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+ *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
  *             .build());
  * 
  *     }

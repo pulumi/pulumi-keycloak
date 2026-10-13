@@ -55,7 +55,7 @@ public final class SamlFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -105,7 +105,7 @@ public final class SamlFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -155,7 +155,7 @@ public final class SamlFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -205,7 +205,7 @@ public final class SamlFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -255,7 +255,7 @@ public final class SamlFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -319,8 +319,8 @@ public final class SamlFunctions {
      *             .signDocuments(false)
      *             .signAssertions(true)
      *             .includeAuthnStatement(true)
-     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
-     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
      *             .build());
      * 
      *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
@@ -391,8 +391,8 @@ public final class SamlFunctions {
      *             .signDocuments(false)
      *             .signAssertions(true)
      *             .includeAuthnStatement(true)
-     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
-     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
      *             .build());
      * 
      *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
@@ -463,8 +463,8 @@ public final class SamlFunctions {
      *             .signDocuments(false)
      *             .signAssertions(true)
      *             .includeAuthnStatement(true)
-     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
-     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
      *             .build());
      * 
      *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
@@ -535,8 +535,8 @@ public final class SamlFunctions {
      *             .signDocuments(false)
      *             .signAssertions(true)
      *             .includeAuthnStatement(true)
-     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
-     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
      *             .build());
      * 
      *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
@@ -607,8 +607,8 @@ public final class SamlFunctions {
      *             .signDocuments(false)
      *             .signAssertions(true)
      *             .includeAuthnStatement(true)
-     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
-     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).get("result"))
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).get("result"))
      *             .build());
      * 
      *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
@@ -672,7 +672,7 @@ public final class SamlFunctions {
      *             .clientId("saml-client")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(samlClient.id())
@@ -729,7 +729,7 @@ public final class SamlFunctions {
      *             .clientId("saml-client")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(samlClient.id())
@@ -786,7 +786,7 @@ public final class SamlFunctions {
      *             .clientId("saml-client")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(samlClient.id())
@@ -843,7 +843,7 @@ public final class SamlFunctions {
      *             .clientId("saml-client")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(samlClient.id())
@@ -900,7 +900,7 @@ public final class SamlFunctions {
      *             .clientId("saml-client")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(samlClient.id())

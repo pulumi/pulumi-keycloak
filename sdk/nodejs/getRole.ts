@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     realmId: realm.id,
  *     name: "offline_access",
  * });
- * // use the data source
+ * // use the function
  * const group = new keycloak.Group("group", {
  *     realmId: realm.id,
  *     name: "group",
@@ -97,7 +97,7 @@ export interface GetRoleResult {
  *     realmId: realm.id,
  *     name: "offline_access",
  * });
- * // use the data source
+ * // use the function
  * const group = new keycloak.Group("group", {
  *     realmId: realm.id,
  *     name: "group",

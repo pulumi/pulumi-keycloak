@@ -29,7 +29,7 @@ namespace Pulumi.Keycloak
         ///         Realm = "master",
         ///     });
         /// 
-        ///     // use the keycloak_user data source to grab the admin user's ID
+        ///     // use the keycloak_user function to grab the admin user's ID
         ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -64,7 +64,7 @@ namespace Pulumi.Keycloak
         ///         Realm = "master",
         ///     });
         /// 
-        ///     // use the keycloak_user data source to grab the admin user's ID
+        ///     // use the keycloak_user function to grab the admin user's ID
         ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -99,7 +99,7 @@ namespace Pulumi.Keycloak
         ///         Realm = "master",
         ///     });
         /// 
-        ///     // use the keycloak_user data source to grab the admin user's ID
+        ///     // use the keycloak_user function to grab the admin user's ID
         ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),

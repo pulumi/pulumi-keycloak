@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// use the data source
+//			// use the function
 //			_, err = saml.NewClientDefaultScope(ctx, "default", &saml.ClientDefaultScopeArgs{
 //				RealmId:  pulumi.String("my-realm"),
 //				ClientId: samlClient.ID().ToIDOutput().ToStringOutput(),

@@ -16,12 +16,12 @@ import * as utilities from "./utilities";
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
- * // use the keycloak_user data source to grab the admin user's ID
+ * // use the keycloak_user function to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
  * }));
- * // use the keycloak_user_realm_roles data source to list role names
+ * // use the keycloak_user_realm_roles function to list role names
  * const userRealmRoles = Promise.all([masterRealm, defaultAdminUser]).then(([masterRealm, defaultAdminUser]) => keycloak.getUserRealmRoles({
  *     realmId: masterRealm.id,
  *     userId: defaultAdminUser.id,
@@ -78,12 +78,12 @@ export interface GetUserRealmRolesResult {
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
- * // use the keycloak_user data source to grab the admin user's ID
+ * // use the keycloak_user function to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
  * }));
- * // use the keycloak_user_realm_roles data source to list role names
+ * // use the keycloak_user_realm_roles function to list role names
  * const userRealmRoles = Promise.all([masterRealm, defaultAdminUser]).then(([masterRealm, defaultAdminUser]) => keycloak.getUserRealmRoles({
  *     realmId: masterRealm.id,
  *     userId: defaultAdminUser.id,

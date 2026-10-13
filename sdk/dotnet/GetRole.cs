@@ -37,7 +37,7 @@ namespace Pulumi.Keycloak
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @group = new Keycloak.Group("group", new()
         ///     {
         ///         RealmId = realm.Id,
@@ -86,7 +86,7 @@ namespace Pulumi.Keycloak
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @group = new Keycloak.Group("group", new()
         ///     {
         ///         RealmId = realm.Id,
@@ -135,7 +135,7 @@ namespace Pulumi.Keycloak
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @group = new Keycloak.Group("group", new()
         ///     {
         ///         RealmId = realm.Id,

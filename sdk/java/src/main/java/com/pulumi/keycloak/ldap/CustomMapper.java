@@ -74,8 +74,8 @@ import javax.annotation.Nullable;
  * 
  *         var customMapper = new CustomMapper("customMapper", CustomMapperArgs.builder()
  *             .name("custom-mapper")
- *             .realmId(openldap.realmId())
- *             .ldapUserFederationId(openldap.id())
+ *             .realmId(openldap.get("realmId"))
+ *             .ldapUserFederationId(openldap.get("id"))
  *             .providerId("custom-provider-registered-in-keycloak")
  *             .providerType("com.example.custom.ldap.mappers.CustomMapper")
  *             .config(Map.ofEntries(

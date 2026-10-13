@@ -36,7 +36,7 @@ namespace Pulumi.Keycloak
         ///         Name = "my-org",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realm_identity_provider", new()
         ///     {
         ///         Realm = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -79,7 +79,7 @@ namespace Pulumi.Keycloak
         ///         Name = "my-org",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realm_identity_provider", new()
         ///     {
         ///         Realm = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -122,7 +122,7 @@ namespace Pulumi.Keycloak
         ///         Name = "my-org",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realm_identity_provider", new()
         ///     {
         ///         Realm = realm.Apply(getRealmResult =&gt; getRealmResult.Id),

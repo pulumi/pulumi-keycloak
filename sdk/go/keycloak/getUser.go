@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// use the keycloak_user data source to grab the admin user's ID
+//			// use the keycloak_user function to grab the admin user's ID
 //			defaultAdminUser, err := keycloak.GetUser(ctx, &keycloak.LookupUserArgs{
 //				RealmId:  masterRealm.Id,
 //				Username: "keycloak",

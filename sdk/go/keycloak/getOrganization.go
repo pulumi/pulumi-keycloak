@@ -42,7 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// use the data source
+//			// use the function
 //			_, err = oidc.NewIdentityProvider(ctx, "realm_identity_provider", &oidc.IdentityProviderArgs{
 //				Realm:            pulumi.String(realm.Id),
 //				Alias:            pulumi.String("my-idp"),

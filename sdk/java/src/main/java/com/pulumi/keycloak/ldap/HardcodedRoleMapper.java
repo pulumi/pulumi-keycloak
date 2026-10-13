@@ -140,7 +140,7 @@ import javax.annotation.Nullable;
  *             .bindCredential("admin")
  *             .build());
  * 
- *         // data sources aren't technically necessary here, but they are helpful for demonstration purposes
+ *         // functions aren't technically necessary here, but they are helpful for demonstration purposes
  *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("realm-management")

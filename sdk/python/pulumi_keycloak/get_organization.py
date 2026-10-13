@@ -138,7 +138,7 @@ def get_organization(name: Optional[_builtins.str] = None,
     realm = keycloak.get_realm(realm="my-realm")
     organization = keycloak.get_organization(realm=realm.id,
         name="my-org")
-    # use the data source
+    # use the function
     realm_identity_provider = keycloak.oidc.IdentityProvider("realm_identity_provider",
         realm=realm.id,
         alias="my-idp",
@@ -185,7 +185,7 @@ def get_organization_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     realm = keycloak.get_realm(realm="my-realm")
     organization = keycloak.get_organization(realm=realm.id,
         name="my-org")
-    # use the data source
+    # use the function
     realm_identity_provider = keycloak.oidc.IdentityProvider("realm_identity_provider",
         realm=realm.id,
         alias="my-idp",

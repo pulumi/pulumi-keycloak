@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * // data sources aren't technically necessary here, but they are helpful for demonstration purposes
+ * // functions aren't technically necessary here, but they are helpful for demonstration purposes
  * const realmManagement = keycloak.openid.getClientOutput({
  *     realmId: realm.id,
  *     clientId: "realm-management",

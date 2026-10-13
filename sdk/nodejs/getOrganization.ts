@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     realm: realm.id,
  *     name: "my-org",
  * }));
- * // use the data source
+ * // use the function
  * const realmIdentityProvider = new keycloak.oidc.IdentityProvider("realm_identity_provider", {
  *     realm: realm.then(realm => realm.id),
  *     alias: "my-idp",
@@ -91,7 +91,7 @@ export interface GetOrganizationResult {
  *     realm: realm.id,
  *     name: "my-org",
  * }));
- * // use the data source
+ * // use the function
  * const realmIdentityProvider = new keycloak.oidc.IdentityProvider("realm_identity_provider", {
  *     realm: realm.then(realm => realm.id),
  *     alias: "my-idp",

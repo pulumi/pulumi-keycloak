@@ -343,7 +343,7 @@ class UsersAdminPermissions(pulumi.CustomResource):
             }],
             logic="POSITIVE",
             decision_strategy="UNANIMOUS")
-        # One permission per logical role — each is a separate Terraform resource.
+        # One permission per logical role — each is a separate Pulumi resource.
         admins_manage_users = keycloak.UsersAdminPermissions("admins_manage_users",
             realm_id=realm.id,
             name="admins-can-manage-users",
@@ -446,7 +446,7 @@ class UsersAdminPermissions(pulumi.CustomResource):
             }],
             logic="POSITIVE",
             decision_strategy="UNANIMOUS")
-        # One permission per logical role — each is a separate Terraform resource.
+        # One permission per logical role — each is a separate Pulumi resource.
         admins_manage_users = keycloak.UsersAdminPermissions("admins_manage_users",
             realm_id=realm.id,
             name="admins-can-manage-users",

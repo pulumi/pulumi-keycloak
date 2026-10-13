@@ -121,7 +121,7 @@ def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
     saml_client = keycloak.saml.Client("saml_client",
         realm_id="my-realm",
         client_id="saml-client")
-    # use the data source
+    # use the function
     default = keycloak.saml.ClientDefaultScope("default",
         realm_id="my-realm",
         client_id=saml_client.id,
@@ -165,7 +165,7 @@ def get_client_scope_output(extra_config: pulumi.Input[Optional[Optional[Mapping
     saml_client = keycloak.saml.Client("saml_client",
         realm_id="my-realm",
         client_id="saml-client")
-    # use the data source
+    # use the function
     default = keycloak.saml.ClientDefaultScope("default",
         realm_id="my-realm",
         client_id=saml_client.id,

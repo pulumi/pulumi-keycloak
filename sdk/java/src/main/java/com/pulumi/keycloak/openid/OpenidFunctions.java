@@ -61,7 +61,7 @@ public final class OpenidFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -111,7 +111,7 @@ public final class OpenidFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -161,7 +161,7 @@ public final class OpenidFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -211,7 +211,7 @@ public final class OpenidFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -261,7 +261,7 @@ public final class OpenidFunctions {
      *             .clientId("realm-management")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
      *             .clientId(realmManagement.id())
@@ -1746,7 +1746,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.realmId())
      *             .clientScopeId(offlineAccess.id())
@@ -1797,7 +1797,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.realmId())
      *             .clientScopeId(offlineAccess.id())
@@ -1848,7 +1848,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.realmId())
      *             .clientScopeId(offlineAccess.id())
@@ -1899,7 +1899,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.realmId())
      *             .clientScopeId(offlineAccess.id())
@@ -1950,7 +1950,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         // use the data source
+     *         // use the function
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.realmId())
      *             .clientScopeId(offlineAccess.id())
