@@ -59,8 +59,8 @@ import (
 //				SignDocuments:         pulumi.Bool(false),
 //				SignAssertions:        pulumi.Bool(true),
 //				IncludeAuthnStatement: pulumi.Bool(true),
-//				SigningCertificate:    invokeFile.Result,
-//				SigningPrivateKey:     invokeFile1.Result,
+//				SigningCertificate:    invokeFile.Result.(pulumi.String),
+//				SigningPrivateKey:     invokeFile1.Result.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err

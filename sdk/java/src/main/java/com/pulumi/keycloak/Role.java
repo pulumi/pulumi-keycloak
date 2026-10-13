@@ -114,7 +114,7 @@ import javax.annotation.Nullable;
  * 
  *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(openidClientKeycloakClient.id())
+ *             .clientId(openidClientKeycloakClient.get("id"))
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .attributes(Map.of("key", "value"))
@@ -195,7 +195,7 @@ import javax.annotation.Nullable;
  * 
  *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(openidClientKeycloakClient.id())
+ *             .clientId(openidClientKeycloakClient.get("id"))
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .attributes(Map.of("key", "value"))

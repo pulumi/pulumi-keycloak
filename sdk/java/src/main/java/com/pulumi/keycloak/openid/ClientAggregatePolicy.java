@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *             .decisionStrategy("UNANIMOUS")
  *             .logic("POSITIVE")
  *             .roles(ClientRolePolicyRoleArgs.builder()
- *                 .id(testKeycloakRole.id())
+ *                 .id(testKeycloakRole.get("id"))
  *                 .required(true)
  *                 .build())
  *             .build());
@@ -87,7 +87,7 @@ import javax.annotation.Nullable;
  *             .name("user_policy")
  *             .decisionStrategy("UNANIMOUS")
  *             .logic("POSITIVE")
- *             .users(testKeycloakUser.id())
+ *             .users(testKeycloakUser.get("id"))
  *             .build());
  * 
  *         var testClientAggregatePolicy = new ClientAggregatePolicy("testClientAggregatePolicy", ClientAggregatePolicyArgs.builder()

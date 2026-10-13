@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()
- *             .realmId(myRealm.id())
+ *             .realmId(myRealm.get("id"))
  *             .unmanagedAttributePolicy("ENABLED")
  *             .attributes(            
  *                 RealmUserProfileAttributeArgs.builder()

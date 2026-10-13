@@ -98,7 +98,7 @@ namespace Pulumi.Keycloak
     ///         DecisionStrategy = "UNANIMOUS",
     ///     });
     /// 
-    ///     // One permission per logical role — each is a separate Terraform resource.
+    ///     // One permission per logical role — each is a separate Pulumi resource.
     ///     var adminsManageUsers = new Keycloak.UsersAdminPermissions("admins_manage_users", new()
     ///     {
     ///         RealmId = realm.Id,

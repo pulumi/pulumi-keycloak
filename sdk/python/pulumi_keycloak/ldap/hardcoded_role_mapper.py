@@ -234,7 +234,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        # data sources aren't technically necessary here, but they are helpful for demonstration purposes
+        # functions aren't technically necessary here, but they are helpful for demonstration purposes
         realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
             client_id="realm-management")
         create_client = keycloak.get_role_output(realm_id=realm.id,
@@ -247,7 +247,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             role=pulumi.Output.all(
                 realm_management=realm_management,
                 create_client=create_client
-        ).apply(lambda resolved_outputs: f"{realm_management.client_id}.{create_client.name}")
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['realm_management'].client_id}.{resolved_outputs['create_client'].name}")
         )
         ```
 
@@ -340,7 +340,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        # data sources aren't technically necessary here, but they are helpful for demonstration purposes
+        # functions aren't technically necessary here, but they are helpful for demonstration purposes
         realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
             client_id="realm-management")
         create_client = keycloak.get_role_output(realm_id=realm.id,
@@ -353,7 +353,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             role=pulumi.Output.all(
                 realm_management=realm_management,
                 create_client=create_client
-        ).apply(lambda resolved_outputs: f"{realm_management.client_id}.{create_client.name}")
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['realm_management'].client_id}.{resolved_outputs['create_client'].name}")
         )
         ```
 

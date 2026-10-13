@@ -136,7 +136,7 @@ def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
 
     offline_access = keycloak.openid.get_client_scope(realm_id="my-realm",
         name="offline_access")
-    # use the data source
+    # use the function
     audience_mapper = keycloak.openid.AudienceProtocolMapper("audience_mapper",
         realm_id=offline_access.realm_id,
         client_scope_id=offline_access.id,
@@ -180,7 +180,7 @@ def get_client_scope_output(extra_config: pulumi.Input[Optional[Optional[Mapping
 
     offline_access = keycloak.openid.get_client_scope(realm_id="my-realm",
         name="offline_access")
-    # use the data source
+    # use the function
     audience_mapper = keycloak.openid.AudienceProtocolMapper("audience_mapper",
         realm_id=offline_access.realm_id,
         client_scope_id=offline_access.id,

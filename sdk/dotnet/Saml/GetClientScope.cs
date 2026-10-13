@@ -36,7 +36,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "saml-client",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @default = new Keycloak.Saml.ClientDefaultScope("default", new()
         ///     {
         ///         RealmId = "my-realm",
@@ -78,7 +78,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "saml-client",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @default = new Keycloak.Saml.ClientDefaultScope("default", new()
         ///     {
         ///         RealmId = "my-realm",
@@ -120,7 +120,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "saml-client",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @default = new Keycloak.Saml.ClientDefaultScope("default", new()
         ///     {
         ///         RealmId = "my-realm",

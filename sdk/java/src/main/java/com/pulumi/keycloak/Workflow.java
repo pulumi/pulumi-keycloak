@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var offboard = new Workflow("offboard", WorkflowArgs.builder()
- *             .realm(realm.id())
+ *             .realm(realm.get("id"))
  *             .name("offboard-users")
  *             .on("user_created")
  *             .enabled(true)
@@ -173,7 +173,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var onboardGoldMembers = new Workflow("onboardGoldMembers", WorkflowArgs.builder()
- *             .realm(realm.id())
+ *             .realm(realm.get("id"))
  *             .name("onboarding-gold-members")
  *             .on("user_created")
  *             .enabled(true)
@@ -226,7 +226,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var trackInactiveUsers = new Workflow("trackInactiveUsers", WorkflowArgs.builder()
- *             .realm(realm.id())
+ *             .realm(realm.get("id"))
  *             .name("track-inactive-users")
  *             .on("user_authenticated")
  *             .enabled(true)

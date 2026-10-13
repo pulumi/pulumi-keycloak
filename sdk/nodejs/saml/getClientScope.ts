@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  *     realmId: "my-realm",
  *     clientId: "saml-client",
  * });
- * // use the data source
+ * // use the function
  * const _default = new keycloak.saml.ClientDefaultScope("default", {
  *     realmId: "my-realm",
  *     clientId: samlClient.id,
@@ -85,7 +85,7 @@ export interface GetClientScopeResult {
  *     realmId: "my-realm",
  *     clientId: "saml-client",
  * });
- * // use the data source
+ * // use the function
  * const _default = new keycloak.saml.ClientDefaultScope("default", {
  *     realmId: "my-realm",
  *     clientId: samlClient.id,

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
- * // use the keycloak_user data source to grab the admin user's ID
+ * // use the keycloak_user function to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
@@ -98,7 +98,7 @@ export interface GetUserResult {
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
- * // use the keycloak_user data source to grab the admin user's ID
+ * // use the keycloak_user function to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",

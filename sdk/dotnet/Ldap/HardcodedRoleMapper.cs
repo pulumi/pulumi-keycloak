@@ -102,7 +102,7 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     // data sources aren't technically necessary here, but they are helpful for demonstration purposes
+    ///     // functions aren't technically necessary here, but they are helpful for demonstration purposes
     ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
     ///     {
     ///         RealmId = realm.Id,

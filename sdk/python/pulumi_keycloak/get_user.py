@@ -173,7 +173,7 @@ def get_user(realm_id: Optional[_builtins.str] = None,
     import pulumi_keycloak as keycloak
 
     master_realm = keycloak.get_realm(realm="master")
-    # use the keycloak_user data source to grab the admin user's ID
+    # use the keycloak_user function to grab the admin user's ID
     default_admin_user = keycloak.get_user(realm_id=master_realm.id,
         username="keycloak")
     pulumi.export("keycloakUserId", default_admin_user.id)
@@ -214,7 +214,7 @@ def get_user_output(realm_id: pulumi.Input[Optional[_builtins.str]] = None,
     import pulumi_keycloak as keycloak
 
     master_realm = keycloak.get_realm(realm="master")
-    # use the keycloak_user data source to grab the admin user's ID
+    # use the keycloak_user function to grab the admin user's ID
     default_admin_user = keycloak.get_user(realm_id=master_realm.id,
         username="keycloak")
     pulumi.export("keycloakUserId", default_admin_user.id)

@@ -111,7 +111,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var organization = new Organization("organization", OrganizationArgs.builder()
- *             .realm(realm.id())
+ *             .realm(realm.get("id"))
  *             .name("my-organization")
  *             .domains(OrganizationDomainArgs.builder()
  *                 .name("example.com")
@@ -119,13 +119,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var organizationGroup = new Group("organizationGroup", GroupArgs.builder()
- *             .realmId(realm.id())
+ *             .realmId(realm.get("id"))
  *             .organizationId(organization.id())
  *             .name("organization-group")
  *             .build());
  * 
  *         var organizationChildGroup = new Group("organizationChildGroup", GroupArgs.builder()
- *             .realmId(realm.id())
+ *             .realmId(realm.get("id"))
  *             .organizationId(organization.id())
  *             .parentId(organizationGroup.id())
  *             .name("organization-child-group")

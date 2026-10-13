@@ -125,7 +125,7 @@ def get_role(client_id: Optional[_builtins.str] = None,
         enabled=True)
     offline_access = keycloak.get_role_output(realm_id=realm.id,
         name="offline_access")
-    # use the data source
+    # use the function
     group = keycloak.Group("group",
         realm_id=realm.id,
         name="group")
@@ -174,7 +174,7 @@ def get_role_output(client_id: pulumi.Input[Optional[Optional[_builtins.str]]] =
         enabled=True)
     offline_access = keycloak.get_role_output(realm_id=realm.id,
         name="offline_access")
-    # use the data source
+    # use the function
     group = keycloak.Group("group",
         realm_id=realm.id,
         name="group")

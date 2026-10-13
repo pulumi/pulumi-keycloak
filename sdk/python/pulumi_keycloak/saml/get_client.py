@@ -460,7 +460,7 @@ def get_client(client_id: Optional[_builtins.str] = None,
 
     realm_management = keycloak.saml.get_client(realm_id="my-realm",
         client_id="realm-management")
-    # use the data source
+    # use the function
     admin = keycloak.get_role(realm_id="my-realm",
         client_id=realm_management.id,
         name="realm-admin")
@@ -536,7 +536,7 @@ def get_client_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
 
     realm_management = keycloak.saml.get_client(realm_id="my-realm",
         client_id="realm-management")
-    # use the data source
+    # use the function
     admin = keycloak.get_role(realm_id="my-realm",
         client_id=realm_management.id,
         name="realm-admin")

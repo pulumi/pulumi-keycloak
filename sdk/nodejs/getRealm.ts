@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * const realm = keycloak.getRealm({
  *     realm: "my-realm",
  * });
- * // use the data source
+ * // use the function
  * const group = new keycloak.Role("group", {
  *     realmId: realm.then(realm => realm.id),
  *     name: "group",
@@ -144,7 +144,7 @@ export interface GetRealmResult {
  * const realm = keycloak.getRealm({
  *     realm: "my-realm",
  * });
- * // use the data source
+ * // use the function
  * const group = new keycloak.Role("group", {
  *     realmId: realm.then(realm => realm.id),
  *     name: "group",

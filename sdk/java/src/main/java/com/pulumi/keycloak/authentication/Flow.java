@@ -108,13 +108,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var customBrowser = new Flow("customBrowser", FlowArgs.builder()
- *             .realmId(realm.id())
+ *             .realmId(realm.get("id"))
  *             .alias("my-custom-browser")
  *             .copyFrom("browser")
  *             .build());
  * 
  *         var bindings = new Bindings("bindings", BindingsArgs.builder()
- *             .realmId(realm.id())
+ *             .realmId(realm.get("id"))
  *             .browserFlow(customBrowser.alias())
  *             .build());
  * 
@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
  *         // an alternative to username+password - fails with "It is illegal to add execution to a built
  *         // in flow" against "browser" itself, but succeeds on the copy.
  *         var webauthnPasswordless = new Execution("webauthnPasswordless", ExecutionArgs.builder()
- *             .realmId(realm.id())
+ *             .realmId(realm.get("id"))
  *             .parentFlowAlias(customBrowser.alias())
  *             .authenticator("webauthn-authenticator-passwordless")
  *             .requirement("ALTERNATIVE")

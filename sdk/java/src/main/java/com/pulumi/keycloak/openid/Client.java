@@ -127,7 +127,7 @@ import javax.annotation.Nullable;
  *             .name("test client")
  *             .enabled(true)
  *             .accessType("CONFIDENTIAL")
- *             .clientSecretRegenerateWhenChanged(Map.of("rotation", rotate.rotationRfc3339()))
+ *             .clientSecretRegenerateWhenChanged(Map.of("rotation", rotate.get("rotationRfc3339")))
  *             .build());
  * 
  *     }

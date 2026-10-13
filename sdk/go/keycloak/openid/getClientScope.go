@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// use the data source
+//			// use the function
 //			_, err = openid.NewAudienceProtocolMapper(ctx, "audience_mapper", &openid.AudienceProtocolMapperArgs{
 //				RealmId:                pulumi.String(offlineAccess.RealmId),
 //				ClientScopeId:          pulumi.String(offlineAccess.Id),

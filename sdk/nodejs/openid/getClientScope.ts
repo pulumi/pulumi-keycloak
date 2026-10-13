@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  *     realmId: "my-realm",
  *     name: "offline_access",
  * });
- * // use the data source
+ * // use the function
  * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
  *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
@@ -80,7 +80,7 @@ export interface GetClientScopeResult {
  *     realmId: "my-realm",
  *     name: "offline_access",
  * });
- * // use the data source
+ * // use the function
  * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
  *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),

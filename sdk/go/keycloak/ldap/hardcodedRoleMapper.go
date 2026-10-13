@@ -124,7 +124,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// data sources aren't technically necessary here, but they are helpful for demonstration purposes
+//			// functions aren't technically necessary here, but they are helpful for demonstration purposes
 //			realmManagement := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
 //				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
 //				ClientId: pulumi.String("realm-management"),

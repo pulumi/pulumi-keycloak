@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  * 
  *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(clientKeycloakClient.id())
+ *             .clientId(clientKeycloakClient.get("id"))
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .build());

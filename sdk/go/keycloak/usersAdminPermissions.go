@@ -104,7 +104,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// One permission per logical role — each is a separate Terraform resource.
+//			// One permission per logical role — each is a separate Pulumi resource.
 //			_, err = keycloak.NewUsersAdminPermissions(ctx, "admins_manage_users", &keycloak.UsersAdminPermissionsArgs{
 //				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:             pulumi.String("admins-can-manage-users"),

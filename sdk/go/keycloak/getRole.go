@@ -39,7 +39,7 @@ import (
 //				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
-//			// use the data source
+//			// use the function
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
 //				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
 //				Name:    pulumi.String("group"),

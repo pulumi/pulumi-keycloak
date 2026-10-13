@@ -30,7 +30,7 @@ namespace Pulumi.Keycloak
         ///         Realm = "my-realm",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
         ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -62,7 +62,7 @@ namespace Pulumi.Keycloak
         ///         Realm = "my-realm",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
         ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -94,7 +94,7 @@ namespace Pulumi.Keycloak
         ///         Realm = "my-realm",
         ///     });
         /// 
-        ///     // use the data source
+        ///     // use the function
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
         ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
