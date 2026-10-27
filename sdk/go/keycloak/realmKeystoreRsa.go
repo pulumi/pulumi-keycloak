@@ -42,7 +42,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmKeystoreRsa(ctx, "keystore_rsa", &keycloak.RealmKeystoreRsaArgs{
 //				Name:         pulumi.String("my-rsa-key"),
-//				RealmId:      realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:      realm.ID(),
 //				Enabled:      pulumi.Bool(true),
 //				Active:       pulumi.Bool(true),
 //				PrivateKey:   pulumi.String("<your rsa private key>"),

@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_, err = saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:               realm.ID(),
 //				ClientId:              pulumi.String("saml-client"),
 //				Name:                  pulumi.String("saml-client"),
 //				SignDocuments:         pulumi.Bool(false),

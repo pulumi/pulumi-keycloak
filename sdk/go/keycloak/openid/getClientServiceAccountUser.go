@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:                realm.ID(),
 //				ClientId:               pulumi.String("client"),
 //				Name:                   pulumi.String("client"),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
@@ -51,15 +51,15 @@ import (
 //				return err
 //			}
 //			serviceAccountUser := openid.GetClientServiceAccountUserOutput(ctx, openid.GetClientServiceAccountUserOutputArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
-//				ClientId: client.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
+//				ClientId: client.ID(),
 //			}, nil)
 //			offlineAccess := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
 //			_, err = keycloak.NewUserRoles(ctx, "service_account_user_roles", &keycloak.UserRolesArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				UserId:  serviceAccountUser.Id(),
 //				RoleIds: pulumi.StringArray{
 //					offlineAccess.Id(),

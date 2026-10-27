@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			realmKeys := keycloak.GetRealmKeysOutput(ctx, keycloak.GetRealmKeysOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Algorithms: pulumi.StringArray{
 //					pulumi.String("AES"),
 //					pulumi.String("RS256"),

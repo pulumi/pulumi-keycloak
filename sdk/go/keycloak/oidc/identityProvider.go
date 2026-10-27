@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = oidc.NewIdentityProvider(ctx, "realm_identity_provider", &oidc.IdentityProviderArgs{
-//				Realm:            realm.ID().ToIDOutput().ToStringOutput(),
+//				Realm:            realm.ID(),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
 //				ClientId:         pulumi.String("clientID"),

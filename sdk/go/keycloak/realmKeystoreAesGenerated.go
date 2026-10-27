@@ -38,7 +38,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmKeystoreAesGenerated(ctx, "keystore_aes_generated", &keycloak.RealmKeystoreAesGeneratedArgs{
 //				Name:       pulumi.String("my-aes-generated-key"),
-//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:    realm.ID(),
 //				Enabled:    pulumi.Bool(true),
 //				Active:     pulumi.Bool(true),
 //				Priority:   pulumi.Int(100),

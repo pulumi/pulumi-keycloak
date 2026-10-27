@@ -59,7 +59,7 @@ import (
 //			}
 //			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client_id"),
-//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:                realm.ID(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -73,7 +73,7 @@ import (
 //			// "type" is the id returned by your PolicyProviderFactory.getId().
 //			_, err = keycloak.NewGenericClientAuthorizationPolicy(ctx, "custom", &keycloak.GenericClientAuthorizationPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Name:             pulumi.String("my-custom-policy"),
 //				Type:             pulumi.String("my-custom-policy-provider"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
@@ -87,7 +87,7 @@ import (
 //			// type as "script-" + the fileName from META-INF/keycloak-scripts.json.
 //			_, err = keycloak.NewGenericClientAuthorizationPolicy(ctx, "deployed_js", &keycloak.GenericClientAuthorizationPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Name:             pulumi.String("deployed-js-policy"),
 //				Type:             pulumi.String("script-my-policy.js"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
@@ -100,7 +100,7 @@ import (
 //			// A custom Java SPI policy provider that reads its own settings from config.
 //			_, err = keycloak.NewGenericClientAuthorizationPolicy(ctx, "custom_with_config", &keycloak.GenericClientAuthorizationPolicyArgs{
 //				ResourceServerId: test.ResourceServerId,
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Name:             pulumi.String("my-configurable-policy"),
 //				Type:             pulumi.String("my-custom-policy-provider"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),

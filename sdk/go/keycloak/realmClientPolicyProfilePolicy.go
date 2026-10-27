@@ -38,7 +38,7 @@ import (
 //			}
 //			profile, err := keycloak.NewRealmClientPolicyProfile(ctx, "profile", &keycloak.RealmClientPolicyProfileArgs{
 //				Name:        pulumi.String("my-profile"),
-//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:     realm.ID(),
 //				Description: pulumi.String("Some desc"),
 //				Executors: keycloak.RealmClientPolicyProfileExecutorArray{
 //					&keycloak.RealmClientPolicyProfileExecutorArgs{
@@ -72,7 +72,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = keycloak.NewRealmClientPolicyProfilePolicy(ctx, "policy", &keycloak.RealmClientPolicyProfilePolicyArgs{
 //				Name:        pulumi.String("my-profile"),
-//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:     realm.ID(),
 //				Description: pulumi.String("Some desc"),
 //				Profiles: pulumi.StringArray{
 //					profile.Name,

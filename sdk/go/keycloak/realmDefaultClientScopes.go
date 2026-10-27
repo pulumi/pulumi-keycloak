@@ -40,14 +40,14 @@ import (
 //				return err
 //			}
 //			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("test-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewRealmDefaultClientScopes(ctx, "default_scopes", &keycloak.RealmDefaultClientScopesArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				DefaultScopes: pulumi.StringArray{
 //					pulumi.String("profile"),
 //					pulumi.String("email"),

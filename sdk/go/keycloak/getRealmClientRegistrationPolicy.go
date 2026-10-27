@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			trustedHosts := keycloak.GetRealmClientRegistrationPolicyOutput(ctx, keycloak.GetRealmClientRegistrationPolicyOutputArgs{
-//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:    realm.ID(),
 //				Name:       pulumi.String("Trusted Hosts"),
 //				ProviderId: pulumi.String("trusted-hosts"),
 //				SubType:    pulumi.String("anonymous"),

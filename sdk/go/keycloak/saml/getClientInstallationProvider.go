@@ -52,7 +52,7 @@ import (
 //				return err
 //			}
 //			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:               realm.ID(),
 //				ClientId:              pulumi.String("test-saml-client"),
 //				Name:                  pulumi.String("test-saml-client"),
 //				SignDocuments:         pulumi.Bool(false),
@@ -65,8 +65,8 @@ import (
 //				return err
 //			}
 //			samlIdpDescriptor := saml.GetClientInstallationProviderOutput(ctx, saml.GetClientInstallationProviderOutputArgs{
-//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
-//				ClientId:   samlClient.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:    realm.ID(),
+//				ClientId:   samlClient.ID(),
 //				ProviderId: pulumi.String("saml-idp-descriptor"),
 //			}, nil)
 //			_, err = aws.NewIamSamlProvider(ctx, "default", &aws.IamSamlProviderArgs{

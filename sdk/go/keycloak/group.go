@@ -44,23 +44,23 @@ import (
 //				return err
 //			}
 //			parentGroup, err := keycloak.NewGroup(ctx, "parent_group", &keycloak.GroupArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("parent-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroup(ctx, "child_group", &keycloak.GroupArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
-//				ParentId: parentGroup.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
+//				ParentId: parentGroup.ID(),
 //				Name:     pulumi.String("child-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroup(ctx, "child_group_with_optional_attributes", &keycloak.GroupArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
-//				ParentId: parentGroup.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
+//				ParentId: parentGroup.ID(),
 //				Name:     pulumi.String("child-group-with-optional-attributes"),
 //				Attributes: pulumi.StringMap{
 //					"foo":        pulumi.String("bar"),
@@ -104,7 +104,7 @@ import (
 //			}
 //			organizationGroup, err := keycloak.NewGroup(ctx, "organization_group", &keycloak.GroupArgs{
 //				RealmId:        pulumi.Any(realm.Id),
-//				OrganizationId: organization.ID().ToIDOutput().ToStringOutput(),
+//				OrganizationId: organization.ID(),
 //				Name:           pulumi.String("organization-group"),
 //			})
 //			if err != nil {
@@ -112,8 +112,8 @@ import (
 //			}
 //			_, err = keycloak.NewGroup(ctx, "organization_child_group", &keycloak.GroupArgs{
 //				RealmId:        pulumi.Any(realm.Id),
-//				OrganizationId: organization.ID().ToIDOutput().ToStringOutput(),
-//				ParentId:       organizationGroup.ID().ToIDOutput().ToStringOutput(),
+//				OrganizationId: organization.ID(),
+//				ParentId:       organizationGroup.ID(),
 //				Name:           pulumi.String("organization-child-group"),
 //			})
 //			if err != nil {

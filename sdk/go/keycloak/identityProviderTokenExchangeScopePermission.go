@@ -64,7 +64,7 @@ import (
 //				return err
 //			}
 //			tokenExchangeMyOidcIdp, err := oidc.NewIdentityProvider(ctx, "token_exchange_my_oidc_idp", &oidc.IdentityProviderArgs{
-//				Realm:            tokenExchangeRealm.ID().ToIDOutput().ToStringOutput(),
+//				Realm:            tokenExchangeRealm.ID(),
 //				Alias:            pulumi.String("myIdp"),
 //				AuthorizationUrl: pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth"),
 //				TokenUrl:         pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token"),
@@ -76,7 +76,7 @@ import (
 //				return err
 //			}
 //			token_exchangeWebappClient, err := openid.NewClient(ctx, "token-exchange_webapp_client", &openid.ClientArgs{
-//				RealmId:             tokenExchangeRealm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:             tokenExchangeRealm.ID(),
 //				Name:                pulumi.String("webapp_client"),
 //				ClientId:            pulumi.String("webapp_client"),
 //				ClientSecret:        pulumi.String("secret"),
@@ -92,11 +92,11 @@ import (
 //			}
 //			// relevant part
 //			_, err = keycloak.NewIdentityProviderTokenExchangeScopePermission(ctx, "oidc_idp_permission", &keycloak.IdentityProviderTokenExchangeScopePermissionArgs{
-//				RealmId:       tokenExchangeRealm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:       tokenExchangeRealm.ID(),
 //				ProviderAlias: tokenExchangeMyOidcIdp.Alias,
 //				PolicyType:    pulumi.String("client"),
 //				Clients: pulumi.StringArray{
-//					token_exchangeWebappClient.ID().ToIDOutput().ToStringOutput(),
+//					token_exchangeWebappClient.ID(),
 //				},
 //			})
 //			if err != nil {

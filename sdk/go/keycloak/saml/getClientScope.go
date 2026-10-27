@@ -44,7 +44,7 @@ import (
 //			// use the function
 //			_, err = saml.NewClientDefaultScope(ctx, "default", &saml.ClientDefaultScopeArgs{
 //				RealmId:  pulumi.String("my-realm"),
-//				ClientId: samlClient.ID().ToIDOutput().ToStringOutput(),
+//				ClientId: samlClient.ID(),
 //				DefaultScopes: pulumi.StringArray{
 //					pulumi.String(mysamlscope.Name),
 //				},

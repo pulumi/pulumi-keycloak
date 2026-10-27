@@ -50,12 +50,12 @@ import (
 //				return err
 //			}
 //			realmManagement := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
 //				ClientId: pulumi.String("realm-management"),
 //			}, nil)
 //			// enable permissions for realm-management client
 //			realmManagementPermission, err := openid.NewClientPermissions(ctx, "realm_management_permission", &openid.ClientPermissionsArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
 //				ClientId: realmManagement.Id(),
 //				Enabled:  true,
 //			})
@@ -64,7 +64,7 @@ import (
 //			}
 //			// creating a user to use with the keycloak_openid_client_user_policy resource
 //			test, err := keycloak.NewUser(ctx, "test", &keycloak.UserArgs{
-//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:   realm.ID(),
 //				Username:  pulumi.String("test-user"),
 //				Email:     pulumi.String("test-user@fakedomain.com"),
 //				FirstName: pulumi.String("Testy"),
@@ -74,11 +74,11 @@ import (
 //				return err
 //			}
 //			testClientUserPolicy, err := openid.NewClientUserPolicy(ctx, "test", &openid.ClientUserPolicyArgs{
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				ResourceServerId: realmManagement.Id(),
 //				Name:             pulumi.String("client_user_policy_test"),
 //				Users: pulumi.StringArray{
-//					test.ID().ToIDOutput().ToStringOutput(),
+//					test.ID(),
 //				},
 //				Logic:            pulumi.String("POSITIVE"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
@@ -89,45 +89,45 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewUsersPermissions(ctx, "users_permissions", &keycloak.UsersPermissionsArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				ViewScope: &keycloak.UsersPermissionsViewScopeArgs{
 //					Policies: pulumi.StringArray{
-//						testClientUserPolicy.ID().ToIDOutput().ToStringOutput(),
+//						testClientUserPolicy.ID(),
 //					},
 //					Description:      pulumi.String("description"),
 //					DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				},
 //				ManageScope: &keycloak.UsersPermissionsManageScopeArgs{
 //					Policies: pulumi.StringArray{
-//						testClientUserPolicy.ID().ToIDOutput().ToStringOutput(),
+//						testClientUserPolicy.ID(),
 //					},
 //					Description:      pulumi.String("description"),
 //					DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				},
 //				MapRolesScope: &keycloak.UsersPermissionsMapRolesScopeArgs{
 //					Policies: pulumi.StringArray{
-//						testClientUserPolicy.ID().ToIDOutput().ToStringOutput(),
+//						testClientUserPolicy.ID(),
 //					},
 //					Description:      pulumi.String("description"),
 //					DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				},
 //				ManageGroupMembershipScope: &keycloak.UsersPermissionsManageGroupMembershipScopeArgs{
 //					Policies: pulumi.StringArray{
-//						testClientUserPolicy.ID().ToIDOutput().ToStringOutput(),
+//						testClientUserPolicy.ID(),
 //					},
 //					Description:      pulumi.String("description"),
 //					DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				},
 //				ImpersonateScope: &keycloak.UsersPermissionsImpersonateScopeArgs{
 //					Policies: pulumi.StringArray{
-//						testClientUserPolicy.ID().ToIDOutput().ToStringOutput(),
+//						testClientUserPolicy.ID(),
 //					},
 //					Description:      pulumi.String("description"),
 //					DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				},
 //				UserImpersonatedScope: &keycloak.UsersPermissionsUserImpersonatedScopeArgs{
 //					Policies: pulumi.StringArray{
-//						testClientUserPolicy.ID().ToIDOutput().ToStringOutput(),
+//						testClientUserPolicy.ID(),
 //					},
 //					Description:      pulumi.String("description"),
 //					DecisionStrategy: pulumi.String("UNANIMOUS"),

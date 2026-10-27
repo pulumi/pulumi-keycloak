@@ -38,7 +38,7 @@ import (
 //			}
 //			_, err = keycloak.NewRealmKeystoreJavaGenerated(ctx, "java_keystore", &keycloak.RealmKeystoreJavaGeneratedArgs{
 //				Name:             pulumi.String("my-java-keystore"),
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Enabled:          pulumi.Bool(true),
 //				Active:           pulumi.Bool(true),
 //				Keystore:         pulumi.String("<path to your keystore>"),
