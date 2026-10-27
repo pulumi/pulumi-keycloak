@@ -36,20 +36,20 @@ import (
 //				return err
 //			}
 //			offlineAccess := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
 //			// use the function
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
-//				GroupId: group.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
+//				GroupId: group.ID(),
 //				RoleIds: pulumi.StringArray{
 //					offlineAccess.Id(),
 //				},

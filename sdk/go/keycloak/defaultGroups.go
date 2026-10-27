@@ -38,16 +38,16 @@ import (
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewDefaultGroups(ctx, "default", &keycloak.DefaultGroupsArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				GroupIds: pulumi.StringArray{
-//					group.ID().ToIDOutput().ToStringOutput(),
+//					group.ID(),
 //				},
 //			})
 //			if err != nil {

@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = oidc.NewGoogleIdentityProvider(ctx, "google", &oidc.GoogleIdentityProviderArgs{
-//				Realm:        realm.ID().ToIDOutput().ToStringOutput(),
+//				Realm:        realm.ID(),
 //				ClientId:     pulumi.Any(googleIdentityProviderClientId),
 //				ClientSecret: pulumi.Any(googleIdentityProviderClientSecret),
 //				TrustEmail:   pulumi.Bool(true),

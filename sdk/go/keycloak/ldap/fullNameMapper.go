@@ -41,7 +41,7 @@ import (
 //			}
 //			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
 //				Name:                  pulumi.String("openldap"),
-//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:               realm.ID(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
 //				UuidLdapAttribute:     pulumi.String("entryDN"),
@@ -58,8 +58,8 @@ import (
 //				return err
 //			}
 //			_, err = ldap.NewFullNameMapper(ctx, "ldap_full_name_mapper", &ldap.FullNameMapperArgs{
-//				RealmId:               realm.ID().ToIDOutput().ToStringOutput(),
-//				LdapUserFederationId:  ldapUserFederation.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:               realm.ID(),
+//				LdapUserFederationId:  ldapUserFederation.ID(),
 //				Name:                  pulumi.String("full-name-mapper"),
 //				LdapFullNameAttribute: pulumi.String("cn"),
 //			})

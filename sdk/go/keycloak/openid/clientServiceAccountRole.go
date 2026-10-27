@@ -42,15 +42,15 @@ import (
 //			}
 //			// client1 provides a role to other clients
 //			client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("client1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			client1Role, err := keycloak.NewRole(ctx, "client1_role", &keycloak.RoleArgs{
-//				RealmId:     realm.ID().ToIDOutput().ToStringOutput(),
-//				ClientId:    client1.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:     realm.ID(),
+//				ClientId:    client1.ID(),
 //				Name:        pulumi.String("my-client1-role"),
 //				Description: pulumi.String("A role that client1 provides"),
 //			})
@@ -59,7 +59,7 @@ import (
 //			}
 //			// client2 is assigned the role of client1
 //			client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
-//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:                realm.ID(),
 //				Name:                   pulumi.String("client2"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //			})
@@ -67,9 +67,9 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClientServiceAccountRole(ctx, "client2_service_account_role", &openid.ClientServiceAccountRoleArgs{
-//				RealmId:              realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:              realm.ID(),
 //				ServiceAccountUserId: client2.ServiceAccountUserId,
-//				ClientId:             client1.ID().ToIDOutput().ToStringOutput(),
+//				ClientId:             client1.ID(),
 //				Role:                 client1Role.Name,
 //			})
 //			if err != nil {

@@ -42,7 +42,7 @@ import (
 //			clientWithAuthz, err := openid.NewClient(ctx, "client_with_authz", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client-with-authz"),
 //				Name:                   pulumi.String("client-with-authz"),
-//				RealmId:                realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:                realm.ID(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //				Authorization: &openid.ClientAuthorizationArgs{
@@ -53,14 +53,14 @@ import (
 //				return err
 //			}
 //			defaultPermission := openid.GetClientAuthorizationPolicyOutput(ctx, openid.GetClientAuthorizationPolicyOutputArgs{
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
 //				Name:             pulumi.String("Default Permission"),
 //			}, nil)
 //			resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
 //				Name:             pulumi.String("authorization-resource"),
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Uris: pulumi.StringArray{
 //					pulumi.String("/endpoint/*"),
 //				},
@@ -73,13 +73,13 @@ import (
 //			}
 //			_, err = openid.NewClientAuthorizationPermission(ctx, "permission", &openid.ClientAuthorizationPermissionArgs{
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Name:             pulumi.String("authorization-permission"),
 //				Policies: pulumi.StringArray{
 //					defaultPermission.Id(),
 //				},
 //				Resources: pulumi.StringArray{
-//					resource.ID().ToIDOutput().ToStringOutput(),
+//					resource.ID(),
 //				},
 //			})
 //			if err != nil {

@@ -46,15 +46,15 @@ import (
 //				return err
 //			}
 //			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
 //				ClientId: pulumi.String("test-client"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewGenericClientProtocolMapper(ctx, "saml_hardcode_attribute_mapper", &keycloak.GenericClientProtocolMapperArgs{
-//				RealmId:        realm.ID().ToIDOutput().ToStringOutput(),
-//				ClientId:       samlClient.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:        realm.ID(),
+//				ClientId:       samlClient.ID(),
 //				Name:           pulumi.String("test-mapper"),
 //				Protocol:       pulumi.String("saml"),
 //				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),

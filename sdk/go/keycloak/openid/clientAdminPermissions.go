@@ -53,11 +53,11 @@ import (
 //				return err
 //			}
 //			adminPermissions := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
 //				ClientId: pulumi.String("admin-permissions"),
 //			}, nil)
 //			myClient, err := openid.NewClient(ctx, "my_client", &openid.ClientArgs{
-//				RealmId:    realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:    realm.ID(),
 //				ClientId:   pulumi.String("my-client"),
 //				AccessType: pulumi.String("CONFIDENTIAL"),
 //			})
@@ -65,19 +65,19 @@ import (
 //				return err
 //			}
 //			admins, err := keycloak.NewGroup(ctx, "admins", &keycloak.GroupArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("admins"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			adminsPolicy, err := openid.NewClientGroupPolicy(ctx, "admins_policy", &openid.ClientGroupPolicyArgs{
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				ResourceServerId: adminPermissions.Id(),
 //				Name:             pulumi.String("admins-policy"),
 //				Groups: openid.ClientGroupPolicyGroupArray{
 //					&openid.ClientGroupPolicyGroupArgs{
-//						Id:             admins.ID().ToIDOutput().ToStringOutput(),
+//						Id:             admins.ID(),
 //						Path:           admins.Path,
 //						ExtendChildren: pulumi.Bool(false),
 //					},
@@ -90,19 +90,19 @@ import (
 //			}
 //			// Permission targeting a specific client with multiple scopes.
 //			_, err = openid.NewClientAdminPermissions(ctx, "admins_manage_my_client", &openid.ClientAdminPermissionsArgs{
-//				RealmId:          realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:          realm.ID(),
 //				Name:             pulumi.String("admins-manage-my-client"),
 //				Description:      pulumi.String("Admins can view and manage my-client"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				ClientIds: pulumi.StringArray{
-//					myClient.ID().ToIDOutput().ToStringOutput(),
+//					myClient.ID(),
 //				},
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("view"),
 //					pulumi.String("manage"),
 //				},
 //				Policies: pulumi.StringArray{
-//					adminsPolicy.ID().ToIDOutput().ToStringOutput(),
+//					adminsPolicy.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -110,13 +110,13 @@ import (
 //			}
 //			// Permission targeting ALL clients in the realm (client_ids omitted).
 //			_, err = openid.NewClientAdminPermissions(ctx, "admins_view_all_clients", &openid.ClientAdminPermissionsArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("admins-can-view-all-clients"),
 //				Scopes: pulumi.StringArray{
 //					pulumi.String("view"),
 //				},
 //				Policies: pulumi.StringArray{
-//					adminsPolicy.ID().ToIDOutput().ToStringOutput(),
+//					adminsPolicy.ID(),
 //				},
 //			})
 //			if err != nil {

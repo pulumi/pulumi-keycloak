@@ -36,15 +36,15 @@ import (
 //				return err
 //			}
 //			offlineAccess := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
 //			group := keycloak.GetGroupOutput(ctx, keycloak.GetGroupOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("group"),
 //			}, nil)
 //			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				GroupId: group.Id(),
 //				RoleIds: pulumi.StringArray{
 //					offlineAccess.Id(),
@@ -55,15 +55,15 @@ import (
 //			}
 //			// Using group_path to look up nested groups by their full path
 //			superAdmin := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Name:    pulumi.String("super_admin"),
 //			}, nil)
 //			admins := keycloak.GetGroupOutput(ctx, keycloak.GetGroupOutputArgs{
-//				RealmId:   realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:   realm.ID(),
 //				GroupPath: pulumi.String("/Administration/Full Admins"),
 //			}, nil)
 //			_, err = keycloak.NewGroupRoles(ctx, "admins_roles", &keycloak.GroupRolesArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				GroupId: admins.Id(),
 //				RoleIds: pulumi.StringArray{
 //					superAdmin.Id(),

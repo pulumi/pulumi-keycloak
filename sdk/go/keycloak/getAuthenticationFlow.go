@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_ = keycloak.GetAuthenticationFlowOutput(ctx, keycloak.GetAuthenticationFlowOutputArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Alias:   pulumi.String("browser"),
 //			}, nil)
 //			return nil

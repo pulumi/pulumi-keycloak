@@ -40,14 +40,14 @@ import (
 //				return err
 //			}
 //			myFlow, err := authentication.NewFlow(ctx, "my_flow", &authentication.FlowArgs{
-//				RealmId: realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId: realm.ID(),
 //				Alias:   pulumi.String("my-custom-flow"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = authentication.NewSubflow(ctx, "my_subflow", &authentication.SubflowArgs{
-//				RealmId:         realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:         realm.ID(),
 //				ParentFlowAlias: myFlow.Alias,
 //				Alias:           pulumi.String("my-subflow"),
 //				ProviderId:      pulumi.String("basic-flow"),
@@ -56,7 +56,7 @@ import (
 //				return err
 //			}
 //			subflow := authentication.LookupSubflowOutput(ctx, authentication.GetSubflowOutputArgs{
-//				RealmId:         realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:         realm.ID(),
 //				ParentFlowAlias: myFlow.Alias,
 //				Alias:           pulumi.String("my-subflow"),
 //			}, nil)

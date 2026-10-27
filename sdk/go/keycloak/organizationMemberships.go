@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			org, err := keycloak.NewOrganization(ctx, "org", &keycloak.OrganizationArgs{
-//				Realm: realm.ID().ToIDOutput().ToStringOutput(),
+//				Realm: realm.ID(),
 //				Name:  pulumi.String("my-org"),
 //				Domains: keycloak.OrganizationDomainArray{
 //					&keycloak.OrganizationDomainArgs{
@@ -54,7 +54,7 @@ import (
 //				return err
 //			}
 //			alice, err := keycloak.NewUser(ctx, "alice", &keycloak.UserArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
 //				Username: pulumi.String("alice"),
 //				Email:    pulumi.String("alice@example.com"),
 //			})
@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			bob, err := keycloak.NewUser(ctx, "bob", &keycloak.UserArgs{
-//				RealmId:  realm.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:  realm.ID(),
 //				Username: pulumi.String("bob"),
 //				Email:    pulumi.String("bob@example.com"),
 //			})
@@ -70,8 +70,8 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.NewOrganizationMemberships(ctx, "org_members", &keycloak.OrganizationMembershipsArgs{
-//				RealmId:        realm.ID().ToIDOutput().ToStringOutput(),
-//				OrganizationId: org.ID().ToIDOutput().ToStringOutput(),
+//				RealmId:        realm.ID(),
+//				OrganizationId: org.ID(),
 //				Members: pulumi.StringArray{
 //					alice.Username,
 //					bob.Username,
