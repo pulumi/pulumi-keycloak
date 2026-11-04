@@ -226,6 +226,12 @@ func (FullNameProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fullNameProtocolMapperState)(nil)).Elem()
 }
 
+// FullNameProtocolMapperExists checks whether an existing FullNameProtocolMapper resource with the given ID exists.
+func FullNameProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FullNameProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper", id, state, "", opts...)
+}
+
 type fullNameProtocolMapperArgs struct {
 	// Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

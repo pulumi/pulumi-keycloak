@@ -518,6 +518,28 @@ class Subflow(pulumi.CustomResource):
         __props__.__dict__["requirement"] = requirement
         return Subflow(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            requirement: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alias"] = alias
+        __props__["authenticator"] = authenticator
+        __props__["description"] = description
+        __props__["parentFlowAlias"] = parent_flow_alias
+        __props__["priority"] = priority
+        __props__["providerId"] = provider_id
+        __props__["realmId"] = realm_id
+        __props__["requirement"] = requirement
+        return pulumi.runtime.exists_resource(None, 'keycloak:authentication/subflow:Subflow', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def alias(self) -> pulumi.Output[_builtins.str]:

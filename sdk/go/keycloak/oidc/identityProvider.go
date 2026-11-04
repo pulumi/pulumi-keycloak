@@ -378,6 +378,12 @@ func (IdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*identityProviderState)(nil)).Elem()
 }
 
+// IdentityProviderExists checks whether an existing IdentityProvider resource with the given ID exists.
+func IdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:oidc/identityProvider:IdentityProvider", id, state, "", opts...)
+}
+
 type identityProviderArgs struct {
 	// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`

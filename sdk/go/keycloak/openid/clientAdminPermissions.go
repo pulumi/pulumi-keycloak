@@ -247,6 +247,12 @@ func (ClientAdminPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAdminPermissionsState)(nil)).Elem()
 }
 
+// ClientAdminPermissionsExists checks whether an existing ClientAdminPermissions resource with the given ID exists.
+func ClientAdminPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientAdminPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientAdminPermissions:ClientAdminPermissions", id, state, "", opts...)
+}
+
 type clientAdminPermissionsArgs struct {
 	// Set of client UUIDs (`keycloak_openid_client.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all clients** in the realm.
 	ClientIds []string `pulumi:"clientIds"`

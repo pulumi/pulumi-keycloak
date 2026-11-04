@@ -378,6 +378,12 @@ func (IdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*identityProviderState)(nil)).Elem()
 }
 
+// IdentityProviderExists checks whether an existing IdentityProvider resource with the given ID exists.
+func IdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:saml/identityProvider:IdentityProvider", id, state, "", opts...)
+}
+
 type identityProviderArgs struct {
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`

@@ -552,6 +552,32 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         __props__.__dict__["uris"] = uris
         return ClientAuthorizationResource(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attributes"] = attributes
+        __props__["displayName"] = display_name
+        __props__["iconUri"] = icon_uri
+        __props__["name"] = name
+        __props__["ownerManagedAccess"] = owner_managed_access
+        __props__["realmId"] = realm_id
+        __props__["resourceServerId"] = resource_server_id
+        __props__["scopes"] = scopes
+        __props__["type"] = type
+        __props__["uris"] = uris
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

@@ -154,6 +154,12 @@ func (HardcodedRoleIdentityMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleIdentityMapperState)(nil)).Elem()
 }
 
+// HardcodedRoleIdentityMapperExists checks whether an existing HardcodedRoleIdentityMapper resource with the given ID exists.
+func HardcodedRoleIdentityMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedRoleIdentityMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", id, state, "", opts...)
+}
+
 type hardcodedRoleIdentityMapperArgs struct {
 	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`

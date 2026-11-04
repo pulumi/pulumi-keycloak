@@ -240,6 +240,12 @@ func (ClientTimePolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientTimePolicyState)(nil)).Elem()
 }
 
+// ClientTimePolicyExists checks whether an existing ClientTimePolicy resource with the given ID exists.
+func ClientTimePolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientTimePolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientTimePolicy:ClientTimePolicy", id, state, "", opts...)
+}
+
 type clientTimePolicyArgs struct {
 	DayMonth         *string `pulumi:"dayMonth"`
 	DayMonthEnd      *string `pulumi:"dayMonthEnd"`

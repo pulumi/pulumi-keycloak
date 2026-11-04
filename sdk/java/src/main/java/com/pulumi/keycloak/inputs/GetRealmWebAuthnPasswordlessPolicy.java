@@ -113,22 +113,20 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
     /**
      * Either Yes or No
      * 
-     * @deprecated
-     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
      * 
      */
-    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+    @Deprecated
     @Import(name="requireResidentKey", required=true)
     private String requireResidentKey;
 
     /**
      * @return Either Yes or No
      * 
-     * @deprecated
-     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
      * 
      */
-    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+    @Deprecated
     public String requireResidentKey() {
         return this.requireResidentKey;
     }
@@ -280,11 +278,10 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+         * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
          * 
          */
-        @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+        @Deprecated
         public Builder requireResidentKey(String requireResidentKey) {
             $.requireResidentKey = requireResidentKey;
             return this;

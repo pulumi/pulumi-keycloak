@@ -105,6 +105,12 @@ func (GroupPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupPermissionsState)(nil)).Elem()
 }
 
+// GroupPermissionsExists checks whether an existing GroupPermissions resource with the given ID exists.
+func GroupPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/groupPermissions:GroupPermissions", id, state, "", opts...)
+}
+
 type groupPermissionsArgs struct {
 	GroupId               string                                 `pulumi:"groupId"`
 	ManageMembersScope    *GroupPermissionsManageMembersScope    `pulumi:"manageMembersScope"`

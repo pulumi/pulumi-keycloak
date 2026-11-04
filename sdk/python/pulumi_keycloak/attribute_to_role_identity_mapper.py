@@ -591,6 +591,32 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         __props__.__dict__["role"] = role
         return AttributeToRoleIdentityMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attribute_friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+            attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+            attribute_value: pulumi.Input[Optional[_builtins.str]] = None,
+            claim_name: pulumi.Input[Optional[_builtins.str]] = None,
+            claim_value: pulumi.Input[Optional[_builtins.str]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attributeFriendlyName"] = attribute_friendly_name
+        __props__["attributeName"] = attribute_name
+        __props__["attributeValue"] = attribute_value
+        __props__["claimName"] = claim_name
+        __props__["claimValue"] = claim_value
+        __props__["extraConfig"] = extra_config
+        __props__["identityProviderAlias"] = identity_provider_alias
+        __props__["name"] = name
+        __props__["realm"] = realm
+        __props__["role"] = role
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="attributeFriendlyName")
     def attribute_friendly_name(self) -> pulumi.Output[Optional[_builtins.str]]:

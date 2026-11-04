@@ -233,6 +233,12 @@ func (HardcodedRoleProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleProtocolMapperState)(nil)).Elem()
 }
 
+// HardcodedRoleProtocolMapperExists checks whether an existing HardcodedRoleProtocolMapper resource with the given ID exists.
+func HardcodedRoleProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedRoleProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", id, state, "", opts...)
+}
+
 type hardcodedRoleProtocolMapperArgs struct {
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`

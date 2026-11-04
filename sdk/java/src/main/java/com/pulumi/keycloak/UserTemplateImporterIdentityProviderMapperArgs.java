@@ -78,14 +78,14 @@ public final class UserTemplateImporterIdentityProviderMapperArgs extends com.pu
     }
 
     /**
-     * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+     * Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
      * 
      */
     @Import(name="template")
     private @Nullable Output<String> template;
 
     /**
-     * @return Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+     * @return Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
      * 
      */
     public Optional<Output<String>> template() {
@@ -205,7 +205,7 @@ public final class UserTemplateImporterIdentityProviderMapperArgs extends com.pu
         }
 
         /**
-         * @param template Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+         * @param template Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class UserTemplateImporterIdentityProviderMapperArgs extends com.pu
         }
 
         /**
-         * @param template Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+         * @param template Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
          * 
          * @return builder
          * 

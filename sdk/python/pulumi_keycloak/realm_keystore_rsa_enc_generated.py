@@ -438,6 +438,26 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return RealmKeystoreRsaEncGenerated(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            key_size: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["algorithm"] = algorithm
+        __props__["enabled"] = enabled
+        __props__["keySize"] = key_size
+        __props__["name"] = name
+        __props__["priority"] = priority
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:

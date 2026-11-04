@@ -350,6 +350,12 @@ func (GenericClientRoleMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*genericClientRoleMapperState)(nil)).Elem()
 }
 
+// GenericClientRoleMapperExists checks whether an existing GenericClientRoleMapper resource with the given ID exists.
+func GenericClientRoleMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GenericClientRoleMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper", id, state, "", opts...)
+}
+
 type genericClientRoleMapperArgs struct {
 	// The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId *string `pulumi:"clientId"`

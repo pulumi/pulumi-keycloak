@@ -259,6 +259,12 @@ func (SpiffeIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*spiffeIdentityProviderState)(nil)).Elem()
 }
 
+// SpiffeIdentityProviderExists checks whether an existing SpiffeIdentityProvider resource with the given ID exists.
+func SpiffeIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SpiffeIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/spiffeIdentityProvider:SpiffeIdentityProvider", id, state, "", opts...)
+}
+
 type spiffeIdentityProviderArgs struct {
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`

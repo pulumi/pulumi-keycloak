@@ -149,6 +149,12 @@ func (ClientServiceAccountRealmRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientServiceAccountRealmRoleState)(nil)).Elem()
 }
 
+// ClientServiceAccountRealmRoleExists checks whether an existing ClientServiceAccountRealmRole resource with the given ID exists.
+func ClientServiceAccountRealmRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientServiceAccountRealmRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole", id, state, "", opts...)
+}
+
 type clientServiceAccountRealmRoleArgs struct {
 	// The realm that the client and role belong to.
 	RealmId string `pulumi:"realmId"`

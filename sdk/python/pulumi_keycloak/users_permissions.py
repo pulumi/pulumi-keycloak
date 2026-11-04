@@ -556,6 +556,30 @@ class UsersPermissions(pulumi.CustomResource):
         __props__.__dict__["view_scope"] = view_scope
         return UsersPermissions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            impersonate_scope: pulumi.Input[Optional[Union['UsersPermissionsImpersonateScopeArgs', 'UsersPermissionsImpersonateScopeArgsDict', 'outputs.UsersPermissionsImpersonateScope']]] = None,
+            manage_group_membership_scope: pulumi.Input[Optional[Union['UsersPermissionsManageGroupMembershipScopeArgs', 'UsersPermissionsManageGroupMembershipScopeArgsDict', 'outputs.UsersPermissionsManageGroupMembershipScope']]] = None,
+            manage_scope: pulumi.Input[Optional[Union['UsersPermissionsManageScopeArgs', 'UsersPermissionsManageScopeArgsDict', 'outputs.UsersPermissionsManageScope']]] = None,
+            map_roles_scope: pulumi.Input[Optional[Union['UsersPermissionsMapRolesScopeArgs', 'UsersPermissionsMapRolesScopeArgsDict', 'outputs.UsersPermissionsMapRolesScope']]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_impersonated_scope: pulumi.Input[Optional[Union['UsersPermissionsUserImpersonatedScopeArgs', 'UsersPermissionsUserImpersonatedScopeArgsDict', 'outputs.UsersPermissionsUserImpersonatedScope']]] = None,
+            view_scope: pulumi.Input[Optional[Union['UsersPermissionsViewScopeArgs', 'UsersPermissionsViewScopeArgsDict', 'outputs.UsersPermissionsViewScope']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authorizationResourceServerId"] = authorization_resource_server_id
+        __props__["enabled"] = enabled
+        __props__["impersonateScope"] = impersonate_scope
+        __props__["manageGroupMembershipScope"] = manage_group_membership_scope
+        __props__["manageScope"] = manage_scope
+        __props__["mapRolesScope"] = map_roles_scope
+        __props__["realmId"] = realm_id
+        __props__["userImpersonatedScope"] = user_impersonated_scope
+        __props__["viewScope"] = view_scope
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/usersPermissions:UsersPermissions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authorizationResourceServerId")
     def authorization_resource_server_id(self) -> pulumi.Output[_builtins.str]:

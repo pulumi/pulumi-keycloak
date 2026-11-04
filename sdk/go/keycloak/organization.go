@@ -179,6 +179,12 @@ func (OrganizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationState)(nil)).Elem()
 }
 
+// OrganizationExists checks whether an existing Organization resource with the given ID exists.
+func OrganizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrganizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/organization:Organization", id, state, "", opts...)
+}
+
 type organizationArgs struct {
 	// The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
 	Alias *string `pulumi:"alias"`

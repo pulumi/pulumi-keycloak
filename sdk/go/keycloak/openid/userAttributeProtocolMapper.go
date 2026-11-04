@@ -272,6 +272,12 @@ func (UserAttributeProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeProtocolMapperState)(nil)).Elem()
 }
 
+// UserAttributeProtocolMapperExists checks whether an existing UserAttributeProtocolMapper resource with the given ID exists.
+func UserAttributeProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserAttributeProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper", id, state, "", opts...)
+}
+
 type userAttributeProtocolMapperArgs struct {
 	// Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

@@ -562,12 +562,12 @@ public final class KeycloakFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
@@ -576,31 +576,31 @@ public final class KeycloakFunctions {
      *         final var samlClient = KeycloakFunctions.getClientDescriptionConverter(GetClientDescriptionConverterArgs.builder()
      *             .realmId(realm.id())
      *             .body("""
-     * \t<md:EntityDescriptor xmlns:md=\"urn:oasis:names:tc:SAML:2.0:metadata\" validUntil=\"2021-04-17T12:41:46Z\" cacheDuration=\"PT604800S\" entityID=\"FakeEntityId\">
-     *     <md:SPSSODescriptor AuthnRequestsSigned=\"false\" WantAssertionsSigned=\"false\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
-     *         <md:KeyDescriptor use=\"signing\">
-     * \t\t\t<ds:KeyInfo xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">
-     * \t\t\t\t<ds:X509Data>
-     * \t\t\t\t\t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
-     * \t\t\t\t\tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
-     * \t\t\t\t\tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
-     * \t\t\t\t\tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
-     * \t\t\t\t\tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
-     * \t\t\t\t\tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
-     * \t\t\t\t\tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
-     * \t\t\t\t\t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
-     * \t\t\t\t\tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
-     * \t\t\t\t\t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
-     * \t\t\t\t\tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
-     * \t\t\t\t\tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
-     * \t\t\t\t\thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
-     * \t\t\t\t\tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
-     * \t\t\t\t\tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
-     * \t\t\t\t</ds:X509Data>
-     * \t\t\t</ds:KeyInfo>
-     * \t\t</md:KeyDescriptor>
-     * \t\t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-     *         <md:AssertionConsumerService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"https://localhost/acs/saml/\" index=\"1\"/>
+     * }&#92;{@code t<md:EntityDescriptor xmlns:md=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:metadata}&#92;{@code " validUntil=}&#92;{@code "2021-04-17T12:41:46Z}&#92;{@code " cacheDuration=}&#92;{@code "PT604800S}&#92;{@code " entityID=}&#92;{@code "FakeEntityId}&#92;{@code ">
+     *     <md:SPSSODescriptor AuthnRequestsSigned=}&#92;{@code "false}&#92;{@code " WantAssertionsSigned=}&#92;{@code "false}&#92;{@code " protocolSupportEnumeration=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:protocol}&#92;{@code ">
+     *         <md:KeyDescriptor use=}&#92;{@code "signing}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:KeyInfo xmlns:ds=}&#92;{@code "http://www.w3.org/2000/09/xmldsig#}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:KeyInfo>
+     * }&#92;{@code t}&#92;{@code t</md:KeyDescriptor>
+     * }&#92;{@code t}&#92;{@code t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+     *         <md:AssertionConsumerService Binding=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST}&#92;{@code " Location=}&#92;{@code "https://localhost/acs/saml/}&#92;{@code " index=}&#92;{@code "1}&#92;{@code "/>
      *     </md:SPSSODescriptor>
      * </md:EntityDescriptor>
      *             """)
@@ -611,8 +611,8 @@ public final class KeycloakFunctions {
      *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -646,12 +646,12 @@ public final class KeycloakFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
@@ -660,31 +660,31 @@ public final class KeycloakFunctions {
      *         final var samlClient = KeycloakFunctions.getClientDescriptionConverter(GetClientDescriptionConverterArgs.builder()
      *             .realmId(realm.id())
      *             .body("""
-     * \t<md:EntityDescriptor xmlns:md=\"urn:oasis:names:tc:SAML:2.0:metadata\" validUntil=\"2021-04-17T12:41:46Z\" cacheDuration=\"PT604800S\" entityID=\"FakeEntityId\">
-     *     <md:SPSSODescriptor AuthnRequestsSigned=\"false\" WantAssertionsSigned=\"false\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
-     *         <md:KeyDescriptor use=\"signing\">
-     * \t\t\t<ds:KeyInfo xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">
-     * \t\t\t\t<ds:X509Data>
-     * \t\t\t\t\t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
-     * \t\t\t\t\tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
-     * \t\t\t\t\tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
-     * \t\t\t\t\tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
-     * \t\t\t\t\tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
-     * \t\t\t\t\tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
-     * \t\t\t\t\tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
-     * \t\t\t\t\t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
-     * \t\t\t\t\tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
-     * \t\t\t\t\t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
-     * \t\t\t\t\tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
-     * \t\t\t\t\tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
-     * \t\t\t\t\thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
-     * \t\t\t\t\tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
-     * \t\t\t\t\tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
-     * \t\t\t\t</ds:X509Data>
-     * \t\t\t</ds:KeyInfo>
-     * \t\t</md:KeyDescriptor>
-     * \t\t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-     *         <md:AssertionConsumerService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"https://localhost/acs/saml/\" index=\"1\"/>
+     * }&#92;{@code t<md:EntityDescriptor xmlns:md=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:metadata}&#92;{@code " validUntil=}&#92;{@code "2021-04-17T12:41:46Z}&#92;{@code " cacheDuration=}&#92;{@code "PT604800S}&#92;{@code " entityID=}&#92;{@code "FakeEntityId}&#92;{@code ">
+     *     <md:SPSSODescriptor AuthnRequestsSigned=}&#92;{@code "false}&#92;{@code " WantAssertionsSigned=}&#92;{@code "false}&#92;{@code " protocolSupportEnumeration=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:protocol}&#92;{@code ">
+     *         <md:KeyDescriptor use=}&#92;{@code "signing}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:KeyInfo xmlns:ds=}&#92;{@code "http://www.w3.org/2000/09/xmldsig#}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:KeyInfo>
+     * }&#92;{@code t}&#92;{@code t</md:KeyDescriptor>
+     * }&#92;{@code t}&#92;{@code t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+     *         <md:AssertionConsumerService Binding=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST}&#92;{@code " Location=}&#92;{@code "https://localhost/acs/saml/}&#92;{@code " index=}&#92;{@code "1}&#92;{@code "/>
      *     </md:SPSSODescriptor>
      * </md:EntityDescriptor>
      *             """)
@@ -695,8 +695,8 @@ public final class KeycloakFunctions {
      *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -730,12 +730,12 @@ public final class KeycloakFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
@@ -744,31 +744,31 @@ public final class KeycloakFunctions {
      *         final var samlClient = KeycloakFunctions.getClientDescriptionConverter(GetClientDescriptionConverterArgs.builder()
      *             .realmId(realm.id())
      *             .body("""
-     * \t<md:EntityDescriptor xmlns:md=\"urn:oasis:names:tc:SAML:2.0:metadata\" validUntil=\"2021-04-17T12:41:46Z\" cacheDuration=\"PT604800S\" entityID=\"FakeEntityId\">
-     *     <md:SPSSODescriptor AuthnRequestsSigned=\"false\" WantAssertionsSigned=\"false\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
-     *         <md:KeyDescriptor use=\"signing\">
-     * \t\t\t<ds:KeyInfo xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">
-     * \t\t\t\t<ds:X509Data>
-     * \t\t\t\t\t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
-     * \t\t\t\t\tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
-     * \t\t\t\t\tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
-     * \t\t\t\t\tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
-     * \t\t\t\t\tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
-     * \t\t\t\t\tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
-     * \t\t\t\t\tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
-     * \t\t\t\t\t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
-     * \t\t\t\t\tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
-     * \t\t\t\t\t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
-     * \t\t\t\t\tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
-     * \t\t\t\t\tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
-     * \t\t\t\t\thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
-     * \t\t\t\t\tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
-     * \t\t\t\t\tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
-     * \t\t\t\t</ds:X509Data>
-     * \t\t\t</ds:KeyInfo>
-     * \t\t</md:KeyDescriptor>
-     * \t\t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-     *         <md:AssertionConsumerService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"https://localhost/acs/saml/\" index=\"1\"/>
+     * }&#92;{@code t<md:EntityDescriptor xmlns:md=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:metadata}&#92;{@code " validUntil=}&#92;{@code "2021-04-17T12:41:46Z}&#92;{@code " cacheDuration=}&#92;{@code "PT604800S}&#92;{@code " entityID=}&#92;{@code "FakeEntityId}&#92;{@code ">
+     *     <md:SPSSODescriptor AuthnRequestsSigned=}&#92;{@code "false}&#92;{@code " WantAssertionsSigned=}&#92;{@code "false}&#92;{@code " protocolSupportEnumeration=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:protocol}&#92;{@code ">
+     *         <md:KeyDescriptor use=}&#92;{@code "signing}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:KeyInfo xmlns:ds=}&#92;{@code "http://www.w3.org/2000/09/xmldsig#}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:KeyInfo>
+     * }&#92;{@code t}&#92;{@code t</md:KeyDescriptor>
+     * }&#92;{@code t}&#92;{@code t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+     *         <md:AssertionConsumerService Binding=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST}&#92;{@code " Location=}&#92;{@code "https://localhost/acs/saml/}&#92;{@code " index=}&#92;{@code "1}&#92;{@code "/>
      *     </md:SPSSODescriptor>
      * </md:EntityDescriptor>
      *             """)
@@ -779,8 +779,8 @@ public final class KeycloakFunctions {
      *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -814,12 +814,12 @@ public final class KeycloakFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
@@ -828,31 +828,31 @@ public final class KeycloakFunctions {
      *         final var samlClient = KeycloakFunctions.getClientDescriptionConverter(GetClientDescriptionConverterArgs.builder()
      *             .realmId(realm.id())
      *             .body("""
-     * \t<md:EntityDescriptor xmlns:md=\"urn:oasis:names:tc:SAML:2.0:metadata\" validUntil=\"2021-04-17T12:41:46Z\" cacheDuration=\"PT604800S\" entityID=\"FakeEntityId\">
-     *     <md:SPSSODescriptor AuthnRequestsSigned=\"false\" WantAssertionsSigned=\"false\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
-     *         <md:KeyDescriptor use=\"signing\">
-     * \t\t\t<ds:KeyInfo xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">
-     * \t\t\t\t<ds:X509Data>
-     * \t\t\t\t\t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
-     * \t\t\t\t\tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
-     * \t\t\t\t\tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
-     * \t\t\t\t\tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
-     * \t\t\t\t\tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
-     * \t\t\t\t\tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
-     * \t\t\t\t\tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
-     * \t\t\t\t\t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
-     * \t\t\t\t\tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
-     * \t\t\t\t\t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
-     * \t\t\t\t\tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
-     * \t\t\t\t\tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
-     * \t\t\t\t\thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
-     * \t\t\t\t\tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
-     * \t\t\t\t\tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
-     * \t\t\t\t</ds:X509Data>
-     * \t\t\t</ds:KeyInfo>
-     * \t\t</md:KeyDescriptor>
-     * \t\t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-     *         <md:AssertionConsumerService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"https://localhost/acs/saml/\" index=\"1\"/>
+     * }&#92;{@code t<md:EntityDescriptor xmlns:md=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:metadata}&#92;{@code " validUntil=}&#92;{@code "2021-04-17T12:41:46Z}&#92;{@code " cacheDuration=}&#92;{@code "PT604800S}&#92;{@code " entityID=}&#92;{@code "FakeEntityId}&#92;{@code ">
+     *     <md:SPSSODescriptor AuthnRequestsSigned=}&#92;{@code "false}&#92;{@code " WantAssertionsSigned=}&#92;{@code "false}&#92;{@code " protocolSupportEnumeration=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:protocol}&#92;{@code ">
+     *         <md:KeyDescriptor use=}&#92;{@code "signing}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:KeyInfo xmlns:ds=}&#92;{@code "http://www.w3.org/2000/09/xmldsig#}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:KeyInfo>
+     * }&#92;{@code t}&#92;{@code t</md:KeyDescriptor>
+     * }&#92;{@code t}&#92;{@code t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+     *         <md:AssertionConsumerService Binding=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST}&#92;{@code " Location=}&#92;{@code "https://localhost/acs/saml/}&#92;{@code " index=}&#92;{@code "1}&#92;{@code "/>
      *     </md:SPSSODescriptor>
      * </md:EntityDescriptor>
      *             """)
@@ -863,8 +863,8 @@ public final class KeycloakFunctions {
      *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -898,12 +898,12 @@ public final class KeycloakFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
@@ -912,31 +912,31 @@ public final class KeycloakFunctions {
      *         final var samlClient = KeycloakFunctions.getClientDescriptionConverter(GetClientDescriptionConverterArgs.builder()
      *             .realmId(realm.id())
      *             .body("""
-     * \t<md:EntityDescriptor xmlns:md=\"urn:oasis:names:tc:SAML:2.0:metadata\" validUntil=\"2021-04-17T12:41:46Z\" cacheDuration=\"PT604800S\" entityID=\"FakeEntityId\">
-     *     <md:SPSSODescriptor AuthnRequestsSigned=\"false\" WantAssertionsSigned=\"false\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
-     *         <md:KeyDescriptor use=\"signing\">
-     * \t\t\t<ds:KeyInfo xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">
-     * \t\t\t\t<ds:X509Data>
-     * \t\t\t\t\t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
-     * \t\t\t\t\tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
-     * \t\t\t\t\tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
-     * \t\t\t\t\tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
-     * \t\t\t\t\tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
-     * \t\t\t\t\tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
-     * \t\t\t\t\tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
-     * \t\t\t\t\t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
-     * \t\t\t\t\tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
-     * \t\t\t\t\t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
-     * \t\t\t\t\tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
-     * \t\t\t\t\tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
-     * \t\t\t\t\thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
-     * \t\t\t\t\tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
-     * \t\t\t\t\tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
-     * \t\t\t\t</ds:X509Data>
-     * \t\t\t</ds:KeyInfo>
-     * \t\t</md:KeyDescriptor>
-     * \t\t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-     *         <md:AssertionConsumerService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"https://localhost/acs/saml/\" index=\"1\"/>
+     * }&#92;{@code t<md:EntityDescriptor xmlns:md=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:metadata}&#92;{@code " validUntil=}&#92;{@code "2021-04-17T12:41:46Z}&#92;{@code " cacheDuration=}&#92;{@code "PT604800S}&#92;{@code " entityID=}&#92;{@code "FakeEntityId}&#92;{@code ">
+     *     <md:SPSSODescriptor AuthnRequestsSigned=}&#92;{@code "false}&#92;{@code " WantAssertionsSigned=}&#92;{@code "false}&#92;{@code " protocolSupportEnumeration=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:protocol}&#92;{@code ">
+     *         <md:KeyDescriptor use=}&#92;{@code "signing}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:KeyInfo xmlns:ds=}&#92;{@code "http://www.w3.org/2000/09/xmldsig#}&#92;{@code ">
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t<ds:X509Certificate>MIICyDCCAjGgAwIBAgIBADANBgkqhkiG9w0BAQ0FADCBgDELMAkGA1UEBhMCdXMx
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tCzAJBgNVBAgMAklBMSQwIgYDVQQKDBt0ZXJyYWZvcm0tcHJvdmlkZXIta2V5Y2xv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tYWsxHDAaBgNVBAMME21ycGFya2Vycy5naXRodWIuaW8xIDAeBgkqhkiG9w0BCQEW
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tEW1pY2hhZWxAcGFya2VyLmdnMB4XDTE5MDEwODE0NDYzNloXDTI5MDEwNTE0NDYz
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tNlowgYAxCzAJBgNVBAYTAnVzMQswCQYDVQQIDAJJQTEkMCIGA1UECgwbdGVycmFm
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tb3JtLXByb3ZpZGVyLWtleWNsb2FrMRwwGgYDVQQDDBNtcnBhcmtlcnMuZ2l0aHVi
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tLmlvMSAwHgYJKoZIhvcNAQkBFhFtaWNoYWVsQHBhcmtlci5nZzCBnzANBgkqhkiG
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t9w0BAQEFAAOBjQAwgYkCgYEAxuZny7uyYxGVPtpie14gNQC4tT9sAvO2sVNDhuoe
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tqIKLRpNwkHnwQmwe5OxSh9K0BPHp/DNuuVWUqvo4tniEYn3jBr7FwLYLTKojQIxj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t53S1UTT9EXq3eP5HsHMD0QnTuca2nlNYUDBm6ud2fQj0Jt5qLx86EbEC28N56IRv
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tGX8CAwEAAaNQME4wHQYDVR0OBBYEFMLnbQh77j7vhGTpAhKpDhCrBsPZMB8GA1Ud
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tIwQYMBaAFMLnbQh77j7vhGTpAhKpDhCrBsPZMAwGA1UdEwQFMAMBAf8wDQYJKoZI
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code thvcNAQENBQADgYEAB8wGrAQY0pAfwbnYSyBt4STbebeRTu1/q1ucfrtc3qsegcd5
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tn01xTR+T2uZJwqHFPpFjr4IPORiHx3+4BWCweslPD53qBjKUPXcbMO1Revjef6Tj
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code tK3K0AuJ94fxgXVoT61Nzu/a6Lj6RhzU/Dao9mlSbJY+YSbm+ZBpsuRUQ84s=</ds:X509Certificate>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:X509Data>
+     * }&#92;{@code t}&#92;{@code t}&#92;{@code t</ds:KeyInfo>
+     * }&#92;{@code t}&#92;{@code t</md:KeyDescriptor>
+     * }&#92;{@code t}&#92;{@code t<md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+     *         <md:AssertionConsumerService Binding=}&#92;{@code "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST}&#92;{@code " Location=}&#92;{@code "https://localhost/acs/saml/}&#92;{@code " index=}&#92;{@code "1}&#92;{@code "/>
      *     </md:SPSSODescriptor>
      * </md:EntityDescriptor>
      *             """)
@@ -947,8 +947,8 @@ public final class KeycloakFunctions {
      *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 

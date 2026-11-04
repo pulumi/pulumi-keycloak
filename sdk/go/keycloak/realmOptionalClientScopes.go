@@ -139,6 +139,12 @@ func (RealmOptionalClientScopesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmOptionalClientScopesState)(nil)).Elem()
 }
 
+// RealmOptionalClientScopesExists checks whether an existing RealmOptionalClientScopes resource with the given ID exists.
+func RealmOptionalClientScopesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmOptionalClientScopesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmOptionalClientScopes:RealmOptionalClientScopes", id, state, "", opts...)
+}
+
 type realmOptionalClientScopesArgs struct {
 	// An array of optional client scope names that should be used when creating new Keycloak clients.
 	OptionalScopes []string `pulumi:"optionalScopes"`

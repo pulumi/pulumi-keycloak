@@ -184,6 +184,12 @@ func (RealmClientRegistrationPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmClientRegistrationPolicyState)(nil)).Elem()
 }
 
+// RealmClientRegistrationPolicyExists checks whether an existing RealmClientRegistrationPolicy resource with the given ID exists.
+func RealmClientRegistrationPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmClientRegistrationPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy", id, state, "", opts...)
+}
+
 type realmClientRegistrationPolicyArgs struct {
 	// Policy-specific configuration key-value pairs.
 	Config map[string]string `pulumi:"config"`

@@ -156,22 +156,20 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
     /**
      * Either Yes or No
      * 
-     * @deprecated
-     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
      * 
      */
-    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+    @Deprecated
     @Import(name="requireResidentKey")
     private @Nullable Output<String> requireResidentKey;
 
     /**
      * @return Either Yes or No
      * 
-     * @deprecated
-     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
      * 
      */
-    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+    @Deprecated
     public Optional<Output<String>> requireResidentKey() {
         return Optional.ofNullable(this.requireResidentKey);
     }
@@ -455,11 +453,10 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+         * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
          * 
          */
-        @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+        @Deprecated
         public Builder requireResidentKey(@Nullable Output<String> requireResidentKey) {
             $.requireResidentKey = requireResidentKey;
             return this;
@@ -470,11 +467,10 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+         * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
          * 
          */
-        @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+        @Deprecated
         public Builder requireResidentKey(String requireResidentKey) {
             return requireResidentKey(Output.of(requireResidentKey));
         }

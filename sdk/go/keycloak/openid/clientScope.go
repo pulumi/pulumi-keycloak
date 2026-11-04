@@ -161,6 +161,12 @@ func (ClientScopeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientScopeState)(nil)).Elem()
 }
 
+// ClientScopeExists checks whether an existing ClientScope resource with the given ID exists.
+func ClientScopeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientScopeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientScope:ClientScope", id, state, "", opts...)
+}
+
 type clientScopeArgs struct {
 	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 	ConsentScreenText *string `pulumi:"consentScreenText"`

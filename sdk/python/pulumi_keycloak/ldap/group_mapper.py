@@ -915,6 +915,48 @@ class GroupMapper(pulumi.CustomResource):
         __props__.__dict__["user_roles_retrieve_strategy"] = user_roles_retrieve_strategy
         return GroupMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            group_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+            groups_path: pulumi.Input[Optional[_builtins.str]] = None,
+            ignore_missing_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            ldap_groups_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mapped_group_attributes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            mode: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["dropNonExistingGroupsDuringSync"] = drop_non_existing_groups_during_sync
+        __props__["groupNameLdapAttribute"] = group_name_ldap_attribute
+        __props__["groupObjectClasses"] = group_object_classes
+        __props__["groupsLdapFilter"] = groups_ldap_filter
+        __props__["groupsPath"] = groups_path
+        __props__["ignoreMissingGroups"] = ignore_missing_groups
+        __props__["ldapGroupsDn"] = ldap_groups_dn
+        __props__["ldapUserFederationId"] = ldap_user_federation_id
+        __props__["mappedGroupAttributes"] = mapped_group_attributes
+        __props__["memberofLdapAttribute"] = memberof_ldap_attribute
+        __props__["membershipAttributeType"] = membership_attribute_type
+        __props__["membershipLdapAttribute"] = membership_ldap_attribute
+        __props__["membershipUserLdapAttribute"] = membership_user_ldap_attribute
+        __props__["mode"] = mode
+        __props__["name"] = name
+        __props__["preserveGroupInheritance"] = preserve_group_inheritance
+        __props__["realmId"] = realm_id
+        __props__["userRolesRetrieveStrategy"] = user_roles_retrieve_strategy
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/groupMapper:GroupMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
     def drop_non_existing_groups_during_sync(self) -> pulumi.Output[Optional[_builtins.bool]]:

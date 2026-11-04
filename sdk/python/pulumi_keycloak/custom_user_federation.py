@@ -572,6 +572,32 @@ class CustomUserFederation(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return CustomUserFederation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cachePolicy"] = cache_policy
+        __props__["changedSyncPeriod"] = changed_sync_period
+        __props__["config"] = config
+        __props__["enabled"] = enabled
+        __props__["fullSyncPeriod"] = full_sync_period
+        __props__["name"] = name
+        __props__["parentId"] = parent_id
+        __props__["priority"] = priority
+        __props__["providerId"] = provider_id
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/customUserFederation:CustomUserFederation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cachePolicy")
     def cache_policy(self) -> pulumi.Output[Optional[_builtins.str]]:

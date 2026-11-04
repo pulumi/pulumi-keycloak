@@ -162,6 +162,12 @@ func (UserTemplateImporterIdentityProviderMapperState) ElementType() reflect.Typ
 	return reflect.TypeOf((*userTemplateImporterIdentityProviderMapperState)(nil)).Elem()
 }
 
+// UserTemplateImporterIdentityProviderMapperExists checks whether an existing UserTemplateImporterIdentityProviderMapper resource with the given ID exists.
+func UserTemplateImporterIdentityProviderMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserTemplateImporterIdentityProviderMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", id, state, "", opts...)
+}
+
 type userTemplateImporterIdentityProviderMapperArgs struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`

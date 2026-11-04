@@ -245,6 +245,12 @@ func (RoleMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleMapperState)(nil)).Elem()
 }
 
+// RoleMapperExists checks whether an existing RoleMapper resource with the given ID exists.
+func RoleMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoleMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/roleMapper:RoleMapper", id, state, "", opts...)
+}
+
 type roleMapperArgs struct {
 	// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
 	ClientId *string `pulumi:"clientId"`

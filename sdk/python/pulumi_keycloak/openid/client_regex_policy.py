@@ -490,6 +490,30 @@ class ClientRegexPolicy(pulumi.CustomResource):
         __props__.__dict__["target_context_attributes"] = target_context_attributes
         return ClientRegexPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            logic: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            pattern: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            target_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["decisionStrategy"] = decision_strategy
+        __props__["description"] = description
+        __props__["logic"] = logic
+        __props__["name"] = name
+        __props__["pattern"] = pattern
+        __props__["realmId"] = realm_id
+        __props__["resourceServerId"] = resource_server_id
+        __props__["targetClaim"] = target_claim
+        __props__["targetContextAttributes"] = target_context_attributes
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientRegexPolicy:ClientRegexPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
     def decision_strategy(self) -> pulumi.Output[_builtins.str]:

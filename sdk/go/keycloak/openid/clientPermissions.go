@@ -116,6 +116,12 @@ func (ClientPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientPermissionsState)(nil)).Elem()
 }
 
+// ClientPermissionsExists checks whether an existing ClientPermissions resource with the given ID exists.
+func ClientPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientPermissions:ClientPermissions", id, state, "", opts...)
+}
+
 type clientPermissionsArgs struct {
 	ClientId                 string                                     `pulumi:"clientId"`
 	ConfigureScope           *ClientPermissionsConfigureScope           `pulumi:"configureScope"`

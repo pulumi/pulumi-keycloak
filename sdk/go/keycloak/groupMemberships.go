@@ -153,6 +153,12 @@ func (GroupMembershipsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipsState)(nil)).Elem()
 }
 
+// GroupMembershipsExists checks whether an existing GroupMemberships resource with the given ID exists.
+func GroupMembershipsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupMembershipsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/groupMemberships:GroupMemberships", id, state, "", opts...)
+}
+
 type groupMembershipsArgs struct {
 	// The ID of the group this resource should manage memberships for.
 	GroupId *string `pulumi:"groupId"`

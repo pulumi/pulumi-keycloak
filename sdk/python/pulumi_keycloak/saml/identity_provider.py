@@ -1801,6 +1801,96 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["xml_sign_key_info_key_name_transformer"] = xml_sign_key_info_key_name_transformer
         return IdentityProvider(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
+            authn_context_decl_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            force_authn: pulumi.Input[Optional[_builtins.bool]] = None,
+            gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+            hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+            internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+            link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            login_hint: pulumi.Input[Optional[_builtins.str]] = None,
+            name_id_policy_format: pulumi.Input[Optional[_builtins.str]] = None,
+            org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            post_binding_authn_request: pulumi.Input[Optional[_builtins.bool]] = None,
+            post_binding_logout: pulumi.Input[Optional[_builtins.bool]] = None,
+            post_binding_response: pulumi.Input[Optional[_builtins.bool]] = None,
+            post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            principal_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            principal_type: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
+            single_sign_on_service_url: pulumi.Input[Optional[_builtins.str]] = None,
+            store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            validate_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            want_assertions_encrypted: pulumi.Input[Optional[_builtins.bool]] = None,
+            want_assertions_signed: pulumi.Input[Optional[_builtins.bool]] = None,
+            want_authn_requests_signed: pulumi.Input[Optional[_builtins.bool]] = None,
+            xml_sign_key_info_key_name_transformer: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["addReadTokenRoleOnCreate"] = add_read_token_role_on_create
+        __props__["alias"] = alias
+        __props__["authenticateByDefault"] = authenticate_by_default
+        __props__["authnContextClassRefs"] = authn_context_class_refs
+        __props__["authnContextComparisonType"] = authn_context_comparison_type
+        __props__["authnContextDeclRefs"] = authn_context_decl_refs
+        __props__["backchannelSupported"] = backchannel_supported
+        __props__["displayName"] = display_name
+        __props__["enabled"] = enabled
+        __props__["entityId"] = entity_id
+        __props__["extraConfig"] = extra_config
+        __props__["firstBrokerLoginFlowAlias"] = first_broker_login_flow_alias
+        __props__["forceAuthn"] = force_authn
+        __props__["guiOrder"] = gui_order
+        __props__["hideOnLoginPage"] = hide_on_login_page
+        __props__["internalId"] = internal_id
+        __props__["linkOnly"] = link_only
+        __props__["loginHint"] = login_hint
+        __props__["nameIdPolicyFormat"] = name_id_policy_format
+        __props__["orgDomain"] = org_domain
+        __props__["orgRedirectModeEmailMatches"] = org_redirect_mode_email_matches
+        __props__["organizationId"] = organization_id
+        __props__["postBindingAuthnRequest"] = post_binding_authn_request
+        __props__["postBindingLogout"] = post_binding_logout
+        __props__["postBindingResponse"] = post_binding_response
+        __props__["postBrokerLoginFlowAlias"] = post_broker_login_flow_alias
+        __props__["principalAttribute"] = principal_attribute
+        __props__["principalType"] = principal_type
+        __props__["providerId"] = provider_id
+        __props__["realm"] = realm
+        __props__["signatureAlgorithm"] = signature_algorithm
+        __props__["signingCertificate"] = signing_certificate
+        __props__["singleLogoutServiceUrl"] = single_logout_service_url
+        __props__["singleSignOnServiceUrl"] = single_sign_on_service_url
+        __props__["storeToken"] = store_token
+        __props__["syncMode"] = sync_mode
+        __props__["trustEmail"] = trust_email
+        __props__["validateSignature"] = validate_signature
+        __props__["wantAssertionsEncrypted"] = want_assertions_encrypted
+        __props__["wantAssertionsSigned"] = want_assertions_signed
+        __props__["wantAuthnRequestsSigned"] = want_authn_requests_signed
+        __props__["xmlSignKeyInfoKeyNameTransformer"] = xml_sign_key_info_key_name_transformer
+        return pulumi.runtime.exists_resource(None, 'keycloak:saml/identityProvider:IdentityProvider', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
     def add_read_token_role_on_create(self) -> pulumi.Output[Optional[_builtins.bool]]:

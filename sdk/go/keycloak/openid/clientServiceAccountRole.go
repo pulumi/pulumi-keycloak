@@ -170,6 +170,12 @@ func (ClientServiceAccountRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientServiceAccountRoleState)(nil)).Elem()
 }
 
+// ClientServiceAccountRoleExists checks whether an existing ClientServiceAccountRole resource with the given ID exists.
+func ClientServiceAccountRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientServiceAccountRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole", id, state, "", opts...)
+}
+
 type clientServiceAccountRoleArgs struct {
 	// The id of the client that provides the role.
 	ClientId string `pulumi:"clientId"`

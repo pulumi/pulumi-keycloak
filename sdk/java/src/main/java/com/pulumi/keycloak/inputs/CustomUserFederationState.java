@@ -111,22 +111,20 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     /**
      * **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
      * 
-     * @deprecated
-     * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+     * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      * 
      */
-    @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
+    @Deprecated
     @Import(name="parentId")
     private @Nullable Output<String> parentId;
 
     /**
      * @return **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
      * 
-     * @deprecated
-     * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+     * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      * 
      */
-    @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
+    @Deprecated
     public Optional<Output<String>> parentId() {
         return Optional.ofNullable(this.parentId);
     }
@@ -340,11 +338,10 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
          * 
          * @return builder
          * 
-         * @deprecated
-         * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+         * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
          * 
          */
-        @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
+        @Deprecated
         public Builder parentId(@Nullable Output<String> parentId) {
             $.parentId = parentId;
             return this;
@@ -355,11 +352,10 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
          * 
          * @return builder
          * 
-         * @deprecated
-         * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+         * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
          * 
          */
-        @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
+        @Deprecated
         public Builder parentId(String parentId) {
             return parentId(Output.of(parentId));
         }

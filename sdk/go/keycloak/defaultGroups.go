@@ -130,6 +130,12 @@ func (DefaultGroupsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultGroupsState)(nil)).Elem()
 }
 
+// DefaultGroupsExists checks whether an existing DefaultGroups resource with the given ID exists.
+func DefaultGroupsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultGroupsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/defaultGroups:DefaultGroups", id, state, "", opts...)
+}
+
 type defaultGroupsArgs struct {
 	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds []string `pulumi:"groupIds"`

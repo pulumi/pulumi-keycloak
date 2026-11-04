@@ -528,6 +528,28 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["user_property"] = user_property
         return UserPropertyProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+            friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+            saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+            user_property: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["clientScopeId"] = client_scope_id
+        __props__["friendlyName"] = friendly_name
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        __props__["samlAttributeName"] = saml_attribute_name
+        __props__["samlAttributeNameFormat"] = saml_attribute_name_format
+        __props__["userProperty"] = user_property
+        return pulumi.runtime.exists_resource(None, 'keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:

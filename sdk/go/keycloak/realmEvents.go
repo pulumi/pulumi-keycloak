@@ -158,6 +158,12 @@ func (RealmEventsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmEventsState)(nil)).Elem()
 }
 
+// RealmEventsExists checks whether an existing RealmEvents resource with the given ID exists.
+func RealmEventsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmEventsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmEvents:RealmEvents", id, state, "", opts...)
+}
+
 type realmEventsArgs struct {
 	// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
 	AdminEventsDetailsEnabled *bool `pulumi:"adminEventsDetailsEnabled"`

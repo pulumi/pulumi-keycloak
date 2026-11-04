@@ -745,6 +745,40 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return RealmKeystoreRsa(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["algorithm"] = algorithm
+        __props__["certificate"] = certificate
+        __props__["certificateWo"] = certificate_wo
+        __props__["certificateWoVersion"] = certificate_wo_version
+        __props__["enabled"] = enabled
+        __props__["extraConfig"] = extra_config
+        __props__["name"] = name
+        __props__["priority"] = priority
+        __props__["privateKey"] = private_key
+        __props__["privateKeyWo"] = private_key_wo
+        __props__["privateKeyWoVersion"] = private_key_wo_version
+        __props__["providerId"] = provider_id
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreRsa:RealmKeystoreRsa', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:

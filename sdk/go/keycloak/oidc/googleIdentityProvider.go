@@ -292,6 +292,12 @@ func (GoogleIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*googleIdentityProviderState)(nil)).Elem()
 }
 
+// GoogleIdentityProviderExists checks whether an existing GoogleIdentityProvider resource with the given ID exists.
+func GoogleIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GoogleIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider", id, state, "", opts...)
+}
+
 type googleIdentityProviderArgs struct {
 	// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`

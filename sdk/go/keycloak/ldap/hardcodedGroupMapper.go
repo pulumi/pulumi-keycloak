@@ -165,6 +165,12 @@ func (HardcodedGroupMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedGroupMapperState)(nil)).Elem()
 }
 
+// HardcodedGroupMapperExists checks whether an existing HardcodedGroupMapper resource with the given ID exists.
+func HardcodedGroupMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedGroupMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper", id, state, "", opts...)
+}
+
 type hardcodedGroupMapperArgs struct {
 	// The name of the group which should be assigned to the users.
 	Group string `pulumi:"group"`

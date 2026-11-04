@@ -557,6 +557,12 @@ func (ClientState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientState)(nil)).Elem()
 }
 
+// ClientExists checks whether an existing Client resource with the given ID exists.
+func ClientExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/client:Client", id, state, "", opts...)
+}
+
 type clientArgs struct {
 	// The amount of time in seconds before an access token expires. This will override the default for the realm.
 	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`

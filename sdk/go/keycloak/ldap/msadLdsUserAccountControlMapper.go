@@ -153,6 +153,12 @@ func (MsadLdsUserAccountControlMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*msadLdsUserAccountControlMapperState)(nil)).Elem()
 }
 
+// MsadLdsUserAccountControlMapperExists checks whether an existing MsadLdsUserAccountControlMapper resource with the given ID exists.
+func MsadLdsUserAccountControlMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MsadLdsUserAccountControlMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper", id, state, "", opts...)
+}
+
 type msadLdsUserAccountControlMapperArgs struct {
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId string `pulumi:"ldapUserFederationId"`

@@ -448,6 +448,24 @@ class CustomMapper(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return CustomMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["config"] = config
+        __props__["ldapUserFederationId"] = ldap_user_federation_id
+        __props__["name"] = name
+        __props__["providerId"] = provider_id
+        __props__["providerType"] = provider_type
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/customMapper:CustomMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

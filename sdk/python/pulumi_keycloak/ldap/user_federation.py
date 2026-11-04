@@ -1739,6 +1739,88 @@ class UserFederation(pulumi.CustomResource):
         __props__.__dict__["vendor"] = vendor
         return UserFederation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            batch_size_for_sync: pulumi.Input[Optional[_builtins.int]] = None,
+            bind_credential: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_credential_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_credential_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            cache: pulumi.Input[Optional[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict', 'outputs.UserFederationCache']]] = None,
+            changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+            connection_pooling: pulumi.Input[Optional[_builtins.bool]] = None,
+            connection_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_user_search_filter: pulumi.Input[Optional[_builtins.str]] = None,
+            debug: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_default_mappers: pulumi.Input[Optional[_builtins.bool]] = None,
+            edit_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
+            import_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            kerberos: pulumi.Input[Optional[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict', 'outputs.UserFederationKerberos']]] = None,
+            krb_principal_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            pagination: pulumi.Input[Optional[_builtins.bool]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            rdn_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            read_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            relative_create_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            search_scope: pulumi.Input[Optional[_builtins.str]] = None,
+            start_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            sync_registrations: pulumi.Input[Optional[_builtins.bool]] = None,
+            trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_password_modify_extended_op: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_truststore_spi: pulumi.Input[Optional[_builtins.str]] = None,
+            user_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            username_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            users_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            validate_password_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            vendor: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["batchSizeForSync"] = batch_size_for_sync
+        __props__["bindCredential"] = bind_credential
+        __props__["bindCredentialWo"] = bind_credential_wo
+        __props__["bindCredentialWoVersion"] = bind_credential_wo_version
+        __props__["bindDn"] = bind_dn
+        __props__["cache"] = cache
+        __props__["changedSyncPeriod"] = changed_sync_period
+        __props__["connectionPooling"] = connection_pooling
+        __props__["connectionTimeout"] = connection_timeout
+        __props__["connectionUrl"] = connection_url
+        __props__["customUserSearchFilter"] = custom_user_search_filter
+        __props__["debug"] = debug
+        __props__["deleteDefaultMappers"] = delete_default_mappers
+        __props__["editMode"] = edit_mode
+        __props__["enabled"] = enabled
+        __props__["fullSyncPeriod"] = full_sync_period
+        __props__["importEnabled"] = import_enabled
+        __props__["kerberos"] = kerberos
+        __props__["krbPrincipalAttribute"] = krb_principal_attribute
+        __props__["name"] = name
+        __props__["pagination"] = pagination
+        __props__["priority"] = priority
+        __props__["rdnLdapAttribute"] = rdn_ldap_attribute
+        __props__["readTimeout"] = read_timeout
+        __props__["realmId"] = realm_id
+        __props__["relativeCreateDn"] = relative_create_dn
+        __props__["searchScope"] = search_scope
+        __props__["startTls"] = start_tls
+        __props__["syncRegistrations"] = sync_registrations
+        __props__["trustEmail"] = trust_email
+        __props__["usePasswordModifyExtendedOp"] = use_password_modify_extended_op
+        __props__["useTruststoreSpi"] = use_truststore_spi
+        __props__["userObjectClasses"] = user_object_classes
+        __props__["usernameLdapAttribute"] = username_ldap_attribute
+        __props__["usersDn"] = users_dn
+        __props__["uuidLdapAttribute"] = uuid_ldap_attribute
+        __props__["validatePasswordPolicy"] = validate_password_policy
+        __props__["vendor"] = vendor
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/userFederation:UserFederation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="batchSizeForSync")
     def batch_size_for_sync(self) -> pulumi.Output[Optional[_builtins.int]]:

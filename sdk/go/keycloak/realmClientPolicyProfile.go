@@ -131,6 +131,12 @@ func (RealmClientPolicyProfileState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmClientPolicyProfileState)(nil)).Elem()
 }
 
+// RealmClientPolicyProfileExists checks whether an existing RealmClientPolicyProfile resource with the given ID exists.
+func RealmClientPolicyProfileExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmClientPolicyProfileState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile", id, state, "", opts...)
+}
+
 type realmClientPolicyProfileArgs struct {
 	Description *string                            `pulumi:"description"`
 	Executors   []RealmClientPolicyProfileExecutor `pulumi:"executors"`

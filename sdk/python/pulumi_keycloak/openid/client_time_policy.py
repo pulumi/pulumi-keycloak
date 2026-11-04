@@ -803,6 +803,48 @@ class ClientTimePolicy(pulumi.CustomResource):
         __props__.__dict__["year_end"] = year_end
         return ClientTimePolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            day_month: pulumi.Input[Optional[_builtins.str]] = None,
+            day_month_end: pulumi.Input[Optional[_builtins.str]] = None,
+            decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            hour: pulumi.Input[Optional[_builtins.str]] = None,
+            hour_end: pulumi.Input[Optional[_builtins.str]] = None,
+            logic: pulumi.Input[Optional[_builtins.str]] = None,
+            minute: pulumi.Input[Optional[_builtins.str]] = None,
+            minute_end: pulumi.Input[Optional[_builtins.str]] = None,
+            month: pulumi.Input[Optional[_builtins.str]] = None,
+            month_end: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before: pulumi.Input[Optional[_builtins.str]] = None,
+            not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            year: pulumi.Input[Optional[_builtins.str]] = None,
+            year_end: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["dayMonth"] = day_month
+        __props__["dayMonthEnd"] = day_month_end
+        __props__["decisionStrategy"] = decision_strategy
+        __props__["description"] = description
+        __props__["hour"] = hour
+        __props__["hourEnd"] = hour_end
+        __props__["logic"] = logic
+        __props__["minute"] = minute
+        __props__["minuteEnd"] = minute_end
+        __props__["month"] = month
+        __props__["monthEnd"] = month_end
+        __props__["name"] = name
+        __props__["notBefore"] = not_before
+        __props__["notOnOrAfter"] = not_on_or_after
+        __props__["realmId"] = realm_id
+        __props__["resourceServerId"] = resource_server_id
+        __props__["year"] = year
+        __props__["yearEnd"] = year_end
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientTimePolicy:ClientTimePolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="dayMonth")
     def day_month(self) -> pulumi.Output[Optional[_builtins.str]]:

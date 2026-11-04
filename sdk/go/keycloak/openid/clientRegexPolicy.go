@@ -184,6 +184,12 @@ func (ClientRegexPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientRegexPolicyState)(nil)).Elem()
 }
 
+// ClientRegexPolicyExists checks whether an existing ClientRegexPolicy resource with the given ID exists.
+func ClientRegexPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientRegexPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientRegexPolicy:ClientRegexPolicy", id, state, "", opts...)
+}
+
 type clientRegexPolicyArgs struct {
 	DecisionStrategy        string  `pulumi:"decisionStrategy"`
 	Description             *string `pulumi:"description"`

@@ -483,6 +483,28 @@ class ClientScope(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return ClientScope(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+            include_in_openid_provider_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+            include_in_token_scope: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["consentScreenText"] = consent_screen_text
+        __props__["description"] = description
+        __props__["extraConfig"] = extra_config
+        __props__["guiOrder"] = gui_order
+        __props__["includeInOpenidProviderMetadata"] = include_in_openid_provider_metadata
+        __props__["includeInTokenScope"] = include_in_token_scope
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientScope:ClientScope', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> pulumi.Output[Optional[_builtins.str]]:

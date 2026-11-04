@@ -171,6 +171,12 @@ func (FullNameMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fullNameMapperState)(nil)).Elem()
 }
 
+// FullNameMapperExists checks whether an existing FullNameMapper resource with the given ID exists.
+func FullNameMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FullNameMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/fullNameMapper:FullNameMapper", id, state, "", opts...)
+}
+
 type fullNameMapperArgs struct {
 	// The name of the LDAP attribute containing the user's full name.
 	LdapFullNameAttribute string `pulumi:"ldapFullNameAttribute"`

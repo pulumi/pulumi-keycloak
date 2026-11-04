@@ -448,6 +448,26 @@ class RealmEvents(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return RealmEvents(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            admin_events_details_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            admin_events_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled_event_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            events_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            events_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+            events_listeners: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adminEventsDetailsEnabled"] = admin_events_details_enabled
+        __props__["adminEventsEnabled"] = admin_events_enabled
+        __props__["enabledEventTypes"] = enabled_event_types
+        __props__["eventsEnabled"] = events_enabled
+        __props__["eventsExpiration"] = events_expiration
+        __props__["eventsListeners"] = events_listeners
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmEvents:RealmEvents', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adminEventsDetailsEnabled")
     def admin_events_details_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:

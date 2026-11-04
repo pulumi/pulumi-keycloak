@@ -694,6 +694,36 @@ class User(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return User(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            email_verified: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            federated_identities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict', 'outputs.UserFederatedIdentity']]]]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            import_: pulumi.Input[Optional[_builtins.bool]] = None,
+            initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attributes"] = attributes
+        __props__["email"] = email
+        __props__["emailVerified"] = email_verified
+        __props__["enabled"] = enabled
+        __props__["federatedIdentities"] = federated_identities
+        __props__["firstName"] = first_name
+        __props__["import"] = import_
+        __props__["initialPassword"] = initial_password
+        __props__["lastName"] = last_name
+        __props__["realmId"] = realm_id
+        __props__["requiredActions"] = required_actions
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/user:User', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

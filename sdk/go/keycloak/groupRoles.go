@@ -268,6 +268,12 @@ func (GroupRolesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupRolesState)(nil)).Elem()
 }
 
+// GroupRolesExists checks whether an existing GroupRoles resource with the given ID exists.
+func GroupRolesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupRolesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/groupRoles:GroupRoles", id, state, "", opts...)
+}
+
 type groupRolesArgs struct {
 	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
 	Exhaustive *bool `pulumi:"exhaustive"`

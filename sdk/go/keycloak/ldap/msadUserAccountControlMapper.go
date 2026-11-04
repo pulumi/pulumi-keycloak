@@ -159,6 +159,12 @@ func (MsadUserAccountControlMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*msadUserAccountControlMapperState)(nil)).Elem()
 }
 
+// MsadUserAccountControlMapperExists checks whether an existing MsadUserAccountControlMapper resource with the given ID exists.
+func MsadUserAccountControlMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MsadUserAccountControlMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper", id, state, "", opts...)
+}
+
 type msadUserAccountControlMapperArgs struct {
 	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled *bool `pulumi:"ldapPasswordPolicyHintsEnabled"`

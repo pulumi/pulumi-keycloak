@@ -397,6 +397,24 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
         __props__.__dict__["secret_size"] = secret_size
         return RealmKeystoreAesGenerated(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_size: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["enabled"] = enabled
+        __props__["name"] = name
+        __props__["priority"] = priority
+        __props__["realmId"] = realm_id
+        __props__["secretSize"] = secret_size
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:

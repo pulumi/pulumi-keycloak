@@ -206,6 +206,12 @@ func (ClientGroupPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientGroupPolicyState)(nil)).Elem()
 }
 
+// ClientGroupPolicyExists checks whether an existing ClientGroupPolicy resource with the given ID exists.
+func ClientGroupPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientGroupPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientGroupPolicy:ClientGroupPolicy", id, state, "", opts...)
+}
+
 type clientGroupPolicyArgs struct {
 	DecisionStrategy string                   `pulumi:"decisionStrategy"`
 	Description      *string                  `pulumi:"description"`

@@ -182,6 +182,12 @@ func (CustomUserFederationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customUserFederationState)(nil)).Elem()
 }
 
+// CustomUserFederationExists checks whether an existing CustomUserFederation resource with the given ID exists.
+func CustomUserFederationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomUserFederationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/customUserFederation:CustomUserFederation", id, state, "", opts...)
+}
+
 type customUserFederationArgs struct {
 	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 	CachePolicy *string `pulumi:"cachePolicy"`

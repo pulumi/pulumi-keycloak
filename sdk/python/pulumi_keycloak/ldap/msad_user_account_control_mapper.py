@@ -358,6 +358,20 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return MsadUserAccountControlMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["ldapPasswordPolicyHintsEnabled"] = ldap_password_policy_hints_enabled
+        __props__["ldapUserFederationId"] = ldap_user_federation_id
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
     def ldap_password_policy_hints_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:

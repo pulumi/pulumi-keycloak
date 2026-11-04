@@ -195,6 +195,12 @@ func (UserPropertyProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userPropertyProtocolMapperState)(nil)).Elem()
 }
 
+// UserPropertyProtocolMapperExists checks whether an existing UserPropertyProtocolMapper resource with the given ID exists.
+func UserPropertyProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserPropertyProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper", id, state, "", opts...)
+}
+
 type userPropertyProtocolMapperArgs struct {
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`

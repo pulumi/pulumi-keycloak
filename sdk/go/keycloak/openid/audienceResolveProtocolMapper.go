@@ -212,6 +212,12 @@ func (AudienceResolveProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*audienceResolveProtocolMapperState)(nil)).Elem()
 }
 
+// AudienceResolveProtocolMapperExists checks whether an existing AudienceResolveProtocolMapper resource with the given ID exists.
+func AudienceResolveProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AudienceResolveProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper", id, state, "", opts...)
+}
+
 type audienceResolveProtocolMapperArgs struct {
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`

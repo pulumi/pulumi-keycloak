@@ -389,6 +389,12 @@ func (RealmState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmState)(nil)).Elem()
 }
 
+// RealmExists checks whether an existing Realm resource with the given ID exists.
+func RealmExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realm:Realm", id, state, "", opts...)
+}
+
 type realmArgs struct {
 	AccessCodeLifespan                  *string `pulumi:"accessCodeLifespan"`
 	AccessCodeLifespanLogin             *string `pulumi:"accessCodeLifespanLogin"`

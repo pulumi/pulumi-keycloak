@@ -157,6 +157,12 @@ func (ExecutionConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*executionConfigState)(nil)).Elem()
 }
 
+// ExecutionConfigExists checks whether an existing ExecutionConfig resource with the given ID exists.
+func ExecutionConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ExecutionConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:authentication/executionConfig:ExecutionConfig", id, state, "", opts...)
+}
+
 type executionConfigArgs struct {
 	// The name of the configuration.
 	Alias *string `pulumi:"alias"`

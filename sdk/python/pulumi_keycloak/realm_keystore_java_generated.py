@@ -621,6 +621,36 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return RealmKeystoreJavaGenerated(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active: pulumi.Input[Optional[_builtins.bool]] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            key_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            key_password: pulumi.Input[Optional[_builtins.str]] = None,
+            key_use: pulumi.Input[Optional[_builtins.str]] = None,
+            keystore: pulumi.Input[Optional[_builtins.str]] = None,
+            keystore_password: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["active"] = active
+        __props__["algorithm"] = algorithm
+        __props__["enabled"] = enabled
+        __props__["keyAlias"] = key_alias
+        __props__["keyPassword"] = key_password
+        __props__["keyUse"] = key_use
+        __props__["keystore"] = keystore
+        __props__["keystorePassword"] = keystore_password
+        __props__["name"] = name
+        __props__["parentId"] = parent_id
+        __props__["priority"] = priority
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:

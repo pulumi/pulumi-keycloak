@@ -182,6 +182,12 @@ func (CustomMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customMapperState)(nil)).Elem()
 }
 
+// CustomMapperExists checks whether an existing CustomMapper resource with the given ID exists.
+func CustomMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/customMapper:CustomMapper", id, state, "", opts...)
+}
+
 type customMapperArgs struct {
 	// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
 	Config map[string]string `pulumi:"config"`

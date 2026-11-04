@@ -205,6 +205,12 @@ func (RealmKeystoreJavaGeneratedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmKeystoreJavaGeneratedState)(nil)).Elem()
 }
 
+// RealmKeystoreJavaGeneratedExists checks whether an existing RealmKeystoreJavaGenerated resource with the given ID exists.
+func RealmKeystoreJavaGeneratedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmKeystoreJavaGeneratedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated", id, state, "", opts...)
+}
+
 type realmKeystoreJavaGeneratedArgs struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`

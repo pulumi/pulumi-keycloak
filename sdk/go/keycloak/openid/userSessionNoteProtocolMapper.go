@@ -259,6 +259,12 @@ func (UserSessionNoteProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userSessionNoteProtocolMapperState)(nil)).Elem()
 }
 
+// UserSessionNoteProtocolMapperExists checks whether an existing UserSessionNoteProtocolMapper resource with the given ID exists.
+func UserSessionNoteProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserSessionNoteProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper", id, state, "", opts...)
+}
+
 type userSessionNoteProtocolMapperArgs struct {
 	// Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

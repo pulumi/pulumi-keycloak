@@ -38,11 +38,10 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
     /**
      * @return Either Yes or No
      * 
-     * @deprecated
-     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
      * 
      */
-    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+    @Deprecated
     private String requireResidentKey;
     /**
      * @return Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
@@ -101,11 +100,10 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
     /**
      * @return Either Yes or No
      * 
-     * @deprecated
-     * Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
+     * @deprecated Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as &#34;not specified&#34; and is planned to be removed in a future Keycloak version.
      * 
      */
-    @Deprecated /* Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverableCredential is left as ""not specified"" and is planned to be removed in a future Keycloak version. */
+    @Deprecated
     public String requireResidentKey() {
         return this.requireResidentKey;
     }

@@ -221,6 +221,12 @@ func (RealmUserProfileState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmUserProfileState)(nil)).Elem()
 }
 
+// RealmUserProfileExists checks whether an existing RealmUserProfile resource with the given ID exists.
+func RealmUserProfileExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmUserProfileState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmUserProfile:RealmUserProfile", id, state, "", opts...)
+}
+
 type realmUserProfileArgs struct {
 	// An ordered list of attributes.
 	Attributes []RealmUserProfileAttribute `pulumi:"attributes"`

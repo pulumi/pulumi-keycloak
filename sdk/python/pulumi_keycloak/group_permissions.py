@@ -371,6 +371,30 @@ class GroupPermissions(pulumi.CustomResource):
         __props__.__dict__["view_scope"] = view_scope
         return GroupPermissions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            manage_members_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict', 'outputs.GroupPermissionsManageMembersScope']]] = None,
+            manage_membership_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict', 'outputs.GroupPermissionsManageMembershipScope']]] = None,
+            manage_scope: pulumi.Input[Optional[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict', 'outputs.GroupPermissionsManageScope']]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            view_members_scope: pulumi.Input[Optional[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict', 'outputs.GroupPermissionsViewMembersScope']]] = None,
+            view_scope: pulumi.Input[Optional[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict', 'outputs.GroupPermissionsViewScope']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authorizationResourceServerId"] = authorization_resource_server_id
+        __props__["enabled"] = enabled
+        __props__["groupId"] = group_id
+        __props__["manageMembersScope"] = manage_members_scope
+        __props__["manageMembershipScope"] = manage_membership_scope
+        __props__["manageScope"] = manage_scope
+        __props__["realmId"] = realm_id
+        __props__["viewMembersScope"] = view_members_scope
+        __props__["viewScope"] = view_scope
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/groupPermissions:GroupPermissions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authorizationResourceServerId")
     def authorization_resource_server_id(self) -> pulumi.Output[_builtins.str]:

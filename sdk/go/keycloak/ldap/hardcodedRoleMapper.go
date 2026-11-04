@@ -240,6 +240,12 @@ func (HardcodedRoleMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedRoleMapperState)(nil)).Elem()
 }
 
+// HardcodedRoleMapperExists checks whether an existing HardcodedRoleMapper resource with the given ID exists.
+func HardcodedRoleMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedRoleMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper", id, state, "", opts...)
+}
+
 type hardcodedRoleMapperArgs struct {
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId string `pulumi:"ldapUserFederationId"`

@@ -523,6 +523,28 @@ class Bindings(pulumi.CustomResource):
         __props__.__dict__["reset_credentials_flow"] = reset_credentials_flow
         return Bindings(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            browser_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            client_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            direct_grant_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            docker_authentication_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            first_broker_login_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            registration_flow: pulumi.Input[Optional[_builtins.str]] = None,
+            reset_credentials_flow: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["browserFlow"] = browser_flow
+        __props__["clientAuthenticationFlow"] = client_authentication_flow
+        __props__["directGrantFlow"] = direct_grant_flow
+        __props__["dockerAuthenticationFlow"] = docker_authentication_flow
+        __props__["firstBrokerLoginFlow"] = first_broker_login_flow
+        __props__["realmId"] = realm_id
+        __props__["registrationFlow"] = registration_flow
+        __props__["resetCredentialsFlow"] = reset_credentials_flow
+        return pulumi.runtime.exists_resource(None, 'keycloak:authentication/bindings:Bindings', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="browserFlow")
     def browser_flow(self) -> pulumi.Output[_builtins.str]:
