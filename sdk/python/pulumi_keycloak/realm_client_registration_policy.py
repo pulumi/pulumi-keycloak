@@ -422,6 +422,22 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
         __props__.__dict__["sub_type"] = sub_type
         return RealmClientRegistrationPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            sub_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["config"] = config
+        __props__["name"] = name
+        __props__["providerId"] = provider_id
+        __props__["realmId"] = realm_id
+        __props__["subType"] = sub_type
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def config(self) -> pulumi.Output[Mapping[str, _builtins.str]]:

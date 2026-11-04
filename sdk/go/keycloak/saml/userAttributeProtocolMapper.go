@@ -201,6 +201,12 @@ func (UserAttributeProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeProtocolMapperState)(nil)).Elem()
 }
 
+// UserAttributeProtocolMapperExists checks whether an existing UserAttributeProtocolMapper resource with the given ID exists.
+func UserAttributeProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserAttributeProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", id, state, "", opts...)
+}
+
 type userAttributeProtocolMapperArgs struct {
 	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
 	AggregateAttributes *bool `pulumi:"aggregateAttributes"`

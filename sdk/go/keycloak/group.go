@@ -224,6 +224,12 @@ func (GroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupState)(nil)).Elem()
 }
 
+// GroupExists checks whether an existing Group resource with the given ID exists.
+func GroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/group:Group", id, state, "", opts...)
+}
+
 type groupArgs struct {
 	// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 	Attributes  map[string]string `pulumi:"attributes"`

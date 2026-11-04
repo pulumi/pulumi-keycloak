@@ -206,6 +206,12 @@ func (UserAttributeMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userAttributeMapperState)(nil)).Elem()
 }
 
+// UserAttributeMapperExists checks whether an existing UserAttributeMapper resource with the given ID exists.
+func UserAttributeMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserAttributeMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/userAttributeMapper:UserAttributeMapper", id, state, "", opts...)
+}
+
 type userAttributeMapperArgs struct {
 	// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`

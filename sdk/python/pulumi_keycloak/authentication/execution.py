@@ -390,6 +390,22 @@ class Execution(pulumi.CustomResource):
         __props__.__dict__["requirement"] = requirement
         return Execution(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authenticator: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            requirement: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authenticator"] = authenticator
+        __props__["parentFlowAlias"] = parent_flow_alias
+        __props__["priority"] = priority
+        __props__["realmId"] = realm_id
+        __props__["requirement"] = requirement
+        return pulumi.runtime.exists_resource(None, 'keycloak:authentication/execution:Execution', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def authenticator(self) -> pulumi.Output[_builtins.str]:

@@ -219,6 +219,12 @@ func (IdentityProviderTokenExchangeScopePermissionState) ElementType() reflect.T
 	return reflect.TypeOf((*identityProviderTokenExchangeScopePermissionState)(nil)).Elem()
 }
 
+// IdentityProviderTokenExchangeScopePermissionExists checks whether an existing IdentityProviderTokenExchangeScopePermission resource with the given ID exists.
+func IdentityProviderTokenExchangeScopePermissionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IdentityProviderTokenExchangeScopePermissionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", id, state, "", opts...)
+}
+
 type identityProviderTokenExchangeScopePermissionArgs struct {
 	// A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
 	Clients []string `pulumi:"clients"`

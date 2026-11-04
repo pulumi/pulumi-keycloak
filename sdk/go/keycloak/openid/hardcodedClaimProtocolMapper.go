@@ -254,6 +254,12 @@ func (HardcodedClaimProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedClaimProtocolMapperState)(nil)).Elem()
 }
 
+// HardcodedClaimProtocolMapperExists checks whether an existing HardcodedClaimProtocolMapper resource with the given ID exists.
+func HardcodedClaimProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedClaimProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper", id, state, "", opts...)
+}
+
 type hardcodedClaimProtocolMapperArgs struct {
 	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

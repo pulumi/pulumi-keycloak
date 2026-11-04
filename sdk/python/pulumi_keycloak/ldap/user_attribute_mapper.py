@@ -631,6 +631,34 @@ class UserAttributeMapper(pulumi.CustomResource):
         __props__.__dict__["user_model_attribute"] = user_model_attribute
         return UserAttributeMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            always_read_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
+            attribute_default_value: pulumi.Input[Optional[_builtins.str]] = None,
+            attribute_force_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_binary_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_mandatory_in_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
+            ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_model_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alwaysReadValueFromLdap"] = always_read_value_from_ldap
+        __props__["attributeDefaultValue"] = attribute_default_value
+        __props__["attributeForceDefault"] = attribute_force_default
+        __props__["isBinaryAttribute"] = is_binary_attribute
+        __props__["isMandatoryInLdap"] = is_mandatory_in_ldap
+        __props__["ldapAttribute"] = ldap_attribute
+        __props__["ldapUserFederationId"] = ldap_user_federation_id
+        __props__["name"] = name
+        __props__["readOnly"] = read_only
+        __props__["realmId"] = realm_id
+        __props__["userModelAttribute"] = user_model_attribute
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/userAttributeMapper:UserAttributeMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="alwaysReadValueFromLdap")
     def always_read_value_from_ldap(self) -> pulumi.Output[Optional[_builtins.bool]]:

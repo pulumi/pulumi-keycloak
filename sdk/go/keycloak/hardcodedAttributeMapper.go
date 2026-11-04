@@ -169,6 +169,12 @@ func (HardcodedAttributeMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedAttributeMapperState)(nil)).Elem()
 }
 
+// HardcodedAttributeMapperExists checks whether an existing HardcodedAttributeMapper resource with the given ID exists.
+func HardcodedAttributeMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedAttributeMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper", id, state, "", opts...)
+}
+
 type hardcodedAttributeMapperArgs struct {
 	// The name of the user model attribute to set.
 	AttributeName string `pulumi:"attributeName"`

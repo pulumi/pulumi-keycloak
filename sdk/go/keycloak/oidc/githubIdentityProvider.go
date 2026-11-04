@@ -280,6 +280,12 @@ func (GithubIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*githubIdentityProviderState)(nil)).Elem()
 }
 
+// GithubIdentityProviderExists checks whether an existing GithubIdentityProvider resource with the given ID exists.
+func GithubIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GithubIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:oidc/githubIdentityProvider:GithubIdentityProvider", id, state, "", opts...)
+}
+
 type githubIdentityProviderArgs struct {
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`

@@ -246,6 +246,12 @@ func (GroupAdminPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupAdminPermissionsState)(nil)).Elem()
 }
 
+// GroupAdminPermissionsExists checks whether an existing GroupAdminPermissions resource with the given ID exists.
+func GroupAdminPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupAdminPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/groupAdminPermissions:GroupAdminPermissions", id, state, "", opts...)
+}
+
 type groupAdminPermissionsArgs struct {
 	// Decision strategy. One of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
 	DecisionStrategy *string `pulumi:"decisionStrategy"`

@@ -154,6 +154,12 @@ func (HardcodedGroupIdentityProviderMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*hardcodedGroupIdentityProviderMapperState)(nil)).Elem()
 }
 
+// HardcodedGroupIdentityProviderMapperExists checks whether an existing HardcodedGroupIdentityProviderMapper resource with the given ID exists.
+func HardcodedGroupIdentityProviderMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedGroupIdentityProviderMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper", id, state, "", opts...)
+}
+
 type hardcodedGroupIdentityProviderMapperArgs struct {
 	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`

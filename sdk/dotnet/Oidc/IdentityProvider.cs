@@ -160,7 +160,7 @@ namespace Pulumi.Keycloak.Oidc
 
         /// <summary>
         /// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
-        /// - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `ClientSecretPost` (Client secret sent as post), `ClientSecretBasic` (Client secret sent as basic auth), `ClientSecretJwt` (Client secret as jwt) and `PrivateKeyJwt ` (JTW signed with private key)
+        /// - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `ClientSecretPost` (Client secret sent as post), `ClientSecretBasic` (Client secret sent as basic auth), `ClientSecretJwt` (Client secret as jwt) and ` PrivateKeyJwt  ` (JTW signed with private key)
         /// </summary>
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
@@ -464,7 +464,7 @@ namespace Pulumi.Keycloak.Oidc
 
         /// <summary>
         /// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
-        /// - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `ClientSecretPost` (Client secret sent as post), `ClientSecretBasic` (Client secret sent as basic auth), `ClientSecretJwt` (Client secret as jwt) and `PrivateKeyJwt ` (JTW signed with private key)
+        /// - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `ClientSecretPost` (Client secret sent as post), `ClientSecretBasic` (Client secret sent as basic auth), `ClientSecretJwt` (Client secret as jwt) and ` PrivateKeyJwt  ` (JTW signed with private key)
         /// </summary>
         public InputMap<string> ExtraConfig
         {
@@ -722,7 +722,7 @@ namespace Pulumi.Keycloak.Oidc
 
         /// <summary>
         /// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
-        /// - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `ClientSecretPost` (Client secret sent as post), `ClientSecretBasic` (Client secret sent as basic auth), `ClientSecretJwt` (Client secret as jwt) and `PrivateKeyJwt ` (JTW signed with private key)
+        /// - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `ClientSecretPost` (Client secret sent as post), `ClientSecretBasic` (Client secret sent as basic auth), `ClientSecretJwt` (Client secret as jwt) and ` PrivateKeyJwt  ` (JTW signed with private key)
         /// </summary>
         public InputMap<string> ExtraConfig
         {

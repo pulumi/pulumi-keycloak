@@ -299,6 +299,20 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return RealmClientPolicyProfile(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["description"] = description
+        __props__["executors"] = executors
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:

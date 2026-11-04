@@ -103,6 +103,12 @@ func (ClientAuthorizationPermissionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAuthorizationPermissionState)(nil)).Elem()
 }
 
+// ClientAuthorizationPermissionExists checks whether an existing ClientAuthorizationPermission resource with the given ID exists.
+func ClientAuthorizationPermissionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientAuthorizationPermissionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", id, state, "", opts...)
+}
+
 type clientAuthorizationPermissionArgs struct {
 	DecisionStrategy *string  `pulumi:"decisionStrategy"`
 	Description      *string  `pulumi:"description"`

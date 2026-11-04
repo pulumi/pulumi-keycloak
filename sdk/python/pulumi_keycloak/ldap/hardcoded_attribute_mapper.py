@@ -399,6 +399,22 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return HardcodedAttributeMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
+            attribute_value: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attributeName"] = attribute_name
+        __props__["attributeValue"] = attribute_value
+        __props__["ldapUserFederationId"] = ldap_user_federation_id
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> pulumi.Output[_builtins.str]:

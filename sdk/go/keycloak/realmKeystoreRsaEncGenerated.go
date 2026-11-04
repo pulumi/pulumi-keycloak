@@ -152,6 +152,12 @@ func (RealmKeystoreRsaEncGeneratedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmKeystoreRsaEncGeneratedState)(nil)).Elem()
 }
 
+// RealmKeystoreRsaEncGeneratedExists checks whether an existing RealmKeystoreRsaEncGenerated resource with the given ID exists.
+func RealmKeystoreRsaEncGeneratedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmKeystoreRsaEncGeneratedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated", id, state, "", opts...)
+}
+
 type realmKeystoreRsaEncGeneratedArgs struct {
 	// When `false`, key is not used for encryption. Defaults to `true`.
 	Active *bool `pulumi:"active"`

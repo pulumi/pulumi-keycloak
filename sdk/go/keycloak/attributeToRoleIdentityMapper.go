@@ -201,6 +201,12 @@ func (AttributeToRoleIdentityMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*attributeToRoleIdentityMapperState)(nil)).Elem()
 }
 
+// AttributeToRoleIdentityMapperExists checks whether an existing AttributeToRoleIdentityMapper resource with the given ID exists.
+func AttributeToRoleIdentityMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AttributeToRoleIdentityMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", id, state, "", opts...)
+}
+
 type attributeToRoleIdentityMapperArgs struct {
 	// Attribute Friendly Name. Conflicts with `attributeName`.
 	AttributeFriendlyName *string `pulumi:"attributeFriendlyName"`

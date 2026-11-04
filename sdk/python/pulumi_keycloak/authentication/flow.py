@@ -440,6 +440,22 @@ class Flow(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return Flow(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_from: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alias"] = alias
+        __props__["copyFrom"] = copy_from
+        __props__["description"] = description
+        __props__["providerId"] = provider_id
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:authentication/flow:Flow', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def alias(self) -> pulumi.Output[_builtins.str]:

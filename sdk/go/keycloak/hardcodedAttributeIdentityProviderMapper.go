@@ -163,6 +163,12 @@ func (HardcodedAttributeIdentityProviderMapperState) ElementType() reflect.Type 
 	return reflect.TypeOf((*hardcodedAttributeIdentityProviderMapperState)(nil)).Elem()
 }
 
+// HardcodedAttributeIdentityProviderMapperExists checks whether an existing HardcodedAttributeIdentityProviderMapper resource with the given ID exists.
+func HardcodedAttributeIdentityProviderMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HardcodedAttributeIdentityProviderMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", id, state, "", opts...)
+}
+
 type hardcodedAttributeIdentityProviderMapperArgs struct {
 	// The name of the IDP attribute to set.
 	AttributeName *string `pulumi:"attributeName"`

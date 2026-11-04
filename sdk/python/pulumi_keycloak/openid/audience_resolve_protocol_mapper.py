@@ -405,6 +405,20 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return AudienceResolveProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["clientScopeId"] = client_scope_id
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:

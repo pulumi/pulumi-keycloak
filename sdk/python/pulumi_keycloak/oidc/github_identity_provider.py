@@ -1158,6 +1158,64 @@ class GithubIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["trust_email"] = trust_email
         return GithubIdentityProvider(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+            alias: pulumi.Input[Optional[_builtins.str]] = None,
+            api_url: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            first_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            github_json_format: pulumi.Input[Optional[_builtins.bool]] = None,
+            gui_order: pulumi.Input[Optional[_builtins.str]] = None,
+            hide_on_login_page: pulumi.Input[Optional[_builtins.bool]] = None,
+            internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+            link_only: pulumi.Input[Optional[_builtins.bool]] = None,
+            org_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            org_redirect_mode_email_matches: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            store_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            trust_email: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["addReadTokenRoleOnCreate"] = add_read_token_role_on_create
+        __props__["alias"] = alias
+        __props__["apiUrl"] = api_url
+        __props__["authenticateByDefault"] = authenticate_by_default
+        __props__["baseUrl"] = base_url
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["defaultScopes"] = default_scopes
+        __props__["displayName"] = display_name
+        __props__["enabled"] = enabled
+        __props__["extraConfig"] = extra_config
+        __props__["firstBrokerLoginFlowAlias"] = first_broker_login_flow_alias
+        __props__["githubJsonFormat"] = github_json_format
+        __props__["guiOrder"] = gui_order
+        __props__["hideOnLoginPage"] = hide_on_login_page
+        __props__["internalId"] = internal_id
+        __props__["linkOnly"] = link_only
+        __props__["orgDomain"] = org_domain
+        __props__["orgRedirectModeEmailMatches"] = org_redirect_mode_email_matches
+        __props__["organizationId"] = organization_id
+        __props__["postBrokerLoginFlowAlias"] = post_broker_login_flow_alias
+        __props__["providerId"] = provider_id
+        __props__["realm"] = realm
+        __props__["storeToken"] = store_token
+        __props__["syncMode"] = sync_mode
+        __props__["trustEmail"] = trust_email
+        return pulumi.runtime.exists_resource(None, 'keycloak:oidc/githubIdentityProvider:GithubIdentityProvider', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
     def add_read_token_role_on_create(self) -> pulumi.Output[Optional[_builtins.bool]]:

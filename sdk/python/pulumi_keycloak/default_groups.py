@@ -244,6 +244,16 @@ class DefaultGroups(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return DefaultGroups(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["groupIds"] = group_ids
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/defaultGroups:DefaultGroups', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="groupIds")
     def group_ids(self) -> pulumi.Output[Sequence[_builtins.str]]:

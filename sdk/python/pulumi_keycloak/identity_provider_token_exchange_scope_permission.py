@@ -487,6 +487,28 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         __props__.__dict__["realm_id"] = realm_id
         return IdentityProviderTokenExchangeScopePermission(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorization_idp_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_token_exchange_scope_permission_id: pulumi.Input[Optional[_builtins.str]] = None,
+            clients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            policy_id: pulumi.Input[Optional[_builtins.str]] = None,
+            policy_type: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authorizationIdpResourceId"] = authorization_idp_resource_id
+        __props__["authorizationResourceServerId"] = authorization_resource_server_id
+        __props__["authorizationTokenExchangeScopePermissionId"] = authorization_token_exchange_scope_permission_id
+        __props__["clients"] = clients
+        __props__["policyId"] = policy_id
+        __props__["policyType"] = policy_type
+        __props__["providerAlias"] = provider_alias
+        __props__["realmId"] = realm_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authorizationIdpResourceId")
     def authorization_idp_resource_id(self) -> pulumi.Output[_builtins.str]:

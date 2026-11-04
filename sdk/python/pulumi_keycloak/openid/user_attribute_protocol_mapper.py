@@ -768,6 +768,38 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["user_attribute"] = user_attribute
         return UserAttributeProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
+            add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+            aggregate_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+            claim_name: pulumi.Input[Optional[_builtins.str]] = None,
+            claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+            multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["addToAccessToken"] = add_to_access_token
+        __props__["addToIdToken"] = add_to_id_token
+        __props__["addToTokenIntrospection"] = add_to_token_introspection
+        __props__["addToUserinfo"] = add_to_userinfo
+        __props__["aggregateAttributes"] = aggregate_attributes
+        __props__["claimName"] = claim_name
+        __props__["claimValueType"] = claim_value_type
+        __props__["clientId"] = client_id
+        __props__["clientScopeId"] = client_scope_id
+        __props__["multivalued"] = multivalued
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        __props__["userAttribute"] = user_attribute
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Output[Optional[_builtins.bool]]:

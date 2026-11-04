@@ -282,6 +282,12 @@ func (MicrosoftIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*microsoftIdentityProviderState)(nil)).Elem()
 }
 
+// MicrosoftIdentityProviderExists checks whether an existing MicrosoftIdentityProvider resource with the given ID exists.
+func MicrosoftIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MicrosoftIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:oidc/microsoftIdentityProvider:MicrosoftIdentityProvider", id, state, "", opts...)
+}
+
 type microsoftIdentityProviderArgs struct {
 	// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Microsoft instead of returning an error. Defaults to `false`.
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`

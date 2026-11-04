@@ -798,6 +798,42 @@ class RoleMapper(pulumi.CustomResource):
         __props__.__dict__["user_roles_retrieve_strategy"] = user_roles_retrieve_strategy
         return RoleMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_roles_dn: pulumi.Input[Optional[_builtins.str]] = None,
+            ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            memberof_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            membership_user_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            mode: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
+            role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
+            use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["ldapRolesDn"] = ldap_roles_dn
+        __props__["ldapUserFederationId"] = ldap_user_federation_id
+        __props__["memberofLdapAttribute"] = memberof_ldap_attribute
+        __props__["membershipAttributeType"] = membership_attribute_type
+        __props__["membershipLdapAttribute"] = membership_ldap_attribute
+        __props__["membershipUserLdapAttribute"] = membership_user_ldap_attribute
+        __props__["mode"] = mode
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        __props__["roleNameLdapAttribute"] = role_name_ldap_attribute
+        __props__["roleObjectClasses"] = role_object_classes
+        __props__["rolesLdapFilter"] = roles_ldap_filter
+        __props__["useRealmRolesMapping"] = use_realm_roles_mapping
+        __props__["userRolesRetrieveStrategy"] = user_roles_retrieve_strategy
+        return pulumi.runtime.exists_resource(None, 'keycloak:ldap/roleMapper:RoleMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:

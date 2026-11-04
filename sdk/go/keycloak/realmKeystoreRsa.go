@@ -225,6 +225,12 @@ func (RealmKeystoreRsaState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmKeystoreRsaState)(nil)).Elem()
 }
 
+// RealmKeystoreRsaExists checks whether an existing RealmKeystoreRsa resource with the given ID exists.
+func RealmKeystoreRsaExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmKeystoreRsaState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", id, state, "", opts...)
+}
+
 type realmKeystoreRsaArgs struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`

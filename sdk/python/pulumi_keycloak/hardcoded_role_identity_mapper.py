@@ -367,6 +367,22 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         __props__.__dict__["role"] = role
         return HardcodedRoleIdentityMapper(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["extraConfig"] = extra_config
+        __props__["identityProviderAlias"] = identity_provider_alias
+        __props__["name"] = name
+        __props__["realm"] = realm
+        __props__["role"] = role
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

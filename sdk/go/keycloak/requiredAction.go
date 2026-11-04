@@ -172,6 +172,12 @@ func (RequiredActionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*requiredActionState)(nil)).Elem()
 }
 
+// RequiredActionExists checks whether an existing RequiredAction resource with the given ID exists.
+func RequiredActionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RequiredActionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/requiredAction:RequiredAction", id, state, "", opts...)
+}
+
 type requiredActionArgs struct {
 	// The alias of the action to attach as a required action. Case sensitive.
 	Alias string `pulumi:"alias"`

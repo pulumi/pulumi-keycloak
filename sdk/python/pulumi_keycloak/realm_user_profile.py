@@ -445,6 +445,20 @@ class RealmUserProfile(pulumi.CustomResource):
         __props__.__dict__["unmanaged_attribute_policy"] = unmanaged_attribute_policy
         return RealmUserProfile(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]]] = None,
+            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attributes"] = attributes
+        __props__["groups"] = groups
+        __props__["realmId"] = realm_id
+        __props__["unmanagedAttributePolicy"] = unmanaged_attribute_policy
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/realmUserProfile:RealmUserProfile', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Sequence['outputs.RealmUserProfileAttribute']]]:

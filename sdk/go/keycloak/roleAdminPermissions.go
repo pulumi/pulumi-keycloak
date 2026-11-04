@@ -250,6 +250,12 @@ func (RoleAdminPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleAdminPermissionsState)(nil)).Elem()
 }
 
+// RoleAdminPermissionsExists checks whether an existing RoleAdminPermissions resource with the given ID exists.
+func RoleAdminPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoleAdminPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/roleAdminPermissions:RoleAdminPermissions", id, state, "", opts...)
+}
+
 type roleAdminPermissionsArgs struct {
 	// Decision strategy. One of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
 	DecisionStrategy *string `pulumi:"decisionStrategy"`

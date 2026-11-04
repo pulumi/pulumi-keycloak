@@ -161,6 +161,12 @@ func (OrganizationMembershipsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationMembershipsState)(nil)).Elem()
 }
 
+// OrganizationMembershipsExists checks whether an existing OrganizationMemberships resource with the given ID exists.
+func OrganizationMembershipsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrganizationMembershipsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/organizationMemberships:OrganizationMemberships", id, state, "", opts...)
+}
+
 type organizationMembershipsArgs struct {
 	// A set of usernames to assign as members of the organization.
 	Members []string `pulumi:"members"`

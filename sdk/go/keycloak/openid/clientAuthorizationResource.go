@@ -204,6 +204,12 @@ func (ClientAuthorizationResourceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAuthorizationResourceState)(nil)).Elem()
 }
 
+// ClientAuthorizationResourceExists checks whether an existing ClientAuthorizationResource resource with the given ID exists.
+func ClientAuthorizationResourceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientAuthorizationResourceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource", id, state, "", opts...)
+}
+
 type clientAuthorizationResourceArgs struct {
 	Attributes         map[string]string `pulumi:"attributes"`
 	DisplayName        *string           `pulumi:"displayName"`

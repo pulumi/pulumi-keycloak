@@ -182,6 +182,12 @@ func (GenericProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*genericProtocolMapperState)(nil)).Elem()
 }
 
+// GenericProtocolMapperExists checks whether an existing GenericProtocolMapper resource with the given ID exists.
+func GenericProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GenericProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/genericProtocolMapper:GenericProtocolMapper", id, state, "", opts...)
+}
+
 type genericProtocolMapperArgs struct {
 	// The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
 	ClientId *string `pulumi:"clientId"`

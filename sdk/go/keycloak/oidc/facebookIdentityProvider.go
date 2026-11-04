@@ -277,6 +277,12 @@ func (FacebookIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*facebookIdentityProviderState)(nil)).Elem()
 }
 
+// FacebookIdentityProviderExists checks whether an existing FacebookIdentityProvider resource with the given ID exists.
+func FacebookIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FacebookIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider", id, state, "", opts...)
+}
+
 type facebookIdentityProviderArgs struct {
 	// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`

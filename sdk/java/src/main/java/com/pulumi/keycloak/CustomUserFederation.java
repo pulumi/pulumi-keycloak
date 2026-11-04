@@ -170,11 +170,10 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
     /**
      * **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm&#39;s `internalId` differs from its name. This attribute will be removed in a future release.
      * 
-     * @deprecated
-     * Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
+     * @deprecated Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release.
      * 
      */
-    @Deprecated /* Keycloak resolves the parent of realm components automatically, so this attribute no longer needs to be set. It will be removed in a future release. */
+    @Deprecated
     @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output<String> parentId;
 

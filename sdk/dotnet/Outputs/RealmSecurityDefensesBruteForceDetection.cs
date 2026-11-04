@@ -33,7 +33,7 @@ namespace Pulumi.Keycloak.Outputs
         public readonly int? MaxTemporaryLockouts;
         /// <summary>
         /// How long to wait after a quick login failure.
-        /// - `MaxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
+        /// - ` MaxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
         /// </summary>
         public readonly int? MinimumQuickLoginWaitSeconds;
         /// <summary>

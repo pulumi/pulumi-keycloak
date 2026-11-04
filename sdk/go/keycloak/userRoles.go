@@ -187,6 +187,12 @@ func (UserRolesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userRolesState)(nil)).Elem()
 }
 
+// UserRolesExists checks whether an existing UserRoles resource with the given ID exists.
+func UserRolesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserRolesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/userRoles:UserRoles", id, state, "", opts...)
+}
+
 type userRolesArgs struct {
 	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
 	Exhaustive *bool `pulumi:"exhaustive"`

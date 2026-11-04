@@ -164,6 +164,12 @@ func (DefaultRolesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*defaultRolesState)(nil)).Elem()
 }
 
+// DefaultRolesExists checks whether an existing DefaultRoles resource with the given ID exists.
+func DefaultRolesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DefaultRolesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/defaultRoles:DefaultRoles", id, state, "", opts...)
+}
+
 type defaultRolesArgs struct {
 	// Roles assigned to new users by default.
 	DefaultRoles []string `pulumi:"defaultRoles"`

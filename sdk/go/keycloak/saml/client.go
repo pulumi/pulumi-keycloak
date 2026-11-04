@@ -408,6 +408,12 @@ func (ClientState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientState)(nil)).Elem()
 }
 
+// ClientExists checks whether an existing Client resource with the given ID exists.
+func ClientExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:saml/client:Client", id, state, "", opts...)
+}
+
 type clientArgs struct {
 	// Always list this client in the Account UI, even if the user does not have an active session.
 	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`

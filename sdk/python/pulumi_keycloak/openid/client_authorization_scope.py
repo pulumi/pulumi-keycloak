@@ -377,6 +377,22 @@ class ClientAuthorizationScope(pulumi.CustomResource):
         __props__.__dict__["resource_server_id"] = resource_server_id
         return ClientAuthorizationScope(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            icon_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["displayName"] = display_name
+        __props__["iconUri"] = icon_uri
+        __props__["name"] = name
+        __props__["realmId"] = realm_id
+        __props__["resourceServerId"] = resource_server_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[Optional[_builtins.str]]:

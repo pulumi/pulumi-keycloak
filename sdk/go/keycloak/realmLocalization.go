@@ -132,6 +132,12 @@ func (RealmLocalizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmLocalizationState)(nil)).Elem()
 }
 
+// RealmLocalizationExists checks whether an existing RealmLocalization resource with the given ID exists.
+func RealmLocalizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmLocalizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmLocalization:RealmLocalization", id, state, "", opts...)
+}
+
 type realmLocalizationArgs struct {
 	// The locale (language code) the texts apply to.
 	Locale string `pulumi:"locale"`

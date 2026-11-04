@@ -263,6 +263,12 @@ func (GroupMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMapperState)(nil)).Elem()
 }
 
+// GroupMapperExists checks whether an existing GroupMapper resource with the given ID exists.
+func GroupMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/groupMapper:GroupMapper", id, state, "", opts...)
+}
+
 type groupMapperArgs struct {
 	// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
 	DropNonExistingGroupsDuringSync *bool `pulumi:"dropNonExistingGroupsDuringSync"`

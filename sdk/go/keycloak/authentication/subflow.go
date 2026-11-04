@@ -185,6 +185,12 @@ func (SubflowState) ElementType() reflect.Type {
 	return reflect.TypeOf((*subflowState)(nil)).Elem()
 }
 
+// SubflowExists checks whether an existing Subflow resource with the given ID exists.
+func SubflowExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SubflowState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:authentication/subflow:Subflow", id, state, "", opts...)
+}
+
 type subflowArgs struct {
 	// The alias for this authentication subflow.
 	Alias *string `pulumi:"alias"`

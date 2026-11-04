@@ -252,6 +252,12 @@ func (GenericClientAuthorizationPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*genericClientAuthorizationPolicyState)(nil)).Elem()
 }
 
+// GenericClientAuthorizationPolicyExists checks whether an existing GenericClientAuthorizationPolicy resource with the given ID exists.
+func GenericClientAuthorizationPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GenericClientAuthorizationPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy", id, state, "", opts...)
+}
+
 type genericClientAuthorizationPolicyArgs struct {
 	// A map of provider-specific settings, passed through as-is to the policy's
 	// `config` object. This is how a custom Java SPI provider that reads its own settings (connection

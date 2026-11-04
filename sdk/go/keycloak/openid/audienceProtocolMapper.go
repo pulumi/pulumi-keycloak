@@ -238,6 +238,12 @@ func (AudienceProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*audienceProtocolMapperState)(nil)).Elem()
 }
 
+// AudienceProtocolMapperExists checks whether an existing AudienceProtocolMapper resource with the given ID exists.
+func AudienceProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AudienceProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper", id, state, "", opts...)
+}
+
 type audienceProtocolMapperArgs struct {
 	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

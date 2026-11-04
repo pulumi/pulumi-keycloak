@@ -194,6 +194,12 @@ func (BindingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bindingsState)(nil)).Elem()
 }
 
+// BindingsExists checks whether an existing Bindings resource with the given ID exists.
+func BindingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BindingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:authentication/bindings:Bindings", id, state, "", opts...)
+}
+
 type bindingsArgs struct {
 	// The alias of the flow to assign to the realm BrowserFlow.
 	BrowserFlow *string `pulumi:"browserFlow"`

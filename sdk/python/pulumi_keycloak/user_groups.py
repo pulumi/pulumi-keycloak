@@ -315,6 +315,20 @@ class UserGroups(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return UserGroups(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["exhaustive"] = exhaustive
+        __props__["groupIds"] = group_ids
+        __props__["realmId"] = realm_id
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/userGroups:UserGroups', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def exhaustive(self) -> pulumi.Output[Optional[_builtins.bool]]:

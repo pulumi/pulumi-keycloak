@@ -354,6 +354,20 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         __props__.__dict__["service_account_user_id"] = service_account_user_id
         return ClientServiceAccountRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["realmId"] = realm_id
+        __props__["role"] = role
+        __props__["serviceAccountUserId"] = service_account_user_id
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[_builtins.str]:

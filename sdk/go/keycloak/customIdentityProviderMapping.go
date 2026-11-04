@@ -167,6 +167,12 @@ func (CustomIdentityProviderMappingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customIdentityProviderMappingState)(nil)).Elem()
 }
 
+// CustomIdentityProviderMappingExists checks whether an existing CustomIdentityProviderMapping resource with the given ID exists.
+func CustomIdentityProviderMappingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomIdentityProviderMappingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping", id, state, "", opts...)
+}
+
 type customIdentityProviderMappingArgs struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`

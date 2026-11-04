@@ -249,6 +249,12 @@ func (GroupMembershipProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMembershipProtocolMapperState)(nil)).Elem()
 }
 
+// GroupMembershipProtocolMapperExists checks whether an existing GroupMembershipProtocolMapper resource with the given ID exists.
+func GroupMembershipProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupMembershipProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper", id, state, "", opts...)
+}
+
 type groupMembershipProtocolMapperArgs struct {
 	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

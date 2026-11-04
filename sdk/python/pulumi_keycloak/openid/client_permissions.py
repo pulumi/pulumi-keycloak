@@ -439,6 +439,34 @@ class ClientPermissions(pulumi.CustomResource):
         __props__.__dict__["view_scope"] = view_scope
         return ClientPermissions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            configure_scope: pulumi.Input[Optional[Union['ClientPermissionsConfigureScopeArgs', 'ClientPermissionsConfigureScopeArgsDict', 'outputs.ClientPermissionsConfigureScope']]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            manage_scope: pulumi.Input[Optional[Union['ClientPermissionsManageScopeArgs', 'ClientPermissionsManageScopeArgsDict', 'outputs.ClientPermissionsManageScope']]] = None,
+            map_roles_client_scope_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesClientScopeScopeArgs', 'ClientPermissionsMapRolesClientScopeScopeArgsDict', 'outputs.ClientPermissionsMapRolesClientScopeScope']]] = None,
+            map_roles_composite_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict', 'outputs.ClientPermissionsMapRolesCompositeScope']]] = None,
+            map_roles_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict', 'outputs.ClientPermissionsMapRolesScope']]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token_exchange_scope: pulumi.Input[Optional[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict', 'outputs.ClientPermissionsTokenExchangeScope']]] = None,
+            view_scope: pulumi.Input[Optional[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict', 'outputs.ClientPermissionsViewScope']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authorizationResourceServerId"] = authorization_resource_server_id
+        __props__["clientId"] = client_id
+        __props__["configureScope"] = configure_scope
+        __props__["enabled"] = enabled
+        __props__["manageScope"] = manage_scope
+        __props__["mapRolesClientScopeScope"] = map_roles_client_scope_scope
+        __props__["mapRolesCompositeScope"] = map_roles_composite_scope
+        __props__["mapRolesScope"] = map_roles_scope
+        __props__["realmId"] = realm_id
+        __props__["tokenExchangeScope"] = token_exchange_scope
+        __props__["viewScope"] = view_scope
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientPermissions:ClientPermissions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authorizationResourceServerId")
     def authorization_resource_server_id(self) -> pulumi.Output[_builtins.str]:

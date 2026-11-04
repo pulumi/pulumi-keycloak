@@ -246,6 +246,12 @@ func (UsersPermissionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*usersPermissionsState)(nil)).Elem()
 }
 
+// UsersPermissionsExists checks whether an existing UsersPermissions resource with the given ID exists.
+func UsersPermissionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UsersPermissionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/usersPermissions:UsersPermissions", id, state, "", opts...)
+}
+
 type usersPermissionsArgs struct {
 	ImpersonateScope           *UsersPermissionsImpersonateScope           `pulumi:"impersonateScope"`
 	ManageGroupMembershipScope *UsersPermissionsManageGroupMembershipScope `pulumi:"manageGroupMembershipScope"`

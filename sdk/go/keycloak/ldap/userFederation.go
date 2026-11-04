@@ -408,6 +408,12 @@ func (UserFederationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userFederationState)(nil)).Elem()
 }
 
+// UserFederationExists checks whether an existing UserFederation resource with the given ID exists.
+func UserFederationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserFederationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:ldap/userFederation:UserFederation", id, state, "", opts...)
+}
+
 type userFederationArgs struct {
 	// The number of users to sync within a single transaction. Defaults to `1000`.
 	BatchSizeForSync *int `pulumi:"batchSizeForSync"`

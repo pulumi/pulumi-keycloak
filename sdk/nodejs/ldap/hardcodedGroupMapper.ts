@@ -71,6 +71,17 @@ export class HardcodedGroupMapper extends pulumi.CustomResource {
         return new HardcodedGroupMapper(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing HardcodedGroupMapper resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: HardcodedGroupMapperState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper';
 

@@ -261,6 +261,12 @@ func (UserRealmRoleProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userRealmRoleProtocolMapperState)(nil)).Elem()
 }
 
+// UserRealmRoleProtocolMapperExists checks whether an existing UserRealmRoleProtocolMapper resource with the given ID exists.
+func UserRealmRoleProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserRealmRoleProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper", id, state, "", opts...)
+}
+
 type userRealmRoleProtocolMapperArgs struct {
 	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

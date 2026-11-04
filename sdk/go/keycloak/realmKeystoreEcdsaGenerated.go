@@ -145,6 +145,12 @@ func (RealmKeystoreEcdsaGeneratedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmKeystoreEcdsaGeneratedState)(nil)).Elem()
 }
 
+// RealmKeystoreEcdsaGeneratedExists checks whether an existing RealmKeystoreEcdsaGenerated resource with the given ID exists.
+func RealmKeystoreEcdsaGeneratedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmKeystoreEcdsaGeneratedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated", id, state, "", opts...)
+}
+
 type realmKeystoreEcdsaGeneratedArgs struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`

@@ -321,6 +321,12 @@ func (RoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*roleState)(nil)).Elem()
 }
 
+// RoleExists checks whether an existing Role resource with the given ID exists.
+func RoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/role:Role", id, state, "", opts...)
+}
+
 type roleArgs struct {
 	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]string `pulumi:"attributes"`

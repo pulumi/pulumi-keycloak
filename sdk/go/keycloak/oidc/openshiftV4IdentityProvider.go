@@ -271,6 +271,12 @@ func (OpenshiftV4IdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*openshiftV4IdentityProviderState)(nil)).Elem()
 }
 
+// OpenshiftV4IdentityProviderExists checks whether an existing OpenshiftV4IdentityProvider resource with the given ID exists.
+func OpenshiftV4IdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OpenshiftV4IdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:oidc/openshiftV4IdentityProvider:OpenshiftV4IdentityProvider", id, state, "", opts...)
+}
+
 type openshiftV4IdentityProviderArgs struct {
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`

@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * 
  * The username template importer mapper can be used to map externally defined OIDC claims or SAML attributes with a template to the username of the imported Keycloak user:
  * 
- * - Substitutions are enclosed in \${}. For example: &#39;\${ALIAS}.\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+ * - Substitutions are enclosed in &#92;${}. For example: &#39;&#92;${ALIAS}.&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
  * 
  * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extraConfig` argument in order to define a `syncMode` for the mapper.
  * 
@@ -151,14 +151,14 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
         return this.realm;
     }
     /**
-     * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+     * Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
      * 
      */
     @Export(name="template", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> template;
 
     /**
-     * @return Template to use to format the username to import. Substitutions are enclosed in \${}. For example: &#39;\$\${ALIAS}.\$\${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
+     * @return Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
      * 
      */
     public Output<Optional<String>> template() {

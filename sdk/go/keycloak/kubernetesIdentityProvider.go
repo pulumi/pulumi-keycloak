@@ -219,6 +219,12 @@ func (KubernetesIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kubernetesIdentityProviderState)(nil)).Elem()
 }
 
+// KubernetesIdentityProviderExists checks whether an existing KubernetesIdentityProvider resource with the given ID exists.
+func KubernetesIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KubernetesIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider", id, state, "", opts...)
+}
+
 type kubernetesIdentityProviderArgs struct {
 	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`

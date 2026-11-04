@@ -220,6 +220,12 @@ func (SubProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*subProtocolMapperState)(nil)).Elem()
 }
 
+// SubProtocolMapperExists checks whether an existing SubProtocolMapper resource with the given ID exists.
+func SubProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SubProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/subProtocolMapper:SubProtocolMapper", id, state, "", opts...)
+}
+
 type subProtocolMapperArgs struct {
 	// Indicates if the sub claim should be added to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`

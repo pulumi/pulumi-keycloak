@@ -145,6 +145,12 @@ func (UserGroupsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userGroupsState)(nil)).Elem()
 }
 
+// UserGroupsExists checks whether an existing UserGroups resource with the given ID exists.
+func UserGroupsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserGroupsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/userGroups:UserGroups", id, state, "", opts...)
+}
+
 type userGroupsArgs struct {
 	// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
 	Exhaustive *bool `pulumi:"exhaustive"`

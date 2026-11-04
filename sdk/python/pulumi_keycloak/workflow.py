@@ -806,6 +806,32 @@ class Workflow(pulumi.CustomResource):
         __props__.__dict__["steps"] = steps
         return Workflow(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cancel_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+            conditions: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            on: pulumi.Input[Optional[_builtins.str]] = None,
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
+            states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict', 'outputs.WorkflowState']]]]] = None,
+            steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cancelInProgress"] = cancel_in_progress
+        __props__["conditions"] = conditions
+        __props__["enabled"] = enabled
+        __props__["name"] = name
+        __props__["on"] = on
+        __props__["realm"] = realm
+        __props__["restartInProgress"] = restart_in_progress
+        __props__["schedule"] = schedule
+        __props__["states"] = states
+        __props__["steps"] = steps
+        return pulumi.runtime.exists_resource(None, 'keycloak:index/workflow:Workflow', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cancelInProgress")
     def cancel_in_progress(self) -> pulumi.Output[Optional[_builtins.str]]:

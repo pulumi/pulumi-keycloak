@@ -139,6 +139,12 @@ func (RealmDefaultClientScopesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*realmDefaultClientScopesState)(nil)).Elem()
 }
 
+// RealmDefaultClientScopesExists checks whether an existing RealmDefaultClientScopes resource with the given ID exists.
+func RealmDefaultClientScopesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RealmDefaultClientScopesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes", id, state, "", opts...)
+}
+
 type realmDefaultClientScopesArgs struct {
 	// An array of default client scope names that should be used when creating new Keycloak clients.
 	DefaultScopes []string `pulumi:"defaultScopes"`

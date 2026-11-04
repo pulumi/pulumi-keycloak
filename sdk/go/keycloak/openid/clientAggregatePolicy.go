@@ -203,6 +203,12 @@ func (ClientAggregatePolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clientAggregatePolicyState)(nil)).Elem()
 }
 
+// ClientAggregatePolicyExists checks whether an existing ClientAggregatePolicy resource with the given ID exists.
+func ClientAggregatePolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClientAggregatePolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy", id, state, "", opts...)
+}
+
 type clientAggregatePolicyArgs struct {
 	DecisionStrategy string   `pulumi:"decisionStrategy"`
 	Description      *string  `pulumi:"description"`

@@ -185,6 +185,12 @@ func (AttributeImporterIdentityProviderMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*attributeImporterIdentityProviderMapperState)(nil)).Elem()
 }
 
+// AttributeImporterIdentityProviderMapperExists checks whether an existing AttributeImporterIdentityProviderMapper resource with the given ID exists.
+func AttributeImporterIdentityProviderMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AttributeImporterIdentityProviderMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper", id, state, "", opts...)
+}
+
 type attributeImporterIdentityProviderMapperArgs struct {
 	// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
 	AttributeFriendlyName *string `pulumi:"attributeFriendlyName"`

@@ -591,6 +591,32 @@ class ClientAdminPermissions(pulumi.CustomResource):
         __props__.__dict__["scopes"] = scopes
         return ClientAdminPermissions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorization_resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            permission_id: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authorizationResourceServerId"] = authorization_resource_server_id
+        __props__["clientIds"] = client_ids
+        __props__["decisionStrategy"] = decision_strategy
+        __props__["description"] = description
+        __props__["enabled"] = enabled
+        __props__["name"] = name
+        __props__["permissionId"] = permission_id
+        __props__["policies"] = policies
+        __props__["realmId"] = realm_id
+        __props__["scopes"] = scopes
+        return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientAdminPermissions:ClientAdminPermissions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authorizationResourceServerId")
     def authorization_resource_server_id(self) -> pulumi.Output[_builtins.str]:

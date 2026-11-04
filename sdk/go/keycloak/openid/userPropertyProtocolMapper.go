@@ -255,6 +255,12 @@ func (UserPropertyProtocolMapperState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userPropertyProtocolMapperState)(nil)).Elem()
 }
 
+// UserPropertyProtocolMapperExists checks whether an existing UserPropertyProtocolMapper resource with the given ID exists.
+func UserPropertyProtocolMapperExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserPropertyProtocolMapperState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper", id, state, "", opts...)
+}
+
 type userPropertyProtocolMapperArgs struct {
 	// Indicates if the property should be added as a claim to the access token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
