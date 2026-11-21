@@ -174,6 +174,10 @@ export class UserClientRoleProtocolMapper extends pulumi.CustomResource {
      * The realm this protocol mapper exists within.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a UserClientRoleProtocolMapper resource with the given unique name, arguments, and options.
@@ -200,13 +204,11 @@ export class UserClientRoleProtocolMapper extends pulumi.CustomResource {
             resourceInputs["multivalued"] = state?.multivalued;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as UserClientRoleProtocolMapperArgs | undefined;
             if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
@@ -220,6 +222,7 @@ export class UserClientRoleProtocolMapper extends pulumi.CustomResource {
             resourceInputs["multivalued"] = args?.multivalued;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserClientRoleProtocolMapper.__pulumiType, name, resourceInputs, opts);
@@ -278,6 +281,10 @@ export interface UserClientRoleProtocolMapperState {
      * The realm this protocol mapper exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -331,5 +338,9 @@ export interface UserClientRoleProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

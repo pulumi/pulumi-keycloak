@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ClientServiceAccountRoleArgs extends com.pulumi.resources.ResourceArgs {
@@ -33,15 +35,30 @@ public final class ClientServiceAccountRoleArgs extends com.pulumi.resources.Res
      * The realm the clients and roles belong to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm the clients and roles belong to.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -79,6 +96,7 @@ public final class ClientServiceAccountRoleArgs extends com.pulumi.resources.Res
     private ClientServiceAccountRoleArgs(ClientServiceAccountRoleArgs $) {
         this.clientId = $.clientId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.role = $.role;
         this.serviceAccountUserId = $.serviceAccountUserId;
     }
@@ -128,7 +146,7 @@ public final class ClientServiceAccountRoleArgs extends com.pulumi.resources.Res
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -141,6 +159,27 @@ public final class ClientServiceAccountRoleArgs extends com.pulumi.resources.Res
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -188,9 +227,6 @@ public final class ClientServiceAccountRoleArgs extends com.pulumi.resources.Res
         public ClientServiceAccountRoleArgs build() {
             if ($.clientId == null) {
                 throw new MissingRequiredPropertyException("ClientServiceAccountRoleArgs", "clientId");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("ClientServiceAccountRoleArgs", "realmId");
             }
             if ($.role == null) {
                 throw new MissingRequiredPropertyException("ClientServiceAccountRoleArgs", "role");

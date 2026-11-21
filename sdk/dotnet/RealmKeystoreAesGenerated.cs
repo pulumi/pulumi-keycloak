@@ -56,7 +56,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreAesGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -86,6 +86,12 @@ namespace Pulumi.Keycloak
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
         /// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
         /// </summary>
         [Output("secretSize")]
@@ -99,7 +105,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public RealmKeystoreAesGenerated(string name, RealmKeystoreAesGeneratedArgs args, CustomResourceOptions? options = null)
+        public RealmKeystoreAesGenerated(string name, RealmKeystoreAesGeneratedArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated", name, args ?? new RealmKeystoreAesGeneratedArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -138,51 +144,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreAesGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
-        /// </summary>
-        [Input("active")]
-        public Input<bool>? Active { get; set; }
-
-        /// <summary>
-        /// When `False`, key is not accessible in this realm. Defaults to `True`.
-        /// </summary>
-        [Input("enabled")]
-        public Input<bool>? Enabled { get; set; }
-
-        /// <summary>
-        /// Display name of provider when linked in admin console.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// Priority for the provider. Defaults to `0`
-        /// </summary>
-        [Input("priority")]
-        public Input<int>? Priority { get; set; }
-
-        /// <summary>
-        /// The realm this keystore exists in.
-        /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
-
-        /// <summary>
-        /// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
-        /// </summary>
-        [Input("secretSize")]
-        public Input<int>? SecretSize { get; set; }
-
-        public RealmKeystoreAesGeneratedArgs()
-        {
-        }
-        public static new RealmKeystoreAesGeneratedArgs Empty => new RealmKeystoreAesGeneratedArgs();
-    }
-
-    public sealed class RealmKeystoreAesGeneratedState : global::Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -210,6 +172,62 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
+
+        /// <summary>
+        /// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
+        /// </summary>
+        [Input("secretSize")]
+        public Input<int>? SecretSize { get; set; }
+
+        public RealmKeystoreAesGeneratedArgs()
+        {
+        }
+        public static new RealmKeystoreAesGeneratedArgs Empty => new RealmKeystoreAesGeneratedArgs();
+    }
+
+    public sealed class RealmKeystoreAesGeneratedState : global::Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// When `False`, key is not used for signing. Defaults to `True`.
+        /// </summary>
+        [Input("active")]
+        public Input<bool>? Active { get; set; }
+
+        /// <summary>
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// Display name of provider when linked in admin console.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Priority for the provider. Defaults to `0`
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
+        /// The realm this keystore exists in.
+        /// </summary>
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.

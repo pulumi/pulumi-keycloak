@@ -21,19 +21,21 @@ class ClientRegexPolicyArgs:
     def __init__(__self__, *,
                  decision_strategy: pulumi.Input[_builtins.str],
                  pattern: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
                  target_claim: pulumi.Input[_builtins.str],
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ClientRegexPolicy resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "decision_strategy", decision_strategy)
         pulumi.set(__self__, "pattern", pattern)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "resource_server_id", resource_server_id)
         pulumi.set(__self__, "target_claim", target_claim)
         if description is not None:
@@ -42,6 +44,10 @@ class ClientRegexPolicyArgs:
             pulumi.set(__self__, "logic", logic)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if target_context_attributes is not None:
             pulumi.set(__self__, "target_context_attributes", target_context_attributes)
 
@@ -62,15 +68,6 @@ class ClientRegexPolicyArgs:
     @pattern.setter
     def pattern(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "pattern", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
@@ -118,6 +115,27 @@ class ClientRegexPolicyArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="targetContextAttributes")
     def target_context_attributes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "target_context_attributes")
@@ -136,11 +154,14 @@ class _ClientRegexPolicyState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pattern: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  target_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ClientRegexPolicy resources.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
@@ -154,6 +175,8 @@ class _ClientRegexPolicyState:
             pulumi.set(__self__, "pattern", pattern)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id is not None:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if target_claim is not None:
@@ -216,6 +239,18 @@ class _ClientRegexPolicyState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_server_id")
@@ -255,6 +290,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pattern: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  target_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -325,6 +361,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -417,6 +454,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  pattern: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  target_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -438,9 +476,8 @@ class ClientRegexPolicy(pulumi.CustomResource):
             if pattern is None and not opts.urn:
                 raise TypeError("Missing required property 'pattern'")
             __props__.__dict__["pattern"] = pattern
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__.__dict__["resource_server_id"] = resource_server_id
@@ -464,6 +501,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             pattern: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             target_claim: pulumi.Input[Optional[_builtins.str]] = None,
             target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ClientRegexPolicy':
@@ -474,6 +512,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -485,6 +524,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["pattern"] = pattern
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["target_claim"] = target_claim
         __props__.__dict__["target_context_attributes"] = target_context_attributes
@@ -499,6 +539,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             pattern: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             target_claim: pulumi.Input[Optional[_builtins.str]] = None,
             target_context_attributes: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
@@ -509,6 +550,7 @@ class ClientRegexPolicy(pulumi.CustomResource):
         __props__["name"] = name
         __props__["pattern"] = pattern
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["resourceServerId"] = resource_server_id
         __props__["targetClaim"] = target_claim
         __props__["targetContextAttributes"] = target_context_attributes
@@ -543,6 +585,14 @@ class ClientRegexPolicy(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")

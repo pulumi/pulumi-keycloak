@@ -27,7 +27,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, oauth2_jwt_authorization_grant_enabled=None, oauth2_jwt_authorization_grant_idp=None, pkce_code_challenge_method=None, realm_id=None, require_dpop_bound_tokens=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, oauth2_jwt_authorization_grant_enabled=None, oauth2_jwt_authorization_grant_idp=None, pkce_code_challenge_method=None, realm_id=None, realm_internal_id=None, require_dpop_bound_tokens=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -151,6 +151,9 @@ class GetClientResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if require_dpop_bound_tokens and not isinstance(require_dpop_bound_tokens, bool):
             raise TypeError("Expected argument 'require_dpop_bound_tokens' to be a bool")
         pulumi.set(__self__, "require_dpop_bound_tokens", require_dpop_bound_tokens)
@@ -397,6 +400,11 @@ class GetClientResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="requireDpopBoundTokens")
     def require_dpop_bound_tokens(self) -> _builtins.bool:
         return pulumi.get(self, "require_dpop_bound_tokens")
@@ -504,6 +512,7 @@ class AwaitableGetClientResult(GetClientResult):
             oauth2_jwt_authorization_grant_idp=self.oauth2_jwt_authorization_grant_idp,
             pkce_code_challenge_method=self.pkce_code_challenge_method,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             require_dpop_bound_tokens=self.require_dpop_bound_tokens,
             resource_server_id=self.resource_server_id,
             root_url=self.root_url,
@@ -529,6 +538,7 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
                oauth2_jwt_authorization_grant_enabled: Optional[_builtins.bool] = None,
                oauth2_jwt_authorization_grant_idp: Optional[_builtins.str] = None,
                realm_id: Optional[_builtins.str] = None,
+               realm_internal_id: Optional[_builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
@@ -563,6 +573,7 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
     __args__['oauth2JwtAuthorizationGrantEnabled'] = oauth2_jwt_authorization_grant_enabled
     __args__['oauth2JwtAuthorizationGrantIdp'] = oauth2_jwt_authorization_grant_idp
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult).value
 
@@ -608,6 +619,7 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
         oauth2_jwt_authorization_grant_idp=pulumi.get(__ret__, 'oauth2_jwt_authorization_grant_idp'),
         pkce_code_challenge_method=pulumi.get(__ret__, 'pkce_code_challenge_method'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         require_dpop_bound_tokens=pulumi.get(__ret__, 'require_dpop_bound_tokens'),
         resource_server_id=pulumi.get(__ret__, 'resource_server_id'),
         root_url=pulumi.get(__ret__, 'root_url'),
@@ -630,7 +642,8 @@ def get_client_output(always_display_in_console: pulumi.Input[Optional[Optional[
                       oauth2_device_polling_interval: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       oauth2_jwt_authorization_grant_enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                       oauth2_jwt_authorization_grant_idp: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                      realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                      realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientResult]:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
@@ -665,6 +678,7 @@ def get_client_output(always_display_in_console: pulumi.Input[Optional[Optional[
     __args__['oauth2JwtAuthorizationGrantEnabled'] = oauth2_jwt_authorization_grant_enabled
     __args__['oauth2JwtAuthorizationGrantIdp'] = oauth2_jwt_authorization_grant_idp
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
     return __ret__.apply(lambda __response__: GetClientResult(
@@ -709,6 +723,7 @@ def get_client_output(always_display_in_console: pulumi.Input[Optional[Optional[
         oauth2_jwt_authorization_grant_idp=pulumi.get(__response__, 'oauth2_jwt_authorization_grant_idp'),
         pkce_code_challenge_method=pulumi.get(__response__, 'pkce_code_challenge_method'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         require_dpop_bound_tokens=pulumi.get(__response__, 'require_dpop_bound_tokens'),
         resource_server_id=pulumi.get(__response__, 'resource_server_id'),
         root_url=pulumi.get(__response__, 'root_url'),

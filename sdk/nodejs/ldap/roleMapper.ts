@@ -140,6 +140,10 @@ export class RoleMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
      */
     declare public readonly roleNameLdapAttribute: pulumi.Output<string>;
@@ -183,6 +187,7 @@ export class RoleMapper extends pulumi.CustomResource {
             resourceInputs["mode"] = state?.mode;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["roleNameLdapAttribute"] = state?.roleNameLdapAttribute;
             resourceInputs["roleObjectClasses"] = state?.roleObjectClasses;
             resourceInputs["rolesLdapFilter"] = state?.rolesLdapFilter;
@@ -202,9 +207,6 @@ export class RoleMapper extends pulumi.CustomResource {
             if (args?.membershipUserLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.roleNameLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleNameLdapAttribute'");
             }
@@ -221,6 +223,7 @@ export class RoleMapper extends pulumi.CustomResource {
             resourceInputs["mode"] = args?.mode;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["roleNameLdapAttribute"] = args?.roleNameLdapAttribute;
             resourceInputs["roleObjectClasses"] = args?.roleObjectClasses;
             resourceInputs["rolesLdapFilter"] = args?.rolesLdapFilter;
@@ -276,6 +279,10 @@ export interface RoleMapperState {
      * The realm that this LDAP mapper will exist in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
      */
@@ -341,7 +348,11 @@ export interface RoleMapperArgs {
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
      */

@@ -22,7 +22,6 @@ __all__ = ['ClientArgs', 'Client']
 class ClientArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  always_display_in_console: pulumi.Input[Optional[_builtins.bool]] = None,
                  assertion_consumer_post_url: pulumi.Input[Optional[_builtins.str]] = None,
                  assertion_consumer_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -53,6 +52,8 @@ class ClientArgs:
                  master_saml_processing_url: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  root_url: pulumi.Input[Optional[_builtins.str]] = None,
                  sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
                  sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -65,7 +66,6 @@ class ClientArgs:
         The set of arguments for constructing a Client resource.
 
         :param pulumi.Input[_builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[_builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[_builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -96,6 +96,8 @@ class ClientArgs:
         :param pulumi.Input[_builtins.str] master_saml_processing_url: When specified, this URL will be used for all SAML requests.
         :param pulumi.Input[_builtins.str] name: The display name of this client in the GUI.
         :param pulumi.Input[_builtins.str] name_id_format: Sets the Name ID format for the subject.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[_builtins.bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
@@ -106,7 +108,6 @@ class ClientArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         if always_display_in_console is not None:
             pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if assertion_consumer_post_url is not None:
@@ -167,6 +168,10 @@ class ClientArgs:
             pulumi.set(__self__, "name", name)
         if name_id_format is not None:
             pulumi.set(__self__, "name_id_format", name_id_format)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if root_url is not None:
             pulumi.set(__self__, "root_url", root_url)
         if sign_assertions is not None:
@@ -198,18 +203,6 @@ class ClientArgs:
     @client_id.setter
     def client_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this client is attached to.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="alwaysDisplayInConsole")
@@ -572,6 +565,30 @@ class ClientArgs:
         pulumi.set(self, "name_id_format", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this client is attached to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -705,6 +722,7 @@ class _ClientState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  root_url: pulumi.Input[Optional[_builtins.str]] = None,
                  sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
                  sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -751,6 +769,7 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] name: The display name of this client in the GUI.
         :param pulumi.Input[_builtins.str] name_id_format: Sets the Name ID format for the subject.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[_builtins.bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
@@ -828,6 +847,8 @@ class _ClientState:
             pulumi.set(__self__, "name_id_format", name_id_format)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if root_url is not None:
             pulumi.set(__self__, "root_url", root_url)
         if sign_assertions is not None:
@@ -1252,6 +1273,18 @@ class _ClientState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1412,6 +1445,7 @@ class Client(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  root_url: pulumi.Input[Optional[_builtins.str]] = None,
                  sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
                  sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1494,6 +1528,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The display name of this client in the GUI.
         :param pulumi.Input[_builtins.str] name_id_format: Sets the Name ID format for the subject.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[_builtins.bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
@@ -1595,6 +1630,7 @@ class Client(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  root_url: pulumi.Input[Optional[_builtins.str]] = None,
                  sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
                  sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1645,9 +1681,8 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["master_saml_processing_url"] = master_saml_processing_url
             __props__.__dict__["name"] = name
             __props__.__dict__["name_id_format"] = name_id_format
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["root_url"] = root_url
             __props__.__dict__["sign_assertions"] = sign_assertions
             __props__.__dict__["sign_documents"] = sign_documents
@@ -1704,6 +1739,7 @@ class Client(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             root_url: pulumi.Input[Optional[_builtins.str]] = None,
             sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
             sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1754,6 +1790,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The display name of this client in the GUI.
         :param pulumi.Input[_builtins.str] name_id_format: Sets the Name ID format for the subject.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] root_url: When specified, this value is prepended to all relative URLs.
         :param pulumi.Input[_builtins.bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
@@ -1802,6 +1839,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["name_id_format"] = name_id_format
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["root_url"] = root_url
         __props__.__dict__["sign_assertions"] = sign_assertions
         __props__.__dict__["sign_documents"] = sign_documents
@@ -1850,6 +1888,7 @@ class Client(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             name_id_format: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             root_url: pulumi.Input[Optional[_builtins.str]] = None,
             sign_assertions: pulumi.Input[Optional[_builtins.bool]] = None,
             sign_documents: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1894,6 +1933,7 @@ class Client(pulumi.CustomResource):
         __props__["name"] = name
         __props__["nameIdFormat"] = name_id_format
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["rootUrl"] = root_url
         __props__["signAssertions"] = sign_assertions
         __props__["signDocuments"] = sign_documents
@@ -2169,6 +2209,14 @@ class Client(pulumi.CustomResource):
         The realm this client is attached to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="rootUrl")

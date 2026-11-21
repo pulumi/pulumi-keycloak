@@ -141,15 +141,30 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
      * The name of the realm.
      * 
      */
-    @Import(name="realm", required=true)
-    private Output<String> realm;
+    @Import(name="realm")
+    private @Nullable Output<String> realm;
 
     /**
      * @return The name of the realm.
      * 
      */
-    public Output<String> realm() {
-        return this.realm;
+    public Optional<Output<String>> realm() {
+        return Optional.ofNullable(this.realm);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -179,6 +194,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         this.identityProviderAlias = $.identityProviderAlias;
         this.name = $.name;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.role = $.role;
     }
 
@@ -374,7 +390,7 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder realm(Output<String> realm) {
+        public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
@@ -387,6 +403,27 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -413,9 +450,6 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         public AttributeToRoleIdentityMapperArgs build() {
             if ($.identityProviderAlias == null) {
                 throw new MissingRequiredPropertyException("AttributeToRoleIdentityMapperArgs", "identityProviderAlias");
-            }
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("AttributeToRoleIdentityMapperArgs", "realm");
             }
             if ($.role == null) {
                 throw new MissingRequiredPropertyException("AttributeToRoleIdentityMapperArgs", "role");

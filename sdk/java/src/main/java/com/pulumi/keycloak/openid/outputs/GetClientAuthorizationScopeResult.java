@@ -27,6 +27,7 @@ public final class GetClientAuthorizationScopeResult {
     private String id;
     private String name;
     private String realmId;
+    private String realmInternalId;
     private String resourceServerId;
 
     private GetClientAuthorizationScopeResult() {}
@@ -57,6 +58,9 @@ public final class GetClientAuthorizationScopeResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public String resourceServerId() {
         return this.resourceServerId;
     }
@@ -75,6 +79,7 @@ public final class GetClientAuthorizationScopeResult {
         private String id;
         private String name;
         private String realmId;
+        private String realmInternalId;
         private String resourceServerId;
         public Builder() {}
         public Builder(GetClientAuthorizationScopeResult defaults) {
@@ -84,6 +89,7 @@ public final class GetClientAuthorizationScopeResult {
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.resourceServerId = defaults.resourceServerId;
         }
 
@@ -128,6 +134,14 @@ public final class GetClientAuthorizationScopeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationScopeResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
             if (resourceServerId == null) {
               throw new MissingRequiredPropertyException("GetClientAuthorizationScopeResult", "resourceServerId");
@@ -142,6 +156,7 @@ public final class GetClientAuthorizationScopeResult {
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.resourceServerId = resourceServerId;
             return _resultValue;
         }

@@ -87,6 +87,8 @@ type SpiffeIdentityProvider struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrOutput `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
 	// The SPIFFE bundle endpoint or OpenID Connect JWKS endpoint exposing SPIFFE public keys. Depending on your Keycloak Realm `sslRequired` setting, this may need to be an HTTPS URL.
@@ -116,6 +118,8 @@ type SpiffeIdentityProvider struct {
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
 	// Sync Mode
@@ -138,9 +142,6 @@ func NewSpiffeIdentityProvider(ctx *pulumi.Context,
 	}
 	if args.BundleEndpoint == nil {
 		return nil, errors.New("invalid value for required argument 'BundleEndpoint'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	if args.TrustDomain == nil {
 		return nil, errors.New("invalid value for required argument 'TrustDomain'")
@@ -172,6 +173,8 @@ type spiffeIdentityProviderState struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias *string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// The SPIFFE bundle endpoint or OpenID Connect JWKS endpoint exposing SPIFFE public keys. Depending on your Keycloak Realm `sslRequired` setting, this may need to be an HTTPS URL.
@@ -201,6 +204,8 @@ type spiffeIdentityProviderState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken *bool `pulumi:"storeToken"`
 	// Sync Mode
@@ -216,6 +221,8 @@ type SpiffeIdentityProviderState struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringPtrInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// The SPIFFE bundle endpoint or OpenID Connect JWKS endpoint exposing SPIFFE public keys. Depending on your Keycloak Realm `sslRequired` setting, this may need to be an HTTPS URL.
@@ -245,6 +252,8 @@ type SpiffeIdentityProviderState struct {
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken pulumi.BoolPtrInput
 	// Sync Mode
@@ -270,6 +279,8 @@ type spiffeIdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// The SPIFFE bundle endpoint or OpenID Connect JWKS endpoint exposing SPIFFE public keys. Depending on your Keycloak Realm `sslRequired` setting, this may need to be an HTTPS URL.
@@ -294,7 +305,9 @@ type spiffeIdentityProviderArgs struct {
 	// Provider ID, is always spiffe.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken *bool `pulumi:"storeToken"`
 	// Sync Mode
@@ -311,6 +324,8 @@ type SpiffeIdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// The SPIFFE bundle endpoint or OpenID Connect JWKS endpoint exposing SPIFFE public keys. Depending on your Keycloak Realm `sslRequired` setting, this may need to be an HTTPS URL.
@@ -335,7 +350,9 @@ type SpiffeIdentityProviderArgs struct {
 	// Provider ID, is always spiffe.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken pulumi.BoolPtrInput
 	// Sync Mode
@@ -443,6 +460,11 @@ func (o SpiffeIdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *SpiffeIdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
+// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+func (o SpiffeIdentityProviderOutput) AllowAdminRoleMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SpiffeIdentityProvider) pulumi.BoolPtrOutput { return v.AllowAdminRoleMapping }).(pulumi.BoolPtrOutput)
+}
+
 // Enable/disable authenticate users by default.
 func (o SpiffeIdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SpiffeIdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
@@ -518,6 +540,11 @@ func (o SpiffeIdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 // The name of the realm. This is unique across Keycloak.
 func (o SpiffeIdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *SpiffeIdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o SpiffeIdentityProviderOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SpiffeIdentityProvider) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Enable/disable if tokens must be stored after authenticating users.

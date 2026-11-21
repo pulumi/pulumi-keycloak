@@ -75,6 +75,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the role that is assigned.
         /// </summary>
         [Output("role")]
@@ -135,8 +141,14 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm that the client and role belong to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The name of the role that is assigned.
@@ -163,6 +175,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The name of the role that is assigned.

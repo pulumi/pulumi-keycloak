@@ -36,7 +36,8 @@ type LookupGenericProtocolMapperArgs struct {
 	// The name of the protocol mapper to look up.
 	Name string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getGenericProtocolMapper.
@@ -51,8 +52,9 @@ type LookupGenericProtocolMapperResult struct {
 	// The protocol of the mapper (e.g., `openid-connect` or `saml`).
 	Protocol string `pulumi:"protocol"`
 	// The type of the protocol mapper (e.g., `oidc-organization-membership-mapper`).
-	ProtocolMapper string `pulumi:"protocolMapper"`
-	RealmId        string `pulumi:"realmId"`
+	ProtocolMapper  string `pulumi:"protocolMapper"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 }
 
 func LookupGenericProtocolMapperOutput(ctx *pulumi.Context, args LookupGenericProtocolMapperOutputArgs, opts ...pulumi.InvokeOption) LookupGenericProtocolMapperResultOutput {
@@ -71,7 +73,8 @@ type LookupGenericProtocolMapperOutputArgs struct {
 	// The name of the protocol mapper to look up.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupGenericProtocolMapperOutputArgs) ElementType() reflect.Type {
@@ -127,6 +130,10 @@ func (o LookupGenericProtocolMapperResultOutput) ProtocolMapper() pulumi.StringO
 
 func (o LookupGenericProtocolMapperResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGenericProtocolMapperResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupGenericProtocolMapperResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGenericProtocolMapperResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func init() {

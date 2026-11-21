@@ -216,7 +216,8 @@ type LookupClientAuthorizationScopeArgs struct {
 	// The name of the authorization scope to look up.
 	Name string `pulumi:"name"`
 	// The realm this authorization scope exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the resource server (client) this authorization scope belongs to.
 	ResourceServerId string `pulumi:"resourceServerId"`
 }
@@ -231,6 +232,7 @@ type LookupClientAuthorizationScopeResult struct {
 	Id               string `pulumi:"id"`
 	Name             string `pulumi:"name"`
 	RealmId          string `pulumi:"realmId"`
+	RealmInternalId  string `pulumi:"realmInternalId"`
 	ResourceServerId string `pulumi:"resourceServerId"`
 }
 
@@ -244,7 +246,8 @@ type LookupClientAuthorizationScopeOutputArgs struct {
 	// The name of the authorization scope to look up.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm this authorization scope exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 	// The ID of the resource server (client) this authorization scope belongs to.
 	ResourceServerId pulumi.StringInput `pulumi:"resourceServerId"`
 }
@@ -289,6 +292,10 @@ func (o LookupClientAuthorizationScopeResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupClientAuthorizationScopeResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientAuthorizationScopeResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientAuthorizationScopeResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientAuthorizationScopeResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupClientAuthorizationScopeResultOutput) ResourceServerId() pulumi.StringOutput {

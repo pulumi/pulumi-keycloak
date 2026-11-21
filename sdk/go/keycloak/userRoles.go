@@ -117,6 +117,8 @@ type UserRoles struct {
 	Exhaustive pulumi.BoolPtrOutput `pulumi:"exhaustive"`
 	// The realm this user exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// A list of role IDs to map to the user
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 	// The ID of the user this resource should manage roles for.
@@ -130,9 +132,6 @@ func NewUserRoles(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.RoleIds == nil {
 		return nil, errors.New("invalid value for required argument 'RoleIds'")
 	}
@@ -166,6 +165,8 @@ type userRolesState struct {
 	Exhaustive *bool `pulumi:"exhaustive"`
 	// The realm this user exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A list of role IDs to map to the user
 	RoleIds []string `pulumi:"roleIds"`
 	// The ID of the user this resource should manage roles for.
@@ -177,6 +178,8 @@ type UserRolesState struct {
 	Exhaustive pulumi.BoolPtrInput
 	// The realm this user exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A list of role IDs to map to the user
 	RoleIds pulumi.StringArrayInput
 	// The ID of the user this resource should manage roles for.
@@ -197,7 +200,9 @@ type userRolesArgs struct {
 	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
 	Exhaustive *bool `pulumi:"exhaustive"`
 	// The realm this user exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A list of role IDs to map to the user
 	RoleIds []string `pulumi:"roleIds"`
 	// The ID of the user this resource should manage roles for.
@@ -209,7 +214,9 @@ type UserRolesArgs struct {
 	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
 	Exhaustive pulumi.BoolPtrInput
 	// The realm this user exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A list of role IDs to map to the user
 	RoleIds pulumi.StringArrayInput
 	// The ID of the user this resource should manage roles for.
@@ -311,6 +318,11 @@ func (o UserRolesOutput) Exhaustive() pulumi.BoolPtrOutput {
 // The realm this user exists in.
 func (o UserRolesOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserRolesOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRoles) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // A list of role IDs to map to the user

@@ -124,6 +124,10 @@ export class Organization extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      */
     declare public readonly redirectUrl: pulumi.Output<string | undefined>;
@@ -135,7 +139,7 @@ export class Organization extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: OrganizationArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: OrganizationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OrganizationArgs | OrganizationState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -148,12 +152,10 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["name"] = state?.name;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["redirectUrl"] = state?.redirectUrl;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["alias"] = args?.alias;
             resourceInputs["attributes"] = args?.attributes;
             resourceInputs["description"] = args?.description;
@@ -161,6 +163,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["redirectUrl"] = args?.redirectUrl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -201,6 +204,10 @@ export interface OrganizationState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      */
     redirectUrl?: pulumi.Input<string | undefined>;
@@ -237,7 +244,11 @@ export interface OrganizationArgs {
     /**
      * The realm this organization exists in.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      */

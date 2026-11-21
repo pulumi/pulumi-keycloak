@@ -21,27 +21,46 @@ class ExecutionConfigArgs:
     def __init__(__self__, *,
                  config: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  execution_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
-                 alias: pulumi.Input[Optional[_builtins.str]] = None):
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExecutionConfig resource.
 
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+               
+               > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+               as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+               properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+               the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+               Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+               After an import, the masked value is stored in state until the next apply.
         :param pulumi.Input[_builtins.str] execution_id: The authentication execution this configuration is attached to.
-        :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[_builtins.str] alias: The name of the configuration.
+        :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "execution_id", execution_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
     def config(self) -> pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]:
         """
         The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+
+        > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+        as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+        properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+        the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+        Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+        After an import, the masked value is stored in state until the next apply.
         """
         return pulumi.get(self, "config")
 
@@ -62,18 +81,6 @@ class ExecutionConfigArgs:
         pulumi.set(self, "execution_id", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm the authentication execution exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -85,6 +92,30 @@ class ExecutionConfigArgs:
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm the authentication execution exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _ExecutionConfigState:
@@ -92,14 +123,23 @@ class _ExecutionConfigState:
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  execution_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExecutionConfig resources.
 
         :param pulumi.Input[_builtins.str] alias: The name of the configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+               
+               > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+               as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+               properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+               the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+               Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+               After an import, the masked value is stored in state until the next apply.
         :param pulumi.Input[_builtins.str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -109,6 +149,8 @@ class _ExecutionConfigState:
             pulumi.set(__self__, "execution_id", execution_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -127,6 +169,13 @@ class _ExecutionConfigState:
     def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+
+        > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+        as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+        properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+        the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+        Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+        After an import, the masked value is stored in state until the next apply.
         """
         return pulumi.get(self, "config")
 
@@ -158,6 +207,18 @@ class _ExecutionConfigState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:authentication/executionConfig:ExecutionConfig")
 class ExecutionConfig(pulumi.CustomResource):
@@ -169,6 +230,7 @@ class ExecutionConfig(pulumi.CustomResource):
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  execution_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for managing an authentication execution's configuration. If a particular authentication execution supports additional
@@ -216,8 +278,16 @@ class ExecutionConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The name of the configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+               
+               > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+               as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+               properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+               the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+               Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+               After an import, the masked value is stored in state until the next apply.
         :param pulumi.Input[_builtins.str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -286,6 +356,7 @@ class ExecutionConfig(pulumi.CustomResource):
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  execution_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -302,9 +373,8 @@ class ExecutionConfig(pulumi.CustomResource):
             if execution_id is None and not opts.urn:
                 raise TypeError("Missing required property 'execution_id'")
             __props__.__dict__["execution_id"] = execution_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(ExecutionConfig, __self__).__init__(
             'keycloak:authentication/executionConfig:ExecutionConfig',
             resource_name,
@@ -318,7 +388,8 @@ class ExecutionConfig(pulumi.CustomResource):
             alias: pulumi.Input[Optional[_builtins.str]] = None,
             config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             execution_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ExecutionConfig':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ExecutionConfig':
         """
         Get an existing ExecutionConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -328,8 +399,16 @@ class ExecutionConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The name of the configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+               
+               > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+               as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+               properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+               the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+               Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+               After an import, the masked value is stored in state until the next apply.
         :param pulumi.Input[_builtins.str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -339,6 +418,7 @@ class ExecutionConfig(pulumi.CustomResource):
         __props__.__dict__["config"] = config
         __props__.__dict__["execution_id"] = execution_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return ExecutionConfig(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -347,12 +427,14 @@ class ExecutionConfig(pulumi.CustomResource):
             alias: pulumi.Input[Optional[_builtins.str]] = None,
             config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             execution_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["alias"] = alias
         __props__["config"] = config
         __props__["executionId"] = execution_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:authentication/executionConfig:ExecutionConfig', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -368,6 +450,13 @@ class ExecutionConfig(pulumi.CustomResource):
     def config(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
         The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+
+        > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+        as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+        properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+        the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+        Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+        After an import, the masked value is stored in state until the next apply.
         """
         return pulumi.get(self, "config")
 
@@ -386,4 +475,12 @@ class ExecutionConfig(pulumi.CustomResource):
         The realm the authentication execution exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

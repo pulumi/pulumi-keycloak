@@ -88,7 +88,8 @@ type GetClientServiceAccountUserArgs struct {
 	// The ID of the OpenID client with service accounts enabled.
 	ClientId string `pulumi:"clientId"`
 	// The realm that the OpenID client exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getClientServiceAccountUser.
@@ -110,6 +111,7 @@ type GetClientServiceAccountUserResult struct {
 	// (Computed) The service account user's last name.
 	LastName        string   `pulumi:"lastName"`
 	RealmId         string   `pulumi:"realmId"`
+	RealmInternalId string   `pulumi:"realmInternalId"`
 	RequiredActions []string `pulumi:"requiredActions"`
 	// (Computed) The service account user's username.
 	Username string `pulumi:"username"`
@@ -125,7 +127,8 @@ type GetClientServiceAccountUserOutputArgs struct {
 	// The ID of the OpenID client with service accounts enabled.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// The realm that the OpenID client exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (GetClientServiceAccountUserOutputArgs) ElementType() reflect.Type {
@@ -194,6 +197,10 @@ func (o GetClientServiceAccountUserResultOutput) LastName() pulumi.StringOutput 
 
 func (o GetClientServiceAccountUserResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o GetClientServiceAccountUserResultOutput) RequiredActions() pulumi.StringArrayOutput {

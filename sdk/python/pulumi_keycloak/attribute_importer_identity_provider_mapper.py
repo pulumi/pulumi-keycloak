@@ -20,27 +20,28 @@ __all__ = ['AttributeImporterIdentityProviderMapperArgs', 'AttributeImporterIden
 class AttributeImporterIdentityProviderMapperArgs:
     def __init__(__self__, *,
                  identity_provider_alias: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  user_attribute: pulumi.Input[_builtins.str],
                  attribute_friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
                  attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
                  claim_name: pulumi.Input[Optional[_builtins.str]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AttributeImporterIdentityProviderMapper resource.
 
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
-        :param pulumi.Input[_builtins.str] realm: The name of the realm.
         :param pulumi.Input[_builtins.str] user_attribute: The user attribute or property name to store the mapped result.
         :param pulumi.Input[_builtins.str] attribute_friendly_name: For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
         :param pulumi.Input[_builtins.str] attribute_name: For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
         :param pulumi.Input[_builtins.str] claim_name: For OIDC based providers, this is the name of the claim to use.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
+        :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
         pulumi.set(__self__, "user_attribute", user_attribute)
         if attribute_friendly_name is not None:
             pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
@@ -52,6 +53,10 @@ class AttributeImporterIdentityProviderMapperArgs:
             pulumi.set(__self__, "extra_config", extra_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="identityProviderAlias")
@@ -64,18 +69,6 @@ class AttributeImporterIdentityProviderMapperArgs:
     @identity_provider_alias.setter
     def identity_provider_alias(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "identity_provider_alias", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the realm.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="userAttribute")
@@ -149,6 +142,30 @@ class AttributeImporterIdentityProviderMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the realm.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _AttributeImporterIdentityProviderMapperState:
@@ -160,6 +177,7 @@ class _AttributeImporterIdentityProviderMapperState:
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_attribute: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AttributeImporterIdentityProviderMapper resources.
@@ -171,6 +189,7 @@ class _AttributeImporterIdentityProviderMapperState:
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_attribute: The user attribute or property name to store the mapped result.
         """
         if attribute_friendly_name is not None:
@@ -187,6 +206,8 @@ class _AttributeImporterIdentityProviderMapperState:
             pulumi.set(__self__, "name", name)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if user_attribute is not None:
             pulumi.set(__self__, "user_attribute", user_attribute)
 
@@ -275,6 +296,18 @@ class _AttributeImporterIdentityProviderMapperState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="userAttribute")
     def user_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -300,6 +333,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -361,6 +395,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_attribute: The user attribute or property name to store the mapped result.
         """
         ...
@@ -441,6 +476,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -459,9 +495,8 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__.__dict__["identity_provider_alias"] = identity_provider_alias
             __props__.__dict__["name"] = name
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if user_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'user_attribute'")
             __props__.__dict__["user_attribute"] = user_attribute
@@ -482,6 +517,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> 'AttributeImporterIdentityProviderMapper':
         """
         Get an existing AttributeImporterIdentityProviderMapper resource's state with the given name, id, and optional extra
@@ -497,6 +533,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_attribute: The user attribute or property name to store the mapped result.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -510,6 +547,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         __props__.__dict__["identity_provider_alias"] = identity_provider_alias
         __props__.__dict__["name"] = name
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["user_attribute"] = user_attribute
         return AttributeImporterIdentityProviderMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -523,6 +561,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["attributeFriendlyName"] = attribute_friendly_name
@@ -532,6 +571,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         __props__["identityProviderAlias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["userAttribute"] = user_attribute
         return pulumi.runtime.exists_resource(None, 'keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -590,6 +630,14 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         The name of the realm.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="userAttribute")

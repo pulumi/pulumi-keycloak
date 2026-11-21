@@ -25,6 +25,7 @@ public final class GetRealmKeysResult {
      */
     private List<GetRealmKeysKey> keys;
     private String realmId;
+    private String realmInternalId;
     /**
      * @return Key status (string)
      * 
@@ -52,6 +53,9 @@ public final class GetRealmKeysResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     /**
      * @return Key status (string)
      * 
@@ -73,6 +77,7 @@ public final class GetRealmKeysResult {
         private String id;
         private List<GetRealmKeysKey> keys;
         private String realmId;
+        private String realmInternalId;
         private @Nullable List<String> statuses;
         public Builder() {}
         public Builder(GetRealmKeysResult defaults) {
@@ -81,6 +86,7 @@ public final class GetRealmKeysResult {
     	      this.id = defaults.id;
     	      this.keys = defaults.keys;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.statuses = defaults.statuses;
         }
 
@@ -121,6 +127,14 @@ public final class GetRealmKeysResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder statuses(@Nullable List<String> statuses) {
 
             this.statuses = statuses;
@@ -135,6 +149,7 @@ public final class GetRealmKeysResult {
             _resultValue.id = id;
             _resultValue.keys = keys;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.statuses = statuses;
             return _resultValue;
         }

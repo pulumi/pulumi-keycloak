@@ -128,12 +128,14 @@ import (
 type ClientRolePolicy struct {
 	pulumi.CustomResourceState
 
-	DecisionStrategy pulumi.StringPtrOutput          `pulumi:"decisionStrategy"`
-	Description      pulumi.StringPtrOutput          `pulumi:"description"`
-	FetchRoles       pulumi.BoolPtrOutput            `pulumi:"fetchRoles"`
-	Logic            pulumi.StringPtrOutput          `pulumi:"logic"`
-	Name             pulumi.StringOutput             `pulumi:"name"`
-	RealmId          pulumi.StringOutput             `pulumi:"realmId"`
+	DecisionStrategy pulumi.StringPtrOutput `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput `pulumi:"description"`
+	FetchRoles       pulumi.BoolPtrOutput   `pulumi:"fetchRoles"`
+	Logic            pulumi.StringPtrOutput `pulumi:"logic"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	RealmId          pulumi.StringOutput    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput             `pulumi:"realmInternalId"`
 	ResourceServerId pulumi.StringOutput             `pulumi:"resourceServerId"`
 	Roles            ClientRolePolicyRoleArrayOutput `pulumi:"roles"`
 	Type             pulumi.StringOutput             `pulumi:"type"`
@@ -146,9 +148,6 @@ func NewClientRolePolicy(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
@@ -181,12 +180,14 @@ func GetClientRolePolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientRolePolicy resources.
 type clientRolePolicyState struct {
-	DecisionStrategy *string                `pulumi:"decisionStrategy"`
-	Description      *string                `pulumi:"description"`
-	FetchRoles       *bool                  `pulumi:"fetchRoles"`
-	Logic            *string                `pulumi:"logic"`
-	Name             *string                `pulumi:"name"`
-	RealmId          *string                `pulumi:"realmId"`
+	DecisionStrategy *string `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	FetchRoles       *bool   `pulumi:"fetchRoles"`
+	Logic            *string `pulumi:"logic"`
+	Name             *string `pulumi:"name"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string                `pulumi:"realmInternalId"`
 	ResourceServerId *string                `pulumi:"resourceServerId"`
 	Roles            []ClientRolePolicyRole `pulumi:"roles"`
 	Type             *string                `pulumi:"type"`
@@ -199,6 +200,8 @@ type ClientRolePolicyState struct {
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 	Roles            ClientRolePolicyRoleArrayInput
 	Type             pulumi.StringPtrInput
@@ -215,12 +218,14 @@ func ClientRolePolicyExists(ctx *pulumi.Context,
 }
 
 type clientRolePolicyArgs struct {
-	DecisionStrategy *string                `pulumi:"decisionStrategy"`
-	Description      *string                `pulumi:"description"`
-	FetchRoles       *bool                  `pulumi:"fetchRoles"`
-	Logic            *string                `pulumi:"logic"`
-	Name             *string                `pulumi:"name"`
-	RealmId          string                 `pulumi:"realmId"`
+	DecisionStrategy *string `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	FetchRoles       *bool   `pulumi:"fetchRoles"`
+	Logic            *string `pulumi:"logic"`
+	Name             *string `pulumi:"name"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string                `pulumi:"realmInternalId"`
 	ResourceServerId string                 `pulumi:"resourceServerId"`
 	Roles            []ClientRolePolicyRole `pulumi:"roles"`
 	Type             string                 `pulumi:"type"`
@@ -233,7 +238,9 @@ type ClientRolePolicyArgs struct {
 	FetchRoles       pulumi.BoolPtrInput
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
-	RealmId          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringInput
 	Roles            ClientRolePolicyRoleArrayInput
 	Type             pulumi.StringInput
@@ -348,6 +355,11 @@ func (o ClientRolePolicyOutput) Name() pulumi.StringOutput {
 
 func (o ClientRolePolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientRolePolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientRolePolicyOutput) ResourceServerId() pulumi.StringOutput {

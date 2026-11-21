@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -66,7 +65,7 @@ import (
 type RealmKeystoreHmacGenerated struct {
 	pulumi.CustomResourceState
 
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `HS256`
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
@@ -78,6 +77,8 @@ type RealmKeystoreHmacGenerated struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Size in bytes for the generated secret. Defaults to `64`.
 	SecretSize pulumi.IntPtrOutput `pulumi:"secretSize"`
 }
@@ -86,12 +87,9 @@ type RealmKeystoreHmacGenerated struct {
 func NewRealmKeystoreHmacGenerated(ctx *pulumi.Context,
 	name string, args *RealmKeystoreHmacGeneratedArgs, opts ...pulumi.ResourceOption) (*RealmKeystoreHmacGenerated, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmKeystoreHmacGeneratedArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreHmacGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated", name, args, &resource, opts...)
@@ -115,7 +113,7 @@ func GetRealmKeystoreHmacGenerated(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmKeystoreHmacGenerated resources.
 type realmKeystoreHmacGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `HS256`
 	Algorithm *string `pulumi:"algorithm"`
@@ -127,12 +125,14 @@ type realmKeystoreHmacGeneratedState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Size in bytes for the generated secret. Defaults to `64`.
 	SecretSize *int `pulumi:"secretSize"`
 }
 
 type RealmKeystoreHmacGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `HS256`
 	Algorithm pulumi.StringPtrInput
@@ -144,6 +144,8 @@ type RealmKeystoreHmacGeneratedState struct {
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Size in bytes for the generated secret. Defaults to `64`.
 	SecretSize pulumi.IntPtrInput
 }
@@ -159,7 +161,7 @@ func RealmKeystoreHmacGeneratedExists(ctx *pulumi.Context,
 }
 
 type realmKeystoreHmacGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `HS256`
 	Algorithm *string `pulumi:"algorithm"`
@@ -170,14 +172,16 @@ type realmKeystoreHmacGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Size in bytes for the generated secret. Defaults to `64`.
 	SecretSize *int `pulumi:"secretSize"`
 }
 
 // The set of arguments for constructing a RealmKeystoreHmacGenerated resource.
 type RealmKeystoreHmacGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `HS256`
 	Algorithm pulumi.StringPtrInput
@@ -188,7 +192,9 @@ type RealmKeystoreHmacGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Size in bytes for the generated secret. Defaults to `64`.
 	SecretSize pulumi.IntPtrInput
 }
@@ -280,7 +286,7 @@ func (o RealmKeystoreHmacGeneratedOutput) ToRealmKeystoreHmacGeneratedOutputWith
 	return o
 }
 
-// When `false`, key in not used for signing. Defaults to `true`.
+// When `false`, key is not used for signing. Defaults to `true`.
 func (o RealmKeystoreHmacGeneratedOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -308,6 +314,11 @@ func (o RealmKeystoreHmacGeneratedOutput) Priority() pulumi.IntPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreHmacGeneratedOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreHmacGeneratedOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreHmacGenerated) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Size in bytes for the generated secret. Defaults to `64`.

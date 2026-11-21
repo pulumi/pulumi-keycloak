@@ -195,6 +195,20 @@ public class Subflow extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.
      * 

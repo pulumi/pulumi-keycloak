@@ -20,22 +20,31 @@ __all__ = ['GroupRolesArgs', 'GroupRoles']
 class GroupRolesArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  role_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None):
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupRoles resource.
 
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage roles for.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the group.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] organization_id: The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "role_ids", role_ids)
         if exhaustive is not None:
             pulumi.set(__self__, "exhaustive", exhaustive)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
@@ -48,18 +57,6 @@ class GroupRolesArgs:
     @group_id.setter
     def group_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "group_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this group exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleIds")
@@ -85,28 +82,72 @@ class GroupRolesArgs:
     def exhaustive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exhaustive", value)
 
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this group exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _GroupRolesState:
     def __init__(__self__, *,
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering GroupRoles resources.
 
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage roles for.
+        :param pulumi.Input[_builtins.str] organization_id: The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the group.
         """
         if exhaustive is not None:
             pulumi.set(__self__, "exhaustive", exhaustive)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role_ids is not None:
             pulumi.set(__self__, "role_ids", role_ids)
 
@@ -135,6 +176,18 @@ class _GroupRolesState:
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -145,6 +198,18 @@ class _GroupRolesState:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleIds")
@@ -167,7 +232,9 @@ class GroupRoles(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -257,16 +324,51 @@ class GroupRoles(pulumi.CustomResource):
             role_ids=[client_role.id])
         ```
 
+        ## Organization Group Example
+
+        Organization group role assignments require Keycloak 26.7 or newer. Set `organizations_enabled = true` on the
+        `keycloak_realm.realm` resource before applying this example. This example uses the realm and realm role defined above.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        organization = keycloak.Organization("organization",
+            realm=realm["id"],
+            name="my-organization",
+            domains=[{
+                "name": "organization.example.com",
+            }])
+        organization_group = keycloak.Group("organization_group",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            name="my-organization-group")
+        organization_group_roles = keycloak.GroupRoles("organization_group_roles",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            group_id=organization_group.id,
+            role_ids=[realm_role["id"]])
+        ```
+
         ## Import
 
-        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+        organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`. Here, `group_id` is the unique ID that Keycloak
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
         a GUID.
 
-        Example:
+        Examples:
+
+        realm-level group
 
         ```sh
         $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        ```
+
+        organization-scoped group
+
+        ```sh
+        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
         ```
 
 
@@ -274,7 +376,9 @@ class GroupRoles(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage roles for.
+        :param pulumi.Input[_builtins.str] organization_id: The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the group.
         """
         ...
@@ -370,16 +474,51 @@ class GroupRoles(pulumi.CustomResource):
             role_ids=[client_role.id])
         ```
 
+        ## Organization Group Example
+
+        Organization group role assignments require Keycloak 26.7 or newer. Set `organizations_enabled = true` on the
+        `keycloak_realm.realm` resource before applying this example. This example uses the realm and realm role defined above.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        organization = keycloak.Organization("organization",
+            realm=realm["id"],
+            name="my-organization",
+            domains=[{
+                "name": "organization.example.com",
+            }])
+        organization_group = keycloak.Group("organization_group",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            name="my-organization-group")
+        organization_group_roles = keycloak.GroupRoles("organization_group_roles",
+            realm_id=realm["id"],
+            organization_id=organization.id,
+            group_id=organization_group.id,
+            role_ids=[realm_role["id"]])
+        ```
+
         ## Import
 
-        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+        organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`. Here, `group_id` is the unique ID that Keycloak
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
         a GUID.
 
-        Example:
+        Examples:
+
+        realm-level group
 
         ```sh
         $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        ```
+
+        organization-scoped group
+
+        ```sh
+        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
         ```
 
 
@@ -400,7 +539,9 @@ class GroupRoles(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -415,9 +556,9 @@ class GroupRoles(pulumi.CustomResource):
             if group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'group_id'")
             __props__.__dict__["group_id"] = group_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if role_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'role_ids'")
             __props__.__dict__["role_ids"] = role_ids
@@ -433,7 +574,9 @@ class GroupRoles(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
             group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'GroupRoles':
         """
         Get an existing GroupRoles resource's state with the given name, id, and optional extra
@@ -444,7 +587,9 @@ class GroupRoles(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage roles for.
+        :param pulumi.Input[_builtins.str] organization_id: The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -453,7 +598,9 @@ class GroupRoles(pulumi.CustomResource):
 
         __props__.__dict__["exhaustive"] = exhaustive
         __props__.__dict__["group_id"] = group_id
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["role_ids"] = role_ids
         return GroupRoles(resource_name, opts=opts, __props__=__props__)
 
@@ -462,12 +609,16 @@ class GroupRoles(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
             group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["exhaustive"] = exhaustive
         __props__["groupId"] = group_id
+        __props__["organizationId"] = organization_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["roleIds"] = role_ids
         return pulumi.runtime.exists_resource(None, 'keycloak:index/groupRoles:GroupRoles', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -488,12 +639,28 @@ class GroupRoles(pulumi.CustomResource):
         return pulumi.get(self, "group_id")
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         """
         The realm this group exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="roleIds")

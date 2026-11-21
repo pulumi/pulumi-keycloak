@@ -30,6 +30,7 @@ export function getWorkflow(args: GetWorkflowArgs, opts?: pulumi.InvokeOptions):
     return pulumi.runtime.invoke("keycloak:index/getWorkflow:getWorkflow", {
         "name": args.name,
         "realm": args.realm,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -44,7 +45,8 @@ export interface GetWorkflowArgs {
     /**
      * The name of the realm this workflow exists within.
      */
-    realm: string;
+    realm?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -61,6 +63,7 @@ export interface GetWorkflowResult {
     readonly name: string;
     readonly on: string;
     readonly realm: string;
+    readonly realmInternalId: string;
     readonly restartInProgress: string;
     readonly schedules: outputs.GetWorkflowSchedule[];
     readonly states: outputs.GetWorkflowState[];
@@ -90,6 +93,7 @@ export function getWorkflowOutput(args: GetWorkflowOutputArgs, opts?: pulumi.Inv
     return pulumi.runtime.invokeOutput("keycloak:index/getWorkflow:getWorkflow", {
         "name": args.name,
         "realm": args.realm,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -104,5 +108,6 @@ export interface GetWorkflowOutputArgs {
     /**
      * The name of the realm this workflow exists within.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

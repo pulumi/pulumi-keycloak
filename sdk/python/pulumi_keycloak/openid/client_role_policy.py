@@ -21,7 +21,6 @@ __all__ = ['ClientRolePolicyArgs', 'ClientRolePolicy']
 @pulumi.input_type
 class ClientRolePolicyArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
                  roles: pulumi.Input[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]],
                  type: pulumi.Input[_builtins.str],
@@ -29,11 +28,14 @@ class ClientRolePolicyArgs:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  fetch_roles: pulumi.Input[Optional[_builtins.bool]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientRolePolicy resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "resource_server_id", resource_server_id)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "type", type)
@@ -47,15 +49,10 @@ class ClientRolePolicyArgs:
             pulumi.set(__self__, "logic", logic)
         if name is not None:
             pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
@@ -129,6 +126,27 @@ class ClientRolePolicyArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _ClientRolePolicyState:
@@ -139,11 +157,14 @@ class _ClientRolePolicyState:
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input['ClientRolePolicyRoleArgs']]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientRolePolicy resources.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
@@ -157,6 +178,8 @@ class _ClientRolePolicyState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id is not None:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if roles is not None:
@@ -219,6 +242,18 @@ class _ClientRolePolicyState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_server_id")
@@ -258,6 +293,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -347,6 +383,7 @@ class ClientRolePolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -458,6 +495,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -475,9 +513,8 @@ class ClientRolePolicy(pulumi.CustomResource):
             __props__.__dict__["fetch_roles"] = fetch_roles
             __props__.__dict__["logic"] = logic
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__.__dict__["resource_server_id"] = resource_server_id
@@ -503,6 +540,7 @@ class ClientRolePolicy(pulumi.CustomResource):
             logic: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientRolePolicy':
@@ -513,6 +551,7 @@ class ClientRolePolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -524,6 +563,7 @@ class ClientRolePolicy(pulumi.CustomResource):
         __props__.__dict__["logic"] = logic
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["roles"] = roles
         __props__.__dict__["type"] = type
@@ -538,6 +578,7 @@ class ClientRolePolicy(pulumi.CustomResource):
             logic: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict', 'outputs.ClientRolePolicyRole']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
@@ -548,6 +589,7 @@ class ClientRolePolicy(pulumi.CustomResource):
         __props__["logic"] = logic
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["resourceServerId"] = resource_server_id
         __props__["roles"] = roles
         __props__["type"] = type
@@ -582,6 +624,14 @@ class ClientRolePolicy(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")

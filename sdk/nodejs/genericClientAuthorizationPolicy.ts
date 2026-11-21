@@ -161,6 +161,10 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The ID of the resource server this policy is attached to.
      */
     declare public readonly resourceServerId: pulumi.Output<string>;
@@ -191,15 +195,13 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
             resourceInputs["logic"] = state?.logic;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as GenericClientAuthorizationPolicyArgs | undefined;
             if (args?.decisionStrategy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
@@ -213,6 +215,7 @@ export class GenericClientAuthorizationPolicy extends pulumi.CustomResource {
             resourceInputs["logic"] = args?.logic;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
             resourceInputs["type"] = args?.type;
         }
@@ -253,6 +256,10 @@ export interface GenericClientAuthorizationPolicyState {
      * The realm this policy exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the resource server this policy is attached to.
      */
@@ -297,7 +304,11 @@ export interface GenericClientAuthorizationPolicyArgs {
     /**
      * The realm this policy exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the resource server this policy is attached to.
      */

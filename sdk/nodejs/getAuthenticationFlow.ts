@@ -28,6 +28,7 @@ export function getAuthenticationFlow(args: GetAuthenticationFlowArgs, opts?: pu
     return pulumi.runtime.invoke("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", {
         "alias": args.alias,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -42,7 +43,8 @@ export interface GetAuthenticationFlowArgs {
     /**
      * The realm the authentication flow exists in.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -55,6 +57,7 @@ export interface GetAuthenticationFlowResult {
      */
     readonly id: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
 }
 /**
  * This data source can be used to fetch the ID of an authentication flow within Keycloak.
@@ -80,6 +83,7 @@ export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArg
     return pulumi.runtime.invokeOutput("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", {
         "alias": args.alias,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -94,5 +98,6 @@ export interface GetAuthenticationFlowOutputArgs {
     /**
      * The realm the authentication flow exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

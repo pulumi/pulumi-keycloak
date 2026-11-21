@@ -27,7 +27,7 @@ class GetWorkflowResult:
     """
     A collection of values returned by getWorkflow.
     """
-    def __init__(__self__, cancel_in_progress=None, conditions=None, enabled=None, id=None, name=None, on=None, realm=None, restart_in_progress=None, schedules=None, states=None, steps=None):
+    def __init__(__self__, cancel_in_progress=None, conditions=None, enabled=None, id=None, name=None, on=None, realm=None, realm_internal_id=None, restart_in_progress=None, schedules=None, states=None, steps=None):
         if cancel_in_progress and not isinstance(cancel_in_progress, str):
             raise TypeError("Expected argument 'cancel_in_progress' to be a str")
         pulumi.set(__self__, "cancel_in_progress", cancel_in_progress)
@@ -49,6 +49,9 @@ class GetWorkflowResult:
         if realm and not isinstance(realm, str):
             raise TypeError("Expected argument 'realm' to be a str")
         pulumi.set(__self__, "realm", realm)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if restart_in_progress and not isinstance(restart_in_progress, str):
             raise TypeError("Expected argument 'restart_in_progress' to be a str")
         pulumi.set(__self__, "restart_in_progress", restart_in_progress)
@@ -101,6 +104,11 @@ class GetWorkflowResult:
         return pulumi.get(self, "realm")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="restartInProgress")
     def restart_in_progress(self) -> _builtins.str:
         return pulumi.get(self, "restart_in_progress")
@@ -134,6 +142,7 @@ class AwaitableGetWorkflowResult(GetWorkflowResult):
             name=self.name,
             on=self.on,
             realm=self.realm,
+            realm_internal_id=self.realm_internal_id,
             restart_in_progress=self.restart_in_progress,
             schedules=self.schedules,
             states=self.states,
@@ -142,6 +151,7 @@ class AwaitableGetWorkflowResult(GetWorkflowResult):
 
 def get_workflow(name: Optional[_builtins.str] = None,
                  realm: Optional[_builtins.str] = None,
+                 realm_internal_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWorkflowResult:
     """
     This data source can be used to fetch properties of a Keycloak workflow for
@@ -165,6 +175,7 @@ def get_workflow(name: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realm'] = realm
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getWorkflow:getWorkflow', __args__, opts=opts, typ=GetWorkflowResult).value
 
@@ -176,12 +187,14 @@ def get_workflow(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         on=pulumi.get(__ret__, 'on'),
         realm=pulumi.get(__ret__, 'realm'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         restart_in_progress=pulumi.get(__ret__, 'restart_in_progress'),
         schedules=pulumi.get(__ret__, 'schedules'),
         states=pulumi.get(__ret__, 'states'),
         steps=pulumi.get(__ret__, 'steps'))
 def get_workflow_output(name: pulumi.Input[Optional[_builtins.str]] = None,
-                        realm: pulumi.Input[Optional[_builtins.str]] = None,
+                        realm: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWorkflowResult]:
     """
     This data source can be used to fetch properties of a Keycloak workflow for
@@ -205,6 +218,7 @@ def get_workflow_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realm'] = realm
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getWorkflow:getWorkflow', __args__, opts=opts, typ=GetWorkflowResult)
     return __ret__.apply(lambda __response__: GetWorkflowResult(
@@ -215,6 +229,7 @@ def get_workflow_output(name: pulumi.Input[Optional[_builtins.str]] = None,
         name=pulumi.get(__response__, 'name'),
         on=pulumi.get(__response__, 'on'),
         realm=pulumi.get(__response__, 'realm'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         restart_in_progress=pulumi.get(__response__, 'restart_in_progress'),
         schedules=pulumi.get(__response__, 'schedules'),
         states=pulumi.get(__response__, 'states'),

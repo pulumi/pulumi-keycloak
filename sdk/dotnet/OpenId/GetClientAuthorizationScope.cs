@@ -579,8 +579,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm this authorization scope exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         /// <summary>
         /// The ID of the resource server (client) this authorization scope belongs to.
@@ -605,8 +608,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm this authorization scope exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The ID of the resource server (client) this authorization scope belongs to.
@@ -638,6 +644,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string Id;
         public readonly string Name;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly string ResourceServerId;
 
         [OutputConstructor]
@@ -652,6 +659,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string realmId,
 
+            string realmInternalId,
+
             string resourceServerId)
         {
             DisplayName = displayName;
@@ -659,6 +668,7 @@ namespace Pulumi.Keycloak.OpenId
             Id = id;
             Name = name;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             ResourceServerId = resourceServerId;
         }
     }

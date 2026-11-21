@@ -56,7 +56,7 @@ namespace Pulumi.Keycloak.Saml
     public partial class ClientScope : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        /// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         /// </summary>
         [Output("consentScreenText")]
         public Output<string?> ConsentScreenText { get; private set; } = null!;
@@ -66,6 +66,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// When `True`, this client scope is displayed on the consent screen of clients that require consent. When `False`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `True` when `ConsentScreenText` is set and `False` otherwise.
+        /// </summary>
+        [Output("displayOnConsentScreen")]
+        public Output<bool> DisplayOnConsentScreen { get; private set; } = null!;
 
         /// <summary>
         /// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
@@ -91,6 +97,12 @@ namespace Pulumi.Keycloak.Saml
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ClientScope resource with the given unique name, arguments, and options.
@@ -99,7 +111,7 @@ namespace Pulumi.Keycloak.Saml
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ClientScope(string name, ClientScopeArgs args, CustomResourceOptions? options = null)
+        public ClientScope(string name, ClientScopeArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:saml/clientScope:ClientScope", name, args ?? new ClientScopeArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -138,7 +150,7 @@ namespace Pulumi.Keycloak.Saml
     public sealed class ClientScopeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        /// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
@@ -149,55 +161,11 @@ namespace Pulumi.Keycloak.Saml
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        [Input("extraConfig")]
-        private InputMap<string>? _extraConfig;
-
         /// <summary>
-        /// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        /// When `True`, this client scope is displayed on the consent screen of clients that require consent. When `False`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `True` when `ConsentScreenText` is set and `False` otherwise.
         /// </summary>
-        public InputMap<string> ExtraConfig
-        {
-            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
-            set => _extraConfig = value;
-        }
-
-        /// <summary>
-        /// Specify order of the client scope in GUI (such as in Consent page) as integer.
-        /// </summary>
-        [Input("guiOrder")]
-        public Input<int>? GuiOrder { get; set; }
-
-        /// <summary>
-        /// The display name of this client scope in the GUI.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// The realm this client scope belongs to.
-        /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
-
-        public ClientScopeArgs()
-        {
-        }
-        public static new ClientScopeArgs Empty => new ClientScopeArgs();
-    }
-
-    public sealed class ClientScopeState : global::Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-        /// </summary>
-        [Input("consentScreenText")]
-        public Input<string>? ConsentScreenText { get; set; }
-
-        /// <summary>
-        /// The description of this client scope in the GUI.
-        /// </summary>
-        [Input("description")]
-        public Input<string>? Description { get; set; }
+        [Input("displayOnConsentScreen")]
+        public Input<bool>? DisplayOnConsentScreen { get; set; }
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
@@ -228,6 +196,74 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
+
+        public ClientScopeArgs()
+        {
+        }
+        public static new ClientScopeArgs Empty => new ClientScopeArgs();
+    }
+
+    public sealed class ClientScopeState : global::Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
+        /// </summary>
+        [Input("consentScreenText")]
+        public Input<string>? ConsentScreenText { get; set; }
+
+        /// <summary>
+        /// The description of this client scope in the GUI.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// When `True`, this client scope is displayed on the consent screen of clients that require consent. When `False`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `True` when `ConsentScreenText` is set and `False` otherwise.
+        /// </summary>
+        [Input("displayOnConsentScreen")]
+        public Input<bool>? DisplayOnConsentScreen { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
+
+        /// <summary>
+        /// Specify order of the client scope in GUI (such as in Consent page) as integer.
+        /// </summary>
+        [Input("guiOrder")]
+        public Input<int>? GuiOrder { get; set; }
+
+        /// <summary>
+        /// The display name of this client scope in the GUI.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The realm this client scope belongs to.
+        /// </summary>
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public ClientScopeState()
         {

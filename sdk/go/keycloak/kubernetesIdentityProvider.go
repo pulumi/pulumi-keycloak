@@ -56,6 +56,8 @@ type KubernetesIdentityProvider struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrOutput `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
 	// Friendly name for Identity Providers.
@@ -85,6 +87,8 @@ type KubernetesIdentityProvider struct {
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
 	// Sync Mode
@@ -105,9 +109,6 @@ func NewKubernetesIdentityProvider(ctx *pulumi.Context,
 	}
 	if args.Issuer == nil {
 		return nil, errors.New("invalid value for required argument 'Issuer'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KubernetesIdentityProvider
@@ -136,6 +137,8 @@ type kubernetesIdentityProviderState struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias *string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// Friendly name for Identity Providers.
@@ -165,6 +168,8 @@ type kubernetesIdentityProviderState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken *bool `pulumi:"storeToken"`
 	// Sync Mode
@@ -178,6 +183,8 @@ type KubernetesIdentityProviderState struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringPtrInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// Friendly name for Identity Providers.
@@ -207,6 +214,8 @@ type KubernetesIdentityProviderState struct {
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken pulumi.BoolPtrInput
 	// Sync Mode
@@ -230,6 +239,8 @@ type kubernetesIdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// Friendly name for Identity Providers.
@@ -254,7 +265,9 @@ type kubernetesIdentityProviderArgs struct {
 	// Provider ID, is always kubernetes.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken *bool `pulumi:"storeToken"`
 	// Sync Mode
@@ -269,6 +282,8 @@ type KubernetesIdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// Friendly name for Identity Providers.
@@ -293,7 +308,9 @@ type KubernetesIdentityProviderArgs struct {
 	// Provider ID, is always kubernetes.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Enable/disable if tokens must be stored after authenticating users.
 	StoreToken pulumi.BoolPtrInput
 	// Sync Mode
@@ -399,6 +416,11 @@ func (o KubernetesIdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesIdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
+// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+func (o KubernetesIdentityProviderOutput) AllowAdminRoleMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KubernetesIdentityProvider) pulumi.BoolPtrOutput { return v.AllowAdminRoleMapping }).(pulumi.BoolPtrOutput)
+}
+
 // Enable/disable authenticate users by default.
 func (o KubernetesIdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubernetesIdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
@@ -474,6 +496,11 @@ func (o KubernetesIdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 // The name of the realm. This is unique across Keycloak.
 func (o KubernetesIdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesIdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o KubernetesIdentityProviderOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesIdentityProvider) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Enable/disable if tokens must be stored after authenticating users.

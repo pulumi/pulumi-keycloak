@@ -69,7 +69,12 @@ export class GroupPermissions extends pulumi.CustomResource {
     declare public readonly manageMembersScope: pulumi.Output<outputs.GroupPermissionsManageMembersScope | undefined>;
     declare public readonly manageMembershipScope: pulumi.Output<outputs.GroupPermissionsManageMembershipScope | undefined>;
     declare public readonly manageScope: pulumi.Output<outputs.GroupPermissionsManageScope | undefined>;
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly viewMembersScope: pulumi.Output<outputs.GroupPermissionsViewMembersScope | undefined>;
     declare public readonly viewScope: pulumi.Output<outputs.GroupPermissionsViewScope | undefined>;
 
@@ -92,7 +97,9 @@ export class GroupPermissions extends pulumi.CustomResource {
             resourceInputs["manageMembersScope"] = state?.manageMembersScope;
             resourceInputs["manageMembershipScope"] = state?.manageMembershipScope;
             resourceInputs["manageScope"] = state?.manageScope;
+            resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["viewMembersScope"] = state?.viewMembersScope;
             resourceInputs["viewScope"] = state?.viewScope;
         } else {
@@ -100,14 +107,13 @@ export class GroupPermissions extends pulumi.CustomResource {
             if (args?.groupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["groupId"] = args?.groupId;
             resourceInputs["manageMembersScope"] = args?.manageMembersScope;
             resourceInputs["manageMembershipScope"] = args?.manageMembershipScope;
             resourceInputs["manageScope"] = args?.manageScope;
+            resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["viewMembersScope"] = args?.viewMembersScope;
             resourceInputs["viewScope"] = args?.viewScope;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
@@ -131,7 +137,12 @@ export interface GroupPermissionsState {
     manageMembersScope?: pulumi.Input<inputs.GroupPermissionsManageMembersScope | undefined>;
     manageMembershipScope?: pulumi.Input<inputs.GroupPermissionsManageMembershipScope | undefined>;
     manageScope?: pulumi.Input<inputs.GroupPermissionsManageScope | undefined>;
+    organizationId?: pulumi.Input<string | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     viewMembersScope?: pulumi.Input<inputs.GroupPermissionsViewMembersScope | undefined>;
     viewScope?: pulumi.Input<inputs.GroupPermissionsViewScope | undefined>;
 }
@@ -144,7 +155,12 @@ export interface GroupPermissionsArgs {
     manageMembersScope?: pulumi.Input<inputs.GroupPermissionsManageMembersScope | undefined>;
     manageMembershipScope?: pulumi.Input<inputs.GroupPermissionsManageMembershipScope | undefined>;
     manageScope?: pulumi.Input<inputs.GroupPermissionsManageScope | undefined>;
-    realmId: pulumi.Input<string>;
+    organizationId?: pulumi.Input<string | undefined>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     viewMembersScope?: pulumi.Input<inputs.GroupPermissionsViewMembersScope | undefined>;
     viewScope?: pulumi.Input<inputs.GroupPermissionsViewScope | undefined>;
 }

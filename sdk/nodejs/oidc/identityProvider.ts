@@ -39,6 +39,24 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With A Custom `Provider_id`
+ *
+ * Identity providers other than `oidc` and `keycloak-oidc`, for example from a Keycloak extension, may determine their
+ * endpoints on their own. For them, `authorizationUrl` and `tokenUrl` can be left out.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const customIdentityProvider = new keycloak.oidc.IdentityProvider("custom_identity_provider", {
+ *     realm: realm.id,
+ *     alias: "my-custom-idp",
+ *     providerId: "my-custom-oidc",
+ *     clientId: "clientID",
+ *     clientSecret: "clientSecret",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
@@ -101,13 +119,17 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     */
+    declare public readonly allowAdminRoleMapping: pulumi.Output<boolean | undefined>;
+    /**
      * Enable/disable authenticate users by default.
      */
     declare public readonly authenticateByDefault: pulumi.Output<boolean | undefined>;
     /**
-     * The Authorization Url.
+     * The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      */
-    declare public readonly authorizationUrl: pulumi.Output<string>;
+    declare public readonly authorizationUrl: pulumi.Output<string | undefined>;
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
@@ -207,13 +229,17 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly postBrokerLoginFlowAlias: pulumi.Output<string | undefined>;
     /**
-     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      */
     declare public readonly providerId: pulumi.Output<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
     declare public readonly realm: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
@@ -223,9 +249,9 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly syncMode: pulumi.Output<string | undefined>;
     /**
-     * The Token URL.
+     * The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      */
-    declare public readonly tokenUrl: pulumi.Output<string>;
+    declare public readonly tokenUrl: pulumi.Output<string | undefined>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
@@ -259,6 +285,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["acceptsPromptNoneForwardFromClient"] = state?.acceptsPromptNoneForwardFromClient;
             resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["allowAdminRoleMapping"] = state?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
             resourceInputs["authorizationUrl"] = state?.authorizationUrl;
             resourceInputs["backchannelSupported"] = state?.backchannelSupported;
@@ -287,6 +314,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = state?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["storeToken"] = state?.storeToken;
             resourceInputs["syncMode"] = state?.syncMode;
             resourceInputs["tokenUrl"] = state?.tokenUrl;
@@ -299,21 +327,13 @@ export class IdentityProvider extends pulumi.CustomResource {
             if (args?.alias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if (args?.authorizationUrl === undefined && !opts.urn) {
-                throw new Error("Missing required property 'authorizationUrl'");
-            }
             if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
-            }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
-            if (args?.tokenUrl === undefined && !opts.urn) {
-                throw new Error("Missing required property 'tokenUrl'");
             }
             resourceInputs["acceptsPromptNoneForwardFromClient"] = args?.acceptsPromptNoneForwardFromClient;
             resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["allowAdminRoleMapping"] = args?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
             resourceInputs["authorizationUrl"] = args?.authorizationUrl;
             resourceInputs["backchannelSupported"] = args?.backchannelSupported;
@@ -341,6 +361,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = args?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["storeToken"] = args?.storeToken;
             resourceInputs["syncMode"] = args?.syncMode;
             resourceInputs["tokenUrl"] = args?.tokenUrl;
@@ -374,11 +395,15 @@ export interface IdentityProviderState {
      */
     alias?: pulumi.Input<string | undefined>;
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
+    /**
      * Enable/disable authenticate users by default.
      */
     authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
-     * The Authorization Url.
+     * The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      */
     authorizationUrl?: pulumi.Input<string | undefined>;
     /**
@@ -480,13 +505,17 @@ export interface IdentityProviderState {
      */
     postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      */
     providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
     realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
@@ -496,7 +525,7 @@ export interface IdentityProviderState {
      */
     syncMode?: pulumi.Input<string | undefined>;
     /**
-     * The Token URL.
+     * The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      */
     tokenUrl?: pulumi.Input<string | undefined>;
     /**
@@ -534,13 +563,17 @@ export interface IdentityProviderArgs {
      */
     alias: pulumi.Input<string>;
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
+    /**
      * Enable/disable authenticate users by default.
      */
     authenticateByDefault?: pulumi.Input<boolean | undefined>;
     /**
-     * The Authorization Url.
+     * The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      */
-    authorizationUrl: pulumi.Input<string>;
+    authorizationUrl?: pulumi.Input<string | undefined>;
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
@@ -636,13 +669,17 @@ export interface IdentityProviderArgs {
      */
     postBrokerLoginFlowAlias?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      */
     providerId?: pulumi.Input<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
@@ -652,9 +689,9 @@ export interface IdentityProviderArgs {
      */
     syncMode?: pulumi.Input<string | undefined>;
     /**
-     * The Token URL.
+     * The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      */
-    tokenUrl: pulumi.Input<string>;
+    tokenUrl?: pulumi.Input<string | undefined>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */

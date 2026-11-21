@@ -110,6 +110,10 @@ export class Execution extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */
     declare public readonly requirement: pulumi.Output<string | undefined>;
@@ -131,6 +135,7 @@ export class Execution extends pulumi.CustomResource {
             resourceInputs["parentFlowAlias"] = state?.parentFlowAlias;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["requirement"] = state?.requirement;
         } else {
             const args = argsOrState as ExecutionArgs | undefined;
@@ -140,13 +145,11 @@ export class Execution extends pulumi.CustomResource {
             if (args?.parentFlowAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'parentFlowAlias'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["authenticator"] = args?.authenticator;
             resourceInputs["parentFlowAlias"] = args?.parentFlowAlias;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["requirement"] = args?.requirement;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -175,6 +178,10 @@ export interface ExecutionState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */
     requirement?: pulumi.Input<string | undefined>;
@@ -199,7 +206,11 @@ export interface ExecutionArgs {
     /**
      * The realm the authentication execution exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
      */

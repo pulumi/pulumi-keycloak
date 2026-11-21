@@ -26,7 +26,7 @@ class GetClientAuthorizationPolicyResult:
     """
     A collection of values returned by getClientAuthorizationPolicy.
     """
-    def __init__(__self__, decision_strategy=None, id=None, logic=None, name=None, owner=None, policies=None, realm_id=None, resource_server_id=None, resources=None, scopes=None, type=None):
+    def __init__(__self__, decision_strategy=None, id=None, logic=None, name=None, owner=None, policies=None, realm_id=None, realm_internal_id=None, resource_server_id=None, resources=None, scopes=None, type=None):
         if decision_strategy and not isinstance(decision_strategy, str):
             raise TypeError("Expected argument 'decision_strategy' to be a str")
         pulumi.set(__self__, "decision_strategy", decision_strategy)
@@ -48,6 +48,9 @@ class GetClientAuthorizationPolicyResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id and not isinstance(resource_server_id, str):
             raise TypeError("Expected argument 'resource_server_id' to be a str")
         pulumi.set(__self__, "resource_server_id", resource_server_id)
@@ -112,6 +115,11 @@ class GetClientAuthorizationPolicyResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> _builtins.str:
         return pulumi.get(self, "resource_server_id")
@@ -154,6 +162,7 @@ class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyRe
             owner=self.owner,
             policies=self.policies,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             resource_server_id=self.resource_server_id,
             resources=self.resources,
             scopes=self.scopes,
@@ -162,6 +171,7 @@ class AwaitableGetClientAuthorizationPolicyResult(GetClientAuthorizationPolicyRe
 
 def get_client_authorization_policy(name: Optional[_builtins.str] = None,
                                     realm_id: Optional[_builtins.str] = None,
+                                    realm_internal_id: Optional[_builtins.str] = None,
                                     resource_server_id: Optional[_builtins.str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientAuthorizationPolicyResult:
     """
@@ -216,6 +226,7 @@ def get_client_authorization_policy(name: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['resourceServerId'] = resource_server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy', __args__, opts=opts, typ=GetClientAuthorizationPolicyResult).value
@@ -228,12 +239,14 @@ def get_client_authorization_policy(name: Optional[_builtins.str] = None,
         owner=pulumi.get(__ret__, 'owner'),
         policies=pulumi.get(__ret__, 'policies'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         resource_server_id=pulumi.get(__ret__, 'resource_server_id'),
         resources=pulumi.get(__ret__, 'resources'),
         scopes=pulumi.get(__ret__, 'scopes'),
         type=pulumi.get(__ret__, 'type'))
 def get_client_authorization_policy_output(name: pulumi.Input[Optional[_builtins.str]] = None,
-                                           realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                           realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                           realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientAuthorizationPolicyResult]:
     """
@@ -288,6 +301,7 @@ def get_client_authorization_policy_output(name: pulumi.Input[Optional[_builtins
     __args__ = dict()
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['resourceServerId'] = resource_server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy', __args__, opts=opts, typ=GetClientAuthorizationPolicyResult)
@@ -299,6 +313,7 @@ def get_client_authorization_policy_output(name: pulumi.Input[Optional[_builtins
         owner=pulumi.get(__response__, 'owner'),
         policies=pulumi.get(__response__, 'policies'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         resource_server_id=pulumi.get(__response__, 'resource_server_id'),
         resources=pulumi.get(__response__, 'resources'),
         scopes=pulumi.get(__response__, 'scopes'),

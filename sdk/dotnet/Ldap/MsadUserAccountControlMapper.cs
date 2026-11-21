@@ -78,6 +78,12 @@ namespace Pulumi.Keycloak.Ldap
     public partial class MsadUserAccountControlMapper : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// When `True`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `False`.
+        /// </summary>
+        [Output("alwaysReadEnabledValueFromLdap")]
+        public Output<bool?> AlwaysReadEnabledValueFromLdap { get; private set; } = null!;
+
+        /// <summary>
         /// When `True`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `False`.
         /// </summary>
         [Output("ldapPasswordPolicyHintsEnabled")]
@@ -100,6 +106,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
 
         /// <summary>
@@ -148,6 +160,12 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class MsadUserAccountControlMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// When `True`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `False`.
+        /// </summary>
+        [Input("alwaysReadEnabledValueFromLdap")]
+        public Input<bool>? AlwaysReadEnabledValueFromLdap { get; set; }
+
+        /// <summary>
         /// When `True`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `False`.
         /// </summary>
         [Input("ldapPasswordPolicyHintsEnabled")]
@@ -168,8 +186,14 @@ namespace Pulumi.Keycloak.Ldap
         /// <summary>
         /// The realm that this LDAP mapper will exist in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public MsadUserAccountControlMapperArgs()
         {
@@ -179,6 +203,12 @@ namespace Pulumi.Keycloak.Ldap
 
     public sealed class MsadUserAccountControlMapperState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When `True`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `False`.
+        /// </summary>
+        [Input("alwaysReadEnabledValueFromLdap")]
+        public Input<bool>? AlwaysReadEnabledValueFromLdap { get; set; }
+
         /// <summary>
         /// When `True`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `False`.
         /// </summary>
@@ -202,6 +232,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public MsadUserAccountControlMapperState()
         {

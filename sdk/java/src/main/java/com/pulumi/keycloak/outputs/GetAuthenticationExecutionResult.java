@@ -24,6 +24,7 @@ public final class GetAuthenticationExecutionResult {
     private Integer priority;
     private String providerId;
     private String realmId;
+    private String realmInternalId;
 
     private GetAuthenticationExecutionResult() {}
     /**
@@ -49,6 +50,9 @@ public final class GetAuthenticationExecutionResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -64,6 +68,7 @@ public final class GetAuthenticationExecutionResult {
         private Integer priority;
         private String providerId;
         private String realmId;
+        private String realmInternalId;
         public Builder() {}
         public Builder(GetAuthenticationExecutionResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -72,6 +77,7 @@ public final class GetAuthenticationExecutionResult {
     	      this.priority = defaults.priority;
     	      this.providerId = defaults.providerId;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
         }
 
         @CustomType.Setter
@@ -114,6 +120,14 @@ public final class GetAuthenticationExecutionResult {
             this.realmId = realmId;
             return this;
         }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
         public GetAuthenticationExecutionResult build() {
             final var _resultValue = new GetAuthenticationExecutionResult();
             _resultValue.id = id;
@@ -121,6 +135,7 @@ public final class GetAuthenticationExecutionResult {
             _resultValue.priority = priority;
             _resultValue.providerId = providerId;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             return _resultValue;
         }
     }

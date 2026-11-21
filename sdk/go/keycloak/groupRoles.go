@@ -180,16 +180,79 @@ import (
 //
 // ```
 //
+// ## Organization Group Example
+//
+// Organization group role assignments require Keycloak 26.7 or newer. Set `organizationsEnabled = true` on the
+// `keycloak_realm.realm` resource before applying this example. This example uses the realm and realm role defined above.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			organization, err := keycloak.NewOrganization(ctx, "organization", &keycloak.OrganizationArgs{
+//				Realm: pulumi.Any(realm.Id),
+//				Name:  pulumi.String("my-organization"),
+//				Domains: keycloak.OrganizationDomainArray{
+//					&keycloak.OrganizationDomainArgs{
+//						Name: pulumi.String("organization.example.com"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			organizationGroup, err := keycloak.NewGroup(ctx, "organization_group", &keycloak.GroupArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				Name:           pulumi.String("my-organization-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupRoles(ctx, "organization_group_roles", &keycloak.GroupRolesArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				GroupId:        organizationGroup.ID(),
+//				RoleIds: pulumi.StringArray{
+//					realmRole.Id,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
-// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
+// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+// organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`. Here, `groupId` is the unique ID that Keycloak
 // assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
 // a GUID.
 //
-// Example:
+// Examples:
+//
+// realm-level group
 //
 // ```sh
 // $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+// ```
+//
+// organization-scoped group
+//
+// ```sh
+// $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
 // ```
 type GroupRoles struct {
 	pulumi.CustomResourceState
@@ -198,8 +261,12 @@ type GroupRoles struct {
 	Exhaustive pulumi.BoolPtrOutput `pulumi:"exhaustive"`
 	// The ID of the group this resource should manage roles for.
 	GroupId pulumi.StringOutput `pulumi:"groupId"`
+	// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The realm this group exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// A list of role IDs to map to the group.
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 }
@@ -213,9 +280,6 @@ func NewGroupRoles(ctx *pulumi.Context,
 
 	if args.GroupId == nil {
 		return nil, errors.New("invalid value for required argument 'GroupId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.RoleIds == nil {
 		return nil, errors.New("invalid value for required argument 'RoleIds'")
@@ -247,8 +311,12 @@ type groupRolesState struct {
 	Exhaustive *bool `pulumi:"exhaustive"`
 	// The ID of the group this resource should manage roles for.
 	GroupId *string `pulumi:"groupId"`
+	// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A list of role IDs to map to the group.
 	RoleIds []string `pulumi:"roleIds"`
 }
@@ -258,8 +326,12 @@ type GroupRolesState struct {
 	Exhaustive pulumi.BoolPtrInput
 	// The ID of the group this resource should manage roles for.
 	GroupId pulumi.StringPtrInput
+	// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+	OrganizationId pulumi.StringPtrInput
 	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A list of role IDs to map to the group.
 	RoleIds pulumi.StringArrayInput
 }
@@ -279,8 +351,12 @@ type groupRolesArgs struct {
 	Exhaustive *bool `pulumi:"exhaustive"`
 	// The ID of the group this resource should manage roles for.
 	GroupId string `pulumi:"groupId"`
+	// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A list of role IDs to map to the group.
 	RoleIds []string `pulumi:"roleIds"`
 }
@@ -291,8 +367,12 @@ type GroupRolesArgs struct {
 	Exhaustive pulumi.BoolPtrInput
 	// The ID of the group this resource should manage roles for.
 	GroupId pulumi.StringInput
+	// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+	OrganizationId pulumi.StringPtrInput
 	// The realm this group exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A list of role IDs to map to the group.
 	RoleIds pulumi.StringArrayInput
 }
@@ -394,9 +474,19 @@ func (o GroupRolesOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.GroupId }).(pulumi.StringOutput)
 }
 
+// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+func (o GroupRolesOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupRoles) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
 // The realm this group exists in.
 func (o GroupRolesOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GroupRolesOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // A list of role IDs to map to the group.

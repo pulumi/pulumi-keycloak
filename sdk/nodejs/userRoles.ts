@@ -121,6 +121,10 @@ export class UserRoles extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * A list of role IDs to map to the user
      */
     declare public readonly roleIds: pulumi.Output<string[]>;
@@ -144,13 +148,11 @@ export class UserRoles extends pulumi.CustomResource {
             const state = argsOrState as UserRolesState | undefined;
             resourceInputs["exhaustive"] = state?.exhaustive;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["roleIds"] = state?.roleIds;
             resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserRolesArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.roleIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleIds'");
             }
@@ -159,6 +161,7 @@ export class UserRoles extends pulumi.CustomResource {
             }
             resourceInputs["exhaustive"] = args?.exhaustive;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["roleIds"] = args?.roleIds;
             resourceInputs["userId"] = args?.userId;
         }
@@ -180,6 +183,10 @@ export interface UserRolesState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * A list of role IDs to map to the user
      */
     roleIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -200,7 +207,11 @@ export interface UserRolesArgs {
     /**
      * The realm this user exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * A list of role IDs to map to the user
      */

@@ -87,7 +87,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
     }
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
@@ -144,6 +144,10 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      * The realm this keystore exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RealmKeystoreRsa resource with the given unique name, arguments, and options.
@@ -152,7 +156,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmKeystoreRsaArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmKeystoreRsaArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreRsaArgs | RealmKeystoreRsaState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -172,11 +176,9 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["privateKeyWoVersion"] = state?.privateKeyWoVersion;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RealmKeystoreRsaArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["active"] = args?.active;
             resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["certificate"] = args?.certificate;
@@ -191,6 +193,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["privateKeyWoVersion"] = args?.privateKeyWoVersion;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["certificateWo", "privateKey", "privateKeyWo"] };
@@ -204,7 +207,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
  */
 export interface RealmKeystoreRsaState {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -261,6 +264,10 @@ export interface RealmKeystoreRsaState {
      * The realm this keystore exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -268,7 +275,7 @@ export interface RealmKeystoreRsaState {
  */
 export interface RealmKeystoreRsaArgs {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -324,5 +331,9 @@ export interface RealmKeystoreRsaArgs {
     /**
      * The realm this keystore exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

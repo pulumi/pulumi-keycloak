@@ -20,18 +20,18 @@ __all__ = ['SubflowArgs', 'Subflow']
 class SubflowArgs:
     def __init__(__self__, *,
                  parent_flow_alias: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  authenticator: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Subflow resource.
 
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias for the parent authentication flow.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication subflow exists in.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication subflow.
         :param pulumi.Input[_builtins.str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
                authenticators. In general this will remain empty.
@@ -39,11 +39,12 @@ class SubflowArgs:
         :param pulumi.Input[_builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
         pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
         if authenticator is not None:
@@ -54,6 +55,10 @@ class SubflowArgs:
             pulumi.set(__self__, "priority", priority)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if requirement is not None:
             pulumi.set(__self__, "requirement", requirement)
 
@@ -68,18 +73,6 @@ class SubflowArgs:
     @parent_flow_alias.setter
     def parent_flow_alias(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "parent_flow_alias", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that the authentication subflow exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -144,6 +137,30 @@ class SubflowArgs:
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that the authentication subflow exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -167,6 +184,7 @@ class _SubflowState:
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Subflow resources.
@@ -180,6 +198,7 @@ class _SubflowState:
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
@@ -197,6 +216,8 @@ class _SubflowState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if requirement is not None:
             pulumi.set(__self__, "requirement", requirement)
 
@@ -287,6 +308,18 @@ class _SubflowState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -313,6 +346,7 @@ class Subflow(pulumi.CustomResource):
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -370,6 +404,7 @@ class Subflow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
@@ -445,6 +480,7 @@ class Subflow(pulumi.CustomResource):
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -463,9 +499,8 @@ class Subflow(pulumi.CustomResource):
             __props__.__dict__["parent_flow_alias"] = parent_flow_alias
             __props__.__dict__["priority"] = priority
             __props__.__dict__["provider_id"] = provider_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["requirement"] = requirement
         super(Subflow, __self__).__init__(
             'keycloak:authentication/subflow:Subflow',
@@ -484,6 +519,7 @@ class Subflow(pulumi.CustomResource):
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             requirement: pulumi.Input[Optional[_builtins.str]] = None) -> 'Subflow':
         """
         Get an existing Subflow resource's state with the given name, id, and optional extra
@@ -501,6 +537,7 @@ class Subflow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
@@ -515,6 +552,7 @@ class Subflow(pulumi.CustomResource):
         __props__.__dict__["priority"] = priority
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["requirement"] = requirement
         return Subflow(resource_name, opts=opts, __props__=__props__)
 
@@ -528,6 +566,7 @@ class Subflow(pulumi.CustomResource):
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             requirement: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["alias"] = alias
@@ -537,6 +576,7 @@ class Subflow(pulumi.CustomResource):
         __props__["priority"] = priority
         __props__["providerId"] = provider_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["requirement"] = requirement
         return pulumi.runtime.exists_resource(None, 'keycloak:authentication/subflow:Subflow', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -597,6 +637,14 @@ class Subflow(pulumi.CustomResource):
         The realm that the authentication subflow exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

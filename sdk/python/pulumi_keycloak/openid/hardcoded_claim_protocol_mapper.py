@@ -21,20 +21,20 @@ class HardcodedClaimProtocolMapperArgs:
     def __init__(__self__, *,
                  claim_name: pulumi.Input[_builtins.str],
                  claim_value: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  claim_value_type: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a HardcodedClaimProtocolMapper resource.
 
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[_builtins.str] claim_value: The hardcoded value of the claim.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
@@ -42,10 +42,11 @@ class HardcodedClaimProtocolMapperArgs:
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "claim_name", claim_name)
         pulumi.set(__self__, "claim_value", claim_value)
-        pulumi.set(__self__, "realm_id", realm_id)
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
@@ -60,6 +61,10 @@ class HardcodedClaimProtocolMapperArgs:
             pulumi.set(__self__, "client_scope_id", client_scope_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="claimName")
@@ -84,18 +89,6 @@ class HardcodedClaimProtocolMapperArgs:
     @claim_value.setter
     def claim_value(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "claim_value", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this protocol mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
@@ -181,6 +174,30 @@ class HardcodedClaimProtocolMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _HardcodedClaimProtocolMapperState:
@@ -194,7 +211,8 @@ class _HardcodedClaimProtocolMapperState:
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedClaimProtocolMapper resources.
 
@@ -208,6 +226,7 @@ class _HardcodedClaimProtocolMapperState:
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -229,6 +248,8 @@ class _HardcodedClaimProtocolMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
@@ -350,6 +371,18 @@ class _HardcodedClaimProtocolMapperState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper")
 class HardcodedClaimProtocolMapper(pulumi.CustomResource):
@@ -367,6 +400,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing hardcoded claim protocol mappers within Keycloak.
@@ -460,6 +494,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -572,6 +607,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -594,9 +630,8 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_scope_id"] = client_scope_id
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(HardcodedClaimProtocolMapper, __self__).__init__(
             'keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper',
             resource_name,
@@ -616,7 +651,8 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'HardcodedClaimProtocolMapper':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'HardcodedClaimProtocolMapper':
         """
         Get an existing HardcodedClaimProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -634,6 +670,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -649,6 +686,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["client_scope_id"] = client_scope_id
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return HardcodedClaimProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -663,7 +701,8 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["addToAccessToken"] = add_to_access_token
         __props__["addToIdToken"] = add_to_id_token
@@ -675,6 +714,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
         __props__["clientScopeId"] = client_scope_id
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -756,4 +796,12 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

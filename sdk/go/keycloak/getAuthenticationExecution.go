@@ -61,7 +61,8 @@ type GetAuthenticationExecutionArgs struct {
 	// The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
 	ProviderId string `pulumi:"providerId"`
 	// The realm the authentication execution exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getAuthenticationExecution.
@@ -70,9 +71,10 @@ type GetAuthenticationExecutionResult struct {
 	Id              string `pulumi:"id"`
 	ParentFlowAlias string `pulumi:"parentFlowAlias"`
 	// (Computed) The authenticator priority.
-	Priority   int    `pulumi:"priority"`
-	ProviderId string `pulumi:"providerId"`
-	RealmId    string `pulumi:"realmId"`
+	Priority        int    `pulumi:"priority"`
+	ProviderId      string `pulumi:"providerId"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 }
 
 func GetAuthenticationExecutionOutput(ctx *pulumi.Context, args GetAuthenticationExecutionOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationExecutionResultOutput {
@@ -87,7 +89,8 @@ type GetAuthenticationExecutionOutputArgs struct {
 	// The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
 	ProviderId pulumi.StringInput `pulumi:"providerId"`
 	// The realm the authentication execution exists in.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (GetAuthenticationExecutionOutputArgs) ElementType() reflect.Type {
@@ -129,6 +132,10 @@ func (o GetAuthenticationExecutionResultOutput) ProviderId() pulumi.StringOutput
 
 func (o GetAuthenticationExecutionResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetAuthenticationExecutionResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func init() {

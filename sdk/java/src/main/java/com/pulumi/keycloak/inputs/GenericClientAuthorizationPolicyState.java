@@ -115,6 +115,21 @@ public final class GenericClientAuthorizationPolicyState extends com.pulumi.reso
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * The ID of the resource server this policy is attached to.
      * 
      */
@@ -159,6 +174,7 @@ public final class GenericClientAuthorizationPolicyState extends com.pulumi.reso
         this.logic = $.logic;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.resourceServerId = $.resourceServerId;
         this.type = $.type;
     }
@@ -313,6 +329,27 @@ public final class GenericClientAuthorizationPolicyState extends com.pulumi.reso
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

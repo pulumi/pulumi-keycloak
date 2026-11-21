@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
@@ -34,15 +36,30 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
      * The realm this role exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this role exists within.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private DefaultRolesArgs() {}
@@ -50,6 +67,7 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
     private DefaultRolesArgs(DefaultRolesArgs $) {
         this.defaultRoles = $.defaultRoles;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -107,7 +125,7 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -122,12 +140,30 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public DefaultRolesArgs build() {
             if ($.defaultRoles == null) {
                 throw new MissingRequiredPropertyException("DefaultRolesArgs", "defaultRoles");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("DefaultRolesArgs", "realmId");
             }
             return $;
         }

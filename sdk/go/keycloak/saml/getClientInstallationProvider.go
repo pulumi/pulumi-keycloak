@@ -98,16 +98,18 @@ type GetClientInstallationProviderArgs struct {
 	// The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
 	ProviderId string `pulumi:"providerId"`
 	// The realm that the SAML client exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getClientInstallationProvider.
 type GetClientInstallationProviderResult struct {
 	ClientId string `pulumi:"clientId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
-	ProviderId string `pulumi:"providerId"`
-	RealmId    string `pulumi:"realmId"`
+	Id              string `pulumi:"id"`
+	ProviderId      string `pulumi:"providerId"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 	// (Computed) The returned document needed for SAML installation.
 	Value string `pulumi:"value"`
 }
@@ -124,7 +126,8 @@ type GetClientInstallationProviderOutputArgs struct {
 	// The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
 	ProviderId pulumi.StringInput `pulumi:"providerId"`
 	// The realm that the SAML client exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (GetClientInstallationProviderOutputArgs) ElementType() reflect.Type {
@@ -161,6 +164,10 @@ func (o GetClientInstallationProviderResultOutput) ProviderId() pulumi.StringOut
 
 func (o GetClientInstallationProviderResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientInstallationProviderResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientInstallationProviderResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientInstallationProviderResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // (Computed) The returned document needed for SAML installation.

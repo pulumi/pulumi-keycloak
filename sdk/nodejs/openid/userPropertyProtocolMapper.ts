@@ -166,6 +166,10 @@ export class UserPropertyProtocolMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The built-in user property (such as email) to map a claim for.
      */
     declare public readonly userProperty: pulumi.Output<string>;
@@ -192,14 +196,12 @@ export class UserPropertyProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userProperty"] = state?.userProperty;
         } else {
             const args = argsOrState as UserPropertyProtocolMapperArgs | undefined;
             if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.userProperty === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userProperty'");
@@ -213,6 +215,7 @@ export class UserPropertyProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userProperty"] = args?.userProperty;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -261,6 +264,10 @@ export interface UserPropertyProtocolMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The built-in user property (such as email) to map a claim for.
      */
     userProperty?: pulumi.Input<string | undefined>;
@@ -305,7 +312,11 @@ export interface UserPropertyProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The built-in user property (such as email) to map a claim for.
      */

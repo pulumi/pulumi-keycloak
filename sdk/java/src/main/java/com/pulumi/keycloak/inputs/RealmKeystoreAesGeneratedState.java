@@ -18,14 +18,14 @@ public final class RealmKeystoreAesGeneratedState extends com.pulumi.resources.R
     public static final RealmKeystoreAesGeneratedState Empty = new RealmKeystoreAesGeneratedState();
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
     /**
-     * @return When `false`, key in not used for signing. Defaults to `true`.
+     * @return When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> active() {
@@ -93,6 +93,21 @@ public final class RealmKeystoreAesGeneratedState extends com.pulumi.resources.R
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      * 
      */
@@ -115,6 +130,7 @@ public final class RealmKeystoreAesGeneratedState extends com.pulumi.resources.R
         this.name = $.name;
         this.priority = $.priority;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.secretSize = $.secretSize;
     }
 
@@ -137,7 +153,7 @@ public final class RealmKeystoreAesGeneratedState extends com.pulumi.resources.R
         }
 
         /**
-         * @param active When `false`, key in not used for signing. Defaults to `true`.
+         * @param active When `false`, key is not used for signing. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -148,7 +164,7 @@ public final class RealmKeystoreAesGeneratedState extends com.pulumi.resources.R
         }
 
         /**
-         * @param active When `false`, key in not used for signing. Defaults to `true`.
+         * @param active When `false`, key is not used for signing. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -239,6 +255,27 @@ public final class RealmKeystoreAesGeneratedState extends com.pulumi.resources.R
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

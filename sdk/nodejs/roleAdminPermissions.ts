@@ -164,6 +164,10 @@ export class RoleAdminPermissions extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
      */
     declare public readonly roleIds: pulumi.Output<string[] | undefined>;
@@ -193,13 +197,11 @@ export class RoleAdminPermissions extends pulumi.CustomResource {
             resourceInputs["permissionId"] = state?.permissionId;
             resourceInputs["policies"] = state?.policies;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["roleIds"] = state?.roleIds;
             resourceInputs["scopes"] = state?.scopes;
         } else {
             const args = argsOrState as RoleAdminPermissionsArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.scopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
@@ -208,6 +210,7 @@ export class RoleAdminPermissions extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["policies"] = args?.policies;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["roleIds"] = args?.roleIds;
             resourceInputs["scopes"] = args?.scopes;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
@@ -256,6 +259,10 @@ export interface RoleAdminPermissionsState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
      */
     roleIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -288,7 +295,11 @@ export interface RoleAdminPermissionsArgs {
     /**
      * The realm in which to manage this permission.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
      */

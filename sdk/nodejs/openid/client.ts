@@ -301,6 +301,10 @@ export class Client extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
      */
     declare public readonly requireDpopBoundTokens: pulumi.Output<boolean>;
@@ -408,6 +412,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["oauth2JwtAuthorizationGrantIdp"] = state?.oauth2JwtAuthorizationGrantIdp;
             resourceInputs["pkceCodeChallengeMethod"] = state?.pkceCodeChallengeMethod;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["requireDpopBoundTokens"] = state?.requireDpopBoundTokens;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["rootUrl"] = state?.rootUrl;
@@ -424,9 +429,6 @@ export class Client extends pulumi.CustomResource {
             const args = argsOrState as ClientArgs | undefined;
             if (args?.accessType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessType'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["accessTokenLifespan"] = args?.accessTokenLifespan;
             resourceInputs["accessType"] = args?.accessType;
@@ -472,6 +474,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["oauth2JwtAuthorizationGrantIdp"] = args?.oauth2JwtAuthorizationGrantIdp;
             resourceInputs["pkceCodeChallengeMethod"] = args?.pkceCodeChallengeMethod;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["requireDpopBoundTokens"] = args?.requireDpopBoundTokens;
             resourceInputs["rootUrl"] = args?.rootUrl;
             resourceInputs["serviceAccountsEnabled"] = args?.serviceAccountsEnabled;
@@ -676,6 +679,10 @@ export interface ClientState {
      * The realm this client is attached to.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
      */
@@ -911,7 +918,11 @@ export interface ClientArgs {
     /**
      * The realm this client is attached to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
      */

@@ -20,25 +20,30 @@ __all__ = ['HardcodedRoleIdentityMapperArgs', 'HardcodedRoleIdentityMapper']
 class HardcodedRoleIdentityMapperArgs:
     def __init__(__self__, *,
                  identity_provider_alias: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
 
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
-        :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role which should be assigned to the users.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role is not None:
             pulumi.set(__self__, "role", role)
 
@@ -53,18 +58,6 @@ class HardcodedRoleIdentityMapperArgs:
     @identity_provider_alias.setter
     def identity_provider_alias(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "identity_provider_alias", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm ID that this mapper will exist in.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -92,6 +85,30 @@ class HardcodedRoleIdentityMapperArgs:
 
     @_builtins.property
     @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm ID that this mapper will exist in.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
+    @pulumi.getter
     def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role which should be assigned to the users.
@@ -110,6 +127,7 @@ class _HardcodedRoleIdentityMapperState:
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
@@ -118,6 +136,7 @@ class _HardcodedRoleIdentityMapperState:
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role which should be assigned to the users.
         """
         if extra_config is not None:
@@ -128,6 +147,8 @@ class _HardcodedRoleIdentityMapperState:
             pulumi.set(__self__, "name", name)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role is not None:
             pulumi.set(__self__, "role", role)
 
@@ -180,6 +201,18 @@ class _HardcodedRoleIdentityMapperState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -202,6 +235,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -246,6 +280,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role which should be assigned to the users.
         """
         ...
@@ -309,6 +344,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -324,9 +360,8 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__.__dict__["identity_provider_alias"] = identity_provider_alias
             __props__.__dict__["name"] = name
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["role"] = role
         super(HardcodedRoleIdentityMapper, __self__).__init__(
             'keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper',
@@ -342,6 +377,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role: pulumi.Input[Optional[_builtins.str]] = None) -> 'HardcodedRoleIdentityMapper':
         """
         Get an existing HardcodedRoleIdentityMapper resource's state with the given name, id, and optional extra
@@ -354,6 +390,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role which should be assigned to the users.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -364,6 +401,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         __props__.__dict__["identity_provider_alias"] = identity_provider_alias
         __props__.__dict__["name"] = name
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["role"] = role
         return HardcodedRoleIdentityMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -374,12 +412,14 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["extraConfig"] = extra_config
         __props__["identityProviderAlias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["role"] = role
         return pulumi.runtime.exists_resource(None, 'keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -414,6 +454,14 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

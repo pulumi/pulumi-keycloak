@@ -110,6 +110,10 @@ export class RealmEvents extends pulumi.CustomResource {
      * The name of the realm the event settings apply to.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RealmEvents resource with the given unique name, arguments, and options.
@@ -118,7 +122,7 @@ export class RealmEvents extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmEventsArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmEventsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmEventsArgs | RealmEventsState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -131,11 +135,9 @@ export class RealmEvents extends pulumi.CustomResource {
             resourceInputs["eventsExpiration"] = state?.eventsExpiration;
             resourceInputs["eventsListeners"] = state?.eventsListeners;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RealmEventsArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["adminEventsDetailsEnabled"] = args?.adminEventsDetailsEnabled;
             resourceInputs["adminEventsEnabled"] = args?.adminEventsEnabled;
             resourceInputs["enabledEventTypes"] = args?.enabledEventTypes;
@@ -143,6 +145,7 @@ export class RealmEvents extends pulumi.CustomResource {
             resourceInputs["eventsExpiration"] = args?.eventsExpiration;
             resourceInputs["eventsListeners"] = args?.eventsListeners;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmEvents.__pulumiType, name, resourceInputs, opts);
@@ -181,6 +184,10 @@ export interface RealmEventsState {
      * The name of the realm the event settings apply to.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -214,5 +221,9 @@ export interface RealmEventsArgs {
     /**
      * The name of the realm the event settings apply to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

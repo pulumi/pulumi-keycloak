@@ -148,6 +148,21 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Signature algorithms in preference order.
+     * 
+     */
+    @Import(name="signatureAlgorithmsOrdereds", required=true)
+    private Output<List<String>> signatureAlgorithmsOrdereds;
+
+    /**
+     * @return Signature algorithms in preference order.
+     * 
+     */
+    public Output<List<String>> signatureAlgorithmsOrdereds() {
+        return this.signatureAlgorithmsOrdereds;
+    }
+
+    /**
      * Either required, preferred or discouraged
      * 
      */
@@ -177,6 +192,7 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
         this.signatureAlgorithms = $.signatureAlgorithms;
+        this.signatureAlgorithmsOrdereds = $.signatureAlgorithmsOrdereds;
         this.userVerificationRequirement = $.userVerificationRequirement;
     }
 
@@ -391,6 +407,37 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(Output<List<String>> signatureAlgorithmsOrdereds) {
+            $.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
+            return this;
+        }
+
+        /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(List<String> signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(Output.of(signatureAlgorithmsOrdereds));
+        }
+
+        /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(String... signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(List.of(signatureAlgorithmsOrdereds));
+        }
+
+        /**
          * @param userVerificationRequirement Either required, preferred or discouraged
          * 
          * @return builder
@@ -447,6 +494,9 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
             }
             if ($.signatureAlgorithms == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicyArgs", "signatureAlgorithms");
+            }
+            if ($.signatureAlgorithmsOrdereds == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicyArgs", "signatureAlgorithmsOrdereds");
             }
             if ($.userVerificationRequirement == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicyArgs", "userVerificationRequirement");

@@ -26,6 +26,12 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * The following example provisions a user attribute importer mapper through `extraConfig`. The key names can be verified in the Keycloak source code:
+ * * [user.attribute](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/UserAttributeMapper.java#L52)
+ * * [claim](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/AbstractClaimMapper.java#L41)
+ * 
+ * For a strongly typed alternative, use `keycloak.AttributeImporterIdentityProviderMapper`, which exposes `claimName` and `userAttribute` directly.
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -74,8 +80,8 @@ import javax.annotation.Nullable;
  *             .identityProviderMapper("%s-user-attribute-idp-mapper")
  *             .extraConfig(Map.ofEntries(
  *                 Map.entry("syncMode", "INHERIT"),
- *                 Map.entry("Claim", "my-email-claim"),
- *                 Map.entry("UserAttribute", "email")
+ *                 Map.entry("claim", "my-email-claim"),
+ *                 Map.entry("user.attribute", "email")
  *             ))
  *             .build());
  * 
@@ -167,6 +173,20 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
      */
     public Output<String> realm() {
         return this.realm;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

@@ -85,6 +85,12 @@ namespace Pulumi.Keycloak
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
+        /// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        /// </summary>
+        [Output("allowAdminRoleMapping")]
+        public Output<bool?> AllowAdminRoleMapping { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable authenticate users by default.
         /// </summary>
         [Output("authenticateByDefault")]
@@ -172,6 +178,12 @@ namespace Pulumi.Keycloak
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable if tokens must be stored after authenticating users.
         /// </summary>
         [Output("storeToken")]
@@ -254,6 +266,12 @@ namespace Pulumi.Keycloak
         public Input<string> Alias { get; set; } = null!;
 
         /// <summary>
+        /// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        /// </summary>
+        [Input("allowAdminRoleMapping")]
+        public Input<bool>? AllowAdminRoleMapping { get; set; }
+
+        /// <summary>
         /// Enable/disable authenticate users by default.
         /// </summary>
         [Input("authenticateByDefault")]
@@ -330,8 +348,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// Enable/disable if tokens must be stored after authenticating users.
@@ -376,6 +400,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
+
+        /// <summary>
+        /// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        /// </summary>
+        [Input("allowAdminRoleMapping")]
+        public Input<bool>? AllowAdminRoleMapping { get; set; }
 
         /// <summary>
         /// Enable/disable authenticate users by default.
@@ -468,6 +498,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// Enable/disable if tokens must be stored after authenticating users.

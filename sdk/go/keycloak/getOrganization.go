@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			organization, err := keycloak.GetOrganization(ctx, &keycloak.LookupOrganizationArgs{
-//				Realm: realm.Id,
+//				Realm: pulumi.StringRef(realm.Id),
 //				Name:  "my-org",
 //			}, nil)
 //			if err != nil {
@@ -75,7 +75,8 @@ type LookupOrganizationArgs struct {
 	// The organization name.
 	Name string `pulumi:"name"`
 	// The name of the realm this organization exists within.
-	Realm string `pulumi:"realm"`
+	Realm           *string `pulumi:"realm"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getOrganization.
@@ -86,10 +87,11 @@ type LookupOrganizationResult struct {
 	Domains     []GetOrganizationDomain `pulumi:"domains"`
 	Enabled     bool                    `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string `pulumi:"id"`
-	Name        string `pulumi:"name"`
-	Realm       string `pulumi:"realm"`
-	RedirectUrl string `pulumi:"redirectUrl"`
+	Id              string `pulumi:"id"`
+	Name            string `pulumi:"name"`
+	Realm           string `pulumi:"realm"`
+	RealmInternalId string `pulumi:"realmInternalId"`
+	RedirectUrl     string `pulumi:"redirectUrl"`
 }
 
 func LookupOrganizationOutput(ctx *pulumi.Context, args LookupOrganizationOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationResultOutput {
@@ -102,7 +104,8 @@ type LookupOrganizationOutputArgs struct {
 	// The organization name.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The name of the realm this organization exists within.
-	Realm pulumi.StringInput `pulumi:"realm"`
+	Realm           pulumi.StringPtrInput `pulumi:"realm"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupOrganizationOutputArgs) ElementType() reflect.Type {
@@ -155,6 +158,10 @@ func (o LookupOrganizationResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupOrganizationResultOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) string { return v.Realm }).(pulumi.StringOutput)
+}
+
+func (o LookupOrganizationResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupOrganizationResultOutput) RedirectUrl() pulumi.StringOutput {

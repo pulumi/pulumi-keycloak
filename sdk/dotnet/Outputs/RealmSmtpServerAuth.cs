@@ -14,18 +14,33 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmSmtpServerAuth
     {
         /// <summary>
-        /// The SMTP server password.
+        /// The SMTP server password. Stored in Terraform state. Exactly one of `Password` or `PasswordWo` must be set.
         /// </summary>
-        public readonly string Password;
+        public readonly string? Password;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The SMTP server password as a write-only argument
+        /// </summary>
+        public readonly string? PasswordWo;
+        /// <summary>
+        /// Change this value to update the SMTP server write-only password
+        /// </summary>
+        public readonly string? PasswordWoVersion;
         public readonly string Username;
 
         [OutputConstructor]
         private RealmSmtpServerAuth(
-            string password,
+            string? password,
+
+            string? passwordWo,
+
+            string? passwordWoVersion,
 
             string username)
         {
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             Username = username;
         }
     }

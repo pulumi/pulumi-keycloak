@@ -147,6 +147,10 @@ export class ClientAuthorizationClientScopePolicy extends pulumi.CustomResource 
     declare public readonly logic: pulumi.Output<string | undefined>;
     declare public readonly name: pulumi.Output<string>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly resourceServerId: pulumi.Output<string>;
     declare public readonly scopes: pulumi.Output<outputs.openid.ClientAuthorizationClientScopePolicyScope[]>;
 
@@ -168,13 +172,11 @@ export class ClientAuthorizationClientScopePolicy extends pulumi.CustomResource 
             resourceInputs["logic"] = state?.logic;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["scopes"] = state?.scopes;
         } else {
             const args = argsOrState as ClientAuthorizationClientScopePolicyArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
@@ -186,6 +188,7 @@ export class ClientAuthorizationClientScopePolicy extends pulumi.CustomResource 
             resourceInputs["logic"] = args?.logic;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
             resourceInputs["scopes"] = args?.scopes;
         }
@@ -203,6 +206,10 @@ export interface ClientAuthorizationClientScopePolicyState {
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId?: pulumi.Input<string | undefined>;
     scopes?: pulumi.Input<pulumi.Input<inputs.openid.ClientAuthorizationClientScopePolicyScope>[] | undefined>;
 }
@@ -215,7 +222,11 @@ export interface ClientAuthorizationClientScopePolicyArgs {
     description?: pulumi.Input<string | undefined>;
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId: pulumi.Input<string>;
     scopes: pulumi.Input<pulumi.Input<inputs.openid.ClientAuthorizationClientScopePolicyScope>[]>;
 }

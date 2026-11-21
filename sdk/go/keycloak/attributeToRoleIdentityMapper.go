@@ -109,6 +109,8 @@ type AttributeToRoleIdentityMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The name of the realm.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Role Name.
 	Role pulumi.StringOutput `pulumi:"role"`
 }
@@ -122,9 +124,6 @@ func NewAttributeToRoleIdentityMapper(ctx *pulumi.Context,
 
 	if args.IdentityProviderAlias == nil {
 		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
@@ -170,6 +169,8 @@ type attributeToRoleIdentityMapperState struct {
 	Name *string `pulumi:"name"`
 	// The name of the realm.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Role Name.
 	Role *string `pulumi:"role"`
 }
@@ -193,6 +194,8 @@ type AttributeToRoleIdentityMapperState struct {
 	Name pulumi.StringPtrInput
 	// The name of the realm.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Role Name.
 	Role pulumi.StringPtrInput
 }
@@ -225,7 +228,9 @@ type attributeToRoleIdentityMapperArgs struct {
 	// The name of the mapper.
 	Name *string `pulumi:"name"`
 	// The name of the realm.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Role Name.
 	Role string `pulumi:"role"`
 }
@@ -249,7 +254,9 @@ type AttributeToRoleIdentityMapperArgs struct {
 	// The name of the mapper.
 	Name pulumi.StringPtrInput
 	// The name of the realm.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Role Name.
 	Role pulumi.StringInput
 }
@@ -384,6 +391,11 @@ func (o AttributeToRoleIdentityMapperOutput) Name() pulumi.StringOutput {
 // The name of the realm.
 func (o AttributeToRoleIdentityMapperOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o AttributeToRoleIdentityMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Role Name.

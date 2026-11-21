@@ -19,135 +19,16 @@ __all__ = ['FullNameProtocolMapperArgs', 'FullNameProtocolMapper']
 @pulumi.input_type
 class FullNameProtocolMapperArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
-                 add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
-                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
-                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a FullNameProtocolMapper resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
-        :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-        :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if add_to_access_token is not None:
-            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
-        if add_to_id_token is not None:
-            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
-        if add_to_userinfo is not None:
-            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if client_scope_id is not None:
-            pulumi.set(__self__, "client_scope_id", client_scope_id)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this protocol mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="addToAccessToken")
-    def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
-        """
-        return pulumi.get(self, "add_to_access_token")
-
-    @add_to_access_token.setter
-    def add_to_access_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "add_to_access_token", value)
-
-    @_builtins.property
-    @pulumi.getter(name="addToIdToken")
-    def add_to_id_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
-        """
-        return pulumi.get(self, "add_to_id_token")
-
-    @add_to_id_token.setter
-    def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "add_to_id_token", value)
-
-    @_builtins.property
-    @pulumi.getter(name="addToUserinfo")
-    def add_to_userinfo(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-        """
-        return pulumi.get(self, "add_to_userinfo")
-
-    @add_to_userinfo.setter
-    def add_to_userinfo(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "add_to_userinfo", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientScopeId")
-    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-        """
-        return pulumi.get(self, "client_scope_id")
-
-    @client_scope_id.setter
-    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "client_scope_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The display name of this protocol mapper in the GUI.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _FullNameProtocolMapperState:
-    def __init__(__self__, *,
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering FullNameProtocolMapper resources.
+        The set of arguments for constructing a FullNameProtocolMapper resource.
 
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
@@ -156,6 +37,7 @@ class _FullNameProtocolMapperState:
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -171,6 +53,8 @@ class _FullNameProtocolMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
@@ -256,6 +140,155 @@ class _FullNameProtocolMapperState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _FullNameProtocolMapperState:
+    def __init__(__self__, *,
+                 add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering FullNameProtocolMapper resources.
+
+        :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if add_to_access_token is not None:
+            pulumi.set(__self__, "add_to_access_token", add_to_access_token)
+        if add_to_id_token is not None:
+            pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_userinfo is not None:
+            pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_scope_id is not None:
+            pulumi.set(__self__, "client_scope_id", client_scope_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter(name="addToAccessToken")
+    def add_to_access_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_access_token")
+
+    @add_to_access_token.setter
+    def add_to_access_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_access_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToIdToken")
+    def add_to_id_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_id_token")
+
+    @add_to_id_token.setter
+    def add_to_id_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_id_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addToUserinfo")
+    def add_to_userinfo(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_userinfo")
+
+    @add_to_userinfo.setter
+    def add_to_userinfo(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "add_to_userinfo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientScopeId")
+    def client_scope_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        """
+        return pulumi.get(self, "client_scope_id")
+
+    @client_scope_id.setter
+    def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_scope_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The display name of this protocol mapper in the GUI.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper")
 class FullNameProtocolMapper(pulumi.CustomResource):
@@ -270,6 +303,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing full name protocol mappers within Keycloak.
@@ -356,12 +390,13 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: FullNameProtocolMapperArgs,
+                 args: Optional[FullNameProtocolMapperArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing full name protocol mappers within Keycloak.
@@ -461,6 +496,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -476,9 +512,8 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_scope_id"] = client_scope_id
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(FullNameProtocolMapper, __self__).__init__(
             'keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper',
             resource_name,
@@ -495,7 +530,8 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'FullNameProtocolMapper':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'FullNameProtocolMapper':
         """
         Get an existing FullNameProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -510,6 +546,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -522,6 +559,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["client_scope_id"] = client_scope_id
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return FullNameProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -533,7 +571,8 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["addToAccessToken"] = add_to_access_token
         __props__["addToIdToken"] = add_to_id_token
@@ -542,6 +581,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         __props__["clientScopeId"] = client_scope_id
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -599,4 +639,12 @@ class FullNameProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

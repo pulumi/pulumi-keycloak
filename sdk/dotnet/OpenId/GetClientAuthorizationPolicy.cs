@@ -261,8 +261,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm this authorization policy exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         /// <summary>
         /// The ID of the resource server this authorization policy is attached to.
@@ -287,8 +290,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm this authorization policy exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The ID of the resource server this authorization policy is attached to.
@@ -328,6 +334,7 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public readonly ImmutableArray<string> Policies;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly string ResourceServerId;
         /// <summary>
         /// (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
@@ -358,6 +365,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string realmId,
 
+            string realmInternalId,
+
             string resourceServerId,
 
             ImmutableArray<string> resources,
@@ -373,6 +382,7 @@ namespace Pulumi.Keycloak.OpenId
             Owner = owner;
             Policies = policies;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             ResourceServerId = resourceServerId;
             Resources = resources;
             Scopes = scopes;

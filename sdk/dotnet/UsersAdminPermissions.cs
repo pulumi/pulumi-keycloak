@@ -25,6 +25,7 @@ namespace Pulumi.Keycloak
     /// - `map-roles` — assign or remove realm roles on users
     /// - `manage-group-membership` — add or remove users from groups
     /// - `Impersonate` — impersonate a user
+    /// - `reset-password` — reset user passwords
     /// 
     /// &gt; **Note:** The `user-impersonated` scope from v1 (`keycloak.UsersPermissions`) has no equivalent in FGAPv2 and is not available in this resource.
     /// 
@@ -196,7 +197,13 @@ namespace Pulumi.Keycloak
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`.
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`, `reset-password`.
         /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
@@ -280,14 +287,20 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm in which to manage this permission.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("scopes", required: true)]
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`.
+        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`, `reset-password`.
         /// </summary>
         public InputList<string> Scopes
         {
@@ -357,11 +370,17 @@ namespace Pulumi.Keycloak
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
+
         [Input("scopes")]
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`.
+        /// Set of scopes this permission grants. Valid values: `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`, `reset-password`.
         /// </summary>
         public InputList<string> Scopes
         {

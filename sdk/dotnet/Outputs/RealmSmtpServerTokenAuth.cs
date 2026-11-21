@@ -23,6 +23,8 @@ namespace Pulumi.Keycloak.Outputs
         public readonly string ClientSecret;
         /// <summary>
         /// The auth token scope.
+        /// 
+        /// For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
         /// </summary>
         public readonly string Scope;
         /// <summary>

@@ -27,7 +27,7 @@ class GetClientDescriptionConverterResult:
     """
     A collection of values returned by getClientDescriptionConverter.
     """
-    def __init__(__self__, access=None, admin_url=None, always_display_in_console=None, attributes=None, authentication_flow_binding_overrides=None, authorization_services_enabled=None, authorization_settings=None, base_url=None, bearer_only=None, body=None, client_authenticator_type=None, client_id=None, consent_required=None, default_client_scopes=None, default_roles=None, description=None, direct_access_grants_enabled=None, enabled=None, frontchannel_logout=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, not_before=None, optional_client_scopes=None, origin=None, protocol=None, protocol_mappers=None, public_client=None, realm_id=None, redirect_uris=None, registered_nodes=None, registration_access_token=None, root_url=None, secret=None, service_accounts_enabled=None, standard_flow_enabled=None, surrogate_auth_required=None, web_origins=None):
+    def __init__(__self__, access=None, admin_url=None, always_display_in_console=None, attributes=None, authentication_flow_binding_overrides=None, authorization_services_enabled=None, authorization_settings=None, base_url=None, bearer_only=None, body=None, client_authenticator_type=None, client_id=None, consent_required=None, default_client_scopes=None, default_roles=None, description=None, direct_access_grants_enabled=None, enabled=None, frontchannel_logout=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, not_before=None, optional_client_scopes=None, origin=None, protocol=None, protocol_mappers=None, public_client=None, realm_id=None, realm_internal_id=None, redirect_uris=None, registered_nodes=None, registration_access_token=None, root_url=None, secret=None, service_accounts_enabled=None, standard_flow_enabled=None, surrogate_auth_required=None, web_origins=None):
         if access and not isinstance(access, dict):
             raise TypeError("Expected argument 'access' to be a dict")
         pulumi.set(__self__, "access", access)
@@ -118,6 +118,9 @@ class GetClientDescriptionConverterResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if redirect_uris and not isinstance(redirect_uris, list):
             raise TypeError("Expected argument 'redirect_uris' to be a list")
         pulumi.set(__self__, "redirect_uris", redirect_uris)
@@ -300,6 +303,11 @@ class GetClientDescriptionConverterResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="redirectUris")
     def redirect_uris(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "redirect_uris")
@@ -381,6 +389,7 @@ class AwaitableGetClientDescriptionConverterResult(GetClientDescriptionConverter
             protocol_mappers=self.protocol_mappers,
             public_client=self.public_client,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             redirect_uris=self.redirect_uris,
             registered_nodes=self.registered_nodes,
             registration_access_token=self.registration_access_token,
@@ -394,6 +403,7 @@ class AwaitableGetClientDescriptionConverterResult(GetClientDescriptionConverter
 
 def get_client_description_converter(body: Optional[_builtins.str] = None,
                                      realm_id: Optional[_builtins.str] = None,
+                                     realm_internal_id: Optional[_builtins.str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientDescriptionConverterResult:
     """
     This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
@@ -449,6 +459,7 @@ def get_client_description_converter(body: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['body'] = body
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter', __args__, opts=opts, typ=GetClientDescriptionConverterResult).value
 
@@ -483,6 +494,7 @@ def get_client_description_converter(body: Optional[_builtins.str] = None,
         protocol_mappers=pulumi.get(__ret__, 'protocol_mappers'),
         public_client=pulumi.get(__ret__, 'public_client'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         redirect_uris=pulumi.get(__ret__, 'redirect_uris'),
         registered_nodes=pulumi.get(__ret__, 'registered_nodes'),
         registration_access_token=pulumi.get(__ret__, 'registration_access_token'),
@@ -493,7 +505,8 @@ def get_client_description_converter(body: Optional[_builtins.str] = None,
         surrogate_auth_required=pulumi.get(__ret__, 'surrogate_auth_required'),
         web_origins=pulumi.get(__ret__, 'web_origins'))
 def get_client_description_converter_output(body: pulumi.Input[Optional[_builtins.str]] = None,
-                                            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                            realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                            realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientDescriptionConverterResult]:
     """
     This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
@@ -549,6 +562,7 @@ def get_client_description_converter_output(body: pulumi.Input[Optional[_builtin
     __args__ = dict()
     __args__['body'] = body
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter', __args__, opts=opts, typ=GetClientDescriptionConverterResult)
     return __ret__.apply(lambda __response__: GetClientDescriptionConverterResult(
@@ -582,6 +596,7 @@ def get_client_description_converter_output(body: pulumi.Input[Optional[_builtin
         protocol_mappers=pulumi.get(__response__, 'protocol_mappers'),
         public_client=pulumi.get(__response__, 'public_client'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         redirect_uris=pulumi.get(__response__, 'redirect_uris'),
         registered_nodes=pulumi.get(__response__, 'registered_nodes'),
         registration_access_token=pulumi.get(__response__, 'registration_access_token'),

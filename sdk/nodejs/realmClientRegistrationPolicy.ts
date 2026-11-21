@@ -128,6 +128,10 @@ export class RealmClientRegistrationPolicy extends pulumi.CustomResource {
     declare public readonly providerId: pulumi.Output<string>;
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Whether this policy applies to anonymous or authenticated client registration.
      */
     declare public readonly subType: pulumi.Output<string>;
@@ -149,14 +153,12 @@ export class RealmClientRegistrationPolicy extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["subType"] = state?.subType;
         } else {
             const args = argsOrState as RealmClientRegistrationPolicyArgs | undefined;
             if (args?.providerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerId'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.subType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subType'");
@@ -165,6 +167,7 @@ export class RealmClientRegistrationPolicy extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["subType"] = args?.subType;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -187,6 +190,10 @@ export interface RealmClientRegistrationPolicyState {
     providerId?: pulumi.Input<string | undefined>;
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Whether this policy applies to anonymous or authenticated client registration.
      */
     subType?: pulumi.Input<string | undefined>;
@@ -205,7 +212,11 @@ export interface RealmClientRegistrationPolicyArgs {
      * The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
      */
     providerId: pulumi.Input<string>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Whether this policy applies to anonymous or authenticated client registration.
      */

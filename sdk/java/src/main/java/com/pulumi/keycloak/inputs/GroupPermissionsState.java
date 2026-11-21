@@ -71,11 +71,33 @@ public final class GroupPermissionsState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.manageScope);
     }
 
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     @Import(name="viewMembersScope")
@@ -101,7 +123,9 @@ public final class GroupPermissionsState extends com.pulumi.resources.ResourceAr
         this.manageMembersScope = $.manageMembersScope;
         this.manageMembershipScope = $.manageMembershipScope;
         this.manageScope = $.manageScope;
+        this.organizationId = $.organizationId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.viewMembersScope = $.viewMembersScope;
         this.viewScope = $.viewScope;
     }
@@ -190,6 +214,15 @@ public final class GroupPermissionsState extends com.pulumi.resources.ResourceAr
             return manageScope(Output.of(manageScope));
         }
 
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
+        }
+
         public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
@@ -197,6 +230,27 @@ public final class GroupPermissionsState extends com.pulumi.resources.ResourceAr
 
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public Builder viewMembersScope(@Nullable Output<GroupPermissionsViewMembersScopeArgs> viewMembersScope) {

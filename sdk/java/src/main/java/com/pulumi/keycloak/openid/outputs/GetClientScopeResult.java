@@ -15,6 +15,7 @@ import java.util.Objects;
 public final class GetClientScopeResult {
     private String consentScreenText;
     private String description;
+    private Boolean displayOnConsentScreen;
     private Map<String,String> extraConfig;
     private Integer guiOrder;
     /**
@@ -26,6 +27,7 @@ public final class GetClientScopeResult {
     private Boolean includeInTokenScope;
     private String name;
     private String realmId;
+    private String realmInternalId;
 
     private GetClientScopeResult() {}
     public String consentScreenText() {
@@ -33,6 +35,9 @@ public final class GetClientScopeResult {
     }
     public String description() {
         return this.description;
+    }
+    public Boolean displayOnConsentScreen() {
+        return this.displayOnConsentScreen;
     }
     public Map<String,String> extraConfig() {
         return this.extraConfig;
@@ -59,6 +64,9 @@ public final class GetClientScopeResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -71,6 +79,7 @@ public final class GetClientScopeResult {
     public static final class Builder {
         private String consentScreenText;
         private String description;
+        private Boolean displayOnConsentScreen;
         private Map<String,String> extraConfig;
         private Integer guiOrder;
         private String id;
@@ -78,11 +87,13 @@ public final class GetClientScopeResult {
         private Boolean includeInTokenScope;
         private String name;
         private String realmId;
+        private String realmInternalId;
         public Builder() {}
         public Builder(GetClientScopeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.consentScreenText = defaults.consentScreenText;
     	      this.description = defaults.description;
+    	      this.displayOnConsentScreen = defaults.displayOnConsentScreen;
     	      this.extraConfig = defaults.extraConfig;
     	      this.guiOrder = defaults.guiOrder;
     	      this.id = defaults.id;
@@ -90,6 +101,7 @@ public final class GetClientScopeResult {
     	      this.includeInTokenScope = defaults.includeInTokenScope;
     	      this.name = defaults.name;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
         }
 
         @CustomType.Setter
@@ -106,6 +118,14 @@ public final class GetClientScopeResult {
               throw new MissingRequiredPropertyException("GetClientScopeResult", "description");
             }
             this.description = description;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder displayOnConsentScreen(Boolean displayOnConsentScreen) {
+            if (displayOnConsentScreen == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "displayOnConsentScreen");
+            }
+            this.displayOnConsentScreen = displayOnConsentScreen;
             return this;
         }
         @CustomType.Setter
@@ -164,10 +184,19 @@ public final class GetClientScopeResult {
             this.realmId = realmId;
             return this;
         }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
         public GetClientScopeResult build() {
             final var _resultValue = new GetClientScopeResult();
             _resultValue.consentScreenText = consentScreenText;
             _resultValue.description = description;
+            _resultValue.displayOnConsentScreen = displayOnConsentScreen;
             _resultValue.extraConfig = extraConfig;
             _resultValue.guiOrder = guiOrder;
             _resultValue.id = id;
@@ -175,6 +204,7 @@ public final class GetClientScopeResult {
             _resultValue.includeInTokenScope = includeInTokenScope;
             _resultValue.name = name;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             return _resultValue;
         }
     }

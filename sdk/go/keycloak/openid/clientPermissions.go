@@ -43,8 +43,10 @@ type ClientPermissions struct {
 	MapRolesCompositeScope        ClientPermissionsMapRolesCompositeScopePtrOutput   `pulumi:"mapRolesCompositeScope"`
 	MapRolesScope                 ClientPermissionsMapRolesScopePtrOutput            `pulumi:"mapRolesScope"`
 	RealmId                       pulumi.StringOutput                                `pulumi:"realmId"`
-	TokenExchangeScope            ClientPermissionsTokenExchangeScopePtrOutput       `pulumi:"tokenExchangeScope"`
-	ViewScope                     ClientPermissionsViewScopePtrOutput                `pulumi:"viewScope"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId    pulumi.StringOutput                          `pulumi:"realmInternalId"`
+	TokenExchangeScope ClientPermissionsTokenExchangeScopePtrOutput `pulumi:"tokenExchangeScope"`
+	ViewScope          ClientPermissionsViewScopePtrOutput          `pulumi:"viewScope"`
 }
 
 // NewClientPermissions registers a new resource with the given unique name, arguments, and options.
@@ -56,9 +58,6 @@ func NewClientPermissions(ctx *pulumi.Context,
 
 	if args.ClientId == nil {
 		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientPermissions
@@ -93,8 +92,10 @@ type clientPermissionsState struct {
 	MapRolesCompositeScope        *ClientPermissionsMapRolesCompositeScope   `pulumi:"mapRolesCompositeScope"`
 	MapRolesScope                 *ClientPermissionsMapRolesScope            `pulumi:"mapRolesScope"`
 	RealmId                       *string                                    `pulumi:"realmId"`
-	TokenExchangeScope            *ClientPermissionsTokenExchangeScope       `pulumi:"tokenExchangeScope"`
-	ViewScope                     *ClientPermissionsViewScope                `pulumi:"viewScope"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId    *string                              `pulumi:"realmInternalId"`
+	TokenExchangeScope *ClientPermissionsTokenExchangeScope `pulumi:"tokenExchangeScope"`
+	ViewScope          *ClientPermissionsViewScope          `pulumi:"viewScope"`
 }
 
 type ClientPermissionsState struct {
@@ -108,8 +109,10 @@ type ClientPermissionsState struct {
 	MapRolesCompositeScope        ClientPermissionsMapRolesCompositeScopePtrInput
 	MapRolesScope                 ClientPermissionsMapRolesScopePtrInput
 	RealmId                       pulumi.StringPtrInput
-	TokenExchangeScope            ClientPermissionsTokenExchangeScopePtrInput
-	ViewScope                     ClientPermissionsViewScopePtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId    pulumi.StringPtrInput
+	TokenExchangeScope ClientPermissionsTokenExchangeScopePtrInput
+	ViewScope          ClientPermissionsViewScopePtrInput
 }
 
 func (ClientPermissionsState) ElementType() reflect.Type {
@@ -129,9 +132,11 @@ type clientPermissionsArgs struct {
 	MapRolesClientScopeScope *ClientPermissionsMapRolesClientScopeScope `pulumi:"mapRolesClientScopeScope"`
 	MapRolesCompositeScope   *ClientPermissionsMapRolesCompositeScope   `pulumi:"mapRolesCompositeScope"`
 	MapRolesScope            *ClientPermissionsMapRolesScope            `pulumi:"mapRolesScope"`
-	RealmId                  string                                     `pulumi:"realmId"`
-	TokenExchangeScope       *ClientPermissionsTokenExchangeScope       `pulumi:"tokenExchangeScope"`
-	ViewScope                *ClientPermissionsViewScope                `pulumi:"viewScope"`
+	RealmId                  *string                                    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId    *string                              `pulumi:"realmInternalId"`
+	TokenExchangeScope *ClientPermissionsTokenExchangeScope `pulumi:"tokenExchangeScope"`
+	ViewScope          *ClientPermissionsViewScope          `pulumi:"viewScope"`
 }
 
 // The set of arguments for constructing a ClientPermissions resource.
@@ -142,9 +147,11 @@ type ClientPermissionsArgs struct {
 	MapRolesClientScopeScope ClientPermissionsMapRolesClientScopeScopePtrInput
 	MapRolesCompositeScope   ClientPermissionsMapRolesCompositeScopePtrInput
 	MapRolesScope            ClientPermissionsMapRolesScopePtrInput
-	RealmId                  pulumi.StringInput
-	TokenExchangeScope       ClientPermissionsTokenExchangeScopePtrInput
-	ViewScope                ClientPermissionsViewScopePtrInput
+	RealmId                  pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId    pulumi.StringPtrInput
+	TokenExchangeScope ClientPermissionsTokenExchangeScopePtrInput
+	ViewScope          ClientPermissionsViewScopePtrInput
 }
 
 func (ClientPermissionsArgs) ElementType() reflect.Type {
@@ -273,6 +280,11 @@ func (o ClientPermissionsOutput) MapRolesScope() ClientPermissionsMapRolesScopeP
 
 func (o ClientPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientPermissionsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientPermissions) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientPermissionsOutput) TokenExchangeScope() ClientPermissionsTokenExchangeScopePtrOutput {

@@ -22,31 +22,36 @@ class GenericProtocolMapperArgs:
                  config: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  protocol: pulumi.Input[_builtins.str],
                  protocol_mapper: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GenericProtocolMapper resource.
 
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         :param pulumi.Input[_builtins.str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[_builtins.str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[_builtins.str] client_scope_id: The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "protocol_mapper", protocol_mapper)
-        pulumi.set(__self__, "realm_id", realm_id)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
             pulumi.set(__self__, "client_scope_id", client_scope_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -85,18 +90,6 @@ class GenericProtocolMapperArgs:
         pulumi.set(self, "protocol_mapper", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this protocol mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -132,6 +125,30 @@ class GenericProtocolMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _GenericProtocolMapperState:
@@ -142,7 +159,8 @@ class _GenericProtocolMapperState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol_mapper: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GenericProtocolMapper resources.
 
@@ -153,6 +171,7 @@ class _GenericProtocolMapperState:
         :param pulumi.Input[_builtins.str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[_builtins.str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -168,6 +187,8 @@ class _GenericProtocolMapperState:
             pulumi.set(__self__, "protocol_mapper", protocol_mapper)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -253,6 +274,18 @@ class _GenericProtocolMapperState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/genericProtocolMapper:GenericProtocolMapper")
 class GenericProtocolMapper(pulumi.CustomResource):
@@ -267,6 +300,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol_mapper: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
@@ -327,6 +361,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[_builtins.str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -406,6 +441,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol_mapper: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -427,9 +463,8 @@ class GenericProtocolMapper(pulumi.CustomResource):
             if protocol_mapper is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol_mapper'")
             __props__.__dict__["protocol_mapper"] = protocol_mapper
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(GenericProtocolMapper, __self__).__init__(
             'keycloak:index/genericProtocolMapper:GenericProtocolMapper',
             resource_name,
@@ -446,7 +481,8 @@ class GenericProtocolMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
             protocol_mapper: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'GenericProtocolMapper':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'GenericProtocolMapper':
         """
         Get an existing GenericProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -461,6 +497,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[_builtins.str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -473,6 +510,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["protocol_mapper"] = protocol_mapper
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return GenericProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -484,7 +522,8 @@ class GenericProtocolMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
             protocol_mapper: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["clientId"] = client_id
         __props__["clientScopeId"] = client_scope_id
@@ -493,6 +532,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
         __props__["protocol"] = protocol
         __props__["protocolMapper"] = protocol_mapper
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/genericProtocolMapper:GenericProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -550,4 +590,12 @@ class GenericProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

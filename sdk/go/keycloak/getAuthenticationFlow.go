@@ -58,15 +58,17 @@ type GetAuthenticationFlowArgs struct {
 	// The alias of the flow.
 	Alias string `pulumi:"alias"`
 	// The realm the authentication flow exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getAuthenticationFlow.
 type GetAuthenticationFlowResult struct {
 	Alias string `pulumi:"alias"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string `pulumi:"id"`
-	RealmId string `pulumi:"realmId"`
+	Id              string `pulumi:"id"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 }
 
 func GetAuthenticationFlowOutput(ctx *pulumi.Context, args GetAuthenticationFlowOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationFlowResultOutput {
@@ -79,7 +81,8 @@ type GetAuthenticationFlowOutputArgs struct {
 	// The alias of the flow.
 	Alias pulumi.StringInput `pulumi:"alias"`
 	// The realm the authentication flow exists in.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (GetAuthenticationFlowOutputArgs) ElementType() reflect.Type {
@@ -112,6 +115,10 @@ func (o GetAuthenticationFlowResultOutput) Id() pulumi.StringOutput {
 
 func (o GetAuthenticationFlowResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAuthenticationFlowResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetAuthenticationFlowResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAuthenticationFlowResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func init() {

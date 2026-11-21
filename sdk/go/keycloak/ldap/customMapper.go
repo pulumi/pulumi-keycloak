@@ -105,6 +105,8 @@ type CustomMapper struct {
 	ProviderType pulumi.StringOutput `pulumi:"providerType"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewCustomMapper registers a new resource with the given unique name, arguments, and options.
@@ -122,9 +124,6 @@ func NewCustomMapper(ctx *pulumi.Context,
 	}
 	if args.ProviderType == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderType'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CustomMapper
@@ -161,6 +160,8 @@ type customMapperState struct {
 	ProviderType *string `pulumi:"providerType"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type CustomMapperState struct {
@@ -176,6 +177,8 @@ type CustomMapperState struct {
 	ProviderType pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (CustomMapperState) ElementType() reflect.Type {
@@ -200,7 +203,9 @@ type customMapperArgs struct {
 	// The fully-qualified Java class name of the custom LDAP mapper.
 	ProviderType string `pulumi:"providerType"`
 	// The realm that this LDAP mapper will exist in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a CustomMapper resource.
@@ -216,7 +221,9 @@ type CustomMapperArgs struct {
 	// The fully-qualified Java class name of the custom LDAP mapper.
 	ProviderType pulumi.StringInput
 	// The realm that this LDAP mapper will exist in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (CustomMapperArgs) ElementType() reflect.Type {
@@ -334,6 +341,11 @@ func (o CustomMapperOutput) ProviderType() pulumi.StringOutput {
 // The realm that this LDAP mapper will exist in.
 func (o CustomMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o CustomMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type CustomMapperArrayOutput struct{ *pulumi.OutputState }

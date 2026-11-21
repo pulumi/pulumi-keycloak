@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -144,18 +143,17 @@ type Flow struct {
 	ProviderId pulumi.StringOutput `pulumi:"providerId"`
 	// The realm that the authentication flow exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewFlow registers a new resource with the given unique name, arguments, and options.
 func NewFlow(ctx *pulumi.Context,
 	name string, args *FlowArgs, opts ...pulumi.ResourceOption) (*Flow, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &FlowArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Flow
 	err := ctx.RegisterResource("keycloak:authentication/flow:Flow", name, args, &resource, opts...)
@@ -189,6 +187,8 @@ type flowState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The realm that the authentication flow exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type FlowState struct {
@@ -202,6 +202,8 @@ type FlowState struct {
 	ProviderId pulumi.StringPtrInput
 	// The realm that the authentication flow exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (FlowState) ElementType() reflect.Type {
@@ -224,7 +226,9 @@ type flowArgs struct {
 	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
 	ProviderId *string `pulumi:"providerId"`
 	// The realm that the authentication flow exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a Flow resource.
@@ -238,7 +242,9 @@ type FlowArgs struct {
 	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copyFrom` is set, since the copy inherits its type from the source flow.
 	ProviderId pulumi.StringPtrInput
 	// The realm that the authentication flow exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (FlowArgs) ElementType() reflect.Type {
@@ -351,6 +357,11 @@ func (o FlowOutput) ProviderId() pulumi.StringOutput {
 // The realm that the authentication flow exists in.
 func (o FlowOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Flow) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o FlowOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Flow) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type FlowArrayOutput struct{ *pulumi.OutputState }

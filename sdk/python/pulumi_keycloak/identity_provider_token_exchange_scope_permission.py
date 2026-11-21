@@ -21,21 +21,26 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
     def __init__(__self__, *,
                  clients: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  provider_alias: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
-                 policy_type: pulumi.Input[Optional[_builtins.str]] = None):
+                 policy_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IdentityProviderTokenExchangeScopePermission resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
         :param pulumi.Input[_builtins.str] provider_alias: Alias of the identity provider.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that the identity provider exists in.
         :param pulumi.Input[_builtins.str] policy_type: Defaults to "client" This is also the only value policy type supported by this provider.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that the identity provider exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "clients", clients)
         pulumi.set(__self__, "provider_alias", provider_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
         if policy_type is not None:
             pulumi.set(__self__, "policy_type", policy_type)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -62,18 +67,6 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
         pulumi.set(self, "provider_alias", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that the identity provider exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter(name="policyType")
     def policy_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -84,6 +77,30 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
     @policy_type.setter
     def policy_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that the identity provider exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
 
 @pulumi.input_type
@@ -96,7 +113,8 @@ class _IdentityProviderTokenExchangeScopePermissionState:
                  policy_id: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IdentityProviderTokenExchangeScopePermission resources.
 
@@ -108,6 +126,7 @@ class _IdentityProviderTokenExchangeScopePermissionState:
         :param pulumi.Input[_builtins.str] policy_type: Defaults to "client" This is also the only value policy type supported by this provider.
         :param pulumi.Input[_builtins.str] provider_alias: Alias of the identity provider.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the identity provider exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if authorization_idp_resource_id is not None:
             pulumi.set(__self__, "authorization_idp_resource_id", authorization_idp_resource_id)
@@ -125,6 +144,8 @@ class _IdentityProviderTokenExchangeScopePermissionState:
             pulumi.set(__self__, "provider_alias", provider_alias)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="authorizationIdpResourceId")
@@ -222,6 +243,18 @@ class _IdentityProviderTokenExchangeScopePermissionState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission")
 class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
@@ -233,6 +266,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
                  policy_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **This resource requires Fine-Grained Admin Permissions v1.** It is not compatible with Keycloak instances
@@ -315,6 +349,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] policy_type: Defaults to "client" This is also the only value policy type supported by this provider.
         :param pulumi.Input[_builtins.str] provider_alias: Alias of the identity provider.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the identity provider exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -416,6 +451,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
                  policy_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -432,9 +468,8 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             if provider_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_alias'")
             __props__.__dict__["provider_alias"] = provider_alias
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["authorization_idp_resource_id"] = None
             __props__.__dict__["authorization_resource_server_id"] = None
             __props__.__dict__["authorization_token_exchange_scope_permission_id"] = None
@@ -456,7 +491,8 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             policy_id: pulumi.Input[Optional[_builtins.str]] = None,
             policy_type: pulumi.Input[Optional[_builtins.str]] = None,
             provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'IdentityProviderTokenExchangeScopePermission':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'IdentityProviderTokenExchangeScopePermission':
         """
         Get an existing IdentityProviderTokenExchangeScopePermission resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -472,6 +508,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] policy_type: Defaults to "client" This is also the only value policy type supported by this provider.
         :param pulumi.Input[_builtins.str] provider_alias: Alias of the identity provider.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the identity provider exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -485,6 +522,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         __props__.__dict__["policy_type"] = policy_type
         __props__.__dict__["provider_alias"] = provider_alias
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return IdentityProviderTokenExchangeScopePermission(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -497,7 +535,8 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             policy_id: pulumi.Input[Optional[_builtins.str]] = None,
             policy_type: pulumi.Input[Optional[_builtins.str]] = None,
             provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["authorizationIdpResourceId"] = authorization_idp_resource_id
         __props__["authorizationResourceServerId"] = authorization_resource_server_id
@@ -507,6 +546,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         __props__["policyType"] = policy_type
         __props__["providerAlias"] = provider_alias
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -572,4 +612,12 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         The realm that the identity provider exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

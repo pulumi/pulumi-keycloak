@@ -165,7 +165,7 @@ namespace Pulumi.Keycloak
     /// 
     /// - `Policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
     /// - `Description` - (Optional) Description of the permission.
-    /// - `DecisionStrategy` - (Optional) Decision strategy of the permission.
+    /// - `DecisionStrategy` - (Optional) Decision strategy of the permission. Defaults to `UNANIMOUS`.
     /// 
     /// ### Attributes Reference
     /// 
@@ -201,6 +201,12 @@ namespace Pulumi.Keycloak
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
         [Output("userImpersonatedScope")]
         public Output<Outputs.UsersPermissionsUserImpersonatedScope?> UserImpersonatedScope { get; private set; } = null!;
 
@@ -215,7 +221,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public UsersPermissions(string name, UsersPermissionsArgs args, CustomResourceOptions? options = null)
+        public UsersPermissions(string name, UsersPermissionsArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:index/usersPermissions:UsersPermissions", name, args ?? new UsersPermissionsArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -265,8 +271,14 @@ namespace Pulumi.Keycloak
         [Input("mapRolesScope")]
         public Input<Inputs.UsersPermissionsMapRolesScopeArgs>? MapRolesScope { get; set; }
 
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("userImpersonatedScope")]
         public Input<Inputs.UsersPermissionsUserImpersonatedScopeArgs>? UserImpersonatedScope { get; set; }
@@ -305,6 +317,12 @@ namespace Pulumi.Keycloak
 
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("userImpersonatedScope")]
         public Input<Inputs.UsersPermissionsUserImpersonatedScopeGetArgs>? UserImpersonatedScope { get; set; }

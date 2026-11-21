@@ -110,6 +110,10 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
      */
     declare public readonly template: pulumi.Output<string | undefined>;
@@ -131,19 +135,18 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
             resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
             resourceInputs["name"] = state?.name;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["template"] = state?.template;
         } else {
             const args = argsOrState as UserTemplateImporterIdentityProviderMapperArgs | undefined;
             if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
             resourceInputs["name"] = args?.name;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["template"] = args?.template;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -172,6 +175,10 @@ export interface UserTemplateImporterIdentityProviderMapperState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
      */
     template?: pulumi.Input<string | undefined>;
@@ -196,7 +203,11 @@ export interface UserTemplateImporterIdentityProviderMapperArgs {
     /**
      * The name of the realm.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
      */

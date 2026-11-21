@@ -19,35 +19,28 @@ __all__ = ['UserRolesArgs', 'UserRoles']
 @pulumi.input_type
 class UserRolesArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  role_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  user_id: pulumi.Input[_builtins.str],
-                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None):
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserRoles resource.
 
-        :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage roles for.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "role_ids", role_ids)
         pulumi.set(__self__, "user_id", user_id)
         if exhaustive is not None:
             pulumi.set(__self__, "exhaustive", exhaustive)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this user exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="roleIds")
@@ -85,12 +78,37 @@ class UserRolesArgs:
     def exhaustive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exhaustive", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this user exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _UserRolesState:
     def __init__(__self__, *,
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -98,6 +116,7 @@ class _UserRolesState:
 
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage roles for.
         """
@@ -105,6 +124,8 @@ class _UserRolesState:
             pulumi.set(__self__, "exhaustive", exhaustive)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role_ids is not None:
             pulumi.set(__self__, "role_ids", role_ids)
         if user_id is not None:
@@ -133,6 +154,18 @@ class _UserRolesState:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleIds")
@@ -167,6 +200,7 @@ class UserRoles(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -238,6 +272,7 @@ class UserRoles(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage roles for.
         """
@@ -328,6 +363,7 @@ class UserRoles(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -340,9 +376,8 @@ class UserRoles(pulumi.CustomResource):
             __props__ = UserRolesArgs.__new__(UserRolesArgs)
 
             __props__.__dict__["exhaustive"] = exhaustive
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if role_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'role_ids'")
             __props__.__dict__["role_ids"] = role_ids
@@ -361,6 +396,7 @@ class UserRoles(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserRoles':
         """
@@ -372,6 +408,7 @@ class UserRoles(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage roles for.
         """
@@ -381,6 +418,7 @@ class UserRoles(pulumi.CustomResource):
 
         __props__.__dict__["exhaustive"] = exhaustive
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["role_ids"] = role_ids
         __props__.__dict__["user_id"] = user_id
         return UserRoles(resource_name, opts=opts, __props__=__props__)
@@ -390,11 +428,13 @@ class UserRoles(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["exhaustive"] = exhaustive
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["roleIds"] = role_ids
         __props__["userId"] = user_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/userRoles:UserRoles', id, __props__, opts or pulumi.ResourceOptions())
@@ -414,6 +454,14 @@ class UserRoles(pulumi.CustomResource):
         The realm this user exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="roleIds")

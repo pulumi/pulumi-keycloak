@@ -20,17 +20,22 @@ __all__ = ['RealmLocalizationArgs', 'RealmLocalization']
 class RealmLocalizationArgs:
     def __init__(__self__, *,
                  locale: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  texts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RealmLocalization resource.
 
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the localization texts apply to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         pulumi.set(__self__, "locale", locale)
-        pulumi.set(__self__, "realm_id", realm_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if texts is not None:
             pulumi.set(__self__, "texts", texts)
 
@@ -48,15 +53,27 @@ class RealmLocalizationArgs:
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the realm the localization texts apply to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -76,18 +93,22 @@ class _RealmLocalizationState:
     def __init__(__self__, *,
                  locale: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  texts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering RealmLocalization resources.
 
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the localization texts apply to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         if locale is not None:
             pulumi.set(__self__, "locale", locale)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if texts is not None:
             pulumi.set(__self__, "texts", texts)
 
@@ -116,6 +137,18 @@ class _RealmLocalizationState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def texts(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -136,6 +169,7 @@ class RealmLocalization(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  locale: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  texts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -176,6 +210,7 @@ class RealmLocalization(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the localization texts apply to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         ...
@@ -235,6 +270,7 @@ class RealmLocalization(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  locale: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  texts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -248,9 +284,8 @@ class RealmLocalization(pulumi.CustomResource):
             if locale is None and not opts.urn:
                 raise TypeError("Missing required property 'locale'")
             __props__.__dict__["locale"] = locale
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["texts"] = texts
         super(RealmLocalization, __self__).__init__(
             'keycloak:index/realmLocalization:RealmLocalization',
@@ -264,6 +299,7 @@ class RealmLocalization(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             locale: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             texts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> 'RealmLocalization':
         """
         Get an existing RealmLocalization resource's state with the given name, id, and optional extra
@@ -274,6 +310,7 @@ class RealmLocalization(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the localization texts apply to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -282,6 +319,7 @@ class RealmLocalization(pulumi.CustomResource):
 
         __props__.__dict__["locale"] = locale
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["texts"] = texts
         return RealmLocalization(resource_name, opts=opts, __props__=__props__)
 
@@ -290,10 +328,12 @@ class RealmLocalization(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             locale: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             texts: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["locale"] = locale
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["texts"] = texts
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmLocalization:RealmLocalization', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -312,6 +352,14 @@ class RealmLocalization(pulumi.CustomResource):
         The ID of the realm the localization texts apply to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

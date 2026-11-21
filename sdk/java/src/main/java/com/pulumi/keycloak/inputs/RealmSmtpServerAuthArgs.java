@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.ResourceArgs {
@@ -15,18 +17,50 @@ public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.Resource
     public static final RealmSmtpServerAuthArgs Empty = new RealmSmtpServerAuthArgs();
 
     /**
-     * The SMTP server password.
+     * The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
      * 
      */
-    @Import(name="password", required=true)
-    private Output<String> password;
+    @Import(name="password")
+    private @Nullable Output<String> password;
 
     /**
-     * @return The SMTP server password.
+     * @return The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
      * 
      */
-    public Output<String> password() {
-        return this.password;
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SMTP server password as a write-only argument
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SMTP server password as a write-only argument
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * Change this value to update the SMTP server write-only password
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<String> passwordWoVersion;
+
+    /**
+     * @return Change this value to update the SMTP server write-only password
+     * 
+     */
+    public Optional<Output<String>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
 
     @Import(name="username", required=true)
@@ -40,6 +74,8 @@ public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.Resource
 
     private RealmSmtpServerAuthArgs(RealmSmtpServerAuthArgs $) {
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.username = $.username;
     }
 
@@ -62,24 +98,68 @@ public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param password The SMTP server password.
+         * @param password The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
          * 
          * @return builder
          * 
          */
-        public Builder password(Output<String> password) {
+        public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
         }
 
         /**
-         * @param password The SMTP server password.
+         * @param password The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
          * 
          * @return builder
          * 
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The SMTP server password as a write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The SMTP server password as a write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion Change this value to update the SMTP server write-only password
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<String> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Change this value to update the SMTP server write-only password
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(String passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         public Builder username(Output<String> username) {
@@ -92,9 +172,6 @@ public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.Resource
         }
 
         public RealmSmtpServerAuthArgs build() {
-            if ($.password == null) {
-                throw new MissingRequiredPropertyException("RealmSmtpServerAuthArgs", "password");
-            }
             if ($.username == null) {
                 throw new MissingRequiredPropertyException("RealmSmtpServerAuthArgs", "username");
             }

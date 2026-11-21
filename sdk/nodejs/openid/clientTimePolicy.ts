@@ -153,6 +153,10 @@ export class ClientTimePolicy extends pulumi.CustomResource {
     declare public readonly notBefore: pulumi.Output<string | undefined>;
     declare public readonly notOnOrAfter: pulumi.Output<string | undefined>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly resourceServerId: pulumi.Output<string>;
     declare public readonly year: pulumi.Output<string | undefined>;
     declare public readonly yearEnd: pulumi.Output<string | undefined>;
@@ -185,6 +189,7 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             resourceInputs["notBefore"] = state?.notBefore;
             resourceInputs["notOnOrAfter"] = state?.notOnOrAfter;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["year"] = state?.year;
             resourceInputs["yearEnd"] = state?.yearEnd;
@@ -192,9 +197,6 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             const args = argsOrState as ClientTimePolicyArgs | undefined;
             if (args?.decisionStrategy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
@@ -214,6 +216,7 @@ export class ClientTimePolicy extends pulumi.CustomResource {
             resourceInputs["notBefore"] = args?.notBefore;
             resourceInputs["notOnOrAfter"] = args?.notOnOrAfter;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
             resourceInputs["year"] = args?.year;
             resourceInputs["yearEnd"] = args?.yearEnd;
@@ -242,6 +245,10 @@ export interface ClientTimePolicyState {
     notBefore?: pulumi.Input<string | undefined>;
     notOnOrAfter?: pulumi.Input<string | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId?: pulumi.Input<string | undefined>;
     year?: pulumi.Input<string | undefined>;
     yearEnd?: pulumi.Input<string | undefined>;
@@ -265,7 +272,11 @@ export interface ClientTimePolicyArgs {
     name?: pulumi.Input<string | undefined>;
     notBefore?: pulumi.Input<string | undefined>;
     notOnOrAfter?: pulumi.Input<string | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId: pulumi.Input<string>;
     year?: pulumi.Input<string | undefined>;
     yearEnd?: pulumi.Input<string | undefined>;

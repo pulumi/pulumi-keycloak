@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -66,7 +65,7 @@ import (
 type RealmKeystoreRsaGenerated struct {
 	pulumi.CustomResourceState
 
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
@@ -80,18 +79,17 @@ type RealmKeystoreRsaGenerated struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmKeystoreRsaGenerated registers a new resource with the given unique name, arguments, and options.
 func NewRealmKeystoreRsaGenerated(ctx *pulumi.Context,
 	name string, args *RealmKeystoreRsaGeneratedArgs, opts ...pulumi.ResourceOption) (*RealmKeystoreRsaGenerated, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmKeystoreRsaGeneratedArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreRsaGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated", name, args, &resource, opts...)
@@ -115,7 +113,7 @@ func GetRealmKeystoreRsaGenerated(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmKeystoreRsaGenerated resources.
 type realmKeystoreRsaGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm *string `pulumi:"algorithm"`
@@ -129,10 +127,12 @@ type realmKeystoreRsaGeneratedState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmKeystoreRsaGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm pulumi.StringPtrInput
@@ -146,6 +146,8 @@ type RealmKeystoreRsaGeneratedState struct {
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreRsaGeneratedState) ElementType() reflect.Type {
@@ -159,7 +161,7 @@ func RealmKeystoreRsaGeneratedExists(ctx *pulumi.Context,
 }
 
 type realmKeystoreRsaGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm *string `pulumi:"algorithm"`
@@ -172,12 +174,14 @@ type realmKeystoreRsaGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmKeystoreRsaGenerated resource.
 type RealmKeystoreRsaGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm pulumi.StringPtrInput
@@ -190,7 +194,9 @@ type RealmKeystoreRsaGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreRsaGeneratedArgs) ElementType() reflect.Type {
@@ -280,7 +286,7 @@ func (o RealmKeystoreRsaGeneratedOutput) ToRealmKeystoreRsaGeneratedOutputWithCo
 	return o
 }
 
-// When `false`, key in not used for signing. Defaults to `true`.
+// When `false`, key is not used for signing. Defaults to `true`.
 func (o RealmKeystoreRsaGeneratedOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -313,6 +319,11 @@ func (o RealmKeystoreRsaGeneratedOutput) Priority() pulumi.IntPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreRsaGeneratedOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreRsaGeneratedOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaGenerated) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmKeystoreRsaGeneratedArrayOutput struct{ *pulumi.OutputState }

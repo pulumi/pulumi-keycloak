@@ -136,7 +136,9 @@ type ClientGroupPolicy struct {
 	Logic            pulumi.StringPtrOutput            `pulumi:"logic"`
 	Name             pulumi.StringOutput               `pulumi:"name"`
 	RealmId          pulumi.StringOutput               `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput               `pulumi:"resourceServerId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput `pulumi:"realmInternalId"`
+	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 }
 
 // NewClientGroupPolicy registers a new resource with the given unique name, arguments, and options.
@@ -151,9 +153,6 @@ func NewClientGroupPolicy(ctx *pulumi.Context,
 	}
 	if args.Groups == nil {
 		return nil, errors.New("invalid value for required argument 'Groups'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -188,7 +187,9 @@ type clientGroupPolicyState struct {
 	Logic            *string                  `pulumi:"logic"`
 	Name             *string                  `pulumi:"name"`
 	RealmId          *string                  `pulumi:"realmId"`
-	ResourceServerId *string                  `pulumi:"resourceServerId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
+	ResourceServerId *string `pulumi:"resourceServerId"`
 }
 
 type ClientGroupPolicyState struct {
@@ -199,6 +200,8 @@ type ClientGroupPolicyState struct {
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 }
 
@@ -219,8 +222,10 @@ type clientGroupPolicyArgs struct {
 	GroupsClaim      *string                  `pulumi:"groupsClaim"`
 	Logic            *string                  `pulumi:"logic"`
 	Name             *string                  `pulumi:"name"`
-	RealmId          string                   `pulumi:"realmId"`
-	ResourceServerId string                   `pulumi:"resourceServerId"`
+	RealmId          *string                  `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
+	ResourceServerId string  `pulumi:"resourceServerId"`
 }
 
 // The set of arguments for constructing a ClientGroupPolicy resource.
@@ -231,7 +236,9 @@ type ClientGroupPolicyArgs struct {
 	GroupsClaim      pulumi.StringPtrInput
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
-	RealmId          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringInput
 }
 
@@ -348,6 +355,11 @@ func (o ClientGroupPolicyOutput) Name() pulumi.StringOutput {
 
 func (o ClientGroupPolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientGroupPolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientGroupPolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientGroupPolicyOutput) ResourceServerId() pulumi.StringOutput {

@@ -19,20 +19,22 @@ __all__ = ['ClientAuthorizationResourceArgs', 'ClientAuthorizationResource']
 @pulumi.input_type
 class ClientAuthorizationResourceArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  icon_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ClientAuthorizationResource resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "resource_server_id", resource_server_id)
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
@@ -44,21 +46,16 @@ class ClientAuthorizationResourceArgs:
             pulumi.set(__self__, "name", name)
         if owner_managed_access is not None:
             pulumi.set(__self__, "owner_managed_access", owner_managed_access)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if scopes is not None:
             pulumi.set(__self__, "scopes", scopes)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if uris is not None:
             pulumi.set(__self__, "uris", uris)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
@@ -115,6 +112,27 @@ class ClientAuthorizationResourceArgs:
         pulumi.set(self, "owner_managed_access", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "scopes")
@@ -151,12 +169,15 @@ class _ClientAuthorizationResourceState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ClientAuthorizationResource resources.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
@@ -170,6 +191,8 @@ class _ClientAuthorizationResourceState:
             pulumi.set(__self__, "owner_managed_access", owner_managed_access)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id is not None:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if scopes is not None:
@@ -234,6 +257,18 @@ class _ClientAuthorizationResourceState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_server_id")
@@ -282,6 +317,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -371,6 +407,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -481,6 +518,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -499,9 +537,8 @@ class ClientAuthorizationResource(pulumi.CustomResource):
             __props__.__dict__["icon_uri"] = icon_uri
             __props__.__dict__["name"] = name
             __props__.__dict__["owner_managed_access"] = owner_managed_access
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__.__dict__["resource_server_id"] = resource_server_id
@@ -524,6 +561,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -535,6 +573,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -546,6 +585,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["owner_managed_access"] = owner_managed_access
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["scopes"] = scopes
         __props__.__dict__["type"] = type
@@ -561,6 +601,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             owner_managed_access: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -572,6 +613,7 @@ class ClientAuthorizationResource(pulumi.CustomResource):
         __props__["name"] = name
         __props__["ownerManagedAccess"] = owner_managed_access
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["resourceServerId"] = resource_server_id
         __props__["scopes"] = scopes
         __props__["type"] = type
@@ -607,6 +649,14 @@ class ClientAuthorizationResource(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")

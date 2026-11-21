@@ -240,6 +240,10 @@ export class Workflow extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
     declare public readonly restartInProgress: pulumi.Output<string | undefined>;
@@ -275,6 +279,7 @@ export class Workflow extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["on"] = state?.on;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["restartInProgress"] = state?.restartInProgress;
             resourceInputs["schedule"] = state?.schedule;
             resourceInputs["states"] = state?.states;
@@ -283,9 +288,6 @@ export class Workflow extends pulumi.CustomResource {
             const args = argsOrState as WorkflowArgs | undefined;
             if (args?.on === undefined && !opts.urn) {
                 throw new Error("Missing required property 'on'");
-            }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
             }
             if (args?.steps === undefined && !opts.urn) {
                 throw new Error("Missing required property 'steps'");
@@ -296,6 +298,7 @@ export class Workflow extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["on"] = args?.on;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["restartInProgress"] = args?.restartInProgress;
             resourceInputs["schedule"] = args?.schedule;
             resourceInputs["steps"] = args?.steps;
@@ -334,6 +337,10 @@ export interface WorkflowState {
      * The realm this workflow exists in. Changing this forces a new resource.
      */
     realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */
@@ -379,7 +386,11 @@ export interface WorkflowArgs {
     /**
      * The realm this workflow exists in. Changing this forces a new resource.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
      */

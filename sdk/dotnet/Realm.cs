@@ -98,10 +98,77 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
+    /// ## Renaming a realm
+    /// 
+    /// Changing `Realm` renames the realm in place instead of replacing it, so its data is kept. Keycloak addresses a realm by
+    /// its name, and the resources inside it (clients, groups, roles, ...) refer to it with `RealmId`, which is that name.
+    /// Terraform sees `RealmId` change on a rename and replaces those resources, which deletes their data.
+    /// 
+    /// When the `keycloak.Realm` resource has an `InternalId` in state, the account that the provider authenticates with
+    /// must be able to confirm that ID. If Keycloak hides it from that account, refreshing the realm fails, and with it
+    /// `pulumi preview`, as well as updating and destroying the realm. Grant the provider's account the `view-realm` role
+    /// on the realm again to continue. This prevents a reused name from pointing Terraform at a different realm. Imports
+    /// and older state without a recorded ID use the stored name.
+    /// 
+    /// To prevent the resources inside a realm from being replaced when it is renamed, reference the realm by its internal
+    /// id, which never changes, using `RealmInternalId` instead of `RealmId`:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var @group = new Keycloak.Group("group", new()
+    ///     {
+    ///         RealmInternalId = realm.InternalId,
+    ///         Name = "group",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// `RealmInternalId` is available on every resource and data source that has a `RealmId` (or `Realm`) argument, which then
+    /// holds the current realm name as a read-only value. Set exactly one of them. Data sources should use it too: they are
+    /// read while planning, when a renamed realm does not exist under its new name yet.
+    /// 
+    /// Looking up a realm by its internal id requires that the provider's account can see the realm's id. Keycloak hides it
+    /// from accounts that have no `view-realm` role on that realm (for example one that only has `manage-clients`), so grant
+    /// that role (the `realm-management` client role of the realm) before using `RealmInternalId`. Configurations that keep using
+    /// `RealmId` are not affected. If the id is hidden, using `RealmInternalId` fails with an error instead of replacing resources.
+    /// Likewise, if the account loses `view-realm` later, resources whose state holds a `RealmInternalId` fail with that error until the
+    /// role is granted again: the provider will not guess a realm from a name that may have been reused.
+    /// 
+    /// Things to know about renaming:
+    /// 
+    /// - A realm keeps its internal id when it is renamed, and the name of a renamed realm can be reused by a new realm. The
+    ///   exception is a realm whose internal id is its old name: realms created by earlier versions of this provider got the
+    ///   realm name as internal id. After renaming such a realm from `A` to `B` its id `A` stays taken, so creating a new realm
+    ///   called `A` with `InternalId = "a"` fails. Leave `InternalId` unset so that Keycloak generates a UUID.
+    /// - Resources whose id contains the realm name (for example `keycloak.DefaultGroups`) get the new name in their id on
+    ///   the next refresh.
+    /// - A resource that still uses `RealmId` (the realm name) depends on where the name comes from. If it comes from
+    ///   `keycloak_realm.x.realm`, the plan of the rename already shows the new name, so the resource is replaced in that
+    ///   apply. If it comes from `keycloak_realm.x.id`, the plan of the rename still shows the old name, because the id only
+    ///   changes while the realm is updated. The next refresh then brings the resource up to date, so it is not replaced, but
+    ///   adding or changing such a resource in the same apply as the rename fails with `Provider produced inconsistent final
+    ///   plan`, after the realm has already been renamed. Use `RealmInternalId` for all resources of a realm that you want to rename.
+    /// 
+    /// To migrate an existing configuration, first upgrade the provider and run `pulumi up`, or `pulumi up -refresh-only`;
+    /// `RealmInternalId` is filled in for existing resources. Then replace `RealmId = keycloak_realm.realm.id` with
+    /// `RealmInternalId = keycloak_realm.realm.internal_id`, which shows no changes. After that, `Realm` can be changed safely.
+    /// 
     /// ## Default Client Scopes
     /// 
-    /// - `DefaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
-    /// - `DefaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
+    /// - `DefaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. Alternatively, manage both assignment sets with `keycloak.ClientScopeAssignments` and omit both scope-assignment fields from this realm resource.
+    /// - `DefaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. Do not configure this field or `DefaultDefaultClientScopes` alongside a realm-level `keycloak.ClientScopeAssignments` resource; they manage the same assignments and will conflict.
     /// 
     /// ## Import
     /// 
@@ -225,7 +292,7 @@ namespace Pulumi.Keycloak
         public Output<string> FirstBrokerLoginFlow { get; private set; } = null!;
 
         /// <summary>
-        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm's name as internal ID.
         /// </summary>
         [Output("internalId")]
         public Output<string> InternalId { get; private set; } = null!;
@@ -270,7 +337,7 @@ namespace Pulumi.Keycloak
         public Output<string?> PasswordPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `Master` realm cannot be renamed.
         /// </summary>
         [Output("realm")]
         public Output<string> RealmName { get; private set; } = null!;
@@ -521,7 +588,7 @@ namespace Pulumi.Keycloak
         public Input<string>? FirstBrokerLoginFlow { get; set; }
 
         /// <summary>
-        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm's name as internal ID.
         /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
@@ -566,7 +633,7 @@ namespace Pulumi.Keycloak
         public Input<string>? PasswordPolicy { get; set; }
 
         /// <summary>
-        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `Master` realm cannot be renamed.
         /// </summary>
         [Input("realm")]
         public Input<string>? RealmName { get; set; }
@@ -779,7 +846,7 @@ namespace Pulumi.Keycloak
         public Input<string>? FirstBrokerLoginFlow { get; set; }
 
         /// <summary>
-        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm's name as internal ID.
         /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
@@ -824,7 +891,7 @@ namespace Pulumi.Keycloak
         public Input<string>? PasswordPolicy { get; set; }
 
         /// <summary>
-        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `Master` realm cannot be renamed.
         /// </summary>
         [Input("realm")]
         public Input<string>? RealmName { get; set; }

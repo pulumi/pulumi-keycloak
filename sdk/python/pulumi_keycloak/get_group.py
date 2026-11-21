@@ -26,7 +26,7 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, attributes=None, description=None, group_path=None, id=None, name=None, organization_id=None, parent_id=None, path=None, realm_id=None):
+    def __init__(__self__, attributes=None, description=None, group_path=None, id=None, name=None, organization_id=None, parent_id=None, path=None, realm_id=None, realm_internal_id=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
@@ -54,6 +54,9 @@ class GetGroupResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -103,6 +106,11 @@ class GetGroupResult:
     def realm_id(self) -> _builtins.str:
         return pulumi.get(self, "realm_id")
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
 
 class AwaitableGetGroupResult(GetGroupResult):
     # pylint: disable=using-constant-test
@@ -118,7 +126,8 @@ class AwaitableGetGroupResult(GetGroupResult):
             organization_id=self.organization_id,
             parent_id=self.parent_id,
             path=self.path,
-            realm_id=self.realm_id)
+            realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id)
 
 
 def get_group(description: Optional[_builtins.str] = None,
@@ -126,6 +135,7 @@ def get_group(description: Optional[_builtins.str] = None,
               name: Optional[_builtins.str] = None,
               organization_id: Optional[_builtins.str] = None,
               realm_id: Optional[_builtins.str] = None,
+              realm_internal_id: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
     This data source can be used to fetch properties of a Keycloak group for
@@ -182,6 +192,7 @@ def get_group(description: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['organizationId'] = organization_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult).value
 
@@ -194,12 +205,14 @@ def get_group(description: Optional[_builtins.str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         parent_id=pulumi.get(__ret__, 'parent_id'),
         path=pulumi.get(__ret__, 'path'),
-        realm_id=pulumi.get(__ret__, 'realm_id'))
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'))
 def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      group_path: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                     realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                     realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     This data source can be used to fetch properties of a Keycloak group for
@@ -256,6 +269,7 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
     __args__['name'] = name
     __args__['organizationId'] = organization_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
     return __ret__.apply(lambda __response__: GetGroupResult(
@@ -267,4 +281,5 @@ def get_group_output(description: pulumi.Input[Optional[Optional[_builtins.str]]
         organization_id=pulumi.get(__response__, 'organization_id'),
         parent_id=pulumi.get(__response__, 'parent_id'),
         path=pulumi.get(__response__, 'path'),
-        realm_id=pulumi.get(__response__, 'realm_id')))
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id')))

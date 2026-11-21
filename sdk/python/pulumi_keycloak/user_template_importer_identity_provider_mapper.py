@@ -20,25 +20,30 @@ __all__ = ['UserTemplateImporterIdentityProviderMapperArgs', 'UserTemplateImport
 class UserTemplateImporterIdentityProviderMapperArgs:
     def __init__(__self__, *,
                  identity_provider_alias: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserTemplateImporterIdentityProviderMapper resource.
 
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
-        :param pulumi.Input[_builtins.str] realm: The name of the realm.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
+        :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] template: Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -53,18 +58,6 @@ class UserTemplateImporterIdentityProviderMapperArgs:
     @identity_provider_alias.setter
     def identity_provider_alias(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "identity_provider_alias", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the realm.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -92,6 +85,30 @@ class UserTemplateImporterIdentityProviderMapperArgs:
 
     @_builtins.property
     @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the realm.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
+    @pulumi.getter
     def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
@@ -110,6 +127,7 @@ class _UserTemplateImporterIdentityProviderMapperState:
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
@@ -118,6 +136,7 @@ class _UserTemplateImporterIdentityProviderMapperState:
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] template: Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
         """
         if extra_config is not None:
@@ -128,6 +147,8 @@ class _UserTemplateImporterIdentityProviderMapperState:
             pulumi.set(__self__, "name", name)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -180,6 +201,18 @@ class _UserTemplateImporterIdentityProviderMapperState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -202,6 +235,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -258,6 +292,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] template: Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
         """
         ...
@@ -333,6 +368,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -348,9 +384,8 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__.__dict__["identity_provider_alias"] = identity_provider_alias
             __props__.__dict__["name"] = name
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["template"] = template
         super(UserTemplateImporterIdentityProviderMapper, __self__).__init__(
             'keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper',
@@ -366,6 +401,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             template: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserTemplateImporterIdentityProviderMapper':
         """
         Get an existing UserTemplateImporterIdentityProviderMapper resource's state with the given name, id, and optional extra
@@ -378,6 +414,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] template: Template to use to format the username to import. Substitutions are enclosed in \\${}. For example: '\\$\\${ALIAS}.\\$\\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\\<NAME\\> references an ID or Access token claim.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -388,6 +425,7 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         __props__.__dict__["identity_provider_alias"] = identity_provider_alias
         __props__.__dict__["name"] = name
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["template"] = template
         return UserTemplateImporterIdentityProviderMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -398,12 +436,14 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             template: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["extraConfig"] = extra_config
         __props__["identityProviderAlias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["template"] = template
         return pulumi.runtime.exists_resource(None, 'keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -438,6 +478,14 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         The name of the realm.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

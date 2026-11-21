@@ -180,6 +180,20 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      * 
      */
@@ -206,7 +220,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmUserProfile(java.lang.String name, RealmUserProfileArgs args) {
+    public RealmUserProfile(java.lang.String name, @Nullable RealmUserProfileArgs args) {
         this(name, args, null);
     }
     /**
@@ -215,7 +229,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmUserProfile(java.lang.String name, RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public RealmUserProfile(java.lang.String name, @Nullable RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/realmUserProfile:RealmUserProfile", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -223,7 +237,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
         super("keycloak:index/realmUserProfile:RealmUserProfile", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static RealmUserProfileArgs makeArgs(RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static RealmUserProfileArgs makeArgs(@Nullable RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

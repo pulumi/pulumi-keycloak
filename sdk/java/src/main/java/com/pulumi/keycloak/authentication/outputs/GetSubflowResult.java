@@ -41,6 +41,7 @@ public final class GetSubflowResult {
      */
     private String providerId;
     private String realmId;
+    private String realmInternalId;
     /**
      * @return The requirement setting for the subflow. Can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`.
      * 
@@ -92,6 +93,9 @@ public final class GetSubflowResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     /**
      * @return The requirement setting for the subflow. Can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`.
      * 
@@ -117,6 +121,7 @@ public final class GetSubflowResult {
         private Integer priority;
         private String providerId;
         private String realmId;
+        private String realmInternalId;
         private String requirement;
         public Builder() {}
         public Builder(GetSubflowResult defaults) {
@@ -129,6 +134,7 @@ public final class GetSubflowResult {
     	      this.priority = defaults.priority;
     	      this.providerId = defaults.providerId;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.requirement = defaults.requirement;
         }
 
@@ -195,6 +201,14 @@ public final class GetSubflowResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetSubflowResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requirement(String requirement) {
             if (requirement == null) {
               throw new MissingRequiredPropertyException("GetSubflowResult", "requirement");
@@ -212,6 +226,7 @@ public final class GetSubflowResult {
             _resultValue.priority = priority;
             _resultValue.providerId = providerId;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.requirement = requirement;
             return _resultValue;
         }

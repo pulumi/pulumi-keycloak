@@ -123,6 +123,10 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
      * The realm this protocol mapper exists within.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a GenericProtocolMapper resource with the given unique name, arguments, and options.
@@ -144,6 +148,7 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
             resourceInputs["protocol"] = state?.protocol;
             resourceInputs["protocolMapper"] = state?.protocolMapper;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as GenericProtocolMapperArgs | undefined;
             if (args?.config === undefined && !opts.urn) {
@@ -155,9 +160,6 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
             if (args?.protocolMapper === undefined && !opts.urn) {
                 throw new Error("Missing required property 'protocolMapper'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["config"] = args?.config;
@@ -165,6 +167,7 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
             resourceInputs["protocol"] = args?.protocol;
             resourceInputs["protocolMapper"] = args?.protocolMapper;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GenericProtocolMapper.__pulumiType, name, resourceInputs, opts);
@@ -203,6 +206,10 @@ export interface GenericProtocolMapperState {
      * The realm this protocol mapper exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -236,5 +243,9 @@ export interface GenericProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

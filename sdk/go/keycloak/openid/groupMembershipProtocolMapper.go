@@ -162,6 +162,8 @@ type GroupMembershipProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewGroupMembershipProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -173,9 +175,6 @@ func NewGroupMembershipProtocolMapper(ctx *pulumi.Context,
 
 	if args.ClaimName == nil {
 		return nil, errors.New("invalid value for required argument 'ClaimName'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupMembershipProtocolMapper
@@ -220,6 +219,8 @@ type groupMembershipProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type GroupMembershipProtocolMapperState struct {
@@ -243,6 +244,8 @@ type GroupMembershipProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (GroupMembershipProtocolMapperState) ElementType() reflect.Type {
@@ -275,7 +278,9 @@ type groupMembershipProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a GroupMembershipProtocolMapper resource.
@@ -299,7 +304,9 @@ type GroupMembershipProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (GroupMembershipProtocolMapperArgs) ElementType() reflect.Type {
@@ -437,6 +444,11 @@ func (o GroupMembershipProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o GroupMembershipProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GroupMembershipProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMembershipProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type GroupMembershipProtocolMapperArrayOutput struct{ *pulumi.OutputState }

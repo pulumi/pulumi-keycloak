@@ -21,23 +21,28 @@ class OrganizationMembershipsArgs:
     def __init__(__self__, *,
                  members: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  organization_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str]):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a OrganizationMemberships resource.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to manage memberships for.
         :param pulumi.Input[_builtins.str] realm_id: The realm the organization belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "organization_id", organization_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        A set of usernames to assign as members of the organization.
+        A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         """
         return pulumi.get(self, "members")
 
@@ -59,15 +64,27 @@ class OrganizationMembershipsArgs:
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm the organization belongs to.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
 
 @pulumi.input_type
@@ -75,13 +92,15 @@ class _OrganizationMembershipsState:
     def __init__(__self__, *,
                  members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrganizationMemberships resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to manage memberships for.
         :param pulumi.Input[_builtins.str] realm_id: The realm the organization belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if members is not None:
             pulumi.set(__self__, "members", members)
@@ -89,12 +108,14 @@ class _OrganizationMembershipsState:
             pulumi.set(__self__, "organization_id", organization_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
     def members(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        A set of usernames to assign as members of the organization.
+        A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         """
         return pulumi.get(self, "members")
 
@@ -126,6 +147,18 @@ class _OrganizationMembershipsState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/organizationMemberships:OrganizationMemberships")
 class OrganizationMemberships(pulumi.CustomResource):
@@ -136,6 +169,7 @@ class OrganizationMemberships(pulumi.CustomResource):
                  members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for managing the members of a Keycloak organization.
@@ -143,6 +177,14 @@ class OrganizationMemberships(pulumi.CustomResource):
         Note that this resource attempts to be an **authoritative** source over organization members. When this resource takes
         control over an organization's members, users that are manually added to the organization will be removed, and users that
         are manually removed will be re-added upon the next run of `pulumi up`.
+
+        Managed members are the exception. A membership is managed (`MANAGED` in Keycloak) when, for example, the user joined
+        the organization by signing in through an identity provider linked to it (from Keycloak 26.8, a link with managed
+        membership), or when an administrator changed the membership type to managed (Keycloak 26.8 and later). Keycloak
+        deletes the user account when a managed membership is removed, so this resource never removes a managed member, listed
+        in `members` or not: create, update and destroy leave it in the organization. A managed member is in the resource's
+        state only while it is listed in `members`, so unlisted managed members never cause a diff, and removing a managed
+        member from `members` removes it from the state, not from the organization.
 
         This resource paginates its data loading on refresh by 50 items.
 
@@ -186,9 +228,10 @@ class OrganizationMemberships(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to manage memberships for.
         :param pulumi.Input[_builtins.str] realm_id: The realm the organization belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -202,6 +245,14 @@ class OrganizationMemberships(pulumi.CustomResource):
         Note that this resource attempts to be an **authoritative** source over organization members. When this resource takes
         control over an organization's members, users that are manually added to the organization will be removed, and users that
         are manually removed will be re-added upon the next run of `pulumi up`.
+
+        Managed members are the exception. A membership is managed (`MANAGED` in Keycloak) when, for example, the user joined
+        the organization by signing in through an identity provider linked to it (from Keycloak 26.8, a link with managed
+        membership), or when an administrator changed the membership type to managed (Keycloak 26.8 and later). Keycloak
+        deletes the user account when a managed membership is removed, so this resource never removes a managed member, listed
+        in `members` or not: create, update and destroy leave it in the organization. A managed member is in the resource's
+        state only while it is listed in `members`, so unlisted managed members never cause a diff, and removing a managed
+        member from `members` removes it from the state, not from the organization.
 
         This resource paginates its data loading on refresh by 50 items.
 
@@ -261,6 +312,7 @@ class OrganizationMemberships(pulumi.CustomResource):
                  members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -276,9 +328,8 @@ class OrganizationMemberships(pulumi.CustomResource):
             if organization_id is None and not opts.urn:
                 raise TypeError("Missing required property 'organization_id'")
             __props__.__dict__["organization_id"] = organization_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(OrganizationMemberships, __self__).__init__(
             'keycloak:index/organizationMemberships:OrganizationMemberships',
             resource_name,
@@ -291,7 +342,8 @@ class OrganizationMemberships(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'OrganizationMemberships':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'OrganizationMemberships':
         """
         Get an existing OrganizationMemberships resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -299,9 +351,10 @@ class OrganizationMemberships(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to manage memberships for.
         :param pulumi.Input[_builtins.str] realm_id: The realm the organization belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -310,6 +363,7 @@ class OrganizationMemberships(pulumi.CustomResource):
         __props__.__dict__["members"] = members
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return OrganizationMemberships(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -317,18 +371,20 @@ class OrganizationMemberships(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             members: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["members"] = members
         __props__["organizationId"] = organization_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/organizationMemberships:OrganizationMemberships', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        A set of usernames to assign as members of the organization.
+        A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         """
         return pulumi.get(self, "members")
 
@@ -347,4 +403,12 @@ class OrganizationMemberships(pulumi.CustomResource):
         The realm the organization belongs to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

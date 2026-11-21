@@ -51,6 +51,7 @@ export function getClientServiceAccountUser(args: GetClientServiceAccountUserArg
     return pulumi.runtime.invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
         "clientId": args.clientId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -65,7 +66,8 @@ export interface GetClientServiceAccountUserArgs {
     /**
      * The realm that the OpenID client exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -103,6 +105,7 @@ export interface GetClientServiceAccountUserResult {
      */
     readonly lastName: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly requiredActions: string[];
     /**
      * (Computed) The service account user's username.
@@ -154,6 +157,7 @@ export function getClientServiceAccountUserOutput(args: GetClientServiceAccountU
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
         "clientId": args.clientId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -168,5 +172,6 @@ export interface GetClientServiceAccountUserOutputArgs {
     /**
      * The realm that the OpenID client exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

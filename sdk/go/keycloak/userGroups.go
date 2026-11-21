@@ -77,6 +77,8 @@ type UserGroups struct {
 	GroupIds pulumi.StringArrayOutput `pulumi:"groupIds"`
 	// The realm this group exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The ID of the user this resource should manage groups for.
 	UserId pulumi.StringOutput `pulumi:"userId"`
 }
@@ -90,9 +92,6 @@ func NewUserGroups(ctx *pulumi.Context,
 
 	if args.GroupIds == nil {
 		return nil, errors.New("invalid value for required argument 'GroupIds'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.UserId == nil {
 		return nil, errors.New("invalid value for required argument 'UserId'")
@@ -126,6 +125,8 @@ type userGroupsState struct {
 	GroupIds []string `pulumi:"groupIds"`
 	// The realm this group exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the user this resource should manage groups for.
 	UserId *string `pulumi:"userId"`
 }
@@ -137,6 +138,8 @@ type UserGroupsState struct {
 	GroupIds pulumi.StringArrayInput
 	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The ID of the user this resource should manage groups for.
 	UserId pulumi.StringPtrInput
 }
@@ -157,7 +160,9 @@ type userGroupsArgs struct {
 	// A list of group IDs that the user is member of.
 	GroupIds []string `pulumi:"groupIds"`
 	// The realm this group exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the user this resource should manage groups for.
 	UserId string `pulumi:"userId"`
 }
@@ -169,7 +174,9 @@ type UserGroupsArgs struct {
 	// A list of group IDs that the user is member of.
 	GroupIds pulumi.StringArrayInput
 	// The realm this group exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The ID of the user this resource should manage groups for.
 	UserId pulumi.StringInput
 }
@@ -274,6 +281,11 @@ func (o UserGroupsOutput) GroupIds() pulumi.StringArrayOutput {
 // The realm this group exists in.
 func (o UserGroupsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserGroups) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserGroupsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserGroups) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The ID of the user this resource should manage groups for.

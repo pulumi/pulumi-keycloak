@@ -222,6 +222,10 @@ export class Client extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * When specified, this value is prepended to all relative URLs.
      */
     declare public readonly rootUrl: pulumi.Output<string | undefined>;
@@ -312,6 +316,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["nameIdFormat"] = state?.nameIdFormat;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["rootUrl"] = state?.rootUrl;
             resourceInputs["signAssertions"] = state?.signAssertions;
             resourceInputs["signDocuments"] = state?.signDocuments;
@@ -326,9 +331,6 @@ export class Client extends pulumi.CustomResource {
             const args = argsOrState as ClientArgs | undefined;
             if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["alwaysDisplayInConsole"] = args?.alwaysDisplayInConsole;
             resourceInputs["assertionConsumerPostUrl"] = args?.assertionConsumerPostUrl;
@@ -362,6 +364,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["nameIdFormat"] = args?.nameIdFormat;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["rootUrl"] = args?.rootUrl;
             resourceInputs["signAssertions"] = args?.signAssertions;
             resourceInputs["signDocuments"] = args?.signDocuments;
@@ -517,6 +520,10 @@ export interface ClientState {
      * The realm this client is attached to.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When specified, this value is prepended to all relative URLs.
      */
@@ -694,7 +701,11 @@ export interface ClientArgs {
     /**
      * The realm this client is attached to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When specified, this value is prepended to all relative URLs.
      */

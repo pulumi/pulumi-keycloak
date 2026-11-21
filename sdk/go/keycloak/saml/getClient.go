@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realmManagement, err := saml.LookupClient(ctx, &saml.LookupClientArgs{
-//				RealmId:  "my-realm",
+//				RealmId:  pulumi.StringRef("my-realm"),
 //				ClientId: "realm-management",
 //			}, nil)
 //			if err != nil {
@@ -37,7 +37,7 @@ import (
 //			}
 //			// use the function
 //			_, err = keycloak.GetRole(ctx, &keycloak.LookupRoleArgs{
-//				RealmId:  "my-realm",
+//				RealmId:  pulumi.StringRef("my-realm"),
 //				ClientId: pulumi.StringRef(realmManagement.Id),
 //				Name:     "realm-admin",
 //			}, nil)
@@ -64,7 +64,8 @@ type LookupClientArgs struct {
 	// The client id (not its unique ID).
 	ClientId string `pulumi:"clientId"`
 	// The realm id.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getClient.
@@ -104,6 +105,7 @@ type LookupClientResult struct {
 	Name                            string   `pulumi:"name"`
 	NameIdFormat                    string   `pulumi:"nameIdFormat"`
 	RealmId                         string   `pulumi:"realmId"`
+	RealmInternalId                 string   `pulumi:"realmInternalId"`
 	RootUrl                         string   `pulumi:"rootUrl"`
 	SamlSignatureKeyName            string   `pulumi:"samlSignatureKeyName"`
 	SignAssertions                  bool     `pulumi:"signAssertions"`
@@ -127,7 +129,8 @@ type LookupClientOutputArgs struct {
 	// The client id (not its unique ID).
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// The realm id.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupClientOutputArgs) ElementType() reflect.Type {
@@ -286,6 +289,10 @@ func (o LookupClientResultOutput) NameIdFormat() pulumi.StringOutput {
 
 func (o LookupClientResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) RootUrl() pulumi.StringOutput {

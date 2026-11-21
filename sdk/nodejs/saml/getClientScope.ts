@@ -35,6 +35,7 @@ export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOpt
         "extraConfig": args.extraConfig,
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -50,7 +51,8 @@ export interface GetClientScopeArgs {
     /**
      * The realm id.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -59,6 +61,7 @@ export interface GetClientScopeArgs {
 export interface GetClientScopeResult {
     readonly consentScreenText: string;
     readonly description: string;
+    readonly displayOnConsentScreen: boolean;
     readonly extraConfig: {[key: string]: string};
     readonly guiOrder: number;
     /**
@@ -67,6 +70,7 @@ export interface GetClientScopeResult {
     readonly id: string;
     readonly name: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
 }
 /**
  * This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.
@@ -99,6 +103,7 @@ export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulu
         "extraConfig": args.extraConfig,
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -114,5 +119,6 @@ export interface GetClientScopeOutputArgs {
     /**
      * The realm id.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

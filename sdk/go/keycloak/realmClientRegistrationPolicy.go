@@ -116,6 +116,8 @@ type RealmClientRegistrationPolicy struct {
 	// The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
 	ProviderId pulumi.StringOutput `pulumi:"providerId"`
 	RealmId    pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Whether this policy applies to anonymous or authenticated client registration.
 	SubType pulumi.StringOutput `pulumi:"subType"`
 }
@@ -129,9 +131,6 @@ func NewRealmClientRegistrationPolicy(ctx *pulumi.Context,
 
 	if args.ProviderId == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.SubType == nil {
 		return nil, errors.New("invalid value for required argument 'SubType'")
@@ -165,6 +164,8 @@ type realmClientRegistrationPolicyState struct {
 	// The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
 	ProviderId *string `pulumi:"providerId"`
 	RealmId    *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Whether this policy applies to anonymous or authenticated client registration.
 	SubType *string `pulumi:"subType"`
 }
@@ -176,6 +177,8 @@ type RealmClientRegistrationPolicyState struct {
 	// The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
 	ProviderId pulumi.StringPtrInput
 	RealmId    pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Whether this policy applies to anonymous or authenticated client registration.
 	SubType pulumi.StringPtrInput
 }
@@ -195,8 +198,10 @@ type realmClientRegistrationPolicyArgs struct {
 	Config map[string]string `pulumi:"config"`
 	Name   *string           `pulumi:"name"`
 	// The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
-	ProviderId string `pulumi:"providerId"`
-	RealmId    string `pulumi:"realmId"`
+	ProviderId string  `pulumi:"providerId"`
+	RealmId    *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Whether this policy applies to anonymous or authenticated client registration.
 	SubType string `pulumi:"subType"`
 }
@@ -208,7 +213,9 @@ type RealmClientRegistrationPolicyArgs struct {
 	Name   pulumi.StringPtrInput
 	// The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
 	ProviderId pulumi.StringInput
-	RealmId    pulumi.StringInput
+	RealmId    pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Whether this policy applies to anonymous or authenticated client registration.
 	SubType pulumi.StringInput
 }
@@ -316,6 +323,11 @@ func (o RealmClientRegistrationPolicyOutput) ProviderId() pulumi.StringOutput {
 
 func (o RealmClientRegistrationPolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmClientRegistrationPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmClientRegistrationPolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmClientRegistrationPolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Whether this policy applies to anonymous or authenticated client registration.

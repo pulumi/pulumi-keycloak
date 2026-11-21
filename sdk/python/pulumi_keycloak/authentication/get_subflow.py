@@ -26,7 +26,7 @@ class GetSubflowResult:
     """
     A collection of values returned by getSubflow.
     """
-    def __init__(__self__, alias=None, authenticator=None, description=None, id=None, parent_flow_alias=None, priority=None, provider_id=None, realm_id=None, requirement=None):
+    def __init__(__self__, alias=None, authenticator=None, description=None, id=None, parent_flow_alias=None, priority=None, provider_id=None, realm_id=None, realm_internal_id=None, requirement=None):
         if alias and not isinstance(alias, str):
             raise TypeError("Expected argument 'alias' to be a str")
         pulumi.set(__self__, "alias", alias)
@@ -51,6 +51,9 @@ class GetSubflowResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if requirement and not isinstance(requirement, str):
             raise TypeError("Expected argument 'requirement' to be a str")
         pulumi.set(__self__, "requirement", requirement)
@@ -111,6 +114,11 @@ class GetSubflowResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter
     def requirement(self) -> _builtins.str:
         """
@@ -133,6 +141,7 @@ class AwaitableGetSubflowResult(GetSubflowResult):
             priority=self.priority,
             provider_id=self.provider_id,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             requirement=self.requirement)
 
 
@@ -140,6 +149,7 @@ def get_subflow(alias: Optional[_builtins.str] = None,
                 id: Optional[_builtins.str] = None,
                 parent_flow_alias: Optional[_builtins.str] = None,
                 realm_id: Optional[_builtins.str] = None,
+                realm_internal_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSubflowResult:
     """
     This data source can be used to fetch the details of an authentication subflow within Keycloak.
@@ -196,6 +206,7 @@ def get_subflow(alias: Optional[_builtins.str] = None,
     __args__['id'] = id
     __args__['parentFlowAlias'] = parent_flow_alias
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:authentication/getSubflow:getSubflow', __args__, opts=opts, typ=GetSubflowResult).value
 
@@ -208,11 +219,13 @@ def get_subflow(alias: Optional[_builtins.str] = None,
         priority=pulumi.get(__ret__, 'priority'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         requirement=pulumi.get(__ret__, 'requirement'))
 def get_subflow_output(alias: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
-                       realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                       realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSubflowResult]:
     """
     This data source can be used to fetch the details of an authentication subflow within Keycloak.
@@ -269,6 +282,7 @@ def get_subflow_output(alias: pulumi.Input[Optional[Optional[_builtins.str]]] = 
     __args__['id'] = id
     __args__['parentFlowAlias'] = parent_flow_alias
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:authentication/getSubflow:getSubflow', __args__, opts=opts, typ=GetSubflowResult)
     return __ret__.apply(lambda __response__: GetSubflowResult(
@@ -280,4 +294,5 @@ def get_subflow_output(alias: pulumi.Input[Optional[Optional[_builtins.str]]] = 
         priority=pulumi.get(__response__, 'priority'),
         provider_id=pulumi.get(__response__, 'provider_id'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         requirement=pulumi.get(__response__, 'requirement')))

@@ -23,6 +23,8 @@ public final class RealmSmtpServerTokenAuth {
     /**
      * @return The auth token scope.
      * 
+     * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
+     * 
      */
     private String scope;
     /**
@@ -49,6 +51,8 @@ public final class RealmSmtpServerTokenAuth {
     }
     /**
      * @return The auth token scope.
+     * 
+     * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
      * 
      */
     public String scope() {

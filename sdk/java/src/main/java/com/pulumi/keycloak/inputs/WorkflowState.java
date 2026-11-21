@@ -111,6 +111,21 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `&#34;true&#34;` to enable.
      * 
      */
@@ -179,6 +194,7 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.on = $.on;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.restartInProgress = $.restartInProgress;
         this.schedule = $.schedule;
         this.states = $.states;
@@ -327,6 +343,27 @@ public final class WorkflowState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

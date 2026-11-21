@@ -124,6 +124,10 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The user attribute or property name to store the mapped result.
      */
     declare public readonly userAttribute: pulumi.Output<string>;
@@ -148,14 +152,12 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
             resourceInputs["name"] = state?.name;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userAttribute"] = state?.userAttribute;
         } else {
             const args = argsOrState as AttributeImporterIdentityProviderMapperArgs | undefined;
             if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
-            }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
             }
             if (args?.userAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
@@ -167,6 +169,7 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
             resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
             resourceInputs["name"] = args?.name;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userAttribute"] = args?.userAttribute;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -207,6 +210,10 @@ export interface AttributeImporterIdentityProviderMapperState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The user attribute or property name to store the mapped result.
      */
     userAttribute?: pulumi.Input<string | undefined>;
@@ -243,7 +250,11 @@ export interface AttributeImporterIdentityProviderMapperArgs {
     /**
      * The name of the realm.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The user attribute or property name to store the mapped result.
      */

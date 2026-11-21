@@ -272,8 +272,11 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The realm the authentication subflow exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetSubflowArgs()
         {
@@ -306,8 +309,11 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The realm the authentication subflow exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetSubflowInvokeArgs()
         {
@@ -342,6 +348,7 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         public readonly string ProviderId;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         /// <summary>
         /// The requirement setting for the subflow. Can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`.
         /// </summary>
@@ -365,6 +372,8 @@ namespace Pulumi.Keycloak.Authentication
 
             string realmId,
 
+            string realmInternalId,
+
             string requirement)
         {
             Alias = alias;
@@ -375,6 +384,7 @@ namespace Pulumi.Keycloak.Authentication
             Priority = priority;
             ProviderId = providerId;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             Requirement = requirement;
         }
     }

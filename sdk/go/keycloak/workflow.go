@@ -262,6 +262,8 @@ type Workflow struct {
 	On pulumi.StringOutput `pulumi:"on"`
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress pulumi.StringPtrOutput `pulumi:"restartInProgress"`
 	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
@@ -281,9 +283,6 @@ func NewWorkflow(ctx *pulumi.Context,
 
 	if args.On == nil {
 		return nil, errors.New("invalid value for required argument 'On'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	if args.Steps == nil {
 		return nil, errors.New("invalid value for required argument 'Steps'")
@@ -323,6 +322,8 @@ type workflowState struct {
 	On *string `pulumi:"on"`
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress *string `pulumi:"restartInProgress"`
 	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
@@ -346,6 +347,8 @@ type WorkflowState struct {
 	On pulumi.StringPtrInput
 	// The realm this workflow exists in. Changing this forces a new resource.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress pulumi.StringPtrInput
 	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
@@ -378,7 +381,9 @@ type workflowArgs struct {
 	// The realm event that triggers the workflow. Supported values: `userCreated`, `userRemoved`, `userAuthenticated`, `userFederatedIdentityAdded`, `userFederatedIdentityRemoved`, `userGroupMembershipAdded`, `userGroupMembershipRemoved`, `userRoleGranted`, `userRoleRevoked`.
 	On string `pulumi:"on"`
 	// The realm this workflow exists in. Changing this forces a new resource.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress *string `pulumi:"restartInProgress"`
 	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
@@ -400,7 +405,9 @@ type WorkflowArgs struct {
 	// The realm event that triggers the workflow. Supported values: `userCreated`, `userRemoved`, `userAuthenticated`, `userFederatedIdentityAdded`, `userFederatedIdentityRemoved`, `userGroupMembershipAdded`, `userGroupMembershipRemoved`, `userRoleGranted`, `userRoleRevoked`.
 	On pulumi.StringInput
 	// The realm this workflow exists in. Changing this forces a new resource.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
 	RestartInProgress pulumi.StringPtrInput
 	// A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
@@ -524,6 +531,11 @@ func (o WorkflowOutput) On() pulumi.StringOutput {
 // The realm this workflow exists in. Changing this forces a new resource.
 func (o WorkflowOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Workflow) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o WorkflowOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Workflow) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.

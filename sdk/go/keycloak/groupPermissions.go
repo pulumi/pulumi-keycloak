@@ -35,9 +35,12 @@ type GroupPermissions struct {
 	ManageMembersScope            GroupPermissionsManageMembersScopePtrOutput    `pulumi:"manageMembersScope"`
 	ManageMembershipScope         GroupPermissionsManageMembershipScopePtrOutput `pulumi:"manageMembershipScope"`
 	ManageScope                   GroupPermissionsManageScopePtrOutput           `pulumi:"manageScope"`
+	OrganizationId                pulumi.StringPtrOutput                         `pulumi:"organizationId"`
 	RealmId                       pulumi.StringOutput                            `pulumi:"realmId"`
-	ViewMembersScope              GroupPermissionsViewMembersScopePtrOutput      `pulumi:"viewMembersScope"`
-	ViewScope                     GroupPermissionsViewScopePtrOutput             `pulumi:"viewScope"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput                       `pulumi:"realmInternalId"`
+	ViewMembersScope GroupPermissionsViewMembersScopePtrOutput `pulumi:"viewMembersScope"`
+	ViewScope        GroupPermissionsViewScopePtrOutput        `pulumi:"viewScope"`
 }
 
 // NewGroupPermissions registers a new resource with the given unique name, arguments, and options.
@@ -49,9 +52,6 @@ func NewGroupPermissions(ctx *pulumi.Context,
 
 	if args.GroupId == nil {
 		return nil, errors.New("invalid value for required argument 'GroupId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupPermissions
@@ -83,9 +83,12 @@ type groupPermissionsState struct {
 	ManageMembersScope            *GroupPermissionsManageMembersScope    `pulumi:"manageMembersScope"`
 	ManageMembershipScope         *GroupPermissionsManageMembershipScope `pulumi:"manageMembershipScope"`
 	ManageScope                   *GroupPermissionsManageScope           `pulumi:"manageScope"`
+	OrganizationId                *string                                `pulumi:"organizationId"`
 	RealmId                       *string                                `pulumi:"realmId"`
-	ViewMembersScope              *GroupPermissionsViewMembersScope      `pulumi:"viewMembersScope"`
-	ViewScope                     *GroupPermissionsViewScope             `pulumi:"viewScope"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string                           `pulumi:"realmInternalId"`
+	ViewMembersScope *GroupPermissionsViewMembersScope `pulumi:"viewMembersScope"`
+	ViewScope        *GroupPermissionsViewScope        `pulumi:"viewScope"`
 }
 
 type GroupPermissionsState struct {
@@ -96,9 +99,12 @@ type GroupPermissionsState struct {
 	ManageMembersScope            GroupPermissionsManageMembersScopePtrInput
 	ManageMembershipScope         GroupPermissionsManageMembershipScopePtrInput
 	ManageScope                   GroupPermissionsManageScopePtrInput
+	OrganizationId                pulumi.StringPtrInput
 	RealmId                       pulumi.StringPtrInput
-	ViewMembersScope              GroupPermissionsViewMembersScopePtrInput
-	ViewScope                     GroupPermissionsViewScopePtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
+	ViewMembersScope GroupPermissionsViewMembersScopePtrInput
+	ViewScope        GroupPermissionsViewScopePtrInput
 }
 
 func (GroupPermissionsState) ElementType() reflect.Type {
@@ -116,9 +122,12 @@ type groupPermissionsArgs struct {
 	ManageMembersScope    *GroupPermissionsManageMembersScope    `pulumi:"manageMembersScope"`
 	ManageMembershipScope *GroupPermissionsManageMembershipScope `pulumi:"manageMembershipScope"`
 	ManageScope           *GroupPermissionsManageScope           `pulumi:"manageScope"`
-	RealmId               string                                 `pulumi:"realmId"`
-	ViewMembersScope      *GroupPermissionsViewMembersScope      `pulumi:"viewMembersScope"`
-	ViewScope             *GroupPermissionsViewScope             `pulumi:"viewScope"`
+	OrganizationId        *string                                `pulumi:"organizationId"`
+	RealmId               *string                                `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string                           `pulumi:"realmInternalId"`
+	ViewMembersScope *GroupPermissionsViewMembersScope `pulumi:"viewMembersScope"`
+	ViewScope        *GroupPermissionsViewScope        `pulumi:"viewScope"`
 }
 
 // The set of arguments for constructing a GroupPermissions resource.
@@ -127,9 +136,12 @@ type GroupPermissionsArgs struct {
 	ManageMembersScope    GroupPermissionsManageMembersScopePtrInput
 	ManageMembershipScope GroupPermissionsManageMembershipScopePtrInput
 	ManageScope           GroupPermissionsManageScopePtrInput
-	RealmId               pulumi.StringInput
-	ViewMembersScope      GroupPermissionsViewMembersScopePtrInput
-	ViewScope             GroupPermissionsViewScopePtrInput
+	OrganizationId        pulumi.StringPtrInput
+	RealmId               pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
+	ViewMembersScope GroupPermissionsViewMembersScopePtrInput
+	ViewScope        GroupPermissionsViewScopePtrInput
 }
 
 func (GroupPermissionsArgs) ElementType() reflect.Type {
@@ -246,8 +258,17 @@ func (o GroupPermissionsOutput) ManageScope() GroupPermissionsManageScopePtrOutp
 	return o.ApplyT(func(v *GroupPermissions) GroupPermissionsManageScopePtrOutput { return v.ManageScope }).(GroupPermissionsManageScopePtrOutput)
 }
 
+func (o GroupPermissionsOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupPermissions) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
 func (o GroupPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GroupPermissionsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupPermissions) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o GroupPermissionsOutput) ViewMembersScope() GroupPermissionsViewMembersScopePtrOutput {

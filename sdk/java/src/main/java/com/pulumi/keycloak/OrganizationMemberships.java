@@ -21,6 +21,14 @@ import javax.annotation.Nullable;
  * control over an organization&#39;s members, users that are manually added to the organization will be removed, and users that
  * are manually removed will be re-added upon the next run of `pulumi up`.
  * 
+ * Managed members are the exception. A membership is managed (`MANAGED` in Keycloak) when, for example, the user joined
+ * the organization by signing in through an identity provider linked to it (from Keycloak 26.8, a link with managed
+ * membership), or when an administrator changed the membership type to managed (Keycloak 26.8 and later). Keycloak
+ * deletes the user account when a managed membership is removed, so this resource never removes a managed member, listed
+ * in `members` or not: create, update and destroy leave it in the organization. A managed member is in the resource&#39;s
+ * state only while it is listed in `members`, so unlisted managed members never cause a diff, and removing a managed
+ * member from `members` removes it from the state, not from the organization.
+ * 
  * This resource paginates its data loading on refresh by 50 items.
  * 
  * ## Example Usage
@@ -101,14 +109,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/organizationMemberships:OrganizationMemberships")
 public class OrganizationMemberships extends com.pulumi.resources.CustomResource {
     /**
-     * A set of usernames to assign as members of the organization.
+     * A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      * 
      */
     @Export(name="members", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> members;
 
     /**
-     * @return A set of usernames to assign as members of the organization.
+     * @return A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      * 
      */
     public Output<List<String>> members() {
@@ -141,6 +149,20 @@ public class OrganizationMemberships extends com.pulumi.resources.CustomResource
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

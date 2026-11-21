@@ -21,88 +21,18 @@ __all__ = ['RealmUserProfileArgs', 'RealmUserProfile']
 @pulumi.input_type
 class RealmUserProfileArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  attributes: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
                  groups: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmUserProfile resource.
 
-        :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
-        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
-        :param pulumi.Input[_builtins.str] unmanaged_attribute_policy: Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
-        if groups is not None:
-            pulumi.set(__self__, "groups", groups)
-        if unmanaged_attribute_policy is not None:
-            pulumi.set(__self__, "unmanaged_attribute_policy", unmanaged_attribute_policy)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The ID of the realm the user profile applies to.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def attributes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]:
-        """
-        An ordered list of attributes.
-        """
-        return pulumi.get(self, "attributes")
-
-    @attributes.setter
-    def attributes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]):
-        pulumi.set(self, "attributes", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
-        """
-        A list of groups.
-        """
-        return pulumi.get(self, "groups")
-
-    @groups.setter
-    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]):
-        pulumi.set(self, "groups", value)
-
-    @_builtins.property
-    @pulumi.getter(name="unmanagedAttributePolicy")
-    def unmanaged_attribute_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
-        """
-        return pulumi.get(self, "unmanaged_attribute_policy")
-
-    @unmanaged_attribute_policy.setter
-    def unmanaged_attribute_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "unmanaged_attribute_policy", value)
-
-
-@pulumi.input_type
-class _RealmUserProfileState:
-    def __init__(__self__, *,
-                 attributes: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
-                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        Input properties used for looking up and filtering RealmUserProfile resources.
-
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] unmanaged_attribute_policy: Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
         """
         if attributes is not None:
@@ -111,6 +41,8 @@ class _RealmUserProfileState:
             pulumi.set(__self__, "groups", groups)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if unmanaged_attribute_policy is not None:
             pulumi.set(__self__, "unmanaged_attribute_policy", unmanaged_attribute_policy)
 
@@ -151,6 +83,107 @@ class _RealmUserProfileState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="unmanagedAttributePolicy")
+    def unmanaged_attribute_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        """
+        return pulumi.get(self, "unmanaged_attribute_policy")
+
+    @unmanaged_attribute_policy.setter
+    def unmanaged_attribute_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "unmanaged_attribute_policy", value)
+
+
+@pulumi.input_type
+class _RealmUserProfileState:
+    def __init__(__self__, *,
+                 attributes: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering RealmUserProfile resources.
+
+        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
+        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
+        :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        :param pulumi.Input[_builtins.str] unmanaged_attribute_policy: Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        """
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+        if unmanaged_attribute_policy is not None:
+            pulumi.set(__self__, "unmanaged_attribute_policy", unmanaged_attribute_policy)
+
+    @_builtins.property
+    @pulumi.getter
+    def attributes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]:
+        """
+        An ordered list of attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]]]):
+        pulumi.set(self, "attributes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]:
+        """
+        A list of groups.
+        """
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]]]):
+        pulumi.set(self, "groups", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the realm the user profile applies to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="unmanagedAttributePolicy")
     def unmanaged_attribute_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -172,6 +205,7 @@ class RealmUserProfile(pulumi.CustomResource):
                  attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]]] = None,
                  groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -273,13 +307,14 @@ class RealmUserProfile(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]] attributes: An ordered list of attributes.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]] groups: A list of groups.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] unmanaged_attribute_policy: Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmUserProfileArgs,
+                 args: Optional[RealmUserProfileArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for managing Realm User Profiles within Keycloak.
@@ -393,6 +428,7 @@ class RealmUserProfile(pulumi.CustomResource):
                  attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]]] = None,
                  groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -405,9 +441,8 @@ class RealmUserProfile(pulumi.CustomResource):
 
             __props__.__dict__["attributes"] = attributes
             __props__.__dict__["groups"] = groups
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["unmanaged_attribute_policy"] = unmanaged_attribute_policy
         super(RealmUserProfile, __self__).__init__(
             'keycloak:index/realmUserProfile:RealmUserProfile',
@@ -422,6 +457,7 @@ class RealmUserProfile(pulumi.CustomResource):
             attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]]] = None,
             groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmUserProfile':
         """
         Get an existing RealmUserProfile resource's state with the given name, id, and optional extra
@@ -433,6 +469,7 @@ class RealmUserProfile(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]] attributes: An ordered list of attributes.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]] groups: A list of groups.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] unmanaged_attribute_policy: Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -442,6 +479,7 @@ class RealmUserProfile(pulumi.CustomResource):
         __props__.__dict__["attributes"] = attributes
         __props__.__dict__["groups"] = groups
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["unmanaged_attribute_policy"] = unmanaged_attribute_policy
         return RealmUserProfile(resource_name, opts=opts, __props__=__props__)
 
@@ -451,11 +489,13 @@ class RealmUserProfile(pulumi.CustomResource):
             attributes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict', 'outputs.RealmUserProfileAttribute']]]]] = None,
             groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict', 'outputs.RealmUserProfileGroup']]]]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             unmanaged_attribute_policy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["attributes"] = attributes
         __props__["groups"] = groups
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["unmanagedAttributePolicy"] = unmanaged_attribute_policy
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmUserProfile:RealmUserProfile', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -482,6 +522,14 @@ class RealmUserProfile(pulumi.CustomResource):
         The ID of the realm the user profile applies to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="unmanagedAttributePolicy")

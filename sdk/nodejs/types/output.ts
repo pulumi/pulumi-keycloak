@@ -156,6 +156,10 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
      */
     signatureAlgorithms: string[];
     /**
+     * Signature algorithms in preference order.
+     */
+    signatureAlgorithmsOrdereds: string[];
+    /**
      * Either required, preferred or discouraged
      */
     userVerificationRequirement: string;
@@ -191,6 +195,10 @@ export interface GetRealmWebAuthnPolicy {
      * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
      */
     signatureAlgorithms: string[];
+    /**
+     * Signature algorithms in preference order.
+     */
+    signatureAlgorithmsOrdereds: string[];
     /**
      * Either required, preferred or discouraged
      */
@@ -439,9 +447,18 @@ export interface RealmSmtpServer {
 
 export interface RealmSmtpServerAuth {
     /**
-     * The SMTP server password.
+     * The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
      */
-    password: string;
+    password?: string;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SMTP server password as a write-only argument
+     */
+    passwordWo?: string;
+    /**
+     * Change this value to update the SMTP server write-only password
+     */
+    passwordWoVersion?: string;
     username: string;
 }
 
@@ -456,6 +473,8 @@ export interface RealmSmtpServerTokenAuth {
     clientSecret: string;
     /**
      * The auth token scope.
+     *
+     * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
      */
     scope: string;
     /**
@@ -590,6 +609,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     signatureAlgorithms: string[];
     /**
+     * Signature algorithms in preference order. Conflicts with signature_algorithms.
+     */
+    signatureAlgorithmsOrdereds: string[];
+    /**
      * Either required, preferred or discouraged
      */
     userVerificationRequirement?: string;
@@ -642,6 +665,10 @@ export interface RealmWebAuthnPolicy {
      * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      */
     signatureAlgorithms: string[];
+    /**
+     * Signature algorithms in preference order. Conflicts with signature_algorithms.
+     */
+    signatureAlgorithmsOrdereds: string[];
     /**
      * Either required, preferred or discouraged
      */

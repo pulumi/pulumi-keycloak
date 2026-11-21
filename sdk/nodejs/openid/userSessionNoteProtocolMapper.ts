@@ -171,6 +171,10 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */
     declare public readonly sessionNote: pulumi.Output<string | undefined>;
@@ -198,14 +202,12 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["sessionNote"] = state?.sessionNote;
         } else {
             const args = argsOrState as UserSessionNoteProtocolMapperArgs | undefined;
             if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
@@ -217,6 +219,7 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["sessionNote"] = args?.sessionNote;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -269,6 +272,10 @@ export interface UserSessionNoteProtocolMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */
     sessionNote?: pulumi.Input<string | undefined>;
@@ -317,7 +324,11 @@ export interface UserSessionNoteProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */

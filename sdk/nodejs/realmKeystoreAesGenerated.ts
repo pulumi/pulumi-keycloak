@@ -76,7 +76,7 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
     }
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
@@ -96,6 +96,10 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      */
     declare public readonly secretSize: pulumi.Output<number | undefined>;
@@ -107,7 +111,7 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmKeystoreAesGeneratedArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmKeystoreAesGeneratedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreAesGeneratedArgs | RealmKeystoreAesGeneratedState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -118,17 +122,16 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["secretSize"] = state?.secretSize;
         } else {
             const args = argsOrState as RealmKeystoreAesGeneratedArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["active"] = args?.active;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["secretSize"] = args?.secretSize;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -141,7 +144,7 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
  */
 export interface RealmKeystoreAesGeneratedState {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -161,6 +164,10 @@ export interface RealmKeystoreAesGeneratedState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      */
     secretSize?: pulumi.Input<number | undefined>;
@@ -171,7 +178,7 @@ export interface RealmKeystoreAesGeneratedState {
  */
 export interface RealmKeystoreAesGeneratedArgs {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -189,7 +196,11 @@ export interface RealmKeystoreAesGeneratedArgs {
     /**
      * The realm this keystore exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      */

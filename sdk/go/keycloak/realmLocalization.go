@@ -71,6 +71,8 @@ type RealmLocalization struct {
 	Locale pulumi.StringOutput `pulumi:"locale"`
 	// The ID of the realm the localization texts apply to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// A map of translation keys to values.
 	Texts pulumi.StringMapOutput `pulumi:"texts"`
 }
@@ -84,9 +86,6 @@ func NewRealmLocalization(ctx *pulumi.Context,
 
 	if args.Locale == nil {
 		return nil, errors.New("invalid value for required argument 'Locale'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmLocalization
@@ -115,6 +114,8 @@ type realmLocalizationState struct {
 	Locale *string `pulumi:"locale"`
 	// The ID of the realm the localization texts apply to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A map of translation keys to values.
 	Texts map[string]string `pulumi:"texts"`
 }
@@ -124,6 +125,8 @@ type RealmLocalizationState struct {
 	Locale pulumi.StringPtrInput
 	// The ID of the realm the localization texts apply to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A map of translation keys to values.
 	Texts pulumi.StringMapInput
 }
@@ -142,7 +145,9 @@ type realmLocalizationArgs struct {
 	// The locale (language code) the texts apply to.
 	Locale string `pulumi:"locale"`
 	// The ID of the realm the localization texts apply to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A map of translation keys to values.
 	Texts map[string]string `pulumi:"texts"`
 }
@@ -152,7 +157,9 @@ type RealmLocalizationArgs struct {
 	// The locale (language code) the texts apply to.
 	Locale pulumi.StringInput
 	// The ID of the realm the localization texts apply to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A map of translation keys to values.
 	Texts pulumi.StringMapInput
 }
@@ -252,6 +259,11 @@ func (o RealmLocalizationOutput) Locale() pulumi.StringOutput {
 // The ID of the realm the localization texts apply to.
 func (o RealmLocalizationOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmLocalization) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmLocalizationOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmLocalization) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // A map of translation keys to values.

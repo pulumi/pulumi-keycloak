@@ -123,6 +123,10 @@ export class RequiredAction extends pulumi.CustomResource {
      * The realm the required action exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RequiredAction resource with the given unique name, arguments, and options.
@@ -144,13 +148,11 @@ export class RequiredAction extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RequiredActionArgs | undefined;
             if (args?.alias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["alias"] = args?.alias;
             resourceInputs["config"] = args?.config;
@@ -159,6 +161,7 @@ export class RequiredAction extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RequiredAction.__pulumiType, name, resourceInputs, opts);
@@ -197,6 +200,10 @@ export interface RequiredActionState {
      * The realm the required action exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -230,5 +237,9 @@ export interface RequiredActionArgs {
     /**
      * The realm the required action exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

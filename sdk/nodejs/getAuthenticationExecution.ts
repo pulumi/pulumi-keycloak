@@ -30,6 +30,7 @@ export function getAuthenticationExecution(args: GetAuthenticationExecutionArgs,
         "parentFlowAlias": args.parentFlowAlias,
         "providerId": args.providerId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -48,7 +49,8 @@ export interface GetAuthenticationExecutionArgs {
     /**
      * The realm the authentication execution exists in.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -66,6 +68,7 @@ export interface GetAuthenticationExecutionResult {
     readonly priority: number;
     readonly providerId: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
 }
 /**
  * This data source can be used to fetch the ID of an authentication execution within Keycloak.
@@ -93,6 +96,7 @@ export function getAuthenticationExecutionOutput(args: GetAuthenticationExecutio
         "parentFlowAlias": args.parentFlowAlias,
         "providerId": args.providerId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -111,5 +115,6 @@ export interface GetAuthenticationExecutionOutputArgs {
     /**
      * The realm the authentication execution exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

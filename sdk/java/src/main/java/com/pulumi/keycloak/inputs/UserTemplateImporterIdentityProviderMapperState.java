@@ -77,6 +77,21 @@ public final class UserTemplateImporterIdentityProviderMapperState extends com.p
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
      * 
      */
@@ -98,6 +113,7 @@ public final class UserTemplateImporterIdentityProviderMapperState extends com.p
         this.identityProviderAlias = $.identityProviderAlias;
         this.name = $.name;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.template = $.template;
     }
 
@@ -201,6 +217,27 @@ public final class UserTemplateImporterIdentityProviderMapperState extends com.p
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

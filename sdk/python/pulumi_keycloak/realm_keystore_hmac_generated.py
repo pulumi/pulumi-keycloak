@@ -19,142 +19,24 @@ __all__ = ['RealmKeystoreHmacGeneratedArgs', 'RealmKeystoreHmacGenerated']
 @pulumi.input_type
 class RealmKeystoreHmacGeneratedArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
-                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None,
-                 secret_size: pulumi.Input[Optional[_builtins.int]] = None):
-        """
-        The set of arguments for constructing a RealmKeystoreHmacGenerated resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
-        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
-        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
-        :param pulumi.Input[_builtins.int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if active is not None:
-            pulumi.set(__self__, "active", active)
-        if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-        if secret_size is not None:
-            pulumi.set(__self__, "secret_size", secret_size)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this keystore exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key in not used for signing. Defaults to `true`.
-        """
-        return pulumi.get(self, "active")
-
-    @active.setter
-    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "active", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Intended algorithm for the key. Defaults to `HS256`
-        """
-        return pulumi.get(self, "algorithm")
-
-    @algorithm.setter
-    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "algorithm", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key is not accessible in this realm. Defaults to `true`.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Display name of provider when linked in admin console.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Priority for the provider. Defaults to `0`
-        """
-        return pulumi.get(self, "priority")
-
-    @priority.setter
-    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "priority", value)
-
-    @_builtins.property
-    @pulumi.getter(name="secretSize")
-    def secret_size(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Size in bytes for the generated secret. Defaults to `64`.
-        """
-        return pulumi.get(self, "secret_size")
-
-    @secret_size.setter
-    def secret_size(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "secret_size", value)
-
-
-@pulumi.input_type
-class _RealmKeystoreHmacGeneratedState:
-    def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_size: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        Input properties used for looking up and filtering RealmKeystoreHmacGenerated resources.
+        The set of arguments for constructing a RealmKeystoreHmacGenerated resource.
 
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
         """
         if active is not None:
@@ -169,6 +51,8 @@ class _RealmKeystoreHmacGeneratedState:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if secret_size is not None:
             pulumi.set(__self__, "secret_size", secret_size)
 
@@ -176,7 +60,7 @@ class _RealmKeystoreHmacGeneratedState:
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -245,6 +129,155 @@ class _RealmKeystoreHmacGeneratedState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretSize")
+    def secret_size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Size in bytes for the generated secret. Defaults to `64`.
+        """
+        return pulumi.get(self, "secret_size")
+
+    @secret_size.setter
+    def secret_size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "secret_size", value)
+
+
+@pulumi.input_type
+class _RealmKeystoreHmacGeneratedState:
+    def __init__(__self__, *,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_size: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        Input properties used for looking up and filtering RealmKeystoreHmacGenerated resources.
+
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
+        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
+        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
+        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        :param pulumi.Input[_builtins.int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
+        """
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+        if secret_size is not None:
+            pulumi.set(__self__, "secret_size", secret_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not used for signing. Defaults to `true`.
+        """
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "active", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Intended algorithm for the key. Defaults to `HS256`
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not accessible in this realm. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Display name of provider when linked in admin console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Priority for the provider. Defaults to `0`
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this keystore exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretSize")
     def secret_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -269,6 +302,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
@@ -306,19 +340,20 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmKeystoreHmacGeneratedArgs,
+                 args: Optional[RealmKeystoreHmacGeneratedArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing `hmac-generated` Realm keystores within Keycloak.
@@ -374,6 +409,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_size: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -389,9 +425,8 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["secret_size"] = secret_size
         super(RealmKeystoreHmacGenerated, __self__).__init__(
             'keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated',
@@ -409,6 +444,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             secret_size: pulumi.Input[Optional[_builtins.int]] = None) -> 'RealmKeystoreHmacGenerated':
         """
         Get an existing RealmKeystoreHmacGenerated resource's state with the given name, id, and optional extra
@@ -417,12 +453,13 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.int] secret_size: Size in bytes for the generated secret. Defaults to `64`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -435,6 +472,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["secret_size"] = secret_size
         return RealmKeystoreHmacGenerated(resource_name, opts=opts, __props__=__props__)
 
@@ -447,6 +485,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             secret_size: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["active"] = active
@@ -455,6 +494,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         __props__["name"] = name
         __props__["priority"] = priority
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["secretSize"] = secret_size
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -462,7 +502,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -505,6 +545,14 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         The realm this keystore exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="secretSize")

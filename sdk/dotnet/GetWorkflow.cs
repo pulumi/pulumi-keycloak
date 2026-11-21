@@ -117,8 +117,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm this workflow exists within.
         /// </summary>
-        [Input("realm", required: true)]
-        public string Realm { get; set; } = null!;
+        [Input("realm")]
+        public string? Realm { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetWorkflowArgs()
         {
@@ -137,8 +140,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm this workflow exists within.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetWorkflowInvokeArgs()
         {
@@ -160,6 +166,7 @@ namespace Pulumi.Keycloak
         public readonly string Name;
         public readonly string On;
         public readonly string Realm;
+        public readonly string RealmInternalId;
         public readonly string RestartInProgress;
         public readonly ImmutableArray<Outputs.GetWorkflowScheduleResult> Schedules;
         public readonly ImmutableArray<Outputs.GetWorkflowStateResult> States;
@@ -181,6 +188,8 @@ namespace Pulumi.Keycloak
 
             string realm,
 
+            string realmInternalId,
+
             string restartInProgress,
 
             ImmutableArray<Outputs.GetWorkflowScheduleResult> schedules,
@@ -196,6 +205,7 @@ namespace Pulumi.Keycloak
             Name = name;
             On = on;
             Realm = realm;
+            RealmInternalId = realmInternalId;
             RestartInProgress = restartInProgress;
             Schedules = schedules;
             States = states;

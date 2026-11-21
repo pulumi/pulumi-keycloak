@@ -177,8 +177,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this role exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetRoleArgs()
         {
@@ -203,8 +206,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this role exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetRoleInvokeArgs()
         {
@@ -229,6 +235,7 @@ namespace Pulumi.Keycloak
         public readonly string Id;
         public readonly string Name;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
 
         [OutputConstructor]
         private GetRoleResult(
@@ -244,7 +251,9 @@ namespace Pulumi.Keycloak
 
             string name,
 
-            string realmId)
+            string realmId,
+
+            string realmInternalId)
         {
             Attributes = attributes;
             ClientId = clientId;
@@ -253,6 +262,7 @@ namespace Pulumi.Keycloak
             Id = id;
             Name = name;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
         }
     }
 }

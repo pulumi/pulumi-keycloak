@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -154,18 +153,17 @@ type Group struct {
 	Path pulumi.StringOutput `pulumi:"path"`
 	// The realm this group exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewGroup registers a new resource with the given unique name, arguments, and options.
 func NewGroup(ctx *pulumi.Context,
 	name string, args *GroupArgs, opts ...pulumi.ResourceOption) (*Group, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &GroupArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Group
 	err := ctx.RegisterResource("keycloak:index/group:Group", name, args, &resource, opts...)
@@ -202,6 +200,8 @@ type groupState struct {
 	Path *string `pulumi:"path"`
 	// The realm this group exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type GroupState struct {
@@ -218,6 +218,8 @@ type GroupState struct {
 	Path pulumi.StringPtrInput
 	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (GroupState) ElementType() reflect.Type {
@@ -241,7 +243,9 @@ type groupArgs struct {
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId *string `pulumi:"parentId"`
 	// The realm this group exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a Group resource.
@@ -256,7 +260,9 @@ type GroupArgs struct {
 	// The ID of this group's parent. If omitted, this group will be defined at the root level.
 	ParentId pulumi.StringPtrInput
 	// The realm this group exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (GroupArgs) ElementType() reflect.Type {
@@ -378,6 +384,11 @@ func (o GroupOutput) Path() pulumi.StringOutput {
 // The realm this group exists in.
 func (o GroupOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GroupOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type GroupArrayOutput struct{ *pulumi.OutputState }

@@ -211,6 +211,10 @@ export class GenericRoleMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The ID of the role to be added to this role mapper.
      */
     declare public readonly roleId: pulumi.Output<string>;
@@ -231,18 +235,17 @@ export class GenericRoleMapper extends pulumi.CustomResource {
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["roleId"] = state?.roleId;
         } else {
             const args = argsOrState as GenericRoleMapperArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.roleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["roleId"] = args?.roleId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -267,6 +270,10 @@ export interface GenericRoleMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The ID of the role to be added to this role mapper.
      */
     roleId?: pulumi.Input<string | undefined>;
@@ -287,7 +294,11 @@ export interface GenericRoleMapperArgs {
     /**
      * The realm this role mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the role to be added to this role mapper.
      */

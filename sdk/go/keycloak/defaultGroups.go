@@ -75,6 +75,8 @@ type DefaultGroups struct {
 	GroupIds pulumi.StringArrayOutput `pulumi:"groupIds"`
 	// The realm this group exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewDefaultGroups registers a new resource with the given unique name, arguments, and options.
@@ -86,9 +88,6 @@ func NewDefaultGroups(ctx *pulumi.Context,
 
 	if args.GroupIds == nil {
 		return nil, errors.New("invalid value for required argument 'GroupIds'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DefaultGroups
@@ -117,6 +116,8 @@ type defaultGroupsState struct {
 	GroupIds []string `pulumi:"groupIds"`
 	// The realm this group exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type DefaultGroupsState struct {
@@ -124,6 +125,8 @@ type DefaultGroupsState struct {
 	GroupIds pulumi.StringArrayInput
 	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (DefaultGroupsState) ElementType() reflect.Type {
@@ -140,7 +143,9 @@ type defaultGroupsArgs struct {
 	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds []string `pulumi:"groupIds"`
 	// The realm this group exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a DefaultGroups resource.
@@ -148,7 +153,9 @@ type DefaultGroupsArgs struct {
 	// A set of group ids that should be default groups on the realm referenced by `realmId`.
 	GroupIds pulumi.StringArrayInput
 	// The realm this group exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (DefaultGroupsArgs) ElementType() reflect.Type {
@@ -246,6 +253,11 @@ func (o DefaultGroupsOutput) GroupIds() pulumi.StringArrayOutput {
 // The realm this group exists in.
 func (o DefaultGroupsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DefaultGroups) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o DefaultGroupsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DefaultGroups) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type DefaultGroupsArrayOutput struct{ *pulumi.OutputState }

@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetOrganizationArgs extends com.pulumi.resources.InvokeArgs {
@@ -33,15 +35,22 @@ public final class GetOrganizationArgs extends com.pulumi.resources.InvokeArgs {
      * The name of the realm this organization exists within.
      * 
      */
-    @Import(name="realm", required=true)
-    private Output<String> realm;
+    @Import(name="realm")
+    private @Nullable Output<String> realm;
 
     /**
      * @return The name of the realm this organization exists within.
      * 
      */
-    public Output<String> realm() {
-        return this.realm;
+    public Optional<Output<String>> realm() {
+        return Optional.ofNullable(this.realm);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetOrganizationArgs() {}
@@ -49,6 +58,7 @@ public final class GetOrganizationArgs extends com.pulumi.resources.InvokeArgs {
     private GetOrganizationArgs(GetOrganizationArgs $) {
         this.name = $.name;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -96,7 +106,7 @@ public final class GetOrganizationArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder realm(Output<String> realm) {
+        public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
@@ -111,12 +121,18 @@ public final class GetOrganizationArgs extends com.pulumi.resources.InvokeArgs {
             return realm(Output.of(realm));
         }
 
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public GetOrganizationArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetOrganizationArgs", "name");
-            }
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("GetOrganizationArgs", "realm");
             }
             return $;
         }

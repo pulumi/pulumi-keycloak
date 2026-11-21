@@ -20,6 +20,12 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
+    /// The following example provisions a user attribute importer mapper through `ExtraConfig`. The key names can be verified in the Keycloak source code:
+    /// * [user.attribute](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/UserAttributeMapper.java#L52)
+    /// * [claim](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/AbstractClaimMapper.java#L41)
+    /// 
+    /// For a strongly typed alternative, use `keycloak.AttributeImporterIdentityProviderMapper`, which exposes `ClaimName` and `UserAttribute` directly.
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,8 +60,8 @@ namespace Pulumi.Keycloak
     ///         ExtraConfig = 
     ///         {
     ///             { "syncMode", "INHERIT" },
-    ///             { "Claim", "my-email-claim" },
-    ///             { "UserAttribute", "email" },
+    ///             { "claim", "my-email-claim" },
+    ///             { "user.attribute", "email" },
     ///         },
     ///     });
     /// 
@@ -105,6 +111,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
 
         /// <summary>
@@ -185,8 +197,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public CustomIdentityProviderMappingArgs()
         {
@@ -231,6 +249,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public CustomIdentityProviderMappingState()
         {

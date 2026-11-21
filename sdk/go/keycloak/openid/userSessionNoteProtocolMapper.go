@@ -166,6 +166,8 @@ type UserSessionNoteProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote pulumi.StringPtrOutput `pulumi:"sessionNote"`
 }
@@ -179,9 +181,6 @@ func NewUserSessionNoteProtocolMapper(ctx *pulumi.Context,
 
 	if args.ClaimName == nil {
 		return nil, errors.New("invalid value for required argument 'ClaimName'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserSessionNoteProtocolMapper
@@ -226,6 +225,8 @@ type userSessionNoteProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote *string `pulumi:"sessionNote"`
 }
@@ -251,6 +252,8 @@ type UserSessionNoteProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote pulumi.StringPtrInput
 }
@@ -285,7 +288,9 @@ type userSessionNoteProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote *string `pulumi:"sessionNote"`
 }
@@ -311,7 +316,9 @@ type UserSessionNoteProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote pulumi.StringPtrInput
 }
@@ -451,6 +458,11 @@ func (o UserSessionNoteProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o UserSessionNoteProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserSessionNoteProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // String value being the name of stored user session note within the `UserSessionModel.note` map.

@@ -26,7 +26,7 @@ class GetGenericProtocolMapperResult:
     """
     A collection of values returned by getGenericProtocolMapper.
     """
-    def __init__(__self__, client_id=None, client_scope_id=None, config=None, id=None, name=None, protocol=None, protocol_mapper=None, realm_id=None):
+    def __init__(__self__, client_id=None, client_scope_id=None, config=None, id=None, name=None, protocol=None, protocol_mapper=None, realm_id=None, realm_internal_id=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -51,6 +51,9 @@ class GetGenericProtocolMapperResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -104,6 +107,11 @@ class GetGenericProtocolMapperResult:
     def realm_id(self) -> _builtins.str:
         return pulumi.get(self, "realm_id")
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
 
 class AwaitableGetGenericProtocolMapperResult(GetGenericProtocolMapperResult):
     # pylint: disable=using-constant-test
@@ -118,13 +126,15 @@ class AwaitableGetGenericProtocolMapperResult(GetGenericProtocolMapperResult):
             name=self.name,
             protocol=self.protocol,
             protocol_mapper=self.protocol_mapper,
-            realm_id=self.realm_id)
+            realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id)
 
 
 def get_generic_protocol_mapper(client_id: Optional[_builtins.str] = None,
                                 client_scope_id: Optional[_builtins.str] = None,
                                 name: Optional[_builtins.str] = None,
                                 realm_id: Optional[_builtins.str] = None,
+                                realm_internal_id: Optional[_builtins.str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGenericProtocolMapperResult:
     """
     This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
@@ -145,6 +155,7 @@ def get_generic_protocol_mapper(client_id: Optional[_builtins.str] = None,
     __args__['clientScopeId'] = client_scope_id
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper', __args__, opts=opts, typ=GetGenericProtocolMapperResult).value
 
@@ -156,11 +167,13 @@ def get_generic_protocol_mapper(client_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         protocol=pulumi.get(__ret__, 'protocol'),
         protocol_mapper=pulumi.get(__ret__, 'protocol_mapper'),
-        realm_id=pulumi.get(__ret__, 'realm_id'))
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'))
 def get_generic_protocol_mapper_output(client_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                        client_scope_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                        name: pulumi.Input[Optional[_builtins.str]] = None,
-                                       realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                       realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                       realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGenericProtocolMapperResult]:
     """
     This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
@@ -181,6 +194,7 @@ def get_generic_protocol_mapper_output(client_id: pulumi.Input[Optional[Optional
     __args__['clientScopeId'] = client_scope_id
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getGenericProtocolMapper:getGenericProtocolMapper', __args__, opts=opts, typ=GetGenericProtocolMapperResult)
     return __ret__.apply(lambda __response__: GetGenericProtocolMapperResult(
@@ -191,4 +205,5 @@ def get_generic_protocol_mapper_output(client_id: pulumi.Input[Optional[Optional
         name=pulumi.get(__response__, 'name'),
         protocol=pulumi.get(__response__, 'protocol'),
         protocol_mapper=pulumi.get(__response__, 'protocol_mapper'),
-        realm_id=pulumi.get(__response__, 'realm_id')))
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id')))

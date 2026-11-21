@@ -20,7 +20,6 @@ __all__ = ['ClientTimePolicyArgs', 'ClientTimePolicy']
 class ClientTimePolicyArgs:
     def __init__(__self__, *,
                  decision_strategy: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
                  day_month: pulumi.Input[Optional[_builtins.str]] = None,
                  day_month_end: pulumi.Input[Optional[_builtins.str]] = None,
@@ -35,13 +34,16 @@ class ClientTimePolicyArgs:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  not_before: pulumi.Input[Optional[_builtins.str]] = None,
                  not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  year: pulumi.Input[Optional[_builtins.str]] = None,
                  year_end: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientTimePolicy resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "decision_strategy", decision_strategy)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "resource_server_id", resource_server_id)
         if day_month is not None:
             pulumi.set(__self__, "day_month", day_month)
@@ -69,6 +71,10 @@ class ClientTimePolicyArgs:
             pulumi.set(__self__, "not_before", not_before)
         if not_on_or_after is not None:
             pulumi.set(__self__, "not_on_or_after", not_on_or_after)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if year is not None:
             pulumi.set(__self__, "year", year)
         if year_end is not None:
@@ -82,15 +88,6 @@ class ClientTimePolicyArgs:
     @decision_strategy.setter
     def decision_strategy(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "decision_strategy", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
@@ -219,6 +216,27 @@ class ClientTimePolicyArgs:
         pulumi.set(self, "not_on_or_after", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def year(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "year")
@@ -255,11 +273,14 @@ class _ClientTimePolicyState:
                  not_before: pulumi.Input[Optional[_builtins.str]] = None,
                  not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  year: pulumi.Input[Optional[_builtins.str]] = None,
                  year_end: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientTimePolicy resources.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if day_month is not None:
             pulumi.set(__self__, "day_month", day_month)
@@ -291,6 +312,8 @@ class _ClientTimePolicyState:
             pulumi.set(__self__, "not_on_or_after", not_on_or_after)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id is not None:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if year is not None:
@@ -434,6 +457,18 @@ class _ClientTimePolicyState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "resource_server_id")
@@ -482,6 +517,7 @@ class ClientTimePolicy(pulumi.CustomResource):
                  not_before: pulumi.Input[Optional[_builtins.str]] = None,
                  not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  year: pulumi.Input[Optional[_builtins.str]] = None,
                  year_end: pulumi.Input[Optional[_builtins.str]] = None,
@@ -579,6 +615,7 @@ class ClientTimePolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -707,6 +744,7 @@ class ClientTimePolicy(pulumi.CustomResource):
                  not_before: pulumi.Input[Optional[_builtins.str]] = None,
                  not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  year: pulumi.Input[Optional[_builtins.str]] = None,
                  year_end: pulumi.Input[Optional[_builtins.str]] = None,
@@ -735,9 +773,8 @@ class ClientTimePolicy(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["not_before"] = not_before
             __props__.__dict__["not_on_or_after"] = not_on_or_after
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__.__dict__["resource_server_id"] = resource_server_id
@@ -768,6 +805,7 @@ class ClientTimePolicy(pulumi.CustomResource):
             not_before: pulumi.Input[Optional[_builtins.str]] = None,
             not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             year: pulumi.Input[Optional[_builtins.str]] = None,
             year_end: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientTimePolicy':
@@ -778,6 +816,7 @@ class ClientTimePolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -798,6 +837,7 @@ class ClientTimePolicy(pulumi.CustomResource):
         __props__.__dict__["not_before"] = not_before
         __props__.__dict__["not_on_or_after"] = not_on_or_after
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["year"] = year
         __props__.__dict__["year_end"] = year_end
@@ -821,6 +861,7 @@ class ClientTimePolicy(pulumi.CustomResource):
             not_before: pulumi.Input[Optional[_builtins.str]] = None,
             not_on_or_after: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             year: pulumi.Input[Optional[_builtins.str]] = None,
             year_end: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
@@ -840,6 +881,7 @@ class ClientTimePolicy(pulumi.CustomResource):
         __props__["notBefore"] = not_before
         __props__["notOnOrAfter"] = not_on_or_after
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["resourceServerId"] = resource_server_id
         __props__["year"] = year
         __props__["yearEnd"] = year_end
@@ -919,6 +961,14 @@ class ClientTimePolicy(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")

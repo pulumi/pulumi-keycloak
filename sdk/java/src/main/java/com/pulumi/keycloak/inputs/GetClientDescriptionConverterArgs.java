@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetClientDescriptionConverterArgs extends com.pulumi.resources.InvokeArgs {
@@ -33,15 +35,22 @@ public final class GetClientDescriptionConverterArgs extends com.pulumi.resource
      * The realm to use for the client description converter API call.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm to use for the client description converter API call.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetClientDescriptionConverterArgs() {}
@@ -49,6 +58,7 @@ public final class GetClientDescriptionConverterArgs extends com.pulumi.resource
     private GetClientDescriptionConverterArgs(GetClientDescriptionConverterArgs $) {
         this.body = $.body;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -96,7 +106,7 @@ public final class GetClientDescriptionConverterArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -111,12 +121,18 @@ public final class GetClientDescriptionConverterArgs extends com.pulumi.resource
             return realmId(Output.of(realmId));
         }
 
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public GetClientDescriptionConverterArgs build() {
             if ($.body == null) {
                 throw new MissingRequiredPropertyException("GetClientDescriptionConverterArgs", "body");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetClientDescriptionConverterArgs", "realmId");
             }
             return $;
         }

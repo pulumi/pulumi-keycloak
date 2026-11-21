@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetClientAuthorizationPolicyPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -32,15 +34,22 @@ public final class GetClientAuthorizationPolicyPlainArgs extends com.pulumi.reso
      * The realm this authorization policy exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm this authorization policy exists within.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -63,6 +72,7 @@ public final class GetClientAuthorizationPolicyPlainArgs extends com.pulumi.reso
     private GetClientAuthorizationPolicyPlainArgs(GetClientAuthorizationPolicyPlainArgs $) {
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.resourceServerId = $.resourceServerId;
     }
 
@@ -101,8 +111,13 @@ public final class GetClientAuthorizationPolicyPlainArgs extends com.pulumi.reso
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
@@ -120,9 +135,6 @@ public final class GetClientAuthorizationPolicyPlainArgs extends com.pulumi.reso
         public GetClientAuthorizationPolicyPlainArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyPlainArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyPlainArgs", "realmId");
             }
             if ($.resourceServerId == null) {
                 throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyPlainArgs", "resourceServerId");

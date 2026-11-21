@@ -74,7 +74,8 @@ type GetRealmKeysArgs struct {
 	// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
 	Algorithms []string `pulumi:"algorithms"`
 	// The realm from which the keys will be retrieved.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
 	Statuses []string `pulumi:"statuses"`
 }
@@ -85,8 +86,9 @@ type GetRealmKeysResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
-	Keys    []GetRealmKeysKey `pulumi:"keys"`
-	RealmId string            `pulumi:"realmId"`
+	Keys            []GetRealmKeysKey `pulumi:"keys"`
+	RealmId         string            `pulumi:"realmId"`
+	RealmInternalId string            `pulumi:"realmInternalId"`
 	// Key status (string)
 	Statuses []string `pulumi:"statuses"`
 }
@@ -101,7 +103,8 @@ type GetRealmKeysOutputArgs struct {
 	// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
 	Algorithms pulumi.StringArrayInput `pulumi:"algorithms"`
 	// The realm from which the keys will be retrieved.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
 	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
 }
@@ -141,6 +144,10 @@ func (o GetRealmKeysResultOutput) Keys() GetRealmKeysKeyArrayOutput {
 
 func (o GetRealmKeysResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetRealmKeysResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmKeysResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Key status (string)

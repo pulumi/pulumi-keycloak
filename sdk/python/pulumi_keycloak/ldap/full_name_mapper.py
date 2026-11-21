@@ -21,27 +21,32 @@ class FullNameMapperArgs:
     def __init__(__self__, *,
                  ldap_full_name_attribute: pulumi.Input[_builtins.str],
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  write_only: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a FullNameMapper resource.
 
         :param pulumi.Input[_builtins.str] ldap_full_name_attribute: The name of the LDAP attribute containing the user's full name.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         pulumi.set(__self__, "ldap_full_name_attribute", ldap_full_name_attribute)
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if read_only is not None:
             pulumi.set(__self__, "read_only", read_only)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if write_only is not None:
             pulumi.set(__self__, "write_only", write_only)
 
@@ -70,18 +75,6 @@ class FullNameMapperArgs:
         pulumi.set(self, "ldap_user_federation_id", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that this LDAP mapper will exist in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -106,6 +99,30 @@ class FullNameMapperArgs:
         pulumi.set(self, "read_only", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -126,6 +143,7 @@ class _FullNameMapperState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  write_only: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering FullNameMapper resources.
@@ -135,6 +153,7 @@ class _FullNameMapperState:
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         if ldap_full_name_attribute is not None:
@@ -147,6 +166,8 @@ class _FullNameMapperState:
             pulumi.set(__self__, "read_only", read_only)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if write_only is not None:
             pulumi.set(__self__, "write_only", write_only)
 
@@ -211,6 +232,18 @@ class _FullNameMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -234,6 +267,7 @@ class FullNameMapper(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  write_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -291,6 +325,7 @@ class FullNameMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         ...
@@ -367,6 +402,7 @@ class FullNameMapper(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  write_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -385,9 +421,8 @@ class FullNameMapper(pulumi.CustomResource):
             __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
             __props__.__dict__["name"] = name
             __props__.__dict__["read_only"] = read_only
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["write_only"] = write_only
         super(FullNameMapper, __self__).__init__(
             'keycloak:ldap/fullNameMapper:FullNameMapper',
@@ -404,6 +439,7 @@ class FullNameMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             read_only: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             write_only: pulumi.Input[Optional[_builtins.bool]] = None) -> 'FullNameMapper':
         """
         Get an existing FullNameMapper resource's state with the given name, id, and optional extra
@@ -417,6 +453,7 @@ class FullNameMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] write_only: When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -428,6 +465,7 @@ class FullNameMapper(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["read_only"] = read_only
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["write_only"] = write_only
         return FullNameMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -439,6 +477,7 @@ class FullNameMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             read_only: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             write_only: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["ldapFullNameAttribute"] = ldap_full_name_attribute
@@ -446,6 +485,7 @@ class FullNameMapper(pulumi.CustomResource):
         __props__["name"] = name
         __props__["readOnly"] = read_only
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["writeOnly"] = write_only
         return pulumi.runtime.exists_resource(None, 'keycloak:ldap/fullNameMapper:FullNameMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -488,6 +528,14 @@ class FullNameMapper(pulumi.CustomResource):
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="writeOnly")

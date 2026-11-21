@@ -95,6 +95,12 @@ namespace Pulumi.Keycloak
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a HardcodedGroupIdentityProviderMapper resource with the given unique name, arguments, and options.
@@ -174,8 +180,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm ID that this mapper will exist in.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public HardcodedGroupIdentityProviderMapperArgs()
         {
@@ -220,6 +232,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public HardcodedGroupIdentityProviderMapperState()
         {

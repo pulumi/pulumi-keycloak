@@ -38,6 +38,7 @@ public final class GetClientAuthorizationPolicyResult {
      */
     private List<String> policies;
     private String realmId;
+    private String realmInternalId;
     private String resourceServerId;
     /**
      * @return (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
@@ -97,6 +98,9 @@ public final class GetClientAuthorizationPolicyResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public String resourceServerId() {
         return this.resourceServerId;
     }
@@ -138,6 +142,7 @@ public final class GetClientAuthorizationPolicyResult {
         private String owner;
         private List<String> policies;
         private String realmId;
+        private String realmInternalId;
         private String resourceServerId;
         private List<String> resources;
         private List<String> scopes;
@@ -152,6 +157,7 @@ public final class GetClientAuthorizationPolicyResult {
     	      this.owner = defaults.owner;
     	      this.policies = defaults.policies;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.resourceServerId = defaults.resourceServerId;
     	      this.resources = defaults.resources;
     	      this.scopes = defaults.scopes;
@@ -218,6 +224,14 @@ public final class GetClientAuthorizationPolicyResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
             if (resourceServerId == null) {
               throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "resourceServerId");
@@ -264,6 +278,7 @@ public final class GetClientAuthorizationPolicyResult {
             _resultValue.owner = owner;
             _resultValue.policies = policies;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.resourceServerId = resourceServerId;
             _resultValue.resources = resources;
             _resultValue.scopes = scopes;

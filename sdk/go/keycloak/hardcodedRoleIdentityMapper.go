@@ -85,6 +85,8 @@ type HardcodedRoleIdentityMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The name of the role which should be assigned to the users.
 	Role pulumi.StringPtrOutput `pulumi:"role"`
 }
@@ -98,9 +100,6 @@ func NewHardcodedRoleIdentityMapper(ctx *pulumi.Context,
 
 	if args.IdentityProviderAlias == nil {
 		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedRoleIdentityMapper
@@ -133,6 +132,8 @@ type hardcodedRoleIdentityMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role which should be assigned to the users.
 	Role *string `pulumi:"role"`
 }
@@ -146,6 +147,8 @@ type HardcodedRoleIdentityMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role which should be assigned to the users.
 	Role pulumi.StringPtrInput
 }
@@ -168,7 +171,9 @@ type hardcodedRoleIdentityMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role which should be assigned to the users.
 	Role *string `pulumi:"role"`
 }
@@ -182,7 +187,9 @@ type HardcodedRoleIdentityMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
 	// The realm ID that this mapper will exist in.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role which should be assigned to the users.
 	Role pulumi.StringPtrInput
 }
@@ -292,6 +299,11 @@ func (o HardcodedRoleIdentityMapperOutput) Name() pulumi.StringOutput {
 // The realm ID that this mapper will exist in.
 func (o HardcodedRoleIdentityMapperOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o HardcodedRoleIdentityMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The name of the role which should be assigned to the users.

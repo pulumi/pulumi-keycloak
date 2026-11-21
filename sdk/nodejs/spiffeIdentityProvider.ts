@@ -100,6 +100,10 @@ export class SpiffeIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    declare public readonly allowAdminRoleMapping: pulumi.Output<boolean | undefined>;
+    /**
      * Enable/disable authenticate users by default.
      */
     declare public readonly authenticateByDefault: pulumi.Output<boolean | undefined>;
@@ -155,6 +159,10 @@ export class SpiffeIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Enable/disable if tokens must be stored after authenticating users.
      */
     declare public readonly storeToken: pulumi.Output<boolean | undefined>;
@@ -186,6 +194,7 @@ export class SpiffeIdentityProvider extends pulumi.CustomResource {
             const state = argsOrState as SpiffeIdentityProviderState | undefined;
             resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["allowAdminRoleMapping"] = state?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
             resourceInputs["bundleEndpoint"] = state?.bundleEndpoint;
             resourceInputs["displayName"] = state?.displayName;
@@ -202,6 +211,7 @@ export class SpiffeIdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = state?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["storeToken"] = state?.storeToken;
             resourceInputs["syncMode"] = state?.syncMode;
             resourceInputs["trustDomain"] = state?.trustDomain;
@@ -214,14 +224,12 @@ export class SpiffeIdentityProvider extends pulumi.CustomResource {
             if (args?.bundleEndpoint === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bundleEndpoint'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             if (args?.trustDomain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'trustDomain'");
             }
             resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["allowAdminRoleMapping"] = args?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
             resourceInputs["bundleEndpoint"] = args?.bundleEndpoint;
             resourceInputs["displayName"] = args?.displayName;
@@ -236,6 +244,7 @@ export class SpiffeIdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = args?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["storeToken"] = args?.storeToken;
             resourceInputs["syncMode"] = args?.syncMode;
             resourceInputs["trustDomain"] = args?.trustDomain;
@@ -260,6 +269,10 @@ export interface SpiffeIdentityProviderState {
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -316,6 +329,10 @@ export interface SpiffeIdentityProviderState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Enable/disable if tokens must be stored after authenticating users.
      */
     storeToken?: pulumi.Input<boolean | undefined>;
@@ -345,6 +362,10 @@ export interface SpiffeIdentityProviderArgs {
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     alias: pulumi.Input<string>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -391,7 +412,11 @@ export interface SpiffeIdentityProviderArgs {
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable if tokens must be stored after authenticating users.
      */

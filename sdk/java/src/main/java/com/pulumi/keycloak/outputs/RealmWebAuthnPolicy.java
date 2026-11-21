@@ -73,6 +73,11 @@ public final class RealmWebAuthnPolicy {
      */
     private @Nullable List<String> signatureAlgorithms;
     /**
+     * @return Signature algorithms in preference order. Conflicts with signature_algorithms.
+     * 
+     */
+    private @Nullable List<String> signatureAlgorithmsOrdereds;
+    /**
      * @return Either required, preferred or discouraged
      * 
      */
@@ -160,6 +165,13 @@ public final class RealmWebAuthnPolicy {
         return this.signatureAlgorithms == null ? List.of() : this.signatureAlgorithms;
     }
     /**
+     * @return Signature algorithms in preference order. Conflicts with signature_algorithms.
+     * 
+     */
+    public List<String> signatureAlgorithmsOrdereds() {
+        return this.signatureAlgorithmsOrdereds == null ? List.of() : this.signatureAlgorithmsOrdereds;
+    }
+    /**
      * @return Either required, preferred or discouraged
      * 
      */
@@ -187,6 +199,7 @@ public final class RealmWebAuthnPolicy {
         private @Nullable String relyingPartyId;
         private @Nullable String requireResidentKey;
         private @Nullable List<String> signatureAlgorithms;
+        private @Nullable List<String> signatureAlgorithmsOrdereds;
         private @Nullable String userVerificationRequirement;
         public Builder() {}
         public Builder(RealmWebAuthnPolicy defaults) {
@@ -202,6 +215,7 @@ public final class RealmWebAuthnPolicy {
     	      this.relyingPartyId = defaults.relyingPartyId;
     	      this.requireResidentKey = defaults.requireResidentKey;
     	      this.signatureAlgorithms = defaults.signatureAlgorithms;
+    	      this.signatureAlgorithmsOrdereds = defaults.signatureAlgorithmsOrdereds;
     	      this.userVerificationRequirement = defaults.userVerificationRequirement;
         }
 
@@ -281,6 +295,15 @@ public final class RealmWebAuthnPolicy {
             return signatureAlgorithms(List.of(signatureAlgorithms));
         }
         @CustomType.Setter
+        public Builder signatureAlgorithmsOrdereds(@Nullable List<String> signatureAlgorithmsOrdereds) {
+
+            this.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
+            return this;
+        }
+        public Builder signatureAlgorithmsOrdereds(String... signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(List.of(signatureAlgorithmsOrdereds));
+        }
+        @CustomType.Setter
         public Builder userVerificationRequirement(@Nullable String userVerificationRequirement) {
 
             this.userVerificationRequirement = userVerificationRequirement;
@@ -299,6 +322,7 @@ public final class RealmWebAuthnPolicy {
             _resultValue.relyingPartyId = relyingPartyId;
             _resultValue.requireResidentKey = requireResidentKey;
             _resultValue.signatureAlgorithms = signatureAlgorithms;
+            _resultValue.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
             _resultValue.userVerificationRequirement = userVerificationRequirement;
             return _resultValue;
         }

@@ -150,6 +150,8 @@ type Client struct {
 	NameIdFormat pulumi.StringOutput `pulumi:"nameIdFormat"`
 	// The realm this client is attached to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// When specified, this value is prepended to all relative URLs.
 	RootUrl pulumi.StringPtrOutput `pulumi:"rootUrl"`
 	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
@@ -185,9 +187,6 @@ func NewClient(ctx *pulumi.Context,
 
 	if args.ClientId == nil {
 		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.SigningPrivateKey != nil {
 		args.SigningPrivateKey = pulumi.ToSecret(args.SigningPrivateKey).(pulumi.StringPtrInput)
@@ -285,6 +284,8 @@ type clientState struct {
 	NameIdFormat *string `pulumi:"nameIdFormat"`
 	// The realm this client is attached to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When specified, this value is prepended to all relative URLs.
 	RootUrl *string `pulumi:"rootUrl"`
 	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
@@ -378,6 +379,8 @@ type ClientState struct {
 	NameIdFormat pulumi.StringPtrInput
 	// The realm this client is attached to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When specified, this value is prepended to all relative URLs.
 	RootUrl pulumi.StringPtrInput
 	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
@@ -478,7 +481,9 @@ type clientArgs struct {
 	// Sets the Name ID format for the subject.
 	NameIdFormat *string `pulumi:"nameIdFormat"`
 	// The realm this client is attached to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When specified, this value is prepended to all relative URLs.
 	RootUrl *string `pulumi:"rootUrl"`
 	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
@@ -564,7 +569,9 @@ type ClientArgs struct {
 	// Sets the Name ID format for the subject.
 	NameIdFormat pulumi.StringPtrInput
 	// The realm this client is attached to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When specified, this value is prepended to all relative URLs.
 	RootUrl pulumi.StringPtrInput
 	// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
@@ -837,6 +844,11 @@ func (o ClientOutput) NameIdFormat() pulumi.StringOutput {
 // The realm this client is attached to.
 func (o ClientOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // When specified, this value is prepended to all relative URLs.

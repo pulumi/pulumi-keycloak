@@ -82,11 +82,31 @@ public class GroupPermissions extends com.pulumi.resources.CustomResource {
     public Output<Optional<GroupPermissionsManageScope>> manageScope() {
         return Codegen.optional(this.manageScope);
     }
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> organizationId;
+
+    public Output<Optional<String>> organizationId() {
+        return Codegen.optional(this.organizationId);
+    }
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
     @Export(name="viewMembersScope", refs={GroupPermissionsViewMembersScope.class}, tree="[0]")
     private Output</* @Nullable */ GroupPermissionsViewMembersScope> viewMembersScope;

@@ -80,14 +80,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated")
 public class RealmKeystoreHmacGenerated extends com.pulumi.resources.CustomResource {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
-     * @return When `false`, key in not used for signing. Defaults to `true`.
+     * @return When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> active() {
@@ -164,6 +164,20 @@ public class RealmKeystoreHmacGenerated extends com.pulumi.resources.CustomResou
         return this.realmId;
     }
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
      * Size in bytes for the generated secret. Defaults to `64`.
      * 
      */
@@ -190,7 +204,7 @@ public class RealmKeystoreHmacGenerated extends com.pulumi.resources.CustomResou
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmKeystoreHmacGenerated(java.lang.String name, RealmKeystoreHmacGeneratedArgs args) {
+    public RealmKeystoreHmacGenerated(java.lang.String name, @Nullable RealmKeystoreHmacGeneratedArgs args) {
         this(name, args, null);
     }
     /**
@@ -199,7 +213,7 @@ public class RealmKeystoreHmacGenerated extends com.pulumi.resources.CustomResou
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmKeystoreHmacGenerated(java.lang.String name, RealmKeystoreHmacGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public RealmKeystoreHmacGenerated(java.lang.String name, @Nullable RealmKeystoreHmacGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -207,7 +221,7 @@ public class RealmKeystoreHmacGenerated extends com.pulumi.resources.CustomResou
         super("keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static RealmKeystoreHmacGeneratedArgs makeArgs(RealmKeystoreHmacGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static RealmKeystoreHmacGeneratedArgs makeArgs(@Nullable RealmKeystoreHmacGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

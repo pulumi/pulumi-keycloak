@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -158,18 +157,17 @@ type AudienceProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewAudienceProtocolMapper registers a new resource with the given unique name, arguments, and options.
 func NewAudienceProtocolMapper(ctx *pulumi.Context,
 	name string, args *AudienceProtocolMapperArgs, opts ...pulumi.ResourceOption) (*AudienceProtocolMapper, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &AudienceProtocolMapperArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AudienceProtocolMapper
 	err := ctx.RegisterResource("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper", name, args, &resource, opts...)
@@ -211,6 +209,8 @@ type audienceProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type AudienceProtocolMapperState struct {
@@ -232,6 +232,8 @@ type AudienceProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (AudienceProtocolMapperState) ElementType() reflect.Type {
@@ -262,7 +264,9 @@ type audienceProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a AudienceProtocolMapper resource.
@@ -284,7 +288,9 @@ type AudienceProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (AudienceProtocolMapperArgs) ElementType() reflect.Type {
@@ -417,6 +423,11 @@ func (o AudienceProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o AudienceProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o AudienceProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type AudienceProtocolMapperArrayOutput struct{ *pulumi.OutputState }

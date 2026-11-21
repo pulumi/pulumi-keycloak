@@ -97,6 +97,10 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
     }
 
     /**
+     * When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     */
+    declare public readonly alwaysReadEnabledValueFromLdap: pulumi.Output<boolean | undefined>;
+    /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      */
     declare public readonly ldapPasswordPolicyHintsEnabled: pulumi.Output<boolean | undefined>;
@@ -112,6 +116,10 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
      * The realm that this LDAP mapper will exist in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a MsadUserAccountControlMapper resource with the given unique name, arguments, and options.
@@ -126,22 +134,23 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MsadUserAccountControlMapperState | undefined;
+            resourceInputs["alwaysReadEnabledValueFromLdap"] = state?.alwaysReadEnabledValueFromLdap;
             resourceInputs["ldapPasswordPolicyHintsEnabled"] = state?.ldapPasswordPolicyHintsEnabled;
             resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as MsadUserAccountControlMapperArgs | undefined;
             if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
+            resourceInputs["alwaysReadEnabledValueFromLdap"] = args?.alwaysReadEnabledValueFromLdap;
             resourceInputs["ldapPasswordPolicyHintsEnabled"] = args?.ldapPasswordPolicyHintsEnabled;
             resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MsadUserAccountControlMapper.__pulumiType, name, resourceInputs, opts);
@@ -152,6 +161,10 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
  */
 export interface MsadUserAccountControlMapperState {
+    /**
+     * When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     */
+    alwaysReadEnabledValueFromLdap?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      */
@@ -168,12 +181,20 @@ export interface MsadUserAccountControlMapperState {
      * The realm that this LDAP mapper will exist in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a MsadUserAccountControlMapper resource.
  */
 export interface MsadUserAccountControlMapperArgs {
+    /**
+     * When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     */
+    alwaysReadEnabledValueFromLdap?: pulumi.Input<boolean | undefined>;
     /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      */
@@ -189,5 +210,9 @@ export interface MsadUserAccountControlMapperArgs {
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

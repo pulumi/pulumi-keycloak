@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetAuthenticationExecutionPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -47,15 +49,22 @@ public final class GetAuthenticationExecutionPlainArgs extends com.pulumi.resour
      * The realm the authentication execution exists in.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm the authentication execution exists in.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetAuthenticationExecutionPlainArgs() {}
@@ -64,6 +73,7 @@ public final class GetAuthenticationExecutionPlainArgs extends com.pulumi.resour
         this.parentFlowAlias = $.parentFlowAlias;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -112,8 +122,13 @@ public final class GetAuthenticationExecutionPlainArgs extends com.pulumi.resour
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
@@ -123,9 +138,6 @@ public final class GetAuthenticationExecutionPlainArgs extends com.pulumi.resour
             }
             if ($.providerId == null) {
                 throw new MissingRequiredPropertyException("GetAuthenticationExecutionPlainArgs", "providerId");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetAuthenticationExecutionPlainArgs", "realmId");
             }
             return $;
         }

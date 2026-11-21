@@ -108,6 +108,12 @@ namespace Pulumi.Keycloak.OpenId
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
         [Output("resourceServerId")]
         public Output<string> ResourceServerId { get; private set; } = null!;
 
@@ -178,8 +184,14 @@ namespace Pulumi.Keycloak.OpenId
         [Input("pattern", required: true)]
         public Input<string> Pattern { get; set; } = null!;
 
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("resourceServerId", required: true)]
         public Input<string> ResourceServerId { get; set; } = null!;
@@ -215,6 +227,12 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("resourceServerId")]
         public Input<string>? ResourceServerId { get; set; }

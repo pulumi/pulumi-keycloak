@@ -226,6 +226,11 @@ The following configuration inputs are supported:
 - `basePath` - (Optional) The base path used for accessing the Keycloak REST API.  Defaults to the environment variable `KEYCLOAK_BASE_PATH`, or an empty string if the environment variable is not specified. Note that users of the legacy distribution of Keycloak will need to set this attribute to `/auth`.
 - `additionalHeaders` - (Optional) A map of custom HTTP headers to add to each request to the Keycloak API. The `Host` header is supported and will override the host used for the outgoing request.
 - `keycloakVersion` - (Optional) The Keycloak version to assume when the server does not report it via the `/admin/serverinfo` endpoint. Defaults to the environment variable `KEYCLOAK_VERSION`. This is only needed on Keycloak 26.4+ when the service account cannot read `/admin/serverinfo` (see the note below). When the server does report its version, this attribute is ignored and the server-reported version is used. The provider uses the version to enable or disable API behavior that differs between Keycloak releases, so pinning the wrong version may cause incorrect plans. Example: `26.4.7`.
+## Renaming realms
+
+Resources that belong to a realm accept either `realmId` (the realm's name) or `realmInternalId` (the realm's internal id,
+e.g. `keycloak_realm.realm.internal_id`). Use `realmInternalId` if you want to be able to rename the realm without
+Pulumi replacing everything in it. See Renaming a realm.
 ## A note for users of Keycloak 26.4+
 
 Starting with Keycloak 26.4, the `/admin/serverinfo` endpoint only returns system information (including the server

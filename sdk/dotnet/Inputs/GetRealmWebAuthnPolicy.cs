@@ -79,6 +79,18 @@ namespace Pulumi.Keycloak.Inputs
             set => _signatureAlgorithms = value;
         }
 
+        [Input("signatureAlgorithmsOrdereds", required: true)]
+        private List<string>? _signatureAlgorithmsOrdereds;
+
+        /// <summary>
+        /// Signature algorithms in preference order.
+        /// </summary>
+        public List<string> SignatureAlgorithmsOrdereds
+        {
+            get => _signatureAlgorithmsOrdereds ?? (_signatureAlgorithmsOrdereds = new List<string>());
+            set => _signatureAlgorithmsOrdereds = value;
+        }
+
         /// <summary>
         /// Either required, preferred or discouraged
         /// </summary>

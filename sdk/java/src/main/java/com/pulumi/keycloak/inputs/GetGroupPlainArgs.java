@@ -4,7 +4,6 @@
 package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -71,15 +70,22 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
      * The realm this group exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm this group exists within.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetGroupPlainArgs() {}
@@ -90,6 +96,7 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.name = $.name;
         this.organizationId = $.organizationId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -154,15 +161,17 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
         public GetGroupPlainArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetGroupPlainArgs", "realmId");
-            }
             return $;
         }
     }

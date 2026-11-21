@@ -113,6 +113,20 @@ public class OpenshiftV4IdentityProvider extends com.pulumi.resources.CustomReso
         return this.alias;
     }
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    @Export(name="allowAdminRoleMapping", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    public Output<Optional<Boolean>> allowAdminRoleMapping() {
+        return Codegen.optional(this.allowAdminRoleMapping);
+    }
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -361,6 +375,20 @@ public class OpenshiftV4IdentityProvider extends com.pulumi.resources.CustomReso
      */
     public Output<String> realm() {
         return this.realm;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.

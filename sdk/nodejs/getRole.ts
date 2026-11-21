@@ -40,6 +40,7 @@ export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise
         "clientId": args.clientId,
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -58,7 +59,8 @@ export interface GetRoleArgs {
     /**
      * The realm this role exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -78,6 +80,7 @@ export interface GetRoleResult {
     readonly id: string;
     readonly name: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
 }
 /**
  * This data source can be used to fetch properties of a Keycloak role for
@@ -115,6 +118,7 @@ export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOutpu
         "clientId": args.clientId,
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -133,5 +137,6 @@ export interface GetRoleOutputArgs {
     /**
      * The realm this role exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

@@ -204,6 +204,14 @@ export class UserFederation extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
+     * Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     */
+    declare public readonly referral: pulumi.Output<string | undefined>;
+    /**
      * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
      */
     declare public readonly relativeCreateDn: pulumi.Output<string | undefined>;
@@ -299,6 +307,8 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["rdnLdapAttribute"] = state?.rdnLdapAttribute;
             resourceInputs["readTimeout"] = state?.readTimeout;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
+            resourceInputs["referral"] = state?.referral;
             resourceInputs["relativeCreateDn"] = state?.relativeCreateDn;
             resourceInputs["searchScope"] = state?.searchScope;
             resourceInputs["startTls"] = state?.startTls;
@@ -319,9 +329,6 @@ export class UserFederation extends pulumi.CustomResource {
             }
             if (args?.rdnLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rdnLdapAttribute'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.userObjectClasses === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userObjectClasses'");
@@ -360,6 +367,8 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["rdnLdapAttribute"] = args?.rdnLdapAttribute;
             resourceInputs["readTimeout"] = args?.readTimeout;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
+            resourceInputs["referral"] = args?.referral;
             resourceInputs["relativeCreateDn"] = args?.relativeCreateDn;
             resourceInputs["searchScope"] = args?.searchScope;
             resourceInputs["startTls"] = args?.startTls;
@@ -486,6 +495,14 @@ export interface UserFederationState {
      * The realm that this provider will provide user federation for.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
+     * Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     */
+    referral?: pulumi.Input<string | undefined>;
     /**
      * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
      */
@@ -649,7 +666,15 @@ export interface UserFederationArgs {
     /**
      * The realm that this provider will provide user federation for.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
+     * Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     */
+    referral?: pulumi.Input<string | undefined>;
     /**
      * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
      */

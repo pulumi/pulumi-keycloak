@@ -1118,6 +1118,236 @@ public final class KeycloakFunctions {
      * </pre>
      * 
      */
+    public static Output<GetGroupResult> getGroup() {
+        return getGroup(GetGroupArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak group for
+     * usage with other resources, such as `keycloak.GroupRoles`.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRoleArgs;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import com.pulumi.keycloak.GroupRoles;
+     * import com.pulumi.keycloak.GroupRolesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("offline_access")
+     *             .build());
+     * 
+     *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("group")
+     *             .build());
+     * 
+     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
+     *             .name("organization-group")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetGroupResult> getGroupPlain() {
+        return getGroupPlain(GetGroupPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak group for
+     * usage with other resources, such as `keycloak.GroupRoles`.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRoleArgs;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import com.pulumi.keycloak.GroupRoles;
+     * import com.pulumi.keycloak.GroupRolesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("offline_access")
+     *             .build());
+     * 
+     *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("group")
+     *             .build());
+     * 
+     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
+     *             .build());
+     * 
+     *         // Using group_path to look up nested groups by their full path
+     *         final var superAdmin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId(realm.id())
+     *             .name("super_admin")
+     *             .build());
+     * 
+     *         final var admins = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupPath("/Administration/Full Admins")
+     *             .build());
+     * 
+     *         var adminsRoles = new GroupRoles("adminsRoles", GroupRolesArgs.builder()
+     *             .realmId(realm.id())
+     *             .groupId(admins.applyValue(_admins -> _admins.id()))
+     *             .roleIds(superAdmin.applyValue(_superAdmin -> _superAdmin.id()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * Organization groups can be looked up by setting `organizationId`. Organization groups require Keycloak 26.6.0 or later.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetGroupArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var organizationGroup = KeycloakFunctions.getGroup(GetGroupArgs.builder()
+     *             .realmId(realm.get("id"))
+     *             .organizationId(organization.get("id"))
+     *             .name("organization-group")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args) {
         return getGroup(args, InvokeOptions.Empty);
     }
@@ -2400,6 +2630,126 @@ public final class KeycloakFunctions {
      */
     public static CompletableFuture<GetRealmClientRegistrationPolicyResult> getRealmClientRegistrationPolicyPlain(GetRealmClientRegistrationPolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy", TypeShape.of(GetRealmClientRegistrationPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
+     * 
+     * Remarks:
+     * 
+     * - A key must meet all filter criteria
+     * - This data source may return more than one value.
+     * - If no key matches the filter criteria, then an error will be returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRealmKeysResult> getRealmKeys() {
+        return getRealmKeys(GetRealmKeysArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
+     * 
+     * Remarks:
+     * 
+     * - A key must meet all filter criteria
+     * - This data source may return more than one value.
+     * - If no key matches the filter criteria, then an error will be returned.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys().get(0).certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetRealmKeysResult> getRealmKeysPlain() {
+        return getRealmKeysPlain(GetRealmKeysPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.

@@ -151,6 +151,10 @@ export class RealmUserProfile extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      */
     declare public readonly unmanagedAttributePolicy: pulumi.Output<string | undefined>;
@@ -162,7 +166,7 @@ export class RealmUserProfile extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmUserProfileArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmUserProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmUserProfileArgs | RealmUserProfileState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -171,15 +175,14 @@ export class RealmUserProfile extends pulumi.CustomResource {
             resourceInputs["attributes"] = state?.attributes;
             resourceInputs["groups"] = state?.groups;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["unmanagedAttributePolicy"] = state?.unmanagedAttributePolicy;
         } else {
             const args = argsOrState as RealmUserProfileArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["attributes"] = args?.attributes;
             resourceInputs["groups"] = args?.groups;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["unmanagedAttributePolicy"] = args?.unmanagedAttributePolicy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -204,6 +207,10 @@ export interface RealmUserProfileState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      */
     unmanagedAttributePolicy?: pulumi.Input<string | undefined>;
@@ -224,7 +231,11 @@ export interface RealmUserProfileArgs {
     /**
      * The ID of the realm the user profile applies to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      */

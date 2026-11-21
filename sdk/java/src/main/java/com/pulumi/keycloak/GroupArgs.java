@@ -5,7 +5,6 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -88,15 +87,30 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
      * The realm this group exists in.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this group exists in.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GroupArgs() {}
@@ -108,6 +122,7 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
         this.organizationId = $.organizationId;
         this.parentId = $.parentId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -227,7 +242,7 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -242,10 +257,28 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public GroupArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GroupArgs", "realmId");
-            }
             return $;
         }
     }

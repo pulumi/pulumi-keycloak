@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -249,18 +248,17 @@ type Role struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this role exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRole registers a new resource with the given unique name, arguments, and options.
 func NewRole(ctx *pulumi.Context,
 	name string, args *RoleArgs, opts ...pulumi.ResourceOption) (*Role, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RoleArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("keycloak:index/role:Role", name, args, &resource, opts...)
@@ -298,6 +296,8 @@ type roleState struct {
 	Name *string `pulumi:"name"`
 	// The realm this role exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RoleState struct {
@@ -315,6 +315,8 @@ type RoleState struct {
 	Name pulumi.StringPtrInput
 	// The realm this role exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RoleState) ElementType() reflect.Type {
@@ -341,7 +343,9 @@ type roleArgs struct {
 	// The name of the role
 	Name *string `pulumi:"name"`
 	// The realm this role exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a Role resource.
@@ -359,7 +363,9 @@ type RoleArgs struct {
 	// The name of the role
 	Name pulumi.StringPtrInput
 	// The realm this role exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RoleArgs) ElementType() reflect.Type {
@@ -482,6 +488,11 @@ func (o RoleOutput) Name() pulumi.StringOutput {
 // The realm this role exists within.
 func (o RoleOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RoleOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RoleArrayOutput struct{ *pulumi.OutputState }

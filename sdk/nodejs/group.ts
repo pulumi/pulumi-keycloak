@@ -149,6 +149,10 @@ export class Group extends pulumi.CustomResource {
      * The realm this group exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a Group resource with the given unique name, arguments, and options.
@@ -157,7 +161,7 @@ export class Group extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: GroupArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: GroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GroupArgs | GroupState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -170,17 +174,16 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["parentId"] = state?.parentId;
             resourceInputs["path"] = state?.path;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as GroupArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["attributes"] = args?.attributes;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
             resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["parentId"] = args?.parentId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["path"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -217,6 +220,10 @@ export interface GroupState {
      * The realm this group exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -243,5 +250,9 @@ export interface GroupArgs {
     /**
      * The realm this group exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

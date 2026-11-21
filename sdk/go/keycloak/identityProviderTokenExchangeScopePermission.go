@@ -137,6 +137,8 @@ type IdentityProviderTokenExchangeScopePermission struct {
 	ProviderAlias pulumi.StringOutput `pulumi:"providerAlias"`
 	// The realm that the identity provider exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewIdentityProviderTokenExchangeScopePermission registers a new resource with the given unique name, arguments, and options.
@@ -151,9 +153,6 @@ func NewIdentityProviderTokenExchangeScopePermission(ctx *pulumi.Context,
 	}
 	if args.ProviderAlias == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderAlias'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IdentityProviderTokenExchangeScopePermission
@@ -194,6 +193,8 @@ type identityProviderTokenExchangeScopePermissionState struct {
 	ProviderAlias *string `pulumi:"providerAlias"`
 	// The realm that the identity provider exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type IdentityProviderTokenExchangeScopePermissionState struct {
@@ -213,6 +214,8 @@ type IdentityProviderTokenExchangeScopePermissionState struct {
 	ProviderAlias pulumi.StringPtrInput
 	// The realm that the identity provider exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (IdentityProviderTokenExchangeScopePermissionState) ElementType() reflect.Type {
@@ -233,7 +236,9 @@ type identityProviderTokenExchangeScopePermissionArgs struct {
 	// Alias of the identity provider.
 	ProviderAlias string `pulumi:"providerAlias"`
 	// The realm that the identity provider exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a IdentityProviderTokenExchangeScopePermission resource.
@@ -245,7 +250,9 @@ type IdentityProviderTokenExchangeScopePermissionArgs struct {
 	// Alias of the identity provider.
 	ProviderAlias pulumi.StringInput
 	// The realm that the identity provider exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (IdentityProviderTokenExchangeScopePermissionArgs) ElementType() reflect.Type {
@@ -379,6 +386,11 @@ func (o IdentityProviderTokenExchangeScopePermissionOutput) ProviderAlias() pulu
 // The realm that the identity provider exists in.
 func (o IdentityProviderTokenExchangeScopePermissionOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o IdentityProviderTokenExchangeScopePermissionOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProviderTokenExchangeScopePermission) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type IdentityProviderTokenExchangeScopePermissionArrayOutput struct{ *pulumi.OutputState }

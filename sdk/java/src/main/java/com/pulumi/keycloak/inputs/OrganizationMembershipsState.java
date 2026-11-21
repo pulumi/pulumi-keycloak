@@ -17,14 +17,14 @@ public final class OrganizationMembershipsState extends com.pulumi.resources.Res
     public static final OrganizationMembershipsState Empty = new OrganizationMembershipsState();
 
     /**
-     * A set of usernames to assign as members of the organization.
+     * A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      * 
      */
     @Import(name="members")
     private @Nullable Output<List<String>> members;
 
     /**
-     * @return A set of usernames to assign as members of the organization.
+     * @return A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      * 
      */
     public Optional<Output<List<String>>> members() {
@@ -61,12 +61,28 @@ public final class OrganizationMembershipsState extends com.pulumi.resources.Res
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
     private OrganizationMembershipsState() {}
 
     private OrganizationMembershipsState(OrganizationMembershipsState $) {
         this.members = $.members;
         this.organizationId = $.organizationId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -88,7 +104,7 @@ public final class OrganizationMembershipsState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param members A set of usernames to assign as members of the organization.
+         * @param members A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
          * 
          * @return builder
          * 
@@ -99,7 +115,7 @@ public final class OrganizationMembershipsState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param members A set of usernames to assign as members of the organization.
+         * @param members A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
          * 
          * @return builder
          * 
@@ -109,7 +125,7 @@ public final class OrganizationMembershipsState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param members A set of usernames to assign as members of the organization.
+         * @param members A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
          * 
          * @return builder
          * 
@@ -158,6 +174,27 @@ public final class OrganizationMembershipsState extends com.pulumi.resources.Res
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public OrganizationMembershipsState build() {

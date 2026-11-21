@@ -47,6 +47,21 @@ public final class GroupMembershipsState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The ID of the organization this group belongs to. Omit for realm-level groups.
+     * 
+     */
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    /**
+     * @return The ID of the organization this group belongs to. Omit for realm-level groups.
+     * 
+     */
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
+    /**
      * The realm this group exists in.
      * 
      */
@@ -61,12 +76,29 @@ public final class GroupMembershipsState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
     private GroupMembershipsState() {}
 
     private GroupMembershipsState(GroupMembershipsState $) {
         this.groupId = $.groupId;
         this.members = $.members;
+        this.organizationId = $.organizationId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -140,6 +172,27 @@ public final class GroupMembershipsState extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param organizationId The ID of the organization this group belongs to. Omit for realm-level groups.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        /**
+         * @param organizationId The ID of the organization this group belongs to. Omit for realm-level groups.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
+        }
+
+        /**
          * @param realmId The realm this group exists in.
          * 
          * @return builder
@@ -158,6 +211,27 @@ public final class GroupMembershipsState extends com.pulumi.resources.ResourceAr
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public GroupMembershipsState build() {

@@ -77,6 +77,8 @@ type IdentityProvider struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The unique name of identity provider.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping pulumi.BoolPtrOutput `pulumi:"allowAdminRoleMapping"`
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
 	// Ordered list of requested AuthnContext ClassRefs.
@@ -133,6 +135,8 @@ type IdentityProvider struct {
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm pulumi.StringPtrOutput `pulumi:"signatureAlgorithm"`
 	// Signing Certificate.
@@ -172,9 +176,6 @@ func NewIdentityProvider(ctx *pulumi.Context,
 	if args.EntityId == nil {
 		return nil, errors.New("invalid value for required argument 'EntityId'")
 	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
-	}
 	if args.SingleSignOnServiceUrl == nil {
 		return nil, errors.New("invalid value for required argument 'SingleSignOnServiceUrl'")
 	}
@@ -205,6 +206,8 @@ type identityProviderState struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The unique name of identity provider.
 	Alias *string `pulumi:"alias"`
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// Ordered list of requested AuthnContext ClassRefs.
@@ -261,6 +264,8 @@ type identityProviderState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// Signing Certificate.
@@ -292,6 +297,8 @@ type IdentityProviderState struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The unique name of identity provider.
 	Alias pulumi.StringPtrInput
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// Ordered list of requested AuthnContext ClassRefs.
@@ -348,6 +355,8 @@ type IdentityProviderState struct {
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm pulumi.StringPtrInput
 	// Signing Certificate.
@@ -389,6 +398,8 @@ type identityProviderArgs struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The unique name of identity provider.
 	Alias string `pulumi:"alias"`
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// Ordered list of requested AuthnContext ClassRefs.
@@ -442,7 +453,9 @@ type identityProviderArgs struct {
 	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// Signing Certificate.
@@ -475,6 +488,8 @@ type IdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The unique name of identity provider.
 	Alias pulumi.StringInput
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// Ordered list of requested AuthnContext ClassRefs.
@@ -528,7 +543,9 @@ type IdentityProviderArgs struct {
 	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm pulumi.StringPtrInput
 	// Signing Certificate.
@@ -650,6 +667,11 @@ func (o IdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrOutput 
 // The unique name of identity provider.
 func (o IdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+func (o IdentityProviderOutput) AllowAdminRoleMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AllowAdminRoleMapping }).(pulumi.BoolPtrOutput)
 }
 
 // Authenticate users by default. Defaults to `false`.
@@ -790,6 +812,11 @@ func (o IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 // The name of the realm. This is unique across Keycloak.
 func (o IdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o IdentityProviderOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Signing Algorithm. Defaults to empty.

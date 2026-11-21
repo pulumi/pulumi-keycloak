@@ -125,6 +125,10 @@ export class CustomMapper extends pulumi.CustomResource {
      * The realm that this LDAP mapper will exist in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a CustomMapper resource with the given unique name, arguments, and options.
@@ -145,6 +149,7 @@ export class CustomMapper extends pulumi.CustomResource {
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["providerType"] = state?.providerType;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as CustomMapperArgs | undefined;
             if (args?.ldapUserFederationId === undefined && !opts.urn) {
@@ -156,15 +161,13 @@ export class CustomMapper extends pulumi.CustomResource {
             if (args?.providerType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerType'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["config"] = args?.config;
             resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
             resourceInputs["name"] = args?.name;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["providerType"] = args?.providerType;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomMapper.__pulumiType, name, resourceInputs, opts);
@@ -199,6 +202,10 @@ export interface CustomMapperState {
      * The realm that this LDAP mapper will exist in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -228,5 +235,9 @@ export interface CustomMapperArgs {
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

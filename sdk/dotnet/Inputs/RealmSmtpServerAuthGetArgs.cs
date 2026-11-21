@@ -12,11 +12,11 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class RealmSmtpServerAuthGetArgs : global::Pulumi.ResourceArgs
     {
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
-        /// The SMTP server password.
+        /// The SMTP server password. Stored in Terraform state. Exactly one of `Password` or `PasswordWo` must be set.
         /// </summary>
         public Input<string>? Password
         {
@@ -27,6 +27,29 @@ namespace Pulumi.Keycloak.Inputs
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The SMTP server password as a write-only argument
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Change this value to update the SMTP server write-only password
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<string>? PasswordWoVersion { get; set; }
 
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

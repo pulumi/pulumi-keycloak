@@ -69,15 +69,22 @@ public final class GetGenericProtocolMapperArgs extends com.pulumi.resources.Inv
      * The realm this protocol mapper exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this protocol mapper exists within.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetGenericProtocolMapperArgs() {}
@@ -87,6 +94,7 @@ public final class GetGenericProtocolMapperArgs extends com.pulumi.resources.Inv
         this.clientScopeId = $.clientScopeId;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -180,7 +188,7 @@ public final class GetGenericProtocolMapperArgs extends com.pulumi.resources.Inv
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -195,12 +203,18 @@ public final class GetGenericProtocolMapperArgs extends com.pulumi.resources.Inv
             return realmId(Output.of(realmId));
         }
 
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public GetGenericProtocolMapperArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetGenericProtocolMapperArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetGenericProtocolMapperArgs", "realmId");
             }
             return $;
         }

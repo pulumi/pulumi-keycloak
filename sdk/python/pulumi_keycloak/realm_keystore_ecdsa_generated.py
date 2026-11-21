@@ -19,125 +19,23 @@ __all__ = ['RealmKeystoreEcdsaGeneratedArgs', 'RealmKeystoreEcdsaGenerated']
 @pulumi.input_type
 class RealmKeystoreEcdsaGeneratedArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 elliptic_curve_key: pulumi.Input[Optional[_builtins.str]] = None,
-                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None):
-        """
-        The set of arguments for constructing a RealmKeystoreEcdsaGenerated resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] elliptic_curve_key: Elliptic Curve used in ECDSA. Defaults to `P-256`.
-        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
-        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if active is not None:
-            pulumi.set(__self__, "active", active)
-        if elliptic_curve_key is not None:
-            pulumi.set(__self__, "elliptic_curve_key", elliptic_curve_key)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this keystore exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key in not used for signing. Defaults to `true`.
-        """
-        return pulumi.get(self, "active")
-
-    @active.setter
-    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "active", value)
-
-    @_builtins.property
-    @pulumi.getter(name="ellipticCurveKey")
-    def elliptic_curve_key(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Elliptic Curve used in ECDSA. Defaults to `P-256`.
-        """
-        return pulumi.get(self, "elliptic_curve_key")
-
-    @elliptic_curve_key.setter
-    def elliptic_curve_key(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "elliptic_curve_key", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key is not accessible in this realm. Defaults to `true`.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Display name of provider when linked in admin console.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Priority for the provider. Defaults to `0`
-        """
-        return pulumi.get(self, "priority")
-
-    @priority.setter
-    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "priority", value)
-
-
-@pulumi.input_type
-class _RealmKeystoreEcdsaGeneratedState:
-    def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  elliptic_curve_key: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering RealmKeystoreEcdsaGenerated resources.
+        The set of arguments for constructing a RealmKeystoreEcdsaGenerated resource.
 
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] elliptic_curve_key: Elliptic Curve used in ECDSA. Defaults to `P-256`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -151,12 +49,14 @@ class _RealmKeystoreEcdsaGeneratedState:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -224,6 +124,139 @@ class _RealmKeystoreEcdsaGeneratedState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _RealmKeystoreEcdsaGeneratedState:
+    def __init__(__self__, *,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 elliptic_curve_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering RealmKeystoreEcdsaGenerated resources.
+
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] elliptic_curve_key: Elliptic Curve used in ECDSA. Defaults to `P-256`.
+        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
+        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
+        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if elliptic_curve_key is not None:
+            pulumi.set(__self__, "elliptic_curve_key", elliptic_curve_key)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not used for signing. Defaults to `true`.
+        """
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "active", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ellipticCurveKey")
+    def elliptic_curve_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Elliptic Curve used in ECDSA. Defaults to `P-256`.
+        """
+        return pulumi.get(self, "elliptic_curve_key")
+
+    @elliptic_curve_key.setter
+    def elliptic_curve_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "elliptic_curve_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not accessible in this realm. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Display name of provider when linked in admin console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Priority for the provider. Defaults to `0`
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this keystore exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated")
 class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
@@ -237,9 +270,10 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Allows for creating and managing `acdsa_generated` Realm keystores within Keycloak.
+        Allows for creating and managing `ecdsa-generated` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
@@ -272,21 +306,22 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] elliptic_curve_key: Elliptic Curve used in ECDSA. Defaults to `P-256`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmKeystoreEcdsaGeneratedArgs,
+                 args: Optional[RealmKeystoreEcdsaGeneratedArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Allows for creating and managing `acdsa_generated` Realm keystores within Keycloak.
+        Allows for creating and managing `ecdsa-generated` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
@@ -338,6 +373,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -352,9 +388,8 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(RealmKeystoreEcdsaGenerated, __self__).__init__(
             'keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated',
             resource_name,
@@ -370,7 +405,8 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreEcdsaGenerated':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreEcdsaGenerated':
         """
         Get an existing RealmKeystoreEcdsaGenerated resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -378,12 +414,13 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] elliptic_curve_key: Elliptic Curve used in ECDSA. Defaults to `P-256`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -395,6 +432,7 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RealmKeystoreEcdsaGenerated(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -405,7 +443,8 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["active"] = active
         __props__["ellipticCurveKey"] = elliptic_curve_key
@@ -413,13 +452,14 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         __props__["name"] = name
         __props__["priority"] = priority
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -462,4 +502,12 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
         The realm this keystore exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

@@ -15,6 +15,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * The following example provisions a user attribute importer mapper through `extraConfig`. The key names can be verified in the Keycloak source code:
+ * * [user.attribute](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/UserAttributeMapper.java#L52)
+ * * [claim](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/AbstractClaimMapper.java#L41)
+ *
+ * For a strongly typed alternative, use `keycloak.AttributeImporterIdentityProviderMapper`, which exposes `claimName` and `userAttribute` directly.
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -39,8 +45,8 @@ import * as utilities from "./utilities";
  *     identityProviderMapper: "%s-user-attribute-idp-mapper",
  *     extraConfig: {
  *         syncMode: "INHERIT",
- *         Claim: "my-email-claim",
- *         UserAttribute: "email",
+ *         claim: "my-email-claim",
+ *         "user.attribute": "email",
  *     },
  * });
  * ```
@@ -115,6 +121,10 @@ export class CustomIdentityProviderMapping extends pulumi.CustomResource {
      * The name of the realm.
      */
     declare public readonly realm: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a CustomIdentityProviderMapping resource with the given unique name, arguments, and options.
@@ -134,6 +144,7 @@ export class CustomIdentityProviderMapping extends pulumi.CustomResource {
             resourceInputs["identityProviderMapper"] = state?.identityProviderMapper;
             resourceInputs["name"] = state?.name;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as CustomIdentityProviderMappingArgs | undefined;
             if (args?.identityProviderAlias === undefined && !opts.urn) {
@@ -142,14 +153,12 @@ export class CustomIdentityProviderMapping extends pulumi.CustomResource {
             if (args?.identityProviderMapper === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderMapper'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
             resourceInputs["identityProviderMapper"] = args?.identityProviderMapper;
             resourceInputs["name"] = args?.name;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomIdentityProviderMapping.__pulumiType, name, resourceInputs, opts);
@@ -180,6 +189,10 @@ export interface CustomIdentityProviderMappingState {
      * The name of the realm.
      */
     realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -205,5 +218,9 @@ export interface CustomIdentityProviderMappingArgs {
     /**
      * The name of the realm.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

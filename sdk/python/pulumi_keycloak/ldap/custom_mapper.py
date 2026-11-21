@@ -22,27 +22,32 @@ class CustomMapperArgs:
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
                  provider_id: pulumi.Input[_builtins.str],
                  provider_type: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomMapper resource.
 
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
         :param pulumi.Input[_builtins.str] provider_type: The fully-qualified Java class name of the custom LDAP mapper.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
         pulumi.set(__self__, "provider_id", provider_id)
         pulumi.set(__self__, "provider_type", provider_type)
-        pulumi.set(__self__, "realm_id", realm_id)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="ldapUserFederationId")
@@ -81,18 +86,6 @@ class CustomMapperArgs:
         pulumi.set(self, "provider_type", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that this LDAP mapper will exist in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -116,6 +109,30 @@ class CustomMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _CustomMapperState:
@@ -125,7 +142,8 @@ class _CustomMapperState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomMapper resources.
 
@@ -135,6 +153,7 @@ class _CustomMapperState:
         :param pulumi.Input[_builtins.str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
         :param pulumi.Input[_builtins.str] provider_type: The fully-qualified Java class name of the custom LDAP mapper.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -148,6 +167,8 @@ class _CustomMapperState:
             pulumi.set(__self__, "provider_type", provider_type)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -221,6 +242,18 @@ class _CustomMapperState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:ldap/customMapper:CustomMapper")
 class CustomMapper(pulumi.CustomResource):
@@ -234,6 +267,7 @@ class CustomMapper(pulumi.CustomResource):
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing custom attribute mappers for Keycloak users federated via LDAP.
@@ -299,6 +333,7 @@ class CustomMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
         :param pulumi.Input[_builtins.str] provider_type: The fully-qualified Java class name of the custom LDAP mapper.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -383,6 +418,7 @@ class CustomMapper(pulumi.CustomResource):
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -403,9 +439,8 @@ class CustomMapper(pulumi.CustomResource):
             if provider_type is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_type'")
             __props__.__dict__["provider_type"] = provider_type
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(CustomMapper, __self__).__init__(
             'keycloak:ldap/customMapper:CustomMapper',
             resource_name,
@@ -421,7 +456,8 @@ class CustomMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             provider_type: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomMapper':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomMapper':
         """
         Get an existing CustomMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -435,6 +471,7 @@ class CustomMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
         :param pulumi.Input[_builtins.str] provider_type: The fully-qualified Java class name of the custom LDAP mapper.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -446,6 +483,7 @@ class CustomMapper(pulumi.CustomResource):
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["provider_type"] = provider_type
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return CustomMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -456,7 +494,8 @@ class CustomMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             provider_type: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["config"] = config
         __props__["ldapUserFederationId"] = ldap_user_federation_id
@@ -464,6 +503,7 @@ class CustomMapper(pulumi.CustomResource):
         __props__["providerId"] = provider_id
         __props__["providerType"] = provider_type
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:ldap/customMapper:CustomMapper', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -513,4 +553,12 @@ class CustomMapper(pulumi.CustomResource):
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

@@ -58,6 +58,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly ImmutableArray<string> SignatureAlgorithms;
         /// <summary>
+        /// Signature algorithms in preference order. Conflicts with signature_algorithms.
+        /// </summary>
+        public readonly ImmutableArray<string> SignatureAlgorithmsOrdereds;
+        /// <summary>
         /// Either required, preferred or discouraged
         /// </summary>
         public readonly string? UserVerificationRequirement;
@@ -86,6 +90,8 @@ namespace Pulumi.Keycloak.Outputs
 
             ImmutableArray<string> signatureAlgorithms,
 
+            ImmutableArray<string> signatureAlgorithmsOrdereds,
+
             string? userVerificationRequirement)
         {
             AcceptableAaguids = acceptableAaguids;
@@ -99,6 +105,7 @@ namespace Pulumi.Keycloak.Outputs
             RelyingPartyId = relyingPartyId;
             RequireResidentKey = requireResidentKey;
             SignatureAlgorithms = signatureAlgorithms;
+            SignatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
             UserVerificationRequirement = userVerificationRequirement;
         }
     }

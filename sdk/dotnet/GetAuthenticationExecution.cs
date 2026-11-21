@@ -126,8 +126,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the authentication execution exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetAuthenticationExecutionArgs()
         {
@@ -152,8 +155,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the authentication execution exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetAuthenticationExecutionInvokeArgs()
         {
@@ -176,6 +182,7 @@ namespace Pulumi.Keycloak
         public readonly int Priority;
         public readonly string ProviderId;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
 
         [OutputConstructor]
         private GetAuthenticationExecutionResult(
@@ -187,13 +194,16 @@ namespace Pulumi.Keycloak
 
             string providerId,
 
-            string realmId)
+            string realmId,
+
+            string realmInternalId)
         {
             Id = id;
             ParentFlowAlias = parentFlowAlias;
             Priority = priority;
             ProviderId = providerId;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
         }
     }
 }

@@ -2610,9 +2610,14 @@ func (o RealmSmtpServerPtrOutput) TokenAuth() RealmSmtpServerTokenAuthPtrOutput 
 }
 
 type RealmSmtpServerAuth struct {
-	// The SMTP server password.
-	Password string `pulumi:"password"`
-	Username string `pulumi:"username"`
+	// The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SMTP server password as a write-only argument
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Change this value to update the SMTP server write-only password
+	PasswordWoVersion *string `pulumi:"passwordWoVersion"`
+	Username          string  `pulumi:"username"`
 }
 
 // RealmSmtpServerAuthInput is an input type that accepts RealmSmtpServerAuthArgs and RealmSmtpServerAuthOutput values.
@@ -2627,9 +2632,14 @@ type RealmSmtpServerAuthInput interface {
 }
 
 type RealmSmtpServerAuthArgs struct {
-	// The SMTP server password.
-	Password pulumi.StringInput `pulumi:"password"`
-	Username pulumi.StringInput `pulumi:"username"`
+	// The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SMTP server password as a write-only argument
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
+	// Change this value to update the SMTP server write-only password
+	PasswordWoVersion pulumi.StringPtrInput `pulumi:"passwordWoVersion"`
+	Username          pulumi.StringInput    `pulumi:"username"`
 }
 
 func (RealmSmtpServerAuthArgs) ElementType() reflect.Type {
@@ -2709,9 +2719,20 @@ func (o RealmSmtpServerAuthOutput) ToRealmSmtpServerAuthPtrOutputWithContext(ctx
 	}).(RealmSmtpServerAuthPtrOutput)
 }
 
-// The SMTP server password.
-func (o RealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
+// The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
+func (o RealmSmtpServerAuthOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmSmtpServerAuth) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The SMTP server password as a write-only argument
+func (o RealmSmtpServerAuthOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmSmtpServerAuth) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Change this value to update the SMTP server write-only password
+func (o RealmSmtpServerAuthOutput) PasswordWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmSmtpServerAuth) *string { return v.PasswordWoVersion }).(pulumi.StringPtrOutput)
 }
 
 func (o RealmSmtpServerAuthOutput) Username() pulumi.StringOutput {
@@ -2742,13 +2763,34 @@ func (o RealmSmtpServerAuthPtrOutput) Elem() RealmSmtpServerAuthOutput {
 	}).(RealmSmtpServerAuthOutput)
 }
 
-// The SMTP server password.
+// The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
 func (o RealmSmtpServerAuthPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServerAuth) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Password
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The SMTP server password as a write-only argument
+func (o RealmSmtpServerAuthPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Change this value to update the SMTP server write-only password
+func (o RealmSmtpServerAuthPtrOutput) PasswordWoVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2767,6 +2809,8 @@ type RealmSmtpServerTokenAuth struct {
 	// The auth token client secret.
 	ClientSecret string `pulumi:"clientSecret"`
 	// The auth token scope.
+	//
+	// For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
 	Scope string `pulumi:"scope"`
 	// The auth token URL.
 	Url      string `pulumi:"url"`
@@ -2790,6 +2834,8 @@ type RealmSmtpServerTokenAuthArgs struct {
 	// The auth token client secret.
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
 	// The auth token scope.
+	//
+	// For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
 	Scope pulumi.StringInput `pulumi:"scope"`
 	// The auth token URL.
 	Url      pulumi.StringInput `pulumi:"url"`
@@ -2884,6 +2930,8 @@ func (o RealmSmtpServerTokenAuthOutput) ClientSecret() pulumi.StringOutput {
 }
 
 // The auth token scope.
+//
+// For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
 func (o RealmSmtpServerTokenAuthOutput) Scope() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServerTokenAuth) string { return v.Scope }).(pulumi.StringOutput)
 }
@@ -2942,6 +2990,8 @@ func (o RealmSmtpServerTokenAuthPtrOutput) ClientSecret() pulumi.StringPtrOutput
 }
 
 // The auth token scope.
+//
+// For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
 func (o RealmSmtpServerTokenAuthPtrOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) *string {
 		if v == nil {
@@ -3555,6 +3605,8 @@ type RealmWebAuthnPasswordlessPolicy struct {
 	RequireResidentKey *string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order. Conflicts with signature_algorithms.
+	SignatureAlgorithmsOrdereds []string `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement *string `pulumi:"userVerificationRequirement"`
 }
@@ -3597,6 +3649,8 @@ type RealmWebAuthnPasswordlessPolicyArgs struct {
 	RequireResidentKey pulumi.StringPtrInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order. Conflicts with signature_algorithms.
+	SignatureAlgorithmsOrdereds pulumi.StringArrayInput `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement pulumi.StringPtrInput `pulumi:"userVerificationRequirement"`
 }
@@ -3738,6 +3792,11 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) RequireResidentKey() pulumi.Strin
 // Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 func (o RealmWebAuthnPasswordlessPolicyOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) []string { return v.SignatureAlgorithms }).(pulumi.StringArrayOutput)
+}
+
+// Signature algorithms in preference order. Conflicts with signature_algorithms.
+func (o RealmWebAuthnPasswordlessPolicyOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) []string { return v.SignatureAlgorithmsOrdereds }).(pulumi.StringArrayOutput)
 }
 
 // Either required, preferred or discouraged
@@ -3891,6 +3950,16 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithms() pulumi.S
 	}).(pulumi.StringArrayOutput)
 }
 
+// Signature algorithms in preference order. Conflicts with signature_algorithms.
+func (o RealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithmsOrdereds
+	}).(pulumi.StringArrayOutput)
+}
+
 // Either required, preferred or discouraged
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) UserVerificationRequirement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
@@ -3926,6 +3995,8 @@ type RealmWebAuthnPolicy struct {
 	RequireResidentKey *string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order. Conflicts with signature_algorithms.
+	SignatureAlgorithmsOrdereds []string `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement *string `pulumi:"userVerificationRequirement"`
 }
@@ -3966,6 +4037,8 @@ type RealmWebAuthnPolicyArgs struct {
 	RequireResidentKey pulumi.StringPtrInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order. Conflicts with signature_algorithms.
+	SignatureAlgorithmsOrdereds pulumi.StringArrayInput `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement pulumi.StringPtrInput `pulumi:"userVerificationRequirement"`
 }
@@ -4102,6 +4175,11 @@ func (o RealmWebAuthnPolicyOutput) RequireResidentKey() pulumi.StringPtrOutput {
 // Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
 func (o RealmWebAuthnPolicyOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) []string { return v.SignatureAlgorithms }).(pulumi.StringArrayOutput)
+}
+
+// Signature algorithms in preference order. Conflicts with signature_algorithms.
+func (o RealmWebAuthnPolicyOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmWebAuthnPolicy) []string { return v.SignatureAlgorithmsOrdereds }).(pulumi.StringArrayOutput)
 }
 
 // Either required, preferred or discouraged
@@ -4242,6 +4320,16 @@ func (o RealmWebAuthnPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArrayOu
 			return nil
 		}
 		return v.SignatureAlgorithms
+	}).(pulumi.StringArrayOutput)
+}
+
+// Signature algorithms in preference order. Conflicts with signature_algorithms.
+func (o RealmWebAuthnPolicyPtrOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithmsOrdereds
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -7414,6 +7502,8 @@ type GetRealmWebAuthnPasswordlessPolicy struct {
 	RequireResidentKey string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order.
+	SignatureAlgorithmsOrdereds []string `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement string `pulumi:"userVerificationRequirement"`
 }
@@ -7449,6 +7539,8 @@ type GetRealmWebAuthnPasswordlessPolicyArgs struct {
 	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order.
+	SignatureAlgorithmsOrdereds pulumi.StringArrayInput `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement pulumi.StringInput `pulumi:"userVerificationRequirement"`
 }
@@ -7583,6 +7675,11 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) RequireResidentKey() pulumi.St
 // Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.SignatureAlgorithms }).(pulumi.StringArrayOutput)
+}
+
+// Signature algorithms in preference order.
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.SignatureAlgorithmsOrdereds }).(pulumi.StringArrayOutput)
 }
 
 // Either required, preferred or discouraged
@@ -7729,6 +7826,16 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithms() pulum
 	}).(pulumi.StringArrayOutput)
 }
 
+// Signature algorithms in preference order.
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithmsOrdereds
+	}).(pulumi.StringArrayOutput)
+}
+
 // Either required, preferred or discouraged
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) UserVerificationRequirement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
@@ -7759,6 +7866,8 @@ type GetRealmWebAuthnPolicy struct {
 	RequireResidentKey string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order.
+	SignatureAlgorithmsOrdereds []string `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement string `pulumi:"userVerificationRequirement"`
 }
@@ -7794,6 +7903,8 @@ type GetRealmWebAuthnPolicyArgs struct {
 	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
+	// Signature algorithms in preference order.
+	SignatureAlgorithmsOrdereds pulumi.StringArrayInput `pulumi:"signatureAlgorithmsOrdereds"`
 	// Either required, preferred or discouraged
 	UserVerificationRequirement pulumi.StringInput `pulumi:"userVerificationRequirement"`
 }
@@ -7928,6 +8039,11 @@ func (o GetRealmWebAuthnPolicyOutput) RequireResidentKey() pulumi.StringOutput {
 // Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 func (o GetRealmWebAuthnPolicyOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.SignatureAlgorithms }).(pulumi.StringArrayOutput)
+}
+
+// Signature algorithms in preference order.
+func (o GetRealmWebAuthnPolicyOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.SignatureAlgorithmsOrdereds }).(pulumi.StringArrayOutput)
 }
 
 // Either required, preferred or discouraged
@@ -8071,6 +8187,16 @@ func (o GetRealmWebAuthnPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArra
 			return nil
 		}
 		return v.SignatureAlgorithms
+	}).(pulumi.StringArrayOutput)
+}
+
+// Signature algorithms in preference order.
+func (o GetRealmWebAuthnPolicyPtrOutput) SignatureAlgorithmsOrdereds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SignatureAlgorithmsOrdereds
 	}).(pulumi.StringArrayOutput)
 }
 

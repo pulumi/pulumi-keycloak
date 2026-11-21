@@ -21,7 +21,6 @@ __all__ = ['UserArgs', 'User']
 @pulumi.input_type
 class UserArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
@@ -32,11 +31,12 @@ class UserArgs:
                  import_: pulumi.Input[Optional[_builtins.bool]] = None,
                  initial_password: pulumi.Input[Optional['UserInitialPasswordArgs']] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a User resource.
 
-        :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
         :param pulumi.Input[_builtins.str] username: The unique username of this user.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] email: The user's email.
@@ -47,9 +47,10 @@ class UserArgs:
         :param pulumi.Input[_builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. Exactly one of `value` and `value_wo` must be given.
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_actions: A list of required user actions.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "username", username)
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
@@ -69,20 +70,12 @@ class UserArgs:
             pulumi.set(__self__, "initial_password", initial_password)
         if last_name is not None:
             pulumi.set(__self__, "last_name", last_name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if required_actions is not None:
             pulumi.set(__self__, "required_actions", required_actions)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this user belongs to.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -205,6 +198,30 @@ class UserArgs:
         pulumi.set(self, "last_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this user belongs to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="requiredActions")
     def required_actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -230,6 +247,7 @@ class _UserState:
                  initial_password: pulumi.Input[Optional['UserInitialPasswordArgs']] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -245,6 +263,7 @@ class _UserState:
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. Exactly one of `value` and `value_wo` must be given.
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_actions: A list of required user actions.
         :param pulumi.Input[_builtins.str] username: The unique username of this user.
         """
@@ -268,6 +287,8 @@ class _UserState:
             pulumi.set(__self__, "last_name", last_name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if required_actions is not None:
             pulumi.set(__self__, "required_actions", required_actions)
         if username is not None:
@@ -394,6 +415,18 @@ class _UserState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="requiredActions")
     def required_actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -434,6 +467,7 @@ class User(pulumi.CustomResource):
                  initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -511,6 +545,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']] initial_password: When given, the user's initial password will be set. Exactly one of `value` and `value_wo` must be given.
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_actions: A list of required user actions.
         :param pulumi.Input[_builtins.str] username: The unique username of this user.
         """
@@ -607,6 +642,7 @@ class User(pulumi.CustomResource):
                  initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
                  last_name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -627,9 +663,8 @@ class User(pulumi.CustomResource):
             __props__.__dict__["import_"] = import_
             __props__.__dict__["initial_password"] = initial_password
             __props__.__dict__["last_name"] = last_name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["required_actions"] = required_actions
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
@@ -654,6 +689,7 @@ class User(pulumi.CustomResource):
             initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
             last_name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             username: pulumi.Input[Optional[_builtins.str]] = None) -> 'User':
         """
@@ -673,6 +709,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']] initial_password: When given, the user's initial password will be set. Exactly one of `value` and `value_wo` must be given.
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_actions: A list of required user actions.
         :param pulumi.Input[_builtins.str] username: The unique username of this user.
         """
@@ -690,6 +727,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["initial_password"] = initial_password
         __props__.__dict__["last_name"] = last_name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["required_actions"] = required_actions
         __props__.__dict__["username"] = username
         return User(resource_name, opts=opts, __props__=__props__)
@@ -707,6 +745,7 @@ class User(pulumi.CustomResource):
             initial_password: pulumi.Input[Optional[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict', 'outputs.UserInitialPassword']]] = None,
             last_name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             required_actions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
@@ -720,6 +759,7 @@ class User(pulumi.CustomResource):
         __props__["initialPassword"] = initial_password
         __props__["lastName"] = last_name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["requiredActions"] = required_actions
         __props__["username"] = username
         return pulumi.runtime.exists_resource(None, 'keycloak:index/user:User', id, __props__, opts or pulumi.ResourceOptions())
@@ -803,6 +843,14 @@ class User(pulumi.CustomResource):
         The realm this user belongs to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="requiredActions")

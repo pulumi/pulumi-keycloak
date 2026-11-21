@@ -26,7 +26,7 @@ class GetRealmClientRegistrationPolicyResult:
     """
     A collection of values returned by getRealmClientRegistrationPolicy.
     """
-    def __init__(__self__, config=None, id=None, name=None, provider_id=None, realm_id=None, sub_type=None):
+    def __init__(__self__, config=None, id=None, name=None, provider_id=None, realm_id=None, realm_internal_id=None, sub_type=None):
         if config and not isinstance(config, dict):
             raise TypeError("Expected argument 'config' to be a dict")
         pulumi.set(__self__, "config", config)
@@ -42,6 +42,9 @@ class GetRealmClientRegistrationPolicyResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if sub_type and not isinstance(sub_type, str):
             raise TypeError("Expected argument 'sub_type' to be a str")
         pulumi.set(__self__, "sub_type", sub_type)
@@ -78,6 +81,11 @@ class GetRealmClientRegistrationPolicyResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="subType")
     def sub_type(self) -> _builtins.str:
         return pulumi.get(self, "sub_type")
@@ -94,12 +102,14 @@ class AwaitableGetRealmClientRegistrationPolicyResult(GetRealmClientRegistration
             name=self.name,
             provider_id=self.provider_id,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             sub_type=self.sub_type)
 
 
 def get_realm_client_registration_policy(name: Optional[_builtins.str] = None,
                                          provider_id: Optional[_builtins.str] = None,
                                          realm_id: Optional[_builtins.str] = None,
+                                         realm_internal_id: Optional[_builtins.str] = None,
                                          sub_type: Optional[_builtins.str] = None,
                                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmClientRegistrationPolicyResult:
     """
@@ -134,6 +144,7 @@ def get_realm_client_registration_policy(name: Optional[_builtins.str] = None,
     __args__['name'] = name
     __args__['providerId'] = provider_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['subType'] = sub_type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy', __args__, opts=opts, typ=GetRealmClientRegistrationPolicyResult).value
@@ -144,10 +155,12 @@ def get_realm_client_registration_policy(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         sub_type=pulumi.get(__ret__, 'sub_type'))
 def get_realm_client_registration_policy_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                                                 provider_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                                                realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                 sub_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRealmClientRegistrationPolicyResult]:
     """
@@ -182,6 +195,7 @@ def get_realm_client_registration_policy_output(name: pulumi.Input[Optional[_bui
     __args__['name'] = name
     __args__['providerId'] = provider_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['subType'] = sub_type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRealmClientRegistrationPolicy:getRealmClientRegistrationPolicy', __args__, opts=opts, typ=GetRealmClientRegistrationPolicyResult)
@@ -191,4 +205,5 @@ def get_realm_client_registration_policy_output(name: pulumi.Input[Optional[_bui
         name=pulumi.get(__response__, 'name'),
         provider_id=pulumi.get(__response__, 'provider_id'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         sub_type=pulumi.get(__response__, 'sub_type')))

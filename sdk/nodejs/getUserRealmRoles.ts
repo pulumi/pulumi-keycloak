@@ -33,6 +33,7 @@ export function getUserRealmRoles(args: GetUserRealmRolesArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getUserRealmRoles:getUserRealmRoles", {
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "userId": args.userId,
     }, opts);
 }
@@ -44,7 +45,8 @@ export interface GetUserRealmRolesArgs {
     /**
      * The realm this user belongs to.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
     /**
      * The ID of the user to query realm roles for.
      */
@@ -60,6 +62,7 @@ export interface GetUserRealmRolesResult {
      */
     readonly id: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     /**
      * (Computed) A list of realm roles that belong to this user.
      */
@@ -95,6 +98,7 @@ export function getUserRealmRolesOutput(args: GetUserRealmRolesOutputArgs, opts?
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getUserRealmRoles:getUserRealmRoles", {
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "userId": args.userId,
     }, opts);
 }
@@ -106,7 +110,8 @@ export interface GetUserRealmRolesOutputArgs {
     /**
      * The realm this user belongs to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the user to query realm roles for.
      */

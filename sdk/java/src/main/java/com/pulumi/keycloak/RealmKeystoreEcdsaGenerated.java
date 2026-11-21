@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing `acdsaGenerated` Realm keystores within Keycloak.
+ * Allows for creating and managing `ecdsa-generated` Realm keystores within Keycloak.
  * 
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  * 
@@ -79,14 +79,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated")
 public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomResource {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
-     * @return When `false`, key in not used for signing. Defaults to `true`.
+     * @return When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> active() {
@@ -162,6 +162,20 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
 
     /**
      *
@@ -175,7 +189,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmKeystoreEcdsaGenerated(java.lang.String name, RealmKeystoreEcdsaGeneratedArgs args) {
+    public RealmKeystoreEcdsaGenerated(java.lang.String name, @Nullable RealmKeystoreEcdsaGeneratedArgs args) {
         this(name, args, null);
     }
     /**
@@ -184,7 +198,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmKeystoreEcdsaGenerated(java.lang.String name, RealmKeystoreEcdsaGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public RealmKeystoreEcdsaGenerated(java.lang.String name, @Nullable RealmKeystoreEcdsaGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -192,7 +206,7 @@ public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomReso
         super("keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static RealmKeystoreEcdsaGeneratedArgs makeArgs(RealmKeystoreEcdsaGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static RealmKeystoreEcdsaGeneratedArgs makeArgs(@Nullable RealmKeystoreEcdsaGeneratedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

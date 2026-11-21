@@ -59,6 +59,7 @@ export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyA
     return pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "resourceServerId": args.resourceServerId,
     }, opts);
 }
@@ -74,7 +75,8 @@ export interface GetClientAuthorizationPolicyArgs {
     /**
      * The realm this authorization policy exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
     /**
      * The ID of the resource server this authorization policy is attached to.
      */
@@ -107,6 +109,7 @@ export interface GetClientAuthorizationPolicyResult {
      */
     readonly policies: string[];
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly resourceServerId: string;
     /**
      * (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
@@ -176,6 +179,7 @@ export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationP
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "resourceServerId": args.resourceServerId,
     }, opts);
 }
@@ -191,7 +195,8 @@ export interface GetClientAuthorizationPolicyOutputArgs {
     /**
      * The realm this authorization policy exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the resource server this authorization policy is attached to.
      */

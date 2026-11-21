@@ -25,7 +25,6 @@ class GroupMapperArgs:
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
                  membership_ldap_attribute: pulumi.Input[_builtins.str],
                  membership_user_ldap_attribute: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  drop_non_existing_groups_during_sync: pulumi.Input[Optional[_builtins.bool]] = None,
                  groups_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
                  groups_path: pulumi.Input[Optional[_builtins.str]] = None,
@@ -36,6 +35,8 @@ class GroupMapperArgs:
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMapper resource.
@@ -46,7 +47,6 @@ class GroupMapperArgs:
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
         :param pulumi.Input[_builtins.str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[_builtins.bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         :param pulumi.Input[_builtins.str] groups_ldap_filter: When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         :param pulumi.Input[_builtins.str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
@@ -57,6 +57,8 @@ class GroupMapperArgs:
         :param pulumi.Input[_builtins.str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         pulumi.set(__self__, "group_name_ldap_attribute", group_name_ldap_attribute)
@@ -65,7 +67,6 @@ class GroupMapperArgs:
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
         pulumi.set(__self__, "membership_ldap_attribute", membership_ldap_attribute)
         pulumi.set(__self__, "membership_user_ldap_attribute", membership_user_ldap_attribute)
-        pulumi.set(__self__, "realm_id", realm_id)
         if drop_non_existing_groups_during_sync is not None:
             pulumi.set(__self__, "drop_non_existing_groups_during_sync", drop_non_existing_groups_during_sync)
         if groups_ldap_filter is not None:
@@ -86,6 +87,10 @@ class GroupMapperArgs:
             pulumi.set(__self__, "name", name)
         if preserve_group_inheritance is not None:
             pulumi.set(__self__, "preserve_group_inheritance", preserve_group_inheritance)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if user_roles_retrieve_strategy is not None:
             pulumi.set(__self__, "user_roles_retrieve_strategy", user_roles_retrieve_strategy)
 
@@ -160,18 +165,6 @@ class GroupMapperArgs:
     @membership_user_ldap_attribute.setter
     def membership_user_ldap_attribute(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "membership_user_ldap_attribute", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that this LDAP mapper will exist in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="dropNonExistingGroupsDuringSync")
@@ -294,6 +287,30 @@ class GroupMapperArgs:
         pulumi.set(self, "preserve_group_inheritance", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")
     def user_roles_retrieve_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -326,6 +343,7 @@ class _GroupMapperState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMapper resources.
@@ -347,6 +365,7 @@ class _GroupMapperState:
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         if drop_non_existing_groups_during_sync is not None:
@@ -383,6 +402,8 @@ class _GroupMapperState:
             pulumi.set(__self__, "preserve_group_inheritance", preserve_group_inheritance)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if user_roles_retrieve_strategy is not None:
             pulumi.set(__self__, "user_roles_retrieve_strategy", user_roles_retrieve_strategy)
 
@@ -591,6 +612,18 @@ class _GroupMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")
     def user_roles_retrieve_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -626,6 +659,7 @@ class GroupMapper(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -701,6 +735,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         ...
@@ -795,6 +830,7 @@ class GroupMapper(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -833,9 +869,8 @@ class GroupMapper(pulumi.CustomResource):
             __props__.__dict__["mode"] = mode
             __props__.__dict__["name"] = name
             __props__.__dict__["preserve_group_inheritance"] = preserve_group_inheritance
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["user_roles_retrieve_strategy"] = user_roles_retrieve_strategy
         super(GroupMapper, __self__).__init__(
             'keycloak:ldap/groupMapper:GroupMapper',
@@ -864,6 +899,7 @@ class GroupMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> 'GroupMapper':
         """
         Get an existing GroupMapper resource's state with the given name, id, and optional extra
@@ -889,6 +925,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] preserve_group_inheritance: When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_roles_retrieve_strategy: Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -912,6 +949,7 @@ class GroupMapper(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["preserve_group_inheritance"] = preserve_group_inheritance
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["user_roles_retrieve_strategy"] = user_roles_retrieve_strategy
         return GroupMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -935,6 +973,7 @@ class GroupMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             preserve_group_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["dropNonExistingGroupsDuringSync"] = drop_non_existing_groups_during_sync
@@ -954,6 +993,7 @@ class GroupMapper(pulumi.CustomResource):
         __props__["name"] = name
         __props__["preserveGroupInheritance"] = preserve_group_inheritance
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["userRolesRetrieveStrategy"] = user_roles_retrieve_strategy
         return pulumi.runtime.exists_resource(None, 'keycloak:ldap/groupMapper:GroupMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -1092,6 +1132,14 @@ class GroupMapper(pulumi.CustomResource):
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="userRolesRetrieveStrategy")

@@ -88,6 +88,10 @@ export class UserGroups extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The ID of the user this resource should manage groups for.
      */
     declare public readonly userId: pulumi.Output<string>;
@@ -108,14 +112,12 @@ export class UserGroups extends pulumi.CustomResource {
             resourceInputs["exhaustive"] = state?.exhaustive;
             resourceInputs["groupIds"] = state?.groupIds;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserGroupsArgs | undefined;
             if (args?.groupIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupIds'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
@@ -123,6 +125,7 @@ export class UserGroups extends pulumi.CustomResource {
             resourceInputs["exhaustive"] = args?.exhaustive;
             resourceInputs["groupIds"] = args?.groupIds;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -147,6 +150,10 @@ export interface UserGroupsState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The ID of the user this resource should manage groups for.
      */
     userId?: pulumi.Input<string | undefined>;
@@ -167,7 +174,11 @@ export interface UserGroupsArgs {
     /**
      * The realm this group exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the user this resource should manage groups for.
      */

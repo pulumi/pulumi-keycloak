@@ -21,7 +21,6 @@ class UserAttributeMapperArgs:
     def __init__(__self__, *,
                  ldap_attribute: pulumi.Input[_builtins.str],
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  user_model_attribute: pulumi.Input[_builtins.str],
                  always_read_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
                  attribute_default_value: pulumi.Input[Optional[_builtins.str]] = None,
@@ -29,13 +28,14 @@ class UserAttributeMapperArgs:
                  is_binary_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_mandatory_in_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 read_only: pulumi.Input[Optional[_builtins.bool]] = None):
+                 read_only: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserAttributeMapper resource.
 
         :param pulumi.Input[_builtins.str] ldap_attribute: Name of the mapped attribute on the LDAP object.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[_builtins.str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         :param pulumi.Input[_builtins.bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
@@ -44,10 +44,11 @@ class UserAttributeMapperArgs:
         :param pulumi.Input[_builtins.bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "ldap_attribute", ldap_attribute)
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "user_model_attribute", user_model_attribute)
         if always_read_value_from_ldap is not None:
             pulumi.set(__self__, "always_read_value_from_ldap", always_read_value_from_ldap)
@@ -63,6 +64,10 @@ class UserAttributeMapperArgs:
             pulumi.set(__self__, "name", name)
         if read_only is not None:
             pulumi.set(__self__, "read_only", read_only)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="ldapAttribute")
@@ -87,18 +92,6 @@ class UserAttributeMapperArgs:
     @ldap_user_federation_id.setter
     def ldap_user_federation_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "ldap_user_federation_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that this LDAP mapper will exist in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userModelAttribute")
@@ -196,6 +189,30 @@ class UserAttributeMapperArgs:
     def read_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "read_only", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _UserAttributeMapperState:
@@ -210,6 +227,7 @@ class _UserAttributeMapperState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_model_attribute: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeMapper resources.
@@ -224,6 +242,7 @@ class _UserAttributeMapperState:
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
         if always_read_value_from_ldap is not None:
@@ -246,6 +265,8 @@ class _UserAttributeMapperState:
             pulumi.set(__self__, "read_only", read_only)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if user_model_attribute is not None:
             pulumi.set(__self__, "user_model_attribute", user_model_attribute)
 
@@ -370,6 +391,18 @@ class _UserAttributeMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="userModelAttribute")
     def user_model_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -398,6 +431,7 @@ class UserAttributeMapper(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_model_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -462,6 +496,7 @@ class UserAttributeMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
         ...
@@ -545,6 +580,7 @@ class UserAttributeMapper(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  read_only: pulumi.Input[Optional[_builtins.bool]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_model_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -568,9 +604,8 @@ class UserAttributeMapper(pulumi.CustomResource):
             __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
             __props__.__dict__["name"] = name
             __props__.__dict__["read_only"] = read_only
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if user_model_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'user_model_attribute'")
             __props__.__dict__["user_model_attribute"] = user_model_attribute
@@ -594,6 +629,7 @@ class UserAttributeMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             read_only: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_model_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserAttributeMapper':
         """
         Get an existing UserAttributeMapper resource's state with the given name, id, and optional extra
@@ -612,6 +648,7 @@ class UserAttributeMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -628,6 +665,7 @@ class UserAttributeMapper(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["read_only"] = read_only
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["user_model_attribute"] = user_model_attribute
         return UserAttributeMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -644,6 +682,7 @@ class UserAttributeMapper(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             read_only: pulumi.Input[Optional[_builtins.bool]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_model_attribute: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["alwaysReadValueFromLdap"] = always_read_value_from_ldap
@@ -656,6 +695,7 @@ class UserAttributeMapper(pulumi.CustomResource):
         __props__["name"] = name
         __props__["readOnly"] = read_only
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["userModelAttribute"] = user_model_attribute
         return pulumi.runtime.exists_resource(None, 'keycloak:ldap/userAttributeMapper:UserAttributeMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -738,6 +778,14 @@ class UserAttributeMapper(pulumi.CustomResource):
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="userModelAttribute")

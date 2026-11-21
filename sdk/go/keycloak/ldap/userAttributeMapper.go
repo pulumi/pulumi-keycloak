@@ -107,6 +107,8 @@ type UserAttributeMapper struct {
 	ReadOnly pulumi.BoolPtrOutput `pulumi:"readOnly"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Name of the user property or attribute you want to map the LDAP attribute into.
 	UserModelAttribute pulumi.StringOutput `pulumi:"userModelAttribute"`
 }
@@ -123,9 +125,6 @@ func NewUserAttributeMapper(ctx *pulumi.Context,
 	}
 	if args.LdapUserFederationId == nil {
 		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.UserModelAttribute == nil {
 		return nil, errors.New("invalid value for required argument 'UserModelAttribute'")
@@ -173,6 +172,8 @@ type userAttributeMapperState struct {
 	ReadOnly *bool `pulumi:"readOnly"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Name of the user property or attribute you want to map the LDAP attribute into.
 	UserModelAttribute *string `pulumi:"userModelAttribute"`
 }
@@ -198,6 +199,8 @@ type UserAttributeMapperState struct {
 	ReadOnly pulumi.BoolPtrInput
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Name of the user property or attribute you want to map the LDAP attribute into.
 	UserModelAttribute pulumi.StringPtrInput
 }
@@ -232,7 +235,9 @@ type userAttributeMapperArgs struct {
 	// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
 	ReadOnly *bool `pulumi:"readOnly"`
 	// The realm that this LDAP mapper will exist in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Name of the user property or attribute you want to map the LDAP attribute into.
 	UserModelAttribute string `pulumi:"userModelAttribute"`
 }
@@ -258,7 +263,9 @@ type UserAttributeMapperArgs struct {
 	// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
 	ReadOnly pulumi.BoolPtrInput
 	// The realm that this LDAP mapper will exist in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Name of the user property or attribute you want to map the LDAP attribute into.
 	UserModelAttribute pulumi.StringInput
 }
@@ -398,6 +405,11 @@ func (o UserAttributeMapperOutput) ReadOnly() pulumi.BoolPtrOutput {
 // The realm that this LDAP mapper will exist in.
 func (o UserAttributeMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserAttributeMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Name of the user property or attribute you want to map the LDAP attribute into.

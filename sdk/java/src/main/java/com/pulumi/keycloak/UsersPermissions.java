@@ -173,7 +173,7 @@ import javax.annotation.Nullable;
  * 
  * - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
  * - `description` - (Optional) Description of the permission.
- * - `decisionStrategy` - (Optional) Decision strategy of the permission.
+ * - `decisionStrategy` - (Optional) Decision strategy of the permission. Defaults to `UNANIMOUS`.
  * 
  * ### Attributes Reference
  * 
@@ -235,6 +235,20 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
     @Export(name="userImpersonatedScope", refs={UsersPermissionsUserImpersonatedScope.class}, tree="[0]")
     private Output</* @Nullable */ UsersPermissionsUserImpersonatedScope> userImpersonatedScope;
 
@@ -260,7 +274,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UsersPermissions(java.lang.String name, UsersPermissionsArgs args) {
+    public UsersPermissions(java.lang.String name, @Nullable UsersPermissionsArgs args) {
         this(name, args, null);
     }
     /**
@@ -269,7 +283,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UsersPermissions(java.lang.String name, UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public UsersPermissions(java.lang.String name, @Nullable UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/usersPermissions:UsersPermissions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -277,7 +291,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
         super("keycloak:index/usersPermissions:UsersPermissions", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static UsersPermissionsArgs makeArgs(UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static UsersPermissionsArgs makeArgs(@Nullable UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

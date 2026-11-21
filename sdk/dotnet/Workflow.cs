@@ -272,6 +272,12 @@ namespace Pulumi.Keycloak
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         /// </summary>
         [Output("restartInProgress")]
@@ -374,8 +380,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this workflow exists in. Changing this forces a new resource.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
@@ -444,6 +456,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.

@@ -15,6 +15,11 @@ export type AttributeToRoleIdentityMapper = import("./attributeToRoleIdentityMap
 export const AttributeToRoleIdentityMapper: typeof import("./attributeToRoleIdentityMapper").AttributeToRoleIdentityMapper = null as any;
 utilities.lazyLoad(exports, ["AttributeToRoleIdentityMapper"], () => require("./attributeToRoleIdentityMapper"));
 
+export { ClientScopeAssignmentsArgs, ClientScopeAssignmentsState } from "./clientScopeAssignments";
+export type ClientScopeAssignments = import("./clientScopeAssignments").ClientScopeAssignments;
+export const ClientScopeAssignments: typeof import("./clientScopeAssignments").ClientScopeAssignments = null as any;
+utilities.lazyLoad(exports, ["ClientScopeAssignments"], () => require("./clientScopeAssignments"));
+
 export { CustomIdentityProviderMappingArgs, CustomIdentityProviderMappingState } from "./customIdentityProviderMapping";
 export type CustomIdentityProviderMapping = import("./customIdentityProviderMapping").CustomIdentityProviderMapping;
 export const CustomIdentityProviderMapping: typeof import("./customIdentityProviderMapping").CustomIdentityProviderMapping = null as any;
@@ -185,6 +190,11 @@ export type Organization = import("./organization").Organization;
 export const Organization: typeof import("./organization").Organization = null as any;
 utilities.lazyLoad(exports, ["Organization"], () => require("./organization"));
 
+export { OrganizationAdminPermissionsArgs, OrganizationAdminPermissionsState } from "./organizationAdminPermissions";
+export type OrganizationAdminPermissions = import("./organizationAdminPermissions").OrganizationAdminPermissions;
+export const OrganizationAdminPermissions: typeof import("./organizationAdminPermissions").OrganizationAdminPermissions = null as any;
+utilities.lazyLoad(exports, ["OrganizationAdminPermissions"], () => require("./organizationAdminPermissions"));
+
 export { OrganizationMembershipsArgs, OrganizationMembershipsState } from "./organizationMemberships";
 export type OrganizationMemberships = import("./organizationMemberships").OrganizationMemberships;
 export const OrganizationMemberships: typeof import("./organizationMemberships").OrganizationMemberships = null as any;
@@ -227,6 +237,16 @@ export { RealmKeystoreAesGeneratedArgs, RealmKeystoreAesGeneratedState } from ".
 export type RealmKeystoreAesGenerated = import("./realmKeystoreAesGenerated").RealmKeystoreAesGenerated;
 export const RealmKeystoreAesGenerated: typeof import("./realmKeystoreAesGenerated").RealmKeystoreAesGenerated = null as any;
 utilities.lazyLoad(exports, ["RealmKeystoreAesGenerated"], () => require("./realmKeystoreAesGenerated"));
+
+export { RealmKeystoreCustomArgs, RealmKeystoreCustomState } from "./realmKeystoreCustom";
+export type RealmKeystoreCustom = import("./realmKeystoreCustom").RealmKeystoreCustom;
+export const RealmKeystoreCustom: typeof import("./realmKeystoreCustom").RealmKeystoreCustom = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreCustom"], () => require("./realmKeystoreCustom"));
+
+export { RealmKeystoreEcdhGeneratedArgs, RealmKeystoreEcdhGeneratedState } from "./realmKeystoreEcdhGenerated";
+export type RealmKeystoreEcdhGenerated = import("./realmKeystoreEcdhGenerated").RealmKeystoreEcdhGenerated;
+export const RealmKeystoreEcdhGenerated: typeof import("./realmKeystoreEcdhGenerated").RealmKeystoreEcdhGenerated = null as any;
+utilities.lazyLoad(exports, ["RealmKeystoreEcdhGenerated"], () => require("./realmKeystoreEcdhGenerated"));
 
 export { RealmKeystoreEcdsaGeneratedArgs, RealmKeystoreEcdsaGeneratedState } from "./realmKeystoreEcdsaGenerated";
 export type RealmKeystoreEcdsaGenerated = import("./realmKeystoreEcdsaGenerated").RealmKeystoreEcdsaGenerated;
@@ -356,6 +376,8 @@ const _module = {
                 return new AttributeImporterIdentityProviderMapper(name, <any>undefined, { urn })
             case "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
                 return new AttributeToRoleIdentityMapper(name, <any>undefined, { urn })
+            case "keycloak:index/clientScopeAssignments:ClientScopeAssignments":
+                return new ClientScopeAssignments(name, <any>undefined, { urn })
             case "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping":
                 return new CustomIdentityProviderMapping(name, <any>undefined, { urn })
             case "keycloak:index/customUserFederation:CustomUserFederation":
@@ -398,6 +420,8 @@ const _module = {
                 return new KubernetesIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:index/organization:Organization":
                 return new Organization(name, <any>undefined, { urn })
+            case "keycloak:index/organizationAdminPermissions:OrganizationAdminPermissions":
+                return new OrganizationAdminPermissions(name, <any>undefined, { urn })
             case "keycloak:index/organizationMemberships:OrganizationMemberships":
                 return new OrganizationMemberships(name, <any>undefined, { urn })
             case "keycloak:index/realm:Realm":
@@ -414,6 +438,10 @@ const _module = {
                 return new RealmEvents(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
                 return new RealmKeystoreAesGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreCustom:RealmKeystoreCustom":
+                return new RealmKeystoreCustom(name, <any>undefined, { urn })
+            case "keycloak:index/realmKeystoreEcdhGenerated:RealmKeystoreEcdhGenerated":
+                return new RealmKeystoreEcdhGenerated(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated":
                 return new RealmKeystoreEcdsaGenerated(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated":
@@ -461,6 +489,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("keycloak", "index/attributeImporterIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/attributeToRoleIdentityMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/clientScopeAssignments", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/customIdentityProviderMapping", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/customUserFederation", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/defaultGroups", _module)
@@ -482,6 +511,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMa
 pulumi.runtime.registerResourceModule("keycloak", "index/identityProviderTokenExchangeScopePermission", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/kubernetesIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/organization", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/organizationAdminPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/organizationMemberships", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfile", _module)
@@ -490,6 +520,8 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmClientRegistration
 pulumi.runtime.registerResourceModule("keycloak", "index/realmDefaultClientScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmEvents", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreAesGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreCustom", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreEcdhGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreEcdsaGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreHmacGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreJavaGenerated", _module)

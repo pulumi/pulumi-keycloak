@@ -164,6 +164,8 @@ type HardcodedClaimProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewHardcodedClaimProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -178,9 +180,6 @@ func NewHardcodedClaimProtocolMapper(ctx *pulumi.Context,
 	}
 	if args.ClaimValue == nil {
 		return nil, errors.New("invalid value for required argument 'ClaimValue'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedClaimProtocolMapper
@@ -225,6 +224,8 @@ type hardcodedClaimProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type HardcodedClaimProtocolMapperState struct {
@@ -248,6 +249,8 @@ type HardcodedClaimProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (HardcodedClaimProtocolMapperState) ElementType() reflect.Type {
@@ -280,7 +283,9 @@ type hardcodedClaimProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a HardcodedClaimProtocolMapper resource.
@@ -304,7 +309,9 @@ type HardcodedClaimProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (HardcodedClaimProtocolMapperArgs) ElementType() reflect.Type {
@@ -442,6 +449,11 @@ func (o HardcodedClaimProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o HardcodedClaimProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o HardcodedClaimProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedClaimProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type HardcodedClaimProtocolMapperArrayOutput struct{ *pulumi.OutputState }

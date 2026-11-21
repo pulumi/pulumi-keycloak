@@ -34,6 +34,7 @@ export function getRealmClientRegistrationPolicy(args: GetRealmClientRegistratio
         "name": args.name,
         "providerId": args.providerId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "subType": args.subType,
     }, opts);
 }
@@ -53,7 +54,8 @@ export interface GetRealmClientRegistrationPolicyArgs {
     /**
      * The realm the policy belongs to.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
     /**
      * Filter by sub-type (`anonymous` or `authenticated`).
      */
@@ -75,6 +77,7 @@ export interface GetRealmClientRegistrationPolicyResult {
     readonly name: string;
     readonly providerId: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly subType: string;
 }
 /**
@@ -107,6 +110,7 @@ export function getRealmClientRegistrationPolicyOutput(args: GetRealmClientRegis
         "name": args.name,
         "providerId": args.providerId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "subType": args.subType,
     }, opts);
 }
@@ -126,7 +130,8 @@ export interface GetRealmClientRegistrationPolicyOutputArgs {
     /**
      * The realm the policy belongs to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Filter by sub-type (`anonymous` or `authenticated`).
      */

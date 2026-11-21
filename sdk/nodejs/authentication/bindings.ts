@@ -129,6 +129,10 @@ export class Bindings extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The alias of the flow to assign to the realm RegistrationFlow.
      */
     declare public readonly registrationFlow: pulumi.Output<string>;
@@ -144,7 +148,7 @@ export class Bindings extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: BindingsArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: BindingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: BindingsArgs | BindingsState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -156,19 +160,18 @@ export class Bindings extends pulumi.CustomResource {
             resourceInputs["dockerAuthenticationFlow"] = state?.dockerAuthenticationFlow;
             resourceInputs["firstBrokerLoginFlow"] = state?.firstBrokerLoginFlow;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["registrationFlow"] = state?.registrationFlow;
             resourceInputs["resetCredentialsFlow"] = state?.resetCredentialsFlow;
         } else {
             const args = argsOrState as BindingsArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["browserFlow"] = args?.browserFlow;
             resourceInputs["clientAuthenticationFlow"] = args?.clientAuthenticationFlow;
             resourceInputs["directGrantFlow"] = args?.directGrantFlow;
             resourceInputs["dockerAuthenticationFlow"] = args?.dockerAuthenticationFlow;
             resourceInputs["firstBrokerLoginFlow"] = args?.firstBrokerLoginFlow;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["registrationFlow"] = args?.registrationFlow;
             resourceInputs["resetCredentialsFlow"] = args?.resetCredentialsFlow;
         }
@@ -206,6 +209,10 @@ export interface BindingsState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The alias of the flow to assign to the realm RegistrationFlow.
      */
     registrationFlow?: pulumi.Input<string | undefined>;
@@ -242,7 +249,11 @@ export interface BindingsArgs {
     /**
      * The realm the authentication flow binding exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The alias of the flow to assign to the realm RegistrationFlow.
      */

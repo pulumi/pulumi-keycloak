@@ -20,22 +20,27 @@ __all__ = ['UserGroupsArgs', 'UserGroups']
 class UserGroupsArgs:
     def __init__(__self__, *,
                  group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 realm_id: pulumi.Input[_builtins.str],
                  user_id: pulumi.Input[_builtins.str],
-                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None):
+                 exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserGroups resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A list of group IDs that the user is member of.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage groups for.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "group_ids", group_ids)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "user_id", user_id)
         if exhaustive is not None:
             pulumi.set(__self__, "exhaustive", exhaustive)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="groupIds")
@@ -48,18 +53,6 @@ class UserGroupsArgs:
     @group_ids.setter
     def group_ids(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "group_ids", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this group exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
@@ -85,6 +78,30 @@ class UserGroupsArgs:
     def exhaustive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exhaustive", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this group exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _UserGroupsState:
@@ -92,6 +109,7 @@ class _UserGroupsState:
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserGroups resources.
@@ -99,6 +117,7 @@ class _UserGroupsState:
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A list of group IDs that the user is member of.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage groups for.
         """
         if exhaustive is not None:
@@ -107,6 +126,8 @@ class _UserGroupsState:
             pulumi.set(__self__, "group_ids", group_ids)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if user_id is not None:
             pulumi.set(__self__, "user_id", user_id)
 
@@ -147,6 +168,18 @@ class _UserGroupsState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -168,6 +201,7 @@ class UserGroups(pulumi.CustomResource):
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -204,6 +238,7 @@ class UserGroups(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A list of group IDs that the user is member of.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage groups for.
         """
         ...
@@ -259,6 +294,7 @@ class UserGroups(pulumi.CustomResource):
                  exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -273,9 +309,8 @@ class UserGroups(pulumi.CustomResource):
             if group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'group_ids'")
             __props__.__dict__["group_ids"] = group_ids
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if user_id is None and not opts.urn:
                 raise TypeError("Missing required property 'user_id'")
             __props__.__dict__["user_id"] = user_id
@@ -292,6 +327,7 @@ class UserGroups(pulumi.CustomResource):
             exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
             group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserGroups':
         """
         Get an existing UserGroups resource's state with the given name, id, and optional extra
@@ -303,6 +339,7 @@ class UserGroups(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A list of group IDs that the user is member of.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage groups for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -312,6 +349,7 @@ class UserGroups(pulumi.CustomResource):
         __props__.__dict__["exhaustive"] = exhaustive
         __props__.__dict__["group_ids"] = group_ids
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["user_id"] = user_id
         return UserGroups(resource_name, opts=opts, __props__=__props__)
 
@@ -321,11 +359,13 @@ class UserGroups(pulumi.CustomResource):
             exhaustive: pulumi.Input[Optional[_builtins.bool]] = None,
             group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["exhaustive"] = exhaustive
         __props__["groupIds"] = group_ids
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["userId"] = user_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/userGroups:UserGroups', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -352,6 +392,14 @@ class UserGroups(pulumi.CustomResource):
         The realm this group exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="userId")

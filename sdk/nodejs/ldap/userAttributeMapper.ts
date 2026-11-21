@@ -136,6 +136,10 @@ export class UserAttributeMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */
     declare public readonly userModelAttribute: pulumi.Output<string>;
@@ -163,6 +167,7 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["readOnly"] = state?.readOnly;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userModelAttribute"] = state?.userModelAttribute;
         } else {
             const args = argsOrState as UserAttributeMapperArgs | undefined;
@@ -171,9 +176,6 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             }
             if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.userModelAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userModelAttribute'");
@@ -188,6 +190,7 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["readOnly"] = args?.readOnly;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userModelAttribute"] = args?.userModelAttribute;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -240,6 +243,10 @@ export interface UserAttributeMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */
     userModelAttribute?: pulumi.Input<string | undefined>;
@@ -288,7 +295,11 @@ export interface UserAttributeMapperArgs {
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */

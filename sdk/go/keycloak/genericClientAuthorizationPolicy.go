@@ -146,6 +146,8 @@ type GenericClientAuthorizationPolicy struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this policy exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The ID of the resource server this policy is attached to.
 	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 	// The provider type of the policy, i.e. the id returned by the policy's
@@ -164,9 +166,6 @@ func NewGenericClientAuthorizationPolicy(ctx *pulumi.Context,
 
 	if args.DecisionStrategy == nil {
 		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -213,6 +212,8 @@ type genericClientAuthorizationPolicyState struct {
 	Name *string `pulumi:"name"`
 	// The realm this policy exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the resource server this policy is attached to.
 	ResourceServerId *string `pulumi:"resourceServerId"`
 	// The provider type of the policy, i.e. the id returned by the policy's
@@ -239,6 +240,8 @@ type GenericClientAuthorizationPolicyState struct {
 	Name pulumi.StringPtrInput
 	// The realm this policy exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The ID of the resource server this policy is attached to.
 	ResourceServerId pulumi.StringPtrInput
 	// The provider type of the policy, i.e. the id returned by the policy's
@@ -274,7 +277,9 @@ type genericClientAuthorizationPolicyArgs struct {
 	// The name of the policy.
 	Name *string `pulumi:"name"`
 	// The realm this policy exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the resource server this policy is attached to.
 	ResourceServerId string `pulumi:"resourceServerId"`
 	// The provider type of the policy, i.e. the id returned by the policy's
@@ -301,7 +306,9 @@ type GenericClientAuthorizationPolicyArgs struct {
 	// The name of the policy.
 	Name pulumi.StringPtrInput
 	// The realm this policy exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The ID of the resource server this policy is attached to.
 	ResourceServerId pulumi.StringInput
 	// The provider type of the policy, i.e. the id returned by the policy's
@@ -430,6 +437,11 @@ func (o GenericClientAuthorizationPolicyOutput) Name() pulumi.StringOutput {
 // The realm this policy exists in.
 func (o GenericClientAuthorizationPolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GenericClientAuthorizationPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GenericClientAuthorizationPolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientAuthorizationPolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The ID of the resource server this policy is attached to.

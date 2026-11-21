@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetClientAuthorizationPolicyArgs extends com.pulumi.resources.InvokeArgs {
@@ -33,15 +35,22 @@ public final class GetClientAuthorizationPolicyArgs extends com.pulumi.resources
      * The realm this authorization policy exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this authorization policy exists within.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -64,6 +73,7 @@ public final class GetClientAuthorizationPolicyArgs extends com.pulumi.resources
     private GetClientAuthorizationPolicyArgs(GetClientAuthorizationPolicyArgs $) {
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.resourceServerId = $.resourceServerId;
     }
 
@@ -112,7 +122,7 @@ public final class GetClientAuthorizationPolicyArgs extends com.pulumi.resources
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -125,6 +135,15 @@ public final class GetClientAuthorizationPolicyArgs extends com.pulumi.resources
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -151,9 +170,6 @@ public final class GetClientAuthorizationPolicyArgs extends com.pulumi.resources
         public GetClientAuthorizationPolicyArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyArgs", "realmId");
             }
             if ($.resourceServerId == null) {
                 throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyArgs", "resourceServerId");

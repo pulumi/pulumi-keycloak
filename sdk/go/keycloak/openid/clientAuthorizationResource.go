@@ -127,16 +127,18 @@ import (
 type ClientAuthorizationResource struct {
 	pulumi.CustomResourceState
 
-	Attributes         pulumi.StringMapOutput   `pulumi:"attributes"`
-	DisplayName        pulumi.StringPtrOutput   `pulumi:"displayName"`
-	IconUri            pulumi.StringPtrOutput   `pulumi:"iconUri"`
-	Name               pulumi.StringOutput      `pulumi:"name"`
-	OwnerManagedAccess pulumi.BoolPtrOutput     `pulumi:"ownerManagedAccess"`
-	RealmId            pulumi.StringOutput      `pulumi:"realmId"`
-	ResourceServerId   pulumi.StringOutput      `pulumi:"resourceServerId"`
-	Scopes             pulumi.StringArrayOutput `pulumi:"scopes"`
-	Type               pulumi.StringPtrOutput   `pulumi:"type"`
-	Uris               pulumi.StringArrayOutput `pulumi:"uris"`
+	Attributes         pulumi.StringMapOutput `pulumi:"attributes"`
+	DisplayName        pulumi.StringPtrOutput `pulumi:"displayName"`
+	IconUri            pulumi.StringPtrOutput `pulumi:"iconUri"`
+	Name               pulumi.StringOutput    `pulumi:"name"`
+	OwnerManagedAccess pulumi.BoolPtrOutput   `pulumi:"ownerManagedAccess"`
+	RealmId            pulumi.StringOutput    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput      `pulumi:"realmInternalId"`
+	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
+	Scopes           pulumi.StringArrayOutput `pulumi:"scopes"`
+	Type             pulumi.StringPtrOutput   `pulumi:"type"`
+	Uris             pulumi.StringArrayOutput `pulumi:"uris"`
 }
 
 // NewClientAuthorizationResource registers a new resource with the given unique name, arguments, and options.
@@ -146,9 +148,6 @@ func NewClientAuthorizationResource(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
 	}
@@ -181,10 +180,12 @@ type clientAuthorizationResourceState struct {
 	Name               *string           `pulumi:"name"`
 	OwnerManagedAccess *bool             `pulumi:"ownerManagedAccess"`
 	RealmId            *string           `pulumi:"realmId"`
-	ResourceServerId   *string           `pulumi:"resourceServerId"`
-	Scopes             []string          `pulumi:"scopes"`
-	Type               *string           `pulumi:"type"`
-	Uris               []string          `pulumi:"uris"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string  `pulumi:"realmInternalId"`
+	ResourceServerId *string  `pulumi:"resourceServerId"`
+	Scopes           []string `pulumi:"scopes"`
+	Type             *string  `pulumi:"type"`
+	Uris             []string `pulumi:"uris"`
 }
 
 type ClientAuthorizationResourceState struct {
@@ -194,10 +195,12 @@ type ClientAuthorizationResourceState struct {
 	Name               pulumi.StringPtrInput
 	OwnerManagedAccess pulumi.BoolPtrInput
 	RealmId            pulumi.StringPtrInput
-	ResourceServerId   pulumi.StringPtrInput
-	Scopes             pulumi.StringArrayInput
-	Type               pulumi.StringPtrInput
-	Uris               pulumi.StringArrayInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
+	ResourceServerId pulumi.StringPtrInput
+	Scopes           pulumi.StringArrayInput
+	Type             pulumi.StringPtrInput
+	Uris             pulumi.StringArrayInput
 }
 
 func (ClientAuthorizationResourceState) ElementType() reflect.Type {
@@ -216,11 +219,13 @@ type clientAuthorizationResourceArgs struct {
 	IconUri            *string           `pulumi:"iconUri"`
 	Name               *string           `pulumi:"name"`
 	OwnerManagedAccess *bool             `pulumi:"ownerManagedAccess"`
-	RealmId            string            `pulumi:"realmId"`
-	ResourceServerId   string            `pulumi:"resourceServerId"`
-	Scopes             []string          `pulumi:"scopes"`
-	Type               *string           `pulumi:"type"`
-	Uris               []string          `pulumi:"uris"`
+	RealmId            *string           `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string  `pulumi:"realmInternalId"`
+	ResourceServerId string   `pulumi:"resourceServerId"`
+	Scopes           []string `pulumi:"scopes"`
+	Type             *string  `pulumi:"type"`
+	Uris             []string `pulumi:"uris"`
 }
 
 // The set of arguments for constructing a ClientAuthorizationResource resource.
@@ -230,11 +235,13 @@ type ClientAuthorizationResourceArgs struct {
 	IconUri            pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
 	OwnerManagedAccess pulumi.BoolPtrInput
-	RealmId            pulumi.StringInput
-	ResourceServerId   pulumi.StringInput
-	Scopes             pulumi.StringArrayInput
-	Type               pulumi.StringPtrInput
-	Uris               pulumi.StringArrayInput
+	RealmId            pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
+	ResourceServerId pulumi.StringInput
+	Scopes           pulumi.StringArrayInput
+	Type             pulumi.StringPtrInput
+	Uris             pulumi.StringArrayInput
 }
 
 func (ClientAuthorizationResourceArgs) ElementType() reflect.Type {
@@ -346,6 +353,11 @@ func (o ClientAuthorizationResourceOutput) OwnerManagedAccess() pulumi.BoolPtrOu
 
 func (o ClientAuthorizationResourceOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientAuthorizationResourceOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientAuthorizationResourceOutput) ResourceServerId() pulumi.StringOutput {

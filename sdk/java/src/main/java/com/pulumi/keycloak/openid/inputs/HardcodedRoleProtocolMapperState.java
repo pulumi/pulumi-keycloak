@@ -76,6 +76,21 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * The ID of the role to map to an access token.
      * 
      */
@@ -97,6 +112,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         this.clientScopeId = $.clientScopeId;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.roleId = $.roleId;
     }
 
@@ -200,6 +216,27 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

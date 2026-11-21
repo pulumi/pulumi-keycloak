@@ -93,6 +93,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     */
+    declare public readonly allowAdminRoleMapping: pulumi.Output<boolean | undefined>;
+    /**
      * Authenticate users by default. Defaults to `false`.
      */
     declare public readonly authenticateByDefault: pulumi.Output<boolean | undefined>;
@@ -205,6 +209,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Signing Algorithm. Defaults to empty.
      */
     declare public readonly signatureAlgorithm: pulumi.Output<string | undefined>;
@@ -268,6 +276,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             const state = argsOrState as IdentityProviderState | undefined;
             resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["allowAdminRoleMapping"] = state?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
             resourceInputs["authnContextClassRefs"] = state?.authnContextClassRefs;
             resourceInputs["authnContextComparisonType"] = state?.authnContextComparisonType;
@@ -296,6 +305,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["principalType"] = state?.principalType;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["signatureAlgorithm"] = state?.signatureAlgorithm;
             resourceInputs["signingCertificate"] = state?.signingCertificate;
             resourceInputs["singleLogoutServiceUrl"] = state?.singleLogoutServiceUrl;
@@ -316,14 +326,12 @@ export class IdentityProvider extends pulumi.CustomResource {
             if (args?.entityId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'entityId'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             if (args?.singleSignOnServiceUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'singleSignOnServiceUrl'");
             }
             resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["allowAdminRoleMapping"] = args?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
             resourceInputs["authnContextClassRefs"] = args?.authnContextClassRefs;
             resourceInputs["authnContextComparisonType"] = args?.authnContextComparisonType;
@@ -351,6 +359,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["principalType"] = args?.principalType;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["signatureAlgorithm"] = args?.signatureAlgorithm;
             resourceInputs["signingCertificate"] = args?.signingCertificate;
             resourceInputs["singleLogoutServiceUrl"] = args?.singleLogoutServiceUrl;
@@ -382,6 +391,10 @@ export interface IdentityProviderState {
      * The unique name of identity provider.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Authenticate users by default. Defaults to `false`.
      */
@@ -495,6 +508,10 @@ export interface IdentityProviderState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Signing Algorithm. Defaults to empty.
      */
     signatureAlgorithm?: pulumi.Input<string | undefined>;
@@ -556,6 +573,10 @@ export interface IdentityProviderArgs {
      * The unique name of identity provider.
      */
     alias: pulumi.Input<string>;
+    /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Authenticate users by default. Defaults to `false`.
      */
@@ -663,7 +684,11 @@ export interface IdentityProviderArgs {
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Signing Algorithm. Defaults to empty.
      */

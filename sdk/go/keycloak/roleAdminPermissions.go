@@ -159,6 +159,8 @@ type RoleAdminPermissions struct {
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
 	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 	// Set of scopes this permission grants. Valid values: `map-role`, `map-role-client-scope`, `map-role-composite`.
@@ -172,9 +174,6 @@ func NewRoleAdminPermissions(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.Scopes == nil {
 		return nil, errors.New("invalid value for required argument 'Scopes'")
 	}
@@ -217,6 +216,8 @@ type roleAdminPermissionsState struct {
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
 	RoleIds []string `pulumi:"roleIds"`
 	// Set of scopes this permission grants. Valid values: `map-role`, `map-role-client-scope`, `map-role-composite`.
@@ -240,6 +241,8 @@ type RoleAdminPermissionsState struct {
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
 	RoleIds pulumi.StringArrayInput
 	// Set of scopes this permission grants. Valid values: `map-role`, `map-role-client-scope`, `map-role-composite`.
@@ -266,7 +269,9 @@ type roleAdminPermissionsArgs struct {
 	// Set of policy IDs to attach to the permission.
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
 	RoleIds []string `pulumi:"roleIds"`
 	// Set of scopes this permission grants. Valid values: `map-role`, `map-role-client-scope`, `map-role-composite`.
@@ -284,7 +289,9 @@ type RoleAdminPermissionsArgs struct {
 	// Set of policy IDs to attach to the permission.
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.
 	RoleIds pulumi.StringArrayInput
 	// Set of scopes this permission grants. Valid values: `map-role`, `map-role-client-scope`, `map-role-composite`.
@@ -416,6 +423,11 @@ func (o RoleAdminPermissionsOutput) Policies() pulumi.StringArrayOutput {
 // The realm in which to manage this permission.
 func (o RoleAdminPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RoleAdminPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RoleAdminPermissionsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RoleAdminPermissions) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Set of role UUIDs (`keycloak_role.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all roles** in the realm.

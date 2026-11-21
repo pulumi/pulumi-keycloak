@@ -19,14 +19,14 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
     public static final ClientScopeState Empty = new ClientScopeState();
 
     /**
-     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      * 
      */
     @Import(name="consentScreenText")
     private @Nullable Output<String> consentScreenText;
 
     /**
-     * @return When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * @return The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      * 
      */
     public Optional<Output<String>> consentScreenText() {
@@ -46,6 +46,21 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     * 
+     */
+    @Import(name="displayOnConsentScreen")
+    private @Nullable Output<Boolean> displayOnConsentScreen;
+
+    /**
+     * @return When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     * 
+     */
+    public Optional<Output<Boolean>> displayOnConsentScreen() {
+        return Optional.ofNullable(this.displayOnConsentScreen);
     }
 
     /**
@@ -138,17 +153,34 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
     private ClientScopeState() {}
 
     private ClientScopeState(ClientScopeState $) {
         this.consentScreenText = $.consentScreenText;
         this.description = $.description;
+        this.displayOnConsentScreen = $.displayOnConsentScreen;
         this.extraConfig = $.extraConfig;
         this.guiOrder = $.guiOrder;
         this.includeInOpenidProviderMetadata = $.includeInOpenidProviderMetadata;
         this.includeInTokenScope = $.includeInTokenScope;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -170,7 +202,7 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param consentScreenText When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+         * @param consentScreenText The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
          * 
          * @return builder
          * 
@@ -181,7 +213,7 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param consentScreenText When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+         * @param consentScreenText The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
          * 
          * @return builder
          * 
@@ -209,6 +241,27 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param displayOnConsentScreen When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder displayOnConsentScreen(@Nullable Output<Boolean> displayOnConsentScreen) {
+            $.displayOnConsentScreen = displayOnConsentScreen;
+            return this;
+        }
+
+        /**
+         * @param displayOnConsentScreen When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder displayOnConsentScreen(Boolean displayOnConsentScreen) {
+            return displayOnConsentScreen(Output.of(displayOnConsentScreen));
         }
 
         /**
@@ -335,6 +388,27 @@ public final class ClientScopeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public ClientScopeState build() {

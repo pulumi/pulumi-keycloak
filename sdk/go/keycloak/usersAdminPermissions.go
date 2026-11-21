@@ -27,6 +27,7 @@ import (
 // - `map-roles` — assign or remove realm roles on users
 // - `manage-group-membership` — add or remove users from groups
 // - `impersonate` — impersonate a user
+// - `reset-password` — reset user passwords
 //
 // > **Note:** The `user-impersonated` scope from v1 (`UsersPermissions`) has no equivalent in FGAPv2 and is not available in this resource.
 //
@@ -169,7 +170,9 @@ type UsersAdminPermissions struct {
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 }
 
@@ -180,9 +183,6 @@ func NewUsersAdminPermissions(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.Scopes == nil {
 		return nil, errors.New("invalid value for required argument 'Scopes'")
 	}
@@ -225,7 +225,9 @@ type usersAdminPermissionsState struct {
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId *string `pulumi:"realmId"`
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -246,7 +248,9 @@ type UsersAdminPermissionsState struct {
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringPtrInput
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
 	Scopes pulumi.StringArrayInput
 }
 
@@ -270,8 +274,10 @@ type usersAdminPermissionsArgs struct {
 	// Set of policy IDs to attach to the permission.
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
-	RealmId string `pulumi:"realmId"`
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -286,8 +292,10 @@ type UsersAdminPermissionsArgs struct {
 	// Set of policy IDs to attach to the permission.
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
-	RealmId pulumi.StringInput
-	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
+	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
 	Scopes pulumi.StringArrayInput
 }
 
@@ -418,7 +426,12 @@ func (o UsersAdminPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UsersAdminPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
-// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UsersAdminPermissionsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UsersAdminPermissions) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
+}
+
+// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
 func (o UsersAdminPermissionsOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *UsersAdminPermissions) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }

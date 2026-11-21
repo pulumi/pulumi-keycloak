@@ -26,7 +26,7 @@ class GetClientAuthorizationScopeResult:
     """
     A collection of values returned by getClientAuthorizationScope.
     """
-    def __init__(__self__, display_name=None, icon_uri=None, id=None, name=None, realm_id=None, resource_server_id=None):
+    def __init__(__self__, display_name=None, icon_uri=None, id=None, name=None, realm_id=None, realm_internal_id=None, resource_server_id=None):
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         pulumi.set(__self__, "display_name", display_name)
@@ -42,6 +42,9 @@ class GetClientAuthorizationScopeResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id and not isinstance(resource_server_id, str):
             raise TypeError("Expected argument 'resource_server_id' to be a str")
         pulumi.set(__self__, "resource_server_id", resource_server_id)
@@ -81,6 +84,11 @@ class GetClientAuthorizationScopeResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> _builtins.str:
         return pulumi.get(self, "resource_server_id")
@@ -97,11 +105,13 @@ class AwaitableGetClientAuthorizationScopeResult(GetClientAuthorizationScopeResu
             id=self.id,
             name=self.name,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             resource_server_id=self.resource_server_id)
 
 
 def get_client_authorization_scope(name: Optional[_builtins.str] = None,
                                    realm_id: Optional[_builtins.str] = None,
+                                   realm_internal_id: Optional[_builtins.str] = None,
                                    resource_server_id: Optional[_builtins.str] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientAuthorizationScopeResult:
     """
@@ -209,6 +219,7 @@ def get_client_authorization_scope(name: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['resourceServerId'] = resource_server_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope', __args__, opts=opts, typ=GetClientAuthorizationScopeResult).value
@@ -219,9 +230,11 @@ def get_client_authorization_scope(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         resource_server_id=pulumi.get(__ret__, 'resource_server_id'))
 def get_client_authorization_scope_output(name: pulumi.Input[Optional[_builtins.str]] = None,
-                                          realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                          realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                          realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                           resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientAuthorizationScopeResult]:
     """
@@ -329,6 +342,7 @@ def get_client_authorization_scope_output(name: pulumi.Input[Optional[_builtins.
     __args__ = dict()
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['resourceServerId'] = resource_server_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope', __args__, opts=opts, typ=GetClientAuthorizationScopeResult)
@@ -338,4 +352,5 @@ def get_client_authorization_scope_output(name: pulumi.Input[Optional[_builtins.
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         resource_server_id=pulumi.get(__response__, 'resource_server_id')))

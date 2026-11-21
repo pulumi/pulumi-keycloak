@@ -123,8 +123,11 @@ namespace Pulumi.Keycloak.Saml
         /// <summary>
         /// The realm id.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetClientArgs()
         {
@@ -143,8 +146,11 @@ namespace Pulumi.Keycloak.Saml
         /// <summary>
         /// The realm id.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetClientInvokeArgs()
         {
@@ -193,6 +199,7 @@ namespace Pulumi.Keycloak.Saml
         public readonly string Name;
         public readonly string NameIdFormat;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly string RootUrl;
         public readonly string SamlSignatureKeyName;
         public readonly bool SignAssertions;
@@ -275,6 +282,8 @@ namespace Pulumi.Keycloak.Saml
 
             string realmId,
 
+            string realmInternalId,
+
             string rootUrl,
 
             string samlSignatureKeyName,
@@ -331,6 +340,7 @@ namespace Pulumi.Keycloak.Saml
             Name = name;
             NameIdFormat = nameIdFormat;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             RootUrl = rootUrl;
             SamlSignatureKeyName = samlSignatureKeyName;
             SignAssertions = signAssertions;

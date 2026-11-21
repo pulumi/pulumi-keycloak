@@ -153,8 +153,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the policy belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         /// <summary>
         /// Filter by sub-type (`Anonymous` or `Authenticated`).
@@ -185,8 +188,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the policy belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// Filter by sub-type (`Anonymous` or `Authenticated`).
@@ -215,6 +221,7 @@ namespace Pulumi.Keycloak
         public readonly string Name;
         public readonly string ProviderId;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly string SubType;
 
         [OutputConstructor]
@@ -229,6 +236,8 @@ namespace Pulumi.Keycloak
 
             string realmId,
 
+            string realmInternalId,
+
             string subType)
         {
             Config = config;
@@ -236,6 +245,7 @@ namespace Pulumi.Keycloak
             Name = name;
             ProviderId = providerId;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             SubType = subType;
         }
     }

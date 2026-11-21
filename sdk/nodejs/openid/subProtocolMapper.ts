@@ -148,6 +148,10 @@ export class SubProtocolMapper extends pulumi.CustomResource {
      * The realm this protocol mapper exists within.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a SubProtocolMapper resource with the given unique name, arguments, and options.
@@ -156,7 +160,7 @@ export class SubProtocolMapper extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: SubProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: SubProtocolMapperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SubProtocolMapperArgs | SubProtocolMapperState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -168,17 +172,16 @@ export class SubProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as SubProtocolMapperArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToTokenIntrospection"] = args?.addToTokenIntrospection;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SubProtocolMapper.__pulumiType, name, resourceInputs, opts);
@@ -213,6 +216,10 @@ export interface SubProtocolMapperState {
      * The realm this protocol mapper exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -242,5 +249,9 @@ export interface SubProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

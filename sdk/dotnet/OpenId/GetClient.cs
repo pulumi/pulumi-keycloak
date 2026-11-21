@@ -155,8 +155,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm id.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetClientArgs()
         {
@@ -207,8 +210,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm id.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetClientInvokeArgs()
         {
@@ -264,6 +270,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string? Oauth2JwtAuthorizationGrantIdp;
         public readonly string PkceCodeChallengeMethod;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly bool RequireDpopBoundTokens;
         public readonly string ResourceServerId;
         public readonly string RootUrl;
@@ -361,6 +368,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string realmId,
 
+            string realmInternalId,
+
             bool requireDpopBoundTokens,
 
             string resourceServerId,
@@ -426,6 +435,7 @@ namespace Pulumi.Keycloak.OpenId
             Oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
             PkceCodeChallengeMethod = pkceCodeChallengeMethod;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             RequireDpopBoundTokens = requireDpopBoundTokens;
             ResourceServerId = resourceServerId;
             RootUrl = rootUrl;

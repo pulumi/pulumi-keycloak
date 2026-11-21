@@ -20,7 +20,6 @@ __all__ = ['UserSessionNoteProtocolMapperArgs', 'UserSessionNoteProtocolMapper']
 class UserSessionNoteProtocolMapperArgs:
     def __init__(__self__, *,
                  claim_name: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_token_introspection: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -29,12 +28,13 @@ class UserSessionNoteProtocolMapperArgs:
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  session_note: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserSessionNoteProtocolMapper resource.
 
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the session note should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the session note should be added as a claim to the id token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_token_introspection: Indicates if the session note should be added as a claim to the token introspection response. Defaults to `true`.
@@ -43,10 +43,11 @@ class UserSessionNoteProtocolMapperArgs:
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         pulumi.set(__self__, "claim_name", claim_name)
-        pulumi.set(__self__, "realm_id", realm_id)
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
@@ -63,6 +64,10 @@ class UserSessionNoteProtocolMapperArgs:
             pulumi.set(__self__, "client_scope_id", client_scope_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if session_note is not None:
             pulumi.set(__self__, "session_note", session_note)
 
@@ -77,18 +82,6 @@ class UserSessionNoteProtocolMapperArgs:
     @claim_name.setter
     def claim_name(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "claim_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this protocol mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
@@ -187,6 +180,30 @@ class UserSessionNoteProtocolMapperArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="sessionNote")
     def session_note(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -212,6 +229,7 @@ class _UserSessionNoteProtocolMapperState:
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  session_note: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserSessionNoteProtocolMapper resources.
@@ -226,6 +244,7 @@ class _UserSessionNoteProtocolMapperState:
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         if add_to_access_token is not None:
@@ -248,6 +267,8 @@ class _UserSessionNoteProtocolMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if session_note is not None:
             pulumi.set(__self__, "session_note", session_note)
 
@@ -372,6 +393,18 @@ class _UserSessionNoteProtocolMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="sessionNote")
     def session_note(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -400,6 +433,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  session_note: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -496,6 +530,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         ...
@@ -611,6 +646,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  session_note: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -632,9 +668,8 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_scope_id"] = client_scope_id
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["session_note"] = session_note
         super(UserSessionNoteProtocolMapper, __self__).__init__(
             'keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper',
@@ -656,6 +691,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             session_note: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserSessionNoteProtocolMapper':
         """
         Get an existing UserSessionNoteProtocolMapper resource's state with the given name, id, and optional extra
@@ -674,6 +710,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -690,6 +727,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["client_scope_id"] = client_scope_id
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["session_note"] = session_note
         return UserSessionNoteProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -706,6 +744,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             session_note: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["addToAccessToken"] = add_to_access_token
@@ -718,6 +757,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         __props__["clientScopeId"] = client_scope_id
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["sessionNote"] = session_note
         return pulumi.runtime.exists_resource(None, 'keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -800,6 +840,14 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="sessionNote")

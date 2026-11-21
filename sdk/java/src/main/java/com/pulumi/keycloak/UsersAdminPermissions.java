@@ -32,6 +32,7 @@ import javax.annotation.Nullable;
  * - `map-roles` — assign or remove realm roles on users
  * - `manage-group-membership` — add or remove users from groups
  * - `impersonate` — impersonate a user
+ * - `reset-password` — reset user passwords
  * 
  * &gt; **Note:** The `user-impersonated` scope from v1 (`keycloak.UsersPermissions`) has no equivalent in FGAPv2 and is not available in this resource.
  * 
@@ -265,14 +266,28 @@ public class UsersAdminPermissions extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      * 
      */
     @Export(name="scopes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> scopes;
 
     /**
-     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      * 
      */
     public Output<List<String>> scopes() {

@@ -19,18 +19,18 @@ __all__ = ['UserPropertyProtocolMapperArgs', 'UserPropertyProtocolMapper']
 @pulumi.input_type
 class UserPropertyProtocolMapperArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  saml_attribute_name: pulumi.Input[_builtins.str],
                  saml_attribute_name_format: pulumi.Input[_builtins.str],
                  user_property: pulumi.Input[_builtins.str],
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserPropertyProtocolMapper resource.
 
-        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.str] saml_attribute_name: The name of the SAML attribute.
         :param pulumi.Input[_builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[_builtins.str] user_property: The property of the Keycloak user model to map.
@@ -38,8 +38,9 @@ class UserPropertyProtocolMapperArgs:
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] friendly_name: An optional human-friendly name for this attribute.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
         pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
         pulumi.set(__self__, "user_property", user_property)
@@ -51,18 +52,10 @@ class UserPropertyProtocolMapperArgs:
             pulumi.set(__self__, "friendly_name", friendly_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this protocol mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="samlAttributeName")
@@ -148,6 +141,30 @@ class UserPropertyProtocolMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _UserPropertyProtocolMapperState:
@@ -157,6 +174,7 @@ class _UserPropertyProtocolMapperState:
                  friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
                  user_property: pulumi.Input[Optional[_builtins.str]] = None):
@@ -168,6 +186,7 @@ class _UserPropertyProtocolMapperState:
         :param pulumi.Input[_builtins.str] friendly_name: An optional human-friendly name for this attribute.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] saml_attribute_name: The name of the SAML attribute.
         :param pulumi.Input[_builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[_builtins.str] user_property: The property of the Keycloak user model to map.
@@ -182,6 +201,8 @@ class _UserPropertyProtocolMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if saml_attribute_name is not None:
             pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
         if saml_attribute_name_format is not None:
@@ -250,6 +271,18 @@ class _UserPropertyProtocolMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="samlAttributeName")
     def saml_attribute_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -297,6 +330,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
                  user_property: pulumi.Input[Optional[_builtins.str]] = None,
@@ -365,6 +399,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] friendly_name: An optional human-friendly name for this attribute.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] saml_attribute_name: The name of the SAML attribute.
         :param pulumi.Input[_builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[_builtins.str] user_property: The property of the Keycloak user model to map.
@@ -452,6 +487,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
                  saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
                  user_property: pulumi.Input[Optional[_builtins.str]] = None,
@@ -468,9 +504,8 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             __props__.__dict__["client_scope_id"] = client_scope_id
             __props__.__dict__["friendly_name"] = friendly_name
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if saml_attribute_name is None and not opts.urn:
                 raise TypeError("Missing required property 'saml_attribute_name'")
             __props__.__dict__["saml_attribute_name"] = saml_attribute_name
@@ -495,6 +530,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
             saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
             user_property: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserPropertyProtocolMapper':
@@ -510,6 +546,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] friendly_name: An optional human-friendly name for this attribute.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] saml_attribute_name: The name of the SAML attribute.
         :param pulumi.Input[_builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[_builtins.str] user_property: The property of the Keycloak user model to map.
@@ -523,6 +560,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["friendly_name"] = friendly_name
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["saml_attribute_name"] = saml_attribute_name
         __props__.__dict__["saml_attribute_name_format"] = saml_attribute_name_format
         __props__.__dict__["user_property"] = user_property
@@ -536,6 +574,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             friendly_name: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             saml_attribute_name: pulumi.Input[Optional[_builtins.str]] = None,
             saml_attribute_name_format: pulumi.Input[Optional[_builtins.str]] = None,
             user_property: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
@@ -545,6 +584,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         __props__["friendlyName"] = friendly_name
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["samlAttributeName"] = saml_attribute_name
         __props__["samlAttributeNameFormat"] = saml_attribute_name_format
         __props__["userProperty"] = user_property
@@ -589,6 +629,14 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="samlAttributeName")

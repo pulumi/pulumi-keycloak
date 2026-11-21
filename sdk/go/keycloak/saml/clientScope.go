@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -66,10 +65,12 @@ import (
 type ClientScope struct {
 	pulumi.CustomResourceState
 
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+	// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
 	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
 	// The description of this client scope in the GUI.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+	DisplayOnConsentScreen pulumi.BoolOutput `pulumi:"displayOnConsentScreen"`
 	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
@@ -78,18 +79,17 @@ type ClientScope struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this client scope belongs to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewClientScope registers a new resource with the given unique name, arguments, and options.
 func NewClientScope(ctx *pulumi.Context,
 	name string, args *ClientScopeArgs, opts ...pulumi.ResourceOption) (*ClientScope, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ClientScopeArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientScope
 	err := ctx.RegisterResource("keycloak:saml/clientScope:ClientScope", name, args, &resource, opts...)
@@ -113,10 +113,12 @@ func GetClientScope(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientScope resources.
 type clientScopeState struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+	// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
 	ConsentScreenText *string `pulumi:"consentScreenText"`
 	// The description of this client scope in the GUI.
 	Description *string `pulumi:"description"`
+	// When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+	DisplayOnConsentScreen *bool `pulumi:"displayOnConsentScreen"`
 	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
@@ -125,13 +127,17 @@ type clientScopeState struct {
 	Name *string `pulumi:"name"`
 	// The realm this client scope belongs to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type ClientScopeState struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+	// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
 	ConsentScreenText pulumi.StringPtrInput
 	// The description of this client scope in the GUI.
 	Description pulumi.StringPtrInput
+	// When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+	DisplayOnConsentScreen pulumi.BoolPtrInput
 	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
@@ -140,6 +146,8 @@ type ClientScopeState struct {
 	Name pulumi.StringPtrInput
 	// The realm this client scope belongs to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (ClientScopeState) ElementType() reflect.Type {
@@ -153,10 +161,12 @@ func ClientScopeExists(ctx *pulumi.Context,
 }
 
 type clientScopeArgs struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+	// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
 	ConsentScreenText *string `pulumi:"consentScreenText"`
 	// The description of this client scope in the GUI.
 	Description *string `pulumi:"description"`
+	// When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+	DisplayOnConsentScreen *bool `pulumi:"displayOnConsentScreen"`
 	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
@@ -164,15 +174,19 @@ type clientScopeArgs struct {
 	// The display name of this client scope in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this client scope belongs to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a ClientScope resource.
 type ClientScopeArgs struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+	// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
 	ConsentScreenText pulumi.StringPtrInput
 	// The description of this client scope in the GUI.
 	Description pulumi.StringPtrInput
+	// When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+	DisplayOnConsentScreen pulumi.BoolPtrInput
 	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
@@ -180,7 +194,9 @@ type ClientScopeArgs struct {
 	// The display name of this client scope in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this client scope belongs to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (ClientScopeArgs) ElementType() reflect.Type {
@@ -270,7 +286,7 @@ func (o ClientScopeOutput) ToClientScopeOutputWithContext(ctx context.Context) C
 	return o
 }
 
-// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+// The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
 func (o ClientScopeOutput) ConsentScreenText() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.ConsentScreenText }).(pulumi.StringPtrOutput)
 }
@@ -278,6 +294,11 @@ func (o ClientScopeOutput) ConsentScreenText() pulumi.StringPtrOutput {
 // The description of this client scope in the GUI.
 func (o ClientScopeOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+func (o ClientScopeOutput) DisplayOnConsentScreen() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.BoolOutput { return v.DisplayOnConsentScreen }).(pulumi.BoolOutput)
 }
 
 // A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
@@ -298,6 +319,11 @@ func (o ClientScopeOutput) Name() pulumi.StringOutput {
 // The realm this client scope belongs to.
 func (o ClientScopeOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientScopeOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type ClientScopeArrayOutput struct{ *pulumi.OutputState }

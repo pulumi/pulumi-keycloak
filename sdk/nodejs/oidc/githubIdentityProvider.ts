@@ -93,6 +93,10 @@ export class GithubIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    declare public readonly allowAdminRoleMapping: pulumi.Output<boolean | undefined>;
+    /**
      * The GitHub API URL, defaults to `https://api.github.com`.
      */
     declare public readonly apiUrl: pulumi.Output<string | undefined>;
@@ -171,6 +175,10 @@ export class GithubIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     declare public readonly storeToken: pulumi.Output<boolean | undefined>;
@@ -198,6 +206,7 @@ export class GithubIdentityProvider extends pulumi.CustomResource {
             const state = argsOrState as GithubIdentityProviderState | undefined;
             resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["allowAdminRoleMapping"] = state?.allowAdminRoleMapping;
             resourceInputs["apiUrl"] = state?.apiUrl;
             resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
             resourceInputs["baseUrl"] = state?.baseUrl;
@@ -219,6 +228,7 @@ export class GithubIdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = state?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["storeToken"] = state?.storeToken;
             resourceInputs["syncMode"] = state?.syncMode;
             resourceInputs["trustEmail"] = state?.trustEmail;
@@ -230,11 +240,9 @@ export class GithubIdentityProvider extends pulumi.CustomResource {
             if (args?.clientSecret === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["allowAdminRoleMapping"] = args?.allowAdminRoleMapping;
             resourceInputs["apiUrl"] = args?.apiUrl;
             resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
             resourceInputs["baseUrl"] = args?.baseUrl;
@@ -255,6 +263,7 @@ export class GithubIdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = args?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["storeToken"] = args?.storeToken;
             resourceInputs["syncMode"] = args?.syncMode;
             resourceInputs["trustEmail"] = args?.trustEmail;
@@ -279,6 +288,10 @@ export interface GithubIdentityProviderState {
      * The alias for the GitHub identity provider.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * The GitHub API URL, defaults to `https://api.github.com`.
      */
@@ -358,6 +371,10 @@ export interface GithubIdentityProviderState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     storeToken?: pulumi.Input<boolean | undefined>;
@@ -383,6 +400,10 @@ export interface GithubIdentityProviderArgs {
      * The alias for the GitHub identity provider.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * The GitHub API URL, defaults to `https://api.github.com`.
      */
@@ -456,7 +477,11 @@ export interface GithubIdentityProviderArgs {
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */

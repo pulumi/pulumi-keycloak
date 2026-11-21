@@ -122,6 +122,7 @@ export function getClientAuthorizationScope(args: GetClientAuthorizationScopeArg
     return pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", {
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "resourceServerId": args.resourceServerId,
     }, opts);
 }
@@ -137,7 +138,8 @@ export interface GetClientAuthorizationScopeArgs {
     /**
      * The realm this authorization scope exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
     /**
      * The ID of the resource server (client) this authorization scope belongs to.
      */
@@ -162,6 +164,7 @@ export interface GetClientAuthorizationScopeResult {
     readonly id: string;
     readonly name: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly resourceServerId: string;
 }
 /**
@@ -282,6 +285,7 @@ export function getClientAuthorizationScopeOutput(args: GetClientAuthorizationSc
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientAuthorizationScope:getClientAuthorizationScope", {
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "resourceServerId": args.resourceServerId,
     }, opts);
 }
@@ -297,7 +301,8 @@ export interface GetClientAuthorizationScopeOutputArgs {
     /**
      * The realm this authorization scope exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the resource server (client) this authorization scope belongs to.
      */

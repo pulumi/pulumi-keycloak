@@ -94,6 +94,13 @@ export class ExecutionConfig extends pulumi.CustomResource {
     declare public readonly alias: pulumi.Output<string>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     *
+     * > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+     * as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+     * properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+     * the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+     * Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+     * After an import, the masked value is stored in state until the next apply.
      */
     declare public readonly config: pulumi.Output<{[key: string]: string}>;
     /**
@@ -104,6 +111,10 @@ export class ExecutionConfig extends pulumi.CustomResource {
      * The realm the authentication execution exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a ExecutionConfig resource with the given unique name, arguments, and options.
@@ -122,6 +133,7 @@ export class ExecutionConfig extends pulumi.CustomResource {
             resourceInputs["config"] = state?.config;
             resourceInputs["executionId"] = state?.executionId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as ExecutionConfigArgs | undefined;
             if (args?.config === undefined && !opts.urn) {
@@ -130,13 +142,11 @@ export class ExecutionConfig extends pulumi.CustomResource {
             if (args?.executionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'executionId'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["alias"] = args?.alias;
             resourceInputs["config"] = args?.config;
             resourceInputs["executionId"] = args?.executionId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ExecutionConfig.__pulumiType, name, resourceInputs, opts);
@@ -153,6 +163,13 @@ export interface ExecutionConfigState {
     alias?: pulumi.Input<string | undefined>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     *
+     * > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+     * as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+     * properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+     * the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+     * Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+     * After an import, the masked value is stored in state until the next apply.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -163,6 +180,10 @@ export interface ExecutionConfigState {
      * The realm the authentication execution exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -175,6 +196,13 @@ export interface ExecutionConfigArgs {
     alias?: pulumi.Input<string | undefined>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     *
+     * > Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+     * as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+     * properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+     * the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+     * Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+     * After an import, the masked value is stored in state until the next apply.
      */
     config: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -184,5 +212,9 @@ export interface ExecutionConfigArgs {
     /**
      * The realm the authentication execution exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

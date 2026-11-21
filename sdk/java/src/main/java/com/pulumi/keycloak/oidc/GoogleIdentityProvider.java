@@ -124,6 +124,20 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
         return this.alias;
     }
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    @Export(name="allowAdminRoleMapping", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    public Output<Optional<Boolean>> allowAdminRoleMapping() {
+        return Codegen.optional(this.allowAdminRoleMapping);
+    }
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -400,6 +414,20 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
      */
     public Output<String> realm() {
         return this.realm;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
     /**
      * Sets the &#34;accessType&#34; query parameter to &#34;offline&#34; when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.

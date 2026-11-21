@@ -100,15 +100,22 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
      * The realm id.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm id.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetClientArgs() {}
@@ -125,6 +132,7 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
         this.oauth2JwtAuthorizationGrantEnabled = $.oauth2JwtAuthorizationGrantEnabled;
         this.oauth2JwtAuthorizationGrantIdp = $.oauth2JwtAuthorizationGrantIdp;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -253,7 +261,7 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -268,12 +276,18 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
             return realmId(Output.of(realmId));
         }
 
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public GetClientArgs build() {
             if ($.clientId == null) {
                 throw new MissingRequiredPropertyException("GetClientArgs", "clientId");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetClientArgs", "realmId");
             }
             return $;
         }

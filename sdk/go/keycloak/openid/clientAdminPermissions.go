@@ -158,6 +158,8 @@ type ClientAdminPermissions struct {
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `map-roles-client-scope`, `map-roles-composite`.
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 }
@@ -169,9 +171,6 @@ func NewClientAdminPermissions(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.Scopes == nil {
 		return nil, errors.New("invalid value for required argument 'Scopes'")
 	}
@@ -216,6 +215,8 @@ type clientAdminPermissionsState struct {
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `map-roles-client-scope`, `map-roles-composite`.
 	Scopes []string `pulumi:"scopes"`
 }
@@ -239,6 +240,8 @@ type ClientAdminPermissionsState struct {
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `map-roles-client-scope`, `map-roles-composite`.
 	Scopes pulumi.StringArrayInput
 }
@@ -265,7 +268,9 @@ type clientAdminPermissionsArgs struct {
 	// Set of policy IDs to attach to the permission.
 	Policies []string `pulumi:"policies"`
 	// The realm in which to manage this permission.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `map-roles-client-scope`, `map-roles-composite`.
 	Scopes []string `pulumi:"scopes"`
 }
@@ -283,7 +288,9 @@ type ClientAdminPermissionsArgs struct {
 	// Set of policy IDs to attach to the permission.
 	Policies pulumi.StringArrayInput
 	// The realm in which to manage this permission.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `map-roles-client-scope`, `map-roles-composite`.
 	Scopes pulumi.StringArrayInput
 }
@@ -418,6 +425,11 @@ func (o ClientAdminPermissionsOutput) Policies() pulumi.StringArrayOutput {
 // The realm in which to manage this permission.
 func (o ClientAdminPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientAdminPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientAdminPermissionsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAdminPermissions) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `map-roles-client-scope`, `map-roles-composite`.

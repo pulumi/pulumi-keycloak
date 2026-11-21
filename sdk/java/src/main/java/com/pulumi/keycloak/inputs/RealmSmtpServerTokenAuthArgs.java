@@ -47,12 +47,16 @@ public final class RealmSmtpServerTokenAuthArgs extends com.pulumi.resources.Res
     /**
      * The auth token scope.
      * 
+     * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
+     * 
      */
     @Import(name="scope", required=true)
     private Output<String> scope;
 
     /**
      * @return The auth token scope.
+     * 
+     * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
      * 
      */
     public Output<String> scope() {
@@ -154,6 +158,8 @@ public final class RealmSmtpServerTokenAuthArgs extends com.pulumi.resources.Res
         /**
          * @param scope The auth token scope.
          * 
+         * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
+         * 
          * @return builder
          * 
          */
@@ -164,6 +170,8 @@ public final class RealmSmtpServerTokenAuthArgs extends com.pulumi.resources.Res
 
         /**
          * @param scope The auth token scope.
+         * 
+         * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
          * 
          * @return builder
          * 

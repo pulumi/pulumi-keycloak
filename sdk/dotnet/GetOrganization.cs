@@ -153,8 +153,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm this organization exists within.
         /// </summary>
-        [Input("realm", required: true)]
-        public string Realm { get; set; } = null!;
+        [Input("realm")]
+        public string? Realm { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetOrganizationArgs()
         {
@@ -173,8 +176,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm this organization exists within.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetOrganizationInvokeArgs()
         {
@@ -197,6 +203,7 @@ namespace Pulumi.Keycloak
         public readonly string Id;
         public readonly string Name;
         public readonly string Realm;
+        public readonly string RealmInternalId;
         public readonly string RedirectUrl;
 
         [OutputConstructor]
@@ -217,6 +224,8 @@ namespace Pulumi.Keycloak
 
             string realm,
 
+            string realmInternalId,
+
             string redirectUrl)
         {
             Alias = alias;
@@ -227,6 +236,7 @@ namespace Pulumi.Keycloak
             Id = id;
             Name = name;
             Realm = realm;
+            RealmInternalId = realmInternalId;
             RedirectUrl = redirectUrl;
         }
     }

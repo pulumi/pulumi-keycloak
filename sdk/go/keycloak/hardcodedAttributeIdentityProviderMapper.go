@@ -83,6 +83,8 @@ type HardcodedAttributeIdentityProviderMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Is Attribute related to a User Session.
 	UserSession pulumi.BoolOutput `pulumi:"userSession"`
 }
@@ -96,9 +98,6 @@ func NewHardcodedAttributeIdentityProviderMapper(ctx *pulumi.Context,
 
 	if args.IdentityProviderAlias == nil {
 		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	if args.UserSession == nil {
 		return nil, errors.New("invalid value for required argument 'UserSession'")
@@ -138,6 +137,8 @@ type hardcodedAttributeIdentityProviderMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Is Attribute related to a User Session.
 	UserSession *bool `pulumi:"userSession"`
 }
@@ -155,6 +156,8 @@ type HardcodedAttributeIdentityProviderMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Is Attribute related to a User Session.
 	UserSession pulumi.BoolPtrInput
 }
@@ -181,7 +184,9 @@ type hardcodedAttributeIdentityProviderMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Is Attribute related to a User Session.
 	UserSession bool `pulumi:"userSession"`
 }
@@ -199,7 +204,9 @@ type HardcodedAttributeIdentityProviderMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
 	// The realm ID that this mapper will exist in.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Is Attribute related to a User Session.
 	UserSession pulumi.BoolInput
 }
@@ -319,6 +326,11 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) Name() pulumi.StringOutp
 // The realm ID that this mapper will exist in.
 func (o HardcodedAttributeIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o HardcodedAttributeIdentityProviderMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Is Attribute related to a User Session.

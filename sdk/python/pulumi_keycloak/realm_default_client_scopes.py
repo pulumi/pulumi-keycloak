@@ -20,15 +20,20 @@ __all__ = ['RealmDefaultClientScopesArgs', 'RealmDefaultClientScopes']
 class RealmDefaultClientScopesArgs:
     def __init__(__self__, *,
                  default_scopes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 realm_id: pulumi.Input[_builtins.str]):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmDefaultClientScopes resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client and scopes exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "default_scopes", default_scopes)
-        pulumi.set(__self__, "realm_id", realm_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="defaultScopes")
@@ -44,32 +49,48 @@ class RealmDefaultClientScopesArgs:
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this client and scopes exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
 
 @pulumi.input_type
 class _RealmDefaultClientScopesState:
     def __init__(__self__, *,
                  default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmDefaultClientScopes resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client and scopes exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if default_scopes is not None:
             pulumi.set(__self__, "default_scopes", default_scopes)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="defaultScopes")
@@ -95,6 +116,18 @@ class _RealmDefaultClientScopesState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes")
 class RealmDefaultClientScopes(pulumi.CustomResource):
@@ -104,8 +137,11 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
+        > **WARNING:** This resource is deprecated and will be removed in a future major version. Use `ClientScopeAssignments` with `default_scopes` and `optional_scopes` instead.
+
         Allows you to manage the set of default client scopes for a Keycloak realm, which are used when new clients are created.
 
         Note that this resource attempts to be an **authoritative** source over the default client scopes for a Keycloak realm,
@@ -152,6 +188,7 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client and scopes exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -160,6 +197,8 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
                  args: RealmDefaultClientScopesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **WARNING:** This resource is deprecated and will be removed in a future major version. Use `ClientScopeAssignments` with `default_scopes` and `optional_scopes` instead.
+
         Allows you to manage the set of default client scopes for a Keycloak realm, which are used when new clients are created.
 
         Note that this resource attempts to be an **authoritative** source over the default client scopes for a Keycloak realm,
@@ -219,6 +258,7 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -231,9 +271,8 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
             if default_scopes is None and not opts.urn:
                 raise TypeError("Missing required property 'default_scopes'")
             __props__.__dict__["default_scopes"] = default_scopes
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(RealmDefaultClientScopes, __self__).__init__(
             'keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes',
             resource_name,
@@ -245,7 +284,8 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmDefaultClientScopes':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmDefaultClientScopes':
         """
         Get an existing RealmDefaultClientScopes resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -255,6 +295,7 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client and scopes exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -262,16 +303,19 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
 
         __props__.__dict__["default_scopes"] = default_scopes
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RealmDefaultClientScopes(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             default_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["defaultScopes"] = default_scopes
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -289,4 +333,12 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
         The realm this client and scopes exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

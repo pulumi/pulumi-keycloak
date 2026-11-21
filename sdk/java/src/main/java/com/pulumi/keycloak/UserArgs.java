@@ -160,15 +160,30 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
      * The realm this user belongs to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this user belongs to.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -214,6 +229,7 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         this.initialPassword = $.initialPassword;
         this.lastName = $.lastName;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.requiredActions = $.requiredActions;
         this.username = $.username;
     }
@@ -441,7 +457,7 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -454,6 +470,27 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -509,9 +546,6 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public UserArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("UserArgs", "realmId");
-            }
             if ($.username == null) {
                 throw new MissingRequiredPropertyException("UserArgs", "username");
             }

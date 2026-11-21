@@ -19,135 +19,16 @@ __all__ = ['RoleArgs', 'Role']
 @pulumi.input_type
 class RoleArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 composite_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 description: pulumi.Input[Optional[_builtins.str]] = None,
-                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a Role resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        :param pulumi.Input[_builtins.str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
-        :param pulumi.Input[_builtins.str] description: The description of the role
-        :param pulumi.Input[_builtins.bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
-        :param pulumi.Input[_builtins.str] name: The name of the role
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
-        if client_id is not None:
-            pulumi.set(__self__, "client_id", client_id)
-        if composite_roles is not None:
-            pulumi.set(__self__, "composite_roles", composite_roles)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if import_ is not None:
-            pulumi.set(__self__, "import_", import_)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this role exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
-        """
-        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        """
-        return pulumi.get(self, "attributes")
-
-    @attributes.setter
-    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "attributes", value)
-
-    @_builtins.property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        When specified, this role will be created as a client role attached to the client with the provided ID
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="compositeRoles")
-    def composite_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
-        """
-        return pulumi.get(self, "composite_roles")
-
-    @composite_roles.setter
-    def composite_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "composite_roles", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The description of the role
-        """
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "description", value)
-
-    @_builtins.property
-    @pulumi.getter(name="import")
-    def import_(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
-        """
-        return pulumi.get(self, "import_")
-
-    @import_.setter
-    def import_(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "import_", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The name of the role
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _RoleState:
-    def __init__(__self__, *,
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  composite_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  import_: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Role resources.
+        The set of arguments for constructing a Role resource.
 
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
@@ -156,6 +37,7 @@ class _RoleState:
         :param pulumi.Input[_builtins.bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[_builtins.str] name: The name of the role
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
@@ -171,6 +53,8 @@ class _RoleState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -256,6 +140,155 @@ class _RoleState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _RoleState:
+    def __init__(__self__, *,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 composite_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 import_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering Role resources.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[_builtins.str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[_builtins.str] description: The description of the role
+        :param pulumi.Input[_builtins.bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        :param pulumi.Input[_builtins.str] name: The name of the role
+        :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if composite_roles is not None:
+            pulumi.set(__self__, "composite_roles", composite_roles)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "attributes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        When specified, this role will be created as a client role attached to the client with the provided ID
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="compositeRoles")
+    def composite_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        """
+        return pulumi.get(self, "composite_roles")
+
+    @composite_roles.setter
+    def composite_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "composite_roles", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The description of the role
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="import")
+    def import_(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "import_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the role
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this role exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/role:Role")
 class Role(pulumi.CustomResource):
@@ -270,6 +303,7 @@ class Role(pulumi.CustomResource):
                  import_: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing roles within Keycloak.
@@ -409,12 +443,13 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[_builtins.str] name: The name of the role
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RoleArgs,
+                 args: Optional[RoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing roles within Keycloak.
@@ -567,6 +602,7 @@ class Role(pulumi.CustomResource):
                  import_: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -582,9 +618,8 @@ class Role(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["import_"] = import_
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(Role, __self__).__init__(
             'keycloak:index/role:Role',
             resource_name,
@@ -601,7 +636,8 @@ class Role(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             import_: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Role':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Role':
         """
         Get an existing Role resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -616,6 +652,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[_builtins.str] name: The name of the role
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -628,6 +665,7 @@ class Role(pulumi.CustomResource):
         __props__.__dict__["import_"] = import_
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return Role(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -639,7 +677,8 @@ class Role(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             import_: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["attributes"] = attributes
         __props__["clientId"] = client_id
@@ -648,6 +687,7 @@ class Role(pulumi.CustomResource):
         __props__["import"] = import_
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/role:Role', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -705,4 +745,12 @@ class Role(pulumi.CustomResource):
         The realm this role exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

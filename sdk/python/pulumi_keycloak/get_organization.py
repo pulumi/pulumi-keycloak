@@ -27,7 +27,7 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, alias=None, attributes=None, description=None, domains=None, enabled=None, id=None, name=None, realm=None, redirect_url=None):
+    def __init__(__self__, alias=None, attributes=None, description=None, domains=None, enabled=None, id=None, name=None, realm=None, realm_internal_id=None, redirect_url=None):
         if alias and not isinstance(alias, str):
             raise TypeError("Expected argument 'alias' to be a str")
         pulumi.set(__self__, "alias", alias)
@@ -52,6 +52,9 @@ class GetOrganizationResult:
         if realm and not isinstance(realm, str):
             raise TypeError("Expected argument 'realm' to be a str")
         pulumi.set(__self__, "realm", realm)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if redirect_url and not isinstance(redirect_url, str):
             raise TypeError("Expected argument 'redirect_url' to be a str")
         pulumi.set(__self__, "redirect_url", redirect_url)
@@ -100,6 +103,11 @@ class GetOrganizationResult:
         return pulumi.get(self, "realm")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="redirectUrl")
     def redirect_url(self) -> _builtins.str:
         return pulumi.get(self, "redirect_url")
@@ -119,11 +127,13 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             id=self.id,
             name=self.name,
             realm=self.realm,
+            realm_internal_id=self.realm_internal_id,
             redirect_url=self.redirect_url)
 
 
 def get_organization(name: Optional[_builtins.str] = None,
                      realm: Optional[_builtins.str] = None,
+                     realm_internal_id: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     This data source can be used to fetch properties of a Keycloak organization for
@@ -156,6 +166,7 @@ def get_organization(name: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realm'] = realm
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult).value
 
@@ -168,9 +179,11 @@ def get_organization(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         realm=pulumi.get(__ret__, 'realm'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         redirect_url=pulumi.get(__ret__, 'redirect_url'))
 def get_organization_output(name: pulumi.Input[Optional[_builtins.str]] = None,
-                            realm: pulumi.Input[Optional[_builtins.str]] = None,
+                            realm: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     This data source can be used to fetch properties of a Keycloak organization for
@@ -203,6 +216,7 @@ def get_organization_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realm'] = realm
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
@@ -214,4 +228,5 @@ def get_organization_output(name: pulumi.Input[Optional[_builtins.str]] = None,
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         realm=pulumi.get(__response__, 'realm'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         redirect_url=pulumi.get(__response__, 'redirect_url')))

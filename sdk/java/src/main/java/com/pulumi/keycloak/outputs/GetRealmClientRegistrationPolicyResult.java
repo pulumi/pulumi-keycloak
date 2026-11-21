@@ -24,6 +24,7 @@ public final class GetRealmClientRegistrationPolicyResult {
     private String name;
     private String providerId;
     private String realmId;
+    private String realmInternalId;
     private String subType;
 
     private GetRealmClientRegistrationPolicyResult() {}
@@ -50,6 +51,9 @@ public final class GetRealmClientRegistrationPolicyResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public String subType() {
         return this.subType;
     }
@@ -68,6 +72,7 @@ public final class GetRealmClientRegistrationPolicyResult {
         private String name;
         private String providerId;
         private String realmId;
+        private String realmInternalId;
         private String subType;
         public Builder() {}
         public Builder(GetRealmClientRegistrationPolicyResult defaults) {
@@ -77,6 +82,7 @@ public final class GetRealmClientRegistrationPolicyResult {
     	      this.name = defaults.name;
     	      this.providerId = defaults.providerId;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.subType = defaults.subType;
         }
 
@@ -121,6 +127,14 @@ public final class GetRealmClientRegistrationPolicyResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetRealmClientRegistrationPolicyResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder subType(String subType) {
             if (subType == null) {
               throw new MissingRequiredPropertyException("GetRealmClientRegistrationPolicyResult", "subType");
@@ -135,6 +149,7 @@ public final class GetRealmClientRegistrationPolicyResult {
             _resultValue.name = name;
             _resultValue.providerId = providerId;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.subType = subType;
             return _resultValue;
         }

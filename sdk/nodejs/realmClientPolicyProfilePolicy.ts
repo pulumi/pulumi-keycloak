@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * const policy = new keycloak.RealmClientPolicyProfilePolicy("policy", {
- *     name: "my-profile",
+ *     name: "my-policy",
  *     realmId: realm.id,
  *     description: "Some desc",
  *     profiles: [profile.name],
@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  *         {
  *             name: "client-attributes",
  *             configuration: {
- *                 "is-negative-logic": "false",
+ *                 is_negative_logic: "false",
  *                 attributes: JSON.stringify([{
  *                     key: "test-key",
  *                     value: "test-value",
@@ -65,18 +65,29 @@ import * as utilities from "./utilities";
  *
  * ### Attribute Arguments
  *
- * - `name` - (Required) The name of the attribute.
+ * - `name` - (Required) The name of the policy.
  * - `realmId` - (Required) The realm id.
+ * - `description` - (Optional) The description of the policy.
+ * - `enabled` - (Optional) When `false`, the policy is not applied. Defaults to `true`.
+ * - `profiles` - (Required) The names of the client policy profiles that are applied when the conditions of this policy match.
  * - `condition` - (Optional) An ordered list of condition
  *
  * #### Condition Arguments
  *
- * - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+ * - `name` - (Required) The name of the condition. NOTE! The condition needs to exist
  * - `configuration` - (Optional) - A map of configuration values
  *
  * ## Import
  *
- * This resource currently does not support importing.
+ * This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client policies, the name is the identifier within the realm.
+ *
+ * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy policy my-realm/my-policy
+ * ```
+ *
+ * Note: values in `configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `"true"`, `"false"` or `"5"`.
  */
 export class RealmClientPolicyProfilePolicy extends pulumi.CustomResource {
     /**
@@ -123,6 +134,10 @@ export class RealmClientPolicyProfilePolicy extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
     declare public readonly profiles: pulumi.Output<string[]>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RealmClientPolicyProfilePolicy resource with the given unique name, arguments, and options.
@@ -143,13 +158,11 @@ export class RealmClientPolicyProfilePolicy extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["profiles"] = state?.profiles;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RealmClientPolicyProfilePolicyArgs | undefined;
             if (args?.profiles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'profiles'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["conditions"] = args?.conditions;
             resourceInputs["description"] = args?.description;
@@ -157,6 +170,7 @@ export class RealmClientPolicyProfilePolicy extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["profiles"] = args?.profiles;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmClientPolicyProfilePolicy.__pulumiType, name, resourceInputs, opts);
@@ -173,6 +187,10 @@ export interface RealmClientPolicyProfilePolicyState {
     name?: pulumi.Input<string | undefined>;
     profiles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -184,5 +202,9 @@ export interface RealmClientPolicyProfilePolicyArgs {
     enabled?: pulumi.Input<boolean | undefined>;
     name?: pulumi.Input<string | undefined>;
     profiles: pulumi.Input<pulumi.Input<string>[]>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

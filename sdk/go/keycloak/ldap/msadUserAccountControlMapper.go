@@ -88,6 +88,8 @@ import (
 type MsadUserAccountControlMapper struct {
 	pulumi.CustomResourceState
 
+	// When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+	AlwaysReadEnabledValueFromLdap pulumi.BoolPtrOutput `pulumi:"alwaysReadEnabledValueFromLdap"`
 	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled pulumi.BoolPtrOutput `pulumi:"ldapPasswordPolicyHintsEnabled"`
 	// The ID of the LDAP user federation provider to attach this mapper to.
@@ -96,6 +98,8 @@ type MsadUserAccountControlMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewMsadUserAccountControlMapper registers a new resource with the given unique name, arguments, and options.
@@ -107,9 +111,6 @@ func NewMsadUserAccountControlMapper(ctx *pulumi.Context,
 
 	if args.LdapUserFederationId == nil {
 		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MsadUserAccountControlMapper
@@ -134,6 +135,8 @@ func GetMsadUserAccountControlMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
 type msadUserAccountControlMapperState struct {
+	// When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+	AlwaysReadEnabledValueFromLdap *bool `pulumi:"alwaysReadEnabledValueFromLdap"`
 	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled *bool `pulumi:"ldapPasswordPolicyHintsEnabled"`
 	// The ID of the LDAP user federation provider to attach this mapper to.
@@ -142,9 +145,13 @@ type msadUserAccountControlMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type MsadUserAccountControlMapperState struct {
+	// When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+	AlwaysReadEnabledValueFromLdap pulumi.BoolPtrInput
 	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled pulumi.BoolPtrInput
 	// The ID of the LDAP user federation provider to attach this mapper to.
@@ -153,6 +160,8 @@ type MsadUserAccountControlMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (MsadUserAccountControlMapperState) ElementType() reflect.Type {
@@ -166,6 +175,8 @@ func MsadUserAccountControlMapperExists(ctx *pulumi.Context,
 }
 
 type msadUserAccountControlMapperArgs struct {
+	// When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+	AlwaysReadEnabledValueFromLdap *bool `pulumi:"alwaysReadEnabledValueFromLdap"`
 	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled *bool `pulumi:"ldapPasswordPolicyHintsEnabled"`
 	// The ID of the LDAP user federation provider to attach this mapper to.
@@ -173,11 +184,15 @@ type msadUserAccountControlMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a MsadUserAccountControlMapper resource.
 type MsadUserAccountControlMapperArgs struct {
+	// When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+	AlwaysReadEnabledValueFromLdap pulumi.BoolPtrInput
 	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled pulumi.BoolPtrInput
 	// The ID of the LDAP user federation provider to attach this mapper to.
@@ -185,7 +200,9 @@ type MsadUserAccountControlMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (MsadUserAccountControlMapperArgs) ElementType() reflect.Type {
@@ -275,6 +292,11 @@ func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutput
 	return o
 }
 
+// When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+func (o MsadUserAccountControlMapperOutput) AlwaysReadEnabledValueFromLdap() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.BoolPtrOutput { return v.AlwaysReadEnabledValueFromLdap }).(pulumi.BoolPtrOutput)
+}
+
 // When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 func (o MsadUserAccountControlMapperOutput) LdapPasswordPolicyHintsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.BoolPtrOutput { return v.LdapPasswordPolicyHintsEnabled }).(pulumi.BoolPtrOutput)
@@ -293,6 +315,11 @@ func (o MsadUserAccountControlMapperOutput) Name() pulumi.StringOutput {
 // The realm that this LDAP mapper will exist in.
 func (o MsadUserAccountControlMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o MsadUserAccountControlMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type MsadUserAccountControlMapperArrayOutput struct{ *pulumi.OutputState }

@@ -21,67 +21,15 @@ __all__ = ['RealmClientPolicyProfileArgs', 'RealmClientPolicyProfile']
 @pulumi.input_type
 class RealmClientPolicyProfileArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 description: pulumi.Input[Optional[_builtins.str]] = None,
-                 executors: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a RealmClientPolicyProfile resource.
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if executors is not None:
-            pulumi.set(__self__, "executors", executors)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "description", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def executors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]:
-        return pulumi.get(self, "executors")
-
-    @executors.setter
-    def executors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]):
-        pulumi.set(self, "executors", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _RealmClientPolicyProfileState:
-    def __init__(__self__, *,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  executors: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering RealmClientPolicyProfile resources.
+        The set of arguments for constructing a RealmClientPolicyProfile resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -91,6 +39,8 @@ class _RealmClientPolicyProfileState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -128,6 +78,91 @@ class _RealmClientPolicyProfileState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _RealmClientPolicyProfileState:
+    def __init__(__self__, *,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 executors: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering RealmClientPolicyProfile resources.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if executors is not None:
+            pulumi.set(__self__, "executors", executors)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def executors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]:
+        return pulumi.get(self, "executors")
+
+    @executors.setter
+    def executors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RealmClientPolicyProfileExecutorArgs']]]]):
+        pulumi.set(self, "executors", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile")
 class RealmClientPolicyProfile(pulumi.CustomResource):
@@ -139,6 +174,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
                  executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for managing Realm Client Policy Profiles.
@@ -168,8 +204,9 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
 
         ### Attribute Arguments
 
-        - `name` - (Required) The name of the attribute.
+        - `name` - (Required) The name of the profile.
         - `realm_id` - (Required) The realm id.
+        - `description` - (Optional) The description of the profile.
         - `executor` - (Optional) An ordered list of executors
 
         #### Executor Arguments
@@ -179,17 +216,26 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
 
         ## Import
 
-        This resource currently does not support importing.
+        This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client profiles, the name is the identifier within the realm.
+
+        Example:
+
+        ```sh
+        $ pulumi import keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile profile my-realm/my-profile
+        ```
+
+        Note: values in `configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `"true"`, `"false"` or `"5"`.
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmClientPolicyProfileArgs,
+                 args: Optional[RealmClientPolicyProfileArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for managing Realm Client Policy Profiles.
@@ -219,8 +265,9 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
 
         ### Attribute Arguments
 
-        - `name` - (Required) The name of the attribute.
+        - `name` - (Required) The name of the profile.
         - `realm_id` - (Required) The realm id.
+        - `description` - (Optional) The description of the profile.
         - `executor` - (Optional) An ordered list of executors
 
         #### Executor Arguments
@@ -230,7 +277,15 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
 
         ## Import
 
-        This resource currently does not support importing.
+        This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client profiles, the name is the identifier within the realm.
+
+        Example:
+
+        ```sh
+        $ pulumi import keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile profile my-realm/my-profile
+        ```
+
+        Note: values in `configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `"true"`, `"false"` or `"5"`.
 
 
         :param str resource_name: The name of the resource.
@@ -252,6 +307,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
                  executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -264,9 +320,8 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["executors"] = executors
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(RealmClientPolicyProfile, __self__).__init__(
             'keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile',
             resource_name,
@@ -280,7 +335,8 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmClientPolicyProfile':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmClientPolicyProfile':
         """
         Get an existing RealmClientPolicyProfile resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -288,6 +344,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -297,6 +354,7 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
         __props__.__dict__["executors"] = executors
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RealmClientPolicyProfile(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -305,12 +363,14 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             executors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RealmClientPolicyProfileExecutorArgs', 'RealmClientPolicyProfileExecutorArgsDict', 'outputs.RealmClientPolicyProfileExecutor']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["description"] = description
         __props__["executors"] = executors
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -332,4 +392,12 @@ class RealmClientPolicyProfile(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

@@ -49,6 +49,7 @@ public final class GetClientDescriptionConverterResult {
     private List<GetClientDescriptionConverterProtocolMapper> protocolMappers;
     private Boolean publicClient;
     private String realmId;
+    private String realmInternalId;
     private List<String> redirectUris;
     private Map<String,String> registeredNodes;
     private String registrationAccessToken;
@@ -154,6 +155,9 @@ public final class GetClientDescriptionConverterResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public List<String> redirectUris() {
         return this.redirectUris;
     }
@@ -221,6 +225,7 @@ public final class GetClientDescriptionConverterResult {
         private List<GetClientDescriptionConverterProtocolMapper> protocolMappers;
         private Boolean publicClient;
         private String realmId;
+        private String realmInternalId;
         private List<String> redirectUris;
         private Map<String,String> registeredNodes;
         private String registrationAccessToken;
@@ -263,6 +268,7 @@ public final class GetClientDescriptionConverterResult {
     	      this.protocolMappers = defaults.protocolMappers;
     	      this.publicClient = defaults.publicClient;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.redirectUris = defaults.redirectUris;
     	      this.registeredNodes = defaults.registeredNodes;
     	      this.registrationAccessToken = defaults.registrationAccessToken;
@@ -527,6 +533,14 @@ public final class GetClientDescriptionConverterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder redirectUris(List<String> redirectUris) {
             if (redirectUris == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "redirectUris");
@@ -636,6 +650,7 @@ public final class GetClientDescriptionConverterResult {
             _resultValue.protocolMappers = protocolMappers;
             _resultValue.publicClient = publicClient;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.redirectUris = redirectUris;
             _resultValue.registeredNodes = registeredNodes;
             _resultValue.registrationAccessToken = registrationAccessToken;

@@ -285,6 +285,8 @@ type GenericClientRoleMapper struct {
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
 	// The realm this role mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The ID of the role to be added to this role mapper.
 	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
@@ -296,9 +298,6 @@ func NewGenericClientRoleMapper(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.RoleId == nil {
 		return nil, errors.New("invalid value for required argument 'RoleId'")
 	}
@@ -331,6 +330,8 @@ type genericClientRoleMapperState struct {
 	ClientScopeId *string `pulumi:"clientScopeId"`
 	// The realm this role mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the role to be added to this role mapper.
 	RoleId *string `pulumi:"roleId"`
 }
@@ -342,6 +343,8 @@ type GenericClientRoleMapperState struct {
 	ClientScopeId pulumi.StringPtrInput
 	// The realm this role mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The ID of the role to be added to this role mapper.
 	RoleId pulumi.StringPtrInput
 }
@@ -362,7 +365,9 @@ type genericClientRoleMapperArgs struct {
 	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId *string `pulumi:"clientScopeId"`
 	// The realm this role mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the role to be added to this role mapper.
 	RoleId string `pulumi:"roleId"`
 }
@@ -374,7 +379,9 @@ type GenericClientRoleMapperArgs struct {
 	// The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrInput
 	// The realm this role mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The ID of the role to be added to this role mapper.
 	RoleId pulumi.StringInput
 }
@@ -479,6 +486,11 @@ func (o GenericClientRoleMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
 // The realm this role mapper exists within.
 func (o GenericClientRoleMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GenericClientRoleMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GenericClientRoleMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GenericClientRoleMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The ID of the role to be added to this role mapper.

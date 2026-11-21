@@ -60,6 +60,7 @@ export function getSubflow(args: GetSubflowArgs, opts?: pulumi.InvokeOptions): P
         "id": args.id,
         "parentFlowAlias": args.parentFlowAlias,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -84,7 +85,8 @@ export interface GetSubflowArgs {
     /**
      * The realm the authentication subflow exists in.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -114,6 +116,7 @@ export interface GetSubflowResult {
      */
     readonly providerId: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     /**
      * The requirement setting for the subflow. Can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`.
      */
@@ -175,6 +178,7 @@ export function getSubflowOutput(args: GetSubflowOutputArgs, opts?: pulumi.Invok
         "id": args.id,
         "parentFlowAlias": args.parentFlowAlias,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -199,5 +203,6 @@ export interface GetSubflowOutputArgs {
     /**
      * The realm the authentication subflow exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

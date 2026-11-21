@@ -142,6 +142,12 @@ namespace Pulumi.Keycloak.Authentication
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Flow resource with the given unique name, arguments, and options.
@@ -150,7 +156,7 @@ namespace Pulumi.Keycloak.Authentication
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Flow(string name, FlowArgs args, CustomResourceOptions? options = null)
+        public Flow(string name, FlowArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:authentication/flow:Flow", name, args ?? new FlowArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -215,8 +221,14 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The realm that the authentication flow exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public FlowArgs()
         {
@@ -255,6 +267,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public FlowState()
         {

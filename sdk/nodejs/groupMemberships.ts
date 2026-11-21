@@ -46,10 +46,60 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Organization Group Example
+ *
+ * Organization groups require Keycloak 26.6 or newer. Set `organizationsEnabled = true` on the
+ * `keycloak_realm.realm` resource before applying this example. This example uses the realm and user defined above.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const organization = new keycloak.Organization("organization", {
+ *     realm: realm.id,
+ *     name: "my-organization",
+ *     domains: [{
+ *         name: "organization.example.com",
+ *     }],
+ * });
+ * const organizationGroup = new keycloak.Group("organization_group", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     name: "my-organization-group",
+ * });
+ * const organizationMembers = new keycloak.OrganizationMemberships("organization_members", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     members: [user.username],
+ * });
+ * const organizationGroupMembers = new keycloak.GroupMemberships("organization_group_members", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     groupId: organizationGroup.id,
+ *     members: [user.username],
+ * }, {
+ *     dependsOn: [organizationMembers],
+ * });
+ * ```
+ *
  * ## Import
  *
- * This resource does not support import. Instead of importing, feel free to create this resource
- * as if it did not already exist on the server.
+ * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+ * organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+ *
+ * Examples:
+ *
+ * realm-level group
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/groupMemberships:GroupMemberships group_members my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+ * ```
+ *
+ * organization-scoped group
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/groupMemberships:GroupMemberships group_members my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+ * ```
  *
  * [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
  */
@@ -101,9 +151,17 @@ export class GroupMemberships extends pulumi.CustomResource {
      */
     declare public readonly members: pulumi.Output<string[]>;
     /**
+     * The ID of the organization this group belongs to. Omit for realm-level groups.
+     */
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
+    /**
      * The realm this group exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a GroupMemberships resource with the given unique name, arguments, and options.
@@ -120,18 +178,19 @@ export class GroupMemberships extends pulumi.CustomResource {
             const state = argsOrState as GroupMembershipsState | undefined;
             resourceInputs["groupId"] = state?.groupId;
             resourceInputs["members"] = state?.members;
+            resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as GroupMembershipsArgs | undefined;
             if (args?.members === undefined && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["groupId"] = args?.groupId;
             resourceInputs["members"] = args?.members;
+            resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMemberships.__pulumiType, name, resourceInputs, opts);
@@ -151,9 +210,17 @@ export interface GroupMembershipsState {
      */
     members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * The ID of the organization this group belongs to. Omit for realm-level groups.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
+    /**
      * The realm this group exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -169,7 +236,15 @@ export interface GroupMembershipsArgs {
      */
     members: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The ID of the organization this group belongs to. Omit for realm-level groups.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
+    /**
      * The realm this group exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

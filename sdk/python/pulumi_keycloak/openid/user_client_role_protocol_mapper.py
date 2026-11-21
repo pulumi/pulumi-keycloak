@@ -20,7 +20,6 @@ __all__ = ['UserClientRoleProtocolMapperArgs', 'UserClientRoleProtocolMapper']
 class UserClientRoleProtocolMapperArgs:
     def __init__(__self__, *,
                  claim_name: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  add_to_access_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_id_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_to_userinfo: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -30,12 +29,13 @@ class UserClientRoleProtocolMapperArgs:
                  client_role_prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserClientRoleProtocolMapper resource.
 
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
@@ -46,9 +46,10 @@ class UserClientRoleProtocolMapperArgs:
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.bool] multivalued: Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "claim_name", claim_name)
-        pulumi.set(__self__, "realm_id", realm_id)
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
@@ -69,6 +70,10 @@ class UserClientRoleProtocolMapperArgs:
             pulumi.set(__self__, "multivalued", multivalued)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="claimName")
@@ -81,18 +86,6 @@ class UserClientRoleProtocolMapperArgs:
     @claim_name.setter
     def claim_name(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "claim_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this protocol mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
@@ -214,6 +207,30 @@ class UserClientRoleProtocolMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this protocol mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _UserClientRoleProtocolMapperState:
@@ -229,7 +246,8 @@ class _UserClientRoleProtocolMapperState:
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserClientRoleProtocolMapper resources.
 
@@ -245,6 +263,7 @@ class _UserClientRoleProtocolMapperState:
         :param pulumi.Input[_builtins.bool] multivalued: Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -270,6 +289,8 @@ class _UserClientRoleProtocolMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="addToAccessToken")
@@ -415,6 +436,18 @@ class _UserClientRoleProtocolMapperState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper")
 class UserClientRoleProtocolMapper(pulumi.CustomResource):
@@ -434,6 +467,7 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
                  multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing user client role protocol mappers within Keycloak.
@@ -527,6 +561,7 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] multivalued: Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -639,6 +674,7 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
                  multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -661,9 +697,8 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             __props__.__dict__["client_scope_id"] = client_scope_id
             __props__.__dict__["multivalued"] = multivalued
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(UserClientRoleProtocolMapper, __self__).__init__(
             'keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper',
             resource_name,
@@ -685,7 +720,8 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserClientRoleProtocolMapper':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'UserClientRoleProtocolMapper':
         """
         Get an existing UserClientRoleProtocolMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -705,6 +741,7 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] multivalued: Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -722,6 +759,7 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["multivalued"] = multivalued
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return UserClientRoleProtocolMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -738,7 +776,8 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             multivalued: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["addToAccessToken"] = add_to_access_token
         __props__["addToIdToken"] = add_to_id_token
@@ -752,6 +791,7 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         __props__["multivalued"] = multivalued
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -849,4 +889,12 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

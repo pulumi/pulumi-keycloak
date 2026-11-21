@@ -178,6 +178,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
         /// The built-in user property (such as email) to map a claim for.
         /// </summary>
         [Output("userProperty")]
@@ -280,8 +286,14 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm this protocol mapper exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The built-in user property (such as email) to map a claim for.
@@ -350,6 +362,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The built-in user property (such as email) to map a claim for.

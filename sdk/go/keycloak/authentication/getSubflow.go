@@ -82,7 +82,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			subflow, err := authentication.LookupSubflow(ctx, &authentication.LookupSubflowArgs{
-//				RealmId:         "my-realm-id",
+//				RealmId:         pulumi.StringRef("my-realm-id"),
 //				ParentFlowAlias: "browser",
 //				Id:              pulumi.StringRef("a1b2c3d4-e5f6-7890-abcd-ef1234567890"),
 //			}, nil)
@@ -116,7 +116,8 @@ type LookupSubflowArgs struct {
 	// The alias of the parent authentication flow.
 	ParentFlowAlias string `pulumi:"parentFlowAlias"`
 	// The realm the authentication subflow exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getSubflow.
@@ -132,8 +133,9 @@ type LookupSubflowResult struct {
 	// (Keycloak 25+) The priority of the subflow within its parent flow.
 	Priority int `pulumi:"priority"`
 	// The provider ID for the subflow (e.g., `basic-flow`, `form-flow`, or `client-flow`).
-	ProviderId string `pulumi:"providerId"`
-	RealmId    string `pulumi:"realmId"`
+	ProviderId      string `pulumi:"providerId"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 	// The requirement setting for the subflow. Can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`.
 	Requirement string `pulumi:"requirement"`
 }
@@ -154,7 +156,8 @@ type LookupSubflowOutputArgs struct {
 	// The alias of the parent authentication flow.
 	ParentFlowAlias pulumi.StringInput `pulumi:"parentFlowAlias"`
 	// The realm the authentication subflow exists in.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupSubflowOutputArgs) ElementType() reflect.Type {
@@ -211,6 +214,10 @@ func (o LookupSubflowResultOutput) ProviderId() pulumi.StringOutput {
 
 func (o LookupSubflowResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSubflowResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupSubflowResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSubflowResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The requirement setting for the subflow. Can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`.
