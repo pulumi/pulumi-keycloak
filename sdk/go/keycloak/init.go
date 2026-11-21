@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AttributeImporterIdentityProviderMapper{}
 	case "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper":
 		r = &AttributeToRoleIdentityMapper{}
+	case "keycloak:index/clientScopeAssignments:ClientScopeAssignments":
+		r = &ClientScopeAssignments{}
 	case "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping":
 		r = &CustomIdentityProviderMapping{}
 	case "keycloak:index/customUserFederation:CustomUserFederation":
@@ -67,6 +69,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KubernetesIdentityProvider{}
 	case "keycloak:index/organization:Organization":
 		r = &Organization{}
+	case "keycloak:index/organizationAdminPermissions:OrganizationAdminPermissions":
+		r = &OrganizationAdminPermissions{}
 	case "keycloak:index/organizationMemberships:OrganizationMemberships":
 		r = &OrganizationMemberships{}
 	case "keycloak:index/realm:Realm":
@@ -83,6 +87,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RealmEvents{}
 	case "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
 		r = &RealmKeystoreAesGenerated{}
+	case "keycloak:index/realmKeystoreCustom:RealmKeystoreCustom":
+		r = &RealmKeystoreCustom{}
+	case "keycloak:index/realmKeystoreEcdhGenerated:RealmKeystoreEcdhGenerated":
+		r = &RealmKeystoreEcdhGenerated{}
 	case "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated":
 		r = &RealmKeystoreEcdsaGenerated{}
 	case "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated":
@@ -162,6 +170,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/attributeToRoleIdentityMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/clientScopeAssignments",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -271,6 +284,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/organizationAdminPermissions",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/organizationMemberships",
 		&module{version},
 	)
@@ -307,6 +325,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/realmKeystoreAesGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmKeystoreEcdhGenerated",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

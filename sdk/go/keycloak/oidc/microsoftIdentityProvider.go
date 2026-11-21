@@ -75,6 +75,8 @@ type MicrosoftIdentityProvider struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias for the Microsoft identity provider.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrOutput `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
 	// The client or client identifier registered within the identity provider.
@@ -113,6 +115,8 @@ type MicrosoftIdentityProvider struct {
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -135,9 +139,6 @@ func NewMicrosoftIdentityProvider(ctx *pulumi.Context,
 	}
 	if args.ClientSecret == nil {
 		return nil, errors.New("invalid value for required argument 'ClientSecret'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
@@ -175,6 +176,8 @@ type microsoftIdentityProviderState struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias for the Microsoft identity provider.
 	Alias *string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// The client or client identifier registered within the identity provider.
@@ -213,6 +216,8 @@ type microsoftIdentityProviderState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -230,6 +235,8 @@ type MicrosoftIdentityProviderState struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias for the Microsoft identity provider.
 	Alias pulumi.StringPtrInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
@@ -268,6 +275,8 @@ type MicrosoftIdentityProviderState struct {
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -295,6 +304,8 @@ type microsoftIdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias for the Microsoft identity provider.
 	Alias *string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// The client or client identifier registered within the identity provider.
@@ -330,7 +341,9 @@ type microsoftIdentityProviderArgs struct {
 	// The ID of the identity provider to use. Defaults to `microsoft`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -349,6 +362,8 @@ type MicrosoftIdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias for the Microsoft identity provider.
 	Alias pulumi.StringPtrInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
@@ -384,7 +399,9 @@ type MicrosoftIdentityProviderArgs struct {
 	// The ID of the identity provider to use. Defaults to `microsoft`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -497,6 +514,11 @@ func (o MicrosoftIdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *MicrosoftIdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
+// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+func (o MicrosoftIdentityProviderOutput) AllowAdminRoleMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MicrosoftIdentityProvider) pulumi.BoolPtrOutput { return v.AllowAdminRoleMapping }).(pulumi.BoolPtrOutput)
+}
+
 // Enable/disable authenticate users by default.
 func (o MicrosoftIdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MicrosoftIdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
@@ -593,6 +615,11 @@ func (o MicrosoftIdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 // The name of the realm. This is unique across Keycloak.
 func (o MicrosoftIdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *MicrosoftIdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o MicrosoftIdentityProviderOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MicrosoftIdentityProvider) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // When `true`, tokens will be stored after authenticating users. Defaults to `true`.

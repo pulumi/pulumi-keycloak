@@ -105,6 +105,10 @@ export class DefaultRoles extends pulumi.CustomResource {
      * The realm this role exists within.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a DefaultRoles resource with the given unique name, arguments, and options.
@@ -121,16 +125,15 @@ export class DefaultRoles extends pulumi.CustomResource {
             const state = argsOrState as DefaultRolesState | undefined;
             resourceInputs["defaultRoles"] = state?.defaultRoles;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as DefaultRolesArgs | undefined;
             if (args?.defaultRoles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'defaultRoles'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["defaultRoles"] = args?.defaultRoles;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DefaultRoles.__pulumiType, name, resourceInputs, opts);
@@ -149,6 +152,10 @@ export interface DefaultRolesState {
      * The realm this role exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -162,5 +169,9 @@ export interface DefaultRolesArgs {
     /**
      * The realm this role exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

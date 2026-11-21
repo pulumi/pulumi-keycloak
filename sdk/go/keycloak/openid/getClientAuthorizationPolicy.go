@@ -105,7 +105,8 @@ type GetClientAuthorizationPolicyArgs struct {
 	// The name of the authorization policy.
 	Name string `pulumi:"name"`
 	// The realm this authorization policy exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the resource server this authorization policy is attached to.
 	ResourceServerId string `pulumi:"resourceServerId"`
 }
@@ -124,6 +125,7 @@ type GetClientAuthorizationPolicyResult struct {
 	// (Computed) The IDs of the policies that must be applied to scopes/resources for this policy/permission. Applies to policies and permissions.
 	Policies         []string `pulumi:"policies"`
 	RealmId          string   `pulumi:"realmId"`
+	RealmInternalId  string   `pulumi:"realmInternalId"`
 	ResourceServerId string   `pulumi:"resourceServerId"`
 	// (Computed) The IDs of the resources that this permission applies to. Applies to resource-based permissions.
 	Resources []string `pulumi:"resources"`
@@ -143,7 +145,8 @@ type GetClientAuthorizationPolicyOutputArgs struct {
 	// The name of the authorization policy.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm this authorization policy exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 	// The ID of the resource server this authorization policy is attached to.
 	ResourceServerId pulumi.StringInput `pulumi:"resourceServerId"`
 }
@@ -198,6 +201,10 @@ func (o GetClientAuthorizationPolicyResultOutput) Policies() pulumi.StringArrayO
 
 func (o GetClientAuthorizationPolicyResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientAuthorizationPolicyResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientAuthorizationPolicyResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o GetClientAuthorizationPolicyResultOutput) ResourceServerId() pulumi.StringOutput {

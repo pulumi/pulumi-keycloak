@@ -18,6 +18,7 @@ public final class GetClientInstallationProviderResult {
     private String id;
     private String providerId;
     private String realmId;
+    private String realmInternalId;
     /**
      * @return (Computed) The returned document needed for SAML installation.
      * 
@@ -41,6 +42,9 @@ public final class GetClientInstallationProviderResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     /**
      * @return (Computed) The returned document needed for SAML installation.
      * 
@@ -62,6 +66,7 @@ public final class GetClientInstallationProviderResult {
         private String id;
         private String providerId;
         private String realmId;
+        private String realmInternalId;
         private String value;
         public Builder() {}
         public Builder(GetClientInstallationProviderResult defaults) {
@@ -70,6 +75,7 @@ public final class GetClientInstallationProviderResult {
     	      this.id = defaults.id;
     	      this.providerId = defaults.providerId;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.value = defaults.value;
         }
 
@@ -106,6 +112,14 @@ public final class GetClientInstallationProviderResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder value(String value) {
             if (value == null) {
               throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "value");
@@ -119,6 +133,7 @@ public final class GetClientInstallationProviderResult {
             _resultValue.id = id;
             _resultValue.providerId = providerId;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.value = value;
             return _resultValue;
         }

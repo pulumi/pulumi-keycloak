@@ -121,10 +121,93 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Renaming a realm
+ * 
+ * Changing `realm` renames the realm in place instead of replacing it, so its data is kept. Keycloak addresses a realm by
+ * its name, and the resources inside it (clients, groups, roles, ...) refer to it with `realmId`, which is that name.
+ * Terraform sees `realmId` change on a rename and replaces those resources, which deletes their data.
+ * 
+ * When the `keycloak.Realm` resource has an `internalId` in state, the account that the provider authenticates with
+ * must be able to confirm that ID. If Keycloak hides it from that account, refreshing the realm fails, and with it
+ * `pulumi preview`, as well as updating and destroying the realm. Grant the provider&#39;s account the `view-realm` role
+ * on the realm again to continue. This prevents a reused name from pointing Terraform at a different realm. Imports
+ * and older state without a recorded ID use the stored name.
+ * 
+ * To prevent the resources inside a realm from being replaced when it is renamed, reference the realm by its internal
+ * id, which never changes, using `realmInternalId` instead of `realmId`:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.Group;
+ * import com.pulumi.keycloak.GroupArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .build());
+ * 
+ *         var group = new Group("group", GroupArgs.builder()
+ *             .realmInternalId(realm.internalId())
+ *             .name("group")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * `realmInternalId` is available on every resource and data source that has a `realmId` (or `realm`) argument, which then
+ * holds the current realm name as a read-only value. Set exactly one of them. Data sources should use it too: they are
+ * read while planning, when a renamed realm does not exist under its new name yet.
+ * 
+ * Looking up a realm by its internal id requires that the provider&#39;s account can see the realm&#39;s id. Keycloak hides it
+ * from accounts that have no `view-realm` role on that realm (for example one that only has `manage-clients`), so grant
+ * that role (the `realm-management` client role of the realm) before using `realmInternalId`. Configurations that keep using
+ * `realmId` are not affected. If the id is hidden, using `realmInternalId` fails with an error instead of replacing resources.
+ * Likewise, if the account loses `view-realm` later, resources whose state holds a `realmInternalId` fail with that error until the
+ * role is granted again: the provider will not guess a realm from a name that may have been reused.
+ * 
+ * Things to know about renaming:
+ * 
+ * - A realm keeps its internal id when it is renamed, and the name of a renamed realm can be reused by a new realm. The
+ *   exception is a realm whose internal id is its old name: realms created by earlier versions of this provider got the
+ *   realm name as internal id. After renaming such a realm from `a` to `b` its id `a` stays taken, so creating a new realm
+ *   called `a` with `internalId = &#34;a&#34;` fails. Leave `internalId` unset so that Keycloak generates a UUID.
+ * - Resources whose id contains the realm name (for example `keycloak.DefaultGroups`) get the new name in their id on
+ *   the next refresh.
+ * - A resource that still uses `realmId` (the realm name) depends on where the name comes from. If it comes from
+ *   `keycloak_realm.x.realm`, the plan of the rename already shows the new name, so the resource is replaced in that
+ *   apply. If it comes from `keycloak_realm.x.id`, the plan of the rename still shows the old name, because the id only
+ *   changes while the realm is updated. The next refresh then brings the resource up to date, so it is not replaced, but
+ *   adding or changing such a resource in the same apply as the rename fails with `Provider produced inconsistent final
+ *   plan`, after the realm has already been renamed. Use `realmInternalId` for all resources of a realm that you want to rename.
+ * 
+ * To migrate an existing configuration, first upgrade the provider and run `pulumi up`, or `pulumi up -refresh-only`;
+ * `realmInternalId` is filled in for existing resources. Then replace `realmId = keycloak_realm.realm.id` with
+ * `realmInternalId = keycloak_realm.realm.internal_id`, which shows no changes. After that, `realm` can be changed safely.
+ * 
  * ## Default Client Scopes
  * 
- * - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
- * - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
+ * - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `default client-scopes`. Alternatively, manage both assignment sets with `keycloak.ClientScopeAssignments` and omit both scope-assignment fields from this realm resource.
+ * - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `optional client-scopes`. Do not configure this field or `defaultDefaultClientScopes` alongside a realm-level `keycloak.ClientScopeAssignments` resource; they manage the same assignments and will conflict.
  * 
  * ## Import
  * 
@@ -374,14 +457,14 @@ public class Realm extends com.pulumi.resources.CustomResource {
         return this.firstBrokerLoginFlow;
     }
     /**
-     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm&#39;s name as internal ID.
      * 
      */
     @Export(name="internalId", refs={String.class}, tree="[0]")
     private Output<String> internalId;
 
     /**
-     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm&#39;s name as internal ID.
      * 
      */
     public Output<String> internalId() {
@@ -470,14 +553,14 @@ public class Realm extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.passwordPolicy);
     }
     /**
-     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `master` realm cannot be renamed.
      * 
      */
     @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
-     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `master` realm cannot be renamed.
      * 
      */
     public Output<String> realm() {

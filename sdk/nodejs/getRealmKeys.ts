@@ -39,11 +39,13 @@ import * as utilities from "./utilities";
  * export const certificate = realmKeys.apply(realmKeys => realmKeys.keys?.[0]?.certificate);
  * ```
  */
-export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
+export function getRealmKeys(args?: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getRealmKeys:getRealmKeys", {
         "algorithms": args.algorithms,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "statuses": args.statuses,
     }, opts);
 }
@@ -59,7 +61,8 @@ export interface GetRealmKeysArgs {
     /**
      * The realm from which the keys will be retrieved.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
     /**
      * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
      */
@@ -80,6 +83,7 @@ export interface GetRealmKeysResult {
      */
     readonly keys: outputs.GetRealmKeysKey[];
     readonly realmId: string;
+    readonly realmInternalId: string;
     /**
      * Key status (string)
      */
@@ -118,11 +122,13 @@ export interface GetRealmKeysResult {
  * export const certificate = realmKeys.apply(realmKeys => realmKeys.keys?.[0]?.certificate);
  * ```
  */
-export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRealmKeysResult> {
+export function getRealmKeysOutput(args?: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRealmKeysResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getRealmKeys:getRealmKeys", {
         "algorithms": args.algorithms,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "statuses": args.statuses,
     }, opts);
 }
@@ -138,7 +144,8 @@ export interface GetRealmKeysOutputArgs {
     /**
      * The realm from which the keys will be retrieved.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
      */

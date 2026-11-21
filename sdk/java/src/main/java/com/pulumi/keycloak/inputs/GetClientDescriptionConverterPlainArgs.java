@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetClientDescriptionConverterPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -32,15 +34,22 @@ public final class GetClientDescriptionConverterPlainArgs extends com.pulumi.res
      * The realm to use for the client description converter API call.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm to use for the client description converter API call.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetClientDescriptionConverterPlainArgs() {}
@@ -48,6 +57,7 @@ public final class GetClientDescriptionConverterPlainArgs extends com.pulumi.res
     private GetClientDescriptionConverterPlainArgs(GetClientDescriptionConverterPlainArgs $) {
         this.body = $.body;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -85,17 +95,19 @@ public final class GetClientDescriptionConverterPlainArgs extends com.pulumi.res
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
         public GetClientDescriptionConverterPlainArgs build() {
             if ($.body == null) {
                 throw new MissingRequiredPropertyException("GetClientDescriptionConverterPlainArgs", "body");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetClientDescriptionConverterPlainArgs", "realmId");
             }
             return $;
         }

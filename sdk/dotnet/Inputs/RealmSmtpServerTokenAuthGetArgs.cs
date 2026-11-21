@@ -36,6 +36,8 @@ namespace Pulumi.Keycloak.Inputs
 
         /// <summary>
         /// The auth token scope.
+        /// 
+        /// For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
         /// </summary>
         [Input("scope", required: true)]
         public Input<string> Scope { get; set; } = null!;

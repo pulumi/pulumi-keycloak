@@ -35,7 +35,7 @@ import (
 //			}
 //			// use the keycloak_user function to grab the admin user's ID
 //			defaultAdminUser, err := keycloak.GetUser(ctx, &keycloak.LookupUserArgs{
-//				RealmId:  masterRealm.Id,
+//				RealmId:  pulumi.StringRef(masterRealm.Id),
 //				Username: "keycloak",
 //			}, nil)
 //			if err != nil {
@@ -43,7 +43,7 @@ import (
 //			}
 //			// use the keycloak_user_realm_roles function to list role names
 //			userRealmRoles, err := keycloak.GetUserRealmRoles(ctx, &keycloak.GetUserRealmRolesArgs{
-//				RealmId: masterRealm.Id,
+//				RealmId: pulumi.StringRef(masterRealm.Id),
 //				UserId:  defaultAdminUser.Id,
 //			}, nil)
 //			if err != nil {
@@ -68,7 +68,8 @@ func GetUserRealmRoles(ctx *pulumi.Context, args *GetUserRealmRolesArgs, opts ..
 // A collection of arguments for invoking getUserRealmRoles.
 type GetUserRealmRolesArgs struct {
 	// The realm this user belongs to.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The ID of the user to query realm roles for.
 	UserId string `pulumi:"userId"`
 }
@@ -76,8 +77,9 @@ type GetUserRealmRolesArgs struct {
 // A collection of values returned by getUserRealmRoles.
 type GetUserRealmRolesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id      string `pulumi:"id"`
-	RealmId string `pulumi:"realmId"`
+	Id              string `pulumi:"id"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 	// (Computed) A list of realm roles that belong to this user.
 	RoleNames []string `pulumi:"roleNames"`
 	UserId    string   `pulumi:"userId"`
@@ -91,7 +93,8 @@ func GetUserRealmRolesOutput(ctx *pulumi.Context, args GetUserRealmRolesOutputAr
 // A collection of arguments for invoking getUserRealmRoles.
 type GetUserRealmRolesOutputArgs struct {
 	// The realm this user belongs to.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 	// The ID of the user to query realm roles for.
 	UserId pulumi.StringInput `pulumi:"userId"`
 }
@@ -122,6 +125,10 @@ func (o GetUserRealmRolesResultOutput) Id() pulumi.StringOutput {
 
 func (o GetUserRealmRolesResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserRealmRolesResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetUserRealmRolesResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserRealmRolesResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // (Computed) A list of realm roles that belong to this user.

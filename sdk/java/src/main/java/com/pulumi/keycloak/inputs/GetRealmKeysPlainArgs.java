@@ -4,7 +4,6 @@
 package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -35,15 +34,22 @@ public final class GetRealmKeysPlainArgs extends com.pulumi.resources.InvokeArgs
      * The realm from which the keys will be retrieved.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm from which the keys will be retrieved.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -66,6 +72,7 @@ public final class GetRealmKeysPlainArgs extends com.pulumi.resources.InvokeArgs
     private GetRealmKeysPlainArgs(GetRealmKeysPlainArgs $) {
         this.algorithms = $.algorithms;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.statuses = $.statuses;
     }
 
@@ -114,8 +121,13 @@ public final class GetRealmKeysPlainArgs extends com.pulumi.resources.InvokeArgs
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
@@ -141,9 +153,6 @@ public final class GetRealmKeysPlainArgs extends com.pulumi.resources.InvokeArgs
         }
 
         public GetRealmKeysPlainArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetRealmKeysPlainArgs", "realmId");
-            }
             return $;
         }
     }

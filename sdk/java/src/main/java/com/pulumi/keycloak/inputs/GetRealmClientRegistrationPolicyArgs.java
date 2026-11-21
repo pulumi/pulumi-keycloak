@@ -50,15 +50,22 @@ public final class GetRealmClientRegistrationPolicyArgs extends com.pulumi.resou
      * The realm the policy belongs to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm the policy belongs to.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -82,6 +89,7 @@ public final class GetRealmClientRegistrationPolicyArgs extends com.pulumi.resou
         this.name = $.name;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.subType = $.subType;
     }
 
@@ -151,7 +159,7 @@ public final class GetRealmClientRegistrationPolicyArgs extends com.pulumi.resou
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -164,6 +172,15 @@ public final class GetRealmClientRegistrationPolicyArgs extends com.pulumi.resou
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -190,9 +207,6 @@ public final class GetRealmClientRegistrationPolicyArgs extends com.pulumi.resou
         public GetRealmClientRegistrationPolicyArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetRealmClientRegistrationPolicyArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetRealmClientRegistrationPolicyArgs", "realmId");
             }
             return $;
         }

@@ -151,6 +151,8 @@ type ClientTimePolicy struct {
 	NotBefore        pulumi.StringPtrOutput `pulumi:"notBefore"`
 	NotOnOrAfter     pulumi.StringPtrOutput `pulumi:"notOnOrAfter"`
 	RealmId          pulumi.StringOutput    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput    `pulumi:"realmInternalId"`
 	ResourceServerId pulumi.StringOutput    `pulumi:"resourceServerId"`
 	Year             pulumi.StringPtrOutput `pulumi:"year"`
 	YearEnd          pulumi.StringPtrOutput `pulumi:"yearEnd"`
@@ -165,9 +167,6 @@ func NewClientTimePolicy(ctx *pulumi.Context,
 
 	if args.DecisionStrategy == nil {
 		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -210,6 +209,8 @@ type clientTimePolicyState struct {
 	NotBefore        *string `pulumi:"notBefore"`
 	NotOnOrAfter     *string `pulumi:"notOnOrAfter"`
 	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
 	ResourceServerId *string `pulumi:"resourceServerId"`
 	Year             *string `pulumi:"year"`
 	YearEnd          *string `pulumi:"yearEnd"`
@@ -231,6 +232,8 @@ type ClientTimePolicyState struct {
 	NotBefore        pulumi.StringPtrInput
 	NotOnOrAfter     pulumi.StringPtrInput
 	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 	Year             pulumi.StringPtrInput
 	YearEnd          pulumi.StringPtrInput
@@ -261,7 +264,9 @@ type clientTimePolicyArgs struct {
 	Name             *string `pulumi:"name"`
 	NotBefore        *string `pulumi:"notBefore"`
 	NotOnOrAfter     *string `pulumi:"notOnOrAfter"`
-	RealmId          string  `pulumi:"realmId"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
 	ResourceServerId string  `pulumi:"resourceServerId"`
 	Year             *string `pulumi:"year"`
 	YearEnd          *string `pulumi:"yearEnd"`
@@ -283,7 +288,9 @@ type ClientTimePolicyArgs struct {
 	Name             pulumi.StringPtrInput
 	NotBefore        pulumi.StringPtrInput
 	NotOnOrAfter     pulumi.StringPtrInput
-	RealmId          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringInput
 	Year             pulumi.StringPtrInput
 	YearEnd          pulumi.StringPtrInput
@@ -434,6 +441,11 @@ func (o ClientTimePolicyOutput) NotOnOrAfter() pulumi.StringPtrOutput {
 
 func (o ClientTimePolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientTimePolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientTimePolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientTimePolicyOutput) ResourceServerId() pulumi.StringOutput {

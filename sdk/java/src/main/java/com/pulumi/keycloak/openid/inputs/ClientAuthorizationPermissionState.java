@@ -51,6 +51,21 @@ public final class ClientAuthorizationPermissionState extends com.pulumi.resourc
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
     @Import(name="resourceServerId")
     private @Nullable Output<String> resourceServerId;
 
@@ -94,6 +109,7 @@ public final class ClientAuthorizationPermissionState extends com.pulumi.resourc
         this.name = $.name;
         this.policies = $.policies;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.resourceServerId = $.resourceServerId;
         this.resourceType = $.resourceType;
         this.resources = $.resources;
@@ -166,6 +182,27 @@ public final class ClientAuthorizationPermissionState extends com.pulumi.resourc
 
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public Builder resourceServerId(@Nullable Output<String> resourceServerId) {

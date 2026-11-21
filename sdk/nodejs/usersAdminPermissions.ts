@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  * - `map-roles` — assign or remove realm roles on users
  * - `manage-group-membership` — add or remove users from groups
  * - `impersonate` — impersonate a user
+ * - `reset-password` — reset user passwords
  *
  * > **Note:** The `user-impersonated` scope from v1 (`keycloak.UsersPermissions`) has no equivalent in FGAPv2 and is not available in this resource.
  *
@@ -172,7 +173,11 @@ export class UsersAdminPermissions extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      */
     declare public readonly scopes: pulumi.Output<string[]>;
 
@@ -197,12 +202,10 @@ export class UsersAdminPermissions extends pulumi.CustomResource {
             resourceInputs["permissionId"] = state?.permissionId;
             resourceInputs["policies"] = state?.policies;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["scopes"] = state?.scopes;
         } else {
             const args = argsOrState as UsersAdminPermissionsArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.scopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
@@ -211,6 +214,7 @@ export class UsersAdminPermissions extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["policies"] = args?.policies;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["scopes"] = args?.scopes;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;
@@ -258,7 +262,11 @@ export interface UsersAdminPermissionsState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
@@ -286,9 +294,13 @@ export interface UsersAdminPermissionsArgs {
     /**
      * The realm in which to manage this permission.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      */
     scopes: pulumi.Input<pulumi.Input<string>[]>;
 }

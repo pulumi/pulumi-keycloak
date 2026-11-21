@@ -67,7 +67,8 @@ type LookupRealmClientRegistrationPolicyArgs struct {
 	// Filter by provider ID (e.g. `trusted-hosts`, `max-clients`).
 	ProviderId *string `pulumi:"providerId"`
 	// The realm the policy belongs to.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Filter by sub-type (`anonymous` or `authenticated`).
 	SubType *string `pulumi:"subType"`
 }
@@ -77,11 +78,12 @@ type LookupRealmClientRegistrationPolicyResult struct {
 	// A map of the policy's provider-specific configuration values.
 	Config map[string]string `pulumi:"config"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
-	Name       string `pulumi:"name"`
-	ProviderId string `pulumi:"providerId"`
-	RealmId    string `pulumi:"realmId"`
-	SubType    string `pulumi:"subType"`
+	Id              string `pulumi:"id"`
+	Name            string `pulumi:"name"`
+	ProviderId      string `pulumi:"providerId"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
+	SubType         string `pulumi:"subType"`
 }
 
 func LookupRealmClientRegistrationPolicyOutput(ctx *pulumi.Context, args LookupRealmClientRegistrationPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupRealmClientRegistrationPolicyResultOutput {
@@ -96,7 +98,8 @@ type LookupRealmClientRegistrationPolicyOutputArgs struct {
 	// Filter by provider ID (e.g. `trusted-hosts`, `max-clients`).
 	ProviderId pulumi.StringPtrInput `pulumi:"providerId"`
 	// The realm the policy belongs to.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 	// Filter by sub-type (`anonymous` or `authenticated`).
 	SubType pulumi.StringPtrInput `pulumi:"subType"`
 }
@@ -140,6 +143,10 @@ func (o LookupRealmClientRegistrationPolicyResultOutput) ProviderId() pulumi.Str
 
 func (o LookupRealmClientRegistrationPolicyResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRealmClientRegistrationPolicyResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmClientRegistrationPolicyResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmClientRegistrationPolicyResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupRealmClientRegistrationPolicyResultOutput) SubType() pulumi.StringOutput {

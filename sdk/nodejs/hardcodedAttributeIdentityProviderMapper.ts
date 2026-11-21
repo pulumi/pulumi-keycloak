@@ -104,6 +104,10 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Is Attribute related to a User Session.
      */
     declare public readonly userSession: pulumi.Output<boolean>;
@@ -127,14 +131,12 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
             resourceInputs["name"] = state?.name;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userSession"] = state?.userSession;
         } else {
             const args = argsOrState as HardcodedAttributeIdentityProviderMapperArgs | undefined;
             if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
-            }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
             }
             if (args?.userSession === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userSession'");
@@ -145,6 +147,7 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
             resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
             resourceInputs["name"] = args?.name;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userSession"] = args?.userSession;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -181,6 +184,10 @@ export interface HardcodedAttributeIdentityProviderMapperState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Is Attribute related to a User Session.
      */
     userSession?: pulumi.Input<boolean | undefined>;
@@ -213,7 +220,11 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
     /**
      * The realm ID that this mapper will exist in.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Is Attribute related to a User Session.
      */

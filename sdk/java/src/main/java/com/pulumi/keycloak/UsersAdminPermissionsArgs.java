@@ -81,26 +81,41 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
      * The realm in which to manage this permission.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm in which to manage this permission.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
     }
 
     /**
-     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
+     * Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      * 
      */
     @Import(name="scopes", required=true)
     private Output<List<String>> scopes;
 
     /**
-     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+     * @return Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
      * 
      */
     public Output<List<String>> scopes() {
@@ -115,6 +130,7 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
         this.name = $.name;
         this.policies = $.policies;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.scopes = $.scopes;
     }
 
@@ -236,7 +252,7 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -252,7 +268,28 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
+        /**
+         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
          * 
          * @return builder
          * 
@@ -263,7 +300,7 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
          * 
          * @return builder
          * 
@@ -273,7 +310,7 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`.
+         * @param scopes Set of scopes this permission grants. Valid values: `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, `reset-password`.
          * 
          * @return builder
          * 
@@ -283,9 +320,6 @@ public final class UsersAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         public UsersAdminPermissionsArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("UsersAdminPermissionsArgs", "realmId");
-            }
             if ($.scopes == null) {
                 throw new MissingRequiredPropertyException("UsersAdminPermissionsArgs", "scopes");
             }

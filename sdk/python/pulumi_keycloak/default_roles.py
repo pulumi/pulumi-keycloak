@@ -20,15 +20,20 @@ __all__ = ['DefaultRolesArgs', 'DefaultRoles']
 class DefaultRolesArgs:
     def __init__(__self__, *,
                  default_roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 realm_id: pulumi.Input[_builtins.str]):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DefaultRoles resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "default_roles", default_roles)
-        pulumi.set(__self__, "realm_id", realm_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="defaultRoles")
@@ -44,32 +49,48 @@ class DefaultRolesArgs:
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this role exists within.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
 
 @pulumi.input_type
 class _DefaultRolesState:
     def __init__(__self__, *,
                  default_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DefaultRoles resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if default_roles is not None:
             pulumi.set(__self__, "default_roles", default_roles)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="defaultRoles")
@@ -95,6 +116,18 @@ class _DefaultRolesState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/defaultRoles:DefaultRoles")
 class DefaultRoles(pulumi.CustomResource):
@@ -104,6 +137,7 @@ class DefaultRoles(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows managing default roles within Keycloak.
@@ -160,6 +194,7 @@ class DefaultRoles(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -235,6 +270,7 @@ class DefaultRoles(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -247,9 +283,8 @@ class DefaultRoles(pulumi.CustomResource):
             if default_roles is None and not opts.urn:
                 raise TypeError("Missing required property 'default_roles'")
             __props__.__dict__["default_roles"] = default_roles
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(DefaultRoles, __self__).__init__(
             'keycloak:index/defaultRoles:DefaultRoles',
             resource_name,
@@ -261,7 +296,8 @@ class DefaultRoles(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             default_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DefaultRoles':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DefaultRoles':
         """
         Get an existing DefaultRoles resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -271,6 +307,7 @@ class DefaultRoles(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -278,16 +315,19 @@ class DefaultRoles(pulumi.CustomResource):
 
         __props__.__dict__["default_roles"] = default_roles
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return DefaultRoles(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             default_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["defaultRoles"] = default_roles
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/defaultRoles:DefaultRoles', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -305,4 +345,12 @@ class DefaultRoles(pulumi.CustomResource):
         The realm this role exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

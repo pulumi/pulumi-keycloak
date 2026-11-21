@@ -17,6 +17,7 @@ export function getGenericProtocolMapper(args: GetGenericProtocolMapperArgs, opt
         "clientScopeId": args.clientScopeId,
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -41,7 +42,8 @@ export interface GetGenericProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -68,6 +70,7 @@ export interface GetGenericProtocolMapperResult {
      */
     readonly protocolMapper: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
 }
 /**
  * This data source can be used to fetch properties of a protocol mapper attached to a client or client scope.
@@ -82,6 +85,7 @@ export function getGenericProtocolMapperOutput(args: GetGenericProtocolMapperOut
         "clientScopeId": args.clientScopeId,
         "name": args.name,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -106,5 +110,6 @@ export interface GetGenericProtocolMapperOutputArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

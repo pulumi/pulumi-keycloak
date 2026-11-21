@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -161,7 +160,7 @@ import (
 //
 // - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
 // - `description` - (Optional) Description of the permission.
-// - `decisionStrategy` - (Optional) Decision strategy of the permission.
+// - `decisionStrategy` - (Optional) Decision strategy of the permission. Defaults to `UNANIMOUS`.
 //
 // ### Attributes Reference
 //
@@ -180,20 +179,19 @@ type UsersPermissions struct {
 	ManageScope                   UsersPermissionsManageScopePtrOutput                `pulumi:"manageScope"`
 	MapRolesScope                 UsersPermissionsMapRolesScopePtrOutput              `pulumi:"mapRolesScope"`
 	RealmId                       pulumi.StringOutput                                 `pulumi:"realmId"`
-	UserImpersonatedScope         UsersPermissionsUserImpersonatedScopePtrOutput      `pulumi:"userImpersonatedScope"`
-	ViewScope                     UsersPermissionsViewScopePtrOutput                  `pulumi:"viewScope"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId       pulumi.StringOutput                            `pulumi:"realmInternalId"`
+	UserImpersonatedScope UsersPermissionsUserImpersonatedScopePtrOutput `pulumi:"userImpersonatedScope"`
+	ViewScope             UsersPermissionsViewScopePtrOutput             `pulumi:"viewScope"`
 }
 
 // NewUsersPermissions registers a new resource with the given unique name, arguments, and options.
 func NewUsersPermissions(ctx *pulumi.Context,
 	name string, args *UsersPermissionsArgs, opts ...pulumi.ResourceOption) (*UsersPermissions, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &UsersPermissionsArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UsersPermissions
 	err := ctx.RegisterResource("keycloak:index/usersPermissions:UsersPermissions", name, args, &resource, opts...)
@@ -225,8 +223,10 @@ type usersPermissionsState struct {
 	ManageScope                   *UsersPermissionsManageScope                `pulumi:"manageScope"`
 	MapRolesScope                 *UsersPermissionsMapRolesScope              `pulumi:"mapRolesScope"`
 	RealmId                       *string                                     `pulumi:"realmId"`
-	UserImpersonatedScope         *UsersPermissionsUserImpersonatedScope      `pulumi:"userImpersonatedScope"`
-	ViewScope                     *UsersPermissionsViewScope                  `pulumi:"viewScope"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId       *string                                `pulumi:"realmInternalId"`
+	UserImpersonatedScope *UsersPermissionsUserImpersonatedScope `pulumi:"userImpersonatedScope"`
+	ViewScope             *UsersPermissionsViewScope             `pulumi:"viewScope"`
 }
 
 type UsersPermissionsState struct {
@@ -238,8 +238,10 @@ type UsersPermissionsState struct {
 	ManageScope                   UsersPermissionsManageScopePtrInput
 	MapRolesScope                 UsersPermissionsMapRolesScopePtrInput
 	RealmId                       pulumi.StringPtrInput
-	UserImpersonatedScope         UsersPermissionsUserImpersonatedScopePtrInput
-	ViewScope                     UsersPermissionsViewScopePtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId       pulumi.StringPtrInput
+	UserImpersonatedScope UsersPermissionsUserImpersonatedScopePtrInput
+	ViewScope             UsersPermissionsViewScopePtrInput
 }
 
 func (UsersPermissionsState) ElementType() reflect.Type {
@@ -257,9 +259,11 @@ type usersPermissionsArgs struct {
 	ManageGroupMembershipScope *UsersPermissionsManageGroupMembershipScope `pulumi:"manageGroupMembershipScope"`
 	ManageScope                *UsersPermissionsManageScope                `pulumi:"manageScope"`
 	MapRolesScope              *UsersPermissionsMapRolesScope              `pulumi:"mapRolesScope"`
-	RealmId                    string                                      `pulumi:"realmId"`
-	UserImpersonatedScope      *UsersPermissionsUserImpersonatedScope      `pulumi:"userImpersonatedScope"`
-	ViewScope                  *UsersPermissionsViewScope                  `pulumi:"viewScope"`
+	RealmId                    *string                                     `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId       *string                                `pulumi:"realmInternalId"`
+	UserImpersonatedScope *UsersPermissionsUserImpersonatedScope `pulumi:"userImpersonatedScope"`
+	ViewScope             *UsersPermissionsViewScope             `pulumi:"viewScope"`
 }
 
 // The set of arguments for constructing a UsersPermissions resource.
@@ -268,9 +272,11 @@ type UsersPermissionsArgs struct {
 	ManageGroupMembershipScope UsersPermissionsManageGroupMembershipScopePtrInput
 	ManageScope                UsersPermissionsManageScopePtrInput
 	MapRolesScope              UsersPermissionsMapRolesScopePtrInput
-	RealmId                    pulumi.StringInput
-	UserImpersonatedScope      UsersPermissionsUserImpersonatedScopePtrInput
-	ViewScope                  UsersPermissionsViewScopePtrInput
+	RealmId                    pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId       pulumi.StringPtrInput
+	UserImpersonatedScope UsersPermissionsUserImpersonatedScopePtrInput
+	ViewScope             UsersPermissionsViewScopePtrInput
 }
 
 func (UsersPermissionsArgs) ElementType() reflect.Type {
@@ -389,6 +395,11 @@ func (o UsersPermissionsOutput) MapRolesScope() UsersPermissionsMapRolesScopePtr
 
 func (o UsersPermissionsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UsersPermissions) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UsersPermissionsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UsersPermissions) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o UsersPermissionsOutput) UserImpersonatedScope() UsersPermissionsUserImpersonatedScopePtrOutput {

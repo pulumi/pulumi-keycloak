@@ -71,7 +71,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = keycloak.NewRealmClientPolicyProfilePolicy(ctx, "policy", &keycloak.RealmClientPolicyProfilePolicyArgs{
-//				Name:        pulumi.String("my-profile"),
+//				Name:        pulumi.String("my-policy"),
 //				RealmId:     realm.ID(),
 //				Description: pulumi.String("Some desc"),
 //				Profiles: pulumi.StringArray{
@@ -87,7 +87,7 @@ import (
 //					&keycloak.RealmClientPolicyProfilePolicyConditionArgs{
 //						Name: pulumi.String("client-attributes"),
 //						Configuration: pulumi.StringMap{
-//							"is-negative-logic": pulumi.String("false"),
+//							"is_negative_logic": pulumi.String("false"),
 //							"attributes":        pulumi.String(json0),
 //						},
 //					},
@@ -104,18 +104,29 @@ import (
 //
 // ### Attribute Arguments
 //
-// - `name` - (Required) The name of the attribute.
+// - `name` - (Required) The name of the policy.
 // - `realmId` - (Required) The realm id.
+// - `description` - (Optional) The description of the policy.
+// - `enabled` - (Optional) When `false`, the policy is not applied. Defaults to `true`.
+// - `profiles` - (Required) The names of the client policy profiles that are applied when the conditions of this policy match.
 // - `condition` - (Optional) An ordered list of condition
 //
 // #### Condition Arguments
 //
-// - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+// - `name` - (Required) The name of the condition. NOTE! The condition needs to exist
 // - `configuration` - (Optional) - A map of configuration values
 //
 // ## Import
 //
-// This resource currently does not support importing.
+// This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client policies, the name is the identifier within the realm.
+//
+// Example:
+//
+// ```sh
+// $ pulumi import keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy policy my-realm/my-policy
+// ```
+//
+// Note: values in `configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `"true"`, `"false"` or `"5"`.
 type RealmClientPolicyProfilePolicy struct {
 	pulumi.CustomResourceState
 
@@ -125,6 +136,8 @@ type RealmClientPolicyProfilePolicy struct {
 	Name        pulumi.StringOutput                                `pulumi:"name"`
 	Profiles    pulumi.StringArrayOutput                           `pulumi:"profiles"`
 	RealmId     pulumi.StringOutput                                `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmClientPolicyProfilePolicy registers a new resource with the given unique name, arguments, and options.
@@ -136,9 +149,6 @@ func NewRealmClientPolicyProfilePolicy(ctx *pulumi.Context,
 
 	if args.Profiles == nil {
 		return nil, errors.New("invalid value for required argument 'Profiles'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmClientPolicyProfilePolicy
@@ -169,6 +179,8 @@ type realmClientPolicyProfilePolicyState struct {
 	Name        *string                                   `pulumi:"name"`
 	Profiles    []string                                  `pulumi:"profiles"`
 	RealmId     *string                                   `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmClientPolicyProfilePolicyState struct {
@@ -178,6 +190,8 @@ type RealmClientPolicyProfilePolicyState struct {
 	Name        pulumi.StringPtrInput
 	Profiles    pulumi.StringArrayInput
 	RealmId     pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmClientPolicyProfilePolicyState) ElementType() reflect.Type {
@@ -196,7 +210,9 @@ type realmClientPolicyProfilePolicyArgs struct {
 	Enabled     *bool                                     `pulumi:"enabled"`
 	Name        *string                                   `pulumi:"name"`
 	Profiles    []string                                  `pulumi:"profiles"`
-	RealmId     string                                    `pulumi:"realmId"`
+	RealmId     *string                                   `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmClientPolicyProfilePolicy resource.
@@ -206,7 +222,9 @@ type RealmClientPolicyProfilePolicyArgs struct {
 	Enabled     pulumi.BoolPtrInput
 	Name        pulumi.StringPtrInput
 	Profiles    pulumi.StringArrayInput
-	RealmId     pulumi.StringInput
+	RealmId     pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmClientPolicyProfilePolicyArgs) ElementType() reflect.Type {
@@ -320,6 +338,11 @@ func (o RealmClientPolicyProfilePolicyOutput) Profiles() pulumi.StringArrayOutpu
 
 func (o RealmClientPolicyProfilePolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmClientPolicyProfilePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmClientPolicyProfilePolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmClientPolicyProfilePolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmClientPolicyProfilePolicyArrayOutput struct{ *pulumi.OutputState }

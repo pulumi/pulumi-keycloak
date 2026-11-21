@@ -5,7 +5,6 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -20,14 +19,14 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
     public static final RealmKeystoreRsaArgs Empty = new RealmKeystoreRsaArgs();
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     @Import(name="active")
     private @Nullable Output<Boolean> active;
 
     /**
-     * @return When `false`, key in not used for signing. Defaults to `true`.
+     * @return When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> active() {
@@ -222,15 +221,30 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
      * The realm this keystore exists in.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this keystore exists in.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private RealmKeystoreRsaArgs() {}
@@ -250,6 +264,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -271,7 +286,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param active When `false`, key in not used for signing. Defaults to `true`.
+         * @param active When `false`, key is not used for signing. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -282,7 +297,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param active When `false`, key in not used for signing. Defaults to `true`.
+         * @param active When `false`, key is not used for signing. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -553,7 +568,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -568,10 +583,28 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public RealmKeystoreRsaArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "realmId");
-            }
             return $;
         }
     }

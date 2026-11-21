@@ -172,6 +172,8 @@ type HardcodedRoleMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
 	Role pulumi.StringOutput `pulumi:"role"`
 }
@@ -185,9 +187,6 @@ func NewHardcodedRoleMapper(ctx *pulumi.Context,
 
 	if args.LdapUserFederationId == nil {
 		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
@@ -221,6 +220,8 @@ type hardcodedRoleMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
 	Role *string `pulumi:"role"`
 }
@@ -232,6 +233,8 @@ type HardcodedRoleMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
 	Role pulumi.StringPtrInput
 }
@@ -252,7 +255,9 @@ type hardcodedRoleMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
 	Role string `pulumi:"role"`
 }
@@ -264,7 +269,9 @@ type HardcodedRoleMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
 	Role pulumi.StringInput
 }
@@ -369,6 +376,11 @@ func (o HardcodedRoleMapperOutput) Name() pulumi.StringOutput {
 // The realm that this LDAP mapper will exist in.
 func (o HardcodedRoleMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedRoleMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o HardcodedRoleMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedRoleMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.

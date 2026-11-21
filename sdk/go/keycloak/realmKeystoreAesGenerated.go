@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -65,7 +64,7 @@ import (
 type RealmKeystoreAesGenerated struct {
 	pulumi.CustomResourceState
 
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
@@ -75,6 +74,8 @@ type RealmKeystoreAesGenerated struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
 	SecretSize pulumi.IntPtrOutput `pulumi:"secretSize"`
 }
@@ -83,12 +84,9 @@ type RealmKeystoreAesGenerated struct {
 func NewRealmKeystoreAesGenerated(ctx *pulumi.Context,
 	name string, args *RealmKeystoreAesGeneratedArgs, opts ...pulumi.ResourceOption) (*RealmKeystoreAesGenerated, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmKeystoreAesGeneratedArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreAesGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated", name, args, &resource, opts...)
@@ -112,7 +110,7 @@ func GetRealmKeystoreAesGenerated(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmKeystoreAesGenerated resources.
 type realmKeystoreAesGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -122,12 +120,14 @@ type realmKeystoreAesGeneratedState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
 	SecretSize *int `pulumi:"secretSize"`
 }
 
 type RealmKeystoreAesGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -137,6 +137,8 @@ type RealmKeystoreAesGeneratedState struct {
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
 	SecretSize pulumi.IntPtrInput
 }
@@ -152,7 +154,7 @@ func RealmKeystoreAesGeneratedExists(ctx *pulumi.Context,
 }
 
 type realmKeystoreAesGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
@@ -161,14 +163,16 @@ type realmKeystoreAesGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
 	SecretSize *int `pulumi:"secretSize"`
 }
 
 // The set of arguments for constructing a RealmKeystoreAesGenerated resource.
 type RealmKeystoreAesGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
@@ -177,7 +181,9 @@ type RealmKeystoreAesGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
 	SecretSize pulumi.IntPtrInput
 }
@@ -269,7 +275,7 @@ func (o RealmKeystoreAesGeneratedOutput) ToRealmKeystoreAesGeneratedOutputWithCo
 	return o
 }
 
-// When `false`, key in not used for signing. Defaults to `true`.
+// When `false`, key is not used for signing. Defaults to `true`.
 func (o RealmKeystoreAesGeneratedOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreAesGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -292,6 +298,11 @@ func (o RealmKeystoreAesGeneratedOutput) Priority() pulumi.IntPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreAesGeneratedOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreAesGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreAesGeneratedOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreAesGenerated) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.

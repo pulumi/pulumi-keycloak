@@ -54,6 +54,31 @@ namespace Pulumi.Keycloak.Oidc
     /// });
     /// ```
     /// 
+    /// ### With A Custom `Provider_id`
+    /// 
+    /// Identity providers other than `Oidc` and `keycloak-oidc`, for example from a Keycloak extension, may determine their
+    /// endpoints on their own. For them, `AuthorizationUrl` and `TokenUrl` can be left out.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var customIdentityProvider = new Keycloak.Oidc.IdentityProvider("custom_identity_provider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "my-custom-idp",
+    ///         ProviderId = "my-custom-oidc",
+    ///         ClientId = "clientID",
+    ///         ClientSecret = "clientSecret",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `IdpAlias` is the identity provider alias.
@@ -86,16 +111,22 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
+        /// When `True`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `False`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        /// </summary>
+        [Output("allowAdminRoleMapping")]
+        public Output<bool?> AllowAdminRoleMapping { get; private set; } = null!;
+
+        /// <summary>
         /// Enable/disable authenticate users by default.
         /// </summary>
         [Output("authenticateByDefault")]
         public Output<bool?> AuthenticateByDefault { get; private set; } = null!;
 
         /// <summary>
-        /// The Authorization Url.
+        /// The Authorization Url. Required when `ProviderId` is `Oidc` or `keycloak-oidc`.
         /// </summary>
         [Output("authorizationUrl")]
-        public Output<string> AuthorizationUrl { get; private set; } = null!;
+        public Output<string?> AuthorizationUrl { get; private set; } = null!;
 
         /// <summary>
         /// Does the external IDP support backchannel logout? Defaults to `True`.
@@ -244,7 +275,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
@@ -254,6 +285,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
         /// <summary>
         /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
@@ -268,10 +305,10 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> SyncMode { get; private set; } = null!;
 
         /// <summary>
-        /// The Token URL.
+        /// The Token URL. Required when `ProviderId` is `Oidc` or `keycloak-oidc`.
         /// </summary>
         [Output("tokenUrl")]
-        public Output<string> TokenUrl { get; private set; } = null!;
+        public Output<string?> TokenUrl { get; private set; } = null!;
 
         /// <summary>
         /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
@@ -367,16 +404,22 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> Alias { get; set; } = null!;
 
         /// <summary>
+        /// When `True`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `False`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        /// </summary>
+        [Input("allowAdminRoleMapping")]
+        public Input<bool>? AllowAdminRoleMapping { get; set; }
+
+        /// <summary>
         /// Enable/disable authenticate users by default.
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
 
         /// <summary>
-        /// The Authorization Url.
+        /// The Authorization Url. Required when `ProviderId` is `Oidc` or `keycloak-oidc`.
         /// </summary>
-        [Input("authorizationUrl", required: true)]
-        public Input<string> AuthorizationUrl { get; set; } = null!;
+        [Input("authorizationUrl")]
+        public Input<string>? AuthorizationUrl { get; set; }
 
         /// <summary>
         /// Does the external IDP support backchannel logout? Defaults to `True`.
@@ -545,7 +588,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -553,8 +596,14 @@ namespace Pulumi.Keycloak.Oidc
         /// <summary>
         /// The name of the realm. This is unique across Keycloak.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
@@ -569,10 +618,10 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// The Token URL.
+        /// The Token URL. Required when `ProviderId` is `Oidc` or `keycloak-oidc`.
         /// </summary>
-        [Input("tokenUrl", required: true)]
-        public Input<string> TokenUrl { get; set; } = null!;
+        [Input("tokenUrl")]
+        public Input<string>? TokenUrl { get; set; }
 
         /// <summary>
         /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
@@ -625,13 +674,19 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? Alias { get; set; }
 
         /// <summary>
+        /// When `True`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `False`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        /// </summary>
+        [Input("allowAdminRoleMapping")]
+        public Input<bool>? AllowAdminRoleMapping { get; set; }
+
+        /// <summary>
         /// Enable/disable authenticate users by default.
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
 
         /// <summary>
-        /// The Authorization Url.
+        /// The Authorization Url. Required when `ProviderId` is `Oidc` or `keycloak-oidc`.
         /// </summary>
         [Input("authorizationUrl")]
         public Input<string>? AuthorizationUrl { get; set; }
@@ -809,7 +864,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -819,6 +874,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
@@ -833,7 +894,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// The Token URL.
+        /// The Token URL. Required when `ProviderId` is `Oidc` or `keycloak-oidc`.
         /// </summary>
         [Input("tokenUrl")]
         public Input<string>? TokenUrl { get; set; }

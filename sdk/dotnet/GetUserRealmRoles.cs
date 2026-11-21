@@ -144,8 +144,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this user belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         /// <summary>
         /// The ID of the user to query realm roles for.
@@ -164,8 +167,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this user belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The ID of the user to query realm roles for.
@@ -188,6 +194,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string Id;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         /// <summary>
         /// (Computed) A list of realm roles that belong to this user.
         /// </summary>
@@ -200,12 +207,15 @@ namespace Pulumi.Keycloak
 
             string realmId,
 
+            string realmInternalId,
+
             ImmutableArray<string> roleNames,
 
             string userId)
         {
             Id = id;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             RoleNames = roleNames;
             UserId = userId;
         }

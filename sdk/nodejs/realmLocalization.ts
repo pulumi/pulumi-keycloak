@@ -86,6 +86,10 @@ export class RealmLocalization extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * A map of translation keys to values.
      */
     declare public readonly texts: pulumi.Output<{[key: string]: string} | undefined>;
@@ -105,17 +109,16 @@ export class RealmLocalization extends pulumi.CustomResource {
             const state = argsOrState as RealmLocalizationState | undefined;
             resourceInputs["locale"] = state?.locale;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["texts"] = state?.texts;
         } else {
             const args = argsOrState as RealmLocalizationArgs | undefined;
             if (args?.locale === undefined && !opts.urn) {
                 throw new Error("Missing required property 'locale'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["locale"] = args?.locale;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["texts"] = args?.texts;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -136,6 +139,10 @@ export interface RealmLocalizationState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * A map of translation keys to values.
      */
     texts?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
@@ -152,7 +159,11 @@ export interface RealmLocalizationArgs {
     /**
      * The ID of the realm the localization texts apply to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * A map of translation keys to values.
      */

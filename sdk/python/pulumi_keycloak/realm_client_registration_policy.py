@@ -20,24 +20,29 @@ __all__ = ['RealmClientRegistrationPolicyArgs', 'RealmClientRegistrationPolicy']
 class RealmClientRegistrationPolicyArgs:
     def __init__(__self__, *,
                  provider_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  sub_type: pulumi.Input[_builtins.str],
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmClientRegistrationPolicy resource.
 
         :param pulumi.Input[_builtins.str] provider_id: The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
         :param pulumi.Input[_builtins.str] sub_type: Whether this policy applies to anonymous or authenticated client registration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Policy-specific configuration key-value pairs.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "provider_id", provider_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "sub_type", sub_type)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
@@ -50,15 +55,6 @@ class RealmClientRegistrationPolicyArgs:
     @provider_id.setter
     def provider_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "provider_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="subType")
@@ -93,6 +89,27 @@ class RealmClientRegistrationPolicyArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _RealmClientRegistrationPolicyState:
@@ -101,12 +118,14 @@ class _RealmClientRegistrationPolicyState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  sub_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmClientRegistrationPolicy resources.
 
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Policy-specific configuration key-value pairs.
         :param pulumi.Input[_builtins.str] provider_id: The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] sub_type: Whether this policy applies to anonymous or authenticated client registration.
         """
         if config is not None:
@@ -117,6 +136,8 @@ class _RealmClientRegistrationPolicyState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if sub_type is not None:
             pulumi.set(__self__, "sub_type", sub_type)
 
@@ -163,6 +184,18 @@ class _RealmClientRegistrationPolicyState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="subType")
     def sub_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -185,6 +218,7 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  sub_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -264,6 +298,7 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Policy-specific configuration key-value pairs.
         :param pulumi.Input[_builtins.str] provider_id: The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] sub_type: Whether this policy applies to anonymous or authenticated client registration.
         """
         ...
@@ -364,6 +399,7 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  sub_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -379,9 +415,8 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
             if provider_id is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_id'")
             __props__.__dict__["provider_id"] = provider_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if sub_type is None and not opts.urn:
                 raise TypeError("Missing required property 'sub_type'")
             __props__.__dict__["sub_type"] = sub_type
@@ -399,6 +434,7 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             sub_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmClientRegistrationPolicy':
         """
         Get an existing RealmClientRegistrationPolicy resource's state with the given name, id, and optional extra
@@ -409,6 +445,7 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Policy-specific configuration key-value pairs.
         :param pulumi.Input[_builtins.str] provider_id: The provider ID of the client registration policy (e.g. 'trusted-hosts', 'consent-required').
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] sub_type: Whether this policy applies to anonymous or authenticated client registration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -419,6 +456,7 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["sub_type"] = sub_type
         return RealmClientRegistrationPolicy(resource_name, opts=opts, __props__=__props__)
 
@@ -429,12 +467,14 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             sub_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["config"] = config
         __props__["name"] = name
         __props__["providerId"] = provider_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["subType"] = sub_type
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmClientRegistrationPolicy:RealmClientRegistrationPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -463,6 +503,14 @@ class RealmClientRegistrationPolicy(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="subType")

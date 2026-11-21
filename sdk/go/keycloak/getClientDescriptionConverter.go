@@ -98,7 +98,8 @@ type GetClientDescriptionConverterArgs struct {
 	// The body of the request to convert.
 	Body string `pulumi:"body"`
 	// The realm to use for the client description converter API call.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getClientDescriptionConverter.
@@ -134,6 +135,7 @@ type GetClientDescriptionConverterResult struct {
 	ProtocolMappers         []GetClientDescriptionConverterProtocolMapper `pulumi:"protocolMappers"`
 	PublicClient            bool                                          `pulumi:"publicClient"`
 	RealmId                 string                                        `pulumi:"realmId"`
+	RealmInternalId         string                                        `pulumi:"realmInternalId"`
 	RedirectUris            []string                                      `pulumi:"redirectUris"`
 	RegisteredNodes         map[string]string                             `pulumi:"registeredNodes"`
 	RegistrationAccessToken string                                        `pulumi:"registrationAccessToken"`
@@ -155,7 +157,8 @@ type GetClientDescriptionConverterOutputArgs struct {
 	// The body of the request to convert.
 	Body pulumi.StringInput `pulumi:"body"`
 	// The realm to use for the client description converter API call.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (GetClientDescriptionConverterOutputArgs) ElementType() reflect.Type {
@@ -300,6 +303,10 @@ func (o GetClientDescriptionConverterResultOutput) PublicClient() pulumi.BoolOut
 
 func (o GetClientDescriptionConverterResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o GetClientDescriptionConverterResultOutput) RedirectUris() pulumi.StringArrayOutput {

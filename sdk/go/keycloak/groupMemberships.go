@@ -79,10 +79,90 @@ import (
 //
 // ```
 //
+// ## Organization Group Example
+//
+// Organization groups require Keycloak 26.6 or newer. Set `organizationsEnabled = true` on the
+// `keycloak_realm.realm` resource before applying this example. This example uses the realm and user defined above.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			organization, err := keycloak.NewOrganization(ctx, "organization", &keycloak.OrganizationArgs{
+//				Realm: pulumi.Any(realm.Id),
+//				Name:  pulumi.String("my-organization"),
+//				Domains: keycloak.OrganizationDomainArray{
+//					&keycloak.OrganizationDomainArgs{
+//						Name: pulumi.String("organization.example.com"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			organizationGroup, err := keycloak.NewGroup(ctx, "organization_group", &keycloak.GroupArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				Name:           pulumi.String("my-organization-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			organizationMembers, err := keycloak.NewOrganizationMemberships(ctx, "organization_members", &keycloak.OrganizationMembershipsArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				Members: pulumi.StringArray{
+//					user.Username,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupMemberships(ctx, "organization_group_members", &keycloak.GroupMembershipsArgs{
+//				RealmId:        pulumi.Any(realm.Id),
+//				OrganizationId: organization.ID(),
+//				GroupId:        organizationGroup.ID(),
+//				Members: pulumi.StringArray{
+//					user.Username,
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				organizationMembers,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
-// This resource does not support import. Instead of importing, feel free to create this resource
-// as if it did not already exist on the server.
+// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+// organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+//
+// Examples:
+//
+// realm-level group
+//
+// ```sh
+// $ pulumi import keycloak:index/groupMemberships:GroupMemberships group_members my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+// ```
+//
+// organization-scoped group
+//
+// ```sh
+// $ pulumi import keycloak:index/groupMemberships:GroupMemberships group_members my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+// ```
 //
 // [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
 type GroupMemberships struct {
@@ -92,8 +172,12 @@ type GroupMemberships struct {
 	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
 	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
+	// The ID of the organization this group belongs to. Omit for realm-level groups.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The realm this group exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewGroupMemberships registers a new resource with the given unique name, arguments, and options.
@@ -105,9 +189,6 @@ func NewGroupMemberships(ctx *pulumi.Context,
 
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource GroupMemberships
@@ -136,8 +217,12 @@ type groupMembershipsState struct {
 	GroupId *string `pulumi:"groupId"`
 	// A list of usernames that belong to this group.
 	Members []string `pulumi:"members"`
+	// The ID of the organization this group belongs to. Omit for realm-level groups.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type GroupMembershipsState struct {
@@ -145,8 +230,12 @@ type GroupMembershipsState struct {
 	GroupId pulumi.StringPtrInput
 	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayInput
+	// The ID of the organization this group belongs to. Omit for realm-level groups.
+	OrganizationId pulumi.StringPtrInput
 	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (GroupMembershipsState) ElementType() reflect.Type {
@@ -164,8 +253,12 @@ type groupMembershipsArgs struct {
 	GroupId *string `pulumi:"groupId"`
 	// A list of usernames that belong to this group.
 	Members []string `pulumi:"members"`
+	// The ID of the organization this group belongs to. Omit for realm-level groups.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a GroupMemberships resource.
@@ -174,8 +267,12 @@ type GroupMembershipsArgs struct {
 	GroupId pulumi.StringPtrInput
 	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayInput
+	// The ID of the organization this group belongs to. Omit for realm-level groups.
+	OrganizationId pulumi.StringPtrInput
 	// The realm this group exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (GroupMembershipsArgs) ElementType() reflect.Type {
@@ -275,9 +372,19 @@ func (o GroupMembershipsOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GroupMemberships) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// The ID of the organization this group belongs to. Omit for realm-level groups.
+func (o GroupMembershipsOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GroupMemberships) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
 // The realm this group exists in.
 func (o GroupMembershipsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupMemberships) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o GroupMembershipsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *GroupMemberships) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type GroupMembershipsArrayOutput struct{ *pulumi.OutputState }

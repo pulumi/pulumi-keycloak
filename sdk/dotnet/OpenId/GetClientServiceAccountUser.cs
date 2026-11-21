@@ -207,8 +207,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm that the OpenID client exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetClientServiceAccountUserArgs()
         {
@@ -227,8 +230,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm that the OpenID client exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetClientServiceAccountUserInvokeArgs()
         {
@@ -271,6 +277,7 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public readonly string LastName;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly ImmutableArray<string> RequiredActions;
         /// <summary>
         /// (Computed) The service account user's username.
@@ -299,6 +306,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string realmId,
 
+            string realmInternalId,
+
             ImmutableArray<string> requiredActions,
 
             string username)
@@ -313,6 +322,7 @@ namespace Pulumi.Keycloak.OpenId
             Id = id;
             LastName = lastName;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             RequiredActions = requiredActions;
             Username = username;
         }

@@ -287,14 +287,14 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm&#39;s name as internal ID.
      * 
      */
     @Import(name="internalId")
     private @Nullable Output<String> internalId;
 
     /**
-     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm&#39;s name as internal ID.
      * 
      */
     public Optional<Output<String>> internalId() {
@@ -395,14 +395,14 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `master` realm cannot be renamed.
      * 
      */
     @Import(name="realm")
     private @Nullable Output<String> realm;
 
     /**
-     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `master` realm cannot be renamed.
      * 
      */
     public Optional<Output<String>> realm() {
@@ -1032,7 +1032,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm&#39;s name as internal ID.
          * 
          * @return builder
          * 
@@ -1043,7 +1043,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, Keycloak generates a UUID. Realms created by earlier versions of this provider may still have the realm&#39;s name as internal ID.
          * 
          * @return builder
          * 
@@ -1176,7 +1176,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `master` realm cannot be renamed.
          * 
          * @return builder
          * 
@@ -1187,7 +1187,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak. Changing it renames the realm in place; see Renaming a realm. The `master` realm cannot be renamed.
          * 
          * @return builder
          * 

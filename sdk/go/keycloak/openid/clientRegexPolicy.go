@@ -101,15 +101,17 @@ import (
 type ClientRegexPolicy struct {
 	pulumi.CustomResourceState
 
-	DecisionStrategy        pulumi.StringOutput    `pulumi:"decisionStrategy"`
-	Description             pulumi.StringPtrOutput `pulumi:"description"`
-	Logic                   pulumi.StringPtrOutput `pulumi:"logic"`
-	Name                    pulumi.StringOutput    `pulumi:"name"`
-	Pattern                 pulumi.StringOutput    `pulumi:"pattern"`
-	RealmId                 pulumi.StringOutput    `pulumi:"realmId"`
-	ResourceServerId        pulumi.StringOutput    `pulumi:"resourceServerId"`
-	TargetClaim             pulumi.StringOutput    `pulumi:"targetClaim"`
-	TargetContextAttributes pulumi.BoolPtrOutput   `pulumi:"targetContextAttributes"`
+	DecisionStrategy pulumi.StringOutput    `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput `pulumi:"description"`
+	Logic            pulumi.StringPtrOutput `pulumi:"logic"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	Pattern          pulumi.StringOutput    `pulumi:"pattern"`
+	RealmId          pulumi.StringOutput    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId         pulumi.StringOutput  `pulumi:"realmInternalId"`
+	ResourceServerId        pulumi.StringOutput  `pulumi:"resourceServerId"`
+	TargetClaim             pulumi.StringOutput  `pulumi:"targetClaim"`
+	TargetContextAttributes pulumi.BoolPtrOutput `pulumi:"targetContextAttributes"`
 }
 
 // NewClientRegexPolicy registers a new resource with the given unique name, arguments, and options.
@@ -124,9 +126,6 @@ func NewClientRegexPolicy(ctx *pulumi.Context,
 	}
 	if args.Pattern == nil {
 		return nil, errors.New("invalid value for required argument 'Pattern'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -157,24 +156,28 @@ func GetClientRegexPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientRegexPolicy resources.
 type clientRegexPolicyState struct {
-	DecisionStrategy        *string `pulumi:"decisionStrategy"`
-	Description             *string `pulumi:"description"`
-	Logic                   *string `pulumi:"logic"`
-	Name                    *string `pulumi:"name"`
-	Pattern                 *string `pulumi:"pattern"`
-	RealmId                 *string `pulumi:"realmId"`
+	DecisionStrategy *string `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	Logic            *string `pulumi:"logic"`
+	Name             *string `pulumi:"name"`
+	Pattern          *string `pulumi:"pattern"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId         *string `pulumi:"realmInternalId"`
 	ResourceServerId        *string `pulumi:"resourceServerId"`
 	TargetClaim             *string `pulumi:"targetClaim"`
 	TargetContextAttributes *bool   `pulumi:"targetContextAttributes"`
 }
 
 type ClientRegexPolicyState struct {
-	DecisionStrategy        pulumi.StringPtrInput
-	Description             pulumi.StringPtrInput
-	Logic                   pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	Pattern                 pulumi.StringPtrInput
-	RealmId                 pulumi.StringPtrInput
+	DecisionStrategy pulumi.StringPtrInput
+	Description      pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Pattern          pulumi.StringPtrInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId         pulumi.StringPtrInput
 	ResourceServerId        pulumi.StringPtrInput
 	TargetClaim             pulumi.StringPtrInput
 	TargetContextAttributes pulumi.BoolPtrInput
@@ -191,12 +194,14 @@ func ClientRegexPolicyExists(ctx *pulumi.Context,
 }
 
 type clientRegexPolicyArgs struct {
-	DecisionStrategy        string  `pulumi:"decisionStrategy"`
-	Description             *string `pulumi:"description"`
-	Logic                   *string `pulumi:"logic"`
-	Name                    *string `pulumi:"name"`
-	Pattern                 string  `pulumi:"pattern"`
-	RealmId                 string  `pulumi:"realmId"`
+	DecisionStrategy string  `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	Logic            *string `pulumi:"logic"`
+	Name             *string `pulumi:"name"`
+	Pattern          string  `pulumi:"pattern"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId         *string `pulumi:"realmInternalId"`
 	ResourceServerId        string  `pulumi:"resourceServerId"`
 	TargetClaim             string  `pulumi:"targetClaim"`
 	TargetContextAttributes *bool   `pulumi:"targetContextAttributes"`
@@ -204,12 +209,14 @@ type clientRegexPolicyArgs struct {
 
 // The set of arguments for constructing a ClientRegexPolicy resource.
 type ClientRegexPolicyArgs struct {
-	DecisionStrategy        pulumi.StringInput
-	Description             pulumi.StringPtrInput
-	Logic                   pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	Pattern                 pulumi.StringInput
-	RealmId                 pulumi.StringInput
+	DecisionStrategy pulumi.StringInput
+	Description      pulumi.StringPtrInput
+	Logic            pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	Pattern          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId         pulumi.StringPtrInput
 	ResourceServerId        pulumi.StringInput
 	TargetClaim             pulumi.StringInput
 	TargetContextAttributes pulumi.BoolPtrInput
@@ -324,6 +331,11 @@ func (o ClientRegexPolicyOutput) Pattern() pulumi.StringOutput {
 
 func (o ClientRegexPolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientRegexPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientRegexPolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientRegexPolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientRegexPolicyOutput) ResourceServerId() pulumi.StringOutput {

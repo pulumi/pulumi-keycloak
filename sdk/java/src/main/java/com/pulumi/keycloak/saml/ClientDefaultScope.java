@@ -15,6 +15,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * &gt; **WARNING:** This resource is deprecated and will be removed in a future major version. Use `keycloak.ClientScopeAssignments` with `defaultScopes` and `optionalScopes` instead.
+ * 
  * Allows for managing a Keycloak client&#39;s default client scopes. A default scope that is attached to a client using the SAML
  * protocol will automatically use the protocol mappers defined within that scope to build claims for this client.
  * 
@@ -144,6 +146,20 @@ public class ClientDefaultScope extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

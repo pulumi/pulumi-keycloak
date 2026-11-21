@@ -58,7 +58,7 @@ namespace Pulumi.Keycloak
         /// });
         /// ```
         /// </summary>
-        public static Task<GetRealmKeysResult> InvokeAsync(GetRealmKeysArgs args, InvokeOptions? options = null)
+        public static Task<GetRealmKeysResult> InvokeAsync(GetRealmKeysArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysArgs(), options.WithDefaults());
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Pulumi.Keycloak
         /// });
         /// ```
         /// </summary>
-        public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
 
         /// <summary>
@@ -180,8 +180,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm from which the keys will be retrieved.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         [Input("statuses")]
         private List<string>? _statuses;
@@ -218,8 +221,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm from which the keys will be retrieved.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("statuses")]
         private InputList<string>? _statuses;
@@ -253,6 +259,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRealmKeysKeyResult> Keys;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         /// <summary>
         /// Key status (string)
         /// </summary>
@@ -268,12 +275,15 @@ namespace Pulumi.Keycloak
 
             string realmId,
 
+            string realmInternalId,
+
             ImmutableArray<string> statuses)
         {
             Algorithms = algorithms;
             Id = id;
             Keys = keys;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             Statuses = statuses;
         }
     }

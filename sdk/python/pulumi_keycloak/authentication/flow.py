@@ -19,107 +19,21 @@ __all__ = ['FlowArgs', 'Flow']
 @pulumi.input_type
 class FlowArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 copy_from: pulumi.Input[Optional[_builtins.str]] = None,
-                 description: pulumi.Input[Optional[_builtins.str]] = None,
-                 provider_id: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a Flow resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
-        :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
-        :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
-        :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
-        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if alias is not None:
-            pulumi.set(__self__, "alias", alias)
-        if copy_from is not None:
-            pulumi.set(__self__, "copy_from", copy_from)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that the authentication flow exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The alias for this authentication flow.
-        """
-        return pulumi.get(self, "alias")
-
-    @alias.setter
-    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "alias", value)
-
-    @_builtins.property
-    @pulumi.getter(name="copyFrom")
-    def copy_from(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
-        """
-        return pulumi.get(self, "copy_from")
-
-    @copy_from.setter
-    def copy_from(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "copy_from", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        A description for the authentication flow.
-        """
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "description", value)
-
-    @_builtins.property
-    @pulumi.getter(name="providerId")
-    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
-        """
-        return pulumi.get(self, "provider_id")
-
-    @provider_id.setter
-    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "provider_id", value)
-
-
-@pulumi.input_type
-class _FlowState:
-    def __init__(__self__, *,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  copy_from: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Flow resources.
+        The set of arguments for constructing a Flow resource.
 
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
         :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -131,6 +45,8 @@ class _FlowState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -192,6 +108,123 @@ class _FlowState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _FlowState:
+    def __init__(__self__, *,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_from: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering Flow resources.
+
+        :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
+        :param pulumi.Input[_builtins.str] copy_from: The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
+        :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if copy_from is not None:
+            pulumi.set(__self__, "copy_from", copy_from)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The alias for this authentication flow.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="copyFrom")
+    def copy_from(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The alias of an existing authentication flow (built-in or custom) to copy. All executions and subflows of the source flow are duplicated into this flow. Changing this attribute will force creation of a new resource.
+        """
+        return pulumi.get(self, "copy_from")
+
+    @copy_from.setter
+    def copy_from(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "copy_from", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A description for the authentication flow.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that the authentication flow exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:authentication/flow:Flow")
 class Flow(pulumi.CustomResource):
@@ -204,6 +237,7 @@ class Flow(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing an authentication flow within Keycloak.
@@ -285,12 +319,13 @@ class Flow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: FlowArgs,
+                 args: Optional[FlowArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing an authentication flow within Keycloak.
@@ -385,6 +420,7 @@ class Flow(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -398,9 +434,8 @@ class Flow(pulumi.CustomResource):
             __props__.__dict__["copy_from"] = copy_from
             __props__.__dict__["description"] = description
             __props__.__dict__["provider_id"] = provider_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(Flow, __self__).__init__(
             'keycloak:authentication/flow:Flow',
             resource_name,
@@ -415,7 +450,8 @@ class Flow(pulumi.CustomResource):
             copy_from: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Flow':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Flow':
         """
         Get an existing Flow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -428,6 +464,7 @@ class Flow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`. Ignored when `copy_from` is set, since the copy inherits its type from the source flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -438,6 +475,7 @@ class Flow(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return Flow(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -447,13 +485,15 @@ class Flow(pulumi.CustomResource):
             copy_from: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["alias"] = alias
         __props__["copyFrom"] = copy_from
         __props__["description"] = description
         __props__["providerId"] = provider_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:authentication/flow:Flow', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -495,4 +535,12 @@ class Flow(pulumi.CustomResource):
         The realm that the authentication flow exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

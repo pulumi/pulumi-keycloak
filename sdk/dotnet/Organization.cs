@@ -120,6 +120,12 @@ namespace Pulumi.Keycloak
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
         /// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
         /// </summary>
         [Output("redirectUrl")]
@@ -133,7 +139,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Organization(string name, OrganizationArgs args, CustomResourceOptions? options = null)
+        public Organization(string name, OrganizationArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:index/organization:Organization", name, args ?? new OrganizationArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -222,8 +228,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this organization exists in.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> Realm { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
@@ -292,6 +304,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.

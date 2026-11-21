@@ -108,12 +108,26 @@ public class ExecutionConfig extends com.pulumi.resources.CustomResource {
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
      * 
+     * &gt; Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+     * as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+     * properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+     * the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+     * Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+     * After an import, the masked value is stored in state until the next apply.
+     * 
      */
     @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> config;
 
     /**
      * @return The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+     * 
+     * &gt; Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+     * as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+     * properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+     * the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+     * Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+     * After an import, the masked value is stored in state until the next apply.
      * 
      */
     public Output<Map<String,String>> config() {
@@ -146,6 +160,20 @@ public class ExecutionConfig extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

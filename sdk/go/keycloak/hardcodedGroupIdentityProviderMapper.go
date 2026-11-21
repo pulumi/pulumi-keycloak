@@ -87,6 +87,8 @@ type HardcodedGroupIdentityProviderMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewHardcodedGroupIdentityProviderMapper registers a new resource with the given unique name, arguments, and options.
@@ -98,9 +100,6 @@ func NewHardcodedGroupIdentityProviderMapper(ctx *pulumi.Context,
 
 	if args.IdentityProviderAlias == nil {
 		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedGroupIdentityProviderMapper
@@ -135,6 +134,8 @@ type hardcodedGroupIdentityProviderMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type HardcodedGroupIdentityProviderMapperState struct {
@@ -148,6 +149,8 @@ type HardcodedGroupIdentityProviderMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (HardcodedGroupIdentityProviderMapperState) ElementType() reflect.Type {
@@ -170,7 +173,9 @@ type hardcodedGroupIdentityProviderMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
 	// The realm ID that this mapper will exist in.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a HardcodedGroupIdentityProviderMapper resource.
@@ -184,7 +189,9 @@ type HardcodedGroupIdentityProviderMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
 	// The realm ID that this mapper will exist in.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (HardcodedGroupIdentityProviderMapperArgs) ElementType() reflect.Type {
@@ -297,6 +304,11 @@ func (o HardcodedGroupIdentityProviderMapperOutput) Name() pulumi.StringOutput {
 // The realm ID that this mapper will exist in.
 func (o HardcodedGroupIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedGroupIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o HardcodedGroupIdentityProviderMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedGroupIdentityProviderMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type HardcodedGroupIdentityProviderMapperArrayOutput struct{ *pulumi.OutputState }

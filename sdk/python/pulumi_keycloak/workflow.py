@@ -22,29 +22,30 @@ __all__ = ['WorkflowArgs', 'Workflow']
 class WorkflowArgs:
     def __init__(__self__, *,
                  on: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  steps: pulumi.Input[Sequence[pulumi.Input['WorkflowStepArgs']]],
                  cancel_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
                  conditions: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
                  schedule: pulumi.Input[Optional['WorkflowScheduleArgs']] = None):
         """
         The set of arguments for constructing a Workflow resource.
 
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
-        :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['WorkflowStepArgs']]] steps: One or more step blocks defining the actions to execute, in order.
         :param pulumi.Input[_builtins.str] cancel_in_progress: Whether to cancel an already in-progress execution when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[_builtins.str] conditions: An expression that must evaluate to true for the workflow to run (e.g. `has-role('some-role')`).
         :param pulumi.Input[_builtins.bool] enabled: Whether the workflow is enabled. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
+        :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input['WorkflowScheduleArgs'] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
         """
         pulumi.set(__self__, "on", on)
-        pulumi.set(__self__, "realm", realm)
         pulumi.set(__self__, "steps", steps)
         if cancel_in_progress is not None:
             pulumi.set(__self__, "cancel_in_progress", cancel_in_progress)
@@ -54,6 +55,10 @@ class WorkflowArgs:
             pulumi.set(__self__, "enabled", enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if restart_in_progress is not None:
             pulumi.set(__self__, "restart_in_progress", restart_in_progress)
         if schedule is not None:
@@ -70,18 +75,6 @@ class WorkflowArgs:
     @on.setter
     def on(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "on", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this workflow exists in. Changing this forces a new resource.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter
@@ -144,6 +137,30 @@ class WorkflowArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this workflow exists in. Changing this forces a new resource.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="restartInProgress")
     def restart_in_progress(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -177,6 +194,7 @@ class _WorkflowState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
                  schedule: pulumi.Input[Optional['WorkflowScheduleArgs']] = None,
                  states: pulumi.Input[Optional[Sequence[pulumi.Input['WorkflowStateArgs']]]] = None,
@@ -190,6 +208,7 @@ class _WorkflowState:
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input['WorkflowScheduleArgs'] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
         :param pulumi.Input[Sequence[pulumi.Input['WorkflowStateArgs']]] states: The runtime state of the workflow as reported by Keycloak. Contains:
@@ -207,6 +226,8 @@ class _WorkflowState:
             pulumi.set(__self__, "on", on)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if restart_in_progress is not None:
             pulumi.set(__self__, "restart_in_progress", restart_in_progress)
         if schedule is not None:
@@ -289,6 +310,18 @@ class _WorkflowState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="restartInProgress")
     def restart_in_progress(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -349,6 +382,7 @@ class Workflow(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
                  schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
                  steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]]] = None,
@@ -527,6 +561,7 @@ class Workflow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
         :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]] steps: One or more step blocks defining the actions to execute, in order.
@@ -724,6 +759,7 @@ class Workflow(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  on: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
                  schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
                  steps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStepArgs', 'WorkflowStepArgsDict', 'outputs.WorkflowStep']]]]] = None,
@@ -743,9 +779,8 @@ class Workflow(pulumi.CustomResource):
             if on is None and not opts.urn:
                 raise TypeError("Missing required property 'on'")
             __props__.__dict__["on"] = on
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["restart_in_progress"] = restart_in_progress
             __props__.__dict__["schedule"] = schedule
             if steps is None and not opts.urn:
@@ -768,6 +803,7 @@ class Workflow(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             on: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
             schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
             states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict', 'outputs.WorkflowState']]]]] = None,
@@ -785,6 +821,7 @@ class Workflow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the workflow.
         :param pulumi.Input[_builtins.str] on: The realm event that triggers the workflow. Supported values: `user_created`, `user_removed`, `user_authenticated`, `user_federated_identity_added`, `user_federated_identity_removed`, `user_group_membership_added`, `user_group_membership_removed`, `user_role_granted`, `user_role_revoked`.
         :param pulumi.Input[_builtins.str] realm: The realm this workflow exists in. Changing this forces a new resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] restart_in_progress: Whether to restart an already in-progress execution (resetting it to the first step) when the workflow is re-triggered for the same resource. Set to `"true"` to enable.
         :param pulumi.Input[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']] schedule: A schedule block that makes the workflow run periodically over matching realm resources instead of (or in addition to) reacting to a single event.
         :param pulumi.Input[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict', 'outputs.WorkflowState']]]] states: The runtime state of the workflow as reported by Keycloak. Contains:
@@ -800,6 +837,7 @@ class Workflow(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["on"] = on
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["restart_in_progress"] = restart_in_progress
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["states"] = states
@@ -815,6 +853,7 @@ class Workflow(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             on: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             restart_in_progress: pulumi.Input[Optional[_builtins.str]] = None,
             schedule: pulumi.Input[Optional[Union['WorkflowScheduleArgs', 'WorkflowScheduleArgsDict', 'outputs.WorkflowSchedule']]] = None,
             states: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WorkflowStateArgs', 'WorkflowStateArgsDict', 'outputs.WorkflowState']]]]] = None,
@@ -826,6 +865,7 @@ class Workflow(pulumi.CustomResource):
         __props__["name"] = name
         __props__["on"] = on
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["restartInProgress"] = restart_in_progress
         __props__["schedule"] = schedule
         __props__["states"] = states
@@ -879,6 +919,14 @@ class Workflow(pulumi.CustomResource):
         The realm this workflow exists in. Changing this forces a new resource.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="restartInProgress")

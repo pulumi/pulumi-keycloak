@@ -32,6 +32,7 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
     return pulumi.runtime.invoke("keycloak:saml/getClient:getClient", {
         "clientId": args.clientId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -46,7 +47,8 @@ export interface GetClientArgs {
     /**
      * The realm id.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -90,6 +92,7 @@ export interface GetClientResult {
     readonly name: string;
     readonly nameIdFormat: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly rootUrl: string;
     readonly samlSignatureKeyName: string;
     readonly signAssertions: boolean;
@@ -128,6 +131,7 @@ export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeO
     return pulumi.runtime.invokeOutput("keycloak:saml/getClient:getClient", {
         "clientId": args.clientId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -142,5 +146,6 @@ export interface GetClientOutputArgs {
     /**
      * The realm id.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

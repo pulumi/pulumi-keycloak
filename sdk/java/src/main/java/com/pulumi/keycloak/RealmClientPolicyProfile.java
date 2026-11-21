@@ -70,8 +70,9 @@ import javax.annotation.Nullable;
  * 
  * ### Attribute Arguments
  * 
- * - `name` - (Required) The name of the attribute.
+ * - `name` - (Required) The name of the profile.
  * - `realmId` - (Required) The realm id.
+ * - `description` - (Optional) The description of the profile.
  * - `executor` - (Optional) An ordered list of executors
  * 
  * #### Executor Arguments
@@ -81,7 +82,15 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource currently does not support importing.
+ * This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client profiles, the name is the identifier within the realm.
+ * 
+ * Example:
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile profile my-realm/my-profile
+ * ```
+ * 
+ * Note: values in `configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `&#34;true&#34;`, `&#34;false&#34;` or `&#34;5&#34;`.
  * 
  */
 @ResourceType(type="keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile")
@@ -110,6 +119,20 @@ public class RealmClientPolicyProfile extends com.pulumi.resources.CustomResourc
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
 
     /**
      *
@@ -123,7 +146,7 @@ public class RealmClientPolicyProfile extends com.pulumi.resources.CustomResourc
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmClientPolicyProfile(java.lang.String name, RealmClientPolicyProfileArgs args) {
+    public RealmClientPolicyProfile(java.lang.String name, @Nullable RealmClientPolicyProfileArgs args) {
         this(name, args, null);
     }
     /**
@@ -132,7 +155,7 @@ public class RealmClientPolicyProfile extends com.pulumi.resources.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmClientPolicyProfile(java.lang.String name, RealmClientPolicyProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public RealmClientPolicyProfile(java.lang.String name, @Nullable RealmClientPolicyProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -140,7 +163,7 @@ public class RealmClientPolicyProfile extends com.pulumi.resources.CustomResourc
         super("keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static RealmClientPolicyProfileArgs makeArgs(RealmClientPolicyProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static RealmClientPolicyProfileArgs makeArgs(@Nullable RealmClientPolicyProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

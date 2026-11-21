@@ -91,6 +91,10 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The name of the role that is assigned.
      */
     declare public readonly role: pulumi.Output<string>;
@@ -113,13 +117,11 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ClientServiceAccountRealmRoleState | undefined;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["role"] = state?.role;
             resourceInputs["serviceAccountUserId"] = state?.serviceAccountUserId;
         } else {
             const args = argsOrState as ClientServiceAccountRealmRoleArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
@@ -127,6 +129,7 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'serviceAccountUserId'");
             }
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["role"] = args?.role;
             resourceInputs["serviceAccountUserId"] = args?.serviceAccountUserId;
         }
@@ -144,6 +147,10 @@ export interface ClientServiceAccountRealmRoleState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The name of the role that is assigned.
      */
     role?: pulumi.Input<string | undefined>;
@@ -160,7 +167,11 @@ export interface ClientServiceAccountRealmRoleArgs {
     /**
      * The realm that the client and role belong to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The name of the role that is assigned.
      */

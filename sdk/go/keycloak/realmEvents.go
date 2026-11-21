@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -86,18 +85,17 @@ type RealmEvents struct {
 	EventsListeners pulumi.StringArrayOutput `pulumi:"eventsListeners"`
 	// The name of the realm the event settings apply to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmEvents registers a new resource with the given unique name, arguments, and options.
 func NewRealmEvents(ctx *pulumi.Context,
 	name string, args *RealmEventsArgs, opts ...pulumi.ResourceOption) (*RealmEvents, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmEventsArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmEvents
 	err := ctx.RegisterResource("keycloak:index/realmEvents:RealmEvents", name, args, &resource, opts...)
@@ -135,6 +133,8 @@ type realmEventsState struct {
 	EventsListeners []string `pulumi:"eventsListeners"`
 	// The name of the realm the event settings apply to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmEventsState struct {
@@ -152,6 +152,8 @@ type RealmEventsState struct {
 	EventsListeners pulumi.StringArrayInput
 	// The name of the realm the event settings apply to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmEventsState) ElementType() reflect.Type {
@@ -178,7 +180,9 @@ type realmEventsArgs struct {
 	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
 	EventsListeners []string `pulumi:"eventsListeners"`
 	// The name of the realm the event settings apply to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmEvents resource.
@@ -196,7 +200,9 @@ type RealmEventsArgs struct {
 	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
 	EventsListeners pulumi.StringArrayInput
 	// The name of the realm the event settings apply to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmEventsArgs) ElementType() reflect.Type {
@@ -319,6 +325,11 @@ func (o RealmEventsOutput) EventsListeners() pulumi.StringArrayOutput {
 // The name of the realm the event settings apply to.
 func (o RealmEventsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmEventsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmEvents) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmEventsArrayOutput struct{ *pulumi.OutputState }

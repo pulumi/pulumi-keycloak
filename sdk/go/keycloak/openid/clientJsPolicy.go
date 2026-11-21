@@ -108,6 +108,8 @@ type ClientJsPolicy struct {
 	Logic            pulumi.StringPtrOutput `pulumi:"logic"`
 	Name             pulumi.StringOutput    `pulumi:"name"`
 	RealmId          pulumi.StringOutput    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput    `pulumi:"realmInternalId"`
 	ResourceServerId pulumi.StringOutput    `pulumi:"resourceServerId"`
 	Type             pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -124,9 +126,6 @@ func NewClientJsPolicy(ctx *pulumi.Context,
 	}
 	if args.DecisionStrategy == nil {
 		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -160,6 +159,8 @@ type clientJsPolicyState struct {
 	Logic            *string `pulumi:"logic"`
 	Name             *string `pulumi:"name"`
 	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
 	ResourceServerId *string `pulumi:"resourceServerId"`
 	Type             *string `pulumi:"type"`
 }
@@ -171,6 +172,8 @@ type ClientJsPolicyState struct {
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 	Type             pulumi.StringPtrInput
 }
@@ -191,7 +194,9 @@ type clientJsPolicyArgs struct {
 	Description      *string `pulumi:"description"`
 	Logic            *string `pulumi:"logic"`
 	Name             *string `pulumi:"name"`
-	RealmId          string  `pulumi:"realmId"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
 	ResourceServerId string  `pulumi:"resourceServerId"`
 	Type             *string `pulumi:"type"`
 }
@@ -203,7 +208,9 @@ type ClientJsPolicyArgs struct {
 	Description      pulumi.StringPtrInput
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
-	RealmId          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringInput
 	Type             pulumi.StringPtrInput
 }
@@ -317,6 +324,11 @@ func (o ClientJsPolicyOutput) Name() pulumi.StringOutput {
 
 func (o ClientJsPolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientJsPolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientJsPolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientJsPolicyOutput) ResourceServerId() pulumi.StringOutput {

@@ -99,7 +99,7 @@ namespace Pulumi.Keycloak
         /// });
         /// ```
         /// </summary>
-        public static Task<GetGroupResult> InvokeAsync(GetGroupArgs args, InvokeOptions? options = null)
+        public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Pulumi.Keycloak
         /// });
         /// ```
         /// </summary>
-        public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
 
         /// <summary>
@@ -312,8 +312,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this group exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetGroupArgs()
         {
@@ -347,8 +350,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this group exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetGroupInvokeArgs()
         {
@@ -372,6 +378,7 @@ namespace Pulumi.Keycloak
         public readonly string ParentId;
         public readonly string Path;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
 
         [OutputConstructor]
         private GetGroupResult(
@@ -391,7 +398,9 @@ namespace Pulumi.Keycloak
 
             string path,
 
-            string realmId)
+            string realmId,
+
+            string realmInternalId)
         {
             Attributes = attributes;
             Description = description;
@@ -402,6 +411,7 @@ namespace Pulumi.Keycloak
             ParentId = parentId;
             Path = path;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
         }
     }
 }

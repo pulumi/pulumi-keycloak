@@ -21,10 +21,10 @@ class MicrosoftIdentityProviderArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
                  client_secret: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_user_info: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -41,6 +41,8 @@ class MicrosoftIdentityProviderArgs:
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  prompt: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -50,10 +52,10 @@ class MicrosoftIdentityProviderArgs:
 
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Microsoft instead of returning an error. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the Microsoft identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -68,6 +70,8 @@ class MicrosoftIdentityProviderArgs:
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] prompt: Indicates the type of user interaction that is required. The only valid values at this time are `login`, `none`, `consent`, and `select_account`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `microsoft`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.str] tenant_id: Uses single-tenant auth endpoints when specified, uses `common`' multi-tenant endpoints otherwise.
@@ -75,13 +79,14 @@ class MicrosoftIdentityProviderArgs:
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
-        pulumi.set(__self__, "realm", realm)
         if accepts_prompt_none_forward_from_client is not None:
             pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if default_scopes is not None:
@@ -114,6 +119,10 @@ class MicrosoftIdentityProviderArgs:
             pulumi.set(__self__, "prompt", prompt)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
@@ -146,18 +155,6 @@ class MicrosoftIdentityProviderArgs:
     @client_secret.setter
     def client_secret(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "client_secret", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the realm. This is unique across Keycloak.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
@@ -194,6 +191,18 @@ class MicrosoftIdentityProviderArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -382,6 +391,30 @@ class MicrosoftIdentityProviderArgs:
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the realm. This is unique across Keycloak.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="storeToken")
     def store_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -436,6 +469,7 @@ class _MicrosoftIdentityProviderState:
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -456,6 +490,7 @@ class _MicrosoftIdentityProviderState:
                  prompt: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -466,6 +501,7 @@ class _MicrosoftIdentityProviderState:
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Microsoft instead of returning an error. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the Microsoft identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
@@ -484,6 +520,7 @@ class _MicrosoftIdentityProviderState:
         :param pulumi.Input[_builtins.str] prompt: Indicates the type of user interaction that is required. The only valid values at this time are `login`, `none`, `consent`, and `select_account`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `microsoft`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.str] tenant_id: Uses single-tenant auth endpoints when specified, uses `common`' multi-tenant endpoints otherwise.
@@ -495,6 +532,8 @@ class _MicrosoftIdentityProviderState:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if client_id is not None:
@@ -535,6 +574,8 @@ class _MicrosoftIdentityProviderState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
@@ -579,6 +620,18 @@ class _MicrosoftIdentityProviderState:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -815,6 +868,18 @@ class _MicrosoftIdentityProviderState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="storeToken")
     def store_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -872,6 +937,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -891,6 +957,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
                  prompt: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -937,6 +1004,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Microsoft instead of returning an error. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the Microsoft identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
@@ -954,6 +1022,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] prompt: Indicates the type of user interaction that is required. The only valid values at this time are `login`, `none`, `consent`, and `select_account`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `microsoft`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.str] tenant_id: Uses single-tenant auth endpoints when specified, uses `common`' multi-tenant endpoints otherwise.
@@ -1019,6 +1088,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1038,6 +1108,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
                  prompt: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1054,6 +1125,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["accepts_prompt_none_forward_from_client"] = accepts_prompt_none_forward_from_client
             __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
             __props__.__dict__["authenticate_by_default"] = authenticate_by_default
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
@@ -1076,9 +1148,8 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
             __props__.__dict__["prompt"] = prompt
             __props__.__dict__["provider_id"] = provider_id
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["store_token"] = store_token
             __props__.__dict__["sync_mode"] = sync_mode
             __props__.__dict__["tenant_id"] = tenant_id
@@ -1099,6 +1170,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
             accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1119,6 +1191,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
             prompt: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             store_token: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
             tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1133,6 +1206,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Microsoft instead of returning an error. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the Microsoft identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
@@ -1151,6 +1225,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] prompt: Indicates the type of user interaction that is required. The only valid values at this time are `login`, `none`, `consent`, and `select_account`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `microsoft`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.str] tenant_id: Uses single-tenant auth endpoints when specified, uses `common`' multi-tenant endpoints otherwise.
@@ -1163,6 +1238,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["accepts_prompt_none_forward_from_client"] = accepts_prompt_none_forward_from_client
         __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
         __props__.__dict__["authenticate_by_default"] = authenticate_by_default
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
@@ -1183,6 +1259,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["prompt"] = prompt
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["store_token"] = store_token
         __props__.__dict__["sync_mode"] = sync_mode
         __props__.__dict__["tenant_id"] = tenant_id
@@ -1195,6 +1272,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
             accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1215,6 +1293,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
             prompt: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             store_token: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
             tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1223,6 +1302,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         __props__["acceptsPromptNoneForwardFromClient"] = accepts_prompt_none_forward_from_client
         __props__["addReadTokenRoleOnCreate"] = add_read_token_role_on_create
         __props__["alias"] = alias
+        __props__["allowAdminRoleMapping"] = allow_admin_role_mapping
         __props__["authenticateByDefault"] = authenticate_by_default
         __props__["clientId"] = client_id
         __props__["clientSecret"] = client_secret
@@ -1243,6 +1323,7 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         __props__["prompt"] = prompt
         __props__["providerId"] = provider_id
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["storeToken"] = store_token
         __props__["syncMode"] = sync_mode
         __props__["tenantId"] = tenant_id
@@ -1272,6 +1353,14 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         The alias for the Microsoft identity provider.
         """
         return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -1426,6 +1515,14 @@ class MicrosoftIdentityProvider(pulumi.CustomResource):
         The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="storeToken")

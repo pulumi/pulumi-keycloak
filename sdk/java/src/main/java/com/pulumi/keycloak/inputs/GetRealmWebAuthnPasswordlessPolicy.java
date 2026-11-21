@@ -147,6 +147,21 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
     }
 
     /**
+     * Signature algorithms in preference order.
+     * 
+     */
+    @Import(name="signatureAlgorithmsOrdereds", required=true)
+    private List<String> signatureAlgorithmsOrdereds;
+
+    /**
+     * @return Signature algorithms in preference order.
+     * 
+     */
+    public List<String> signatureAlgorithmsOrdereds() {
+        return this.signatureAlgorithmsOrdereds;
+    }
+
+    /**
      * Either required, preferred or discouraged
      * 
      */
@@ -176,6 +191,7 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
         this.signatureAlgorithms = $.signatureAlgorithms;
+        this.signatureAlgorithmsOrdereds = $.signatureAlgorithmsOrdereds;
         this.userVerificationRequirement = $.userVerificationRequirement;
     }
 
@@ -309,6 +325,27 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
         }
 
         /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(List<String> signatureAlgorithmsOrdereds) {
+            $.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
+            return this;
+        }
+
+        /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(String... signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(List.of(signatureAlgorithmsOrdereds));
+        }
+
+        /**
          * @param userVerificationRequirement Either required, preferred or discouraged
          * 
          * @return builder
@@ -355,6 +392,9 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
             }
             if ($.signatureAlgorithms == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "signatureAlgorithms");
+            }
+            if ($.signatureAlgorithmsOrdereds == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "signatureAlgorithmsOrdereds");
             }
             if ($.userVerificationRequirement == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "userVerificationRequirement");

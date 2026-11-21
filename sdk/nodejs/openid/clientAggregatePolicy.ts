@@ -133,6 +133,10 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
     declare public readonly policies: pulumi.Output<string[]>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly resourceServerId: pulumi.Output<string>;
 
     /**
@@ -154,6 +158,7 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["policies"] = state?.policies;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
         } else {
             const args = argsOrState as ClientAggregatePolicyArgs | undefined;
@@ -162,9 +167,6 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
             }
             if (args?.policies === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
@@ -175,6 +177,7 @@ export class ClientAggregatePolicy extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["policies"] = args?.policies;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -192,6 +195,10 @@ export interface ClientAggregatePolicyState {
     name?: pulumi.Input<string | undefined>;
     policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId?: pulumi.Input<string | undefined>;
 }
 
@@ -204,6 +211,10 @@ export interface ClientAggregatePolicyArgs {
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
     policies: pulumi.Input<pulumi.Input<string>[]>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId: pulumi.Input<string>;
 }

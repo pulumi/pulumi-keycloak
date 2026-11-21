@@ -150,6 +150,10 @@ export class User extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * A list of required user actions.
      */
     declare public readonly requiredActions: pulumi.Output<string[] | undefined>;
@@ -181,13 +185,11 @@ export class User extends pulumi.CustomResource {
             resourceInputs["initialPassword"] = state?.initialPassword;
             resourceInputs["lastName"] = state?.lastName;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["requiredActions"] = state?.requiredActions;
             resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
@@ -201,6 +203,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["initialPassword"] = args?.initialPassword;
             resourceInputs["lastName"] = args?.lastName;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["requiredActions"] = args?.requiredActions;
             resourceInputs["username"] = args?.username;
         }
@@ -254,6 +257,10 @@ export interface UserState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * A list of required user actions.
      */
     requiredActions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -306,7 +313,11 @@ export interface UserArgs {
     /**
      * The realm this user belongs to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * A list of required user actions.
      */

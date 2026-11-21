@@ -104,16 +104,54 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Organization Group Example
+ *
+ * Organization group role assignments require Keycloak 26.7 or newer. Set `organizationsEnabled = true` on the
+ * `keycloak_realm.realm` resource before applying this example. This example uses the realm and realm role defined above.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const organization = new keycloak.Organization("organization", {
+ *     realm: realm.id,
+ *     name: "my-organization",
+ *     domains: [{
+ *         name: "organization.example.com",
+ *     }],
+ * });
+ * const organizationGroup = new keycloak.Group("organization_group", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     name: "my-organization-group",
+ * });
+ * const organizationGroupRoles = new keycloak.GroupRoles("organization_group_roles", {
+ *     realmId: realm.id,
+ *     organizationId: organization.id,
+ *     groupId: organizationGroup.id,
+ *     roleIds: [realmRole.id],
+ * });
+ * ```
+ *
  * ## Import
  *
- * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
+ * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+ * organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`. Here, `groupId` is the unique ID that Keycloak
  * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
  * a GUID.
  *
- * Example:
+ * Examples:
+ *
+ * realm-level group
  *
  * ```sh
  * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+ * ```
+ *
+ * organization-scoped group
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
  * ```
  */
 export class GroupRoles extends pulumi.CustomResource {
@@ -164,9 +202,17 @@ export class GroupRoles extends pulumi.CustomResource {
      */
     declare public readonly groupId: pulumi.Output<string>;
     /**
+     * The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+     */
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
+    /**
      * The realm this group exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     /**
      * A list of role IDs to map to the group.
      */
@@ -187,22 +233,23 @@ export class GroupRoles extends pulumi.CustomResource {
             const state = argsOrState as GroupRolesState | undefined;
             resourceInputs["exhaustive"] = state?.exhaustive;
             resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["roleIds"] = state?.roleIds;
         } else {
             const args = argsOrState as GroupRolesArgs | undefined;
             if (args?.groupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.roleIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleIds'");
             }
             resourceInputs["exhaustive"] = args?.exhaustive;
             resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["roleIds"] = args?.roleIds;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -223,9 +270,17 @@ export interface GroupRolesState {
      */
     groupId?: pulumi.Input<string | undefined>;
     /**
+     * The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
+    /**
      * The realm this group exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * A list of role IDs to map to the group.
      */
@@ -245,9 +300,17 @@ export interface GroupRolesArgs {
      */
     groupId: pulumi.Input<string>;
     /**
+     * The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+     */
+    organizationId?: pulumi.Input<string | undefined>;
+    /**
      * The realm this group exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * A list of role IDs to map to the group.
      */

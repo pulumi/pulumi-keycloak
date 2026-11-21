@@ -79,6 +79,13 @@ namespace Pulumi.Keycloak.Authentication
 
         /// <summary>
         /// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        /// 
+        /// &gt; Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+        /// as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+        /// properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+        /// the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+        /// Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+        /// After an import, the masked value is stored in state until the next apply.
         /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, string>> Config { get; private set; } = null!;
@@ -94,6 +101,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
 
         /// <summary>
@@ -152,6 +165,13 @@ namespace Pulumi.Keycloak.Authentication
 
         /// <summary>
         /// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        /// 
+        /// &gt; Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+        /// as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+        /// properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+        /// the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+        /// Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+        /// After an import, the masked value is stored in state until the next apply.
         /// </summary>
         public InputMap<string> Config
         {
@@ -168,8 +188,14 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The realm the authentication execution exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public ExecutionConfigArgs()
         {
@@ -190,6 +216,13 @@ namespace Pulumi.Keycloak.Authentication
 
         /// <summary>
         /// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
+        /// 
+        /// &gt; Since Keycloak 26.6.7 / 26.7.3, the Keycloak API returns secret config properties (for example the reCAPTCHA `secret.key`) masked
+        /// as `**********`. Keycloak treats a property as secret unless some authenticator declares it as a non-secret config property, so
+        /// properties of custom authenticators that are not declared in the factory are masked as well. For masked properties the provider keeps
+        /// the value from your Terraform configuration in state, so changing a secret in your configuration is still detected and applied.
+        /// Changes to masked properties made outside of Terraform are not detected and are overwritten on the next apply of this resource.
+        /// After an import, the masked value is stored in state until the next apply.
         /// </summary>
         public InputMap<string> Config
         {
@@ -208,6 +241,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public ExecutionConfigState()
         {

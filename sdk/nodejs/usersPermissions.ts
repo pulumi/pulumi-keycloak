@@ -112,7 +112,7 @@ import * as utilities from "./utilities";
  *
  * - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
  * - `description` - (Optional) Description of the permission.
- * - `decisionStrategy` - (Optional) Decision strategy of the permission.
+ * - `decisionStrategy` - (Optional) Decision strategy of the permission. Defaults to `UNANIMOUS`.
  *
  * ### Attributes Reference
  *
@@ -170,6 +170,10 @@ export class UsersPermissions extends pulumi.CustomResource {
     declare public readonly manageScope: pulumi.Output<outputs.UsersPermissionsManageScope | undefined>;
     declare public readonly mapRolesScope: pulumi.Output<outputs.UsersPermissionsMapRolesScope | undefined>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly userImpersonatedScope: pulumi.Output<outputs.UsersPermissionsUserImpersonatedScope | undefined>;
     declare public readonly viewScope: pulumi.Output<outputs.UsersPermissionsViewScope | undefined>;
 
@@ -180,7 +184,7 @@ export class UsersPermissions extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: UsersPermissionsArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: UsersPermissionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UsersPermissionsArgs | UsersPermissionsState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -193,18 +197,17 @@ export class UsersPermissions extends pulumi.CustomResource {
             resourceInputs["manageScope"] = state?.manageScope;
             resourceInputs["mapRolesScope"] = state?.mapRolesScope;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userImpersonatedScope"] = state?.userImpersonatedScope;
             resourceInputs["viewScope"] = state?.viewScope;
         } else {
             const args = argsOrState as UsersPermissionsArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["impersonateScope"] = args?.impersonateScope;
             resourceInputs["manageGroupMembershipScope"] = args?.manageGroupMembershipScope;
             resourceInputs["manageScope"] = args?.manageScope;
             resourceInputs["mapRolesScope"] = args?.mapRolesScope;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userImpersonatedScope"] = args?.userImpersonatedScope;
             resourceInputs["viewScope"] = args?.viewScope;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
@@ -229,6 +232,10 @@ export interface UsersPermissionsState {
     manageScope?: pulumi.Input<inputs.UsersPermissionsManageScope | undefined>;
     mapRolesScope?: pulumi.Input<inputs.UsersPermissionsMapRolesScope | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     userImpersonatedScope?: pulumi.Input<inputs.UsersPermissionsUserImpersonatedScope | undefined>;
     viewScope?: pulumi.Input<inputs.UsersPermissionsViewScope | undefined>;
 }
@@ -241,7 +248,11 @@ export interface UsersPermissionsArgs {
     manageGroupMembershipScope?: pulumi.Input<inputs.UsersPermissionsManageGroupMembershipScope | undefined>;
     manageScope?: pulumi.Input<inputs.UsersPermissionsManageScope | undefined>;
     mapRolesScope?: pulumi.Input<inputs.UsersPermissionsMapRolesScope | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     userImpersonatedScope?: pulumi.Input<inputs.UsersPermissionsUserImpersonatedScope | undefined>;
     viewScope?: pulumi.Input<inputs.UsersPermissionsViewScope | undefined>;
 }

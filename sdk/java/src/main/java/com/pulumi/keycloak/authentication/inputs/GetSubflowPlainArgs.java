@@ -68,15 +68,22 @@ public final class GetSubflowPlainArgs extends com.pulumi.resources.InvokeArgs {
      * The realm the authentication subflow exists in.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm the authentication subflow exists in.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetSubflowPlainArgs() {}
@@ -86,6 +93,7 @@ public final class GetSubflowPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.id = $.id;
         this.parentFlowAlias = $.parentFlowAlias;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -147,17 +155,19 @@ public final class GetSubflowPlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
         public GetSubflowPlainArgs build() {
             if ($.parentFlowAlias == null) {
                 throw new MissingRequiredPropertyException("GetSubflowPlainArgs", "parentFlowAlias");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetSubflowPlainArgs", "realmId");
             }
             return $;
         }

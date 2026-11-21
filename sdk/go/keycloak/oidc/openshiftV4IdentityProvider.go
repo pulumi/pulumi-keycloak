@@ -77,6 +77,8 @@ type OpenshiftV4IdentityProvider struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrOutput `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
 	// Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
@@ -113,6 +115,8 @@ type OpenshiftV4IdentityProvider struct {
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -136,9 +140,6 @@ func NewOpenshiftV4IdentityProvider(ctx *pulumi.Context,
 	}
 	if args.ClientSecret == nil {
 		return nil, errors.New("invalid value for required argument 'ClientSecret'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
@@ -174,6 +175,8 @@ type openshiftV4IdentityProviderState struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
 	Alias *string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
@@ -210,6 +213,8 @@ type openshiftV4IdentityProviderState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -223,6 +228,8 @@ type OpenshiftV4IdentityProviderState struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
 	Alias pulumi.StringPtrInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
@@ -259,6 +266,8 @@ type OpenshiftV4IdentityProviderState struct {
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -282,6 +291,8 @@ type openshiftV4IdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
 	Alias *string `pulumi:"alias"`
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
@@ -315,7 +326,9 @@ type openshiftV4IdentityProviderArgs struct {
 	// The ID of the identity provider to use. Defaults to `openshift-v4`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -330,6 +343,8 @@ type OpenshiftV4IdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
 	Alias pulumi.StringPtrInput
+	// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
@@ -363,7 +378,9 @@ type OpenshiftV4IdentityProviderArgs struct {
 	// The ID of the identity provider to use. Defaults to `openshift-v4`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
 	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
@@ -469,6 +486,11 @@ func (o OpenshiftV4IdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpenshiftV4IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
+// Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+func (o OpenshiftV4IdentityProviderOutput) AllowAdminRoleMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *OpenshiftV4IdentityProvider) pulumi.BoolPtrOutput { return v.AllowAdminRoleMapping }).(pulumi.BoolPtrOutput)
+}
+
 // Enable/disable authenticate users by default.
 func (o OpenshiftV4IdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *OpenshiftV4IdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
@@ -560,6 +582,11 @@ func (o OpenshiftV4IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 // The name of the realm. This is unique across Keycloak.
 func (o OpenshiftV4IdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *OpenshiftV4IdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o OpenshiftV4IdentityProviderOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *OpenshiftV4IdentityProvider) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // When `true`, tokens will be stored after authenticating users. Defaults to `true`.

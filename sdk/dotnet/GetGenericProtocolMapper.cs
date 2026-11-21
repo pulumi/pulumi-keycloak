@@ -65,8 +65,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this protocol mapper exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetGenericProtocolMapperArgs()
         {
@@ -99,8 +102,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this protocol mapper exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetGenericProtocolMapperInvokeArgs()
         {
@@ -132,6 +138,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string ProtocolMapper;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
 
         [OutputConstructor]
         private GetGenericProtocolMapperResult(
@@ -149,7 +156,9 @@ namespace Pulumi.Keycloak
 
             string protocolMapper,
 
-            string realmId)
+            string realmId,
+
+            string realmInternalId)
         {
             ClientId = clientId;
             ClientScopeId = clientScopeId;
@@ -159,6 +168,7 @@ namespace Pulumi.Keycloak
             Protocol = protocol;
             ProtocolMapper = protocolMapper;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
         }
     }
 }

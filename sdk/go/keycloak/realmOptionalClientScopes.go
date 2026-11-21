@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **WARNING:** This resource is deprecated and will be removed in a future major version. Use `ClientScopeAssignments` with `defaultScopes` and `optionalScopes` instead.
+//
 // Allows you to manage the set of optional client scopes for a Keycloak realm, which are used when new clients are created.
 //
 // Note that this resource attempts to be an **authoritative** source over the optional client scopes for a Keycloak realm,
@@ -84,6 +86,8 @@ type RealmOptionalClientScopes struct {
 	OptionalScopes pulumi.StringArrayOutput `pulumi:"optionalScopes"`
 	// The realm this client and scopes exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmOptionalClientScopes registers a new resource with the given unique name, arguments, and options.
@@ -95,9 +99,6 @@ func NewRealmOptionalClientScopes(ctx *pulumi.Context,
 
 	if args.OptionalScopes == nil {
 		return nil, errors.New("invalid value for required argument 'OptionalScopes'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmOptionalClientScopes
@@ -126,6 +127,8 @@ type realmOptionalClientScopesState struct {
 	OptionalScopes []string `pulumi:"optionalScopes"`
 	// The realm this client and scopes exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmOptionalClientScopesState struct {
@@ -133,6 +136,8 @@ type RealmOptionalClientScopesState struct {
 	OptionalScopes pulumi.StringArrayInput
 	// The realm this client and scopes exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmOptionalClientScopesState) ElementType() reflect.Type {
@@ -149,7 +154,9 @@ type realmOptionalClientScopesArgs struct {
 	// An array of optional client scope names that should be used when creating new Keycloak clients.
 	OptionalScopes []string `pulumi:"optionalScopes"`
 	// The realm this client and scopes exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmOptionalClientScopes resource.
@@ -157,7 +164,9 @@ type RealmOptionalClientScopesArgs struct {
 	// An array of optional client scope names that should be used when creating new Keycloak clients.
 	OptionalScopes pulumi.StringArrayInput
 	// The realm this client and scopes exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmOptionalClientScopesArgs) ElementType() reflect.Type {
@@ -255,6 +264,11 @@ func (o RealmOptionalClientScopesOutput) OptionalScopes() pulumi.StringArrayOutp
 // The realm this client and scopes exists in.
 func (o RealmOptionalClientScopesOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmOptionalClientScopes) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmOptionalClientScopesOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmOptionalClientScopes) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmOptionalClientScopesArrayOutput struct{ *pulumi.OutputState }

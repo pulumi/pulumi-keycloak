@@ -20,15 +20,20 @@ __all__ = ['DefaultGroupsArgs', 'DefaultGroups']
 class DefaultGroupsArgs:
     def __init__(__self__, *,
                  group_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 realm_id: pulumi.Input[_builtins.str]):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DefaultGroups resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "group_ids", group_ids)
-        pulumi.set(__self__, "realm_id", realm_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="groupIds")
@@ -44,32 +49,48 @@ class DefaultGroupsArgs:
 
     @_builtins.property
     @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The realm this group exists in.
         """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
 
 @pulumi.input_type
 class _DefaultGroupsState:
     def __init__(__self__, *,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DefaultGroups resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if group_ids is not None:
             pulumi.set(__self__, "group_ids", group_ids)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="groupIds")
@@ -95,6 +116,18 @@ class _DefaultGroupsState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/defaultGroups:DefaultGroups")
 class DefaultGroups(pulumi.CustomResource):
@@ -104,6 +137,7 @@ class DefaultGroups(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for managing a realm's default groups.
@@ -142,6 +176,7 @@ class DefaultGroups(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -199,6 +234,7 @@ class DefaultGroups(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -211,9 +247,8 @@ class DefaultGroups(pulumi.CustomResource):
             if group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'group_ids'")
             __props__.__dict__["group_ids"] = group_ids
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(DefaultGroups, __self__).__init__(
             'keycloak:index/defaultGroups:DefaultGroups',
             resource_name,
@@ -225,7 +260,8 @@ class DefaultGroups(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DefaultGroups':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DefaultGroups':
         """
         Get an existing DefaultGroups resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -235,6 +271,7 @@ class DefaultGroups(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -242,16 +279,19 @@ class DefaultGroups(pulumi.CustomResource):
 
         __props__.__dict__["group_ids"] = group_ids
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return DefaultGroups(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["groupIds"] = group_ids
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/defaultGroups:DefaultGroups', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -269,4 +309,12 @@ class DefaultGroups(pulumi.CustomResource):
         The realm this group exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

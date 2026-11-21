@@ -83,6 +83,8 @@ type ClientServiceAccountRealmRole struct {
 
 	// The realm that the client and role belong to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The name of the role that is assigned.
 	Role pulumi.StringOutput `pulumi:"role"`
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -96,9 +98,6 @@ func NewClientServiceAccountRealmRole(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
@@ -130,6 +129,8 @@ func GetClientServiceAccountRealmRole(ctx *pulumi.Context,
 type clientServiceAccountRealmRoleState struct {
 	// The realm that the client and role belong to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role that is assigned.
 	Role *string `pulumi:"role"`
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -139,6 +140,8 @@ type clientServiceAccountRealmRoleState struct {
 type ClientServiceAccountRealmRoleState struct {
 	// The realm that the client and role belong to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role that is assigned.
 	Role pulumi.StringPtrInput
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -157,7 +160,9 @@ func ClientServiceAccountRealmRoleExists(ctx *pulumi.Context,
 
 type clientServiceAccountRealmRoleArgs struct {
 	// The realm that the client and role belong to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role that is assigned.
 	Role string `pulumi:"role"`
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -167,7 +172,9 @@ type clientServiceAccountRealmRoleArgs struct {
 // The set of arguments for constructing a ClientServiceAccountRealmRole resource.
 type ClientServiceAccountRealmRoleArgs struct {
 	// The realm that the client and role belong to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role that is assigned.
 	Role pulumi.StringInput
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -264,6 +271,11 @@ func (o ClientServiceAccountRealmRoleOutput) ToClientServiceAccountRealmRoleOutp
 // The realm that the client and role belong to.
 func (o ClientServiceAccountRealmRoleOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientServiceAccountRealmRole) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientServiceAccountRealmRoleOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientServiceAccountRealmRole) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The name of the role that is assigned.

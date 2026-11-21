@@ -26,7 +26,7 @@ class GetUserResult:
     """
     A collection of values returned by getUser.
     """
-    def __init__(__self__, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, id=None, last_name=None, realm_id=None, required_actions=None, username=None):
+    def __init__(__self__, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, id=None, last_name=None, realm_id=None, realm_internal_id=None, required_actions=None, username=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
@@ -54,6 +54,9 @@ class GetUserResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if required_actions and not isinstance(required_actions, list):
             raise TypeError("Expected argument 'required_actions' to be a list")
         pulumi.set(__self__, "required_actions", required_actions)
@@ -131,6 +134,11 @@ class GetUserResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="requiredActions")
     def required_actions(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "required_actions")
@@ -156,11 +164,13 @@ class AwaitableGetUserResult(GetUserResult):
             id=self.id,
             last_name=self.last_name,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             required_actions=self.required_actions,
             username=self.username)
 
 
 def get_user(realm_id: Optional[_builtins.str] = None,
+             realm_internal_id: Optional[_builtins.str] = None,
              username: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
@@ -185,6 +195,7 @@ def get_user(realm_id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['username'] = username
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
@@ -199,9 +210,11 @@ def get_user(realm_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         last_name=pulumi.get(__ret__, 'last_name'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         required_actions=pulumi.get(__ret__, 'required_actions'),
         username=pulumi.get(__ret__, 'username'))
-def get_user_output(realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_user_output(realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     username: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
@@ -226,6 +239,7 @@ def get_user_output(realm_id: pulumi.Input[Optional[_builtins.str]] = None,
     """
     __args__ = dict()
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['username'] = username
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
@@ -239,5 +253,6 @@ def get_user_output(realm_id: pulumi.Input[Optional[_builtins.str]] = None,
         id=pulumi.get(__response__, 'id'),
         last_name=pulumi.get(__response__, 'last_name'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         required_actions=pulumi.get(__response__, 'required_actions'),
         username=pulumi.get(__response__, 'username')))

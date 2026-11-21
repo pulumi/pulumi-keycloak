@@ -78,13 +78,17 @@ export class ClientScope extends pulumi.CustomResource {
     }
 
     /**
-     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      */
     declare public readonly consentScreenText: pulumi.Output<string | undefined>;
     /**
      * The description of this client scope in the GUI.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
+    /**
+     * When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     */
+    declare public readonly displayOnConsentScreen: pulumi.Output<boolean>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
@@ -101,6 +105,10 @@ export class ClientScope extends pulumi.CustomResource {
      * The realm this client scope belongs to.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a ClientScope resource with the given unique name, arguments, and options.
@@ -109,7 +117,7 @@ export class ClientScope extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ClientScopeArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: ClientScopeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClientScopeArgs | ClientScopeState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -117,21 +125,22 @@ export class ClientScope extends pulumi.CustomResource {
             const state = argsOrState as ClientScopeState | undefined;
             resourceInputs["consentScreenText"] = state?.consentScreenText;
             resourceInputs["description"] = state?.description;
+            resourceInputs["displayOnConsentScreen"] = state?.displayOnConsentScreen;
             resourceInputs["extraConfig"] = state?.extraConfig;
             resourceInputs["guiOrder"] = state?.guiOrder;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as ClientScopeArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["consentScreenText"] = args?.consentScreenText;
             resourceInputs["description"] = args?.description;
+            resourceInputs["displayOnConsentScreen"] = args?.displayOnConsentScreen;
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["guiOrder"] = args?.guiOrder;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientScope.__pulumiType, name, resourceInputs, opts);
@@ -143,13 +152,17 @@ export class ClientScope extends pulumi.CustomResource {
  */
 export interface ClientScopeState {
     /**
-     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      */
     consentScreenText?: pulumi.Input<string | undefined>;
     /**
      * The description of this client scope in the GUI.
      */
     description?: pulumi.Input<string | undefined>;
+    /**
+     * When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     */
+    displayOnConsentScreen?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
@@ -166,6 +179,10 @@ export interface ClientScopeState {
      * The realm this client scope belongs to.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,13 +190,17 @@ export interface ClientScopeState {
  */
 export interface ClientScopeArgs {
     /**
-     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      */
     consentScreenText?: pulumi.Input<string | undefined>;
     /**
      * The description of this client scope in the GUI.
      */
     description?: pulumi.Input<string | undefined>;
+    /**
+     * When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     */
+    displayOnConsentScreen?: pulumi.Input<boolean | undefined>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
      */
@@ -195,5 +216,9 @@ export interface ClientScopeArgs {
     /**
      * The realm this client scope belongs to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

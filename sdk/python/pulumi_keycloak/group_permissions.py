@@ -22,23 +22,32 @@ __all__ = ['GroupPermissionsArgs', 'GroupPermissions']
 class GroupPermissionsArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  manage_members_scope: pulumi.Input[Optional['GroupPermissionsManageMembersScopeArgs']] = None,
                  manage_membership_scope: pulumi.Input[Optional['GroupPermissionsManageMembershipScopeArgs']] = None,
                  manage_scope: pulumi.Input[Optional['GroupPermissionsManageScopeArgs']] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  view_members_scope: pulumi.Input[Optional['GroupPermissionsViewMembersScopeArgs']] = None,
                  view_scope: pulumi.Input[Optional['GroupPermissionsViewScopeArgs']] = None):
         """
         The set of arguments for constructing a GroupPermissions resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         if manage_members_scope is not None:
             pulumi.set(__self__, "manage_members_scope", manage_members_scope)
         if manage_membership_scope is not None:
             pulumi.set(__self__, "manage_membership_scope", manage_membership_scope)
         if manage_scope is not None:
             pulumi.set(__self__, "manage_scope", manage_scope)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if view_members_scope is not None:
             pulumi.set(__self__, "view_members_scope", view_members_scope)
         if view_scope is not None:
@@ -52,15 +61,6 @@ class GroupPermissionsArgs:
     @group_id.setter
     def group_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "group_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="manageMembersScope")
@@ -90,6 +90,36 @@ class GroupPermissionsArgs:
         pulumi.set(self, "manage_scope", value)
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="viewMembersScope")
     def view_members_scope(self) -> pulumi.Input[Optional['GroupPermissionsViewMembersScopeArgs']]:
         return pulumi.get(self, "view_members_scope")
@@ -117,13 +147,16 @@ class _GroupPermissionsState:
                  manage_members_scope: pulumi.Input[Optional['GroupPermissionsManageMembersScopeArgs']] = None,
                  manage_membership_scope: pulumi.Input[Optional['GroupPermissionsManageMembershipScopeArgs']] = None,
                  manage_scope: pulumi.Input[Optional['GroupPermissionsManageScopeArgs']] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  view_members_scope: pulumi.Input[Optional['GroupPermissionsViewMembersScopeArgs']] = None,
                  view_scope: pulumi.Input[Optional['GroupPermissionsViewScopeArgs']] = None):
         """
         Input properties used for looking up and filtering GroupPermissions resources.
 
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if authorization_resource_server_id is not None:
             pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
@@ -137,8 +170,12 @@ class _GroupPermissionsState:
             pulumi.set(__self__, "manage_membership_scope", manage_membership_scope)
         if manage_scope is not None:
             pulumi.set(__self__, "manage_scope", manage_scope)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if view_members_scope is not None:
             pulumi.set(__self__, "view_members_scope", view_members_scope)
         if view_scope is not None:
@@ -202,6 +239,15 @@ class _GroupPermissionsState:
         pulumi.set(self, "manage_scope", value)
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "realm_id")
@@ -209,6 +255,18 @@ class _GroupPermissionsState:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter(name="viewMembersScope")
@@ -239,7 +297,9 @@ class GroupPermissions(pulumi.CustomResource):
                  manage_members_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict', 'outputs.GroupPermissionsManageMembersScope']]] = None,
                  manage_membership_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict', 'outputs.GroupPermissionsManageMembershipScope']]] = None,
                  manage_scope: pulumi.Input[Optional[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict', 'outputs.GroupPermissionsManageScope']]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  view_members_scope: pulumi.Input[Optional[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict', 'outputs.GroupPermissionsViewMembersScope']]] = None,
                  view_scope: pulumi.Input[Optional[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict', 'outputs.GroupPermissionsViewScope']]] = None,
                  __props__=None):
@@ -261,6 +321,7 @@ class GroupPermissions(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -303,7 +364,9 @@ class GroupPermissions(pulumi.CustomResource):
                  manage_members_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict', 'outputs.GroupPermissionsManageMembersScope']]] = None,
                  manage_membership_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict', 'outputs.GroupPermissionsManageMembershipScope']]] = None,
                  manage_scope: pulumi.Input[Optional[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict', 'outputs.GroupPermissionsManageScope']]] = None,
+                 organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  view_members_scope: pulumi.Input[Optional[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict', 'outputs.GroupPermissionsViewMembersScope']]] = None,
                  view_scope: pulumi.Input[Optional[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict', 'outputs.GroupPermissionsViewScope']]] = None,
                  __props__=None):
@@ -321,9 +384,9 @@ class GroupPermissions(pulumi.CustomResource):
             __props__.__dict__["manage_members_scope"] = manage_members_scope
             __props__.__dict__["manage_membership_scope"] = manage_membership_scope
             __props__.__dict__["manage_scope"] = manage_scope
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["view_members_scope"] = view_members_scope
             __props__.__dict__["view_scope"] = view_scope
             __props__.__dict__["authorization_resource_server_id"] = None
@@ -344,7 +407,9 @@ class GroupPermissions(pulumi.CustomResource):
             manage_members_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict', 'outputs.GroupPermissionsManageMembersScope']]] = None,
             manage_membership_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict', 'outputs.GroupPermissionsManageMembershipScope']]] = None,
             manage_scope: pulumi.Input[Optional[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict', 'outputs.GroupPermissionsManageScope']]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             view_members_scope: pulumi.Input[Optional[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict', 'outputs.GroupPermissionsViewMembersScope']]] = None,
             view_scope: pulumi.Input[Optional[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict', 'outputs.GroupPermissionsViewScope']]] = None) -> 'GroupPermissions':
         """
@@ -355,6 +420,7 @@ class GroupPermissions(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -366,7 +432,9 @@ class GroupPermissions(pulumi.CustomResource):
         __props__.__dict__["manage_members_scope"] = manage_members_scope
         __props__.__dict__["manage_membership_scope"] = manage_membership_scope
         __props__.__dict__["manage_scope"] = manage_scope
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["view_members_scope"] = view_members_scope
         __props__.__dict__["view_scope"] = view_scope
         return GroupPermissions(resource_name, opts=opts, __props__=__props__)
@@ -380,7 +448,9 @@ class GroupPermissions(pulumi.CustomResource):
             manage_members_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict', 'outputs.GroupPermissionsManageMembersScope']]] = None,
             manage_membership_scope: pulumi.Input[Optional[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict', 'outputs.GroupPermissionsManageMembershipScope']]] = None,
             manage_scope: pulumi.Input[Optional[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict', 'outputs.GroupPermissionsManageScope']]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             view_members_scope: pulumi.Input[Optional[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict', 'outputs.GroupPermissionsViewMembersScope']]] = None,
             view_scope: pulumi.Input[Optional[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict', 'outputs.GroupPermissionsViewScope']]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
@@ -390,7 +460,9 @@ class GroupPermissions(pulumi.CustomResource):
         __props__["manageMembersScope"] = manage_members_scope
         __props__["manageMembershipScope"] = manage_membership_scope
         __props__["manageScope"] = manage_scope
+        __props__["organizationId"] = organization_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["viewMembersScope"] = view_members_scope
         __props__["viewScope"] = view_scope
         return pulumi.runtime.exists_resource(None, 'keycloak:index/groupPermissions:GroupPermissions', id, __props__, opts or pulumi.ResourceOptions())
@@ -429,9 +501,22 @@ class GroupPermissions(pulumi.CustomResource):
         return pulumi.get(self, "manage_scope")
 
     @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "organization_id")
+
+    @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="viewMembersScope")

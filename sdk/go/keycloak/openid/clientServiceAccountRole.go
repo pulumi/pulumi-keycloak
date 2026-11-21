@@ -97,6 +97,8 @@ type ClientServiceAccountRole struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The realm the clients and roles belong to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The name of the role that is assigned.
 	Role pulumi.StringOutput `pulumi:"role"`
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -112,9 +114,6 @@ func NewClientServiceAccountRole(ctx *pulumi.Context,
 
 	if args.ClientId == nil {
 		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
@@ -149,6 +148,8 @@ type clientServiceAccountRoleState struct {
 	ClientId *string `pulumi:"clientId"`
 	// The realm the clients and roles belong to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role that is assigned.
 	Role *string `pulumi:"role"`
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -160,6 +161,8 @@ type ClientServiceAccountRoleState struct {
 	ClientId pulumi.StringPtrInput
 	// The realm the clients and roles belong to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role that is assigned.
 	Role pulumi.StringPtrInput
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -180,7 +183,9 @@ type clientServiceAccountRoleArgs struct {
 	// The id of the client that provides the role.
 	ClientId string `pulumi:"clientId"`
 	// The realm the clients and roles belong to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the role that is assigned.
 	Role string `pulumi:"role"`
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -192,7 +197,9 @@ type ClientServiceAccountRoleArgs struct {
 	// The id of the client that provides the role.
 	ClientId pulumi.StringInput
 	// The realm the clients and roles belong to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the role that is assigned.
 	Role pulumi.StringInput
 	// The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
@@ -294,6 +301,11 @@ func (o ClientServiceAccountRoleOutput) ClientId() pulumi.StringOutput {
 // The realm the clients and roles belong to.
 func (o ClientServiceAccountRoleOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientServiceAccountRole) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientServiceAccountRoleOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientServiceAccountRole) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The name of the role that is assigned.

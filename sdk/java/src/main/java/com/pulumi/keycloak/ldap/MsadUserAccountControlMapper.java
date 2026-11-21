@@ -99,6 +99,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper")
 public class MsadUserAccountControlMapper extends com.pulumi.resources.CustomResource {
     /**
+     * When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     * 
+     */
+    @Export(name="alwaysReadEnabledValueFromLdap", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> alwaysReadEnabledValueFromLdap;
+
+    /**
+     * @return When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> alwaysReadEnabledValueFromLdap() {
+        return Codegen.optional(this.alwaysReadEnabledValueFromLdap);
+    }
+    /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      * 
      */
@@ -153,6 +167,20 @@ public class MsadUserAccountControlMapper extends com.pulumi.resources.CustomRes
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

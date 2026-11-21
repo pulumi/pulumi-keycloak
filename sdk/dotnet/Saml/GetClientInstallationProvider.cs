@@ -210,8 +210,11 @@ namespace Pulumi.Keycloak.Saml
         /// <summary>
         /// The realm that the SAML client exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetClientInstallationProviderArgs()
         {
@@ -236,8 +239,11 @@ namespace Pulumi.Keycloak.Saml
         /// <summary>
         /// The realm that the SAML client exists within.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetClientInstallationProviderInvokeArgs()
         {
@@ -256,6 +262,7 @@ namespace Pulumi.Keycloak.Saml
         public readonly string Id;
         public readonly string ProviderId;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         /// <summary>
         /// (Computed) The returned document needed for SAML installation.
         /// </summary>
@@ -271,12 +278,15 @@ namespace Pulumi.Keycloak.Saml
 
             string realmId,
 
+            string realmInternalId,
+
             string value)
         {
             ClientId = clientId;
             Id = id;
             ProviderId = providerId;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             Value = value;
         }
     }

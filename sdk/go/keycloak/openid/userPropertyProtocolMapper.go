@@ -163,6 +163,8 @@ type UserPropertyProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The built-in user property (such as email) to map a claim for.
 	UserProperty pulumi.StringOutput `pulumi:"userProperty"`
 }
@@ -176,9 +178,6 @@ func NewUserPropertyProtocolMapper(ctx *pulumi.Context,
 
 	if args.ClaimName == nil {
 		return nil, errors.New("invalid value for required argument 'ClaimName'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.UserProperty == nil {
 		return nil, errors.New("invalid value for required argument 'UserProperty'")
@@ -224,6 +223,8 @@ type userPropertyProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The built-in user property (such as email) to map a claim for.
 	UserProperty *string `pulumi:"userProperty"`
 }
@@ -247,6 +248,8 @@ type UserPropertyProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The built-in user property (such as email) to map a claim for.
 	UserProperty pulumi.StringPtrInput
 }
@@ -279,7 +282,9 @@ type userPropertyProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The built-in user property (such as email) to map a claim for.
 	UserProperty string `pulumi:"userProperty"`
 }
@@ -303,7 +308,9 @@ type UserPropertyProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The built-in user property (such as email) to map a claim for.
 	UserProperty pulumi.StringInput
 }
@@ -438,6 +445,11 @@ func (o UserPropertyProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o UserPropertyProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserPropertyProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The built-in user property (such as email) to map a claim for.

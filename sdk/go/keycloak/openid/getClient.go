@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realmManagement, err := openid.LookupClient(ctx, &openid.LookupClientArgs{
-//				RealmId:  "my-realm",
+//				RealmId:  pulumi.StringRef("my-realm"),
 //				ClientId: "realm-management",
 //			}, nil)
 //			if err != nil {
@@ -37,7 +37,7 @@ import (
 //			}
 //			// use the function
 //			_, err = keycloak.GetRole(ctx, &keycloak.LookupRoleArgs{
-//				RealmId:  "my-realm",
+//				RealmId:  pulumi.StringRef("my-realm"),
 //				ClientId: pulumi.StringRef(realmManagement.Id),
 //				Name:     "realm-admin",
 //			}, nil)
@@ -73,7 +73,8 @@ type LookupClientArgs struct {
 	Oauth2JwtAuthorizationGrantEnabled    *bool             `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
 	Oauth2JwtAuthorizationGrantIdp        *string           `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The realm id.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getClient.
@@ -120,6 +121,7 @@ type LookupClientResult struct {
 	Oauth2JwtAuthorizationGrantIdp        *string  `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	PkceCodeChallengeMethod               string   `pulumi:"pkceCodeChallengeMethod"`
 	RealmId                               string   `pulumi:"realmId"`
+	RealmInternalId                       string   `pulumi:"realmInternalId"`
 	RequireDpopBoundTokens                bool     `pulumi:"requireDpopBoundTokens"`
 	ResourceServerId                      string   `pulumi:"resourceServerId"`
 	RootUrl                               string   `pulumi:"rootUrl"`
@@ -153,7 +155,8 @@ type LookupClientOutputArgs struct {
 	Oauth2JwtAuthorizationGrantEnabled    pulumi.BoolPtrInput   `pulumi:"oauth2JwtAuthorizationGrantEnabled"`
 	Oauth2JwtAuthorizationGrantIdp        pulumi.StringPtrInput `pulumi:"oauth2JwtAuthorizationGrantIdp"`
 	// The realm id.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupClientOutputArgs) ElementType() reflect.Type {
@@ -340,6 +343,10 @@ func (o LookupClientResultOutput) PkceCodeChallengeMethod() pulumi.StringOutput 
 
 func (o LookupClientResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) RequireDpopBoundTokens() pulumi.BoolOutput {

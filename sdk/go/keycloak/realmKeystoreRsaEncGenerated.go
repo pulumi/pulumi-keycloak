@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -80,18 +79,17 @@ type RealmKeystoreRsaEncGenerated struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmKeystoreRsaEncGenerated registers a new resource with the given unique name, arguments, and options.
 func NewRealmKeystoreRsaEncGenerated(ctx *pulumi.Context,
 	name string, args *RealmKeystoreRsaEncGeneratedArgs, opts ...pulumi.ResourceOption) (*RealmKeystoreRsaEncGenerated, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmKeystoreRsaEncGeneratedArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreRsaEncGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated", name, args, &resource, opts...)
@@ -129,6 +127,8 @@ type realmKeystoreRsaEncGeneratedState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmKeystoreRsaEncGeneratedState struct {
@@ -146,6 +146,8 @@ type RealmKeystoreRsaEncGeneratedState struct {
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreRsaEncGeneratedState) ElementType() reflect.Type {
@@ -172,7 +174,9 @@ type realmKeystoreRsaEncGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmKeystoreRsaEncGenerated resource.
@@ -190,7 +194,9 @@ type RealmKeystoreRsaEncGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreRsaEncGeneratedArgs) ElementType() reflect.Type {
@@ -313,6 +319,11 @@ func (o RealmKeystoreRsaEncGeneratedOutput) Priority() pulumi.IntPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreRsaEncGeneratedOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsaEncGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreRsaEncGeneratedOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsaEncGenerated) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmKeystoreRsaEncGeneratedArrayOutput struct{ *pulumi.OutputState }

@@ -17,6 +17,21 @@ public final class MsadUserAccountControlMapperState extends com.pulumi.resource
     public static final MsadUserAccountControlMapperState Empty = new MsadUserAccountControlMapperState();
 
     /**
+     * When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     * 
+     */
+    @Import(name="alwaysReadEnabledValueFromLdap")
+    private @Nullable Output<Boolean> alwaysReadEnabledValueFromLdap;
+
+    /**
+     * @return When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> alwaysReadEnabledValueFromLdap() {
+        return Optional.ofNullable(this.alwaysReadEnabledValueFromLdap);
+    }
+
+    /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      * 
      */
@@ -76,13 +91,30 @@ public final class MsadUserAccountControlMapperState extends com.pulumi.resource
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
     private MsadUserAccountControlMapperState() {}
 
     private MsadUserAccountControlMapperState(MsadUserAccountControlMapperState $) {
+        this.alwaysReadEnabledValueFromLdap = $.alwaysReadEnabledValueFromLdap;
         this.ldapPasswordPolicyHintsEnabled = $.ldapPasswordPolicyHintsEnabled;
         this.ldapUserFederationId = $.ldapUserFederationId;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -101,6 +133,27 @@ public final class MsadUserAccountControlMapperState extends com.pulumi.resource
 
         public Builder(MsadUserAccountControlMapperState defaults) {
             $ = new MsadUserAccountControlMapperState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param alwaysReadEnabledValueFromLdap When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alwaysReadEnabledValueFromLdap(@Nullable Output<Boolean> alwaysReadEnabledValueFromLdap) {
+            $.alwaysReadEnabledValueFromLdap = alwaysReadEnabledValueFromLdap;
+            return this;
+        }
+
+        /**
+         * @param alwaysReadEnabledValueFromLdap When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alwaysReadEnabledValueFromLdap(Boolean alwaysReadEnabledValueFromLdap) {
+            return alwaysReadEnabledValueFromLdap(Output.of(alwaysReadEnabledValueFromLdap));
         }
 
         /**
@@ -185,6 +238,27 @@ public final class MsadUserAccountControlMapperState extends com.pulumi.resource
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public MsadUserAccountControlMapperState build() {

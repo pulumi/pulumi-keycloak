@@ -93,7 +93,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := keycloak.GetGroup(ctx, &keycloak.LookupGroupArgs{
-//				RealmId:        realm.Id,
+//				RealmId:        pulumi.StringRef(realm.Id),
 //				OrganizationId: pulumi.StringRef(organization.Id),
 //				Name:           pulumi.StringRef("organization-group"),
 //			}, nil)
@@ -125,7 +125,8 @@ type LookupGroupArgs struct {
 	// The organization this group exists within. If omitted, the data source looks up realm groups.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The realm this group exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getGroup.
@@ -134,12 +135,13 @@ type LookupGroupResult struct {
 	Description *string           `pulumi:"description"`
 	GroupPath   *string           `pulumi:"groupPath"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string  `pulumi:"id"`
-	Name           *string `pulumi:"name"`
-	OrganizationId *string `pulumi:"organizationId"`
-	ParentId       string  `pulumi:"parentId"`
-	Path           string  `pulumi:"path"`
-	RealmId        string  `pulumi:"realmId"`
+	Id              string  `pulumi:"id"`
+	Name            *string `pulumi:"name"`
+	OrganizationId  *string `pulumi:"organizationId"`
+	ParentId        string  `pulumi:"parentId"`
+	Path            string  `pulumi:"path"`
+	RealmId         string  `pulumi:"realmId"`
+	RealmInternalId string  `pulumi:"realmInternalId"`
 }
 
 func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...pulumi.InvokeOption) LookupGroupResultOutput {
@@ -157,7 +159,8 @@ type LookupGroupOutputArgs struct {
 	// The organization this group exists within. If omitted, the data source looks up realm groups.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// The realm this group exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupGroupOutputArgs) ElementType() reflect.Type {
@@ -214,6 +217,10 @@ func (o LookupGroupResultOutput) Path() pulumi.StringOutput {
 
 func (o LookupGroupResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGroupResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupGroupResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGroupResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func init() {

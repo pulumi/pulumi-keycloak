@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetWorkflowPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -32,15 +34,22 @@ public final class GetWorkflowPlainArgs extends com.pulumi.resources.InvokeArgs 
      * The name of the realm this workflow exists within.
      * 
      */
-    @Import(name="realm", required=true)
-    private String realm;
+    @Import(name="realm")
+    private @Nullable String realm;
 
     /**
      * @return The name of the realm this workflow exists within.
      * 
      */
-    public String realm() {
-        return this.realm;
+    public Optional<String> realm() {
+        return Optional.ofNullable(this.realm);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetWorkflowPlainArgs() {}
@@ -48,6 +57,7 @@ public final class GetWorkflowPlainArgs extends com.pulumi.resources.InvokeArgs 
     private GetWorkflowPlainArgs(GetWorkflowPlainArgs $) {
         this.name = $.name;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -85,17 +95,19 @@ public final class GetWorkflowPlainArgs extends com.pulumi.resources.InvokeArgs 
          * @return builder
          * 
          */
-        public Builder realm(String realm) {
+        public Builder realm(@Nullable String realm) {
             $.realm = realm;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
         public GetWorkflowPlainArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetWorkflowPlainArgs", "name");
-            }
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("GetWorkflowPlainArgs", "realm");
             }
             return $;
         }

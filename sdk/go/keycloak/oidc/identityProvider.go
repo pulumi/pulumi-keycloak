@@ -65,6 +65,39 @@ import (
 //
 // ```
 //
+// ### With A Custom `Provider_id`
+//
+// Identity providers other than `oidc` and `keycloak-oidc`, for example from a Keycloak extension, may determine their
+// endpoints on their own. For them, `authorizationUrl` and `tokenUrl` can be left out.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := oidc.NewIdentityProvider(ctx, "custom_identity_provider", &oidc.IdentityProviderArgs{
+//				Realm:        pulumi.Any(realm.Id),
+//				Alias:        pulumi.String("my-custom-idp"),
+//				ProviderId:   pulumi.String("my-custom-oidc"),
+//				ClientId:     pulumi.String("clientID"),
+//				ClientSecret: pulumi.String("clientSecret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
@@ -83,10 +116,12 @@ type IdentityProvider struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping pulumi.BoolPtrOutput `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
-	// The Authorization Url.
-	AuthorizationUrl pulumi.StringOutput `pulumi:"authorizationUrl"`
+	// The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
+	AuthorizationUrl pulumi.StringPtrOutput `pulumi:"authorizationUrl"`
 	// Does the external IDP support backchannel logout? Defaults to `true`.
 	BackchannelSupported pulumi.BoolPtrOutput `pulumi:"backchannelSupported"`
 	// The client or client identifier registered within the identity provider.
@@ -137,16 +172,18 @@ type IdentityProvider struct {
 	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
-	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode pulumi.StringPtrOutput `pulumi:"syncMode"`
-	// The Token URL.
-	TokenUrl pulumi.StringOutput `pulumi:"tokenUrl"`
+	// The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
+	TokenUrl pulumi.StringPtrOutput `pulumi:"tokenUrl"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrOutput `pulumi:"trustEmail"`
 	// Pass current locale to identity provider. Defaults to `false`.
@@ -167,17 +204,8 @@ func NewIdentityProvider(ctx *pulumi.Context,
 	if args.Alias == nil {
 		return nil, errors.New("invalid value for required argument 'Alias'")
 	}
-	if args.AuthorizationUrl == nil {
-		return nil, errors.New("invalid value for required argument 'AuthorizationUrl'")
-	}
 	if args.ClientId == nil {
 		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
-	}
-	if args.TokenUrl == nil {
-		return nil, errors.New("invalid value for required argument 'TokenUrl'")
 	}
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
@@ -219,9 +247,11 @@ type identityProviderState struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias *string `pulumi:"alias"`
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
-	// The Authorization Url.
+	// The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
 	AuthorizationUrl *string `pulumi:"authorizationUrl"`
 	// Does the external IDP support backchannel logout? Defaults to `true`.
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
@@ -273,15 +303,17 @@ type identityProviderState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
-	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode *string `pulumi:"syncMode"`
-	// The Token URL.
+	// The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
 	TokenUrl *string `pulumi:"tokenUrl"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
@@ -300,9 +332,11 @@ type IdentityProviderState struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringPtrInput
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
-	// The Authorization Url.
+	// The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
 	AuthorizationUrl pulumi.StringPtrInput
 	// Does the external IDP support backchannel logout? Defaults to `true`.
 	BackchannelSupported pulumi.BoolPtrInput
@@ -354,15 +388,17 @@ type IdentityProviderState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
-	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
 	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode pulumi.StringPtrInput
-	// The Token URL.
+	// The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
 	TokenUrl pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
@@ -391,10 +427,12 @@ type identityProviderArgs struct {
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias string `pulumi:"alias"`
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping *bool `pulumi:"allowAdminRoleMapping"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
-	// The Authorization Url.
-	AuthorizationUrl string `pulumi:"authorizationUrl"`
+	// The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
+	AuthorizationUrl *string `pulumi:"authorizationUrl"`
 	// Does the external IDP support backchannel logout? Defaults to `true`.
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
 	// The client or client identifier registered within the identity provider.
@@ -443,16 +481,18 @@ type identityProviderArgs struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
-	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
 	ProviderId *string `pulumi:"providerId"`
 	// The name of the realm. This is unique across Keycloak.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
 	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode *string `pulumi:"syncMode"`
-	// The Token URL.
-	TokenUrl string `pulumi:"tokenUrl"`
+	// The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
+	TokenUrl *string `pulumi:"tokenUrl"`
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Pass current locale to identity provider. Defaults to `false`.
@@ -471,10 +511,12 @@ type IdentityProviderArgs struct {
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
 	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringInput
+	// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+	AllowAdminRoleMapping pulumi.BoolPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
-	// The Authorization Url.
-	AuthorizationUrl pulumi.StringInput
+	// The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
+	AuthorizationUrl pulumi.StringPtrInput
 	// Does the external IDP support backchannel logout? Defaults to `true`.
 	BackchannelSupported pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
@@ -523,16 +565,18 @@ type IdentityProviderArgs struct {
 	OrganizationId pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
-	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
 	ProviderId pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
 	// The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode pulumi.StringPtrInput
-	// The Token URL.
-	TokenUrl pulumi.StringInput
+	// The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
+	TokenUrl pulumi.StringPtrInput
 	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Pass current locale to identity provider. Defaults to `false`.
@@ -645,14 +689,19 @@ func (o IdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
+// When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+func (o IdentityProviderOutput) AllowAdminRoleMapping() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AllowAdminRoleMapping }).(pulumi.BoolPtrOutput)
+}
+
 // Enable/disable authenticate users by default.
 func (o IdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
 }
 
-// The Authorization Url.
-func (o IdentityProviderOutput) AuthorizationUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.AuthorizationUrl }).(pulumi.StringOutput)
+// The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
+func (o IdentityProviderOutput) AuthorizationUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.AuthorizationUrl }).(pulumi.StringPtrOutput)
 }
 
 // Does the external IDP support backchannel logout? Defaults to `true`.
@@ -777,7 +826,7 @@ func (o IdentityProviderOutput) PostBrokerLoginFlowAlias() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PostBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
 func (o IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
 }
@@ -785,6 +834,11 @@ func (o IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 // The name of the realm. This is unique across Keycloak.
 func (o IdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o IdentityProviderOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // When `true`, tokens will be stored after authenticating users. Defaults to `true`.
@@ -797,9 +851,9 @@ func (o IdentityProviderOutput) SyncMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SyncMode }).(pulumi.StringPtrOutput)
 }
 
-// The Token URL.
-func (o IdentityProviderOutput) TokenUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.TokenUrl }).(pulumi.StringOutput)
+// The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
+func (o IdentityProviderOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.TokenUrl }).(pulumi.StringPtrOutput)
 }
 
 // When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.

@@ -20,27 +20,32 @@ __all__ = ['HardcodedGroupIdentityProviderMapperArgs', 'HardcodedGroupIdentityPr
 class HardcodedGroupIdentityProviderMapperArgs:
     def __init__(__self__, *,
                  identity_provider_alias: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  group: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a HardcodedGroupIdentityProviderMapper resource.
 
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
-        :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] group: The name of the group which should be assigned to the users.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
-        pulumi.set(__self__, "realm", realm)
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
         if group is not None:
             pulumi.set(__self__, "group", group)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="identityProviderAlias")
@@ -53,18 +58,6 @@ class HardcodedGroupIdentityProviderMapperArgs:
     @identity_provider_alias.setter
     def identity_provider_alias(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "identity_provider_alias", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm ID that this mapper will exist in.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -102,6 +95,30 @@ class HardcodedGroupIdentityProviderMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm ID that this mapper will exist in.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _HardcodedGroupIdentityProviderMapperState:
@@ -110,7 +127,8 @@ class _HardcodedGroupIdentityProviderMapperState:
                  group: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedGroupIdentityProviderMapper resources.
 
@@ -119,6 +137,7 @@ class _HardcodedGroupIdentityProviderMapperState:
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
@@ -130,6 +149,8 @@ class _HardcodedGroupIdentityProviderMapperState:
             pulumi.set(__self__, "name", name)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -191,6 +212,18 @@ class _HardcodedGroupIdentityProviderMapperState:
     def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper")
 class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
@@ -203,6 +236,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing hardcoded group mappers for Keycloak identity provider.
@@ -247,6 +281,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -310,6 +345,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
                  identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -325,9 +361,8 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
                 raise TypeError("Missing required property 'identity_provider_alias'")
             __props__.__dict__["identity_provider_alias"] = identity_provider_alias
             __props__.__dict__["name"] = name
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(HardcodedGroupIdentityProviderMapper, __self__).__init__(
             'keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper',
             resource_name,
@@ -342,7 +377,8 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
             group: pulumi.Input[Optional[_builtins.str]] = None,
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm: pulumi.Input[Optional[_builtins.str]] = None) -> 'HardcodedGroupIdentityProviderMapper':
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'HardcodedGroupIdentityProviderMapper':
         """
         Get an existing HardcodedGroupIdentityProviderMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -355,6 +391,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -365,6 +402,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
         __props__.__dict__["identity_provider_alias"] = identity_provider_alias
         __props__.__dict__["name"] = name
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return HardcodedGroupIdentityProviderMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -374,13 +412,15 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
             group: pulumi.Input[Optional[_builtins.str]] = None,
             identity_provider_alias: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["extraConfig"] = extra_config
         __props__["group"] = group
         __props__["identityProviderAlias"] = identity_provider_alias
         __props__["name"] = name
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -422,4 +462,12 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
         The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

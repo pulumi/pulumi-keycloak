@@ -7,12 +7,11 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Allows for creating and managing `acdsaGenerated` Realm keystores within Keycloak.
+// Allows for creating and managing `ecdsa-generated` Realm keystores within Keycloak.
 //
 // A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 //
@@ -65,7 +64,7 @@ import (
 type RealmKeystoreEcdsaGenerated struct {
 	pulumi.CustomResourceState
 
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// Elliptic Curve used in ECDSA. Defaults to `P-256`.
 	EllipticCurveKey pulumi.StringPtrOutput `pulumi:"ellipticCurveKey"`
@@ -77,18 +76,17 @@ type RealmKeystoreEcdsaGenerated struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmKeystoreEcdsaGenerated registers a new resource with the given unique name, arguments, and options.
 func NewRealmKeystoreEcdsaGenerated(ctx *pulumi.Context,
 	name string, args *RealmKeystoreEcdsaGeneratedArgs, opts ...pulumi.ResourceOption) (*RealmKeystoreEcdsaGenerated, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmKeystoreEcdsaGeneratedArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmKeystoreEcdsaGenerated
 	err := ctx.RegisterResource("keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated", name, args, &resource, opts...)
@@ -112,7 +110,7 @@ func GetRealmKeystoreEcdsaGenerated(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmKeystoreEcdsaGenerated resources.
 type realmKeystoreEcdsaGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Elliptic Curve used in ECDSA. Defaults to `P-256`.
 	EllipticCurveKey *string `pulumi:"ellipticCurveKey"`
@@ -124,10 +122,12 @@ type realmKeystoreEcdsaGeneratedState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmKeystoreEcdsaGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Elliptic Curve used in ECDSA. Defaults to `P-256`.
 	EllipticCurveKey pulumi.StringPtrInput
@@ -139,6 +139,8 @@ type RealmKeystoreEcdsaGeneratedState struct {
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreEcdsaGeneratedState) ElementType() reflect.Type {
@@ -152,7 +154,7 @@ func RealmKeystoreEcdsaGeneratedExists(ctx *pulumi.Context,
 }
 
 type realmKeystoreEcdsaGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Elliptic Curve used in ECDSA. Defaults to `P-256`.
 	EllipticCurveKey *string `pulumi:"ellipticCurveKey"`
@@ -163,12 +165,14 @@ type realmKeystoreEcdsaGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmKeystoreEcdsaGenerated resource.
 type RealmKeystoreEcdsaGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Elliptic Curve used in ECDSA. Defaults to `P-256`.
 	EllipticCurveKey pulumi.StringPtrInput
@@ -179,7 +183,9 @@ type RealmKeystoreEcdsaGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreEcdsaGeneratedArgs) ElementType() reflect.Type {
@@ -269,7 +275,7 @@ func (o RealmKeystoreEcdsaGeneratedOutput) ToRealmKeystoreEcdsaGeneratedOutputWi
 	return o
 }
 
-// When `false`, key in not used for signing. Defaults to `true`.
+// When `false`, key is not used for signing. Defaults to `true`.
 func (o RealmKeystoreEcdsaGeneratedOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -297,6 +303,11 @@ func (o RealmKeystoreEcdsaGeneratedOutput) Priority() pulumi.IntPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreEcdsaGeneratedOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreEcdsaGeneratedOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreEcdsaGenerated) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmKeystoreEcdsaGeneratedArrayOutput struct{ *pulumi.OutputState }

@@ -68,7 +68,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreRsa : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -153,6 +153,12 @@ namespace Pulumi.Keycloak
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a RealmKeystoreRsa resource with the given unique name, arguments, and options.
@@ -161,7 +167,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public RealmKeystoreRsa(string name, RealmKeystoreRsaArgs args, CustomResourceOptions? options = null)
+        public RealmKeystoreRsa(string name, RealmKeystoreRsaArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", name, args ?? new RealmKeystoreRsaArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -206,137 +212,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreRsaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
-        /// </summary>
-        [Input("active")]
-        public Input<bool>? Active { get; set; }
-
-        /// <summary>
-        /// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
-        /// </summary>
-        [Input("algorithm")]
-        public Input<string>? Algorithm { get; set; }
-
-        /// <summary>
-        /// X509 Certificate encoded in PEM format. Required without `CertificateWo` and `CertificateWoVersion`.
-        /// </summary>
-        [Input("certificate")]
-        public Input<string>? Certificate { get; set; }
-
-        [Input("certificateWo")]
-        private Input<string>? _certificateWo;
-
-        /// <summary>
-        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `CertificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
-        /// </summary>
-        public Input<string>? CertificateWo
-        {
-            get => _certificateWo;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _certificateWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        /// <summary>
-        /// Version of the `CertificateWo` argument. Stored in state.
-        /// </summary>
-        [Input("certificateWoVersion")]
-        public Input<string>? CertificateWoVersion { get; set; }
-
-        /// <summary>
-        /// When `False`, key is not accessible in this realm. Defaults to `True`.
-        /// </summary>
-        [Input("enabled")]
-        public Input<bool>? Enabled { get; set; }
-
-        [Input("extraConfig")]
-        private InputMap<string>? _extraConfig;
-
-        /// <summary>
-        /// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `Kid`.
-        /// </summary>
-        public InputMap<string> ExtraConfig
-        {
-            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
-            set => _extraConfig = value;
-        }
-
-        /// <summary>
-        /// Display name of provider when linked in admin console.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// Priority for the provider. Defaults to `0`
-        /// </summary>
-        [Input("priority")]
-        public Input<int>? Priority { get; set; }
-
-        [Input("privateKey")]
-        private Input<string>? _privateKey;
-
-        /// <summary>
-        /// Private RSA Key encoded in PEM format. Required without `PrivateKeyWo` and `PrivateKeyWoVersion`.
-        /// </summary>
-        public Input<string>? PrivateKey
-        {
-            get => _privateKey;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        [Input("privateKeyWo")]
-        private Input<string>? _privateKeyWo;
-
-        /// <summary>
-        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `PrivateKeyWoVersion`.
-        /// </summary>
-        public Input<string>? PrivateKeyWo
-        {
-            get => _privateKeyWo;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
-        /// <summary>
-        /// Trigger for `PrivateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
-        /// </summary>
-        [Input("privateKeyWoVersion")]
-        public Input<string>? PrivateKeyWoVersion { get; set; }
-
-        /// <summary>
-        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
-        /// </summary>
-        [Input("providerId")]
-        public Input<string>? ProviderId { get; set; }
-
-        /// <summary>
-        /// The realm this keystore exists in.
-        /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
-
-        public RealmKeystoreRsaArgs()
-        {
-        }
-        public static new RealmKeystoreRsaArgs Empty => new RealmKeystoreRsaArgs();
-    }
-
-    public sealed class RealmKeystoreRsaState : global::Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -456,6 +332,148 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
+
+        public RealmKeystoreRsaArgs()
+        {
+        }
+        public static new RealmKeystoreRsaArgs Empty => new RealmKeystoreRsaArgs();
+    }
+
+    public sealed class RealmKeystoreRsaState : global::Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// When `False`, key is not used for signing. Defaults to `True`.
+        /// </summary>
+        [Input("active")]
+        public Input<bool>? Active { get; set; }
+
+        /// <summary>
+        /// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
+        /// </summary>
+        [Input("algorithm")]
+        public Input<string>? Algorithm { get; set; }
+
+        /// <summary>
+        /// X509 Certificate encoded in PEM format. Required without `CertificateWo` and `CertificateWoVersion`.
+        /// </summary>
+        [Input("certificate")]
+        public Input<string>? Certificate { get; set; }
+
+        [Input("certificateWo")]
+        private Input<string>? _certificateWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `CertificateWoVersion`. The certificate is sent on every update, since Keycloak requires it.
+        /// </summary>
+        public Input<string>? CertificateWo
+        {
+            get => _certificateWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _certificateWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version of the `CertificateWo` argument. Stored in state.
+        /// </summary>
+        [Input("certificateWoVersion")]
+        public Input<string>? CertificateWoVersion { get; set; }
+
+        /// <summary>
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `Kid`.
+        /// </summary>
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
+
+        /// <summary>
+        /// Display name of provider when linked in admin console.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Priority for the provider. Defaults to `0`
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
+        /// <summary>
+        /// Private RSA Key encoded in PEM format. Required without `PrivateKeyWo` and `PrivateKeyWoVersion`.
+        /// </summary>
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `PrivateKeyWoVersion`.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Trigger for `PrivateKeyWo`: the key is only sent to Keycloak when this value changes. Stored in state.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<string>? PrivateKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
+        /// </summary>
+        [Input("providerId")]
+        public Input<string>? ProviderId { get; set; }
+
+        /// <summary>
+        /// The realm this keystore exists in.
+        /// </summary>
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmKeystoreRsaState()
         {

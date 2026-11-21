@@ -152,6 +152,21 @@ public final class AttributeToRoleIdentityMapperState extends com.pulumi.resourc
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * Role Name.
      * 
      */
@@ -178,6 +193,7 @@ public final class AttributeToRoleIdentityMapperState extends com.pulumi.resourc
         this.identityProviderAlias = $.identityProviderAlias;
         this.name = $.name;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.role = $.role;
     }
 
@@ -386,6 +402,27 @@ public final class AttributeToRoleIdentityMapperState extends com.pulumi.resourc
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

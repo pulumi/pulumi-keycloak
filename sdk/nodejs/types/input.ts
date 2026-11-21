@@ -174,6 +174,10 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
      */
     signatureAlgorithms?: string[];
     /**
+     * Signature algorithms in preference order.
+     */
+    signatureAlgorithmsOrdereds?: string[];
+    /**
      * Either required, preferred or discouraged
      */
     userVerificationRequirement?: string;
@@ -209,6 +213,10 @@ export interface GetRealmWebAuthnPasswordlessPolicyArgs {
      * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
      */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Signature algorithms in preference order.
+     */
+    signatureAlgorithmsOrdereds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */
@@ -246,6 +254,10 @@ export interface GetRealmWebAuthnPolicy {
      */
     signatureAlgorithms?: string[];
     /**
+     * Signature algorithms in preference order.
+     */
+    signatureAlgorithmsOrdereds?: string[];
+    /**
      * Either required, preferred or discouraged
      */
     userVerificationRequirement?: string;
@@ -281,6 +293,10 @@ export interface GetRealmWebAuthnPolicyArgs {
      * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
      */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Signature algorithms in preference order.
+     */
+    signatureAlgorithmsOrdereds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */
@@ -511,9 +527,18 @@ export interface RealmSmtpServer {
 
 export interface RealmSmtpServerAuth {
     /**
-     * The SMTP server password.
+     * The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SMTP server password as a write-only argument
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * Change this value to update the SMTP server write-only password
+     */
+    passwordWoVersion?: pulumi.Input<string | undefined>;
     username: pulumi.Input<string>;
 }
 
@@ -528,6 +553,8 @@ export interface RealmSmtpServerTokenAuth {
     clientSecret: pulumi.Input<string>;
     /**
      * The auth token scope.
+     *
+     * For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
      */
     scope: pulumi.Input<string>;
     /**
@@ -662,6 +689,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * Signature algorithms in preference order. Conflicts with signature_algorithms.
+     */
+    signatureAlgorithmsOrdereds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
      * Either required, preferred or discouraged
      */
     userVerificationRequirement?: pulumi.Input<string | undefined>;
@@ -714,6 +745,10 @@ export interface RealmWebAuthnPolicy {
      * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Signature algorithms in preference order. Conflicts with signature_algorithms.
+     */
+    signatureAlgorithmsOrdereds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Either required, preferred or discouraged
      */

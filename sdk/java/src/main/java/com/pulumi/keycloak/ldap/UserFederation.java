@@ -457,6 +457,34 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
+     * Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     * 
+     */
+    @Export(name="referral", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> referral;
+
+    /**
+     * @return Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     * 
+     */
+    public Output<Optional<String>> referral() {
+        return Codegen.optional(this.referral);
+    }
+    /**
      * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
      * 
      */

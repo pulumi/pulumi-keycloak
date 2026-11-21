@@ -140,6 +140,10 @@ type UserFederation struct {
 	ReadTimeout pulumi.StringPtrOutput `pulumi:"readTimeout"`
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
+	// Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+	Referral pulumi.StringPtrOutput `pulumi:"referral"`
 	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
 	RelativeCreateDn pulumi.StringPtrOutput `pulumi:"relativeCreateDn"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
@@ -185,9 +189,6 @@ func NewUserFederation(ctx *pulumi.Context,
 	}
 	if args.RdnLdapAttribute == nil {
 		return nil, errors.New("invalid value for required argument 'RdnLdapAttribute'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.UserObjectClasses == nil {
 		return nil, errors.New("invalid value for required argument 'UserObjectClasses'")
@@ -286,6 +287,10 @@ type userFederationState struct {
 	ReadTimeout *string `pulumi:"readTimeout"`
 	// The realm that this provider will provide user federation for.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
+	// Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+	Referral *string `pulumi:"referral"`
 	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
 	RelativeCreateDn *string `pulumi:"relativeCreateDn"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
@@ -371,6 +376,10 @@ type UserFederationState struct {
 	ReadTimeout pulumi.StringPtrInput
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
+	// Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+	Referral pulumi.StringPtrInput
 	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
 	RelativeCreateDn pulumi.StringPtrInput
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
@@ -465,7 +474,11 @@ type userFederationArgs struct {
 	// LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ReadTimeout *string `pulumi:"readTimeout"`
 	// The realm that this provider will provide user federation for.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
+	// Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+	Referral *string `pulumi:"referral"`
 	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
 	RelativeCreateDn *string `pulumi:"relativeCreateDn"`
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
@@ -551,7 +564,11 @@ type UserFederationArgs struct {
 	// LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ReadTimeout pulumi.StringPtrInput
 	// The realm that this provider will provide user federation for.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
+	// Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+	Referral pulumi.StringPtrInput
 	// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
 	RelativeCreateDn pulumi.StringPtrInput
 	// Can be one of `ONE_LEVEL` or `SUBTREE`:
@@ -796,6 +813,16 @@ func (o UserFederationOutput) ReadTimeout() pulumi.StringPtrOutput {
 // The realm that this provider will provide user federation for.
 func (o UserFederationOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserFederationOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
+}
+
+// Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+func (o UserFederationOutput) Referral() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.Referral }).(pulumi.StringPtrOutput)
 }
 
 // Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.

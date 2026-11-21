@@ -53,8 +53,9 @@ namespace Pulumi.Keycloak
     /// 
     /// ### Attribute Arguments
     /// 
-    /// - `Name` - (Required) The name of the attribute.
+    /// - `Name` - (Required) The name of the profile.
     /// - `RealmId` - (Required) The realm id.
+    /// - `Description` - (Optional) The description of the profile.
     /// - `Executor` - (Optional) An ordered list of executors
     /// 
     /// #### Executor Arguments
@@ -64,7 +65,15 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Import
     /// 
-    /// This resource currently does not support importing.
+    /// This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client profiles, the name is the identifier within the realm.
+    /// 
+    /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile profile my-realm/my-profile
+    /// ```
+    /// 
+    /// Note: values in `Configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `"true"`, `"false"` or `"5"`.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile")]
     public partial class RealmClientPolicyProfile : global::Pulumi.CustomResource
@@ -81,6 +90,12 @@ namespace Pulumi.Keycloak
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a RealmClientPolicyProfile resource with the given unique name, arguments, and options.
@@ -89,7 +104,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public RealmClientPolicyProfile(string name, RealmClientPolicyProfileArgs args, CustomResourceOptions? options = null)
+        public RealmClientPolicyProfile(string name, RealmClientPolicyProfileArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile", name, args ?? new RealmClientPolicyProfileArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -141,8 +156,14 @@ namespace Pulumi.Keycloak
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmClientPolicyProfileArgs()
         {
@@ -168,6 +189,12 @@ namespace Pulumi.Keycloak
 
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmClientPolicyProfileState()
         {

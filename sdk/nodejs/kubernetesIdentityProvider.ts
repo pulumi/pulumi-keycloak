@@ -91,6 +91,10 @@ export class KubernetesIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    declare public readonly allowAdminRoleMapping: pulumi.Output<boolean | undefined>;
+    /**
      * Enable/disable authenticate users by default.
      */
     declare public readonly authenticateByDefault: pulumi.Output<boolean | undefined>;
@@ -146,6 +150,10 @@ export class KubernetesIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Enable/disable if tokens must be stored after authenticating users.
      */
     declare public readonly storeToken: pulumi.Output<boolean | undefined>;
@@ -173,6 +181,7 @@ export class KubernetesIdentityProvider extends pulumi.CustomResource {
             const state = argsOrState as KubernetesIdentityProviderState | undefined;
             resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["allowAdminRoleMapping"] = state?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
             resourceInputs["displayName"] = state?.displayName;
             resourceInputs["enabled"] = state?.enabled;
@@ -189,6 +198,7 @@ export class KubernetesIdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = state?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["storeToken"] = state?.storeToken;
             resourceInputs["syncMode"] = state?.syncMode;
             resourceInputs["trustEmail"] = state?.trustEmail;
@@ -200,11 +210,9 @@ export class KubernetesIdentityProvider extends pulumi.CustomResource {
             if (args?.issuer === undefined && !opts.urn) {
                 throw new Error("Missing required property 'issuer'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["allowAdminRoleMapping"] = args?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
             resourceInputs["displayName"] = args?.displayName;
             resourceInputs["enabled"] = args?.enabled;
@@ -219,6 +227,7 @@ export class KubernetesIdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = args?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["storeToken"] = args?.storeToken;
             resourceInputs["syncMode"] = args?.syncMode;
             resourceInputs["trustEmail"] = args?.trustEmail;
@@ -242,6 +251,10 @@ export interface KubernetesIdentityProviderState {
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -298,6 +311,10 @@ export interface KubernetesIdentityProviderState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Enable/disable if tokens must be stored after authenticating users.
      */
     storeToken?: pulumi.Input<boolean | undefined>;
@@ -323,6 +340,10 @@ export interface KubernetesIdentityProviderArgs {
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     alias: pulumi.Input<string>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -369,7 +390,11 @@ export interface KubernetesIdentityProviderArgs {
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Enable/disable if tokens must be stored after authenticating users.
      */

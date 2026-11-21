@@ -63,6 +63,21 @@ public final class MicrosoftIdentityProviderState extends com.pulumi.resources.R
     }
 
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    @Import(name="allowAdminRoleMapping")
+    private @Nullable Output<Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    public Optional<Output<Boolean>> allowAdminRoleMapping() {
+        return Optional.ofNullable(this.allowAdminRoleMapping);
+    }
+
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -347,6 +362,21 @@ public final class MicrosoftIdentityProviderState extends com.pulumi.resources.R
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
@@ -412,6 +442,7 @@ public final class MicrosoftIdentityProviderState extends com.pulumi.resources.R
         this.acceptsPromptNoneForwardFromClient = $.acceptsPromptNoneForwardFromClient;
         this.addReadTokenRoleOnCreate = $.addReadTokenRoleOnCreate;
         this.alias = $.alias;
+        this.allowAdminRoleMapping = $.allowAdminRoleMapping;
         this.authenticateByDefault = $.authenticateByDefault;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
@@ -432,6 +463,7 @@ public final class MicrosoftIdentityProviderState extends com.pulumi.resources.R
         this.prompt = $.prompt;
         this.providerId = $.providerId;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.storeToken = $.storeToken;
         this.syncMode = $.syncMode;
         this.tenantId = $.tenantId;
@@ -517,6 +549,27 @@ public final class MicrosoftIdentityProviderState extends com.pulumi.resources.R
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param allowAdminRoleMapping Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(@Nullable Output<Boolean> allowAdminRoleMapping) {
+            $.allowAdminRoleMapping = allowAdminRoleMapping;
+            return this;
+        }
+
+        /**
+         * @param allowAdminRoleMapping Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(Boolean allowAdminRoleMapping) {
+            return allowAdminRoleMapping(Output.of(allowAdminRoleMapping));
         }
 
         /**
@@ -913,6 +966,27 @@ public final class MicrosoftIdentityProviderState extends com.pulumi.resources.R
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

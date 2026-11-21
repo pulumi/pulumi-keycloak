@@ -20,13 +20,12 @@ __all__ = ['IdentityProviderArgs', 'IdentityProvider']
 class IdentityProviderArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[_builtins.str],
-                 authorization_url: pulumi.Input[_builtins.str],
                  client_id: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
-                 token_url: pulumi.Input[_builtins.str],
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
                  backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -50,8 +49,11 @@ class IdentityProviderArgs:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_url: pulumi.Input[Optional[_builtins.str]] = None,
                  trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
                  ui_locales: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_info_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -60,13 +62,12 @@ class IdentityProviderArgs:
         The set of arguments for constructing a IdentityProvider resource.
 
         :param pulumi.Input[_builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
-        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
-        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
-        :param pulumi.Input[_builtins.str] token_url: The Token URL.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
+        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -91,25 +92,29 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
-        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
+        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
+        :param pulumi.Input[_builtins.str] token_url: The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] user_info_url: User Info URL.
         :param pulumi.Input[_builtins.bool] validate_signature: Enable/disable signature validation of external IDP signatures. Defaults to `false`.
         """
         pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "authorization_url", authorization_url)
         pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm", realm)
-        pulumi.set(__self__, "token_url", token_url)
         if accepts_prompt_none_forward_from_client is not None:
             pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
+        if authorization_url is not None:
+            pulumi.set(__self__, "authorization_url", authorization_url)
         if backchannel_supported is not None:
             pulumi.set(__self__, "backchannel_supported", backchannel_supported)
         if client_secret is not None:
@@ -156,10 +161,16 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
             pulumi.set(__self__, "sync_mode", sync_mode)
+        if token_url is not None:
+            pulumi.set(__self__, "token_url", token_url)
         if trust_email is not None:
             pulumi.set(__self__, "trust_email", trust_email)
         if ui_locales is not None:
@@ -182,18 +193,6 @@ class IdentityProviderArgs:
         pulumi.set(self, "alias", value)
 
     @_builtins.property
-    @pulumi.getter(name="authorizationUrl")
-    def authorization_url(self) -> pulumi.Input[_builtins.str]:
-        """
-        The Authorization Url.
-        """
-        return pulumi.get(self, "authorization_url")
-
-    @authorization_url.setter
-    def authorization_url(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "authorization_url", value)
-
-    @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[_builtins.str]:
         """
@@ -204,30 +203,6 @@ class IdentityProviderArgs:
     @client_id.setter
     def client_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the realm. This is unique across Keycloak.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
-
-    @_builtins.property
-    @pulumi.getter(name="tokenUrl")
-    def token_url(self) -> pulumi.Input[_builtins.str]:
-        """
-        The Token URL.
-        """
-        return pulumi.get(self, "token_url")
-
-    @token_url.setter
-    def token_url(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "token_url", value)
 
     @_builtins.property
     @pulumi.getter(name="acceptsPromptNoneForwardFromClient")
@@ -254,6 +229,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "add_read_token_role_on_create", value)
 
     @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
+
+    @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -264,6 +251,18 @@ class IdentityProviderArgs:
     @authenticate_by_default.setter
     def authenticate_by_default(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authenticate_by_default", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authorizationUrl")
+    def authorization_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
+        """
+        return pulumi.get(self, "authorization_url")
+
+    @authorization_url.setter
+    def authorization_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "authorization_url", value)
 
     @_builtins.property
     @pulumi.getter(name="backchannelSupported")
@@ -535,13 +534,37 @@ class IdentityProviderArgs:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         """
         return pulumi.get(self, "provider_id")
 
     @provider_id.setter
     def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the realm. This is unique across Keycloak.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter(name="storeToken")
@@ -566,6 +589,18 @@ class IdentityProviderArgs:
     @sync_mode.setter
     def sync_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sync_mode", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
+        """
+        return pulumi.get(self, "token_url")
+
+    @token_url.setter
+    def token_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token_url", value)
 
     @_builtins.property
     @pulumi.getter(name="trustEmail")
@@ -622,6 +657,7 @@ class _IdentityProviderState:
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
                  backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -650,6 +686,7 @@ class _IdentityProviderState:
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  token_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -663,8 +700,9 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url.
+        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
@@ -691,11 +729,12 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
-        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
-        :param pulumi.Input[_builtins.str] token_url: The Token URL.
+        :param pulumi.Input[_builtins.str] token_url: The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] user_info_url: User Info URL.
@@ -707,6 +746,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if authorization_url is not None:
@@ -763,6 +804,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
@@ -815,6 +858,18 @@ class _IdentityProviderState:
         pulumi.set(self, "alias", value)
 
     @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
+
+    @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -830,7 +885,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="authorizationUrl")
     def authorization_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Authorization Url.
+        The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         """
         return pulumi.get(self, "authorization_url")
 
@@ -1132,7 +1187,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         """
         return pulumi.get(self, "provider_id")
 
@@ -1151,6 +1206,18 @@ class _IdentityProviderState:
     @realm.setter
     def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter(name="storeToken")
@@ -1180,7 +1247,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="tokenUrl")
     def token_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Token URL.
+        The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         """
         return pulumi.get(self, "token_url")
 
@@ -1246,6 +1313,7 @@ class IdentityProvider(pulumi.CustomResource):
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
                  backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1273,6 +1341,7 @@ class IdentityProvider(pulumi.CustomResource):
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  token_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1314,6 +1383,23 @@ class IdentityProvider(pulumi.CustomResource):
             })
         ```
 
+        ### With A Custom `Provider_id`
+
+        Identity providers other than `oidc` and `keycloak-oidc`, for example from a Keycloak extension, may determine their
+        endpoints on their own. For them, `authorization_url` and `token_url` can be left out.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        custom_identity_provider = keycloak.oidc.IdentityProvider("custom_identity_provider",
+            realm=realm["id"],
+            alias="my-custom-idp",
+            provider_id="my-custom-oidc",
+            client_id="clientID",
+            client_secret="clientSecret")
+        ```
+
         ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
@@ -1330,8 +1416,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url.
+        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
@@ -1357,11 +1444,12 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
-        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
-        :param pulumi.Input[_builtins.str] token_url: The Token URL.
+        :param pulumi.Input[_builtins.str] token_url: The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] user_info_url: User Info URL.
@@ -1406,6 +1494,23 @@ class IdentityProvider(pulumi.CustomResource):
             })
         ```
 
+        ### With A Custom `Provider_id`
+
+        Identity providers other than `oidc` and `keycloak-oidc`, for example from a Keycloak extension, may determine their
+        endpoints on their own. For them, `authorization_url` and `token_url` can be left out.
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        custom_identity_provider = keycloak.oidc.IdentityProvider("custom_identity_provider",
+            realm=realm["id"],
+            alias="my-custom-idp",
+            provider_id="my-custom-oidc",
+            client_id="clientID",
+            client_secret="clientSecret")
+        ```
+
         ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
@@ -1435,6 +1540,7 @@ class IdentityProvider(pulumi.CustomResource):
                  accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
                  backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1462,6 +1568,7 @@ class IdentityProvider(pulumi.CustomResource):
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  token_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1483,9 +1590,8 @@ class IdentityProvider(pulumi.CustomResource):
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
             __props__.__dict__["authenticate_by_default"] = authenticate_by_default
-            if authorization_url is None and not opts.urn:
-                raise TypeError("Missing required property 'authorization_url'")
             __props__.__dict__["authorization_url"] = authorization_url
             __props__.__dict__["backchannel_supported"] = backchannel_supported
             if client_id is None and not opts.urn:
@@ -1513,13 +1619,10 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
             __props__.__dict__["provider_id"] = provider_id
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["store_token"] = store_token
             __props__.__dict__["sync_mode"] = sync_mode
-            if token_url is None and not opts.urn:
-                raise TypeError("Missing required property 'token_url'")
             __props__.__dict__["token_url"] = token_url
             __props__.__dict__["trust_email"] = trust_email
             __props__.__dict__["ui_locales"] = ui_locales
@@ -1541,6 +1644,7 @@ class IdentityProvider(pulumi.CustomResource):
             accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
             backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1569,6 +1673,7 @@ class IdentityProvider(pulumi.CustomResource):
             post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             store_token: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
             token_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1586,8 +1691,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url.
+        :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
@@ -1614,11 +1720,12 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
-        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
-        :param pulumi.Input[_builtins.str] token_url: The Token URL.
+        :param pulumi.Input[_builtins.str] token_url: The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ui_locales: Pass current locale to identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] user_info_url: User Info URL.
@@ -1631,6 +1738,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["accepts_prompt_none_forward_from_client"] = accepts_prompt_none_forward_from_client
         __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
         __props__.__dict__["authenticate_by_default"] = authenticate_by_default
         __props__.__dict__["authorization_url"] = authorization_url
         __props__.__dict__["backchannel_supported"] = backchannel_supported
@@ -1659,6 +1767,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["store_token"] = store_token
         __props__.__dict__["sync_mode"] = sync_mode
         __props__.__dict__["token_url"] = token_url
@@ -1674,6 +1783,7 @@ class IdentityProvider(pulumi.CustomResource):
             accepts_prompt_none_forward_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             authorization_url: pulumi.Input[Optional[_builtins.str]] = None,
             backchannel_supported: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1702,6 +1812,7 @@ class IdentityProvider(pulumi.CustomResource):
             post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             store_token: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
             token_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1713,6 +1824,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__["acceptsPromptNoneForwardFromClient"] = accepts_prompt_none_forward_from_client
         __props__["addReadTokenRoleOnCreate"] = add_read_token_role_on_create
         __props__["alias"] = alias
+        __props__["allowAdminRoleMapping"] = allow_admin_role_mapping
         __props__["authenticateByDefault"] = authenticate_by_default
         __props__["authorizationUrl"] = authorization_url
         __props__["backchannelSupported"] = backchannel_supported
@@ -1741,6 +1853,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__["postBrokerLoginFlowAlias"] = post_broker_login_flow_alias
         __props__["providerId"] = provider_id
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["storeToken"] = store_token
         __props__["syncMode"] = sync_mode
         __props__["tokenUrl"] = token_url
@@ -1775,6 +1888,14 @@ class IdentityProvider(pulumi.CustomResource):
         return pulumi.get(self, "alias")
 
     @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
@@ -1784,9 +1905,9 @@ class IdentityProvider(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="authorizationUrl")
-    def authorization_url(self) -> pulumi.Output[_builtins.str]:
+    def authorization_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Authorization Url.
+        The Authorization Url. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         """
         return pulumi.get(self, "authorization_url")
 
@@ -1988,7 +2109,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
         """
         return pulumi.get(self, "provider_id")
 
@@ -1999,6 +2120,14 @@ class IdentityProvider(pulumi.CustomResource):
         The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="storeToken")
@@ -2018,9 +2147,9 @@ class IdentityProvider(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="tokenUrl")
-    def token_url(self) -> pulumi.Output[_builtins.str]:
+    def token_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Token URL.
+        The Token URL. Required when `provider_id` is `oidc` or `keycloak-oidc`.
         """
         return pulumi.get(self, "token_url")
 

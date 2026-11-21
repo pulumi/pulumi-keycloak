@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -76,7 +75,7 @@ import (
 type RealmKeystoreRsa struct {
 	pulumi.CustomResourceState
 
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
@@ -106,18 +105,17 @@ type RealmKeystoreRsa struct {
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmKeystoreRsa registers a new resource with the given unique name, arguments, and options.
 func NewRealmKeystoreRsa(ctx *pulumi.Context,
 	name string, args *RealmKeystoreRsaArgs, opts ...pulumi.ResourceOption) (*RealmKeystoreRsa, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmKeystoreRsaArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.CertificateWo != nil {
 		args.CertificateWo = pulumi.ToSecret(args.CertificateWo).(pulumi.StringPtrInput)
 	}
@@ -156,7 +154,7 @@ func GetRealmKeystoreRsa(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmKeystoreRsa resources.
 type realmKeystoreRsaState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm *string `pulumi:"algorithm"`
@@ -186,10 +184,12 @@ type realmKeystoreRsaState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmKeystoreRsaState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrInput
@@ -219,6 +219,8 @@ type RealmKeystoreRsaState struct {
 	ProviderId pulumi.StringPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreRsaState) ElementType() reflect.Type {
@@ -232,7 +234,7 @@ func RealmKeystoreRsaExists(ctx *pulumi.Context,
 }
 
 type realmKeystoreRsaArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm *string `pulumi:"algorithm"`
@@ -261,12 +263,14 @@ type realmKeystoreRsaArgs struct {
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId *string `pulumi:"providerId"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmKeystoreRsa resource.
 type RealmKeystoreRsaArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrInput
@@ -295,7 +299,9 @@ type RealmKeystoreRsaArgs struct {
 	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
 	ProviderId pulumi.StringPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreRsaArgs) ElementType() reflect.Type {
@@ -385,7 +391,7 @@ func (o RealmKeystoreRsaOutput) ToRealmKeystoreRsaOutputWithContext(ctx context.
 	return o
 }
 
-// When `false`, key in not used for signing. Defaults to `true`.
+// When `false`, key is not used for signing. Defaults to `true`.
 func (o RealmKeystoreRsaOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -455,6 +461,11 @@ func (o RealmKeystoreRsaOutput) ProviderId() pulumi.StringPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreRsaOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreRsaOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmKeystoreRsaArrayOutput struct{ *pulumi.OutputState }

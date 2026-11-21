@@ -26,13 +26,16 @@ class GetUserRealmRolesResult:
     """
     A collection of values returned by getUserRealmRoles.
     """
-    def __init__(__self__, id=None, realm_id=None, role_names=None, user_id=None):
+    def __init__(__self__, id=None, realm_id=None, realm_internal_id=None, role_names=None, user_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role_names and not isinstance(role_names, list):
             raise TypeError("Expected argument 'role_names' to be a list")
         pulumi.set(__self__, "role_names", role_names)
@@ -52,6 +55,11 @@ class GetUserRealmRolesResult:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> _builtins.str:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="roleNames")
@@ -75,11 +83,13 @@ class AwaitableGetUserRealmRolesResult(GetUserRealmRolesResult):
         return GetUserRealmRolesResult(
             id=self.id,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             role_names=self.role_names,
             user_id=self.user_id)
 
 
 def get_user_realm_roles(realm_id: Optional[_builtins.str] = None,
+                         realm_internal_id: Optional[_builtins.str] = None,
                          user_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserRealmRolesResult:
     """
@@ -107,6 +117,7 @@ def get_user_realm_roles(realm_id: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['userId'] = user_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getUserRealmRoles:getUserRealmRoles', __args__, opts=opts, typ=GetUserRealmRolesResult).value
@@ -114,9 +125,11 @@ def get_user_realm_roles(realm_id: Optional[_builtins.str] = None,
     return AwaitableGetUserRealmRolesResult(
         id=pulumi.get(__ret__, 'id'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         role_names=pulumi.get(__ret__, 'role_names'),
         user_id=pulumi.get(__ret__, 'user_id'))
-def get_user_realm_roles_output(realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_user_realm_roles_output(realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserRealmRolesResult]:
     """
@@ -144,11 +157,13 @@ def get_user_realm_roles_output(realm_id: pulumi.Input[Optional[_builtins.str]] 
     """
     __args__ = dict()
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['userId'] = user_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getUserRealmRoles:getUserRealmRoles', __args__, opts=opts, typ=GetUserRealmRolesResult)
     return __ret__.apply(lambda __response__: GetUserRealmRolesResult(
         id=pulumi.get(__response__, 'id'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         role_names=pulumi.get(__response__, 'role_names'),
         user_id=pulumi.get(__response__, 'user_id')))

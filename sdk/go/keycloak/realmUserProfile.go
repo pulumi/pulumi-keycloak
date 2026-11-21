@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -159,6 +158,8 @@ type RealmUserProfile struct {
 	Groups RealmUserProfileGroupArrayOutput `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
 	UnmanagedAttributePolicy pulumi.StringPtrOutput `pulumi:"unmanagedAttributePolicy"`
 }
@@ -167,12 +168,9 @@ type RealmUserProfile struct {
 func NewRealmUserProfile(ctx *pulumi.Context,
 	name string, args *RealmUserProfileArgs, opts ...pulumi.ResourceOption) (*RealmUserProfile, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmUserProfileArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RealmUserProfile
 	err := ctx.RegisterResource("keycloak:index/realmUserProfile:RealmUserProfile", name, args, &resource, opts...)
@@ -202,6 +200,8 @@ type realmUserProfileState struct {
 	Groups []RealmUserProfileGroup `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
 	UnmanagedAttributePolicy *string `pulumi:"unmanagedAttributePolicy"`
 }
@@ -213,6 +213,8 @@ type RealmUserProfileState struct {
 	Groups RealmUserProfileGroupArrayInput
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
 	UnmanagedAttributePolicy pulumi.StringPtrInput
 }
@@ -233,7 +235,9 @@ type realmUserProfileArgs struct {
 	// A list of groups.
 	Groups []RealmUserProfileGroup `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
 	UnmanagedAttributePolicy *string `pulumi:"unmanagedAttributePolicy"`
 }
@@ -245,7 +249,9 @@ type RealmUserProfileArgs struct {
 	// A list of groups.
 	Groups RealmUserProfileGroupArrayInput
 	// The ID of the realm the user profile applies to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
 	UnmanagedAttributePolicy pulumi.StringPtrInput
 }
@@ -350,6 +356,11 @@ func (o RealmUserProfileOutput) Groups() RealmUserProfileGroupArrayOutput {
 // The ID of the realm the user profile applies to.
 func (o RealmUserProfileOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmUserProfile) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmUserProfileOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmUserProfile) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`

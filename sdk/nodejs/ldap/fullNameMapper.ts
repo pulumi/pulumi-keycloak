@@ -114,6 +114,10 @@ export class FullNameMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
     declare public readonly writeOnly: pulumi.Output<boolean | undefined>;
@@ -136,6 +140,7 @@ export class FullNameMapper extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["readOnly"] = state?.readOnly;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["writeOnly"] = state?.writeOnly;
         } else {
             const args = argsOrState as FullNameMapperArgs | undefined;
@@ -145,14 +150,12 @@ export class FullNameMapper extends pulumi.CustomResource {
             if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["ldapFullNameAttribute"] = args?.ldapFullNameAttribute;
             resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
             resourceInputs["name"] = args?.name;
             resourceInputs["readOnly"] = args?.readOnly;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["writeOnly"] = args?.writeOnly;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -185,6 +188,10 @@ export interface FullNameMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
     writeOnly?: pulumi.Input<boolean | undefined>;
@@ -213,7 +220,11 @@ export interface FullNameMapperArgs {
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */

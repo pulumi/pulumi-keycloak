@@ -26,13 +26,16 @@ class GetClientScopeResult:
     """
     A collection of values returned by getClientScope.
     """
-    def __init__(__self__, consent_screen_text=None, description=None, extra_config=None, gui_order=None, id=None, include_in_openid_provider_metadata=None, include_in_token_scope=None, name=None, realm_id=None):
+    def __init__(__self__, consent_screen_text=None, description=None, display_on_consent_screen=None, extra_config=None, gui_order=None, id=None, include_in_openid_provider_metadata=None, include_in_token_scope=None, name=None, realm_id=None, realm_internal_id=None):
         if consent_screen_text and not isinstance(consent_screen_text, str):
             raise TypeError("Expected argument 'consent_screen_text' to be a str")
         pulumi.set(__self__, "consent_screen_text", consent_screen_text)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if display_on_consent_screen and not isinstance(display_on_consent_screen, bool):
+            raise TypeError("Expected argument 'display_on_consent_screen' to be a bool")
+        pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
         if extra_config and not isinstance(extra_config, dict):
             raise TypeError("Expected argument 'extra_config' to be a dict")
         pulumi.set(__self__, "extra_config", extra_config)
@@ -54,6 +57,9 @@ class GetClientScopeResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
@@ -64,6 +70,11 @@ class GetClientScopeResult:
     @pulumi.getter
     def description(self) -> _builtins.str:
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayOnConsentScreen")
+    def display_on_consent_screen(self) -> _builtins.bool:
+        return pulumi.get(self, "display_on_consent_screen")
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -103,6 +114,11 @@ class GetClientScopeResult:
     def realm_id(self) -> _builtins.str:
         return pulumi.get(self, "realm_id")
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
 
 class AwaitableGetClientScopeResult(GetClientScopeResult):
     # pylint: disable=using-constant-test
@@ -112,18 +128,21 @@ class AwaitableGetClientScopeResult(GetClientScopeResult):
         return GetClientScopeResult(
             consent_screen_text=self.consent_screen_text,
             description=self.description,
+            display_on_consent_screen=self.display_on_consent_screen,
             extra_config=self.extra_config,
             gui_order=self.gui_order,
             id=self.id,
             include_in_openid_provider_metadata=self.include_in_openid_provider_metadata,
             include_in_token_scope=self.include_in_token_scope,
             name=self.name,
-            realm_id=self.realm_id)
+            realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id)
 
 
 def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
                      name: Optional[_builtins.str] = None,
                      realm_id: Optional[_builtins.str] = None,
+                     realm_internal_id: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientScopeResult:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
@@ -152,22 +171,26 @@ def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
     __args__['extraConfig'] = extra_config
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:openid/getClientScope:getClientScope', __args__, opts=opts, typ=GetClientScopeResult).value
 
     return AwaitableGetClientScopeResult(
         consent_screen_text=pulumi.get(__ret__, 'consent_screen_text'),
         description=pulumi.get(__ret__, 'description'),
+        display_on_consent_screen=pulumi.get(__ret__, 'display_on_consent_screen'),
         extra_config=pulumi.get(__ret__, 'extra_config'),
         gui_order=pulumi.get(__ret__, 'gui_order'),
         id=pulumi.get(__ret__, 'id'),
         include_in_openid_provider_metadata=pulumi.get(__ret__, 'include_in_openid_provider_metadata'),
         include_in_token_scope=pulumi.get(__ret__, 'include_in_token_scope'),
         name=pulumi.get(__ret__, 'name'),
-        realm_id=pulumi.get(__ret__, 'realm_id'))
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'))
 def get_client_scope_output(extra_config: pulumi.Input[Optional[Optional[Mapping[str, _builtins.str]]]] = None,
                             name: pulumi.Input[Optional[_builtins.str]] = None,
-                            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                            realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientScopeResult]:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
@@ -196,15 +219,18 @@ def get_client_scope_output(extra_config: pulumi.Input[Optional[Optional[Mapping
     __args__['extraConfig'] = extra_config
     __args__['name'] = name
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientScope:getClientScope', __args__, opts=opts, typ=GetClientScopeResult)
     return __ret__.apply(lambda __response__: GetClientScopeResult(
         consent_screen_text=pulumi.get(__response__, 'consent_screen_text'),
         description=pulumi.get(__response__, 'description'),
+        display_on_consent_screen=pulumi.get(__response__, 'display_on_consent_screen'),
         extra_config=pulumi.get(__response__, 'extra_config'),
         gui_order=pulumi.get(__response__, 'gui_order'),
         id=pulumi.get(__response__, 'id'),
         include_in_openid_provider_metadata=pulumi.get(__response__, 'include_in_openid_provider_metadata'),
         include_in_token_scope=pulumi.get(__response__, 'include_in_token_scope'),
         name=pulumi.get(__response__, 'name'),
-        realm_id=pulumi.get(__response__, 'realm_id')))
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id')))

@@ -225,8 +225,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm to use for the client description converter API call.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetClientDescriptionConverterArgs()
         {
@@ -255,8 +258,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm to use for the client description converter API call.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetClientDescriptionConverterInvokeArgs()
         {
@@ -301,6 +307,7 @@ namespace Pulumi.Keycloak
         public readonly ImmutableArray<Outputs.GetClientDescriptionConverterProtocolMapperResult> ProtocolMappers;
         public readonly bool PublicClient;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly ImmutableArray<string> RedirectUris;
         public readonly ImmutableDictionary<string, string> RegisteredNodes;
         public readonly string RegistrationAccessToken;
@@ -373,6 +380,8 @@ namespace Pulumi.Keycloak
 
             string realmId,
 
+            string realmInternalId,
+
             ImmutableArray<string> redirectUris,
 
             ImmutableDictionary<string, string> registeredNodes,
@@ -421,6 +430,7 @@ namespace Pulumi.Keycloak
             ProtocolMappers = protocolMappers;
             PublicClient = publicClient;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             RedirectUris = redirectUris;
             RegisteredNodes = registeredNodes;
             RegistrationAccessToken = registrationAccessToken;

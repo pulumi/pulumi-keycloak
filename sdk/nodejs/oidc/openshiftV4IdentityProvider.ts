@@ -93,6 +93,10 @@ export class OpenshiftV4IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    declare public readonly allowAdminRoleMapping: pulumi.Output<boolean | undefined>;
+    /**
      * Enable/disable authenticate users by default.
      */
     declare public readonly authenticateByDefault: pulumi.Output<boolean | undefined>;
@@ -163,6 +167,10 @@ export class OpenshiftV4IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly realm: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     declare public readonly storeToken: pulumi.Output<boolean | undefined>;
@@ -190,6 +198,7 @@ export class OpenshiftV4IdentityProvider extends pulumi.CustomResource {
             const state = argsOrState as OpenshiftV4IdentityProviderState | undefined;
             resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = state?.alias;
+            resourceInputs["allowAdminRoleMapping"] = state?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
             resourceInputs["baseUrl"] = state?.baseUrl;
             resourceInputs["clientId"] = state?.clientId;
@@ -209,6 +218,7 @@ export class OpenshiftV4IdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = state?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realm"] = state?.realm;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["storeToken"] = state?.storeToken;
             resourceInputs["syncMode"] = state?.syncMode;
             resourceInputs["trustEmail"] = state?.trustEmail;
@@ -223,11 +233,9 @@ export class OpenshiftV4IdentityProvider extends pulumi.CustomResource {
             if (args?.clientSecret === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if (args?.realm === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
             resourceInputs["alias"] = args?.alias;
+            resourceInputs["allowAdminRoleMapping"] = args?.allowAdminRoleMapping;
             resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
             resourceInputs["baseUrl"] = args?.baseUrl;
             resourceInputs["clientId"] = args?.clientId;
@@ -246,6 +254,7 @@ export class OpenshiftV4IdentityProvider extends pulumi.CustomResource {
             resourceInputs["postBrokerLoginFlowAlias"] = args?.postBrokerLoginFlowAlias;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realm"] = args?.realm;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["storeToken"] = args?.storeToken;
             resourceInputs["syncMode"] = args?.syncMode;
             resourceInputs["trustEmail"] = args?.trustEmail;
@@ -270,6 +279,10 @@ export interface OpenshiftV4IdentityProviderState {
      * The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -341,6 +354,10 @@ export interface OpenshiftV4IdentityProviderState {
      */
     realm?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
     storeToken?: pulumi.Input<boolean | undefined>;
@@ -366,6 +383,10 @@ export interface OpenshiftV4IdentityProviderArgs {
      * The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
      */
     alias?: pulumi.Input<string | undefined>;
+    /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     */
+    allowAdminRoleMapping?: pulumi.Input<boolean | undefined>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -431,7 +452,11 @@ export interface OpenshiftV4IdentityProviderArgs {
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */

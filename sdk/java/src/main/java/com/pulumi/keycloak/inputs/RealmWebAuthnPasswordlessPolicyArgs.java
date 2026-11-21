@@ -205,6 +205,21 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
     }
 
     /**
+     * Signature algorithms in preference order. Conflicts with signature_algorithms.
+     * 
+     */
+    @Import(name="signatureAlgorithmsOrdereds")
+    private @Nullable Output<List<String>> signatureAlgorithmsOrdereds;
+
+    /**
+     * @return Signature algorithms in preference order. Conflicts with signature_algorithms.
+     * 
+     */
+    public Optional<Output<List<String>>> signatureAlgorithmsOrdereds() {
+        return Optional.ofNullable(this.signatureAlgorithmsOrdereds);
+    }
+
+    /**
      * Either required, preferred or discouraged
      * 
      */
@@ -234,6 +249,7 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
         this.signatureAlgorithms = $.signatureAlgorithms;
+        this.signatureAlgorithmsOrdereds = $.signatureAlgorithmsOrdereds;
         this.userVerificationRequirement = $.userVerificationRequirement;
     }
 
@@ -541,6 +557,37 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
          */
         public Builder signatureAlgorithms(String... signatureAlgorithms) {
             return signatureAlgorithms(List.of(signatureAlgorithms));
+        }
+
+        /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order. Conflicts with signature_algorithms.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(@Nullable Output<List<String>> signatureAlgorithmsOrdereds) {
+            $.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
+            return this;
+        }
+
+        /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order. Conflicts with signature_algorithms.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(List<String> signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(Output.of(signatureAlgorithmsOrdereds));
+        }
+
+        /**
+         * @param signatureAlgorithmsOrdereds Signature algorithms in preference order. Conflicts with signature_algorithms.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureAlgorithmsOrdereds(String... signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(List.of(signatureAlgorithmsOrdereds));
         }
 
         /**

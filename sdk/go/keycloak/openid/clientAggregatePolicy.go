@@ -135,7 +135,9 @@ type ClientAggregatePolicy struct {
 	Name             pulumi.StringOutput      `pulumi:"name"`
 	Policies         pulumi.StringArrayOutput `pulumi:"policies"`
 	RealmId          pulumi.StringOutput      `pulumi:"realmId"`
-	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput `pulumi:"realmInternalId"`
+	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 }
 
 // NewClientAggregatePolicy registers a new resource with the given unique name, arguments, and options.
@@ -150,9 +152,6 @@ func NewClientAggregatePolicy(ctx *pulumi.Context,
 	}
 	if args.Policies == nil {
 		return nil, errors.New("invalid value for required argument 'Policies'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -186,7 +185,9 @@ type clientAggregatePolicyState struct {
 	Name             *string  `pulumi:"name"`
 	Policies         []string `pulumi:"policies"`
 	RealmId          *string  `pulumi:"realmId"`
-	ResourceServerId *string  `pulumi:"resourceServerId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
+	ResourceServerId *string `pulumi:"resourceServerId"`
 }
 
 type ClientAggregatePolicyState struct {
@@ -196,6 +197,8 @@ type ClientAggregatePolicyState struct {
 	Name             pulumi.StringPtrInput
 	Policies         pulumi.StringArrayInput
 	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 }
 
@@ -215,8 +218,10 @@ type clientAggregatePolicyArgs struct {
 	Logic            *string  `pulumi:"logic"`
 	Name             *string  `pulumi:"name"`
 	Policies         []string `pulumi:"policies"`
-	RealmId          string   `pulumi:"realmId"`
-	ResourceServerId string   `pulumi:"resourceServerId"`
+	RealmId          *string  `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string `pulumi:"realmInternalId"`
+	ResourceServerId string  `pulumi:"resourceServerId"`
 }
 
 // The set of arguments for constructing a ClientAggregatePolicy resource.
@@ -226,7 +231,9 @@ type ClientAggregatePolicyArgs struct {
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	Policies         pulumi.StringArrayInput
-	RealmId          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringInput
 }
 
@@ -339,6 +346,11 @@ func (o ClientAggregatePolicyOutput) Policies() pulumi.StringArrayOutput {
 
 func (o ClientAggregatePolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientAggregatePolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientAggregatePolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientAggregatePolicyOutput) ResourceServerId() pulumi.StringOutput {

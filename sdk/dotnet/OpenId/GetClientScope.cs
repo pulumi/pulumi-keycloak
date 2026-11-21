@@ -134,8 +134,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm id.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetClientScopeArgs()
         {
@@ -162,8 +165,11 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm id.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetClientScopeInvokeArgs()
         {
@@ -177,6 +183,7 @@ namespace Pulumi.Keycloak.OpenId
     {
         public readonly string ConsentScreenText;
         public readonly string Description;
+        public readonly bool DisplayOnConsentScreen;
         public readonly ImmutableDictionary<string, string> ExtraConfig;
         public readonly int GuiOrder;
         /// <summary>
@@ -187,12 +194,15 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool IncludeInTokenScope;
         public readonly string Name;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
 
         [OutputConstructor]
         private GetClientScopeResult(
             string consentScreenText,
 
             string description,
+
+            bool displayOnConsentScreen,
 
             ImmutableDictionary<string, string> extraConfig,
 
@@ -206,10 +216,13 @@ namespace Pulumi.Keycloak.OpenId
 
             string name,
 
-            string realmId)
+            string realmId,
+
+            string realmInternalId)
         {
             ConsentScreenText = consentScreenText;
             Description = description;
+            DisplayOnConsentScreen = displayOnConsentScreen;
             ExtraConfig = extraConfig;
             GuiOrder = guiOrder;
             Id = id;
@@ -217,6 +230,7 @@ namespace Pulumi.Keycloak.OpenId
             IncludeInTokenScope = includeInTokenScope;
             Name = name;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
         }
     }
 }

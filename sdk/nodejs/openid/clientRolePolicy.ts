@@ -138,6 +138,10 @@ export class ClientRolePolicy extends pulumi.CustomResource {
     declare public readonly logic: pulumi.Output<string | undefined>;
     declare public readonly name: pulumi.Output<string>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly resourceServerId: pulumi.Output<string>;
     declare public readonly roles: pulumi.Output<outputs.openid.ClientRolePolicyRole[]>;
     declare public readonly type: pulumi.Output<string>;
@@ -161,14 +165,12 @@ export class ClientRolePolicy extends pulumi.CustomResource {
             resourceInputs["logic"] = state?.logic;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["roles"] = state?.roles;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as ClientRolePolicyArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
@@ -184,6 +186,7 @@ export class ClientRolePolicy extends pulumi.CustomResource {
             resourceInputs["logic"] = args?.logic;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
             resourceInputs["roles"] = args?.roles;
             resourceInputs["type"] = args?.type;
@@ -203,6 +206,10 @@ export interface ClientRolePolicyState {
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId?: pulumi.Input<string | undefined>;
     roles?: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[] | undefined>;
     type?: pulumi.Input<string | undefined>;
@@ -217,7 +224,11 @@ export interface ClientRolePolicyArgs {
     fetchRoles?: pulumi.Input<boolean | undefined>;
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId: pulumi.Input<string>;
     roles: pulumi.Input<pulumi.Input<inputs.openid.ClientRolePolicyRole>[]>;
     type: pulumi.Input<string>;

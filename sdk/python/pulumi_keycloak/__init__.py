@@ -8,6 +8,7 @@ import typing
 # Export this package's modules as members:
 from .attribute_importer_identity_provider_mapper import *
 from .attribute_to_role_identity_mapper import *
+from .client_scope_assignments import *
 from .custom_identity_provider_mapping import *
 from .custom_user_federation import *
 from .default_groups import *
@@ -42,6 +43,7 @@ from .hardcoded_role_identity_mapper import *
 from .identity_provider_token_exchange_scope_permission import *
 from .kubernetes_identity_provider import *
 from .organization import *
+from .organization_admin_permissions import *
 from .organization_memberships import *
 from .provider import *
 from .realm import *
@@ -51,6 +53,8 @@ from .realm_client_registration_policy import *
 from .realm_default_client_scopes import *
 from .realm_events import *
 from .realm_keystore_aes_generated import *
+from .realm_keystore_custom import *
+from .realm_keystore_ecdh_generated import *
 from .realm_keystore_ecdsa_generated import *
 from .realm_keystore_hmac_generated import *
 from .realm_keystore_java_generated import *
@@ -153,6 +157,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper": "AttributeToRoleIdentityMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/clientScopeAssignments",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/clientScopeAssignments:ClientScopeAssignments": "ClientScopeAssignments"
   }
  },
  {
@@ -325,6 +337,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/organizationAdminPermissions",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/organizationAdminPermissions:OrganizationAdminPermissions": "OrganizationAdminPermissions"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/organizationMemberships",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -385,6 +405,22 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated": "RealmKeystoreAesGenerated"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmKeystoreCustom",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmKeystoreCustom:RealmKeystoreCustom": "RealmKeystoreCustom"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmKeystoreEcdhGenerated",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmKeystoreEcdhGenerated:RealmKeystoreEcdhGenerated": "RealmKeystoreEcdhGenerated"
   }
  },
  {

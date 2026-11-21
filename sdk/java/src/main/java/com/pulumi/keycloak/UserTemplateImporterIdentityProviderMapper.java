@@ -151,6 +151,20 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
         return this.realm;
     }
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
      * Template to use to format the username to import. Substitutions are enclosed in &#92;${}. For example: &#39;&#92;$&#92;${ALIAS}.&#92;$&#92;${CLAIM.sub}&#39;. ALIAS is the provider alias. CLAIM.&#92;&lt;NAME&#92;&gt; references an ID or Access token claim.
      * 
      */

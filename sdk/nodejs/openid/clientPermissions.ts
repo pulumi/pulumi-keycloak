@@ -77,6 +77,10 @@ export class ClientPermissions extends pulumi.CustomResource {
     declare public readonly mapRolesCompositeScope: pulumi.Output<outputs.openid.ClientPermissionsMapRolesCompositeScope | undefined>;
     declare public readonly mapRolesScope: pulumi.Output<outputs.openid.ClientPermissionsMapRolesScope | undefined>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly tokenExchangeScope: pulumi.Output<outputs.openid.ClientPermissionsTokenExchangeScope | undefined>;
     declare public readonly viewScope: pulumi.Output<outputs.openid.ClientPermissionsViewScope | undefined>;
 
@@ -102,15 +106,13 @@ export class ClientPermissions extends pulumi.CustomResource {
             resourceInputs["mapRolesCompositeScope"] = state?.mapRolesCompositeScope;
             resourceInputs["mapRolesScope"] = state?.mapRolesScope;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["tokenExchangeScope"] = state?.tokenExchangeScope;
             resourceInputs["viewScope"] = state?.viewScope;
         } else {
             const args = argsOrState as ClientPermissionsArgs | undefined;
             if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["configureScope"] = args?.configureScope;
@@ -119,6 +121,7 @@ export class ClientPermissions extends pulumi.CustomResource {
             resourceInputs["mapRolesCompositeScope"] = args?.mapRolesCompositeScope;
             resourceInputs["mapRolesScope"] = args?.mapRolesScope;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["tokenExchangeScope"] = args?.tokenExchangeScope;
             resourceInputs["viewScope"] = args?.viewScope;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
@@ -145,6 +148,10 @@ export interface ClientPermissionsState {
     mapRolesCompositeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesCompositeScope | undefined>;
     mapRolesScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesScope | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     tokenExchangeScope?: pulumi.Input<inputs.openid.ClientPermissionsTokenExchangeScope | undefined>;
     viewScope?: pulumi.Input<inputs.openid.ClientPermissionsViewScope | undefined>;
 }
@@ -159,7 +166,11 @@ export interface ClientPermissionsArgs {
     mapRolesClientScopeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesClientScopeScope | undefined>;
     mapRolesCompositeScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesCompositeScope | undefined>;
     mapRolesScope?: pulumi.Input<inputs.openid.ClientPermissionsMapRolesScope | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     tokenExchangeScope?: pulumi.Input<inputs.openid.ClientPermissionsTokenExchangeScope | undefined>;
     viewScope?: pulumi.Input<inputs.openid.ClientPermissionsViewScope | undefined>;
 }

@@ -232,6 +232,18 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies if LDAP referrals should be followed or ignored. Can be one of `Ignore` or `Follow`:
+        /// </summary>
+        [Output("referral")]
+        public Output<string?> Referral { get; private set; } = null!;
+
+        /// <summary>
         /// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
         /// </summary>
         [Output("relativeCreateDn")]
@@ -533,8 +545,20 @@ namespace Pulumi.Keycloak.Ldap
         /// <summary>
         /// The realm that this provider will provide user federation for.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
+
+        /// <summary>
+        /// Specifies if LDAP referrals should be followed or ignored. Can be one of `Ignore` or `Follow`:
+        /// </summary>
+        [Input("referral")]
+        public Input<string>? Referral { get; set; }
 
         /// <summary>
         /// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.
@@ -803,6 +827,18 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
+
+        /// <summary>
+        /// Specifies if LDAP referrals should be followed or ignored. Can be one of `Ignore` or `Follow`:
+        /// </summary>
+        [Input("referral")]
+        public Input<string>? Referral { get; set; }
 
         /// <summary>
         /// Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user's DN.

@@ -54,11 +54,26 @@ public final class RealmClientPolicyProfilePolicyArgs extends com.pulumi.resourc
         return this.profiles;
     }
 
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private RealmClientPolicyProfilePolicyArgs() {}
@@ -70,6 +85,7 @@ public final class RealmClientPolicyProfilePolicyArgs extends com.pulumi.resourc
         this.name = $.name;
         this.profiles = $.profiles;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -143,7 +159,7 @@ public final class RealmClientPolicyProfilePolicyArgs extends com.pulumi.resourc
             return profiles(List.of(profiles));
         }
 
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -152,12 +168,30 @@ public final class RealmClientPolicyProfilePolicyArgs extends com.pulumi.resourc
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public RealmClientPolicyProfilePolicyArgs build() {
             if ($.profiles == null) {
                 throw new MissingRequiredPropertyException("RealmClientPolicyProfilePolicyArgs", "profiles");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("RealmClientPolicyProfilePolicyArgs", "realmId");
             }
             return $;
         }

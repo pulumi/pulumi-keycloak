@@ -20,25 +20,26 @@ __all__ = ['RequiredActionArgs', 'RequiredAction']
 class RequiredActionArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  default_action: pulumi.Input[Optional[_builtins.bool]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RequiredAction resource.
 
         :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
-        :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[_builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
         :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
+        :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "alias", alias)
-        pulumi.set(__self__, "realm_id", realm_id)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if default_action is not None:
@@ -49,6 +50,10 @@ class RequiredActionArgs:
             pulumi.set(__self__, "name", name)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -61,18 +66,6 @@ class RequiredActionArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "alias", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm the required action exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -134,6 +127,30 @@ class RequiredActionArgs:
     def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm the required action exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _RequiredActionState:
@@ -144,7 +161,8 @@ class _RequiredActionState:
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RequiredAction resources.
 
@@ -155,6 +173,7 @@ class _RequiredActionState:
         :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
         :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -170,6 +189,8 @@ class _RequiredActionState:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -255,6 +276,18 @@ class _RequiredActionState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/requiredAction:RequiredAction")
 class RequiredAction(pulumi.CustomResource):
@@ -269,6 +302,7 @@ class RequiredAction(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing required actions within Keycloak.
@@ -330,6 +364,7 @@ class RequiredAction(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
         :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -410,6 +445,7 @@ class RequiredAction(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -427,9 +463,8 @@ class RequiredAction(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(RequiredAction, __self__).__init__(
             'keycloak:index/requiredAction:RequiredAction',
             resource_name,
@@ -446,7 +481,8 @@ class RequiredAction(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RequiredAction':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RequiredAction':
         """
         Get an existing RequiredAction resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -461,6 +497,7 @@ class RequiredAction(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
         :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -473,6 +510,7 @@ class RequiredAction(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RequiredAction(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -484,7 +522,8 @@ class RequiredAction(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["alias"] = alias
         __props__["config"] = config
@@ -493,6 +532,7 @@ class RequiredAction(pulumi.CustomResource):
         __props__["name"] = name
         __props__["priority"] = priority
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/requiredAction:RequiredAction', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -550,4 +590,12 @@ class RequiredAction(pulumi.CustomResource):
         The realm the required action exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

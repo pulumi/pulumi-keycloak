@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **WARNING:** This resource is deprecated and will be removed in a future major version. Use `keycloak.ClientScopeAssignments` with `defaultScopes` and `optionalScopes` instead.
+ *
  * Allows you to manage the set of optional client scopes for a Keycloak realm, which are used when new clients are created.
  *
  * Note that this resource attempts to be an **authoritative** source over the optional client scopes for a Keycloak realm,
@@ -96,6 +98,10 @@ export class RealmOptionalClientScopes extends pulumi.CustomResource {
      * The realm this client and scopes exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RealmOptionalClientScopes resource with the given unique name, arguments, and options.
@@ -112,16 +118,15 @@ export class RealmOptionalClientScopes extends pulumi.CustomResource {
             const state = argsOrState as RealmOptionalClientScopesState | undefined;
             resourceInputs["optionalScopes"] = state?.optionalScopes;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RealmOptionalClientScopesArgs | undefined;
             if (args?.optionalScopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'optionalScopes'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["optionalScopes"] = args?.optionalScopes;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmOptionalClientScopes.__pulumiType, name, resourceInputs, opts);
@@ -140,6 +145,10 @@ export interface RealmOptionalClientScopesState {
      * The realm this client and scopes exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -153,5 +162,9 @@ export interface RealmOptionalClientScopesArgs {
     /**
      * The realm this client and scopes exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

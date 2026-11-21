@@ -58,7 +58,7 @@ namespace Pulumi.Keycloak
     /// 
     ///     var policy = new Keycloak.RealmClientPolicyProfilePolicy("policy", new()
     ///     {
-    ///         Name = "my-profile",
+    ///         Name = "my-policy",
     ///         RealmId = realm.Id,
     ///         Description = "Some desc",
     ///         Profiles = new[]
@@ -80,7 +80,7 @@ namespace Pulumi.Keycloak
     ///                 Name = "client-attributes",
     ///                 Configuration = 
     ///                 {
-    ///                     { "is-negative-logic", "false" },
+    ///                     { "is_negative_logic", "false" },
     ///                     { "attributes", JsonSerializer.Serialize(new[]
     ///                     {
     ///                         new Dictionary&lt;string, object?&gt;
@@ -99,18 +99,29 @@ namespace Pulumi.Keycloak
     /// 
     /// ### Attribute Arguments
     /// 
-    /// - `Name` - (Required) The name of the attribute.
+    /// - `Name` - (Required) The name of the policy.
     /// - `RealmId` - (Required) The realm id.
+    /// - `Description` - (Optional) The description of the policy.
+    /// - `Enabled` - (Optional) When `False`, the policy is not applied. Defaults to `True`.
+    /// - `Profiles` - (Required) The names of the client policy profiles that are applied when the conditions of this policy match.
     /// - `Condition` - (Optional) An ordered list of condition
     /// 
     /// #### Condition Arguments
     /// 
-    /// - `Name` - (Required) The name of the executor. NOTE! The executor needs to exist
+    /// - `Name` - (Required) The name of the condition. NOTE! The condition needs to exist
     /// - `Configuration` - (Optional) - A map of configuration values
     /// 
     /// ## Import
     /// 
-    /// This resource currently does not support importing.
+    /// This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client policies, the name is the identifier within the realm.
+    /// 
+    /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy policy my-realm/my-policy
+    /// ```
+    /// 
+    /// Note: values in `Configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `"true"`, `"false"` or `"5"`.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy")]
     public partial class RealmClientPolicyProfilePolicy : global::Pulumi.CustomResource
@@ -132,6 +143,12 @@ namespace Pulumi.Keycloak
 
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
 
         /// <summary>
@@ -204,8 +221,14 @@ namespace Pulumi.Keycloak
             set => _profiles = value;
         }
 
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmClientPolicyProfilePolicyArgs()
         {
@@ -242,6 +265,12 @@ namespace Pulumi.Keycloak
 
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmClientPolicyProfilePolicyState()
         {

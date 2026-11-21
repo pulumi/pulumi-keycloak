@@ -22,19 +22,21 @@ __all__ = ['ClientPermissionsArgs', 'ClientPermissions']
 class ClientPermissionsArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  configure_scope: pulumi.Input[Optional['ClientPermissionsConfigureScopeArgs']] = None,
                  manage_scope: pulumi.Input[Optional['ClientPermissionsManageScopeArgs']] = None,
                  map_roles_client_scope_scope: pulumi.Input[Optional['ClientPermissionsMapRolesClientScopeScopeArgs']] = None,
                  map_roles_composite_scope: pulumi.Input[Optional['ClientPermissionsMapRolesCompositeScopeArgs']] = None,
                  map_roles_scope: pulumi.Input[Optional['ClientPermissionsMapRolesScopeArgs']] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  token_exchange_scope: pulumi.Input[Optional['ClientPermissionsTokenExchangeScopeArgs']] = None,
                  view_scope: pulumi.Input[Optional['ClientPermissionsViewScopeArgs']] = None):
         """
         The set of arguments for constructing a ClientPermissions resource.
+
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         if configure_scope is not None:
             pulumi.set(__self__, "configure_scope", configure_scope)
         if manage_scope is not None:
@@ -45,6 +47,10 @@ class ClientPermissionsArgs:
             pulumi.set(__self__, "map_roles_composite_scope", map_roles_composite_scope)
         if map_roles_scope is not None:
             pulumi.set(__self__, "map_roles_scope", map_roles_scope)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if token_exchange_scope is not None:
             pulumi.set(__self__, "token_exchange_scope", token_exchange_scope)
         if view_scope is not None:
@@ -58,15 +64,6 @@ class ClientPermissionsArgs:
     @client_id.setter
     def client_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="configureScope")
@@ -114,6 +111,27 @@ class ClientPermissionsArgs:
         pulumi.set(self, "map_roles_scope", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="tokenExchangeScope")
     def token_exchange_scope(self) -> pulumi.Input[Optional['ClientPermissionsTokenExchangeScopeArgs']]:
         return pulumi.get(self, "token_exchange_scope")
@@ -144,12 +162,14 @@ class _ClientPermissionsState:
                  map_roles_composite_scope: pulumi.Input[Optional['ClientPermissionsMapRolesCompositeScopeArgs']] = None,
                  map_roles_scope: pulumi.Input[Optional['ClientPermissionsMapRolesScopeArgs']] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  token_exchange_scope: pulumi.Input[Optional['ClientPermissionsTokenExchangeScopeArgs']] = None,
                  view_scope: pulumi.Input[Optional['ClientPermissionsViewScopeArgs']] = None):
         """
         Input properties used for looking up and filtering ClientPermissions resources.
 
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if authorization_resource_server_id is not None:
             pulumi.set(__self__, "authorization_resource_server_id", authorization_resource_server_id)
@@ -169,6 +189,8 @@ class _ClientPermissionsState:
             pulumi.set(__self__, "map_roles_scope", map_roles_scope)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if token_exchange_scope is not None:
             pulumi.set(__self__, "token_exchange_scope", token_exchange_scope)
         if view_scope is not None:
@@ -259,6 +281,18 @@ class _ClientPermissionsState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="tokenExchangeScope")
     def token_exchange_scope(self) -> pulumi.Input[Optional['ClientPermissionsTokenExchangeScopeArgs']]:
         return pulumi.get(self, "token_exchange_scope")
@@ -290,6 +324,7 @@ class ClientPermissions(pulumi.CustomResource):
                  map_roles_composite_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict', 'outputs.ClientPermissionsMapRolesCompositeScope']]] = None,
                  map_roles_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict', 'outputs.ClientPermissionsMapRolesScope']]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  token_exchange_scope: pulumi.Input[Optional[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict', 'outputs.ClientPermissionsTokenExchangeScope']]] = None,
                  view_scope: pulumi.Input[Optional[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict', 'outputs.ClientPermissionsViewScope']]] = None,
                  __props__=None):
@@ -316,6 +351,7 @@ class ClientPermissions(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -366,6 +402,7 @@ class ClientPermissions(pulumi.CustomResource):
                  map_roles_composite_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict', 'outputs.ClientPermissionsMapRolesCompositeScope']]] = None,
                  map_roles_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict', 'outputs.ClientPermissionsMapRolesScope']]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  token_exchange_scope: pulumi.Input[Optional[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict', 'outputs.ClientPermissionsTokenExchangeScope']]] = None,
                  view_scope: pulumi.Input[Optional[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict', 'outputs.ClientPermissionsViewScope']]] = None,
                  __props__=None):
@@ -385,9 +422,8 @@ class ClientPermissions(pulumi.CustomResource):
             __props__.__dict__["map_roles_client_scope_scope"] = map_roles_client_scope_scope
             __props__.__dict__["map_roles_composite_scope"] = map_roles_composite_scope
             __props__.__dict__["map_roles_scope"] = map_roles_scope
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["token_exchange_scope"] = token_exchange_scope
             __props__.__dict__["view_scope"] = view_scope
             __props__.__dict__["authorization_resource_server_id"] = None
@@ -411,6 +447,7 @@ class ClientPermissions(pulumi.CustomResource):
             map_roles_composite_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict', 'outputs.ClientPermissionsMapRolesCompositeScope']]] = None,
             map_roles_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict', 'outputs.ClientPermissionsMapRolesScope']]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             token_exchange_scope: pulumi.Input[Optional[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict', 'outputs.ClientPermissionsTokenExchangeScope']]] = None,
             view_scope: pulumi.Input[Optional[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict', 'outputs.ClientPermissionsViewScope']]] = None) -> 'ClientPermissions':
         """
@@ -421,6 +458,7 @@ class ClientPermissions(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -435,6 +473,7 @@ class ClientPermissions(pulumi.CustomResource):
         __props__.__dict__["map_roles_composite_scope"] = map_roles_composite_scope
         __props__.__dict__["map_roles_scope"] = map_roles_scope
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["token_exchange_scope"] = token_exchange_scope
         __props__.__dict__["view_scope"] = view_scope
         return ClientPermissions(resource_name, opts=opts, __props__=__props__)
@@ -451,6 +490,7 @@ class ClientPermissions(pulumi.CustomResource):
             map_roles_composite_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict', 'outputs.ClientPermissionsMapRolesCompositeScope']]] = None,
             map_roles_scope: pulumi.Input[Optional[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict', 'outputs.ClientPermissionsMapRolesScope']]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             token_exchange_scope: pulumi.Input[Optional[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict', 'outputs.ClientPermissionsTokenExchangeScope']]] = None,
             view_scope: pulumi.Input[Optional[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict', 'outputs.ClientPermissionsViewScope']]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
@@ -463,6 +503,7 @@ class ClientPermissions(pulumi.CustomResource):
         __props__["mapRolesCompositeScope"] = map_roles_composite_scope
         __props__["mapRolesScope"] = map_roles_scope
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["tokenExchangeScope"] = token_exchange_scope
         __props__["viewScope"] = view_scope
         return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientPermissions:ClientPermissions', id, __props__, opts or pulumi.ResourceOptions())
@@ -514,6 +555,14 @@ class ClientPermissions(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="tokenExchangeScope")

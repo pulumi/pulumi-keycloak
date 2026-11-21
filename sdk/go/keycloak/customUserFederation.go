@@ -91,6 +91,8 @@ type CustomUserFederation struct {
 	ProviderId pulumi.StringOutput `pulumi:"providerId"`
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewCustomUserFederation registers a new resource with the given unique name, arguments, and options.
@@ -102,9 +104,6 @@ func NewCustomUserFederation(ctx *pulumi.Context,
 
 	if args.ProviderId == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CustomUserFederation
@@ -151,6 +150,8 @@ type customUserFederationState struct {
 	ProviderId *string `pulumi:"providerId"`
 	// The realm that this provider will provide user federation for.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type CustomUserFederationState struct {
@@ -176,6 +177,8 @@ type CustomUserFederationState struct {
 	ProviderId pulumi.StringPtrInput
 	// The realm that this provider will provide user federation for.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (CustomUserFederationState) ElementType() reflect.Type {
@@ -210,7 +213,9 @@ type customUserFederationArgs struct {
 	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId string `pulumi:"providerId"`
 	// The realm that this provider will provide user federation for.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a CustomUserFederation resource.
@@ -236,7 +241,9 @@ type CustomUserFederationArgs struct {
 	// The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
 	ProviderId pulumi.StringInput
 	// The realm that this provider will provide user federation for.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (CustomUserFederationArgs) ElementType() reflect.Type {
@@ -376,6 +383,11 @@ func (o CustomUserFederationOutput) ProviderId() pulumi.StringOutput {
 // The realm that this provider will provide user federation for.
 func (o CustomUserFederationOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o CustomUserFederationOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type CustomUserFederationArrayOutput struct{ *pulumi.OutputState }

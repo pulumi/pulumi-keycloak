@@ -52,6 +52,7 @@ public final class GetClientResult {
     private String name;
     private String nameIdFormat;
     private String realmId;
+    private String realmInternalId;
     private String rootUrl;
     private String samlSignatureKeyName;
     private Boolean signAssertions;
@@ -171,6 +172,9 @@ public final class GetClientResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public String rootUrl() {
         return this.rootUrl;
     }
@@ -248,6 +252,7 @@ public final class GetClientResult {
         private String name;
         private String nameIdFormat;
         private String realmId;
+        private String realmInternalId;
         private String rootUrl;
         private String samlSignatureKeyName;
         private Boolean signAssertions;
@@ -296,6 +301,7 @@ public final class GetClientResult {
     	      this.name = defaults.name;
     	      this.nameIdFormat = defaults.nameIdFormat;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.rootUrl = defaults.rootUrl;
     	      this.samlSignatureKeyName = defaults.samlSignatureKeyName;
     	      this.signAssertions = defaults.signAssertions;
@@ -585,6 +591,14 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
             if (rootUrl == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "rootUrl");
@@ -711,6 +725,7 @@ public final class GetClientResult {
             _resultValue.name = name;
             _resultValue.nameIdFormat = nameIdFormat;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.rootUrl = rootUrl;
             _resultValue.samlSignatureKeyName = samlSignatureKeyName;
             _resultValue.signAssertions = signAssertions;

@@ -27,7 +27,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_algorithm=None, encryption_certificate=None, encryption_certificate_sha1=None, encryption_digest_method=None, encryption_key_algorithm=None, encryption_mask_generation_function=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
+    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_algorithm=None, encryption_certificate=None, encryption_certificate_sha1=None, encryption_digest_method=None, encryption_key_algorithm=None, encryption_mask_generation_function=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, realm_internal_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
         if always_display_in_console and not isinstance(always_display_in_console, bool):
             raise TypeError("Expected argument 'always_display_in_console' to be a bool")
         pulumi.set(__self__, "always_display_in_console", always_display_in_console)
@@ -130,6 +130,9 @@ class GetClientResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if root_url and not isinstance(root_url, str):
             raise TypeError("Expected argument 'root_url' to be a str")
         pulumi.set(__self__, "root_url", root_url)
@@ -338,6 +341,11 @@ class GetClientResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> _builtins.str:
         return pulumi.get(self, "root_url")
@@ -433,6 +441,7 @@ class AwaitableGetClientResult(GetClientResult):
             name=self.name,
             name_id_format=self.name_id_format,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             root_url=self.root_url,
             saml_signature_key_name=self.saml_signature_key_name,
             sign_assertions=self.sign_assertions,
@@ -448,6 +457,7 @@ class AwaitableGetClientResult(GetClientResult):
 
 def get_client(client_id: Optional[_builtins.str] = None,
                realm_id: Optional[_builtins.str] = None,
+               realm_internal_id: Optional[_builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
     This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
@@ -473,6 +483,7 @@ def get_client(client_id: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['clientId'] = client_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:saml/getClient:getClient', __args__, opts=opts, typ=GetClientResult).value
 
@@ -511,6 +522,7 @@ def get_client(client_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         name_id_format=pulumi.get(__ret__, 'name_id_format'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         root_url=pulumi.get(__ret__, 'root_url'),
         saml_signature_key_name=pulumi.get(__ret__, 'saml_signature_key_name'),
         sign_assertions=pulumi.get(__ret__, 'sign_assertions'),
@@ -523,7 +535,8 @@ def get_client(client_id: Optional[_builtins.str] = None,
         signing_private_key_sha1=pulumi.get(__ret__, 'signing_private_key_sha1'),
         valid_redirect_uris=pulumi.get(__ret__, 'valid_redirect_uris'))
 def get_client_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
-                      realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                      realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientResult]:
     """
     This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
@@ -549,6 +562,7 @@ def get_client_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
     __args__ = dict()
     __args__['clientId'] = client_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:saml/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
     return __ret__.apply(lambda __response__: GetClientResult(
@@ -586,6 +600,7 @@ def get_client_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
         name=pulumi.get(__response__, 'name'),
         name_id_format=pulumi.get(__response__, 'name_id_format'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         root_url=pulumi.get(__response__, 'root_url'),
         saml_signature_key_name=pulumi.get(__response__, 'saml_signature_key_name'),
         sign_assertions=pulumi.get(__response__, 'sign_assertions'),

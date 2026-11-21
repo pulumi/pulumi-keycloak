@@ -127,6 +127,10 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The name of the SAML attribute.
      */
     declare public readonly samlAttributeName: pulumi.Output<string>;
@@ -158,14 +162,12 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             resourceInputs["friendlyName"] = state?.friendlyName;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["samlAttributeName"] = state?.samlAttributeName;
             resourceInputs["samlAttributeNameFormat"] = state?.samlAttributeNameFormat;
             resourceInputs["userAttribute"] = state?.userAttribute;
         } else {
             const args = argsOrState as UserAttributeProtocolMapperArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.samlAttributeName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeName'");
             }
@@ -181,6 +183,7 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             resourceInputs["friendlyName"] = args?.friendlyName;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["samlAttributeName"] = args?.samlAttributeName;
             resourceInputs["samlAttributeNameFormat"] = args?.samlAttributeNameFormat;
             resourceInputs["userAttribute"] = args?.userAttribute;
@@ -218,6 +221,10 @@ export interface UserAttributeProtocolMapperState {
      * The realm this protocol mapper exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The name of the SAML attribute.
      */
@@ -259,7 +266,11 @@ export interface UserAttributeProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The name of the SAML attribute.
      */

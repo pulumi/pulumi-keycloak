@@ -99,15 +99,22 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
      * The realm id.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm id.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetClientPlainArgs() {}
@@ -124,6 +131,7 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.oauth2JwtAuthorizationGrantEnabled = $.oauth2JwtAuthorizationGrantEnabled;
         this.oauth2JwtAuthorizationGrantIdp = $.oauth2JwtAuthorizationGrantIdp;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -206,17 +214,19 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
         public GetClientPlainArgs build() {
             if ($.clientId == null) {
                 throw new MissingRequiredPropertyException("GetClientPlainArgs", "clientId");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetClientPlainArgs", "realmId");
             }
             return $;
         }

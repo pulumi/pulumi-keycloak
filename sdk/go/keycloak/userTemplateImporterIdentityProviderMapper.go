@@ -93,6 +93,8 @@ type UserTemplateImporterIdentityProviderMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The name of the realm.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
 	Template pulumi.StringPtrOutput `pulumi:"template"`
 }
@@ -106,9 +108,6 @@ func NewUserTemplateImporterIdentityProviderMapper(ctx *pulumi.Context,
 
 	if args.IdentityProviderAlias == nil {
 		return nil, errors.New("invalid value for required argument 'IdentityProviderAlias'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserTemplateImporterIdentityProviderMapper
@@ -141,6 +140,8 @@ type userTemplateImporterIdentityProviderMapperState struct {
 	Name *string `pulumi:"name"`
 	// The name of the realm.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
 	Template *string `pulumi:"template"`
 }
@@ -154,6 +155,8 @@ type UserTemplateImporterIdentityProviderMapperState struct {
 	Name pulumi.StringPtrInput
 	// The name of the realm.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
 	Template pulumi.StringPtrInput
 }
@@ -176,7 +179,9 @@ type userTemplateImporterIdentityProviderMapperArgs struct {
 	// The name of the mapper.
 	Name *string `pulumi:"name"`
 	// The name of the realm.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
 	Template *string `pulumi:"template"`
 }
@@ -190,7 +195,9 @@ type UserTemplateImporterIdentityProviderMapperArgs struct {
 	// The name of the mapper.
 	Name pulumi.StringPtrInput
 	// The name of the realm.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
 	Template pulumi.StringPtrInput
 }
@@ -302,6 +309,11 @@ func (o UserTemplateImporterIdentityProviderMapperOutput) Name() pulumi.StringOu
 // The name of the realm.
 func (o UserTemplateImporterIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserTemplateImporterIdentityProviderMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.

@@ -96,15 +96,30 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
      * The realm in which to manage this permission.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm in which to manage this permission.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -131,6 +146,7 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
         this.name = $.name;
         this.policies = $.policies;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.scopes = $.scopes;
     }
 
@@ -283,7 +299,7 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -296,6 +312,27 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -330,9 +367,6 @@ public final class GroupAdminPermissionsArgs extends com.pulumi.resources.Resour
         }
 
         public GroupAdminPermissionsArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GroupAdminPermissionsArgs", "realmId");
-            }
             if ($.scopes == null) {
                 throw new MissingRequiredPropertyException("GroupAdminPermissionsArgs", "scopes");
             }

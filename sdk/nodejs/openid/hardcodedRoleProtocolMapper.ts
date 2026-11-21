@@ -151,6 +151,10 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The ID of the role to map to an access token.
      */
     declare public readonly roleId: pulumi.Output<string>;
@@ -172,12 +176,10 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["roleId"] = state?.roleId;
         } else {
             const args = argsOrState as HardcodedRoleProtocolMapperArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.roleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
@@ -185,6 +187,7 @@ export class HardcodedRoleProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["roleId"] = args?.roleId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -213,6 +216,10 @@ export interface HardcodedRoleProtocolMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The ID of the role to map to an access token.
      */
     roleId?: pulumi.Input<string | undefined>;
@@ -237,7 +244,11 @@ export interface HardcodedRoleProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the role to map to an access token.
      */

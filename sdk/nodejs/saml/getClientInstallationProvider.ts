@@ -52,6 +52,7 @@ export function getClientInstallationProvider(args: GetClientInstallationProvide
         "clientId": args.clientId,
         "providerId": args.providerId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -70,7 +71,8 @@ export interface GetClientInstallationProviderArgs {
     /**
      * The realm that the SAML client exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -84,6 +86,7 @@ export interface GetClientInstallationProviderResult {
     readonly id: string;
     readonly providerId: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     /**
      * (Computed) The returned document needed for SAML installation.
      */
@@ -137,6 +140,7 @@ export function getClientInstallationProviderOutput(args: GetClientInstallationP
         "clientId": args.clientId,
         "providerId": args.providerId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -155,5 +159,6 @@ export interface GetClientInstallationProviderOutputArgs {
     /**
      * The realm that the SAML client exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

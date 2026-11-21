@@ -28,6 +28,7 @@ export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getUser:getUser", {
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "username": args.username,
     }, opts);
 }
@@ -39,7 +40,8 @@ export interface GetUserArgs {
     /**
      * The realm this user belongs to.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
     /**
      * The unique username of this user.
      */
@@ -83,6 +85,7 @@ export interface GetUserResult {
      */
     readonly lastName: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly requiredActions: string[];
     readonly username: string;
 }
@@ -110,6 +113,7 @@ export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOutpu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getUser:getUser", {
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
         "username": args.username,
     }, opts);
 }
@@ -121,7 +125,8 @@ export interface GetUserOutputArgs {
     /**
      * The realm this user belongs to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The unique username of this user.
      */

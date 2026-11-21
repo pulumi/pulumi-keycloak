@@ -88,10 +88,93 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Organization Group Example
+ * 
+ * Organization groups require Keycloak 26.6 or newer. Set `organizationsEnabled = true` on the
+ * `keycloak_realm.realm` resource before applying this example. This example uses the realm and user defined above.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Organization;
+ * import com.pulumi.keycloak.OrganizationArgs;
+ * import com.pulumi.keycloak.inputs.OrganizationDomainArgs;
+ * import com.pulumi.keycloak.Group;
+ * import com.pulumi.keycloak.GroupArgs;
+ * import com.pulumi.keycloak.OrganizationMemberships;
+ * import com.pulumi.keycloak.OrganizationMembershipsArgs;
+ * import com.pulumi.keycloak.GroupMemberships;
+ * import com.pulumi.keycloak.GroupMembershipsArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var organization = new Organization("organization", OrganizationArgs.builder()
+ *             .realm(realm.get("id"))
+ *             .name("my-organization")
+ *             .domains(OrganizationDomainArgs.builder()
+ *                 .name("organization.example.com")
+ *                 .build())
+ *             .build());
+ * 
+ *         var organizationGroup = new Group("organizationGroup", GroupArgs.builder()
+ *             .realmId(realm.get("id"))
+ *             .organizationId(organization.id())
+ *             .name("my-organization-group")
+ *             .build());
+ * 
+ *         var organizationMembers = new OrganizationMemberships("organizationMembers", OrganizationMembershipsArgs.builder()
+ *             .realmId(realm.get("id"))
+ *             .organizationId(organization.id())
+ *             .members(user.get("username"))
+ *             .build());
+ * 
+ *         var organizationGroupMembers = new GroupMemberships("organizationGroupMembers", GroupMembershipsArgs.builder()
+ *             .realmId(realm.get("id"))
+ *             .organizationId(organization.id())
+ *             .groupId(organizationGroup.id())
+ *             .members(user.get("username"))
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(organizationMembers)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
- * This resource does not support import. Instead of importing, feel free to create this resource
- * as if it did not already exist on the server.
+ * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+ * organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`.
+ * 
+ * Examples:
+ * 
+ * realm-level group
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/groupMemberships:GroupMemberships group_members my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+ * ```
+ * 
+ * organization-scoped group
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/groupMemberships:GroupMemberships group_members my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+ * ```
  * 
  * [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
  * 
@@ -127,6 +210,20 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
         return this.members;
     }
     /**
+     * The ID of the organization this group belongs to. Omit for realm-level groups.
+     * 
+     */
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> organizationId;
+
+    /**
+     * @return The ID of the organization this group belongs to. Omit for realm-level groups.
+     * 
+     */
+    public Output<Optional<String>> organizationId() {
+        return Codegen.optional(this.organizationId);
+    }
+    /**
      * The realm this group exists in.
      * 
      */
@@ -139,6 +236,20 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

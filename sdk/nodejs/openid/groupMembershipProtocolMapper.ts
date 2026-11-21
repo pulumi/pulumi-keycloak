@@ -166,6 +166,10 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
      * The realm this protocol mapper exists within.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a GroupMembershipProtocolMapper resource with the given unique name, arguments, and options.
@@ -190,13 +194,11 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             resourceInputs["fullPath"] = state?.fullPath;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as GroupMembershipProtocolMapperArgs | undefined;
             if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
@@ -208,6 +210,7 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
             resourceInputs["fullPath"] = args?.fullPath;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMembershipProtocolMapper.__pulumiType, name, resourceInputs, opts);
@@ -258,6 +261,10 @@ export interface GroupMembershipProtocolMapperState {
      * The realm this protocol mapper exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -303,5 +310,9 @@ export interface GroupMembershipProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

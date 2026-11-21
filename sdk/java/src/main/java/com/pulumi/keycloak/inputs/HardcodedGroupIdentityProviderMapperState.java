@@ -91,6 +91,21 @@ public final class HardcodedGroupIdentityProviderMapperState extends com.pulumi.
         return Optional.ofNullable(this.realm);
     }
 
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
     private HardcodedGroupIdentityProviderMapperState() {}
 
     private HardcodedGroupIdentityProviderMapperState(HardcodedGroupIdentityProviderMapperState $) {
@@ -99,6 +114,7 @@ public final class HardcodedGroupIdentityProviderMapperState extends com.pulumi.
         this.identityProviderAlias = $.identityProviderAlias;
         this.name = $.name;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -222,6 +238,27 @@ public final class HardcodedGroupIdentityProviderMapperState extends com.pulumi.
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public HardcodedGroupIdentityProviderMapperState build() {

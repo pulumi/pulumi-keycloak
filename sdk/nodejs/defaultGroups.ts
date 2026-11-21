@@ -86,6 +86,10 @@ export class DefaultGroups extends pulumi.CustomResource {
      * The realm this group exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a DefaultGroups resource with the given unique name, arguments, and options.
@@ -102,16 +106,15 @@ export class DefaultGroups extends pulumi.CustomResource {
             const state = argsOrState as DefaultGroupsState | undefined;
             resourceInputs["groupIds"] = state?.groupIds;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as DefaultGroupsArgs | undefined;
             if (args?.groupIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupIds'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["groupIds"] = args?.groupIds;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DefaultGroups.__pulumiType, name, resourceInputs, opts);
@@ -130,6 +133,10 @@ export interface DefaultGroupsState {
      * The realm this group exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -143,5 +150,9 @@ export interface DefaultGroupsArgs {
     /**
      * The realm this group exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

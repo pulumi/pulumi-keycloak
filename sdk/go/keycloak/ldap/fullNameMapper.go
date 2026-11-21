@@ -95,6 +95,8 @@ type FullNameMapper struct {
 	ReadOnly pulumi.BoolPtrOutput `pulumi:"readOnly"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 	WriteOnly pulumi.BoolPtrOutput `pulumi:"writeOnly"`
 }
@@ -111,9 +113,6 @@ func NewFullNameMapper(ctx *pulumi.Context,
 	}
 	if args.LdapUserFederationId == nil {
 		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FullNameMapper
@@ -148,6 +147,8 @@ type fullNameMapperState struct {
 	ReadOnly *bool `pulumi:"readOnly"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 	WriteOnly *bool `pulumi:"writeOnly"`
 }
@@ -163,6 +164,8 @@ type FullNameMapperState struct {
 	ReadOnly pulumi.BoolPtrInput
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 	WriteOnly pulumi.BoolPtrInput
 }
@@ -187,7 +190,9 @@ type fullNameMapperArgs struct {
 	// When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
 	ReadOnly *bool `pulumi:"readOnly"`
 	// The realm that this LDAP mapper will exist in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 	WriteOnly *bool `pulumi:"writeOnly"`
 }
@@ -203,7 +208,9 @@ type FullNameMapperArgs struct {
 	// When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
 	ReadOnly pulumi.BoolPtrInput
 	// The realm that this LDAP mapper will exist in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
 	WriteOnly pulumi.BoolPtrInput
 }
@@ -318,6 +325,11 @@ func (o FullNameMapperOutput) ReadOnly() pulumi.BoolPtrOutput {
 // The realm that this LDAP mapper will exist in.
 func (o FullNameMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FullNameMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o FullNameMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FullNameMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.

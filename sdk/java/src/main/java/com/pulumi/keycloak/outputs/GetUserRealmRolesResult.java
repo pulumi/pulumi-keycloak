@@ -17,6 +17,7 @@ public final class GetUserRealmRolesResult {
      */
     private String id;
     private String realmId;
+    private String realmInternalId;
     /**
      * @return (Computed) A list of realm roles that belong to this user.
      * 
@@ -34,6 +35,9 @@ public final class GetUserRealmRolesResult {
     }
     public String realmId() {
         return this.realmId;
+    }
+    public String realmInternalId() {
+        return this.realmInternalId;
     }
     /**
      * @return (Computed) A list of realm roles that belong to this user.
@@ -57,6 +61,7 @@ public final class GetUserRealmRolesResult {
     public static final class Builder {
         private String id;
         private String realmId;
+        private String realmInternalId;
         private List<String> roleNames;
         private String userId;
         public Builder() {}
@@ -64,6 +69,7 @@ public final class GetUserRealmRolesResult {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.roleNames = defaults.roleNames;
     	      this.userId = defaults.userId;
         }
@@ -82,6 +88,14 @@ public final class GetUserRealmRolesResult {
               throw new MissingRequiredPropertyException("GetUserRealmRolesResult", "realmId");
             }
             this.realmId = realmId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetUserRealmRolesResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
             return this;
         }
         @CustomType.Setter
@@ -107,6 +121,7 @@ public final class GetUserRealmRolesResult {
             final var _resultValue = new GetUserRealmRolesResult();
             _resultValue.id = id;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.roleNames = roleNames;
             _resultValue.userId = userId;
             return _resultValue;

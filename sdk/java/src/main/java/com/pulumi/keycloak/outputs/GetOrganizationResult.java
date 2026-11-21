@@ -26,6 +26,7 @@ public final class GetOrganizationResult {
     private String id;
     private String name;
     private String realm;
+    private String realmInternalId;
     private String redirectUrl;
 
     private GetOrganizationResult() {}
@@ -57,6 +58,9 @@ public final class GetOrganizationResult {
     public String realm() {
         return this.realm;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public String redirectUrl() {
         return this.redirectUrl;
     }
@@ -78,6 +82,7 @@ public final class GetOrganizationResult {
         private String id;
         private String name;
         private String realm;
+        private String realmInternalId;
         private String redirectUrl;
         public Builder() {}
         public Builder(GetOrganizationResult defaults) {
@@ -90,6 +95,7 @@ public final class GetOrganizationResult {
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.realm = defaults.realm;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.redirectUrl = defaults.redirectUrl;
         }
 
@@ -161,6 +167,14 @@ public final class GetOrganizationResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder redirectUrl(String redirectUrl) {
             if (redirectUrl == null) {
               throw new MissingRequiredPropertyException("GetOrganizationResult", "redirectUrl");
@@ -178,6 +192,7 @@ public final class GetOrganizationResult {
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.realm = realm;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.redirectUrl = redirectUrl;
             return _resultValue;
         }

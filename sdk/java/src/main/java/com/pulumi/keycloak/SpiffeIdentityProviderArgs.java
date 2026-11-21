@@ -49,6 +49,21 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    @Import(name="allowAdminRoleMapping")
+    private @Nullable Output<Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+     * 
+     */
+    public Optional<Output<Boolean>> allowAdminRoleMapping() {
+        return Optional.ofNullable(this.allowAdminRoleMapping);
+    }
+
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -223,15 +238,30 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
      * The name of the realm. This is unique across Keycloak.
      * 
      */
-    @Import(name="realm", required=true)
-    private Output<String> realm;
+    @Import(name="realm")
+    private @Nullable Output<String> realm;
 
     /**
      * @return The name of the realm. This is unique across Keycloak.
      * 
      */
-    public Output<String> realm() {
-        return this.realm;
+    public Optional<Output<String>> realm() {
+        return Optional.ofNullable(this.realm);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -299,6 +329,7 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
     private SpiffeIdentityProviderArgs(SpiffeIdentityProviderArgs $) {
         this.addReadTokenRoleOnCreate = $.addReadTokenRoleOnCreate;
         this.alias = $.alias;
+        this.allowAdminRoleMapping = $.allowAdminRoleMapping;
         this.authenticateByDefault = $.authenticateByDefault;
         this.bundleEndpoint = $.bundleEndpoint;
         this.displayName = $.displayName;
@@ -313,6 +344,7 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
         this.postBrokerLoginFlowAlias = $.postBrokerLoginFlowAlias;
         this.providerId = $.providerId;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.storeToken = $.storeToken;
         this.syncMode = $.syncMode;
         this.trustDomain = $.trustDomain;
@@ -377,6 +409,27 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param allowAdminRoleMapping Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(@Nullable Output<Boolean> allowAdminRoleMapping) {
+            $.allowAdminRoleMapping = allowAdminRoleMapping;
+            return this;
+        }
+
+        /**
+         * @param allowAdminRoleMapping Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(Boolean allowAdminRoleMapping) {
+            return allowAdminRoleMapping(Output.of(allowAdminRoleMapping));
         }
 
         /**
@@ -622,7 +675,7 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder realm(Output<String> realm) {
+        public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
@@ -635,6 +688,27 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -727,9 +801,6 @@ public final class SpiffeIdentityProviderArgs extends com.pulumi.resources.Resou
             }
             if ($.bundleEndpoint == null) {
                 throw new MissingRequiredPropertyException("SpiffeIdentityProviderArgs", "bundleEndpoint");
-            }
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("SpiffeIdentityProviderArgs", "realm");
             }
             if ($.trustDomain == null) {
                 throw new MissingRequiredPropertyException("SpiffeIdentityProviderArgs", "trustDomain");

@@ -62,6 +62,7 @@ export function getClientDescriptionConverter(args: GetClientDescriptionConverte
     return pulumi.runtime.invoke("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", {
         "body": args.body,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -76,7 +77,8 @@ export interface GetClientDescriptionConverterArgs {
     /**
      * The realm to use for the client description converter API call.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -116,6 +118,7 @@ export interface GetClientDescriptionConverterResult {
     readonly protocolMappers: outputs.GetClientDescriptionConverterProtocolMapper[];
     readonly publicClient: boolean;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly redirectUris: string[];
     readonly registeredNodes: {[key: string]: string};
     readonly registrationAccessToken: string;
@@ -182,6 +185,7 @@ export function getClientDescriptionConverterOutput(args: GetClientDescriptionCo
     return pulumi.runtime.invokeOutput("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", {
         "body": args.body,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -196,5 +200,6 @@ export interface GetClientDescriptionConverterOutputArgs {
     /**
      * The realm to use for the client description converter API call.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

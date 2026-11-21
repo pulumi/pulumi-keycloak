@@ -40,6 +40,7 @@ export function getOrganization(args: GetOrganizationArgs, opts?: pulumi.InvokeO
     return pulumi.runtime.invoke("keycloak:index/getOrganization:getOrganization", {
         "name": args.name,
         "realm": args.realm,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -54,7 +55,8 @@ export interface GetOrganizationArgs {
     /**
      * The name of the realm this organization exists within.
      */
-    realm: string;
+    realm?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -72,6 +74,7 @@ export interface GetOrganizationResult {
     readonly id: string;
     readonly name: string;
     readonly realm: string;
+    readonly realmInternalId: string;
     readonly redirectUrl: string;
 }
 /**
@@ -108,6 +111,7 @@ export function getOrganizationOutput(args: GetOrganizationOutputArgs, opts?: pu
     return pulumi.runtime.invokeOutput("keycloak:index/getOrganization:getOrganization", {
         "name": args.name,
         "realm": args.realm,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -122,5 +126,6 @@ export interface GetOrganizationOutputArgs {
     /**
      * The name of the realm this organization exists within.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

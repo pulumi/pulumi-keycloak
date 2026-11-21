@@ -19,242 +19,6 @@ __all__ = ['RealmKeystoreRsaArgs', 'RealmKeystoreRsa']
 @pulumi.input_type
 class RealmKeystoreRsaArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
-                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
-                 certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
-                 certificate_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 provider_id: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a RealmKeystoreRsa resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
-        :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
-        :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificate_wo_version`. The certificate is sent on every update, since Keycloak requires it.
-        :param pulumi.Input[_builtins.str] certificate_wo_version: Version of the `certificate_wo` argument. Stored in state.
-        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
-        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
-        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
-        :param pulumi.Input[_builtins.str] private_key: Private RSA Key encoded in PEM format. Required without `private_key_wo` and `private_key_wo_version`.
-        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `private_key_wo_version`.
-        :param pulumi.Input[_builtins.str] private_key_wo_version: Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
-        :param pulumi.Input[_builtins.str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if active is not None:
-            pulumi.set(__self__, "active", active)
-        if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
-        if certificate is not None:
-            pulumi.set(__self__, "certificate", certificate)
-        if certificate_wo is not None:
-            pulumi.set(__self__, "certificate_wo", certificate_wo)
-        if certificate_wo_version is not None:
-            pulumi.set(__self__, "certificate_wo_version", certificate_wo_version)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-        if private_key is not None:
-            pulumi.set(__self__, "private_key", private_key)
-        if private_key_wo is not None:
-            pulumi.set(__self__, "private_key_wo", private_key_wo)
-        if private_key_wo_version is not None:
-            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
-        if provider_id is not None:
-            pulumi.set(__self__, "provider_id", provider_id)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this keystore exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key in not used for signing. Defaults to `true`.
-        """
-        return pulumi.get(self, "active")
-
-    @active.setter
-    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "active", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
-        """
-        return pulumi.get(self, "algorithm")
-
-    @algorithm.setter
-    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "algorithm", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
-        """
-        return pulumi.get(self, "certificate")
-
-    @certificate.setter
-    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "certificate", value)
-
-    @_builtins.property
-    @pulumi.getter(name="certificateWo")
-    def certificate_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificate_wo_version`. The certificate is sent on every update, since Keycloak requires it.
-        """
-        return pulumi.get(self, "certificate_wo")
-
-    @certificate_wo.setter
-    def certificate_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "certificate_wo", value)
-
-    @_builtins.property
-    @pulumi.getter(name="certificateWoVersion")
-    def certificate_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Version of the `certificate_wo` argument. Stored in state.
-        """
-        return pulumi.get(self, "certificate_wo_version")
-
-    @certificate_wo_version.setter
-    def certificate_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "certificate_wo_version", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key is not accessible in this realm. Defaults to `true`.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
-        """
-        Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
-        """
-        return pulumi.get(self, "extra_config")
-
-    @extra_config.setter
-    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "extra_config", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Display name of provider when linked in admin console.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Priority for the provider. Defaults to `0`
-        """
-        return pulumi.get(self, "priority")
-
-    @priority.setter
-    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "priority", value)
-
-    @_builtins.property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Private RSA Key encoded in PEM format. Required without `private_key_wo` and `private_key_wo_version`.
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "private_key", value)
-
-    @_builtins.property
-    @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `private_key_wo_version`.
-        """
-        return pulumi.get(self, "private_key_wo")
-
-    @private_key_wo.setter
-    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "private_key_wo", value)
-
-    @_builtins.property
-    @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
-        """
-        return pulumi.get(self, "private_key_wo_version")
-
-    @private_key_wo_version.setter
-    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "private_key_wo_version", value)
-
-    @_builtins.property
-    @pulumi.getter(name="providerId")
-    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Use `rsa` for signing keys, `rsa-enc` for encryption keys
-        """
-        return pulumi.get(self, "provider_id")
-
-    @provider_id.setter
-    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "provider_id", value)
-
-
-@pulumi.input_type
-class _RealmKeystoreRsaState:
-    def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  certificate: pulumi.Input[Optional[_builtins.str]] = None,
@@ -268,11 +32,12 @@ class _RealmKeystoreRsaState:
                  private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering RealmKeystoreRsa resources.
+        The set of arguments for constructing a RealmKeystoreRsa resource.
 
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
         :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -288,6 +53,7 @@ class _RealmKeystoreRsaState:
         :param pulumi.Input[_builtins.str] private_key_wo_version: Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
         :param pulumi.Input[_builtins.str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -317,12 +83,14 @@ class _RealmKeystoreRsaState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -488,6 +256,271 @@ class _RealmKeystoreRsaState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _RealmKeystoreRsaState:
+    def __init__(__self__, *,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering RealmKeystoreRsa resources.
+
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
+        :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
+        :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificate_wo_version`. The certificate is sent on every update, since Keycloak requires it.
+        :param pulumi.Input[_builtins.str] certificate_wo_version: Version of the `certificate_wo` argument. Stored in state.
+        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
+        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
+        :param pulumi.Input[_builtins.str] private_key: Private RSA Key encoded in PEM format. Required without `private_key_wo` and `private_key_wo_version`.
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `private_key_wo_version`.
+        :param pulumi.Input[_builtins.str] private_key_wo_version: Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
+        :param pulumi.Input[_builtins.str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if certificate_wo is not None:
+            pulumi.set(__self__, "certificate_wo", certificate_wo)
+        if certificate_wo_version is not None:
+            pulumi.set(__self__, "certificate_wo_version", certificate_wo_version)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not used for signing. Defaults to `true`.
+        """
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "active", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWo")
+    def certificate_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        X509 Certificate encoded in PEM format. Not stored in state or plan files. Requires `certificate_wo_version`. The certificate is sent on every update, since Keycloak requires it.
+        """
+        return pulumi.get(self, "certificate_wo")
+
+    @certificate_wo.setter
+    def certificate_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWoVersion")
+    def certificate_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Version of the `certificate_wo` argument. Stored in state.
+        """
+        return pulumi.get(self, "certificate_wo_version")
+
+    @certificate_wo_version.setter
+    def certificate_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not accessible in this realm. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Display name of provider when linked in admin console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Priority for the provider. Defaults to `0`
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Private RSA Key encoded in PEM format. Required without `private_key_wo` and `private_key_wo_version`.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Private RSA Key encoded in PEM format. Not stored in state or plan files. Requires `private_key_wo_version`.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this keystore exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa")
 class RealmKeystoreRsa(pulumi.CustomResource):
@@ -509,6 +542,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                  private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing `rsa` Realm keystores within Keycloak.
@@ -555,7 +589,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
         :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -571,12 +605,13 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] private_key_wo_version: Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
         :param pulumi.Input[_builtins.str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmKeystoreRsaArgs,
+                 args: Optional[RealmKeystoreRsaArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing `rsa` Realm keystores within Keycloak.
@@ -650,6 +685,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                  private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -672,9 +708,8 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             __props__.__dict__["private_key_wo"] = None if private_key_wo is None else pulumi.Output.secret(private_key_wo)
             __props__.__dict__["private_key_wo_version"] = private_key_wo_version
             __props__.__dict__["provider_id"] = provider_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["certificateWo", "privateKey", "privateKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RealmKeystoreRsa, __self__).__init__(
@@ -700,7 +735,8 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
             private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreRsa':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreRsa':
         """
         Get an existing RealmKeystoreRsa resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -708,7 +744,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format. Required without `certificate_wo` and `certificate_wo_version`.
         :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -724,6 +760,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] private_key_wo_version: Trigger for `private_key_wo`: the key is only sent to Keycloak when this value changes. Stored in state.
         :param pulumi.Input[_builtins.str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -743,6 +780,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         __props__.__dict__["private_key_wo_version"] = private_key_wo_version
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RealmKeystoreRsa(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -761,7 +799,8 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
             private_key_wo_version: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["active"] = active
         __props__["algorithm"] = algorithm
@@ -777,13 +816,14 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         __props__["privateKeyWoVersion"] = private_key_wo_version
         __props__["providerId"] = provider_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreRsa:RealmKeystoreRsa', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -892,4 +932,12 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         The realm this keystore exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

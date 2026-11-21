@@ -17,6 +17,7 @@ public final class GetAuthenticationFlowResult {
      */
     private String id;
     private String realmId;
+    private String realmInternalId;
 
     private GetAuthenticationFlowResult() {}
     public String alias() {
@@ -32,6 +33,9 @@ public final class GetAuthenticationFlowResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -45,12 +49,14 @@ public final class GetAuthenticationFlowResult {
         private String alias;
         private String id;
         private String realmId;
+        private String realmInternalId;
         public Builder() {}
         public Builder(GetAuthenticationFlowResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.alias = defaults.alias;
     	      this.id = defaults.id;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
         }
 
         @CustomType.Setter
@@ -77,11 +83,20 @@ public final class GetAuthenticationFlowResult {
             this.realmId = realmId;
             return this;
         }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationFlowResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
         public GetAuthenticationFlowResult build() {
             final var _resultValue = new GetAuthenticationFlowResult();
             _resultValue.alias = alias;
             _resultValue.id = id;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             return _resultValue;
         }
     }

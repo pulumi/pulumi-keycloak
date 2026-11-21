@@ -398,6 +398,36 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
+     * Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     * 
+     */
+    @Import(name="referral")
+    private @Nullable Output<String> referral;
+
+    /**
+     * @return Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+     * 
+     */
+    public Optional<Output<String>> referral() {
+        return Optional.ofNullable(this.referral);
+    }
+
+    /**
      * Relative DN of LDAP tree where new users will be created. Keycloak will use the Users DN as the base for the new user&#39;s DN.
      * 
      */
@@ -630,6 +660,8 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         this.rdnLdapAttribute = $.rdnLdapAttribute;
         this.readTimeout = $.readTimeout;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
+        this.referral = $.referral;
         this.relativeCreateDn = $.relativeCreateDn;
         this.searchScope = $.searchScope;
         this.startTls = $.startTls;
@@ -1188,6 +1220,48 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
+        /**
+         * @param referral Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder referral(@Nullable Output<String> referral) {
+            $.referral = referral;
+            return this;
+        }
+
+        /**
+         * @param referral Specifies if LDAP referrals should be followed or ignored. Can be one of `ignore` or `follow`:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder referral(String referral) {
+            return referral(Output.of(referral));
         }
 
         /**

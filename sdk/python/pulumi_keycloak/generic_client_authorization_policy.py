@@ -20,18 +20,18 @@ __all__ = ['GenericClientAuthorizationPolicyArgs', 'GenericClientAuthorizationPo
 class GenericClientAuthorizationPolicyArgs:
     def __init__(__self__, *,
                  decision_strategy: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  resource_server_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GenericClientAuthorizationPolicy resource.
 
         :param pulumi.Input[_builtins.str] decision_strategy: The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this policy exists in.
         :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this policy is attached to.
         :param pulumi.Input[_builtins.str] type: The provider type of the policy, i.e. the id returned by the policy's
                `PolicyProviderFactory.getId()`. For a custom Java SPI this is whatever id your factory exposes; for a
@@ -45,9 +45,10 @@ class GenericClientAuthorizationPolicyArgs:
         :param pulumi.Input[_builtins.str] description: A description for the authorization policy.
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
         :param pulumi.Input[_builtins.str] name: The name of the policy.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this policy exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "decision_strategy", decision_strategy)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "resource_server_id", resource_server_id)
         pulumi.set(__self__, "type", type)
         if config is not None:
@@ -58,6 +59,10 @@ class GenericClientAuthorizationPolicyArgs:
             pulumi.set(__self__, "logic", logic)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
@@ -70,18 +75,6 @@ class GenericClientAuthorizationPolicyArgs:
     @decision_strategy.setter
     def decision_strategy(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "decision_strategy", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this policy exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
@@ -162,6 +155,30 @@ class GenericClientAuthorizationPolicyArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this policy exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _GenericClientAuthorizationPolicyState:
@@ -172,6 +189,7 @@ class _GenericClientAuthorizationPolicyState:
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -187,6 +205,7 @@ class _GenericClientAuthorizationPolicyState:
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
         :param pulumi.Input[_builtins.str] name: The name of the policy.
         :param pulumi.Input[_builtins.str] realm_id: The realm this policy exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this policy is attached to.
         :param pulumi.Input[_builtins.str] type: The provider type of the policy, i.e. the id returned by the policy's
                `PolicyProviderFactory.getId()`. For a custom Java SPI this is whatever id your factory exposes; for a
@@ -205,6 +224,8 @@ class _GenericClientAuthorizationPolicyState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if resource_server_id is not None:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if type is not None:
@@ -287,6 +308,18 @@ class _GenericClientAuthorizationPolicyState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -326,6 +359,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -426,6 +460,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
         :param pulumi.Input[_builtins.str] name: The name of the policy.
         :param pulumi.Input[_builtins.str] realm_id: The realm this policy exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this policy is attached to.
         :param pulumi.Input[_builtins.str] type: The provider type of the policy, i.e. the id returned by the policy's
                `PolicyProviderFactory.getId()`. For a custom Java SPI this is whatever id your factory exposes; for a
@@ -544,6 +579,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
                  logic: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -562,9 +598,8 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["logic"] = logic
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if resource_server_id is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_server_id'")
             __props__.__dict__["resource_server_id"] = resource_server_id
@@ -587,6 +622,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
             logic: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'GenericClientAuthorizationPolicy':
         """
@@ -606,6 +642,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] logic: The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
         :param pulumi.Input[_builtins.str] name: The name of the policy.
         :param pulumi.Input[_builtins.str] realm_id: The realm this policy exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this policy is attached to.
         :param pulumi.Input[_builtins.str] type: The provider type of the policy, i.e. the id returned by the policy's
                `PolicyProviderFactory.getId()`. For a custom Java SPI this is whatever id your factory exposes; for a
@@ -622,6 +659,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         __props__.__dict__["logic"] = logic
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["type"] = type
         return GenericClientAuthorizationPolicy(resource_name, opts=opts, __props__=__props__)
@@ -635,6 +673,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
             logic: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
@@ -644,6 +683,7 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         __props__["logic"] = logic
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["resourceServerId"] = resource_server_id
         __props__["type"] = type
         return pulumi.runtime.exists_resource(None, 'keycloak:index/genericClientAuthorizationPolicy:GenericClientAuthorizationPolicy', id, __props__, opts or pulumi.ResourceOptions())
@@ -699,6 +739,14 @@ class GenericClientAuthorizationPolicy(pulumi.CustomResource):
         The realm this policy exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")

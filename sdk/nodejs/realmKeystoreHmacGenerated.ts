@@ -77,7 +77,7 @@ export class RealmKeystoreHmacGenerated extends pulumi.CustomResource {
     }
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
@@ -101,6 +101,10 @@ export class RealmKeystoreHmacGenerated extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Size in bytes for the generated secret. Defaults to `64`.
      */
     declare public readonly secretSize: pulumi.Output<number | undefined>;
@@ -112,7 +116,7 @@ export class RealmKeystoreHmacGenerated extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmKeystoreHmacGeneratedArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmKeystoreHmacGeneratedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreHmacGeneratedArgs | RealmKeystoreHmacGeneratedState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -124,18 +128,17 @@ export class RealmKeystoreHmacGenerated extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["secretSize"] = state?.secretSize;
         } else {
             const args = argsOrState as RealmKeystoreHmacGeneratedArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["active"] = args?.active;
             resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["secretSize"] = args?.secretSize;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -148,7 +151,7 @@ export class RealmKeystoreHmacGenerated extends pulumi.CustomResource {
  */
 export interface RealmKeystoreHmacGeneratedState {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -172,6 +175,10 @@ export interface RealmKeystoreHmacGeneratedState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Size in bytes for the generated secret. Defaults to `64`.
      */
     secretSize?: pulumi.Input<number | undefined>;
@@ -182,7 +189,7 @@ export interface RealmKeystoreHmacGeneratedState {
  */
 export interface RealmKeystoreHmacGeneratedArgs {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -204,7 +211,11 @@ export interface RealmKeystoreHmacGeneratedArgs {
     /**
      * The realm this keystore exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Size in bytes for the generated secret. Defaults to `64`.
      */

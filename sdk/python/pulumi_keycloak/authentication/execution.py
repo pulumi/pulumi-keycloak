@@ -21,23 +21,28 @@ class ExecutionArgs:
     def __init__(__self__, *,
                  authenticator: pulumi.Input[_builtins.str],
                  parent_flow_alias: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Execution resource.
 
         :param pulumi.Input[_builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
-        :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[_builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         pulumi.set(__self__, "authenticator", authenticator)
         pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
-        pulumi.set(__self__, "realm_id", realm_id)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if requirement is not None:
             pulumi.set(__self__, "requirement", requirement)
 
@@ -66,18 +71,6 @@ class ExecutionArgs:
         pulumi.set(self, "parent_flow_alias", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm the authentication execution exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -88,6 +81,30 @@ class ExecutionArgs:
     @priority.setter
     def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm the authentication execution exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -109,6 +126,7 @@ class _ExecutionState:
                  parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Execution resources.
@@ -117,6 +135,7 @@ class _ExecutionState:
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
         :param pulumi.Input[_builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         if authenticator is not None:
@@ -127,6 +146,8 @@ class _ExecutionState:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if requirement is not None:
             pulumi.set(__self__, "requirement", requirement)
 
@@ -179,6 +200,18 @@ class _ExecutionState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -201,6 +234,7 @@ class Execution(pulumi.CustomResource):
                  parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -256,6 +290,7 @@ class Execution(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
         :param pulumi.Input[_builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         ...
@@ -330,6 +365,7 @@ class Execution(pulumi.CustomResource):
                  parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  requirement: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -347,9 +383,8 @@ class Execution(pulumi.CustomResource):
                 raise TypeError("Missing required property 'parent_flow_alias'")
             __props__.__dict__["parent_flow_alias"] = parent_flow_alias
             __props__.__dict__["priority"] = priority
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["requirement"] = requirement
         super(Execution, __self__).__init__(
             'keycloak:authentication/execution:Execution',
@@ -365,6 +400,7 @@ class Execution(pulumi.CustomResource):
             parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             requirement: pulumi.Input[Optional[_builtins.str]] = None) -> 'Execution':
         """
         Get an existing Execution resource's state with the given name, id, and optional extra
@@ -377,6 +413,7 @@ class Execution(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
         :param pulumi.Input[_builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -387,6 +424,7 @@ class Execution(pulumi.CustomResource):
         __props__.__dict__["parent_flow_alias"] = parent_flow_alias
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["requirement"] = requirement
         return Execution(resource_name, opts=opts, __props__=__props__)
 
@@ -397,12 +435,14 @@ class Execution(pulumi.CustomResource):
             parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             requirement: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["authenticator"] = authenticator
         __props__["parentFlowAlias"] = parent_flow_alias
         __props__["priority"] = priority
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["requirement"] = requirement
         return pulumi.runtime.exists_resource(None, 'keycloak:authentication/execution:Execution', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -437,6 +477,14 @@ class Execution(pulumi.CustomResource):
         The realm the authentication execution exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

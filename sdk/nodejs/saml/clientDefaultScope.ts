@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * > **WARNING:** This resource is deprecated and will be removed in a future major version. Use `keycloak.ClientScopeAssignments` with `defaultScopes` and `optionalScopes` instead.
+ *
  * Allows for managing a Keycloak client's default client scopes. A default scope that is attached to a client using the SAML
  * protocol will automatically use the protocol mappers defined within that scope to build claims for this client.
  *
@@ -115,6 +117,10 @@ export class ClientDefaultScope extends pulumi.CustomResource {
      * The realm this client and scopes exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a ClientDefaultScope resource with the given unique name, arguments, and options.
@@ -132,6 +138,7 @@ export class ClientDefaultScope extends pulumi.CustomResource {
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["defaultScopes"] = state?.defaultScopes;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as ClientDefaultScopeArgs | undefined;
             if (args?.clientId === undefined && !opts.urn) {
@@ -140,12 +147,10 @@ export class ClientDefaultScope extends pulumi.CustomResource {
             if (args?.defaultScopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'defaultScopes'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["defaultScopes"] = args?.defaultScopes;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientDefaultScope.__pulumiType, name, resourceInputs, opts);
@@ -168,6 +173,10 @@ export interface ClientDefaultScopeState {
      * The realm this client and scopes exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -185,5 +194,9 @@ export interface ClientDefaultScopeArgs {
     /**
      * The realm this client and scopes exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

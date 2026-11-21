@@ -97,6 +97,8 @@ type RequiredAction struct {
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// The realm the required action exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRequiredAction registers a new resource with the given unique name, arguments, and options.
@@ -108,9 +110,6 @@ func NewRequiredAction(ctx *pulumi.Context,
 
 	if args.Alias == nil {
 		return nil, errors.New("invalid value for required argument 'Alias'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RequiredAction
@@ -149,6 +148,8 @@ type requiredActionState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm the required action exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RequiredActionState struct {
@@ -166,6 +167,8 @@ type RequiredActionState struct {
 	Priority pulumi.IntPtrInput
 	// The realm the required action exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RequiredActionState) ElementType() reflect.Type {
@@ -192,7 +195,9 @@ type requiredActionArgs struct {
 	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority *int `pulumi:"priority"`
 	// The realm the required action exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RequiredAction resource.
@@ -210,7 +215,9 @@ type RequiredActionArgs struct {
 	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority pulumi.IntPtrInput
 	// The realm the required action exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RequiredActionArgs) ElementType() reflect.Type {
@@ -333,6 +340,11 @@ func (o RequiredActionOutput) Priority() pulumi.IntOutput {
 // The realm the required action exists in.
 func (o RequiredActionOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RequiredActionOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RequiredActionArrayOutput struct{ *pulumi.OutputState }

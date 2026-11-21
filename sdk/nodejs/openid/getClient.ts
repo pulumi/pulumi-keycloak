@@ -41,6 +41,7 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
         "oauth2JwtAuthorizationGrantEnabled": args.oauth2JwtAuthorizationGrantEnabled,
         "oauth2JwtAuthorizationGrantIdp": args.oauth2JwtAuthorizationGrantIdp,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -64,7 +65,8 @@ export interface GetClientArgs {
     /**
      * The realm id.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -115,6 +117,7 @@ export interface GetClientResult {
     readonly oauth2JwtAuthorizationGrantIdp?: string;
     readonly pkceCodeChallengeMethod: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
     readonly requireDpopBoundTokens: boolean;
     readonly resourceServerId: string;
     readonly rootUrl: string;
@@ -163,6 +166,7 @@ export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeO
         "oauth2JwtAuthorizationGrantEnabled": args.oauth2JwtAuthorizationGrantEnabled,
         "oauth2JwtAuthorizationGrantIdp": args.oauth2JwtAuthorizationGrantIdp,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -186,5 +190,6 @@ export interface GetClientOutputArgs {
     /**
      * The realm id.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

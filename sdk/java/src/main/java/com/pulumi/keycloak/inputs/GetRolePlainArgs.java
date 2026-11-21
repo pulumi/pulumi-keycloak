@@ -49,15 +49,22 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
      * The realm this role exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm this role exists within.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetRolePlainArgs() {}
@@ -66,6 +73,7 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
         this.clientId = $.clientId;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -114,17 +122,19 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
         public GetRolePlainArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetRolePlainArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetRolePlainArgs", "realmId");
             }
             return $;
         }

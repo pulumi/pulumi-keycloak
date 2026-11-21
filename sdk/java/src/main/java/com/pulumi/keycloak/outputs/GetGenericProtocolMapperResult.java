@@ -37,6 +37,7 @@ public final class GetGenericProtocolMapperResult {
      */
     private String protocolMapper;
     private String realmId;
+    private String realmInternalId;
 
     private GetGenericProtocolMapperResult() {}
     public Optional<String> clientId() {
@@ -79,6 +80,9 @@ public final class GetGenericProtocolMapperResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -97,6 +101,7 @@ public final class GetGenericProtocolMapperResult {
         private String protocol;
         private String protocolMapper;
         private String realmId;
+        private String realmInternalId;
         public Builder() {}
         public Builder(GetGenericProtocolMapperResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -108,6 +113,7 @@ public final class GetGenericProtocolMapperResult {
     	      this.protocol = defaults.protocol;
     	      this.protocolMapper = defaults.protocolMapper;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
         }
 
         @CustomType.Setter
@@ -170,6 +176,14 @@ public final class GetGenericProtocolMapperResult {
             this.realmId = realmId;
             return this;
         }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetGenericProtocolMapperResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
         public GetGenericProtocolMapperResult build() {
             final var _resultValue = new GetGenericProtocolMapperResult();
             _resultValue.clientId = clientId;
@@ -180,6 +194,7 @@ public final class GetGenericProtocolMapperResult {
             _resultValue.protocol = protocol;
             _resultValue.protocolMapper = protocolMapper;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             return _resultValue;
         }
     }

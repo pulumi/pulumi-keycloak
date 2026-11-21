@@ -79,7 +79,8 @@ type LookupRoleArgs struct {
 	// The name of the role.
 	Name string `pulumi:"name"`
 	// The realm this role exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getRole.
@@ -90,9 +91,10 @@ type LookupRoleResult struct {
 	// (Computed) The description of the role.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string `pulumi:"id"`
-	Name    string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
+	Id              string `pulumi:"id"`
+	Name            string `pulumi:"name"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 }
 
 func LookupRoleOutput(ctx *pulumi.Context, args LookupRoleOutputArgs, opts ...pulumi.InvokeOption) LookupRoleResultOutput {
@@ -107,7 +109,8 @@ type LookupRoleOutputArgs struct {
 	// The name of the role.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm this role exists within.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupRoleOutputArgs) ElementType() reflect.Type {
@@ -157,6 +160,10 @@ func (o LookupRoleResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupRoleResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRoleResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupRoleResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRoleResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func init() {

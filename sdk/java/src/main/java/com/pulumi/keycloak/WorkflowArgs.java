@@ -99,15 +99,30 @@ public final class WorkflowArgs extends com.pulumi.resources.ResourceArgs {
      * The realm this workflow exists in. Changing this forces a new resource.
      * 
      */
-    @Import(name="realm", required=true)
-    private Output<String> realm;
+    @Import(name="realm")
+    private @Nullable Output<String> realm;
 
     /**
      * @return The realm this workflow exists in. Changing this forces a new resource.
      * 
      */
-    public Output<String> realm() {
-        return this.realm;
+    public Optional<Output<String>> realm() {
+        return Optional.ofNullable(this.realm);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -164,6 +179,7 @@ public final class WorkflowArgs extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.on = $.on;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.restartInProgress = $.restartInProgress;
         this.schedule = $.schedule;
         this.steps = $.steps;
@@ -298,7 +314,7 @@ public final class WorkflowArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder realm(Output<String> realm) {
+        public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
@@ -311,6 +327,27 @@ public final class WorkflowArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -389,9 +426,6 @@ public final class WorkflowArgs extends com.pulumi.resources.ResourceArgs {
         public WorkflowArgs build() {
             if ($.on == null) {
                 throw new MissingRequiredPropertyException("WorkflowArgs", "on");
-            }
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("WorkflowArgs", "realm");
             }
             if ($.steps == null) {
                 throw new MissingRequiredPropertyException("WorkflowArgs", "steps");

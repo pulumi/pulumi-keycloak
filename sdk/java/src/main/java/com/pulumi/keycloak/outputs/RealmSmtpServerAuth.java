@@ -7,23 +7,51 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSmtpServerAuth {
     /**
-     * @return The SMTP server password.
+     * @return The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
      * 
      */
-    private String password;
+    private @Nullable String password;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SMTP server password as a write-only argument
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
+     * @return Change this value to update the SMTP server write-only password
+     * 
+     */
+    private @Nullable String passwordWoVersion;
     private String username;
 
     private RealmSmtpServerAuth() {}
     /**
-     * @return The SMTP server password.
+     * @return The SMTP server password. Stored in Terraform state. Exactly one of `password` or `passwordWo` must be set.
      * 
      */
-    public String password() {
-        return this.password;
+    public Optional<String> password() {
+        return Optional.ofNullable(this.password);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SMTP server password as a write-only argument
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
+     * @return Change this value to update the SMTP server write-only password
+     * 
+     */
+    public Optional<String> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
     public String username() {
         return this.username;
@@ -38,21 +66,35 @@ public final class RealmSmtpServerAuth {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String password;
+        private @Nullable String password;
+        private @Nullable String passwordWo;
+        private @Nullable String passwordWoVersion;
         private String username;
         public Builder() {}
         public Builder(RealmSmtpServerAuth defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.password = defaults.password;
+    	      this.passwordWo = defaults.passwordWo;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.username = defaults.username;
         }
 
         @CustomType.Setter
-        public Builder password(String password) {
-            if (password == null) {
-              throw new MissingRequiredPropertyException("RealmSmtpServerAuth", "password");
-            }
+        public Builder password(@Nullable String password) {
+
             this.password = password;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable String passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
             return this;
         }
         @CustomType.Setter
@@ -66,6 +108,8 @@ public final class RealmSmtpServerAuth {
         public RealmSmtpServerAuth build() {
             final var _resultValue = new RealmSmtpServerAuth();
             _resultValue.password = password;
+            _resultValue.passwordWo = passwordWo;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.username = username;
             return _resultValue;
         }

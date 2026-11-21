@@ -22,6 +22,12 @@ import (
 //
 // ## Example Usage
 //
+// The following example provisions a user attribute importer mapper through `extraConfig`. The key names can be verified in the Keycloak source code:
+// * [user.attribute](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/UserAttributeMapper.java#L52)
+// * [claim](https://github.com/keycloak/keycloak/blob/44956e10d00b79b0000583ed964130712abe5353/services/src/main/java/org/keycloak/broker/oidc/mappers/AbstractClaimMapper.java#L41)
+//
+// For a strongly typed alternative, use `AttributeImporterIdentityProviderMapper`, which exposes `claimName` and `userAttribute` directly.
+//
 // ```go
 // package main
 //
@@ -60,9 +66,9 @@ import (
 //				IdentityProviderAlias:  oidc2.Alias,
 //				IdentityProviderMapper: pulumi.String("%s-user-attribute-idp-mapper"),
 //				ExtraConfig: pulumi.StringMap{
-//					"syncMode":      pulumi.String("INHERIT"),
-//					"Claim":         pulumi.String("my-email-claim"),
-//					"UserAttribute": pulumi.String("email"),
+//					"syncMode":       pulumi.String("INHERIT"),
+//					"claim":          pulumi.String("my-email-claim"),
+//					"user.attribute": pulumi.String("email"),
 //				},
 //			})
 //			if err != nil {
@@ -97,6 +103,8 @@ type CustomIdentityProviderMapping struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The name of the realm.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewCustomIdentityProviderMapping registers a new resource with the given unique name, arguments, and options.
@@ -111,9 +119,6 @@ func NewCustomIdentityProviderMapping(ctx *pulumi.Context,
 	}
 	if args.IdentityProviderMapper == nil {
 		return nil, errors.New("invalid value for required argument 'IdentityProviderMapper'")
-	}
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CustomIdentityProviderMapping
@@ -148,6 +153,8 @@ type customIdentityProviderMappingState struct {
 	Name *string `pulumi:"name"`
 	// The name of the realm.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type CustomIdentityProviderMappingState struct {
@@ -161,6 +168,8 @@ type CustomIdentityProviderMappingState struct {
 	Name pulumi.StringPtrInput
 	// The name of the realm.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (CustomIdentityProviderMappingState) ElementType() reflect.Type {
@@ -183,7 +192,9 @@ type customIdentityProviderMappingArgs struct {
 	// The name of the mapper.
 	Name *string `pulumi:"name"`
 	// The name of the realm.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a CustomIdentityProviderMapping resource.
@@ -197,7 +208,9 @@ type CustomIdentityProviderMappingArgs struct {
 	// The name of the mapper.
 	Name pulumi.StringPtrInput
 	// The name of the realm.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (CustomIdentityProviderMappingArgs) ElementType() reflect.Type {
@@ -310,6 +323,11 @@ func (o CustomIdentityProviderMappingOutput) Name() pulumi.StringOutput {
 // The name of the realm.
 func (o CustomIdentityProviderMappingOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o CustomIdentityProviderMappingOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type CustomIdentityProviderMappingArrayOutput struct{ *pulumi.OutputState }

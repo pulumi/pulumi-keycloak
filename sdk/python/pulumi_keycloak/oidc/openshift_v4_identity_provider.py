@@ -22,9 +22,9 @@ class OpenshiftV4IdentityProviderArgs:
                  base_url: pulumi.Input[_builtins.str],
                  client_id: pulumi.Input[_builtins.str],
                  client_secret: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  default_scopes: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -39,6 +39,8 @@ class OpenshiftV4IdentityProviderArgs:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  trust_email: pulumi.Input[Optional[_builtins.bool]] = None):
@@ -48,9 +50,9 @@ class OpenshiftV4IdentityProviderArgs:
         :param pulumi.Input[_builtins.str] base_url: Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. Defaults to `user:full`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the OpenShift v4 identity provider in the GUI.
@@ -63,6 +65,8 @@ class OpenshiftV4IdentityProviderArgs:
         :param pulumi.Input[_builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `openshift-v4`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -70,11 +74,12 @@ class OpenshiftV4IdentityProviderArgs:
         pulumi.set(__self__, "base_url", base_url)
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
-        pulumi.set(__self__, "realm", realm)
         if add_read_token_role_on_create is not None:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if default_scopes is not None:
@@ -103,6 +108,10 @@ class OpenshiftV4IdentityProviderArgs:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
@@ -147,18 +156,6 @@ class OpenshiftV4IdentityProviderArgs:
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the realm. This is unique across Keycloak.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
-
-    @_builtins.property
     @pulumi.getter(name="addReadTokenRoleOnCreate")
     def add_read_token_role_on_create(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -181,6 +178,18 @@ class OpenshiftV4IdentityProviderArgs:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -345,6 +354,30 @@ class OpenshiftV4IdentityProviderArgs:
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the realm. This is unique across Keycloak.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="storeToken")
     def store_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -386,6 +419,7 @@ class _OpenshiftV4IdentityProviderState:
     def __init__(__self__, *,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  base_url: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -405,6 +439,7 @@ class _OpenshiftV4IdentityProviderState:
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  trust_email: pulumi.Input[Optional[_builtins.bool]] = None):
@@ -413,6 +448,7 @@ class _OpenshiftV4IdentityProviderState:
 
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] base_url: Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
@@ -430,6 +466,7 @@ class _OpenshiftV4IdentityProviderState:
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `openshift-v4`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -438,6 +475,8 @@ class _OpenshiftV4IdentityProviderState:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if base_url is not None:
@@ -476,6 +515,8 @@ class _OpenshiftV4IdentityProviderState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if store_token is not None:
             pulumi.set(__self__, "store_token", store_token)
         if sync_mode is not None:
@@ -506,6 +547,18 @@ class _OpenshiftV4IdentityProviderState:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -730,6 +783,18 @@ class _OpenshiftV4IdentityProviderState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="storeToken")
     def store_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -774,6 +839,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  base_url: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -792,6 +858,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -840,6 +907,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] base_url: Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
@@ -856,6 +924,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `openshift-v4`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -923,6 +992,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  base_url: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -941,6 +1011,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
                  post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  store_token: pulumi.Input[Optional[_builtins.bool]] = None,
                  sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  trust_email: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -955,6 +1026,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
 
             __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
             __props__.__dict__["authenticate_by_default"] = authenticate_by_default
             if base_url is None and not opts.urn:
                 raise TypeError("Missing required property 'base_url'")
@@ -978,9 +1050,8 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
             __props__.__dict__["provider_id"] = provider_id
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["store_token"] = store_token
             __props__.__dict__["sync_mode"] = sync_mode
             __props__.__dict__["trust_email"] = trust_email
@@ -999,6 +1070,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             base_url: pulumi.Input[Optional[_builtins.str]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1018,6 +1090,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
             post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             store_token: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
             trust_email: pulumi.Input[Optional[_builtins.bool]] = None) -> 'OpenshiftV4IdentityProvider':
@@ -1030,6 +1103,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.str] base_url: Base URL of the OpenShift 4 cluster, e.g. `https://openshift.example.com:8443`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
@@ -1047,6 +1121,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `openshift-v4`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         :param pulumi.Input[_builtins.str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         :param pulumi.Input[_builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
@@ -1057,6 +1132,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
 
         __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
         __props__.__dict__["authenticate_by_default"] = authenticate_by_default
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["client_id"] = client_id
@@ -1076,6 +1152,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["store_token"] = store_token
         __props__.__dict__["sync_mode"] = sync_mode
         __props__.__dict__["trust_email"] = trust_email
@@ -1086,6 +1163,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             base_url: pulumi.Input[Optional[_builtins.str]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1105,12 +1183,14 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
             post_broker_login_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             store_token: pulumi.Input[Optional[_builtins.bool]] = None,
             sync_mode: pulumi.Input[Optional[_builtins.str]] = None,
             trust_email: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["addReadTokenRoleOnCreate"] = add_read_token_role_on_create
         __props__["alias"] = alias
+        __props__["allowAdminRoleMapping"] = allow_admin_role_mapping
         __props__["authenticateByDefault"] = authenticate_by_default
         __props__["baseUrl"] = base_url
         __props__["clientId"] = client_id
@@ -1130,6 +1210,7 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         __props__["postBrokerLoginFlowAlias"] = post_broker_login_flow_alias
         __props__["providerId"] = provider_id
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["storeToken"] = store_token
         __props__["syncMode"] = sync_mode
         __props__["trustEmail"] = trust_email
@@ -1150,6 +1231,14 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         The alias for the OpenShift v4 identity provider. Defaults to `openshift-v4`.
         """
         return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Allow identity provider mappers to grant administrative roles, either directly or through group membership. Requires Keycloak 26.8 or later, and the manage-realm permission to enable.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -1296,6 +1385,14 @@ class OpenshiftV4IdentityProvider(pulumi.CustomResource):
         The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="storeToken")

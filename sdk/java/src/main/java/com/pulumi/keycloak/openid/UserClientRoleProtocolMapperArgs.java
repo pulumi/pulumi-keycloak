@@ -186,15 +186,30 @@ public final class UserClientRoleProtocolMapperArgs extends com.pulumi.resources
      * The realm this protocol mapper exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this protocol mapper exists within.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private UserClientRoleProtocolMapperArgs() {}
@@ -212,6 +227,7 @@ public final class UserClientRoleProtocolMapperArgs extends com.pulumi.resources
         this.multivalued = $.multivalued;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -469,7 +485,7 @@ public final class UserClientRoleProtocolMapperArgs extends com.pulumi.resources
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -484,12 +500,30 @@ public final class UserClientRoleProtocolMapperArgs extends com.pulumi.resources
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public UserClientRoleProtocolMapperArgs build() {
             if ($.claimName == null) {
                 throw new MissingRequiredPropertyException("UserClientRoleProtocolMapperArgs", "claimName");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("UserClientRoleProtocolMapperArgs", "realmId");
             }
             return $;
         }

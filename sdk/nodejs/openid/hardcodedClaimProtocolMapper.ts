@@ -168,6 +168,10 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
      * The realm this protocol mapper exists within.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a HardcodedClaimProtocolMapper resource with the given unique name, arguments, and options.
@@ -192,6 +196,7 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = state?.clientScopeId;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as HardcodedClaimProtocolMapperArgs | undefined;
             if (args?.claimName === undefined && !opts.urn) {
@@ -199,9 +204,6 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
             }
             if (args?.claimValue === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimValue'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
@@ -213,6 +215,7 @@ export class HardcodedClaimProtocolMapper extends pulumi.CustomResource {
             resourceInputs["clientScopeId"] = args?.clientScopeId;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(HardcodedClaimProtocolMapper.__pulumiType, name, resourceInputs, opts);
@@ -263,6 +266,10 @@ export interface HardcodedClaimProtocolMapperState {
      * The realm this protocol mapper exists within.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -308,5 +315,9 @@ export interface HardcodedClaimProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

@@ -26,7 +26,7 @@ class GetAuthenticationExecutionResult:
     """
     A collection of values returned by getAuthenticationExecution.
     """
-    def __init__(__self__, id=None, parent_flow_alias=None, priority=None, provider_id=None, realm_id=None):
+    def __init__(__self__, id=None, parent_flow_alias=None, priority=None, provider_id=None, realm_id=None, realm_internal_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -42,6 +42,9 @@ class GetAuthenticationExecutionResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -74,6 +77,11 @@ class GetAuthenticationExecutionResult:
     def realm_id(self) -> _builtins.str:
         return pulumi.get(self, "realm_id")
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
 
 class AwaitableGetAuthenticationExecutionResult(GetAuthenticationExecutionResult):
     # pylint: disable=using-constant-test
@@ -85,12 +93,14 @@ class AwaitableGetAuthenticationExecutionResult(GetAuthenticationExecutionResult
             parent_flow_alias=self.parent_flow_alias,
             priority=self.priority,
             provider_id=self.provider_id,
-            realm_id=self.realm_id)
+            realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id)
 
 
 def get_authentication_execution(parent_flow_alias: Optional[_builtins.str] = None,
                                  provider_id: Optional[_builtins.str] = None,
                                  realm_id: Optional[_builtins.str] = None,
+                                 realm_internal_id: Optional[_builtins.str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthenticationExecutionResult:
     """
     This data source can be used to fetch the ID of an authentication execution within Keycloak.
@@ -118,6 +128,7 @@ def get_authentication_execution(parent_flow_alias: Optional[_builtins.str] = No
     __args__['parentFlowAlias'] = parent_flow_alias
     __args__['providerId'] = provider_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getAuthenticationExecution:getAuthenticationExecution', __args__, opts=opts, typ=GetAuthenticationExecutionResult).value
 
@@ -126,10 +137,12 @@ def get_authentication_execution(parent_flow_alias: Optional[_builtins.str] = No
         parent_flow_alias=pulumi.get(__ret__, 'parent_flow_alias'),
         priority=pulumi.get(__ret__, 'priority'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
-        realm_id=pulumi.get(__ret__, 'realm_id'))
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'))
 def get_authentication_execution_output(parent_flow_alias: pulumi.Input[Optional[_builtins.str]] = None,
                                         provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-                                        realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                        realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                        realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthenticationExecutionResult]:
     """
     This data source can be used to fetch the ID of an authentication execution within Keycloak.
@@ -157,6 +170,7 @@ def get_authentication_execution_output(parent_flow_alias: pulumi.Input[Optional
     __args__['parentFlowAlias'] = parent_flow_alias
     __args__['providerId'] = provider_id
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getAuthenticationExecution:getAuthenticationExecution', __args__, opts=opts, typ=GetAuthenticationExecutionResult)
     return __ret__.apply(lambda __response__: GetAuthenticationExecutionResult(
@@ -164,4 +178,5 @@ def get_authentication_execution_output(parent_flow_alias: pulumi.Input[Optional
         parent_flow_alias=pulumi.get(__response__, 'parent_flow_alias'),
         priority=pulumi.get(__response__, 'priority'),
         provider_id=pulumi.get(__response__, 'provider_id'),
-        realm_id=pulumi.get(__response__, 'realm_id')))
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id')))

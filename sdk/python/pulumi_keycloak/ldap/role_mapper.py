@@ -23,7 +23,6 @@ class RoleMapperArgs:
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
                  membership_ldap_attribute: pulumi.Input[_builtins.str],
                  membership_user_ldap_attribute: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  role_name_ldap_attribute: pulumi.Input[_builtins.str],
                  role_object_classes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -31,6 +30,8 @@ class RoleMapperArgs:
                  membership_attribute_type: pulumi.Input[Optional[_builtins.str]] = None,
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
                  use_realm_roles_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_roles_retrieve_strategy: pulumi.Input[Optional[_builtins.str]] = None):
@@ -41,7 +42,6 @@ class RoleMapperArgs:
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
         :param pulumi.Input[_builtins.str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[_builtins.str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
         :param pulumi.Input[_builtins.str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
@@ -49,6 +49,8 @@ class RoleMapperArgs:
         :param pulumi.Input[_builtins.str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
         :param pulumi.Input[_builtins.str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         :param pulumi.Input[_builtins.bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[_builtins.str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
@@ -57,7 +59,6 @@ class RoleMapperArgs:
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
         pulumi.set(__self__, "membership_ldap_attribute", membership_ldap_attribute)
         pulumi.set(__self__, "membership_user_ldap_attribute", membership_user_ldap_attribute)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "role_name_ldap_attribute", role_name_ldap_attribute)
         pulumi.set(__self__, "role_object_classes", role_object_classes)
         if client_id is not None:
@@ -70,6 +71,10 @@ class RoleMapperArgs:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if roles_ldap_filter is not None:
             pulumi.set(__self__, "roles_ldap_filter", roles_ldap_filter)
         if use_realm_roles_mapping is not None:
@@ -124,18 +129,6 @@ class RoleMapperArgs:
     @membership_user_ldap_attribute.setter
     def membership_user_ldap_attribute(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "membership_user_ldap_attribute", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that this LDAP mapper will exist in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleNameLdapAttribute")
@@ -222,6 +215,30 @@ class RoleMapperArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -271,6 +288,7 @@ class _RoleMapperState:
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
@@ -289,6 +307,7 @@ class _RoleMapperState:
         :param pulumi.Input[_builtins.str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
         :param pulumi.Input[_builtins.str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
@@ -315,6 +334,8 @@ class _RoleMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role_name_ldap_attribute is not None:
             pulumi.set(__self__, "role_name_ldap_attribute", role_name_ldap_attribute)
         if role_object_classes is not None:
@@ -447,6 +468,18 @@ class _RoleMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="roleNameLdapAttribute")
     def role_name_ldap_attribute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -523,6 +556,7 @@ class RoleMapper(pulumi.CustomResource):
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
@@ -595,6 +629,7 @@ class RoleMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
         :param pulumi.Input[_builtins.str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
@@ -686,6 +721,7 @@ class RoleMapper(pulumi.CustomResource):
                  mode: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
@@ -717,9 +753,8 @@ class RoleMapper(pulumi.CustomResource):
             __props__.__dict__["membership_user_ldap_attribute"] = membership_user_ldap_attribute
             __props__.__dict__["mode"] = mode
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if role_name_ldap_attribute is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name_ldap_attribute'")
             __props__.__dict__["role_name_ldap_attribute"] = role_name_ldap_attribute
@@ -749,6 +784,7 @@ class RoleMapper(pulumi.CustomResource):
             mode: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
             role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
@@ -771,6 +807,7 @@ class RoleMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
         :param pulumi.Input[_builtins.str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
@@ -791,6 +828,7 @@ class RoleMapper(pulumi.CustomResource):
         __props__.__dict__["mode"] = mode
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["role_name_ldap_attribute"] = role_name_ldap_attribute
         __props__.__dict__["role_object_classes"] = role_object_classes
         __props__.__dict__["roles_ldap_filter"] = roles_ldap_filter
@@ -811,6 +849,7 @@ class RoleMapper(pulumi.CustomResource):
             mode: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_name_ldap_attribute: pulumi.Input[Optional[_builtins.str]] = None,
             role_object_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             roles_ldap_filter: pulumi.Input[Optional[_builtins.str]] = None,
@@ -827,6 +866,7 @@ class RoleMapper(pulumi.CustomResource):
         __props__["mode"] = mode
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["roleNameLdapAttribute"] = role_name_ldap_attribute
         __props__["roleObjectClasses"] = role_object_classes
         __props__["rolesLdapFilter"] = roles_ldap_filter
@@ -913,6 +953,14 @@ class RoleMapper(pulumi.CustomResource):
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="roleNameLdapAttribute")

@@ -171,6 +171,10 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * A prefix for each Realm Role.
      */
     declare public readonly realmRolePrefix: pulumi.Output<string | undefined>;
@@ -199,14 +203,12 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             resourceInputs["multivalued"] = state?.multivalued;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["realmRolePrefix"] = state?.realmRolePrefix;
         } else {
             const args = argsOrState as UserRealmRoleProtocolMapperArgs | undefined;
             if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["addToAccessToken"] = args?.addToAccessToken;
             resourceInputs["addToIdToken"] = args?.addToIdToken;
@@ -219,6 +221,7 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             resourceInputs["multivalued"] = args?.multivalued;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["realmRolePrefix"] = args?.realmRolePrefix;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -275,6 +278,10 @@ export interface UserRealmRoleProtocolMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * A prefix for each Realm Role.
      */
     realmRolePrefix?: pulumi.Input<string | undefined>;
@@ -327,7 +334,11 @@ export interface UserRealmRoleProtocolMapperArgs {
     /**
      * The realm this protocol mapper exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * A prefix for each Realm Role.
      */

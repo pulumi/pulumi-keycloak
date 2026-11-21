@@ -123,8 +123,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this user belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         /// <summary>
         /// The unique username of this user.
@@ -143,8 +146,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this user belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         /// <summary>
         /// The unique username of this user.
@@ -195,6 +201,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string LastName;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
         public readonly ImmutableArray<string> RequiredActions;
         public readonly string Username;
 
@@ -218,6 +225,8 @@ namespace Pulumi.Keycloak
 
             string realmId,
 
+            string realmInternalId,
+
             ImmutableArray<string> requiredActions,
 
             string username)
@@ -231,6 +240,7 @@ namespace Pulumi.Keycloak
             Id = id;
             LastName = lastName;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
             RequiredActions = requiredActions;
             Username = username;
         }

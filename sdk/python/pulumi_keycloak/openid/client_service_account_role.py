@@ -20,21 +20,26 @@ __all__ = ['ClientServiceAccountRoleArgs', 'ClientServiceAccountRole']
 class ClientServiceAccountRoleArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
-                 service_account_user_id: pulumi.Input[_builtins.str]):
+                 service_account_user_id: pulumi.Input[_builtins.str],
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientServiceAccountRole resource.
 
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
-        :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
         :param pulumi.Input[_builtins.str] role: The name of the role that is assigned.
         :param pulumi.Input[_builtins.str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
+        :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "service_account_user_id", service_account_user_id)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -47,18 +52,6 @@ class ClientServiceAccountRoleArgs:
     @client_id.setter
     def client_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "client_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm the clients and roles belong to.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -84,12 +77,37 @@ class ClientServiceAccountRoleArgs:
     def service_account_user_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "service_account_user_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm the clients and roles belong to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _ClientServiceAccountRoleState:
     def __init__(__self__, *,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -97,6 +115,7 @@ class _ClientServiceAccountRoleState:
 
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
         :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role that is assigned.
         :param pulumi.Input[_builtins.str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
@@ -104,6 +123,8 @@ class _ClientServiceAccountRoleState:
             pulumi.set(__self__, "client_id", client_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if service_account_user_id is not None:
@@ -132,6 +153,18 @@ class _ClientServiceAccountRoleState:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -166,6 +199,7 @@ class ClientServiceAccountRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -221,6 +255,7 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
         :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role that is assigned.
         :param pulumi.Input[_builtins.str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
@@ -295,6 +330,7 @@ class ClientServiceAccountRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -309,9 +345,8 @@ class ClientServiceAccountRole(pulumi.CustomResource):
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -330,6 +365,7 @@ class ClientServiceAccountRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role: pulumi.Input[Optional[_builtins.str]] = None,
             service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientServiceAccountRole':
         """
@@ -341,6 +377,7 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
         :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role: The name of the role that is assigned.
         :param pulumi.Input[_builtins.str] service_account_user_id: The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
         """
@@ -350,6 +387,7 @@ class ClientServiceAccountRole(pulumi.CustomResource):
 
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["role"] = role
         __props__.__dict__["service_account_user_id"] = service_account_user_id
         return ClientServiceAccountRole(resource_name, opts=opts, __props__=__props__)
@@ -359,11 +397,13 @@ class ClientServiceAccountRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role: pulumi.Input[Optional[_builtins.str]] = None,
             service_account_user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["clientId"] = client_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["role"] = role
         __props__["serviceAccountUserId"] = service_account_user_id
         return pulumi.runtime.exists_resource(None, 'keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole', id, __props__, opts or pulumi.ResourceOptions())
@@ -383,6 +423,14 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         The realm the clients and roles belong to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

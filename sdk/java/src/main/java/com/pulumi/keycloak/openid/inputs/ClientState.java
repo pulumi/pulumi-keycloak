@@ -685,6 +685,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
      * 
      */
@@ -915,6 +930,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.oauth2JwtAuthorizationGrantIdp = $.oauth2JwtAuthorizationGrantIdp;
         this.pkceCodeChallengeMethod = $.pkceCodeChallengeMethod;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.requireDpopBoundTokens = $.requireDpopBoundTokens;
         this.resourceServerId = $.resourceServerId;
         this.rootUrl = $.rootUrl;
@@ -1865,6 +1881,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

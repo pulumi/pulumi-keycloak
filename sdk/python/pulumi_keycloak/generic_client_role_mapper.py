@@ -19,36 +19,29 @@ __all__ = ['GenericClientRoleMapperArgs', 'GenericClientRoleMapper']
 @pulumi.input_type
 class GenericClientRoleMapperArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  role_id: pulumi.Input[_builtins.str],
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GenericClientRoleMapper resource.
 
-        :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to be added to this role mapper.
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[_builtins.str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "role_id", role_id)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
             pulumi.set(__self__, "client_scope_id", client_scope_id)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this role mapper exists within.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
@@ -86,6 +79,30 @@ class GenericClientRoleMapperArgs:
     def client_scope_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_scope_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this role mapper exists within.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _GenericClientRoleMapperState:
@@ -93,6 +110,7 @@ class _GenericClientRoleMapperState:
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GenericClientRoleMapper resources.
@@ -100,6 +118,7 @@ class _GenericClientRoleMapperState:
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[_builtins.str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to be added to this role mapper.
         """
         if client_id is not None:
@@ -108,6 +127,8 @@ class _GenericClientRoleMapperState:
             pulumi.set(__self__, "client_scope_id", client_scope_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
 
@@ -148,6 +169,18 @@ class _GenericClientRoleMapperState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -169,6 +202,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -315,6 +349,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[_builtins.str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to be added to this role mapper.
         """
         ...
@@ -480,6 +515,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -492,9 +528,8 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_scope_id"] = client_scope_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'role_id'")
             __props__.__dict__["role_id"] = role_id
@@ -511,6 +546,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'GenericClientRoleMapper':
         """
         Get an existing GenericClientRoleMapper resource's state with the given name, id, and optional extra
@@ -522,6 +558,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[_builtins.str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to be added to this role mapper.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -531,6 +568,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_scope_id"] = client_scope_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["role_id"] = role_id
         return GenericClientRoleMapper(resource_name, opts=opts, __props__=__props__)
 
@@ -540,11 +578,13 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_scope_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["clientId"] = client_id
         __props__["clientScopeId"] = client_scope_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["roleId"] = role_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/genericClientRoleMapper:GenericClientRoleMapper', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -571,6 +611,14 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         The realm this role mapper exists within.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="roleId")

@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var policy = new RealmClientPolicyProfilePolicy("policy", RealmClientPolicyProfilePolicyArgs.builder()
- *             .name("my-profile")
+ *             .name("my-policy")
  *             .realmId(realm.id())
  *             .description("Some desc")
  *             .profiles(profile.name())
@@ -87,7 +87,7 @@ import javax.annotation.Nullable;
  *                 RealmClientPolicyProfilePolicyConditionArgs.builder()
  *                     .name("client-attributes")
  *                     .configuration(Map.ofEntries(
- *                         Map.entry("is-negative-logic", "false"),
+ *                         Map.entry("is_negative_logic", "false"),
  *                         Map.entry("attributes", serializeJson(
  *                             jsonArray(jsonObject(
  *                                 jsonProperty("key", "test-key"),
@@ -104,18 +104,29 @@ import javax.annotation.Nullable;
  * 
  * ### Attribute Arguments
  * 
- * - `name` - (Required) The name of the attribute.
+ * - `name` - (Required) The name of the policy.
  * - `realmId` - (Required) The realm id.
+ * - `description` - (Optional) The description of the policy.
+ * - `enabled` - (Optional) When `false`, the policy is not applied. Defaults to `true`.
+ * - `profiles` - (Required) The names of the client policy profiles that are applied when the conditions of this policy match.
  * - `condition` - (Optional) An ordered list of condition
  * 
  * #### Condition Arguments
  * 
- * - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+ * - `name` - (Required) The name of the condition. NOTE! The condition needs to exist
  * - `configuration` - (Optional) - A map of configuration values
  * 
  * ## Import
  * 
- * This resource currently does not support importing.
+ * This resource can be imported using the format `{{realm_id}}/{{name}}`. Keycloak does not assign an ID to client policies, the name is the identifier within the realm.
+ * 
+ * Example:
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy policy my-realm/my-policy
+ * ```
+ * 
+ * Note: values in `configuration` are stored as strings in the state. JSON objects and arrays are stored as JSON strings, booleans and numbers as `&#34;true&#34;`, `&#34;false&#34;` or `&#34;5&#34;`.
  * 
  */
 @ResourceType(type="keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy")
@@ -155,6 +166,20 @@ public class RealmClientPolicyProfilePolicy extends com.pulumi.resources.CustomR
 
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

@@ -45,11 +45,26 @@ public final class ClientAuthorizationPermissionArgs extends com.pulumi.resource
         return Optional.ofNullable(this.policies);
     }
 
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     @Import(name="resourceServerId", required=true)
@@ -95,6 +110,7 @@ public final class ClientAuthorizationPermissionArgs extends com.pulumi.resource
         this.name = $.name;
         this.policies = $.policies;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.resourceServerId = $.resourceServerId;
         this.resourceType = $.resourceType;
         this.resources = $.resources;
@@ -160,13 +176,34 @@ public final class ClientAuthorizationPermissionArgs extends com.pulumi.resource
             return policies(List.of(policies));
         }
 
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         public Builder resourceServerId(Output<String> resourceServerId) {
@@ -223,9 +260,6 @@ public final class ClientAuthorizationPermissionArgs extends com.pulumi.resource
         }
 
         public ClientAuthorizationPermissionArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("ClientAuthorizationPermissionArgs", "realmId");
-            }
             if ($.resourceServerId == null) {
                 throw new MissingRequiredPropertyException("ClientAuthorizationPermissionArgs", "resourceServerId");
             }

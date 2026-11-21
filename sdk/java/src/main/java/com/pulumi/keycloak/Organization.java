@@ -199,6 +199,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.realm;
     }
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
+    /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      * 
      */
@@ -225,7 +239,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Organization(java.lang.String name, OrganizationArgs args) {
+    public Organization(java.lang.String name, @Nullable OrganizationArgs args) {
         this(name, args, null);
     }
     /**
@@ -234,7 +248,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Organization(java.lang.String name, OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Organization(java.lang.String name, @Nullable OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/organization:Organization", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -242,7 +256,7 @@ public class Organization extends com.pulumi.resources.CustomResource {
         super("keycloak:index/organization:Organization", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static OrganizationArgs makeArgs(OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static OrganizationArgs makeArgs(@Nullable OrganizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class OrganizationMembershipsArgs extends com.pulumi.resources.ResourceArgs {
@@ -16,14 +18,14 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
     public static final OrganizationMembershipsArgs Empty = new OrganizationMembershipsArgs();
 
     /**
-     * A set of usernames to assign as members of the organization.
+     * A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      * 
      */
     @Import(name="members", required=true)
     private Output<List<String>> members;
 
     /**
-     * @return A set of usernames to assign as members of the organization.
+     * @return A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      * 
      */
     public Output<List<String>> members() {
@@ -49,15 +51,30 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
      * The realm the organization belongs to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm the organization belongs to.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private OrganizationMembershipsArgs() {}
@@ -66,6 +83,7 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
         this.members = $.members;
         this.organizationId = $.organizationId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -87,7 +105,7 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param members A set of usernames to assign as members of the organization.
+         * @param members A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
          * 
          * @return builder
          * 
@@ -98,7 +116,7 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param members A set of usernames to assign as members of the organization.
+         * @param members A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
          * 
          * @return builder
          * 
@@ -108,7 +126,7 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param members A set of usernames to assign as members of the organization.
+         * @param members A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
          * 
          * @return builder
          * 
@@ -144,7 +162,7 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -159,15 +177,33 @@ public final class OrganizationMembershipsArgs extends com.pulumi.resources.Reso
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
+        }
+
         public OrganizationMembershipsArgs build() {
             if ($.members == null) {
                 throw new MissingRequiredPropertyException("OrganizationMembershipsArgs", "members");
             }
             if ($.organizationId == null) {
                 throw new MissingRequiredPropertyException("OrganizationMembershipsArgs", "organizationId");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("OrganizationMembershipsArgs", "realmId");
             }
             return $;
         }

@@ -109,6 +109,8 @@ type DefaultRoles struct {
 	DefaultRoles pulumi.StringArrayOutput `pulumi:"defaultRoles"`
 	// The realm this role exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewDefaultRoles registers a new resource with the given unique name, arguments, and options.
@@ -120,9 +122,6 @@ func NewDefaultRoles(ctx *pulumi.Context,
 
 	if args.DefaultRoles == nil {
 		return nil, errors.New("invalid value for required argument 'DefaultRoles'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DefaultRoles
@@ -151,6 +150,8 @@ type defaultRolesState struct {
 	DefaultRoles []string `pulumi:"defaultRoles"`
 	// The realm this role exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type DefaultRolesState struct {
@@ -158,6 +159,8 @@ type DefaultRolesState struct {
 	DefaultRoles pulumi.StringArrayInput
 	// The realm this role exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (DefaultRolesState) ElementType() reflect.Type {
@@ -174,7 +177,9 @@ type defaultRolesArgs struct {
 	// Roles assigned to new users by default.
 	DefaultRoles []string `pulumi:"defaultRoles"`
 	// The realm this role exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a DefaultRoles resource.
@@ -182,7 +187,9 @@ type DefaultRolesArgs struct {
 	// Roles assigned to new users by default.
 	DefaultRoles pulumi.StringArrayInput
 	// The realm this role exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (DefaultRolesArgs) ElementType() reflect.Type {
@@ -280,6 +287,11 @@ func (o DefaultRolesOutput) DefaultRoles() pulumi.StringArrayOutput {
 // The realm this role exists within.
 func (o DefaultRolesOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DefaultRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o DefaultRolesOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DefaultRoles) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type DefaultRolesArrayOutput struct{ *pulumi.OutputState }

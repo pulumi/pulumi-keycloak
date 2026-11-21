@@ -26,7 +26,7 @@ class GetAuthenticationFlowResult:
     """
     A collection of values returned by getAuthenticationFlow.
     """
-    def __init__(__self__, alias=None, id=None, realm_id=None):
+    def __init__(__self__, alias=None, id=None, realm_id=None, realm_internal_id=None):
         if alias and not isinstance(alias, str):
             raise TypeError("Expected argument 'alias' to be a str")
         pulumi.set(__self__, "alias", alias)
@@ -36,6 +36,9 @@ class GetAuthenticationFlowResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -55,6 +58,11 @@ class GetAuthenticationFlowResult:
     def realm_id(self) -> _builtins.str:
         return pulumi.get(self, "realm_id")
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
 
 class AwaitableGetAuthenticationFlowResult(GetAuthenticationFlowResult):
     # pylint: disable=using-constant-test
@@ -64,11 +72,13 @@ class AwaitableGetAuthenticationFlowResult(GetAuthenticationFlowResult):
         return GetAuthenticationFlowResult(
             alias=self.alias,
             id=self.id,
-            realm_id=self.realm_id)
+            realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id)
 
 
 def get_authentication_flow(alias: Optional[_builtins.str] = None,
                             realm_id: Optional[_builtins.str] = None,
+                            realm_internal_id: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthenticationFlowResult:
     """
     This data source can be used to fetch the ID of an authentication flow within Keycloak.
@@ -93,15 +103,18 @@ def get_authentication_flow(alias: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['alias'] = alias
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getAuthenticationFlow:getAuthenticationFlow', __args__, opts=opts, typ=GetAuthenticationFlowResult).value
 
     return AwaitableGetAuthenticationFlowResult(
         alias=pulumi.get(__ret__, 'alias'),
         id=pulumi.get(__ret__, 'id'),
-        realm_id=pulumi.get(__ret__, 'realm_id'))
+        realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'))
 def get_authentication_flow_output(alias: pulumi.Input[Optional[_builtins.str]] = None,
-                                   realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                   realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthenticationFlowResult]:
     """
     This data source can be used to fetch the ID of an authentication flow within Keycloak.
@@ -126,9 +139,11 @@ def get_authentication_flow_output(alias: pulumi.Input[Optional[_builtins.str]] 
     __args__ = dict()
     __args__['alias'] = alias
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getAuthenticationFlow:getAuthenticationFlow', __args__, opts=opts, typ=GetAuthenticationFlowResult)
     return __ret__.apply(lambda __response__: GetAuthenticationFlowResult(
         alias=pulumi.get(__response__, 'alias'),
         id=pulumi.get(__response__, 'id'),
-        realm_id=pulumi.get(__response__, 'realm_id')))
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id')))

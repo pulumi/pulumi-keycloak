@@ -23,13 +23,14 @@ class RealmKeystoreJavaGeneratedArgs:
                  key_password: pulumi.Input[_builtins.str],
                  keystore: pulumi.Input[_builtins.str],
                  keystore_password: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  key_use: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmKeystoreJavaGenerated resource.
 
@@ -37,19 +38,19 @@ class RealmKeystoreJavaGeneratedArgs:
         :param pulumi.Input[_builtins.str] key_password: Password for the private key.
         :param pulumi.Input[_builtins.str] keystore: Path to keys file on keycloak instance.
         :param pulumi.Input[_builtins.str] keystore_password: Password for the keys.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_use: Intended use for the key
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
+        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "key_alias", key_alias)
         pulumi.set(__self__, "key_password", key_password)
         pulumi.set(__self__, "keystore", keystore)
         pulumi.set(__self__, "keystore_password", keystore_password)
-        pulumi.set(__self__, "realm_id", realm_id)
         if active is not None:
             pulumi.set(__self__, "active", active)
         if algorithm is not None:
@@ -62,6 +63,10 @@ class RealmKeystoreJavaGeneratedArgs:
             pulumi.set(__self__, "name", name)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="keyAlias")
@@ -112,22 +117,10 @@ class RealmKeystoreJavaGeneratedArgs:
         pulumi.set(self, "keystore_password", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this keystore exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -195,6 +188,30 @@ class RealmKeystoreJavaGeneratedArgs:
     def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this keystore exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _RealmKeystoreJavaGeneratedState:
@@ -210,11 +227,12 @@ class _RealmKeystoreJavaGeneratedState:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmKeystoreJavaGenerated resources.
 
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_alias: Alias for the private key.
@@ -225,6 +243,7 @@ class _RealmKeystoreJavaGeneratedState:
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -250,12 +269,14 @@ class _RealmKeystoreJavaGeneratedState:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -392,6 +413,18 @@ class _RealmKeystoreJavaGeneratedState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated")
 class RealmKeystoreJavaGenerated(pulumi.CustomResource):
@@ -410,6 +443,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing `java-keystore` Realm keystores within Keycloak.
@@ -449,7 +483,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_alias: Alias for the private key.
@@ -460,6 +494,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -529,6 +564,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -556,9 +592,8 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             __props__.__dict__["keystore_password"] = None if keystore_password is None else pulumi.Output.secret(keystore_password)
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["parent_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["keyPassword", "keystorePassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -583,7 +618,8 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             parent_id: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreJavaGenerated':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreJavaGenerated':
         """
         Get an existing RealmKeystoreJavaGenerated resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -591,7 +627,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] key_alias: Alias for the private key.
@@ -602,6 +638,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -619,6 +656,7 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RealmKeystoreJavaGenerated(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -635,7 +673,8 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             parent_id: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["active"] = active
         __props__["algorithm"] = algorithm
@@ -649,13 +688,14 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         __props__["parentId"] = parent_id
         __props__["priority"] = priority
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When `false`, key in not used for signing. Defaults to `true`.
+        When `false`, key is not used for signing. Defaults to `true`.
         """
         return pulumi.get(self, "active")
 
@@ -743,4 +783,12 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         The realm this keystore exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

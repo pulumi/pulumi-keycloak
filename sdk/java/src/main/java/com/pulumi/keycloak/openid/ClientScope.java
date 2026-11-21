@@ -83,14 +83,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:openid/clientScope:ClientScope")
 public class ClientScope extends com.pulumi.resources.CustomResource {
     /**
-     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      * 
      */
     @Export(name="consentScreenText", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> consentScreenText;
 
     /**
-     * @return When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+     * @return The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
      * 
      */
     public Output<Optional<String>> consentScreenText() {
@@ -109,6 +109,20 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     * 
+     */
+    @Export(name="displayOnConsentScreen", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> displayOnConsentScreen;
+
+    /**
+     * @return When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consentScreenText` is set and `false` otherwise.
+     * 
+     */
+    public Output<Boolean> displayOnConsentScreen() {
+        return this.displayOnConsentScreen;
     }
     /**
      * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
@@ -194,6 +208,20 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
 
     /**
      *
@@ -207,7 +235,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientScope(java.lang.String name, ClientScopeArgs args) {
+    public ClientScope(java.lang.String name, @Nullable ClientScopeArgs args) {
         this(name, args, null);
     }
     /**
@@ -216,7 +244,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientScope(java.lang.String name, ClientScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public ClientScope(java.lang.String name, @Nullable ClientScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:openid/clientScope:ClientScope", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -224,7 +252,7 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
         super("keycloak:openid/clientScope:ClientScope", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static ClientScopeArgs makeArgs(ClientScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ClientScopeArgs makeArgs(@Nullable ClientScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

@@ -106,6 +106,8 @@ type UserAttributeProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The name of the SAML attribute.
 	SamlAttributeName pulumi.StringOutput `pulumi:"samlAttributeName"`
 	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
@@ -121,9 +123,6 @@ func NewUserAttributeProtocolMapper(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.SamlAttributeName == nil {
 		return nil, errors.New("invalid value for required argument 'SamlAttributeName'")
 	}
@@ -168,6 +167,8 @@ type userAttributeProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the SAML attribute.
 	SamlAttributeName *string `pulumi:"samlAttributeName"`
 	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
@@ -189,6 +190,8 @@ type UserAttributeProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the SAML attribute.
 	SamlAttributeName pulumi.StringPtrInput
 	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
@@ -219,7 +222,9 @@ type userAttributeProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The name of the SAML attribute.
 	SamlAttributeName string `pulumi:"samlAttributeName"`
 	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
@@ -241,7 +246,9 @@ type UserAttributeProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The name of the SAML attribute.
 	SamlAttributeName pulumi.StringInput
 	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
@@ -365,6 +372,11 @@ func (o UserAttributeProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o UserAttributeProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserAttributeProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The name of the SAML attribute.

@@ -116,6 +116,10 @@ export class ClientJsPolicy extends pulumi.CustomResource {
     declare public readonly logic: pulumi.Output<string | undefined>;
     declare public readonly name: pulumi.Output<string>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly resourceServerId: pulumi.Output<string>;
     declare public readonly type: pulumi.Output<string | undefined>;
 
@@ -138,6 +142,7 @@ export class ClientJsPolicy extends pulumi.CustomResource {
             resourceInputs["logic"] = state?.logic;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["type"] = state?.type;
         } else {
@@ -148,9 +153,6 @@ export class ClientJsPolicy extends pulumi.CustomResource {
             if (args?.decisionStrategy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
@@ -160,6 +162,7 @@ export class ClientJsPolicy extends pulumi.CustomResource {
             resourceInputs["logic"] = args?.logic;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
             resourceInputs["type"] = args?.type;
         }
@@ -178,6 +181,10 @@ export interface ClientJsPolicyState {
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId?: pulumi.Input<string | undefined>;
     type?: pulumi.Input<string | undefined>;
 }
@@ -191,7 +198,11 @@ export interface ClientJsPolicyArgs {
     description?: pulumi.Input<string | undefined>;
     logic?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId: pulumi.Input<string>;
     type?: pulumi.Input<string | undefined>;
 }

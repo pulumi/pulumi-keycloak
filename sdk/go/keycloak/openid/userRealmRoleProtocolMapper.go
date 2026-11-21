@@ -164,6 +164,8 @@ type UserRealmRoleProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// A prefix for each Realm Role.
 	RealmRolePrefix pulumi.StringPtrOutput `pulumi:"realmRolePrefix"`
 }
@@ -177,9 +179,6 @@ func NewUserRealmRoleProtocolMapper(ctx *pulumi.Context,
 
 	if args.ClaimName == nil {
 		return nil, errors.New("invalid value for required argument 'ClaimName'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserRealmRoleProtocolMapper
@@ -226,6 +225,8 @@ type userRealmRoleProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A prefix for each Realm Role.
 	RealmRolePrefix *string `pulumi:"realmRolePrefix"`
 }
@@ -253,6 +254,8 @@ type UserRealmRoleProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A prefix for each Realm Role.
 	RealmRolePrefix pulumi.StringPtrInput
 }
@@ -289,7 +292,9 @@ type userRealmRoleProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A prefix for each Realm Role.
 	RealmRolePrefix *string `pulumi:"realmRolePrefix"`
 }
@@ -317,7 +322,9 @@ type UserRealmRoleProtocolMapperArgs struct {
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A prefix for each Realm Role.
 	RealmRolePrefix pulumi.StringPtrInput
 }
@@ -462,6 +469,11 @@ func (o UserRealmRoleProtocolMapperOutput) Name() pulumi.StringOutput {
 // The realm this protocol mapper exists within.
 func (o UserRealmRoleProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRealmRoleProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserRealmRoleProtocolMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRealmRoleProtocolMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // A prefix for each Realm Role.

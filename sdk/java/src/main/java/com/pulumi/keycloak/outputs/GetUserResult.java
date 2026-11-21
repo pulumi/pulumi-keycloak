@@ -54,6 +54,7 @@ public final class GetUserResult {
      */
     private String lastName;
     private String realmId;
+    private String realmInternalId;
     private List<String> requiredActions;
     private String username;
 
@@ -117,6 +118,9 @@ public final class GetUserResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public List<String> requiredActions() {
         return this.requiredActions;
     }
@@ -142,6 +146,7 @@ public final class GetUserResult {
         private String id;
         private String lastName;
         private String realmId;
+        private String realmInternalId;
         private List<String> requiredActions;
         private String username;
         public Builder() {}
@@ -156,6 +161,7 @@ public final class GetUserResult {
     	      this.id = defaults.id;
     	      this.lastName = defaults.lastName;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.requiredActions = defaults.requiredActions;
     	      this.username = defaults.username;
         }
@@ -236,6 +242,14 @@ public final class GetUserResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requiredActions(List<String> requiredActions) {
             if (requiredActions == null) {
               throw new MissingRequiredPropertyException("GetUserResult", "requiredActions");
@@ -265,6 +279,7 @@ public final class GetUserResult {
             _resultValue.id = id;
             _resultValue.lastName = lastName;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.requiredActions = requiredActions;
             _resultValue.username = username;
             return _resultValue;

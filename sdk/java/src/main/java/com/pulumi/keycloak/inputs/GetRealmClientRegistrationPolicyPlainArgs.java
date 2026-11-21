@@ -49,15 +49,22 @@ public final class GetRealmClientRegistrationPolicyPlainArgs extends com.pulumi.
      * The realm the policy belongs to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm the policy belongs to.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -81,6 +88,7 @@ public final class GetRealmClientRegistrationPolicyPlainArgs extends com.pulumi.
         this.name = $.name;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.subType = $.subType;
     }
 
@@ -130,8 +138,13 @@ public final class GetRealmClientRegistrationPolicyPlainArgs extends com.pulumi.
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
@@ -149,9 +162,6 @@ public final class GetRealmClientRegistrationPolicyPlainArgs extends com.pulumi.
         public GetRealmClientRegistrationPolicyPlainArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetRealmClientRegistrationPolicyPlainArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetRealmClientRegistrationPolicyPlainArgs", "realmId");
             }
             return $;
         }

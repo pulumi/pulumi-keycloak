@@ -27,7 +27,7 @@ class GetRealmKeysResult:
     """
     A collection of values returned by getRealmKeys.
     """
-    def __init__(__self__, algorithms=None, id=None, keys=None, realm_id=None, statuses=None):
+    def __init__(__self__, algorithms=None, id=None, keys=None, realm_id=None, realm_internal_id=None, statuses=None):
         if algorithms and not isinstance(algorithms, list):
             raise TypeError("Expected argument 'algorithms' to be a list")
         pulumi.set(__self__, "algorithms", algorithms)
@@ -40,6 +40,9 @@ class GetRealmKeysResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id and not isinstance(realm_internal_id, str):
+            raise TypeError("Expected argument 'realm_internal_id' to be a str")
+        pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if statuses and not isinstance(statuses, list):
             raise TypeError("Expected argument 'statuses' to be a list")
         pulumi.set(__self__, "statuses", statuses)
@@ -71,6 +74,11 @@ class GetRealmKeysResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> _builtins.str:
+        return pulumi.get(self, "realm_internal_id")
+
+    @_builtins.property
     @pulumi.getter
     def statuses(self) -> Optional[Sequence[_builtins.str]]:
         """
@@ -89,11 +97,13 @@ class AwaitableGetRealmKeysResult(GetRealmKeysResult):
             id=self.id,
             keys=self.keys,
             realm_id=self.realm_id,
+            realm_internal_id=self.realm_internal_id,
             statuses=self.statuses)
 
 
 def get_realm_keys(algorithms: Optional[Sequence[_builtins.str]] = None,
                    realm_id: Optional[_builtins.str] = None,
+                   realm_internal_id: Optional[_builtins.str] = None,
                    statuses: Optional[Sequence[_builtins.str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmKeysResult:
     """
@@ -134,6 +144,7 @@ def get_realm_keys(algorithms: Optional[Sequence[_builtins.str]] = None,
     __args__ = dict()
     __args__['algorithms'] = algorithms
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts, typ=GetRealmKeysResult).value
@@ -143,9 +154,11 @@ def get_realm_keys(algorithms: Optional[Sequence[_builtins.str]] = None,
         id=pulumi.get(__ret__, 'id'),
         keys=pulumi.get(__ret__, 'keys'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        realm_internal_id=pulumi.get(__ret__, 'realm_internal_id'),
         statuses=pulumi.get(__ret__, 'statuses'))
 def get_realm_keys_output(algorithms: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
-                          realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                          realm_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          realm_internal_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           statuses: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRealmKeysResult]:
     """
@@ -186,6 +199,7 @@ def get_realm_keys_output(algorithms: pulumi.Input[Optional[Optional[Sequence[_b
     __args__ = dict()
     __args__['algorithms'] = algorithms
     __args__['realmId'] = realm_id
+    __args__['realmInternalId'] = realm_internal_id
     __args__['statuses'] = statuses
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts, typ=GetRealmKeysResult)
@@ -194,4 +208,5 @@ def get_realm_keys_output(algorithms: pulumi.Input[Optional[Optional[Sequence[_b
         id=pulumi.get(__response__, 'id'),
         keys=pulumi.get(__response__, 'keys'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        realm_internal_id=pulumi.get(__response__, 'realm_internal_id'),
         statuses=pulumi.get(__response__, 'statuses')))

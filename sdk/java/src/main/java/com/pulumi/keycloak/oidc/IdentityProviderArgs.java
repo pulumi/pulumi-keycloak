@@ -64,6 +64,21 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    @Import(name="allowAdminRoleMapping")
+    private @Nullable Output<Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    public Optional<Output<Boolean>> allowAdminRoleMapping() {
+        return Optional.ofNullable(this.allowAdminRoleMapping);
+    }
+
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -79,18 +94,18 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The Authorization Url.
+     * The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
-    @Import(name="authorizationUrl", required=true)
-    private Output<String> authorizationUrl;
+    @Import(name="authorizationUrl")
+    private @Nullable Output<String> authorizationUrl;
 
     /**
-     * @return The Authorization Url.
+     * @return The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
-    public Output<String> authorizationUrl() {
-        return this.authorizationUrl;
+    public Optional<Output<String>> authorizationUrl() {
+        return Optional.ofNullable(this.authorizationUrl);
     }
 
     /**
@@ -443,14 +458,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      * 
      */
     @Import(name="providerId")
     private @Nullable Output<String> providerId;
 
     /**
-     * @return The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * @return The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      * 
      */
     public Optional<Output<String>> providerId() {
@@ -461,15 +476,30 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
      * The name of the realm. This is unique across Keycloak.
      * 
      */
-    @Import(name="realm", required=true)
-    private Output<String> realm;
+    @Import(name="realm")
+    private @Nullable Output<String> realm;
 
     /**
      * @return The name of the realm. This is unique across Keycloak.
      * 
      */
-    public Output<String> realm() {
-        return this.realm;
+    public Optional<Output<String>> realm() {
+        return Optional.ofNullable(this.realm);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -503,18 +533,18 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The Token URL.
+     * The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
-    @Import(name="tokenUrl", required=true)
-    private Output<String> tokenUrl;
+    @Import(name="tokenUrl")
+    private @Nullable Output<String> tokenUrl;
 
     /**
-     * @return The Token URL.
+     * @return The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
-    public Output<String> tokenUrl() {
-        return this.tokenUrl;
+    public Optional<Output<String>> tokenUrl() {
+        return Optional.ofNullable(this.tokenUrl);
     }
 
     /**
@@ -583,6 +613,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.acceptsPromptNoneForwardFromClient = $.acceptsPromptNoneForwardFromClient;
         this.addReadTokenRoleOnCreate = $.addReadTokenRoleOnCreate;
         this.alias = $.alias;
+        this.allowAdminRoleMapping = $.allowAdminRoleMapping;
         this.authenticateByDefault = $.authenticateByDefault;
         this.authorizationUrl = $.authorizationUrl;
         this.backchannelSupported = $.backchannelSupported;
@@ -610,6 +641,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.postBrokerLoginFlowAlias = $.postBrokerLoginFlowAlias;
         this.providerId = $.providerId;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.storeToken = $.storeToken;
         this.syncMode = $.syncMode;
         this.tokenUrl = $.tokenUrl;
@@ -701,6 +733,27 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param allowAdminRoleMapping When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(@Nullable Output<Boolean> allowAdminRoleMapping) {
+            $.allowAdminRoleMapping = allowAdminRoleMapping;
+            return this;
+        }
+
+        /**
+         * @param allowAdminRoleMapping When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(Boolean allowAdminRoleMapping) {
+            return allowAdminRoleMapping(Output.of(allowAdminRoleMapping));
+        }
+
+        /**
          * @param authenticateByDefault Enable/disable authenticate users by default.
          * 
          * @return builder
@@ -722,18 +775,18 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authorizationUrl The Authorization Url.
+         * @param authorizationUrl The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
          * 
          * @return builder
          * 
          */
-        public Builder authorizationUrl(Output<String> authorizationUrl) {
+        public Builder authorizationUrl(@Nullable Output<String> authorizationUrl) {
             $.authorizationUrl = authorizationUrl;
             return this;
         }
 
         /**
-         * @param authorizationUrl The Authorization Url.
+         * @param authorizationUrl The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
          * 
          * @return builder
          * 
@@ -1230,7 +1283,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param providerId The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+         * @param providerId The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
          * 
          * @return builder
          * 
@@ -1241,7 +1294,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param providerId The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+         * @param providerId The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
          * 
          * @return builder
          * 
@@ -1256,7 +1309,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder realm(Output<String> realm) {
+        public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
@@ -1269,6 +1322,27 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -1314,18 +1388,18 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenUrl The Token URL.
+         * @param tokenUrl The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
          * 
          * @return builder
          * 
          */
-        public Builder tokenUrl(Output<String> tokenUrl) {
+        public Builder tokenUrl(@Nullable Output<String> tokenUrl) {
             $.tokenUrl = tokenUrl;
             return this;
         }
 
         /**
-         * @param tokenUrl The Token URL.
+         * @param tokenUrl The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
          * 
          * @return builder
          * 
@@ -1422,17 +1496,8 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
             if ($.alias == null) {
                 throw new MissingRequiredPropertyException("IdentityProviderArgs", "alias");
             }
-            if ($.authorizationUrl == null) {
-                throw new MissingRequiredPropertyException("IdentityProviderArgs", "authorizationUrl");
-            }
             if ($.clientId == null) {
                 throw new MissingRequiredPropertyException("IdentityProviderArgs", "clientId");
-            }
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("IdentityProviderArgs", "realm");
-            }
-            if ($.tokenUrl == null) {
-                throw new MissingRequiredPropertyException("IdentityProviderArgs", "tokenUrl");
             }
             return $;
         }

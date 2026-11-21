@@ -35,7 +35,7 @@ import (
 //			}
 //			// use the keycloak_user function to grab the admin user's ID
 //			defaultAdminUser, err := keycloak.GetUser(ctx, &keycloak.LookupUserArgs{
-//				RealmId:  masterRealm.Id,
+//				RealmId:  pulumi.StringRef(masterRealm.Id),
 //				Username: "keycloak",
 //			}, nil)
 //			if err != nil {
@@ -60,7 +60,8 @@ func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.Invoke
 // A collection of arguments for invoking getUser.
 type LookupUserArgs struct {
 	// The realm this user belongs to.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The unique username of this user.
 	Username string `pulumi:"username"`
 }
@@ -84,6 +85,7 @@ type LookupUserResult struct {
 	// (Computed) The user's last name.
 	LastName        string   `pulumi:"lastName"`
 	RealmId         string   `pulumi:"realmId"`
+	RealmInternalId string   `pulumi:"realmInternalId"`
 	RequiredActions []string `pulumi:"requiredActions"`
 	Username        string   `pulumi:"username"`
 }
@@ -96,7 +98,8 @@ func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pu
 // A collection of arguments for invoking getUser.
 type LookupUserOutputArgs struct {
 	// The realm this user belongs to.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 	// The unique username of this user.
 	Username pulumi.StringInput `pulumi:"username"`
 }
@@ -162,6 +165,10 @@ func (o LookupUserResultOutput) LastName() pulumi.StringOutput {
 
 func (o LookupUserResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupUserResultOutput) RequiredActions() pulumi.StringArrayOutput {

@@ -122,11 +122,13 @@ import (
 type ClientUserPolicy struct {
 	pulumi.CustomResourceState
 
-	DecisionStrategy pulumi.StringOutput      `pulumi:"decisionStrategy"`
-	Description      pulumi.StringPtrOutput   `pulumi:"description"`
-	Logic            pulumi.StringPtrOutput   `pulumi:"logic"`
-	Name             pulumi.StringOutput      `pulumi:"name"`
-	RealmId          pulumi.StringOutput      `pulumi:"realmId"`
+	DecisionStrategy pulumi.StringOutput    `pulumi:"decisionStrategy"`
+	Description      pulumi.StringPtrOutput `pulumi:"description"`
+	Logic            pulumi.StringPtrOutput `pulumi:"logic"`
+	Name             pulumi.StringOutput    `pulumi:"name"`
+	RealmId          pulumi.StringOutput    `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringOutput      `pulumi:"realmInternalId"`
 	ResourceServerId pulumi.StringOutput      `pulumi:"resourceServerId"`
 	Users            pulumi.StringArrayOutput `pulumi:"users"`
 }
@@ -140,9 +142,6 @@ func NewClientUserPolicy(ctx *pulumi.Context,
 
 	if args.DecisionStrategy == nil {
 		return nil, errors.New("invalid value for required argument 'DecisionStrategy'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.ResourceServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceServerId'")
@@ -173,11 +172,13 @@ func GetClientUserPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientUserPolicy resources.
 type clientUserPolicyState struct {
-	DecisionStrategy *string  `pulumi:"decisionStrategy"`
-	Description      *string  `pulumi:"description"`
-	Logic            *string  `pulumi:"logic"`
-	Name             *string  `pulumi:"name"`
-	RealmId          *string  `pulumi:"realmId"`
+	DecisionStrategy *string `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	Logic            *string `pulumi:"logic"`
+	Name             *string `pulumi:"name"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string  `pulumi:"realmInternalId"`
 	ResourceServerId *string  `pulumi:"resourceServerId"`
 	Users            []string `pulumi:"users"`
 }
@@ -188,6 +189,8 @@ type ClientUserPolicyState struct {
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringPtrInput
 	Users            pulumi.StringArrayInput
 }
@@ -203,11 +206,13 @@ func ClientUserPolicyExists(ctx *pulumi.Context,
 }
 
 type clientUserPolicyArgs struct {
-	DecisionStrategy string   `pulumi:"decisionStrategy"`
-	Description      *string  `pulumi:"description"`
-	Logic            *string  `pulumi:"logic"`
-	Name             *string  `pulumi:"name"`
-	RealmId          string   `pulumi:"realmId"`
+	DecisionStrategy string  `pulumi:"decisionStrategy"`
+	Description      *string `pulumi:"description"`
+	Logic            *string `pulumi:"logic"`
+	Name             *string `pulumi:"name"`
+	RealmId          *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  *string  `pulumi:"realmInternalId"`
 	ResourceServerId string   `pulumi:"resourceServerId"`
 	Users            []string `pulumi:"users"`
 }
@@ -218,7 +223,9 @@ type ClientUserPolicyArgs struct {
 	Description      pulumi.StringPtrInput
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
-	RealmId          pulumi.StringInput
+	RealmId          pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId  pulumi.StringPtrInput
 	ResourceServerId pulumi.StringInput
 	Users            pulumi.StringArrayInput
 }
@@ -328,6 +335,11 @@ func (o ClientUserPolicyOutput) Name() pulumi.StringOutput {
 
 func (o ClientUserPolicyOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientUserPolicy) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientUserPolicyOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientUserPolicy) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o ClientUserPolicyOutput) ResourceServerId() pulumi.StringOutput {

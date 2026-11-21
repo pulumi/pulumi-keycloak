@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			mysamlscope, err := saml.LookupClientScope(ctx, &saml.LookupClientScopeArgs{
-//				RealmId: "my-realm",
+//				RealmId: pulumi.StringRef("my-realm"),
 //				Name:    "mysamlscope",
 //			}, nil)
 //			if err != nil {
@@ -73,19 +73,22 @@ type LookupClientScopeArgs struct {
 	// The name of the client scope.
 	Name string `pulumi:"name"`
 	// The realm id.
-	RealmId string `pulumi:"realmId"`
+	RealmId         *string `pulumi:"realmId"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getClientScope.
 type LookupClientScopeResult struct {
-	ConsentScreenText string            `pulumi:"consentScreenText"`
-	Description       string            `pulumi:"description"`
-	ExtraConfig       map[string]string `pulumi:"extraConfig"`
-	GuiOrder          int               `pulumi:"guiOrder"`
+	ConsentScreenText      string            `pulumi:"consentScreenText"`
+	Description            string            `pulumi:"description"`
+	DisplayOnConsentScreen bool              `pulumi:"displayOnConsentScreen"`
+	ExtraConfig            map[string]string `pulumi:"extraConfig"`
+	GuiOrder               int               `pulumi:"guiOrder"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string `pulumi:"id"`
-	Name    string `pulumi:"name"`
-	RealmId string `pulumi:"realmId"`
+	Id              string `pulumi:"id"`
+	Name            string `pulumi:"name"`
+	RealmId         string `pulumi:"realmId"`
+	RealmInternalId string `pulumi:"realmInternalId"`
 }
 
 func LookupClientScopeOutput(ctx *pulumi.Context, args LookupClientScopeOutputArgs, opts ...pulumi.InvokeOption) LookupClientScopeResultOutput {
@@ -99,7 +102,8 @@ type LookupClientScopeOutputArgs struct {
 	// The name of the client scope.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm id.
-	RealmId pulumi.StringInput `pulumi:"realmId"`
+	RealmId         pulumi.StringPtrInput `pulumi:"realmId"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupClientScopeOutputArgs) ElementType() reflect.Type {
@@ -129,6 +133,10 @@ func (o LookupClientScopeResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientScopeResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+func (o LookupClientScopeResultOutput) DisplayOnConsentScreen() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientScopeResult) bool { return v.DisplayOnConsentScreen }).(pulumi.BoolOutput)
+}
+
 func (o LookupClientScopeResultOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupClientScopeResult) map[string]string { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
@@ -148,6 +156,10 @@ func (o LookupClientScopeResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupClientScopeResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientScopeResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientScopeResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientScopeResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func init() {

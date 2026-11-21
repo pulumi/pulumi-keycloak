@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -101,6 +100,8 @@ type Organization struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this organization exists in.
 	Realm pulumi.StringOutput `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
 	RedirectUrl pulumi.StringPtrOutput `pulumi:"redirectUrl"`
 }
@@ -109,12 +110,9 @@ type Organization struct {
 func NewOrganization(ctx *pulumi.Context,
 	name string, args *OrganizationArgs, opts ...pulumi.ResourceOption) (*Organization, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &OrganizationArgs{}
 	}
 
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Organization
 	err := ctx.RegisterResource("keycloak:index/organization:Organization", name, args, &resource, opts...)
@@ -152,6 +150,8 @@ type organizationState struct {
 	Name *string `pulumi:"name"`
 	// The realm this organization exists in.
 	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
 	RedirectUrl *string `pulumi:"redirectUrl"`
 }
@@ -171,6 +171,8 @@ type OrganizationState struct {
 	Name pulumi.StringPtrInput
 	// The realm this organization exists in.
 	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
 	RedirectUrl pulumi.StringPtrInput
 }
@@ -199,7 +201,9 @@ type organizationArgs struct {
 	// The name of the organization.
 	Name *string `pulumi:"name"`
 	// The realm this organization exists in.
-	Realm string `pulumi:"realm"`
+	Realm *string `pulumi:"realm"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
 	RedirectUrl *string `pulumi:"redirectUrl"`
 }
@@ -219,7 +223,9 @@ type OrganizationArgs struct {
 	// The name of the organization.
 	Name pulumi.StringPtrInput
 	// The realm this organization exists in.
-	Realm pulumi.StringInput
+	Realm pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
 	RedirectUrl pulumi.StringPtrInput
 }
@@ -344,6 +350,11 @@ func (o OrganizationOutput) Name() pulumi.StringOutput {
 // The realm this organization exists in.
 func (o OrganizationOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o OrganizationOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.

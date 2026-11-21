@@ -19,135 +19,16 @@ __all__ = ['RealmKeystoreRsaEncGeneratedArgs', 'RealmKeystoreRsaEncGenerated']
 @pulumi.input_type
 class RealmKeystoreRsaEncGeneratedArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
-                 active: pulumi.Input[Optional[_builtins.bool]] = None,
-                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
-                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None):
-        """
-        The set of arguments for constructing a RealmKeystoreRsaEncGenerated resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
-        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for encryption. Defaults to `true`.
-        :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RSA-OAEP`
-        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
-        :param pulumi.Input[_builtins.int] key_size: Size for the generated keys. Defaults to `2048`.
-        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
-        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if active is not None:
-            pulumi.set(__self__, "active", active)
-        if algorithm is not None:
-            pulumi.set(__self__, "algorithm", algorithm)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if key_size is not None:
-            pulumi.set(__self__, "key_size", key_size)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if priority is not None:
-            pulumi.set(__self__, "priority", priority)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this keystore exists in.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key is not used for encryption. Defaults to `true`.
-        """
-        return pulumi.get(self, "active")
-
-    @active.setter
-    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "active", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Intended algorithm for the key. Defaults to `RSA-OAEP`
-        """
-        return pulumi.get(self, "algorithm")
-
-    @algorithm.setter
-    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "algorithm", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        When `false`, key is not accessible in this realm. Defaults to `true`.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter(name="keySize")
-    def key_size(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Size for the generated keys. Defaults to `2048`.
-        """
-        return pulumi.get(self, "key_size")
-
-    @key_size.setter
-    def key_size(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "key_size", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Display name of provider when linked in admin console.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Priority for the provider. Defaults to `0`
-        """
-        return pulumi.get(self, "priority")
-
-    @priority.setter
-    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "priority", value)
-
-
-@pulumi.input_type
-class _RealmKeystoreRsaEncGeneratedState:
-    def __init__(__self__, *,
                  active: pulumi.Input[Optional[_builtins.bool]] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  key_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering RealmKeystoreRsaEncGenerated resources.
+        The set of arguments for constructing a RealmKeystoreRsaEncGenerated resource.
 
         :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for encryption. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RSA-OAEP`
@@ -156,6 +37,7 @@ class _RealmKeystoreRsaEncGeneratedState:
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -171,6 +53,8 @@ class _RealmKeystoreRsaEncGeneratedState:
             pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -256,6 +140,155 @@ class _RealmKeystoreRsaEncGeneratedState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _RealmKeystoreRsaEncGeneratedState:
+    def __init__(__self__, *,
+                 active: pulumi.Input[Optional[_builtins.bool]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering RealmKeystoreRsaEncGenerated resources.
+
+        :param pulumi.Input[_builtins.bool] active: When `false`, key is not used for encryption. Defaults to `true`.
+        :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RSA-OAEP`
+        :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[_builtins.int] key_size: Size for the generated keys. Defaults to `2048`.
+        :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
+        :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
+        :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if key_size is not None:
+            pulumi.set(__self__, "key_size", key_size)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def active(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not used for encryption. Defaults to `true`.
+        """
+        return pulumi.get(self, "active")
+
+    @active.setter
+    def active(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "active", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Intended algorithm for the key. Defaults to `RSA-OAEP`
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, key is not accessible in this realm. Defaults to `true`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keySize")
+    def key_size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Size for the generated keys. Defaults to `2048`.
+        """
+        return pulumi.get(self, "key_size")
+
+    @key_size.setter
+    def key_size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "key_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Display name of provider when linked in admin console.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Priority for the provider. Defaults to `0`
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this keystore exists in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated")
 class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
@@ -270,6 +303,7 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing `rsa-enc-generated` Realm keystores within Keycloak.
@@ -313,12 +347,13 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmKeystoreRsaEncGeneratedArgs,
+                 args: Optional[RealmKeystoreRsaEncGeneratedArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing `rsa-enc-generated` Realm keystores within Keycloak.
@@ -375,6 +410,7 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -390,9 +426,8 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
             __props__.__dict__["key_size"] = key_size
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(RealmKeystoreRsaEncGenerated, __self__).__init__(
             'keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated',
             resource_name,
@@ -409,7 +444,8 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
             key_size: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreRsaEncGenerated':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RealmKeystoreRsaEncGenerated':
         """
         Get an existing RealmKeystoreRsaEncGenerated resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -424,6 +460,7 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -436,6 +473,7 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return RealmKeystoreRsaEncGenerated(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -447,7 +485,8 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
             key_size: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["active"] = active
         __props__["algorithm"] = algorithm
@@ -456,6 +495,7 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
         __props__["name"] = name
         __props__["priority"] = priority
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/realmKeystoreRsaEncGenerated:RealmKeystoreRsaEncGenerated', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -513,4 +553,12 @@ class RealmKeystoreRsaEncGenerated(pulumi.CustomResource):
         The realm this keystore exists in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

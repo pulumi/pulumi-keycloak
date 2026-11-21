@@ -21,142 +21,6 @@ __all__ = ['OrganizationArgs', 'Organization']
 @pulumi.input_type
 class OrganizationArgs:
     def __init__(__self__, *,
-                 realm: pulumi.Input[_builtins.str],
-                 alias: pulumi.Input[Optional[_builtins.str]] = None,
-                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 description: pulumi.Input[Optional[_builtins.str]] = None,
-                 domains: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationDomainArgs']]]] = None,
-                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None,
-                 redirect_url: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a Organization resource.
-
-        :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
-        :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
-        :param pulumi.Input[_builtins.str] description: The description of the organization.
-        :param pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]] domains: A list of domains.
-        :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
-        :param pulumi.Input[_builtins.str] name: The name of the organization.
-        :param pulumi.Input[_builtins.str] redirect_url: The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
-        """
-        pulumi.set(__self__, "realm", realm)
-        if alias is not None:
-            pulumi.set(__self__, "alias", alias)
-        if attributes is not None:
-            pulumi.set(__self__, "attributes", attributes)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if domains is not None:
-            pulumi.set(__self__, "domains", domains)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if redirect_url is not None:
-            pulumi.set(__self__, "redirect_url", redirect_url)
-
-    @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this organization exists in.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
-        """
-        return pulumi.get(self, "alias")
-
-    @alias.setter
-    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "alias", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
-        """
-        A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
-        """
-        return pulumi.get(self, "attributes")
-
-    @attributes.setter
-    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "attributes", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The description of the organization.
-        """
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "description", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationDomainArgs']]]]:
-        """
-        A list of domains.
-        """
-        return pulumi.get(self, "domains")
-
-    @domains.setter
-    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationDomainArgs']]]]):
-        pulumi.set(self, "domains", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
-        """
-        Enable/disable this organization.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "enabled", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The name of the organization.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="redirectUrl")
-    def redirect_url(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
-        """
-        return pulumi.get(self, "redirect_url")
-
-    @redirect_url.setter
-    def redirect_url(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "redirect_url", value)
-
-
-@pulumi.input_type
-class _OrganizationState:
-    def __init__(__self__, *,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
                  attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
@@ -164,9 +28,10 @@ class _OrganizationState:
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  redirect_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Organization resources.
+        The set of arguments for constructing a Organization resource.
 
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
@@ -175,6 +40,7 @@ class _OrganizationState:
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] redirect_url: The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
         """
         if alias is not None:
@@ -191,6 +57,8 @@ class _OrganizationState:
             pulumi.set(__self__, "name", name)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if redirect_url is not None:
             pulumi.set(__self__, "redirect_url", redirect_url)
 
@@ -279,6 +147,171 @@ class _OrganizationState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="redirectUrl")
+    def redirect_url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
+        """
+        return pulumi.get(self, "redirect_url")
+
+    @redirect_url.setter
+    def redirect_url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "redirect_url", value)
+
+
+@pulumi.input_type
+class _OrganizationState:
+    def __init__(__self__, *,
+                 alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 attributes: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationDomainArgs']]]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 redirect_url: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering Organization resources.
+
+        :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
+        :param pulumi.Input[_builtins.str] description: The description of the organization.
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]] domains: A list of domains.
+        :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
+        :param pulumi.Input[_builtins.str] name: The name of the organization.
+        :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        :param pulumi.Input[_builtins.str] redirect_url: The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
+        """
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if attributes is not None:
+            pulumi.set(__self__, "attributes", attributes)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if domains is not None:
+            pulumi.set(__self__, "domains", domains)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+        if redirect_url is not None:
+            pulumi.set(__self__, "redirect_url", redirect_url)
+
+    @_builtins.property
+    @pulumi.getter
+    def alias(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def attributes(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
+        """
+        return pulumi.get(self, "attributes")
+
+    @attributes.setter
+    def attributes(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "attributes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The description of the organization.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationDomainArgs']]]]:
+        """
+        A list of domains.
+        """
+        return pulumi.get(self, "domains")
+
+    @domains.setter
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationDomainArgs']]]]):
+        pulumi.set(self, "domains", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enable/disable this organization.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the organization.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this organization exists in.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="redirectUrl")
     def redirect_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -304,6 +337,7 @@ class Organization(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -363,13 +397,14 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] redirect_url: The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: OrganizationArgs,
+                 args: Optional[OrganizationArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allow for creating and managing Organizations within Keycloak.
@@ -441,6 +476,7 @@ class Organization(pulumi.CustomResource):
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -457,9 +493,8 @@ class Organization(pulumi.CustomResource):
             __props__.__dict__["domains"] = domains
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["redirect_url"] = redirect_url
         super(Organization, __self__).__init__(
             'keycloak:index/organization:Organization',
@@ -478,6 +513,7 @@ class Organization(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             redirect_url: pulumi.Input[Optional[_builtins.str]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
@@ -493,6 +529,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] redirect_url: The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -506,6 +543,7 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["redirect_url"] = redirect_url
         return Organization(resource_name, opts=opts, __props__=__props__)
 
@@ -519,6 +557,7 @@ class Organization(pulumi.CustomResource):
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             redirect_url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["alias"] = alias
@@ -528,6 +567,7 @@ class Organization(pulumi.CustomResource):
         __props__["enabled"] = enabled
         __props__["name"] = name
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["redirectUrl"] = redirect_url
         return pulumi.runtime.exists_resource(None, 'keycloak:index/organization:Organization', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -586,6 +626,14 @@ class Organization(pulumi.CustomResource):
         The realm this organization exists in.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="redirectUrl")

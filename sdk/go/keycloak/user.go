@@ -118,6 +118,8 @@ type User struct {
 	LastName pulumi.StringPtrOutput `pulumi:"lastName"`
 	// The realm this user belongs to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// A list of required user actions.
 	RequiredActions pulumi.StringArrayOutput `pulumi:"requiredActions"`
 	// The unique username of this user.
@@ -131,9 +133,6 @@ func NewUser(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
@@ -180,6 +179,8 @@ type userState struct {
 	LastName *string `pulumi:"lastName"`
 	// The realm this user belongs to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A list of required user actions.
 	RequiredActions []string `pulumi:"requiredActions"`
 	// The unique username of this user.
@@ -207,6 +208,8 @@ type UserState struct {
 	LastName pulumi.StringPtrInput
 	// The realm this user belongs to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A list of required user actions.
 	RequiredActions pulumi.StringArrayInput
 	// The unique username of this user.
@@ -243,7 +246,9 @@ type userArgs struct {
 	// The user's last name.
 	LastName *string `pulumi:"lastName"`
 	// The realm this user belongs to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// A list of required user actions.
 	RequiredActions []string `pulumi:"requiredActions"`
 	// The unique username of this user.
@@ -271,7 +276,9 @@ type UserArgs struct {
 	// The user's last name.
 	LastName pulumi.StringPtrInput
 	// The realm this user belongs to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// A list of required user actions.
 	RequiredActions pulumi.StringArrayInput
 	// The unique username of this user.
@@ -413,6 +420,11 @@ func (o UserOutput) LastName() pulumi.StringPtrOutput {
 // The realm this user belongs to.
 func (o UserOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o UserOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // A list of required user actions.

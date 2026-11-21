@@ -84,14 +84,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated")
 public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResource {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     @Export(name="active", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> active;
 
     /**
-     * @return When `false`, key in not used for signing. Defaults to `true`.
+     * @return When `false`, key is not used for signing. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> active() {
@@ -242,6 +242,20 @@ public class RealmKeystoreJavaGenerated extends com.pulumi.resources.CustomResou
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
 
     /**

@@ -135,6 +135,10 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
     declare public readonly ownerManagedAccess: pulumi.Output<boolean | undefined>;
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
     declare public readonly resourceServerId: pulumi.Output<string>;
     declare public readonly scopes: pulumi.Output<string[] | undefined>;
     declare public readonly type: pulumi.Output<string | undefined>;
@@ -159,15 +163,13 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["ownerManagedAccess"] = state?.ownerManagedAccess;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["scopes"] = state?.scopes;
             resourceInputs["type"] = state?.type;
             resourceInputs["uris"] = state?.uris;
         } else {
             const args = argsOrState as ClientAuthorizationResourceArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
@@ -177,6 +179,7 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerManagedAccess"] = args?.ownerManagedAccess;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["resourceServerId"] = args?.resourceServerId;
             resourceInputs["scopes"] = args?.scopes;
             resourceInputs["type"] = args?.type;
@@ -197,6 +200,10 @@ export interface ClientAuthorizationResourceState {
     name?: pulumi.Input<string | undefined>;
     ownerManagedAccess?: pulumi.Input<boolean | undefined>;
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId?: pulumi.Input<string | undefined>;
     scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     type?: pulumi.Input<string | undefined>;
@@ -212,7 +219,11 @@ export interface ClientAuthorizationResourceArgs {
     iconUri?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
     ownerManagedAccess?: pulumi.Input<boolean | undefined>;
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     resourceServerId: pulumi.Input<string>;
     scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     type?: pulumi.Input<string | undefined>;

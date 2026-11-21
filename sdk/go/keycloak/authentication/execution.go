@@ -96,6 +96,8 @@ type Execution struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm the authentication execution exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
 	Requirement pulumi.StringPtrOutput `pulumi:"requirement"`
 }
@@ -112,9 +114,6 @@ func NewExecution(ctx *pulumi.Context,
 	}
 	if args.ParentFlowAlias == nil {
 		return nil, errors.New("invalid value for required argument 'ParentFlowAlias'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Execution
@@ -147,6 +146,8 @@ type executionState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm the authentication execution exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
 	Requirement *string `pulumi:"requirement"`
 }
@@ -160,6 +161,8 @@ type ExecutionState struct {
 	Priority pulumi.IntPtrInput
 	// The realm the authentication execution exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
 	Requirement pulumi.StringPtrInput
 }
@@ -182,7 +185,9 @@ type executionArgs struct {
 	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
 	Priority *int `pulumi:"priority"`
 	// The realm the authentication execution exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
 	Requirement *string `pulumi:"requirement"`
 }
@@ -196,7 +201,9 @@ type ExecutionArgs struct {
 	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
 	Priority pulumi.IntPtrInput
 	// The realm the authentication execution exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
 	Requirement pulumi.StringPtrInput
 }
@@ -306,6 +313,11 @@ func (o ExecutionOutput) Priority() pulumi.IntPtrOutput {
 // The realm the authentication execution exists in.
 func (o ExecutionOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Execution) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ExecutionOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Execution) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.

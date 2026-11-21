@@ -152,16 +152,72 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
+    /// ## Organization Group Example
+    /// 
+    /// Organization group role assignments require Keycloak 26.7 or newer. Set `OrganizationsEnabled = true` on the
+    /// `keycloak_realm.realm` resource before applying this example. This example uses the realm and realm role defined above.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var organization = new Keycloak.Organization("organization", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Name = "my-organization",
+    ///         Domains = new[]
+    ///         {
+    ///             new Keycloak.Inputs.OrganizationDomainArgs
+    ///             {
+    ///                 Name = "organization.example.com",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var organizationGroup = new Keycloak.Group("organization_group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         OrganizationId = organization.Id,
+    ///         Name = "my-organization-group",
+    ///     });
+    /// 
+    ///     var organizationGroupRoles = new Keycloak.GroupRoles("organization_group_roles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         OrganizationId = organization.Id,
+    ///         GroupId = organizationGroup.Id,
+    ///         RoleIds = new[]
+    ///         {
+    ///             realmRole.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
-    /// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `GroupId` is the unique ID that Keycloak
+    /// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, or, for a group that belongs to an
+    /// organization, `{{realm_id}}/{{organization_id}}/{{group_id}}`. Here, `GroupId` is the unique ID that Keycloak
     /// assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
     /// a GUID.
     /// 
-    /// Example:
+    /// Examples:
+    /// 
+    /// realm-level group
     /// 
     /// ```sh
     /// $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+    /// ```
+    /// 
+    /// organization-scoped group
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/b258402a-5e1b-4e53-b05a-6e5b9c4d1e77/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/groupRoles:GroupRoles")]
@@ -180,10 +236,22 @@ namespace Pulumi.Keycloak
         public Output<string> GroupId { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        /// </summary>
+        [Output("organizationId")]
+        public Output<string?> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
         /// The realm this group exists in.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
         /// <summary>
         /// A list of role IDs to map to the group.
@@ -250,10 +318,22 @@ namespace Pulumi.Keycloak
         public Input<string> GroupId { get; set; } = null!;
 
         /// <summary>
+        /// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
         /// The realm this group exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("roleIds", required: true)]
         private InputList<string>? _roleIds;
@@ -288,10 +368,22 @@ namespace Pulumi.Keycloak
         public Input<string>? GroupId { get; set; }
 
         /// <summary>
+        /// The ID of the organization this group belongs to. Requires Keycloak 26.7 or newer. Omit for realm-level groups.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
         /// The realm this group exists in.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         [Input("roleIds")]
         private InputList<string>? _roleIds;

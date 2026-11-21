@@ -1289,34 +1289,41 @@ class RealmSmtpServerArgs:
 
 
 class RealmSmtpServerAuthArgsDict(TypedDict):
-    password: pulumi.Input[_builtins.str]
-    """
-    The SMTP server password.
-    """
     username: pulumi.Input[_builtins.str]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The SMTP server password. Stored in Terraform state. Exactly one of `password` or `password_wo` must be set.
+    """
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The SMTP server password as a write-only argument
+    """
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Change this value to update the SMTP server write-only password
+    """
 
 @pulumi.input_type
 class RealmSmtpServerAuthArgs:
     def __init__(__self__, *,
-                 password: pulumi.Input[_builtins.str],
-                 username: pulumi.Input[_builtins.str]):
+                 username: pulumi.Input[_builtins.str],
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] password: The SMTP server password.
+        :param pulumi.Input[_builtins.str] password: The SMTP server password. Stored in Terraform state. Exactly one of `password` or `password_wo` must be set.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The SMTP server password as a write-only argument
+        :param pulumi.Input[_builtins.str] password_wo_version: Change this value to update the SMTP server write-only password
         """
-        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        The SMTP server password.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -1326,6 +1333,43 @@ class RealmSmtpServerAuthArgs:
     @username.setter
     def username(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The SMTP server password. Stored in Terraform state. Exactly one of `password` or `password_wo` must be set.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The SMTP server password as a write-only argument
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Change this value to update the SMTP server write-only password
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_wo_version", value)
 
 
 class RealmSmtpServerTokenAuthArgsDict(TypedDict):
@@ -1340,6 +1384,8 @@ class RealmSmtpServerTokenAuthArgsDict(TypedDict):
     scope: pulumi.Input[_builtins.str]
     """
     The auth token scope.
+
+    For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
     """
     url: pulumi.Input[_builtins.str]
     """
@@ -1359,6 +1405,8 @@ class RealmSmtpServerTokenAuthArgs:
         :param pulumi.Input[_builtins.str] client_id: The auth token client ID.
         :param pulumi.Input[_builtins.str] client_secret: The auth token client secret.
         :param pulumi.Input[_builtins.str] scope: The auth token scope.
+               
+               For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
         :param pulumi.Input[_builtins.str] url: The auth token URL.
         """
         pulumi.set(__self__, "client_id", client_id)
@@ -1396,6 +1444,8 @@ class RealmSmtpServerTokenAuthArgs:
     def scope(self) -> pulumi.Input[_builtins.str]:
         """
         The auth token scope.
+
+        For example, use an ephemeral variable to configure the SMTP password without storing it in pulumi preview or state:
         """
         return pulumi.get(self, "scope")
 
@@ -1850,6 +1900,10 @@ class RealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
     """
     Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
     """
+    signature_algorithms_ordereds: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    Signature algorithms in preference order. Conflicts with signature_algorithms.
+    """
     user_verification_requirement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either required, preferred or discouraged
@@ -1870,6 +1924,7 @@ class RealmWebAuthnPasswordlessPolicyArgs:
                  relying_party_id: pulumi.Input[Optional[_builtins.str]] = None,
                  require_resident_key: pulumi.Input[Optional[_builtins.str]] = None,
                  signature_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 signature_algorithms_ordereds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_verification_requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acceptable_aaguids: A set of AAGUIDs for which an authenticator can be registered.
@@ -1884,6 +1939,7 @@ class RealmWebAuthnPasswordlessPolicyArgs:
         :param pulumi.Input[_builtins.str] relying_party_id: The WebAuthn relying party ID.
         :param pulumi.Input[_builtins.str] require_resident_key: Either Yes or No
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] signature_algorithms_ordereds: Signature algorithms in preference order. Conflicts with signature_algorithms.
         :param pulumi.Input[_builtins.str] user_verification_requirement: Either required, preferred or discouraged
         """
         if acceptable_aaguids is not None:
@@ -1913,6 +1969,8 @@ class RealmWebAuthnPasswordlessPolicyArgs:
             pulumi.set(__self__, "require_resident_key", require_resident_key)
         if signature_algorithms is not None:
             pulumi.set(__self__, "signature_algorithms", signature_algorithms)
+        if signature_algorithms_ordereds is not None:
+            pulumi.set(__self__, "signature_algorithms_ordereds", signature_algorithms_ordereds)
         if user_verification_requirement is not None:
             pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
 
@@ -2062,6 +2120,18 @@ class RealmWebAuthnPasswordlessPolicyArgs:
         pulumi.set(self, "signature_algorithms", value)
 
     @_builtins.property
+    @pulumi.getter(name="signatureAlgorithmsOrdereds")
+    def signature_algorithms_ordereds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Signature algorithms in preference order. Conflicts with signature_algorithms.
+        """
+        return pulumi.get(self, "signature_algorithms_ordereds")
+
+    @signature_algorithms_ordereds.setter
+    def signature_algorithms_ordereds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "signature_algorithms_ordereds", value)
+
+    @_builtins.property
     @pulumi.getter(name="userVerificationRequirement")
     def user_verification_requirement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -2119,6 +2189,10 @@ class RealmWebAuthnPolicyArgsDict(TypedDict):
     """
     Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
     """
+    signature_algorithms_ordereds: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    Signature algorithms in preference order. Conflicts with signature_algorithms.
+    """
     user_verification_requirement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Either required, preferred or discouraged
@@ -2138,6 +2212,7 @@ class RealmWebAuthnPolicyArgs:
                  relying_party_id: pulumi.Input[Optional[_builtins.str]] = None,
                  require_resident_key: pulumi.Input[Optional[_builtins.str]] = None,
                  signature_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 signature_algorithms_ordereds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_verification_requirement: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acceptable_aaguids: A set of AAGUIDs for which an authenticator can be registered.
@@ -2151,6 +2226,7 @@ class RealmWebAuthnPolicyArgs:
         :param pulumi.Input[_builtins.str] relying_party_id: The WebAuthn relying party ID.
         :param pulumi.Input[_builtins.str] require_resident_key: Either Yes or No
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] signature_algorithms_ordereds: Signature algorithms in preference order. Conflicts with signature_algorithms.
         :param pulumi.Input[_builtins.str] user_verification_requirement: Either required, preferred or discouraged
         """
         if acceptable_aaguids is not None:
@@ -2178,6 +2254,8 @@ class RealmWebAuthnPolicyArgs:
             pulumi.set(__self__, "require_resident_key", require_resident_key)
         if signature_algorithms is not None:
             pulumi.set(__self__, "signature_algorithms", signature_algorithms)
+        if signature_algorithms_ordereds is not None:
+            pulumi.set(__self__, "signature_algorithms_ordereds", signature_algorithms_ordereds)
         if user_verification_requirement is not None:
             pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
 
@@ -2313,6 +2391,18 @@ class RealmWebAuthnPolicyArgs:
     @signature_algorithms.setter
     def signature_algorithms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "signature_algorithms", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signatureAlgorithmsOrdereds")
+    def signature_algorithms_ordereds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Signature algorithms in preference order. Conflicts with signature_algorithms.
+        """
+        return pulumi.get(self, "signature_algorithms_ordereds")
+
+    @signature_algorithms_ordereds.setter
+    def signature_algorithms_ordereds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "signature_algorithms_ordereds", value)
 
     @_builtins.property
     @pulumi.getter(name="userVerificationRequirement")
@@ -3594,6 +3684,10 @@ class GetRealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
     """
     Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
     """
+    signature_algorithms_ordereds: Sequence[_builtins.str]
+    """
+    Signature algorithms in preference order.
+    """
     user_verification_requirement: _builtins.str
     """
     Either required, preferred or discouraged
@@ -3614,6 +3708,7 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
                  relying_party_id: _builtins.str,
                  require_resident_key: _builtins.str,
                  signature_algorithms: Sequence[_builtins.str],
+                 signature_algorithms_ordereds: Sequence[_builtins.str],
                  user_verification_requirement: _builtins.str):
         """
         :param _builtins.str attestation_conveyance_preference: Either none, indirect or direct
@@ -3621,6 +3716,7 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
         :param _builtins.str discoverable_credential: Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
         :param _builtins.str require_resident_key: Either Yes or No
         :param Sequence[_builtins.str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        :param Sequence[_builtins.str] signature_algorithms_ordereds: Signature algorithms in preference order.
         :param _builtins.str user_verification_requirement: Either required, preferred or discouraged
         """
         pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
@@ -3638,6 +3734,7 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
             pulumi.log.warn("""require_resident_key is deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverable_credential is left as \"not specified\" and is planned to be removed in a future Keycloak version.""")
         pulumi.set(__self__, "require_resident_key", require_resident_key)
         pulumi.set(__self__, "signature_algorithms", signature_algorithms)
+        pulumi.set(__self__, "signature_algorithms_ordereds", signature_algorithms_ordereds)
         pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
 
     @_builtins.property
@@ -3763,6 +3860,18 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     @signature_algorithms.setter
     def signature_algorithms(self, value: Sequence[_builtins.str]):
         pulumi.set(self, "signature_algorithms", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signatureAlgorithmsOrdereds")
+    def signature_algorithms_ordereds(self) -> Sequence[_builtins.str]:
+        """
+        Signature algorithms in preference order.
+        """
+        return pulumi.get(self, "signature_algorithms_ordereds")
+
+    @signature_algorithms_ordereds.setter
+    def signature_algorithms_ordereds(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "signature_algorithms_ordereds", value)
 
     @_builtins.property
     @pulumi.getter(name="userVerificationRequirement")
@@ -3805,6 +3914,10 @@ class GetRealmWebAuthnPolicyArgsDict(TypedDict):
     """
     Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
     """
+    signature_algorithms_ordereds: Sequence[_builtins.str]
+    """
+    Signature algorithms in preference order.
+    """
     user_verification_requirement: _builtins.str
     """
     Either required, preferred or discouraged
@@ -3825,6 +3938,7 @@ class GetRealmWebAuthnPolicyArgs:
                  relying_party_id: _builtins.str,
                  require_resident_key: _builtins.str,
                  signature_algorithms: Sequence[_builtins.str],
+                 signature_algorithms_ordereds: Sequence[_builtins.str],
                  user_verification_requirement: _builtins.str):
         """
         :param _builtins.str attestation_conveyance_preference: Either none, indirect or direct
@@ -3832,6 +3946,7 @@ class GetRealmWebAuthnPolicyArgs:
         :param _builtins.str discoverable_credential: Either required, preferred or discouraged. Replaces and takes precedence over the deprecated require_resident_key attribute. Requires Keycloak 26.7 or higher.
         :param _builtins.str require_resident_key: Either Yes or No
         :param Sequence[_builtins.str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        :param Sequence[_builtins.str] signature_algorithms_ordereds: Signature algorithms in preference order.
         :param _builtins.str user_verification_requirement: Either required, preferred or discouraged
         """
         pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
@@ -3849,6 +3964,7 @@ class GetRealmWebAuthnPolicyArgs:
             pulumi.log.warn("""require_resident_key is deprecated: Deprecated by Keycloak in favor of discoverable_credential. This attribute is only used when discoverable_credential is left as \"not specified\" and is planned to be removed in a future Keycloak version.""")
         pulumi.set(__self__, "require_resident_key", require_resident_key)
         pulumi.set(__self__, "signature_algorithms", signature_algorithms)
+        pulumi.set(__self__, "signature_algorithms_ordereds", signature_algorithms_ordereds)
         pulumi.set(__self__, "user_verification_requirement", user_verification_requirement)
 
     @_builtins.property
@@ -3974,6 +4090,18 @@ class GetRealmWebAuthnPolicyArgs:
     @signature_algorithms.setter
     def signature_algorithms(self, value: Sequence[_builtins.str]):
         pulumi.set(self, "signature_algorithms", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signatureAlgorithmsOrdereds")
+    def signature_algorithms_ordereds(self) -> Sequence[_builtins.str]:
+        """
+        Signature algorithms in preference order.
+        """
+        return pulumi.get(self, "signature_algorithms_ordereds")
+
+    @signature_algorithms_ordereds.setter
+    def signature_algorithms_ordereds(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "signature_algorithms_ordereds", value)
 
     @_builtins.property
     @pulumi.getter(name="userVerificationRequirement")

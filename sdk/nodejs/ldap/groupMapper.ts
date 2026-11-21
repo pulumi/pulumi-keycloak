@@ -168,6 +168,10 @@ export class GroupMapper extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      */
     declare public readonly userRolesRetrieveStrategy: pulumi.Output<string | undefined>;
@@ -202,6 +206,7 @@ export class GroupMapper extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["preserveGroupInheritance"] = state?.preserveGroupInheritance;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["userRolesRetrieveStrategy"] = state?.userRolesRetrieveStrategy;
         } else {
             const args = argsOrState as GroupMapperArgs | undefined;
@@ -223,9 +228,6 @@ export class GroupMapper extends pulumi.CustomResource {
             if (args?.membershipUserLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["dropNonExistingGroupsDuringSync"] = args?.dropNonExistingGroupsDuringSync;
             resourceInputs["groupNameLdapAttribute"] = args?.groupNameLdapAttribute;
             resourceInputs["groupObjectClasses"] = args?.groupObjectClasses;
@@ -243,6 +245,7 @@ export class GroupMapper extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["preserveGroupInheritance"] = args?.preserveGroupInheritance;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["userRolesRetrieveStrategy"] = args?.userRolesRetrieveStrategy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -323,6 +326,10 @@ export interface GroupMapperState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      */
     userRolesRetrieveStrategy?: pulumi.Input<string | undefined>;
@@ -399,7 +406,11 @@ export interface GroupMapperArgs {
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      */

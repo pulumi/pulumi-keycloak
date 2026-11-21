@@ -20,7 +20,6 @@ __all__ = ['CustomUserFederationArgs', 'CustomUserFederation']
 class CustomUserFederationArgs:
     def __init__(__self__, *,
                  provider_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
                  cache_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  changed_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -28,12 +27,13 @@ class CustomUserFederationArgs:
                  full_sync_period: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 priority: pulumi.Input[Optional[_builtins.int]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomUserFederation resource.
 
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
         :param pulumi.Input[_builtins.str] cache_policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The provider configuration handed over to your custom user federation provider. To give a setting more than one value, join the values with `##`; each value is stored separately in Keycloak.
@@ -42,9 +42,10 @@ class CustomUserFederationArgs:
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.str] parent_id: **Deprecated** The internal id of the realm this component is attached to. This is now resolved automatically, so it no longer needs to be set, even when the realm's `internal_id` differs from its name. This attribute will be removed in a future release.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "provider_id", provider_id)
-        pulumi.set(__self__, "realm_id", realm_id)
         if cache_policy is not None:
             pulumi.set(__self__, "cache_policy", cache_policy)
         if changed_sync_period is not None:
@@ -64,6 +65,10 @@ class CustomUserFederationArgs:
             pulumi.set(__self__, "parent_id", parent_id)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="providerId")
@@ -76,18 +81,6 @@ class CustomUserFederationArgs:
     @provider_id.setter
     def provider_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "provider_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm that this provider will provide user federation for.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
 
     @_builtins.property
     @pulumi.getter(name="cachePolicy")
@@ -186,6 +179,30 @@ class CustomUserFederationArgs:
     def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this provider will provide user federation for.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _CustomUserFederationState:
@@ -199,7 +216,8 @@ class _CustomUserFederationState:
                  parent_id: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomUserFederation resources.
 
@@ -213,6 +231,7 @@ class _CustomUserFederationState:
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if cache_policy is not None:
             pulumi.set(__self__, "cache_policy", cache_policy)
@@ -237,6 +256,8 @@ class _CustomUserFederationState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="cachePolicy")
@@ -359,6 +380,18 @@ class _CustomUserFederationState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:index/customUserFederation:CustomUserFederation")
 class CustomUserFederation(pulumi.CustomResource):
@@ -376,6 +409,7 @@ class CustomUserFederation(pulumi.CustomResource):
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing custom user federation providers within Keycloak.
@@ -426,6 +460,7 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -495,6 +530,7 @@ class CustomUserFederation(pulumi.CustomResource):
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -515,9 +551,8 @@ class CustomUserFederation(pulumi.CustomResource):
             if provider_id is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_id'")
             __props__.__dict__["provider_id"] = provider_id
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(CustomUserFederation, __self__).__init__(
             'keycloak:index/customUserFederation:CustomUserFederation',
             resource_name,
@@ -537,7 +572,8 @@ class CustomUserFederation(pulumi.CustomResource):
             parent_id: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomUserFederation':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomUserFederation':
         """
         Get an existing CustomUserFederation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -555,6 +591,7 @@ class CustomUserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
         :param pulumi.Input[_builtins.str] provider_id: The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -570,6 +607,7 @@ class CustomUserFederation(pulumi.CustomResource):
         __props__.__dict__["priority"] = priority
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return CustomUserFederation(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -584,7 +622,8 @@ class CustomUserFederation(pulumi.CustomResource):
             parent_id: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["cachePolicy"] = cache_policy
         __props__["changedSyncPeriod"] = changed_sync_period
@@ -596,6 +635,7 @@ class CustomUserFederation(pulumi.CustomResource):
         __props__["priority"] = priority
         __props__["providerId"] = provider_id
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:index/customUserFederation:CustomUserFederation', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -678,4 +718,12 @@ class CustomUserFederation(pulumi.CustomResource):
         The realm that this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

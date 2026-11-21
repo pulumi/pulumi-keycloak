@@ -243,6 +243,20 @@ public class Group extends com.pulumi.resources.CustomResource {
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
+    }
 
     /**
      *
@@ -256,7 +270,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Group(java.lang.String name, GroupArgs args) {
+    public Group(java.lang.String name, @Nullable GroupArgs args) {
         this(name, args, null);
     }
     /**
@@ -265,7 +279,7 @@ public class Group extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Group(java.lang.String name, GroupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Group(java.lang.String name, @Nullable GroupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/group:Group", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -273,7 +287,7 @@ public class Group extends com.pulumi.resources.CustomResource {
         super("keycloak:index/group:Group", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static GroupArgs makeArgs(GroupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static GroupArgs makeArgs(@Nullable GroupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

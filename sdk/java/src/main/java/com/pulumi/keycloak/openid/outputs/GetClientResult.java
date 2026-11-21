@@ -62,6 +62,7 @@ public final class GetClientResult {
     private @Nullable String oauth2JwtAuthorizationGrantIdp;
     private String pkceCodeChallengeMethod;
     private String realmId;
+    private String realmInternalId;
     private Boolean requireDpopBoundTokens;
     private String resourceServerId;
     private String rootUrl;
@@ -203,6 +204,9 @@ public final class GetClientResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public Boolean requireDpopBoundTokens() {
         return this.requireDpopBoundTokens;
     }
@@ -290,6 +294,7 @@ public final class GetClientResult {
         private @Nullable String oauth2JwtAuthorizationGrantIdp;
         private String pkceCodeChallengeMethod;
         private String realmId;
+        private String realmInternalId;
         private Boolean requireDpopBoundTokens;
         private String resourceServerId;
         private String rootUrl;
@@ -346,6 +351,7 @@ public final class GetClientResult {
     	      this.oauth2JwtAuthorizationGrantIdp = defaults.oauth2JwtAuthorizationGrantIdp;
     	      this.pkceCodeChallengeMethod = defaults.pkceCodeChallengeMethod;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.requireDpopBoundTokens = defaults.requireDpopBoundTokens;
     	      this.resourceServerId = defaults.resourceServerId;
     	      this.rootUrl = defaults.rootUrl;
@@ -679,6 +685,14 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requireDpopBoundTokens(Boolean requireDpopBoundTokens) {
             if (requireDpopBoundTokens == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "requireDpopBoundTokens");
@@ -826,6 +840,7 @@ public final class GetClientResult {
             _resultValue.oauth2JwtAuthorizationGrantIdp = oauth2JwtAuthorizationGrantIdp;
             _resultValue.pkceCodeChallengeMethod = pkceCodeChallengeMethod;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.requireDpopBoundTokens = requireDpopBoundTokens;
             _resultValue.resourceServerId = resourceServerId;
             _resultValue.rootUrl = rootUrl;

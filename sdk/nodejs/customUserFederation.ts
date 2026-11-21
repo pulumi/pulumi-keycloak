@@ -123,6 +123,10 @@ export class CustomUserFederation extends pulumi.CustomResource {
      * The realm that this provider will provide user federation for.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a CustomUserFederation resource with the given unique name, arguments, and options.
@@ -147,13 +151,11 @@ export class CustomUserFederation extends pulumi.CustomResource {
             resourceInputs["priority"] = state?.priority;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as CustomUserFederationArgs | undefined;
             if (args?.providerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerId'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["cachePolicy"] = args?.cachePolicy;
             resourceInputs["changedSyncPeriod"] = args?.changedSyncPeriod;
@@ -165,6 +167,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
             resourceInputs["priority"] = args?.priority;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomUserFederation.__pulumiType, name, resourceInputs, opts);
@@ -217,6 +220,10 @@ export interface CustomUserFederationState {
      * The realm that this provider will provide user federation for.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -264,5 +271,9 @@ export interface CustomUserFederationArgs {
     /**
      * The realm that this provider will provide user federation for.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

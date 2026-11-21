@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -114,6 +113,8 @@ type Bindings struct {
 	FirstBrokerLoginFlow pulumi.StringOutput `pulumi:"firstBrokerLoginFlow"`
 	// The realm the authentication flow binding exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 	// The alias of the flow to assign to the realm RegistrationFlow.
 	RegistrationFlow pulumi.StringOutput `pulumi:"registrationFlow"`
 	// The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -124,12 +125,9 @@ type Bindings struct {
 func NewBindings(ctx *pulumi.Context,
 	name string, args *BindingsArgs, opts ...pulumi.ResourceOption) (*Bindings, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &BindingsArgs{}
 	}
 
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Bindings
 	err := ctx.RegisterResource("keycloak:authentication/bindings:Bindings", name, args, &resource, opts...)
@@ -165,6 +163,8 @@ type bindingsState struct {
 	FirstBrokerLoginFlow *string `pulumi:"firstBrokerLoginFlow"`
 	// The realm the authentication flow binding exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The alias of the flow to assign to the realm RegistrationFlow.
 	RegistrationFlow *string `pulumi:"registrationFlow"`
 	// The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -184,6 +184,8 @@ type BindingsState struct {
 	FirstBrokerLoginFlow pulumi.StringPtrInput
 	// The realm the authentication flow binding exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm RegistrationFlow.
 	RegistrationFlow pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -212,7 +214,9 @@ type bindingsArgs struct {
 	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
 	FirstBrokerLoginFlow *string `pulumi:"firstBrokerLoginFlow"`
 	// The realm the authentication flow binding exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 	// The alias of the flow to assign to the realm RegistrationFlow.
 	RegistrationFlow *string `pulumi:"registrationFlow"`
 	// The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -232,7 +236,9 @@ type BindingsArgs struct {
 	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
 	FirstBrokerLoginFlow pulumi.StringPtrInput
 	// The realm the authentication flow binding exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm RegistrationFlow.
 	RegistrationFlow pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -354,6 +360,11 @@ func (o BindingsOutput) FirstBrokerLoginFlow() pulumi.StringOutput {
 // The realm the authentication flow binding exists in.
 func (o BindingsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o BindingsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 // The alias of the flow to assign to the realm RegistrationFlow.

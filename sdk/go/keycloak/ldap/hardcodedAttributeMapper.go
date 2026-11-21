@@ -98,6 +98,8 @@ type HardcodedAttributeMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewHardcodedAttributeMapper registers a new resource with the given unique name, arguments, and options.
@@ -115,9 +117,6 @@ func NewHardcodedAttributeMapper(ctx *pulumi.Context,
 	}
 	if args.LdapUserFederationId == nil {
 		return nil, errors.New("invalid value for required argument 'LdapUserFederationId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HardcodedAttributeMapper
@@ -152,6 +151,8 @@ type hardcodedAttributeMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type HardcodedAttributeMapperState struct {
@@ -165,6 +166,8 @@ type HardcodedAttributeMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (HardcodedAttributeMapperState) ElementType() reflect.Type {
@@ -187,7 +190,9 @@ type hardcodedAttributeMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
 	// The realm that this LDAP mapper will exist in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a HardcodedAttributeMapper resource.
@@ -201,7 +206,9 @@ type HardcodedAttributeMapperArgs struct {
 	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
 	// The realm that this LDAP mapper will exist in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (HardcodedAttributeMapperArgs) ElementType() reflect.Type {
@@ -314,6 +321,11 @@ func (o HardcodedAttributeMapperOutput) Name() pulumi.StringOutput {
 // The realm that this LDAP mapper will exist in.
 func (o HardcodedAttributeMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedAttributeMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o HardcodedAttributeMapperOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *HardcodedAttributeMapper) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type HardcodedAttributeMapperArrayOutput struct{ *pulumi.OutputState }

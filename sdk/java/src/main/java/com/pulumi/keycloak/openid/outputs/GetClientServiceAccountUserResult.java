@@ -52,6 +52,7 @@ public final class GetClientServiceAccountUserResult {
      */
     private String lastName;
     private String realmId;
+    private String realmInternalId;
     private List<String> requiredActions;
     /**
      * @return (Computed) The service account user&#39;s username.
@@ -118,6 +119,9 @@ public final class GetClientServiceAccountUserResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public List<String> requiredActions() {
         return this.requiredActions;
     }
@@ -148,6 +152,7 @@ public final class GetClientServiceAccountUserResult {
         private String id;
         private String lastName;
         private String realmId;
+        private String realmInternalId;
         private List<String> requiredActions;
         private String username;
         public Builder() {}
@@ -163,6 +168,7 @@ public final class GetClientServiceAccountUserResult {
     	      this.id = defaults.id;
     	      this.lastName = defaults.lastName;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.requiredActions = defaults.requiredActions;
     	      this.username = defaults.username;
         }
@@ -251,6 +257,14 @@ public final class GetClientServiceAccountUserResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetClientServiceAccountUserResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requiredActions(List<String> requiredActions) {
             if (requiredActions == null) {
               throw new MissingRequiredPropertyException("GetClientServiceAccountUserResult", "requiredActions");
@@ -281,6 +295,7 @@ public final class GetClientServiceAccountUserResult {
             _resultValue.id = id;
             _resultValue.lastName = lastName;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.requiredActions = requiredActions;
             _resultValue.username = username;
             return _resultValue;

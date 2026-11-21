@@ -117,8 +117,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the authentication flow exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public string RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public string? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public string? RealmInternalId { get; set; }
 
         public GetAuthenticationFlowArgs()
         {
@@ -137,8 +140,11 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the authentication flow exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public GetAuthenticationFlowInvokeArgs()
         {
@@ -156,6 +162,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string Id;
         public readonly string RealmId;
+        public readonly string RealmInternalId;
 
         [OutputConstructor]
         private GetAuthenticationFlowResult(
@@ -163,11 +170,14 @@ namespace Pulumi.Keycloak
 
             string id,
 
-            string realmId)
+            string realmId,
+
+            string realmInternalId)
         {
             Alias = alias;
             Id = id;
             RealmId = realmId;
+            RealmInternalId = realmInternalId;
         }
     }
 }

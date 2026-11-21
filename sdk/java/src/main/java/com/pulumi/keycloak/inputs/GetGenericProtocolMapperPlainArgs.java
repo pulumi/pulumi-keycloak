@@ -68,15 +68,22 @@ public final class GetGenericProtocolMapperPlainArgs extends com.pulumi.resource
      * The realm this protocol mapper exists within.
      * 
      */
-    @Import(name="realmId", required=true)
-    private String realmId;
+    @Import(name="realmId")
+    private @Nullable String realmId;
 
     /**
      * @return The realm this protocol mapper exists within.
      * 
      */
-    public String realmId() {
-        return this.realmId;
+    public Optional<String> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable String realmInternalId;
+
+    public Optional<String> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     private GetGenericProtocolMapperPlainArgs() {}
@@ -86,6 +93,7 @@ public final class GetGenericProtocolMapperPlainArgs extends com.pulumi.resource
         this.clientScopeId = $.clientScopeId;
         this.name = $.name;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
     }
 
     public static Builder builder() {
@@ -147,17 +155,19 @@ public final class GetGenericProtocolMapperPlainArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder realmId(String realmId) {
+        public Builder realmId(@Nullable String realmId) {
             $.realmId = realmId;
+            return this;
+        }
+
+        public Builder realmInternalId(@Nullable String realmInternalId) {
+            $.realmInternalId = realmInternalId;
             return this;
         }
 
         public GetGenericProtocolMapperPlainArgs build() {
             if ($.name == null) {
                 throw new MissingRequiredPropertyException("GetGenericProtocolMapperPlainArgs", "name");
-            }
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetGenericProtocolMapperPlainArgs", "realmId");
             }
             return $;
         }

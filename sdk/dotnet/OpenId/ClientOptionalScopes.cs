@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
+    /// &gt; **WARNING:** This resource is deprecated and will be removed in a future major version. Use `keycloak.ClientScopeAssignments` with `DefaultScopes` and `OptionalScopes` instead.
+    /// 
     /// Allows for managing a Keycloak client's optional client scopes. An optional scope that is attached to a client using the
     /// OpenID Connect protocol will allow a client to request it using the OAuth 2.0 `Scope` parameter. When requested, the scope's
     /// protocol mappers defined within that scope will be used to build claims for this client.
@@ -100,6 +102,12 @@ namespace Pulumi.Keycloak.OpenId
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ClientOptionalScopes resource with the given unique name, arguments, and options.
@@ -167,8 +175,14 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The realm this client and scopes exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public ClientOptionalScopesArgs()
         {
@@ -201,6 +215,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public ClientOptionalScopesState()
         {

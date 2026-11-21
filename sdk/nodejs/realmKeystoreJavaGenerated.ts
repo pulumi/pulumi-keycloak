@@ -80,7 +80,7 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
     }
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
@@ -124,6 +124,10 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
      * The realm this keystore exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RealmKeystoreJavaGenerated resource with the given unique name, arguments, and options.
@@ -150,6 +154,7 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             resourceInputs["parentId"] = state?.parentId;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RealmKeystoreJavaGeneratedArgs | undefined;
             if (args?.keyAlias === undefined && !opts.urn) {
@@ -164,9 +169,6 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             if (args?.keystorePassword === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keystorePassword'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["active"] = args?.active;
             resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["enabled"] = args?.enabled;
@@ -178,6 +180,7 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["parentId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -192,7 +195,7 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
  */
 export interface RealmKeystoreJavaGeneratedState {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -236,6 +239,10 @@ export interface RealmKeystoreJavaGeneratedState {
      * The realm this keystore exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -243,7 +250,7 @@ export interface RealmKeystoreJavaGeneratedState {
  */
 export interface RealmKeystoreJavaGeneratedArgs {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -285,5 +292,9 @@ export interface RealmKeystoreJavaGeneratedArgs {
     /**
      * The realm this keystore exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

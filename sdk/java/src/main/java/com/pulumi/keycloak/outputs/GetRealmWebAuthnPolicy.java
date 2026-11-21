@@ -49,6 +49,11 @@ public final class GetRealmWebAuthnPolicy {
      */
     private List<String> signatureAlgorithms;
     /**
+     * @return Signature algorithms in preference order.
+     * 
+     */
+    private List<String> signatureAlgorithmsOrdereds;
+    /**
      * @return Either required, preferred or discouraged
      * 
      */
@@ -115,6 +120,13 @@ public final class GetRealmWebAuthnPolicy {
         return this.signatureAlgorithms;
     }
     /**
+     * @return Signature algorithms in preference order.
+     * 
+     */
+    public List<String> signatureAlgorithmsOrdereds() {
+        return this.signatureAlgorithmsOrdereds;
+    }
+    /**
      * @return Either required, preferred or discouraged
      * 
      */
@@ -143,6 +155,7 @@ public final class GetRealmWebAuthnPolicy {
         private String relyingPartyId;
         private String requireResidentKey;
         private List<String> signatureAlgorithms;
+        private List<String> signatureAlgorithmsOrdereds;
         private String userVerificationRequirement;
         public Builder() {}
         public Builder(GetRealmWebAuthnPolicy defaults) {
@@ -159,6 +172,7 @@ public final class GetRealmWebAuthnPolicy {
     	      this.relyingPartyId = defaults.relyingPartyId;
     	      this.requireResidentKey = defaults.requireResidentKey;
     	      this.signatureAlgorithms = defaults.signatureAlgorithms;
+    	      this.signatureAlgorithmsOrdereds = defaults.signatureAlgorithmsOrdereds;
     	      this.userVerificationRequirement = defaults.userVerificationRequirement;
         }
 
@@ -268,6 +282,17 @@ public final class GetRealmWebAuthnPolicy {
             return signatureAlgorithms(List.of(signatureAlgorithms));
         }
         @CustomType.Setter
+        public Builder signatureAlgorithmsOrdereds(List<String> signatureAlgorithmsOrdereds) {
+            if (signatureAlgorithmsOrdereds == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "signatureAlgorithmsOrdereds");
+            }
+            this.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
+            return this;
+        }
+        public Builder signatureAlgorithmsOrdereds(String... signatureAlgorithmsOrdereds) {
+            return signatureAlgorithmsOrdereds(List.of(signatureAlgorithmsOrdereds));
+        }
+        @CustomType.Setter
         public Builder userVerificationRequirement(String userVerificationRequirement) {
             if (userVerificationRequirement == null) {
               throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "userVerificationRequirement");
@@ -289,6 +314,7 @@ public final class GetRealmWebAuthnPolicy {
             _resultValue.relyingPartyId = relyingPartyId;
             _resultValue.requireResidentKey = requireResidentKey;
             _resultValue.signatureAlgorithms = signatureAlgorithms;
+            _resultValue.signatureAlgorithmsOrdereds = signatureAlgorithmsOrdereds;
             _resultValue.userVerificationRequirement = userVerificationRequirement;
             return _resultValue;
         }

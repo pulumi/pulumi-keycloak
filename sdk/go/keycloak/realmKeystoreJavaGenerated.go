@@ -69,7 +69,7 @@ import (
 type RealmKeystoreJavaGenerated struct {
 	pulumi.CustomResourceState
 
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
@@ -92,6 +92,8 @@ type RealmKeystoreJavaGenerated struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewRealmKeystoreJavaGenerated registers a new resource with the given unique name, arguments, and options.
@@ -112,9 +114,6 @@ func NewRealmKeystoreJavaGenerated(ctx *pulumi.Context,
 	}
 	if args.KeystorePassword == nil {
 		return nil, errors.New("invalid value for required argument 'KeystorePassword'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	if args.KeyPassword != nil {
 		args.KeyPassword = pulumi.ToSecret(args.KeyPassword).(pulumi.StringInput)
@@ -150,7 +149,7 @@ func GetRealmKeystoreJavaGenerated(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmKeystoreJavaGenerated resources.
 type realmKeystoreJavaGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm *string `pulumi:"algorithm"`
@@ -173,10 +172,12 @@ type realmKeystoreJavaGeneratedState struct {
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type RealmKeystoreJavaGeneratedState struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm pulumi.StringPtrInput
@@ -199,6 +200,8 @@ type RealmKeystoreJavaGeneratedState struct {
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreJavaGeneratedState) ElementType() reflect.Type {
@@ -212,7 +215,7 @@ func RealmKeystoreJavaGeneratedExists(ctx *pulumi.Context,
 }
 
 type realmKeystoreJavaGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm *string `pulumi:"algorithm"`
@@ -233,12 +236,14 @@ type realmKeystoreJavaGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority *int `pulumi:"priority"`
 	// The realm this keystore exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a RealmKeystoreJavaGenerated resource.
 type RealmKeystoreJavaGeneratedArgs struct {
-	// When `false`, key in not used for signing. Defaults to `true`.
+	// When `false`, key is not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
 	// Intended algorithm for the key. Defaults to `RS256`
 	Algorithm pulumi.StringPtrInput
@@ -259,7 +264,9 @@ type RealmKeystoreJavaGeneratedArgs struct {
 	// Priority for the provider. Defaults to `0`
 	Priority pulumi.IntPtrInput
 	// The realm this keystore exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (RealmKeystoreJavaGeneratedArgs) ElementType() reflect.Type {
@@ -349,7 +356,7 @@ func (o RealmKeystoreJavaGeneratedOutput) ToRealmKeystoreJavaGeneratedOutputWith
 	return o
 }
 
-// When `false`, key in not used for signing. Defaults to `true`.
+// When `false`, key is not used for signing. Defaults to `true`.
 func (o RealmKeystoreJavaGeneratedOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
@@ -406,6 +413,11 @@ func (o RealmKeystoreJavaGeneratedOutput) Priority() pulumi.IntPtrOutput {
 // The realm this keystore exists in.
 func (o RealmKeystoreJavaGeneratedOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o RealmKeystoreJavaGeneratedOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *RealmKeystoreJavaGenerated) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type RealmKeystoreJavaGeneratedArrayOutput struct{ *pulumi.OutputState }

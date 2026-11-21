@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = keycloak.GetWorkflow(ctx, &keycloak.LookupWorkflowArgs{
-//				Realm: realm.Id,
+//				Realm: pulumi.StringRef(realm.Id),
 //				Name:  "onboarding-new-users",
 //			}, nil)
 //			if err != nil {
@@ -61,7 +61,8 @@ type LookupWorkflowArgs struct {
 	// The workflow name.
 	Name string `pulumi:"name"`
 	// The name of the realm this workflow exists within.
-	Realm string `pulumi:"realm"`
+	Realm           *string `pulumi:"realm"`
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // A collection of values returned by getWorkflow.
@@ -74,6 +75,7 @@ type LookupWorkflowResult struct {
 	Name              string                `pulumi:"name"`
 	On                string                `pulumi:"on"`
 	Realm             string                `pulumi:"realm"`
+	RealmInternalId   string                `pulumi:"realmInternalId"`
 	RestartInProgress string                `pulumi:"restartInProgress"`
 	Schedules         []GetWorkflowSchedule `pulumi:"schedules"`
 	States            []GetWorkflowState    `pulumi:"states"`
@@ -90,7 +92,8 @@ type LookupWorkflowOutputArgs struct {
 	// The workflow name.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The name of the realm this workflow exists within.
-	Realm pulumi.StringInput `pulumi:"realm"`
+	Realm           pulumi.StringPtrInput `pulumi:"realm"`
+	RealmInternalId pulumi.StringPtrInput `pulumi:"realmInternalId"`
 }
 
 func (LookupWorkflowOutputArgs) ElementType() reflect.Type {
@@ -139,6 +142,10 @@ func (o LookupWorkflowResultOutput) On() pulumi.StringOutput {
 
 func (o LookupWorkflowResultOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWorkflowResult) string { return v.Realm }).(pulumi.StringOutput)
+}
+
+func (o LookupWorkflowResultOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWorkflowResult) string { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 func (o LookupWorkflowResultOutput) RestartInProgress() pulumi.StringOutput {

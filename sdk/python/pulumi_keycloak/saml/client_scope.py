@@ -19,130 +19,32 @@ __all__ = ['ClientScopeArgs', 'ClientScope']
 @pulumi.input_type
 class ClientScopeArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 gui_order: pulumi.Input[Optional[_builtins.int]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        The set of arguments for constructing a ClientScope resource.
-
-        :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
-        :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-        :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
-        :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
-        :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
-        """
-        pulumi.set(__self__, "realm_id", realm_id)
-        if consent_screen_text is not None:
-            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
-        if description is not None:
-            pulumi.set(__self__, "description", description)
-        if extra_config is not None:
-            pulumi.set(__self__, "extra_config", extra_config)
-        if gui_order is not None:
-            pulumi.set(__self__, "gui_order", gui_order)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this client scope belongs to.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="consentScreenText")
-    def consent_screen_text(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-        """
-        return pulumi.get(self, "consent_screen_text")
-
-    @consent_screen_text.setter
-    def consent_screen_text(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "consent_screen_text", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The description of this client scope in the GUI.
-        """
-        return pulumi.get(self, "description")
-
-    @description.setter
-    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "description", value)
-
-    @_builtins.property
-    @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
-        """
-        A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
-        """
-        return pulumi.get(self, "extra_config")
-
-    @extra_config.setter
-    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "extra_config", value)
-
-    @_builtins.property
-    @pulumi.getter(name="guiOrder")
-    def gui_order(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        Specify order of the client scope in GUI (such as in Consent page) as integer.
-        """
-        return pulumi.get(self, "gui_order")
-
-    @gui_order.setter
-    def gui_order(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "gui_order", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        The display name of this client scope in the GUI.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _ClientScopeState:
-    def __init__(__self__, *,
-                 consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
-                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering ClientScope resources.
+        The set of arguments for constructing a ClientScope resource.
 
-        :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[_builtins.str] consent_screen_text: The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[_builtins.bool] display_on_consent_screen: When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         if consent_screen_text is not None:
             pulumi.set(__self__, "consent_screen_text", consent_screen_text)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if display_on_consent_screen is not None:
+            pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
         if gui_order is not None:
@@ -151,12 +53,14 @@ class _ClientScopeState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         """
         return pulumi.get(self, "consent_screen_text")
 
@@ -175,6 +79,18 @@ class _ClientScopeState:
     @description.setter
     def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="displayOnConsentScreen")
+    def display_on_consent_screen(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
+        """
+        return pulumi.get(self, "display_on_consent_screen")
+
+    @display_on_consent_screen.setter
+    def display_on_consent_screen(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "display_on_consent_screen", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -224,6 +140,155 @@ class _ClientScopeState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+
+@pulumi.input_type
+class _ClientScopeState:
+    def __init__(__self__, *,
+                 consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 gui_order: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering ClientScope resources.
+
+        :param pulumi.Input[_builtins.str] consent_screen_text: The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
+        :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[_builtins.bool] display_on_consent_screen: When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        if consent_screen_text is not None:
+            pulumi.set(__self__, "consent_screen_text", consent_screen_text)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if display_on_consent_screen is not None:
+            pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
+        if gui_order is not None:
+            pulumi.set(__self__, "gui_order", gui_order)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter(name="consentScreenText")
+    def consent_screen_text(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
+        """
+        return pulumi.get(self, "consent_screen_text")
+
+    @consent_screen_text.setter
+    def consent_screen_text(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "consent_screen_text", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The description of this client scope in the GUI.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="displayOnConsentScreen")
+    def display_on_consent_screen(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
+        """
+        return pulumi.get(self, "display_on_consent_screen")
+
+    @display_on_consent_screen.setter
+    def display_on_consent_screen(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "display_on_consent_screen", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="guiOrder")
+    def gui_order(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
+        return pulumi.get(self, "gui_order")
+
+    @gui_order.setter
+    def gui_order(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "gui_order", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The display name of this client scope in the GUI.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm this client scope belongs to.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:saml/clientScope:ClientScope")
 class ClientScope(pulumi.CustomResource):
@@ -233,10 +298,12 @@ class ClientScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
@@ -273,18 +340,20 @@ class ClientScope(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[_builtins.str] consent_screen_text: The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[_builtins.bool] display_on_consent_screen: When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ClientScopeArgs,
+                 args: Optional[ClientScopeArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing Keycloak client scopes that can be attached to clients that use the SAML protocol.
@@ -336,10 +405,12 @@ class ClientScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
                  extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -351,12 +422,12 @@ class ClientScope(pulumi.CustomResource):
 
             __props__.__dict__["consent_screen_text"] = consent_screen_text
             __props__.__dict__["description"] = description
+            __props__.__dict__["display_on_consent_screen"] = display_on_consent_screen
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(ClientScope, __self__).__init__(
             'keycloak:saml/clientScope:ClientScope',
             resource_name,
@@ -369,10 +440,12 @@ class ClientScope(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
+            display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
             extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             gui_order: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientScope':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ClientScope':
         """
         Get an existing ClientScope resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -380,12 +453,14 @@ class ClientScope(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[_builtins.str] consent_screen_text: The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[_builtins.bool] display_on_consent_screen: When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -393,10 +468,12 @@ class ClientScope(pulumi.CustomResource):
 
         __props__.__dict__["consent_screen_text"] = consent_screen_text
         __props__.__dict__["description"] = description
+        __props__.__dict__["display_on_consent_screen"] = display_on_consent_screen
         __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["gui_order"] = gui_order
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return ClientScope(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -404,24 +481,28 @@ class ClientScope(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             consent_screen_text: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
+            display_on_consent_screen: pulumi.Input[Optional[_builtins.bool]] = None,
             extra_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             gui_order: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["consentScreenText"] = consent_screen_text
         __props__["description"] = description
+        __props__["displayOnConsentScreen"] = display_on_consent_screen
         __props__["extraConfig"] = extra_config
         __props__["guiOrder"] = gui_order
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:saml/clientScope:ClientScope', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        The text that is displayed on the consent screen for this client scope. If not set, the consent screen displays the name of the client scope.
         """
         return pulumi.get(self, "consent_screen_text")
 
@@ -432,6 +513,14 @@ class ClientScope(pulumi.CustomResource):
         The description of this client scope in the GUI.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayOnConsentScreen")
+    def display_on_consent_screen(self) -> pulumi.Output[_builtins.bool]:
+        """
+        When `true`, this client scope is displayed on the consent screen of clients that require consent. When `false`, it is not displayed, and existing consents remain valid if the scope is added to a client later. If not set, it is `true` when `consent_screen_text` is set and `false` otherwise.
+        """
+        return pulumi.get(self, "display_on_consent_screen")
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -464,4 +553,12 @@ class ClientScope(pulumi.CustomResource):
         The realm this client scope belongs to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

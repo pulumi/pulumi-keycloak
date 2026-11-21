@@ -16,6 +16,14 @@ namespace Pulumi.Keycloak
     /// control over an organization's members, users that are manually added to the organization will be removed, and users that
     /// are manually removed will be re-added upon the next run of `pulumi up`.
     /// 
+    /// Managed members are the exception. A membership is managed (`MANAGED` in Keycloak) when, for example, the user joined
+    /// the organization by signing in through an identity provider linked to it (from Keycloak 26.8, a link with managed
+    /// membership), or when an administrator changed the membership type to managed (Keycloak 26.8 and later). Keycloak
+    /// deletes the user account when a managed membership is removed, so this resource never removes a managed member, listed
+    /// in `Members` or not: create, update and destroy leave it in the organization. A managed member is in the resource's
+    /// state only while it is listed in `Members`, so unlisted managed members never cause a diff, and removing a managed
+    /// member from `Members` removes it from the state, not from the organization.
+    /// 
     /// This resource paginates its data loading on refresh by 50 items.
     /// 
     /// ## Example Usage
@@ -84,7 +92,7 @@ namespace Pulumi.Keycloak
     public partial class OrganizationMemberships : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A set of usernames to assign as members of the organization.
+        /// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
@@ -100,6 +108,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
 
 
         /// <summary>
@@ -151,7 +165,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _members;
 
         /// <summary>
-        /// A set of usernames to assign as members of the organization.
+        /// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         /// </summary>
         public InputList<string> Members
         {
@@ -168,8 +182,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm the organization belongs to.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public OrganizationMembershipsArgs()
         {
@@ -183,7 +203,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _members;
 
         /// <summary>
-        /// A set of usernames to assign as members of the organization.
+        /// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
         /// </summary>
         public InputList<string> Members
         {
@@ -202,6 +222,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public OrganizationMembershipsState()
         {

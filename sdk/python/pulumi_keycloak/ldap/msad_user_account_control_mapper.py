@@ -20,23 +20,32 @@ __all__ = ['MsadUserAccountControlMapperArgs', 'MsadUserAccountControlMapper']
 class MsadUserAccountControlMapperArgs:
     def __init__(__self__, *,
                  ldap_user_federation_id: pulumi.Input[_builtins.str],
-                 realm_id: pulumi.Input[_builtins.str],
+                 always_read_enabled_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MsadUserAccountControlMapper resource.
 
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.bool] always_read_enabled_value_from_ldap: When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
-        pulumi.set(__self__, "realm_id", realm_id)
+        if always_read_enabled_value_from_ldap is not None:
+            pulumi.set(__self__, "always_read_enabled_value_from_ldap", always_read_enabled_value_from_ldap)
         if ldap_password_policy_hints_enabled is not None:
             pulumi.set(__self__, "ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter(name="ldapUserFederationId")
@@ -51,16 +60,16 @@ class MsadUserAccountControlMapperArgs:
         pulumi.set(self, "ldap_user_federation_id", value)
 
     @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
+    @pulumi.getter(name="alwaysReadEnabledValueFromLdap")
+    def always_read_enabled_value_from_ldap(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        The realm that this LDAP mapper will exist in.
+        When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
         """
-        return pulumi.get(self, "realm_id")
+        return pulumi.get(self, "always_read_enabled_value_from_ldap")
 
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
+    @always_read_enabled_value_from_ldap.setter
+    def always_read_enabled_value_from_ldap(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "always_read_enabled_value_from_ldap", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
@@ -86,22 +95,52 @@ class MsadUserAccountControlMapperArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm that this LDAP mapper will exist in.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _MsadUserAccountControlMapperState:
     def __init__(__self__, *,
+                 always_read_enabled_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 realm_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
 
+        :param pulumi.Input[_builtins.bool] always_read_enabled_value_from_ldap: When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
+        if always_read_enabled_value_from_ldap is not None:
+            pulumi.set(__self__, "always_read_enabled_value_from_ldap", always_read_enabled_value_from_ldap)
         if ldap_password_policy_hints_enabled is not None:
             pulumi.set(__self__, "ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
         if ldap_user_federation_id is not None:
@@ -110,6 +149,20 @@ class _MsadUserAccountControlMapperState:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
+
+    @_builtins.property
+    @pulumi.getter(name="alwaysReadEnabledValueFromLdap")
+    def always_read_enabled_value_from_ldap(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+        """
+        return pulumi.get(self, "always_read_enabled_value_from_ldap")
+
+    @always_read_enabled_value_from_ldap.setter
+    def always_read_enabled_value_from_ldap(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "always_read_enabled_value_from_ldap", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
@@ -159,6 +212,18 @@ class _MsadUserAccountControlMapperState:
     def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.type_token("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper")
 class MsadUserAccountControlMapper(pulumi.CustomResource):
@@ -166,10 +231,12 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 always_read_enabled_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows for creating and managing MSAD user account control mappers for Keycloak
@@ -224,10 +291,12 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] always_read_enabled_value_from_ldap: When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         ...
     @overload
@@ -301,10 +370,12 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 always_read_enabled_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -314,14 +385,14 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MsadUserAccountControlMapperArgs.__new__(MsadUserAccountControlMapperArgs)
 
+            __props__.__dict__["always_read_enabled_value_from_ldap"] = always_read_enabled_value_from_ldap
             __props__.__dict__["ldap_password_policy_hints_enabled"] = ldap_password_policy_hints_enabled
             if ldap_user_federation_id is None and not opts.urn:
                 raise TypeError("Missing required property 'ldap_user_federation_id'")
             __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
             __props__.__dict__["name"] = name
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
         super(MsadUserAccountControlMapper, __self__).__init__(
             'keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper',
             resource_name,
@@ -332,10 +403,12 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            always_read_enabled_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
             ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MsadUserAccountControlMapper':
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MsadUserAccountControlMapper':
         """
         Get an existing MsadUserAccountControlMapper resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -343,34 +416,50 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] always_read_enabled_value_from_ldap: When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _MsadUserAccountControlMapperState.__new__(_MsadUserAccountControlMapperState)
 
+        __props__.__dict__["always_read_enabled_value_from_ldap"] = always_read_enabled_value_from_ldap
         __props__.__dict__["ldap_password_policy_hints_enabled"] = ldap_password_policy_hints_enabled
         __props__.__dict__["ldap_user_federation_id"] = ldap_user_federation_id
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         return MsadUserAccountControlMapper(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            always_read_enabled_value_from_ldap: pulumi.Input[Optional[_builtins.bool]] = None,
             ldap_password_policy_hints_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             ldap_user_federation_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            realm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
+        __props__["alwaysReadEnabledValueFromLdap"] = always_read_enabled_value_from_ldap
         __props__["ldapPasswordPolicyHintsEnabled"] = ldap_password_policy_hints_enabled
         __props__["ldapUserFederationId"] = ldap_user_federation_id
         __props__["name"] = name
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         return pulumi.runtime.exists_resource(None, 'keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper', id, __props__, opts or pulumi.ResourceOptions())
+
+    @_builtins.property
+    @pulumi.getter(name="alwaysReadEnabledValueFromLdap")
+    def always_read_enabled_value_from_ldap(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When `true`, the enabled/disabled state of the user is always read from the `userAccountControl` attribute in AD, instead of the value stored in Keycloak. Defaults to `false`.
+        """
+        return pulumi.get(self, "always_read_enabled_value_from_ldap")
 
     @_builtins.property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
@@ -403,4 +492,12 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 

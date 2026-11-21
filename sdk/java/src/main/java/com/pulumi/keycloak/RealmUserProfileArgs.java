@@ -5,7 +5,6 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmUserProfileAttributeArgs;
 import com.pulumi.keycloak.inputs.RealmUserProfileGroupArgs;
 import java.lang.String;
@@ -53,15 +52,30 @@ public final class RealmUserProfileArgs extends com.pulumi.resources.ResourceArg
      * The ID of the realm the user profile applies to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The ID of the realm the user profile applies to.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -85,6 +99,7 @@ public final class RealmUserProfileArgs extends com.pulumi.resources.ResourceArg
         this.attributes = $.attributes;
         this.groups = $.groups;
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.unmanagedAttributePolicy = $.unmanagedAttributePolicy;
     }
 
@@ -174,7 +189,7 @@ public final class RealmUserProfileArgs extends com.pulumi.resources.ResourceArg
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -187,6 +202,27 @@ public final class RealmUserProfileArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -211,9 +247,6 @@ public final class RealmUserProfileArgs extends com.pulumi.resources.ResourceArg
         }
 
         public RealmUserProfileArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("RealmUserProfileArgs", "realmId");
-            }
             return $;
         }
     }

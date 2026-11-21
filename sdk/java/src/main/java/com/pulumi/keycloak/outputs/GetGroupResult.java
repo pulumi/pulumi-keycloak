@@ -26,6 +26,7 @@ public final class GetGroupResult {
     private String parentId;
     private String path;
     private String realmId;
+    private String realmInternalId;
 
     private GetGroupResult() {}
     public Map<String,String> attributes() {
@@ -59,6 +60,9 @@ public final class GetGroupResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -78,6 +82,7 @@ public final class GetGroupResult {
         private String parentId;
         private String path;
         private String realmId;
+        private String realmInternalId;
         public Builder() {}
         public Builder(GetGroupResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -90,6 +95,7 @@ public final class GetGroupResult {
     	      this.parentId = defaults.parentId;
     	      this.path = defaults.path;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
         }
 
         @CustomType.Setter
@@ -156,6 +162,14 @@ public final class GetGroupResult {
             this.realmId = realmId;
             return this;
         }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
         public GetGroupResult build() {
             final var _resultValue = new GetGroupResult();
             _resultValue.attributes = attributes;
@@ -167,6 +181,7 @@ public final class GetGroupResult {
             _resultValue.parentId = parentId;
             _resultValue.path = path;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             return _resultValue;
         }
     }

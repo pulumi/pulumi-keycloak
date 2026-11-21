@@ -11,6 +11,14 @@ import * as utilities from "./utilities";
  * control over an organization's members, users that are manually added to the organization will be removed, and users that
  * are manually removed will be re-added upon the next run of `pulumi up`.
  *
+ * Managed members are the exception. A membership is managed (`MANAGED` in Keycloak) when, for example, the user joined
+ * the organization by signing in through an identity provider linked to it (from Keycloak 26.8, a link with managed
+ * membership), or when an administrator changed the membership type to managed (Keycloak 26.8 and later). Keycloak
+ * deletes the user account when a managed membership is removed, so this resource never removes a managed member, listed
+ * in `members` or not: create, update and destroy leave it in the organization. A managed member is in the resource's
+ * state only while it is listed in `members`, so unlisted managed members never cause a diff, and removing a managed
+ * member from `members` removes it from the state, not from the organization.
+ *
  * This resource paginates its data loading on refresh by 50 items.
  *
  * ## Example Usage
@@ -95,7 +103,7 @@ export class OrganizationMemberships extends pulumi.CustomResource {
     }
 
     /**
-     * A set of usernames to assign as members of the organization.
+     * A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      */
     declare public readonly members: pulumi.Output<string[]>;
     /**
@@ -106,6 +114,10 @@ export class OrganizationMemberships extends pulumi.CustomResource {
      * The realm the organization belongs to.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a OrganizationMemberships resource with the given unique name, arguments, and options.
@@ -123,6 +135,7 @@ export class OrganizationMemberships extends pulumi.CustomResource {
             resourceInputs["members"] = state?.members;
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as OrganizationMembershipsArgs | undefined;
             if (args?.members === undefined && !opts.urn) {
@@ -131,12 +144,10 @@ export class OrganizationMemberships extends pulumi.CustomResource {
             if (args?.organizationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'organizationId'");
             }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["members"] = args?.members;
             resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OrganizationMemberships.__pulumiType, name, resourceInputs, opts);
@@ -148,7 +159,7 @@ export class OrganizationMemberships extends pulumi.CustomResource {
  */
 export interface OrganizationMembershipsState {
     /**
-     * A set of usernames to assign as members of the organization.
+     * A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      */
     members?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -159,6 +170,10 @@ export interface OrganizationMembershipsState {
      * The realm the organization belongs to.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -166,7 +181,7 @@ export interface OrganizationMembershipsState {
  */
 export interface OrganizationMembershipsArgs {
     /**
-     * A set of usernames to assign as members of the organization.
+     * A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
      */
     members: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -176,5 +191,9 @@ export interface OrganizationMembershipsArgs {
     /**
      * The realm the organization belongs to.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

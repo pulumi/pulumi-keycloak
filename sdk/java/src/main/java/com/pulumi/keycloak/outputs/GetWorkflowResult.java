@@ -26,6 +26,7 @@ public final class GetWorkflowResult {
     private String name;
     private String on;
     private String realm;
+    private String realmInternalId;
     private String restartInProgress;
     private List<GetWorkflowSchedule> schedules;
     private List<GetWorkflowState> states;
@@ -57,6 +58,9 @@ public final class GetWorkflowResult {
     public String realm() {
         return this.realm;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
     public String restartInProgress() {
         return this.restartInProgress;
     }
@@ -86,6 +90,7 @@ public final class GetWorkflowResult {
         private String name;
         private String on;
         private String realm;
+        private String realmInternalId;
         private String restartInProgress;
         private List<GetWorkflowSchedule> schedules;
         private List<GetWorkflowState> states;
@@ -100,6 +105,7 @@ public final class GetWorkflowResult {
     	      this.name = defaults.name;
     	      this.on = defaults.on;
     	      this.realm = defaults.realm;
+    	      this.realmInternalId = defaults.realmInternalId;
     	      this.restartInProgress = defaults.restartInProgress;
     	      this.schedules = defaults.schedules;
     	      this.states = defaults.states;
@@ -163,6 +169,14 @@ public final class GetWorkflowResult {
             return this;
         }
         @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetWorkflowResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder restartInProgress(String restartInProgress) {
             if (restartInProgress == null) {
               throw new MissingRequiredPropertyException("GetWorkflowResult", "restartInProgress");
@@ -212,6 +226,7 @@ public final class GetWorkflowResult {
             _resultValue.name = name;
             _resultValue.on = on;
             _resultValue.realm = realm;
+            _resultValue.realmInternalId = realmInternalId;
             _resultValue.restartInProgress = restartInProgress;
             _resultValue.schedules = schedules;
             _resultValue.states = states;

@@ -21,9 +21,9 @@ class IdentityProviderArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[_builtins.str],
                  entity_id: pulumi.Input[_builtins.str],
-                 realm: pulumi.Input[_builtins.str],
                  single_sign_on_service_url: pulumi.Input[_builtins.str],
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -49,6 +49,8 @@ class IdentityProviderArgs:
                  principal_attribute: pulumi.Input[Optional[_builtins.str]] = None,
                  principal_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
                  single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -65,9 +67,9 @@ class IdentityProviderArgs:
 
         :param pulumi.Input[_builtins.str] alias: The unique name of identity provider.
         :param pulumi.Input[_builtins.str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
-        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[_builtins.str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
         :param pulumi.Input[_builtins.str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
@@ -93,6 +95,8 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.str] principal_attribute: The principal attribute.
         :param pulumi.Input[_builtins.str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[_builtins.str] signing_certificate: Signing Certificate.
         :param pulumi.Input[_builtins.str] single_logout_service_url: The Url that must be used to send logout requests.
@@ -107,10 +111,11 @@ class IdentityProviderArgs:
         """
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "entity_id", entity_id)
-        pulumi.set(__self__, "realm", realm)
         pulumi.set(__self__, "single_sign_on_service_url", single_sign_on_service_url)
         if add_read_token_role_on_create is not None:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if authn_context_class_refs is not None:
@@ -161,6 +166,10 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "principal_type", principal_type)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if signature_algorithm is not None:
             pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signing_certificate is not None:
@@ -209,18 +218,6 @@ class IdentityProviderArgs:
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[_builtins.str]:
-        """
-        The name of the realm. This is unique across Keycloak.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm", value)
-
-    @_builtins.property
     @pulumi.getter(name="singleSignOnServiceUrl")
     def single_sign_on_service_url(self) -> pulumi.Input[_builtins.str]:
         """
@@ -243,6 +240,18 @@ class IdentityProviderArgs:
     @add_read_token_role_on_create.setter
     def add_read_token_role_on_create(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_read_token_role_on_create", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -545,6 +554,30 @@ class IdentityProviderArgs:
         pulumi.set(self, "provider_id", value)
 
     @_builtins.property
+    @pulumi.getter
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the realm. This is unique across Keycloak.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -682,6 +715,7 @@ class _IdentityProviderState:
     def __init__(__self__, *,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -710,6 +744,7 @@ class _IdentityProviderState:
                  principal_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
                  single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -727,6 +762,7 @@ class _IdentityProviderState:
 
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The unique name of identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
         :param pulumi.Input[_builtins.str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
@@ -755,6 +791,7 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[_builtins.str] signing_certificate: Signing Certificate.
         :param pulumi.Input[_builtins.str] single_logout_service_url: The Url that must be used to send logout requests.
@@ -772,6 +809,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if allow_admin_role_mapping is not None:
+            pulumi.set(__self__, "allow_admin_role_mapping", allow_admin_role_mapping)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if authn_context_class_refs is not None:
@@ -828,6 +867,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm is not None:
             pulumi.set(__self__, "realm", realm)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if signature_algorithm is not None:
             pulumi.set(__self__, "signature_algorithm", signature_algorithm)
         if signing_certificate is not None:
@@ -876,6 +917,18 @@ class _IdentityProviderState:
     @alias.setter
     def alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
+
+    @allow_admin_role_mapping.setter
+    def allow_admin_role_mapping(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_admin_role_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -1214,6 +1267,18 @@ class _IdentityProviderState:
         pulumi.set(self, "realm", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1366,6 +1431,7 @@ class IdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1393,6 +1459,7 @@ class IdentityProvider(pulumi.CustomResource):
                  principal_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
                  single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1450,6 +1517,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The unique name of identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
         :param pulumi.Input[_builtins.str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
@@ -1477,6 +1545,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[_builtins.str] signing_certificate: Signing Certificate.
         :param pulumi.Input[_builtins.str] single_logout_service_url: The Url that must be used to send logout requests.
@@ -1553,6 +1622,7 @@ class IdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
                  alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
                  authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
                  authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1580,6 +1650,7 @@ class IdentityProvider(pulumi.CustomResource):
                  principal_type: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                  realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
                  single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1605,6 +1676,7 @@ class IdentityProvider(pulumi.CustomResource):
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
             __props__.__dict__["authenticate_by_default"] = authenticate_by_default
             __props__.__dict__["authn_context_class_refs"] = authn_context_class_refs
             __props__.__dict__["authn_context_comparison_type"] = authn_context_comparison_type
@@ -1633,9 +1705,8 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["principal_attribute"] = principal_attribute
             __props__.__dict__["principal_type"] = principal_type
             __props__.__dict__["provider_id"] = provider_id
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             __props__.__dict__["signature_algorithm"] = signature_algorithm
             __props__.__dict__["signing_certificate"] = signing_certificate
             __props__.__dict__["single_logout_service_url"] = single_logout_service_url
@@ -1663,6 +1734,7 @@ class IdentityProvider(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1691,6 +1763,7 @@ class IdentityProvider(pulumi.CustomResource):
             principal_type: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
             signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
             single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1712,6 +1785,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The unique name of identity provider.
+        :param pulumi.Input[_builtins.bool] allow_admin_role_mapping: When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
         :param pulumi.Input[_builtins.str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
@@ -1740,6 +1814,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         :param pulumi.Input[_builtins.str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[_builtins.str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[_builtins.str] signing_certificate: Signing Certificate.
         :param pulumi.Input[_builtins.str] single_logout_service_url: The Url that must be used to send logout requests.
@@ -1759,6 +1834,7 @@ class IdentityProvider(pulumi.CustomResource):
 
         __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["allow_admin_role_mapping"] = allow_admin_role_mapping
         __props__.__dict__["authenticate_by_default"] = authenticate_by_default
         __props__.__dict__["authn_context_class_refs"] = authn_context_class_refs
         __props__.__dict__["authn_context_comparison_type"] = authn_context_comparison_type
@@ -1787,6 +1863,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["principal_type"] = principal_type
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["signature_algorithm"] = signature_algorithm
         __props__.__dict__["signing_certificate"] = signing_certificate
         __props__.__dict__["single_logout_service_url"] = single_logout_service_url
@@ -1806,6 +1883,7 @@ class IdentityProvider(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_read_token_role_on_create: pulumi.Input[Optional[_builtins.bool]] = None,
             alias: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_admin_role_mapping: pulumi.Input[Optional[_builtins.bool]] = None,
             authenticate_by_default: pulumi.Input[Optional[_builtins.bool]] = None,
             authn_context_class_refs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             authn_context_comparison_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1834,6 +1912,7 @@ class IdentityProvider(pulumi.CustomResource):
             principal_type: pulumi.Input[Optional[_builtins.str]] = None,
             provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             realm: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
             signing_certificate: pulumi.Input[Optional[_builtins.str]] = None,
             single_logout_service_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1849,6 +1928,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__: dict = {}
         __props__["addReadTokenRoleOnCreate"] = add_read_token_role_on_create
         __props__["alias"] = alias
+        __props__["allowAdminRoleMapping"] = allow_admin_role_mapping
         __props__["authenticateByDefault"] = authenticate_by_default
         __props__["authnContextClassRefs"] = authn_context_class_refs
         __props__["authnContextComparisonType"] = authn_context_comparison_type
@@ -1877,6 +1957,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__["principalType"] = principal_type
         __props__["providerId"] = provider_id
         __props__["realm"] = realm
+        __props__["realmInternalId"] = realm_internal_id
         __props__["signatureAlgorithm"] = signature_algorithm
         __props__["signingCertificate"] = signing_certificate
         __props__["singleLogoutServiceUrl"] = single_logout_service_url
@@ -1906,6 +1987,14 @@ class IdentityProvider(pulumi.CustomResource):
         The unique name of identity provider.
         """
         return pulumi.get(self, "alias")
+
+    @_builtins.property
+    @pulumi.getter(name="allowAdminRoleMapping")
+    def allow_admin_role_mapping(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+        """
+        return pulumi.get(self, "allow_admin_role_mapping")
 
     @_builtins.property
     @pulumi.getter(name="authenticateByDefault")
@@ -2130,6 +2219,14 @@ class IdentityProvider(pulumi.CustomResource):
         The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter(name="signatureAlgorithm")

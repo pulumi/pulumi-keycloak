@@ -49,6 +49,21 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    @Import(name="allowAdminRoleMapping")
+    private @Nullable Output<Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    public Optional<Output<Boolean>> allowAdminRoleMapping() {
+        return Optional.ofNullable(this.allowAdminRoleMapping);
+    }
+
+    /**
      * Authenticate users by default. Defaults to `false`.
      * 
      */
@@ -469,6 +484,21 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
+    }
+
+    /**
      * Signing Algorithm. Defaults to empty.
      * 
      */
@@ -653,6 +683,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     private IdentityProviderState(IdentityProviderState $) {
         this.addReadTokenRoleOnCreate = $.addReadTokenRoleOnCreate;
         this.alias = $.alias;
+        this.allowAdminRoleMapping = $.allowAdminRoleMapping;
         this.authenticateByDefault = $.authenticateByDefault;
         this.authnContextClassRefs = $.authnContextClassRefs;
         this.authnContextComparisonType = $.authnContextComparisonType;
@@ -681,6 +712,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         this.principalType = $.principalType;
         this.providerId = $.providerId;
         this.realm = $.realm;
+        this.realmInternalId = $.realmInternalId;
         this.signatureAlgorithm = $.signatureAlgorithm;
         this.signingCertificate = $.signingCertificate;
         this.singleLogoutServiceUrl = $.singleLogoutServiceUrl;
@@ -753,6 +785,27 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param allowAdminRoleMapping When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(@Nullable Output<Boolean> allowAdminRoleMapping) {
+            $.allowAdminRoleMapping = allowAdminRoleMapping;
+            return this;
+        }
+
+        /**
+         * @param allowAdminRoleMapping When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowAdminRoleMapping(Boolean allowAdminRoleMapping) {
+            return allowAdminRoleMapping(Output.of(allowAdminRoleMapping));
         }
 
         /**
@@ -1361,6 +1414,27 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
          */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        /**
+         * @param realmInternalId The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**

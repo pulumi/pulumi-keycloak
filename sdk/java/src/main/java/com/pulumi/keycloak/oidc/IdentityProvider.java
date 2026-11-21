@@ -75,6 +75,46 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### With A Custom `Provider_id`
+ * 
+ * Identity providers other than `oidc` and `keycloak-oidc`, for example from a Keycloak extension, may determine their
+ * endpoints on their own. For them, `authorizationUrl` and `tokenUrl` can be left out.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.oidc.IdentityProvider;
+ * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var customIdentityProvider = new IdentityProvider("customIdentityProvider", IdentityProviderArgs.builder()
+ *             .realm(realm.get("id"))
+ *             .alias("my-custom-idp")
+ *             .providerId("my-custom-oidc")
+ *             .clientId("clientID")
+ *             .clientSecret("clientSecret")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
@@ -131,6 +171,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.alias;
     }
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    @Export(name="allowAdminRoleMapping", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    public Output<Optional<Boolean>> allowAdminRoleMapping() {
+        return Codegen.optional(this.allowAdminRoleMapping);
+    }
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -145,18 +199,18 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.authenticateByDefault);
     }
     /**
-     * The Authorization Url.
+     * The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
     @Export(name="authorizationUrl", refs={String.class}, tree="[0]")
-    private Output<String> authorizationUrl;
+    private Output</* @Nullable */ String> authorizationUrl;
 
     /**
-     * @return The Authorization Url.
+     * @return The Authorization Url. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
-    public Output<String> authorizationUrl() {
-        return this.authorizationUrl;
+    public Output<Optional<String>> authorizationUrl() {
+        return Codegen.optional(this.authorizationUrl);
     }
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
@@ -499,14 +553,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postBrokerLoginFlowAlias);
     }
     /**
-     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      * 
      */
     @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerId;
 
     /**
-     * @return The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+     * @return The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation. Changing this forces a new resource, because Keycloak does not change the provider of an existing identity provider.
      * 
      */
     public Output<Optional<String>> providerId() {
@@ -525,6 +579,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realm() {
         return this.realm;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
@@ -555,18 +623,18 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.syncMode);
     }
     /**
-     * The Token URL.
+     * The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
     @Export(name="tokenUrl", refs={String.class}, tree="[0]")
-    private Output<String> tokenUrl;
+    private Output</* @Nullable */ String> tokenUrl;
 
     /**
-     * @return The Token URL.
+     * @return The Token URL. Required when `providerId` is `oidc` or `keycloak-oidc`.
      * 
      */
-    public Output<String> tokenUrl() {
-        return this.tokenUrl;
+    public Output<Optional<String>> tokenUrl() {
+        return Codegen.optional(this.tokenUrl);
     }
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.

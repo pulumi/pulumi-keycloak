@@ -60,7 +60,8 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
-export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
+export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getGroup:getGroup", {
         "description": args.description,
@@ -68,6 +69,7 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
         "name": args.name,
         "organizationId": args.organizationId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -91,7 +93,8 @@ export interface GetGroupArgs {
     /**
      * The realm this group exists within.
      */
-    realmId: string;
+    realmId?: string;
+    realmInternalId?: string;
 }
 
 /**
@@ -110,6 +113,7 @@ export interface GetGroupResult {
     readonly parentId: string;
     readonly path: string;
     readonly realmId: string;
+    readonly realmInternalId: string;
 }
 /**
  * This data source can be used to fetch properties of a Keycloak group for
@@ -167,7 +171,8 @@ export interface GetGroupResult {
  * });
  * ```
  */
-export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
+export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getGroup:getGroup", {
         "description": args.description,
@@ -175,6 +180,7 @@ export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOut
         "name": args.name,
         "organizationId": args.organizationId,
         "realmId": args.realmId,
+        "realmInternalId": args.realmInternalId,
     }, opts);
 }
 
@@ -198,5 +204,6 @@ export interface GetGroupOutputArgs {
     /**
      * The realm this group exists within.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

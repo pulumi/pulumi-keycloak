@@ -115,6 +115,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.alias;
     }
     /**
+     * When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    @Export(name="allowAdminRoleMapping", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowAdminRoleMapping;
+
+    /**
+     * @return When `true`, mappers of this identity provider may grant administrative roles, either directly or through membership of groups that carry administrative roles. Defaults to `false`. Requires Keycloak 26.8 or later, where mappers that grant admin roles are rejected unless this is enabled. Enabling it requires the `manage-realm` permission.
+     * 
+     */
+    public Output<Optional<Boolean>> allowAdminRoleMapping() {
+        return Codegen.optional(this.allowAdminRoleMapping);
+    }
+    /**
      * Authenticate users by default. Defaults to `false`.
      * 
      */
@@ -505,6 +519,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realm() {
         return this.realm;
+    }
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    @Export(name="realmInternalId", refs={String.class}, tree="[0]")
+    private Output<String> realmInternalId;
+
+    /**
+     * @return The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     * 
+     */
+    public Output<String> realmInternalId() {
+        return this.realmInternalId;
     }
     /**
      * Signing Algorithm. Defaults to empty.

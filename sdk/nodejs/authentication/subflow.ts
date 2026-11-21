@@ -120,6 +120,10 @@ export class Subflow extends pulumi.CustomResource {
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
+    /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.
      */
@@ -145,14 +149,12 @@ export class Subflow extends pulumi.CustomResource {
             resourceInputs["priority"] = state?.priority;
             resourceInputs["providerId"] = state?.providerId;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
             resourceInputs["requirement"] = state?.requirement;
         } else {
             const args = argsOrState as SubflowArgs | undefined;
             if (args?.parentFlowAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'parentFlowAlias'");
-            }
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["alias"] = args?.alias;
             resourceInputs["authenticator"] = args?.authenticator;
@@ -161,6 +163,7 @@ export class Subflow extends pulumi.CustomResource {
             resourceInputs["priority"] = args?.priority;
             resourceInputs["providerId"] = args?.providerId;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
             resourceInputs["requirement"] = args?.requirement;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -203,6 +206,10 @@ export interface SubflowState {
      */
     realmId?: pulumi.Input<string | undefined>;
     /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
+    /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.
      */
@@ -242,7 +249,11 @@ export interface SubflowArgs {
     /**
      * The realm that the authentication subflow exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.

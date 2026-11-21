@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetUserRealmRolesArgs extends com.pulumi.resources.InvokeArgs {
@@ -18,15 +20,22 @@ public final class GetUserRealmRolesArgs extends com.pulumi.resources.InvokeArgs
      * The realm this user belongs to.
      * 
      */
-    @Import(name="realmId", required=true)
-    private Output<String> realmId;
+    @Import(name="realmId")
+    private @Nullable Output<String> realmId;
 
     /**
      * @return The realm this user belongs to.
      * 
      */
-    public Output<String> realmId() {
-        return this.realmId;
+    public Optional<Output<String>> realmId() {
+        return Optional.ofNullable(this.realmId);
+    }
+
+    @Import(name="realmInternalId")
+    private @Nullable Output<String> realmInternalId;
+
+    public Optional<Output<String>> realmInternalId() {
+        return Optional.ofNullable(this.realmInternalId);
     }
 
     /**
@@ -48,6 +57,7 @@ public final class GetUserRealmRolesArgs extends com.pulumi.resources.InvokeArgs
 
     private GetUserRealmRolesArgs(GetUserRealmRolesArgs $) {
         this.realmId = $.realmId;
+        this.realmInternalId = $.realmInternalId;
         this.userId = $.userId;
     }
 
@@ -75,7 +85,7 @@ public final class GetUserRealmRolesArgs extends com.pulumi.resources.InvokeArgs
          * @return builder
          * 
          */
-        public Builder realmId(Output<String> realmId) {
+        public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
@@ -88,6 +98,15 @@ public final class GetUserRealmRolesArgs extends com.pulumi.resources.InvokeArgs
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        public Builder realmInternalId(@Nullable Output<String> realmInternalId) {
+            $.realmInternalId = realmInternalId;
+            return this;
+        }
+
+        public Builder realmInternalId(String realmInternalId) {
+            return realmInternalId(Output.of(realmInternalId));
         }
 
         /**
@@ -112,9 +131,6 @@ public final class GetUserRealmRolesArgs extends com.pulumi.resources.InvokeArgs
         }
 
         public GetUserRealmRolesArgs build() {
-            if ($.realmId == null) {
-                throw new MissingRequiredPropertyException("GetUserRealmRolesArgs", "realmId");
-            }
             if ($.userId == null) {
                 throw new MissingRequiredPropertyException("GetUserRealmRolesArgs", "userId");
             }

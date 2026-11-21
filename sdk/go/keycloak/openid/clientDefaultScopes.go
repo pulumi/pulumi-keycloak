@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **WARNING:** This resource is deprecated and will be removed in a future major version. Use `ClientScopeAssignments` with `defaultScopes` and `optionalScopes` instead.
+//
 // Allows for managing a Keycloak client's default client scopes. A default scope that is attached to a client using the
 // OpenID Connect protocol will automatically use the protocol mappers defined within that scope to build claims for this
 // client regardless of the provided OAuth2.0 `scope` parameter.
@@ -100,6 +102,8 @@ type ClientDefaultScopes struct {
 	DefaultScopes pulumi.StringArrayOutput `pulumi:"defaultScopes"`
 	// The realm this client and scopes exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewClientDefaultScopes registers a new resource with the given unique name, arguments, and options.
@@ -114,9 +118,6 @@ func NewClientDefaultScopes(ctx *pulumi.Context,
 	}
 	if args.DefaultScopes == nil {
 		return nil, errors.New("invalid value for required argument 'DefaultScopes'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ClientDefaultScopes
@@ -147,6 +148,8 @@ type clientDefaultScopesState struct {
 	DefaultScopes []string `pulumi:"defaultScopes"`
 	// The realm this client and scopes exists in.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type ClientDefaultScopesState struct {
@@ -156,6 +159,8 @@ type ClientDefaultScopesState struct {
 	DefaultScopes pulumi.StringArrayInput
 	// The realm this client and scopes exists in.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (ClientDefaultScopesState) ElementType() reflect.Type {
@@ -174,7 +179,9 @@ type clientDefaultScopesArgs struct {
 	// An array of client scope names to attach to this client.
 	DefaultScopes []string `pulumi:"defaultScopes"`
 	// The realm this client and scopes exists in.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a ClientDefaultScopes resource.
@@ -184,7 +191,9 @@ type ClientDefaultScopesArgs struct {
 	// An array of client scope names to attach to this client.
 	DefaultScopes pulumi.StringArrayInput
 	// The realm this client and scopes exists in.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (ClientDefaultScopesArgs) ElementType() reflect.Type {
@@ -287,6 +296,11 @@ func (o ClientDefaultScopesOutput) DefaultScopes() pulumi.StringArrayOutput {
 // The realm this client and scopes exists in.
 func (o ClientDefaultScopesOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientDefaultScopes) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o ClientDefaultScopesOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ClientDefaultScopes) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type ClientDefaultScopesArrayOutput struct{ *pulumi.OutputState }

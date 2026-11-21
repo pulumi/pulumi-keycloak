@@ -18,6 +18,14 @@ import (
 // control over an organization's members, users that are manually added to the organization will be removed, and users that
 // are manually removed will be re-added upon the next run of `pulumi up`.
 //
+// Managed members are the exception. A membership is managed (`MANAGED` in Keycloak) when, for example, the user joined
+// the organization by signing in through an identity provider linked to it (from Keycloak 26.8, a link with managed
+// membership), or when an administrator changed the membership type to managed (Keycloak 26.8 and later). Keycloak
+// deletes the user account when a managed membership is removed, so this resource never removes a managed member, listed
+// in `members` or not: create, update and destroy leave it in the organization. A managed member is in the resource's
+// state only while it is listed in `members`, so unlisted managed members never cause a diff, and removing a managed
+// member from `members` removes it from the state, not from the organization.
+//
 // This resource paginates its data loading on refresh by 50 items.
 //
 // ## Example Usage
@@ -93,12 +101,14 @@ import (
 type OrganizationMemberships struct {
 	pulumi.CustomResourceState
 
-	// A set of usernames to assign as members of the organization.
+	// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The ID of the organization to manage memberships for.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The realm the organization belongs to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringOutput `pulumi:"realmInternalId"`
 }
 
 // NewOrganizationMemberships registers a new resource with the given unique name, arguments, and options.
@@ -113,9 +123,6 @@ func NewOrganizationMemberships(ctx *pulumi.Context,
 	}
 	if args.OrganizationId == nil {
 		return nil, errors.New("invalid value for required argument 'OrganizationId'")
-	}
-	if args.RealmId == nil {
-		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource OrganizationMemberships
@@ -140,21 +147,25 @@ func GetOrganizationMemberships(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrganizationMemberships resources.
 type organizationMembershipsState struct {
-	// A set of usernames to assign as members of the organization.
+	// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
 	Members []string `pulumi:"members"`
 	// The ID of the organization to manage memberships for.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The realm the organization belongs to.
 	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 type OrganizationMembershipsState struct {
-	// A set of usernames to assign as members of the organization.
+	// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
 	Members pulumi.StringArrayInput
 	// The ID of the organization to manage memberships for.
 	OrganizationId pulumi.StringPtrInput
 	// The realm the organization belongs to.
 	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (OrganizationMembershipsState) ElementType() reflect.Type {
@@ -168,22 +179,26 @@ func OrganizationMembershipsExists(ctx *pulumi.Context,
 }
 
 type organizationMembershipsArgs struct {
-	// A set of usernames to assign as members of the organization.
+	// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
 	Members []string `pulumi:"members"`
 	// The ID of the organization to manage memberships for.
 	OrganizationId string `pulumi:"organizationId"`
 	// The realm the organization belongs to.
-	RealmId string `pulumi:"realmId"`
+	RealmId *string `pulumi:"realmId"`
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId *string `pulumi:"realmInternalId"`
 }
 
 // The set of arguments for constructing a OrganizationMemberships resource.
 type OrganizationMembershipsArgs struct {
-	// A set of usernames to assign as members of the organization.
+	// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
 	Members pulumi.StringArrayInput
 	// The ID of the organization to manage memberships for.
 	OrganizationId pulumi.StringInput
 	// The realm the organization belongs to.
-	RealmId pulumi.StringInput
+	RealmId pulumi.StringPtrInput
+	// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+	RealmInternalId pulumi.StringPtrInput
 }
 
 func (OrganizationMembershipsArgs) ElementType() reflect.Type {
@@ -273,7 +288,7 @@ func (o OrganizationMembershipsOutput) ToOrganizationMembershipsOutputWithContex
 	return o
 }
 
-// A set of usernames to assign as members of the organization.
+// A set of usernames to assign as members of the organization. Managed members may be listed, but are never removed.
 func (o OrganizationMembershipsOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OrganizationMemberships) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
@@ -286,6 +301,11 @@ func (o OrganizationMembershipsOutput) OrganizationId() pulumi.StringOutput {
 // The realm the organization belongs to.
 func (o OrganizationMembershipsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationMemberships) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+func (o OrganizationMembershipsOutput) RealmInternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrganizationMemberships) pulumi.StringOutput { return v.RealmInternalId }).(pulumi.StringOutput)
 }
 
 type OrganizationMembershipsArrayOutput struct{ *pulumi.OutputState }

@@ -19,25 +19,26 @@ __all__ = ['GroupAdminPermissionsArgs', 'GroupAdminPermissions']
 @pulumi.input_type
 class GroupAdminPermissionsArgs:
     def __init__(__self__, *,
-                 realm_id: pulumi.Input[_builtins.str],
                  scopes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  decision_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupAdminPermissions resource.
 
-        :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         :param pulumi.Input[_builtins.str] decision_strategy: Decision strategy. One of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
         :param pulumi.Input[_builtins.str] description: Description of the permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: Set of group UUIDs (`keycloak_group.xxx.id`) this permission applies to. When omitted or empty, the permission applies to **all groups** in the realm.
         :param pulumi.Input[_builtins.str] name: The name of the permission. Must be unique within the `admin-permissions` resource server. On first apply, if a permission with this name already exists it is adopted; otherwise a new one is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
+        :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         """
-        pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "scopes", scopes)
         if decision_strategy is not None:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
@@ -49,18 +50,10 @@ class GroupAdminPermissionsArgs:
             pulumi.set(__self__, "name", name)
         if policies is not None:
             pulumi.set(__self__, "policies", policies)
-
-    @_builtins.property
-    @pulumi.getter(name="realmId")
-    def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm in which to manage this permission.
-        """
-        return pulumi.get(self, "realm_id")
-
-    @realm_id.setter
-    def realm_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "realm_id", value)
+        if realm_id is not None:
+            pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
 
     @_builtins.property
     @pulumi.getter
@@ -134,6 +127,30 @@ class GroupAdminPermissionsArgs:
     def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
+    @_builtins.property
+    @pulumi.getter(name="realmId")
+    def realm_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The realm in which to manage this permission.
+        """
+        return pulumi.get(self, "realm_id")
+
+    @realm_id.setter
+    def realm_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
 
 @pulumi.input_type
 class _GroupAdminPermissionsState:
@@ -147,6 +164,7 @@ class _GroupAdminPermissionsState:
                  permission_id: pulumi.Input[Optional[_builtins.str]] = None,
                  policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering GroupAdminPermissions resources.
@@ -160,6 +178,7 @@ class _GroupAdminPermissionsState:
         :param pulumi.Input[_builtins.str] permission_id: The internal Keycloak UUID of the permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         if authorization_resource_server_id is not None:
@@ -180,6 +199,8 @@ class _GroupAdminPermissionsState:
             pulumi.set(__self__, "policies", policies)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if realm_internal_id is not None:
+            pulumi.set(__self__, "realm_internal_id", realm_internal_id)
         if scopes is not None:
             pulumi.set(__self__, "scopes", scopes)
 
@@ -292,6 +313,18 @@ class _GroupAdminPermissionsState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
+
+    @realm_internal_id.setter
+    def realm_internal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "realm_internal_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -316,6 +349,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -404,6 +438,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the permission. Must be unique within the `admin-permissions` resource server. On first apply, if a permission with this name already exists it is adopted; otherwise a new one is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         ...
@@ -511,6 +546,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -526,9 +562,8 @@ class GroupAdminPermissions(pulumi.CustomResource):
             __props__.__dict__["group_ids"] = group_ids
             __props__.__dict__["name"] = name
             __props__.__dict__["policies"] = policies
-            if realm_id is None and not opts.urn:
-                raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["realm_internal_id"] = realm_internal_id
             if scopes is None and not opts.urn:
                 raise TypeError("Missing required property 'scopes'")
             __props__.__dict__["scopes"] = scopes
@@ -554,6 +589,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
             permission_id: pulumi.Input[Optional[_builtins.str]] = None,
             policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'GroupAdminPermissions':
         """
         Get an existing GroupAdminPermissions resource's state with the given name, id, and optional extra
@@ -571,6 +607,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] permission_id: The internal Keycloak UUID of the permission.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: Set of policy IDs to attach to the permission.
         :param pulumi.Input[_builtins.str] realm_id: The realm in which to manage this permission.
+        :param pulumi.Input[_builtins.str] realm_internal_id: The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Set of scopes this permission grants. Valid values: `view`, `manage`, `view-members`, `manage-members`, `manage-membership`, `manage-membership-of-members`, `impersonate-members`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -586,6 +623,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
         __props__.__dict__["permission_id"] = permission_id
         __props__.__dict__["policies"] = policies
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["realm_internal_id"] = realm_internal_id
         __props__.__dict__["scopes"] = scopes
         return GroupAdminPermissions(resource_name, opts=opts, __props__=__props__)
 
@@ -601,6 +639,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
             permission_id: pulumi.Input[Optional[_builtins.str]] = None,
             policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             realm_id: pulumi.Input[Optional[_builtins.str]] = None,
+            realm_internal_id: pulumi.Input[Optional[_builtins.str]] = None,
             scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["authorizationResourceServerId"] = authorization_resource_server_id
@@ -612,6 +651,7 @@ class GroupAdminPermissions(pulumi.CustomResource):
         __props__["permissionId"] = permission_id
         __props__["policies"] = policies
         __props__["realmId"] = realm_id
+        __props__["realmInternalId"] = realm_internal_id
         __props__["scopes"] = scopes
         return pulumi.runtime.exists_resource(None, 'keycloak:index/groupAdminPermissions:GroupAdminPermissions', id, __props__, opts or pulumi.ResourceOptions())
 
@@ -686,6 +726,14 @@ class GroupAdminPermissions(pulumi.CustomResource):
         The realm in which to manage this permission.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="realmInternalId")
+    def realm_internal_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        """
+        return pulumi.get(self, "realm_internal_id")
 
     @_builtins.property
     @pulumi.getter

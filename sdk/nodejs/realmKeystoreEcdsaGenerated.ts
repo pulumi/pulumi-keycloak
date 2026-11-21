@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Allows for creating and managing `acdsaGenerated` Realm keystores within Keycloak.
+ * Allows for creating and managing `ecdsa-generated` Realm keystores within Keycloak.
  *
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  *
@@ -76,7 +76,7 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
     }
 
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
@@ -99,6 +99,10 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
      * The realm this keystore exists in.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    declare public readonly realmInternalId: pulumi.Output<string>;
 
     /**
      * Create a RealmKeystoreEcdsaGenerated resource with the given unique name, arguments, and options.
@@ -107,7 +111,7 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmKeystoreEcdsaGeneratedArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmKeystoreEcdsaGeneratedArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmKeystoreEcdsaGeneratedArgs | RealmKeystoreEcdsaGeneratedState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -119,17 +123,16 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmInternalId"] = state?.realmInternalId;
         } else {
             const args = argsOrState as RealmKeystoreEcdsaGeneratedArgs | undefined;
-            if (args?.realmId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'realmId'");
-            }
             resourceInputs["active"] = args?.active;
             resourceInputs["ellipticCurveKey"] = args?.ellipticCurveKey;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmInternalId"] = args?.realmInternalId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmKeystoreEcdsaGenerated.__pulumiType, name, resourceInputs, opts);
@@ -141,7 +144,7 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
  */
 export interface RealmKeystoreEcdsaGeneratedState {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -164,6 +167,10 @@ export interface RealmKeystoreEcdsaGeneratedState {
      * The realm this keystore exists in.
      */
     realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -171,7 +178,7 @@ export interface RealmKeystoreEcdsaGeneratedState {
  */
 export interface RealmKeystoreEcdsaGeneratedArgs {
     /**
-     * When `false`, key in not used for signing. Defaults to `true`.
+     * When `false`, key is not used for signing. Defaults to `true`.
      */
     active?: pulumi.Input<boolean | undefined>;
     /**
@@ -193,5 +200,9 @@ export interface RealmKeystoreEcdsaGeneratedArgs {
     /**
      * The realm this keystore exists in.
      */
-    realmId: pulumi.Input<string>;
+    realmId?: pulumi.Input<string | undefined>;
+    /**
+     * The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+     */
+    realmInternalId?: pulumi.Input<string | undefined>;
 }

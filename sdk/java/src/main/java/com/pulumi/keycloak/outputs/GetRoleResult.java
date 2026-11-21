@@ -29,6 +29,7 @@ public final class GetRoleResult {
     private String id;
     private String name;
     private String realmId;
+    private String realmInternalId;
 
     private GetRoleResult() {}
     public Map<String,String> attributes() {
@@ -60,6 +61,9 @@ public final class GetRoleResult {
     public String realmId() {
         return this.realmId;
     }
+    public String realmInternalId() {
+        return this.realmInternalId;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -77,6 +81,7 @@ public final class GetRoleResult {
         private String id;
         private String name;
         private String realmId;
+        private String realmInternalId;
         public Builder() {}
         public Builder(GetRoleResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -87,6 +92,7 @@ public final class GetRoleResult {
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.realmId = defaults.realmId;
+    	      this.realmInternalId = defaults.realmInternalId;
         }
 
         @CustomType.Setter
@@ -146,6 +152,14 @@ public final class GetRoleResult {
             this.realmId = realmId;
             return this;
         }
+        @CustomType.Setter
+        public Builder realmInternalId(String realmInternalId) {
+            if (realmInternalId == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "realmInternalId");
+            }
+            this.realmInternalId = realmInternalId;
+            return this;
+        }
         public GetRoleResult build() {
             final var _resultValue = new GetRoleResult();
             _resultValue.attributes = attributes;
@@ -155,6 +169,7 @@ public final class GetRoleResult {
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.realmId = realmId;
+            _resultValue.realmInternalId = realmInternalId;
             return _resultValue;
         }
     }

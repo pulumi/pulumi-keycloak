@@ -60,7 +60,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreJavaGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -128,6 +128,12 @@ namespace Pulumi.Keycloak
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Output("realmInternalId")]
+        public Output<string> RealmInternalId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a RealmKeystoreJavaGenerated resource with the given unique name, arguments, and options.
@@ -180,7 +186,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreJavaGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -262,8 +268,14 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The realm this keystore exists in.
         /// </summary>
-        [Input("realmId", required: true)]
-        public Input<string> RealmId { get; set; } = null!;
+        [Input("realmId")]
+        public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmKeystoreJavaGeneratedArgs()
         {
@@ -274,7 +286,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreJavaGeneratedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `False`, key in not used for signing. Defaults to `True`.
+        /// When `False`, key is not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -361,6 +373,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// The internal id of the realm, as an alternative to realm_id. Unlike the realm name, it does not change when the realm is renamed.
+        /// </summary>
+        [Input("realmInternalId")]
+        public Input<string>? RealmInternalId { get; set; }
 
         public RealmKeystoreJavaGeneratedState()
         {
