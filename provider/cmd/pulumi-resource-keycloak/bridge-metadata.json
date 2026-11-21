@@ -29,6 +29,18 @@
                 "current": "keycloak:authentication/subflow:Subflow",
                 "majorVersion": 6
             },
+            "keycloak_client_scope_assignments": {
+                "current": "keycloak:index/clientScopeAssignments:ClientScopeAssignments",
+                "majorVersion": 6,
+                "fields": {
+                    "default_scopes": {
+                        "maxItemsOne": false
+                    },
+                    "optional_scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "keycloak_custom_identity_provider_mapper": {
                 "current": "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping",
                 "majorVersion": 6
@@ -592,6 +604,21 @@
                     }
                 }
             },
+            "keycloak_organization_admin_permissions": {
+                "current": "keycloak:index/organizationAdminPermissions:OrganizationAdminPermissions",
+                "majorVersion": 6,
+                "fields": {
+                    "organization_ids": {
+                        "maxItemsOne": false
+                    },
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "keycloak_organization_memberships": {
                 "current": "keycloak:index/organizationMemberships:OrganizationMemberships",
                 "majorVersion": 6,
@@ -662,6 +689,9 @@
                                 },
                                 "signature_algorithms": {
                                     "maxItemsOne": false
+                                },
+                                "signature_algorithms_ordered": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -677,6 +707,9 @@
                                     "maxItemsOne": false
                                 },
                                 "signature_algorithms": {
+                                    "maxItemsOne": false
+                                },
+                                "signature_algorithms_ordered": {
                                     "maxItemsOne": false
                                 }
                             }
@@ -732,6 +765,14 @@
             },
             "keycloak_realm_keystore_aes_generated": {
                 "current": "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated",
+                "majorVersion": 6
+            },
+            "keycloak_realm_keystore_custom": {
+                "current": "keycloak:index/realmKeystoreCustom:RealmKeystoreCustom",
+                "majorVersion": 6
+            },
+            "keycloak_realm_keystore_ecdh_generated": {
+                "current": "keycloak:index/realmKeystoreEcdhGenerated:RealmKeystoreEcdhGenerated",
                 "majorVersion": 6
             },
             "keycloak_realm_keystore_ecdsa_generated": {
@@ -1198,6 +1239,9 @@
                                 },
                                 "signature_algorithms": {
                                     "maxItemsOne": false
+                                },
+                                "signature_algorithms_ordered": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -1213,6 +1257,9 @@
                                     "maxItemsOne": false
                                 },
                                 "signature_algorithms": {
+                                    "maxItemsOne": false
+                                },
+                                "signature_algorithms_ordered": {
                                     "maxItemsOne": false
                                 }
                             }
